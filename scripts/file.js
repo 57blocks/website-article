@@ -81,7 +81,11 @@ export function sortMetadata(metaDataList) {
       return b.weight - a.weight;
     }
 
-    return new Date(b.date) - new Date(a.date);
+    try {
+      return new Date(b.createTime) - new Date(a.createTime);
+    } catch (e) {
+      return 0;
+    }
   });
 }
 

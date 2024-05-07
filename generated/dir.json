@@ -1,39 +1,6 @@
 {
   "articles": [
     {
-      "title": "Image Quality Assessment",
-      "author": [
-        "Damon Wang / Android Engineer",
-        "Roy Xie / Tech Lead"
-      ],
-      "createTime": "2024-04-20T00:00:00.000Z",
-      "tags": [
-        "Image Quality",
-        "CNN",
-        "OpenCV"
-      ],
-      "thumb": "https://s3.amazonaws.com/assets.57blocks.io/cms_uploads/illustration_blue_squares_c1bbaab97b.png",
-      "intro": "This article discusses Image Quality Assessment (IQA), which is a crucial process for determining the accuracy and fidelity of images. IQA algorithms analyze images and generate a quality score based on their precision. There are three main methodologies in IQA: Full-Reference IQA, Reduced-Reference IQA, and Objective Blind IQA (no-reference IQA).",
-      "path": "articles/Image Quality Assessment/README.md",
-      "slug": "image-quality-assessment"
-    },
-    {
-      "title": "Maximizing Online Visibility: The Power of Programmatic SEO for Boosting Search Traffic and Leads",
-      "author": [
-        "Shi Chen / Product Manager"
-      ],
-      "createTime": "2024-04-21T00:00:00.000Z",
-      "tags": [
-        "SEO",
-        "Growth",
-        "Alternative Investment"
-      ],
-      "thumb": "https://s3.amazonaws.com/assets.57blocks.io/cms_uploads/illustration_seo_db9bc06b49.png",
-      "intro": "The article shows how automated SEO can attract more visitors by producing lots of optimized pages. The key steps include goal planning, data handling, and using tools like a CMS for implementation. This method successfully improved online exposure and lead generation.",
-      "path": "articles/Maximizing Online Visibility: The Power of Programmatic SEO for Boosting Search Traffic and Leads/README.md",
-      "slug": "maximizing-online-visibility-the-power-of-programmatic-seo-for-boosting-search-traffic-and-leads"
-    },
-    {
       "title": "Modernizing Front-End Build Pipelines",
       "author": [
         "Andy Lai / Fullstack Engineer"
@@ -64,6 +31,39 @@
       "intro": "Modern apps need to easily adjust to new data without user help. Using Reactive Programming, they can quickly react to this data without making users wait on long loading times. This series discusses how Tokenpad uses it to keep crypto portfolios up-to-date effortlessly.",
       "path": "articles/Reactive Programming in Tokenpad/README.md",
       "slug": "reactive-programming-in-tokenpad"
+    },
+    {
+      "title": "Maximizing Online Visibility: The Power of Programmatic SEO for Boosting Search Traffic and Leads",
+      "author": [
+        "Shi Chen / Product Manager"
+      ],
+      "createTime": "2024-04-21T00:00:00.000Z",
+      "tags": [
+        "SEO",
+        "Growth",
+        "Alternative Investment"
+      ],
+      "thumb": "https://s3.amazonaws.com/assets.57blocks.io/cms_uploads/illustration_seo_db9bc06b49.png",
+      "intro": "The article shows how automated SEO can attract more visitors by producing lots of optimized pages. The key steps include goal planning, data handling, and using tools like a CMS for implementation. This method successfully improved online exposure and lead generation.",
+      "path": "articles/Maximizing Online Visibility: The Power of Programmatic SEO for Boosting Search Traffic and Leads/README.md",
+      "slug": "maximizing-online-visibility-the-power-of-programmatic-seo-for-boosting-search-traffic-and-leads"
+    },
+    {
+      "title": "Image Quality Assessment",
+      "author": [
+        "Damon Wang / Android Engineer",
+        "Roy Xie / Tech Lead"
+      ],
+      "createTime": "2024-04-20T00:00:00.000Z",
+      "tags": [
+        "Image Quality",
+        "CNN",
+        "OpenCV"
+      ],
+      "thumb": "https://s3.amazonaws.com/assets.57blocks.io/cms_uploads/illustration_blue_squares_c1bbaab97b.png",
+      "intro": "This article discusses Image Quality Assessment (IQA), which is a crucial process for determining the accuracy and fidelity of images. IQA algorithms analyze images and generate a quality score based on their precision. There are three main methodologies in IQA: Full-Reference IQA, Reduced-Reference IQA, and Objective Blind IQA (no-reference IQA).",
+      "path": "articles/Image Quality Assessment/README.md",
+      "slug": "image-quality-assessment"
     },
     {
       "title": "Smart Contract Development: A Step-by-Step Quality Assurance Guide",

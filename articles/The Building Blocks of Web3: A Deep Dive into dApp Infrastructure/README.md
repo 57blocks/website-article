@@ -72,6 +72,7 @@ In summary, Web3 architecture is distinguished by its decentralized foundation, 
 Web3 dApp Architecture
 
 ![web3-dapp-architecture.svg](https://s3.amazonaws.com/assets.57blocks.io/cms_uploads/web3_dapp_architecture_amimation.svg)
+
 Let's take a closer look at the essential components of Web3 applications and explore the various tools that can be developed for each segment:
 
 #### Smart Contract
