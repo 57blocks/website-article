@@ -5,7 +5,7 @@ name: Generate
 
 on:
   push:
-      branches: [ "main" ]
+      branches: [ "dev" ]
   workflow_dispatch:
 
 jobs:
@@ -23,4 +23,4 @@ jobs:
       - run: npm run generate
       - uses: stefanzweifel/git-auto-commit-action@v5
         with:
-          commit_message: \[action bot] auto update article directory
+          commit_message: bot - auto update article directory
