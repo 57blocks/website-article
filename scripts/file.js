@@ -38,7 +38,7 @@ export function extractMeta(fileName) {
     readInterface.on('line', function(line) {
       lineNum++;
       if (isResolved) {
-        // Don't konow why the `readInterface.close` didn't work in github action.
+        // Don't know why the `readInterface.close` didn't work in github action.
         return;
       }
       if (line.trim() === '---') {
@@ -73,8 +73,8 @@ export function extractMeta(fileName) {
 
 export function sortMetadata(metaDataList) {
   metaDataList.sort((a, b) => {
-    if (a.hot !== b.hot) {
-      return a.hot ? -1 : 1;
+    if (a.top !== b.top) {
+      return a.top ? -1 : 1;
     }
 
     if (a.weight !== b.weight) {
