@@ -1,0 +1,14 @@
+{
+  "name": "website-article",
+  "version": "1.0.0",
+  "description": "",
+  "scripts": {
+    "generate": "node scripts/index.js"
+  },
+  "author": "",
+  "type": "module",
+  "license": "ISC",
+  "dependencies": {
+    "js-yaml": "^4.1.0"
+  }
+}
