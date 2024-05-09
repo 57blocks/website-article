@@ -1,6 +1,36 @@
 {
   "articles": [
     {
+      "title": "Overcoming challenges in Android Gradle Dependency Management",
+      "author": [
+        "Rafael Ruiz / Android Engineer"
+      ],
+      "createTime": "2024-05-09T00:00:00.000Z",
+      "tags": [
+        "Mobile",
+        "Android"
+      ],
+      "thumb": "./thumb.png",
+      "intro": "Whether you're developing a feature-rich social networking app or a performance-oriented gaming application, mastering Gradle is paramount to ensure a smooth and optimized development process.",
+      "path": "articles/Overcoming challenges in Android Gradle Dependency Management/README.md",
+      "slug": "overcoming-challenges-in-android-gradle-dependency-management"
+    },
+    {
+      "title": "Shipping as small as possible",
+      "author": [
+        "Yongzhi Yang / Back-End Engineer, Team Lead"
+      ],
+      "createTime": "2024-05-09T00:00:00.000Z",
+      "tags": [
+        "CI/CD",
+        "Workflow"
+      ],
+      "thumb": "./thumb.png",
+      "intro": "Deploying large features can pose significant challenges, often requiring temporary service shutdowns and risking disruptions to dependent clients. However, adopting the practice of shipping as small as possible aligns with the principles of Continuous Integration and Continuous Deployment (CI/CD) and offers a solution. By breaking down large features into manageable components, organizations can mitigate issues, ensure smoother data management and migration, and minimize disruptions to dependent clients. This approach promotes an agile and iterative deployment process, enhancing stability and user experience.",
+      "path": "articles/Shipping as small as possible/README.md",
+      "slug": "shipping-as-small-as-possible"
+    },
+    {
       "title": "57Blocks Testing Best Practices",
       "author": [
         "Jia Chen / QA Engineer",
