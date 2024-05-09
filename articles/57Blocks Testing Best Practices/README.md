@@ -31,14 +31,14 @@ In this article, we will delve into the testing best practices that 57blocks QA 
 
 This process should be repeated for each release, with a focus on testing new features and ensuring that the existing functionality of the software is not impacted.
 
-![test process](test_process.svg)
+![test process](test_process.png)
 
 
 ## Prepare multiple environments
 
 Multiple test environments ensure that the software application is thoroughly tested and validated before it is released to end-users. Each environment serves a specific purpose in the software development and testing process.
 
-![test env](test_env.svg)
+![test env](test_env.png)
 
 - **Development environment**: The development environment is used by developers to write and test code. This environment is typically used for unit testing and integration testing, and it may include tools such as debuggers, code editors, and other development tools.
 - **QA environment**: The QA environment is used for testing the software application in a more realistic environment. This environment is typically used for regression testing, user acceptance testing, and performance testing. The QA environment should closely resemble the production environment to ensure accurate testing.
@@ -50,7 +50,7 @@ Multiple test environments ensure that the software application is thoroughly te
 
 Using Jenkins to build a project, trigger tests, and generate a test report before releasing the software application helps to ensure that the software is thoroughly tested and validated before it is released to end-users. Using Jenkins can help to minimize the risk of issues and defects in the final product, and ensures that the software meets the quality standards of the development team.
 
-![continuous test](continuous_test.svg)
+![continuous test](continuous_test.png)
 
 Before release, Jenkins can integrate development and automated testing to detect risks as early as possible.
 
