@@ -25,12 +25,14 @@ We have two fixed environments to display articles:
 4. Each article needs to contain the metadata of the article at the beginning, the template of the metadata is as follows(yaml format):
 
 ```yaml
+---
 title: "The title of the article"
 author: ["YourName / Full stack engineer", "SecondAuthorName / PositionOfTheAuthor"]
 createTime: 2024-04-01
 tags: ["Web3", "AnyOtherTag"]
 thumb: "https://example.com/theThumbOfTheArticle.png"
 intro: "Some introduction to the article"
+---
 ```
 
 
