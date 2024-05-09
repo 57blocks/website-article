@@ -2,6 +2,7 @@ import fs from 'fs';
 import path from 'path';
 import readline from 'readline';
 import jsYaml from 'js-yaml';
+import slugify from 'slugify';
 
 export function getReadmeFilesSync(directoryPath) {
   let readmeFiles = [];
@@ -95,8 +96,8 @@ export function exportJSONFile(folderPath, obj) {
 }
 
 export function beautifyUR(title) {
-  return title.replace(/\s/g, '-').
-      replace(/-+/g, '-').
-      replace(/[^a-å0-9-]/gi, '').
-      toLowerCase() || title;
+  return slugify(title, {
+    lower: true,
+    strict: true,
+  });
 }
