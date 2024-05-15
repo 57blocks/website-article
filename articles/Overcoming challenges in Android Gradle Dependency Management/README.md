@@ -75,7 +75,7 @@ Such configurations also often do not allow for automatic dependency updates thr
 
 - **The specific architecture of a project is not taken into account**: Android Studio provides us with plugins to distinguish, for example, an Android library (com.android.library) from a Java library (java-library). But what if we want to differentiate between a module containing use cases and another containing repositories? In that case, we would have to use the same dependencies in similar modules, leading to duplicated code once again.
 
-- **Using the buildSrc folder**: Many projects (including some [Google architecture samples](https://github.com/android/compose-samples)) use it to store build logic. However, it is advisable to separate the build logic from the buildSrc folder [through the use of composite builds](https://proandroiddev.com/stop-using-gradle-buildsrc-use-composite-builds-instead-3c38ac7a2ab3), maintaining a single source of truth for common module configurations.
+- **Using the buildSrc folder**: Many projects (including some [Google architecture samples](https://github.com/android/compose-samples)) use it to store build logic. However, it is advisable to separate the build logic from the **buildSrc** folder [through the use of composite builds](https://proandroiddev.com/stop-using-gradle-buildsrc-use-composite-builds-instead-3c38ac7a2ab3), maintaining a single source of truth for common module configurations.
 
 Let's take a look at what we can do to solve these issues.
 
@@ -324,7 +324,7 @@ class AndroidRoomConventionPlugin : Plugin<Project> {
 }
 ```
 
-So that the rest of the project can recognize them, we register our plugins in our build-logic kts file:
+So that the rest of the project can recognize them, we register our plugins in our **build-logic** kts file:
 
 ```kts 
 // File: build-logic/convention/build.gradle.kts
@@ -354,9 +354,9 @@ depsmanagement-android-hilt = { id = "depsmanagement.android.hilt", version = "u
 depsmanagement-android-room = { id = "depsmanagement.android.room", version = "unspecified" }
 ```
 
-The good thing about these plugins is that they are composable and additive. If we want to add Room and Hilt in any of our modules, we can now simply reference these plugins, saving us a lot of code:
+The good thing about these plugins is that they are **composable** and **additive**. If we want to add Room and Hilt in any of our modules, we can now simply reference these plugins, saving us a lot of code:
 
-``` 
+```kts
 plugins {
     alias(libs.plugins.depsmanagement.android.room)
     alias(libs.plugins.depsmanagement.android.hilt)
@@ -366,8 +366,7 @@ plugins {
 To standardize the version of Kotlin we want to use across all project libraries, we can use the AndroidLibraryConventionPlugin (from [nowinandroid](https://github.com/android/nowinandroid) as well):
 
 
-```kt
-Unset 
+```kt 
 // File: build-logic/convention/src/main/java/AndroidLibraryConventionPlugin.kt
 
 import com.android.build.api.variant.LibraryAndroidComponentsExtension

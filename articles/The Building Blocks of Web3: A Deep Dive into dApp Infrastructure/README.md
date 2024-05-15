@@ -3,7 +3,7 @@ title: "The Building Blocks of Web3: A Deep Dive into dApp Infrastructure"
 author: ["Wei Wang / Tech Lead"]
 createTime: 2024-04-18
 tags: ["Smart Contract", "Web3", "Architecture", "Dapp"]
-thumb: "https://s3.amazonaws.com/assets.57blocks.io/cms_uploads/illustration_bulding_blocks_1e732f6a88.png"
+thumb: "./thumb.png"
 intro: "The design of Web3 apps is much more decentralized than that of Web2. New services are constantly appearing to make building and running these projects easier and safer. Engineers must know how each part works to create effective Web3 apps."
 ---
 

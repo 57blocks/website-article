@@ -3,7 +3,7 @@ title: "Smart Contract Development: A Step-by-Step Quality Assurance Guide"
 author: ["Lily Hu / Smart Contract Engineer"]
 createTime: 2024-04-19
 tags: ["Smart Contract", "Web3", "QA"]
-thumb: "https://s3.amazonaws.com/assets.57blocks.io/cms_uploads/illustration_enpytic_document_b9655005ff.png"
+thumb: "./thumb.png"
 intro: "Because smart contracts are on a public blockchain, they need a lot of testing to be good quality. Engineers must know the whole process, including regular testing, external reviews, and fixing problems after launch."
 ---
 
@@ -37,7 +37,7 @@ Use tools like [Slither](https://github.com/crytic/slither), [Solhint](https://p
 Smart contract testing is a critical process that involves scrutinizing the code and logic of smart contracts to ensure they operate accurately and securely. Since smart contracts automate transactions and enforce agreements on the blockchain without third-party oversight, it's essential that they run without flaws or vulnerabilities.  
  
 
-![dot-purple.svg](https://s3.amazonaws.com/assets.57blocks.io/cms_uploads/dot_purple_6ebf6025fc.svg)  **Unit Testing**
+### Unit Testing
 
 Smart contract unit tests are a type of software testing where individual units, functions, or components of a smart contract are tested in isolation to ensure that each part works correctly on its own. It is primarily conducted by the developers of the contract.  
   
@@ -46,14 +46,14 @@ These tests are key for identifying flaws within the smallest testable parts of 
 The smart contract unit testing landscape is dominated by a variety of tools, each offering distinct features to streamline the development process. Prominent among these are [Hardhat](https://hardhat.org/), [Foundry](https://github.com/foundry-rs/foundry), [Brownie](https://eth-brownie.readthedocs.io/en/stable/), [Waffle](https://getwaffle.io/), and [Truffle](https://trufflesuite.com/).  
  
 
-![dot-purple.svg](https://s3.amazonaws.com/assets.57blocks.io/cms_uploads/dot_purple_6ebf6025fc.svg)  **Fuzzing Testing**
+### Fuzzing Testing
 
 Fuzzing is particularly useful for uncovering hidden problems, such as those that could be exploited by malicious actors (e.g., hackers) to compromise the contract or the funds it handles. It's an essential part of ensuring that smart contracts are robust and secure before they are deployed on the blockchain.  
   
 The fuzz testing tool that is currently popular among developers is [Foundry](https://book.getfoundry.sh/forge/fuzz-testing).  
  
 
-![dot-purple.svg](https://s3.amazonaws.com/assets.57blocks.io/cms_uploads/dot_purple_6ebf6025fc.svg)  **Integration Testing**
+###  Integration Testing
 
 1.  Checking that multiple contracts work well together, for example, one contract might hold funds while another manages the rules for transferring those funds.
 2.  Ensuring that the contract interactions with the blockchain (such as recording transactions or checking balances) occur without errors.
@@ -62,12 +62,12 @@ The fuzz testing tool that is currently popular among developers is [Foundry](ht
 Integration tests are crucial because they can catch issues that are not visible in unit tests. Integration testing shares tooling with unit testing, yet demands a more sophisticated testing environment. Generally, it necessitates mirroring the main network locally through forking for comprehensive testing. Forking functions are also featured within the [Hardhat](https://hardhat.org/), [Foundry](https://github.com/foundry-rs/foundry), and [Brownie](https://eth-brownie.readthedocs.io/en/stable/) development environments.  
  
 
-![dot-purple.svg](https://s3.amazonaws.com/assets.57blocks.io/cms_uploads/dot_purple_6ebf6025fc.svg)  **Security Testing**
+### Security Testing
 
 Particularly important due to the high-value assets often managed by contracts; this step involves identifying potential security vulnerabilities.  
  
 
-![dot-purple.svg](https://s3.amazonaws.com/assets.57blocks.io/cms_uploads/dot_purple_6ebf6025fc.svg)  **Upgradability and Migrations Testing**
+### Upgradability and Migrations Testing
 
 If your contract is designed to be upgradable or requires migrations, test these mechanisms thoroughly to check that the contract's code and data can be updated or migrated smoothly to a new version without losing functionality or causing disruption to users.  
   

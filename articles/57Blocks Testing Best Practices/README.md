@@ -3,7 +3,7 @@ title: "57Blocks Testing Best Practices"
 author: ["Jia Chen / QA Engineer", "Martha Luo / QA Engineer"]
 createTime: 2024-05-07
 tags: ["Software Testing Lifecycle", "Continuous Integration",  "Test Automation Frameworks"]
-thumb: "https://s3.amazonaws.com/assets.57blocks.io/cms_uploads/illustration_blue_squares_c1bbaab97b.png"
+thumb: "./thumb.png"
 intro: "This article explores the practical testing best practices adopted by 57blocks QA teams to navigate the software testing complexities effectively. These strategies are born from hands-on application in real-world projects, offering actionable insights into how embracing these methods can not only mitigate difficulties but potentially convert them into leverage for elevating software quality, enhancing team performance, and improving overall project delivery."
 ---
 
@@ -96,7 +96,7 @@ Different kinds of tests require different frameworks. Most test frameworks can 
 - **Cross-functional testing**: JavaScript can be used for both front-end and back-end testing, which means that it can be used for cross-functional testing. When both front-end and back-end tests are written in JavaScript, they can be managed and run using the same set of tools. Developers and testers can run them as part of a Continuous Integration/Continuous Deployment (CI/CD) pipeline, ensuring that tests for both the client and server sides are automatically running on every commit.
 
 
-### Set up an automation framework
+## Set up an automation framework
 
 Setting up an automation framework for a project can help you streamline your testing efforts and improve the overall quality of your application.
 
