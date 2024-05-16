@@ -40,7 +40,7 @@ Modern front-end development often relies on powerful JavaScript frameworks and 
     <div class="pros-title">Pros:</div>
       <ul>
          <li><p>Good performance and maintainability</p></li>
-         <li><p>Extensive tooling support (Angular-CLI),</p></li>
+         <li><p>Extensive tooling support (Angular-CLI)</p></li>
          <li><p>Solid framework for large-scale projects</p></li>
          <li><p>Built-in support for mobile app development (Ionic)</p></li>
       </ul>
@@ -50,7 +50,6 @@ Modern front-end development often relies on powerful JavaScript frameworks and 
       <ul>
          <li><p>Slower loading times due to regular DOM usage</p></li>
          <li><p>Steeper learning curve</p></li>
-         <li><p>Solid framework for large-scale projects</p></li>
          <li><p>Limited support for unfamiliar or outdated browsers</p></li>
       </ul>
   </div></div>
