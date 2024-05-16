@@ -698,18 +698,18 @@ To access the code samples presented in this article, please refer to the [sampl
 
 ## External resources
 
-[1] https://developer.squareup.com/blog/herding-elephants/
+[1] [https://developer.squareup.com/blog/herding-elephants/](https://developer.squareup.com/blog/herding-elephants/)
 
-[2] https://github.com/android/nowinandroid
+[2] [https://github.com/android/nowinandroid](https://github.com/android/nowinandroid)
 
-[3] https://docs.gradle.org/current/userguide/composite_builds.html
+[3] [https://docs.gradle.org/current/userguide/composite_builds.html](https://docs.gradle.org/current/userguide/composite_builds.html)
 
-[4] https://proandroiddev.com/using-version-catalog-on-android-projects-82d88d2f79e5
+[4] [https://proandroiddev.com/using-version-catalog-on-android-projects-82d88d2f79e5](https://proandroiddev.com/using-version-catalog-on-android-projects-82d88d2f79e5)
 
-[5] https://blog.cleancoder.com/uncle-bob/2012/08/13/the-clean-architecture.html
+[5] [https://blog.cleancoder.com/uncle-bob/2012/08/13/the-clean-architecture.html](https://blog.cleancoder.com/uncle-bob/2012/08/13/the-clean-architecture.html)
 
-[6] https://martinfowler.com/articles/injection.html
+[6] [https://martinfowler.com/articles/injection.html](https://martinfowler.com/articles/injection.html)
 
-[7] https://www.youtube.com/watch?v=cNypb-kIwZg
+[7] [https://www.youtube.com/watch?v=cNypb-kIwZg](https://www.youtube.com/watch?v=cNypb-kIwZg)
 
-[8] https://developer.squareup.com/blog/stampeding-elephants/
+[8] [https://developer.squareup.com/blog/stampeding-elephants/](https://developer.squareup.com/blog/stampeding-elephants/)
