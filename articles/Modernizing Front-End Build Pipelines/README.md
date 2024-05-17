@@ -4,6 +4,7 @@ author: ["Andy Lai / Fullstack Engineer"]
 createTime: 2024-04-23
 tags: ["JavaScript Framework", "React", "Webpack"]
 thumb: "https://s3.amazonaws.com/assets.57blocks.io/cms_uploads/illustration_cup_an_laptop_e12de970e5.png"
+thumb_h: "./thumb_h.png"
 intro: "Web development has advanced, offering a vast array of building tools. Choosing the right ones for a project is now much more complex due to their number and the need for them to work well together."
 ---
 

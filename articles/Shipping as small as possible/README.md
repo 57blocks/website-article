@@ -4,6 +4,7 @@ author: ["Yongzhi Yang / Back-End Engineer, Team Lead"]
 createTime: 2024-05-09
 tags: ["CI/CD", "Workflow"]
 thumb: "./thumb.png"
+thumb_h: "./thumb_h.png"
 intro: "Deploying large features can pose significant challenges, often requiring temporary service shutdowns and risking disruptions to dependent clients. However, adopting the practice of shipping as small as possible aligns with the principles of Continuous Integration and Continuous Deployment (CI/CD) and offers a solution. By breaking down large features into manageable components, organizations can mitigate issues, ensure smoother data management and migration, and minimize disruptions to dependent clients. This approach promotes an agile and iterative deployment process, enhancing stability and user experience."
 ---
 

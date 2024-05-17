@@ -4,6 +4,7 @@ author: ["Shi Chen / Product Manager"]
 createTime: 2024-04-21
 tags: ["SEO", "Growth", "Alternative Investment"]
 thumb: "https://s3.amazonaws.com/assets.57blocks.io/cms_uploads/illustration_seo_db9bc06b49.png"
+thumb_h: "./thumb_h.png"
 intro: "The article shows how automated SEO can attract more visitors by producing lots of optimized pages. The key steps include goal planning, data handling, and using tools like a CMS for implementation. This method successfully improved online exposure and lead generation."
 ---
 

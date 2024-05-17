@@ -4,6 +4,7 @@ author: ["Jia Chen / QA Engineer", "Martha Luo / QA Engineer"]
 createTime: 2024-05-07
 tags: ["Software Testing Lifecycle", "Continuous Integration",  "Test Automation Frameworks"]
 thumb: "./thumb.png"
+thumb_h: "./thumb_h.png"
 intro: "This article explores the practical testing best practices adopted by 57blocks QA teams to navigate the software testing complexities effectively. These strategies are born from hands-on application in real-world projects, offering actionable insights into how embracing these methods can not only mitigate difficulties but potentially convert them into leverage for elevating software quality, enhancing team performance, and improving overall project delivery."
 ---
 

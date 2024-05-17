@@ -4,6 +4,7 @@ author: ["Lily Hu / Smart Contract Engineer"]
 createTime: 2024-04-19
 tags: ["Smart Contract", "Web3", "QA"]
 thumb: "./thumb.png"
+thumb_h: "./thumb_h.png"
 intro: "Because smart contracts are on a public blockchain, they need a lot of testing to be good quality. Engineers must know the whole process, including regular testing, external reviews, and fixing problems after launch."
 ---
 

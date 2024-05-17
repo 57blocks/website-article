@@ -4,6 +4,7 @@ author: ["Rafael Ruiz / Android Engineer"]
 createTime: 2024-05-09
 tags: ["Mobile", "Android"]
 thumb: "./thumb.png"
+thumb_h: "./thumb_h.png"
 intro: "Whether you're developing a feature-rich social networking app or a performance-oriented gaming application, mastering Gradle is paramount to ensure a smooth and optimized development process."
 ---
 

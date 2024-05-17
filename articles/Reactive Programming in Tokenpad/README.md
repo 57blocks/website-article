@@ -4,6 +4,7 @@ author: ["Juan E Quintero R / Tech Lead"]
 createTime: 2024-04-22
 tags: ["Reactive", "Flutter", "Crypto"]
 thumb: "https://s3.amazonaws.com/assets.57blocks.io/cms_uploads/illustration_tokenpad_65aea3b800.png"
+thumb_h: "./thumb_h.png"
 intro: "Modern apps need to easily adjust to new data without user help. Using Reactive Programming, they can quickly react to this data without making users wait on long loading times. This series discusses how Tokenpad uses it to keep crypto portfolios up-to-date effortlessly."
 ---
 
