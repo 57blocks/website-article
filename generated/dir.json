@@ -11,6 +11,7 @@
         "Android"
       ],
       "thumb": "./thumb.png",
+      "thumb_h": "./thumb_h.png",
       "intro": "Whether you're developing a feature-rich social networking app or a performance-oriented gaming application, mastering Gradle is paramount to ensure a smooth and optimized development process.",
       "path": "articles/Overcoming challenges in Android Gradle Dependency Management/README.md",
       "slug": "overcoming-challenges-in-android-gradle-dependency-management"
@@ -26,6 +27,7 @@
         "Workflow"
       ],
       "thumb": "./thumb.png",
+      "thumb_h": "./thumb_h.png",
       "intro": "Deploying large features can pose significant challenges, often requiring temporary service shutdowns and risking disruptions to dependent clients. However, adopting the practice of shipping as small as possible aligns with the principles of Continuous Integration and Continuous Deployment (CI/CD) and offers a solution. By breaking down large features into manageable components, organizations can mitigate issues, ensure smoother data management and migration, and minimize disruptions to dependent clients. This approach promotes an agile and iterative deployment process, enhancing stability and user experience.",
       "path": "articles/Shipping as small as possible/README.md",
       "slug": "shipping-as-small-as-possible"
@@ -43,6 +45,7 @@
         "Test Automation Frameworks"
       ],
       "thumb": "./thumb.png",
+      "thumb_h": "./thumb_h.png",
       "intro": "This article explores the practical testing best practices adopted by 57blocks QA teams to navigate the software testing complexities effectively. These strategies are born from hands-on application in real-world projects, offering actionable insights into how embracing these methods can not only mitigate difficulties but potentially convert them into leverage for elevating software quality, enhancing team performance, and improving overall project delivery.",
       "path": "articles/57Blocks Testing Best Practices/README.md",
       "slug": "57blocks-testing-best-practices"
@@ -59,6 +62,7 @@
         "Webpack"
       ],
       "thumb": "https://s3.amazonaws.com/assets.57blocks.io/cms_uploads/illustration_cup_an_laptop_e12de970e5.png",
+      "thumb_h": "./thumb_h.png",
       "intro": "Web development has advanced, offering a vast array of building tools. Choosing the right ones for a project is now much more complex due to their number and the need for them to work well together.",
       "path": "articles/Modernizing Front-End Build Pipelines/README.md",
       "slug": "modernizing-front-end-build-pipelines"
@@ -75,6 +79,7 @@
         "Crypto"
       ],
       "thumb": "https://s3.amazonaws.com/assets.57blocks.io/cms_uploads/illustration_tokenpad_65aea3b800.png",
+      "thumb_h": "./thumb_h.png",
       "intro": "Modern apps need to easily adjust to new data without user help. Using Reactive Programming, they can quickly react to this data without making users wait on long loading times. This series discusses how Tokenpad uses it to keep crypto portfolios up-to-date effortlessly.",
       "path": "articles/Reactive Programming in Tokenpad/README.md",
       "slug": "reactive-programming-in-tokenpad"
@@ -91,6 +96,7 @@
         "Alternative Investment"
       ],
       "thumb": "https://s3.amazonaws.com/assets.57blocks.io/cms_uploads/illustration_seo_db9bc06b49.png",
+      "thumb_h": "./thumb_h.png",
       "intro": "The article shows how automated SEO can attract more visitors by producing lots of optimized pages. The key steps include goal planning, data handling, and using tools like a CMS for implementation. This method successfully improved online exposure and lead generation.",
       "path": "articles/Maximizing Online Visibility: The Power of Programmatic SEO for Boosting Search Traffic and Leads/README.md",
       "slug": "maximizing-online-visibility-the-power-of-programmatic-seo-for-boosting-search-traffic-and-leads"
@@ -108,6 +114,7 @@
         "OpenCV"
       ],
       "thumb": "https://s3.amazonaws.com/assets.57blocks.io/cms_uploads/illustration_blue_squares_c1bbaab97b.png",
+      "thumb_h": "./thumb_h.png",
       "intro": "This article discusses Image Quality Assessment (IQA), which is a crucial process for determining the accuracy and fidelity of images. IQA algorithms analyze images and generate a quality score based on their precision. There are three main methodologies in IQA: Full-Reference IQA, Reduced-Reference IQA, and Objective Blind IQA (no-reference IQA).",
       "path": "articles/Image Quality Assessment/README.md",
       "slug": "image-quality-assessment"
@@ -124,6 +131,7 @@
         "QA"
       ],
       "thumb": "./thumb.png",
+      "thumb_h": "./thumb_h.png",
       "intro": "Because smart contracts are on a public blockchain, they need a lot of testing to be good quality. Engineers must know the whole process, including regular testing, external reviews, and fixing problems after launch.",
       "path": "articles/Smart Contract Development: A Step-by-Step Quality Assurance Guide/README.md",
       "slug": "smart-contract-development-a-step-by-step-quality-assurance-guide"
@@ -141,6 +149,7 @@
         "Dapp"
       ],
       "thumb": "./thumb.png",
+      "thumb_h": "./thumb_h.png",
       "intro": "The design of Web3 apps is much more decentralized than that of Web2. New services are constantly appearing to make building and running these projects easier and safer. Engineers must know how each part works to create effective Web3 apps.",
       "path": "articles/The Building Blocks of Web3: A Deep Dive into dApp Infrastructure/README.md",
       "slug": "the-building-blocks-of-web3-a-deep-dive-into-dapp-infrastructure"
