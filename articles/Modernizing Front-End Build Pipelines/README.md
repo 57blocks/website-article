@@ -4,6 +4,7 @@ author: ["Andy Lai / Fullstack Engineer"]
 createTime: 2024-04-23
 tags: ["JavaScript Framework", "React", "Webpack"]
 thumb: "https://s3.amazonaws.com/assets.57blocks.io/cms_uploads/illustration_cup_an_laptop_e12de970e5.png"
+thumb_h: "./thumb_h.png"
 intro: "Web development has advanced, offering a vast array of building tools. Choosing the right ones for a project is now much more complex due to their number and the need for them to work well together."
 ---
 
@@ -37,20 +38,19 @@ Modern front-end development often relies on powerful JavaScript frameworks and 
     <span>Angular</span>
   </div>
   <div class="content"><div class="pros">
-    <div>Pros:</div>
+    <div class="pros-title">Pros:</div>
       <ul>
          <li><p>Good performance and maintainability</p></li>
-         <li><p>Extensive tooling support (Angular-CLI),</p></li>
+         <li><p>Extensive tooling support (Angular-CLI)</p></li>
          <li><p>Solid framework for large-scale projects</p></li>
          <li><p>Built-in support for mobile app development (Ionic)</p></li>
       </ul>
   </div>
   <div class="cons">
-  <div>Cons:</div>
+  <div class="cons-title">Cons:</div>
       <ul>
          <li><p>Slower loading times due to regular DOM usage</p></li>
          <li><p>Steeper learning curve</p></li>
-         <li><p>Solid framework for large-scale projects</p></li>
          <li><p>Limited support for unfamiliar or outdated browsers</p></li>
       </ul>
   </div></div>
@@ -64,7 +64,7 @@ Modern front-end development often relies on powerful JavaScript frameworks and 
     <span>ReactJS</span>
   </div>
   <div class="content"><div class="pros">
-    <div>Pros:</div>
+    <div class="pros-title">Pros:</div>
       <ul>
          <li><p>Efficient rendering with virtual DOM</p></li>
          <li><p>Faster loading times</p></li>
@@ -74,7 +74,7 @@ Modern front-end development often relies on powerful JavaScript frameworks and 
       </ul>
   </div>
   <div class="cons">
-      <div>Cons:</div>
+      <div class="cons-title">Cons:</div>
       <ul>
          <li><p>Not suitable for building MVC architecture alone</p></li>
          <li><p>May require additional libraries for complex apps</p></li>
@@ -91,7 +91,7 @@ Modern front-end development often relies on powerful JavaScript frameworks and 
         <span>VueJS</span>
     </div>
     <div class="content"><div class="pros">
-        <div>Pros:</div>
+        <div class="pros-title">Pros:</div>
         <ul>
             <li><p>Easy to use and integrate with other frameworks</p></li>
             <li><p>Fast learning curve</p></li>
@@ -100,7 +100,7 @@ Modern front-end development often relies on powerful JavaScript frameworks and 
         </ul>
    </div>
     <div class="cons">
-          <div>Cons:</div>
+          <div class="cons-title">Cons:</div>
           <ul>
                 <li><p>Limited community support, especially in English-speaking regions</p></li>
                 <li><p>Certain areas of development can be overcomplicated due to excessive flexibility</p></li>
@@ -153,7 +153,7 @@ Module bundlers such as [Webpack](https://webpack.js.org), [Parcel](https://parc
         <span>Webpack</span>
     </div>
     <div class="content"><div class="pros">
-        <div>Pros:</div>
+        <div class="pros-title">Pros:</div>
         <ul>
             <li><p>Highly flexible and widely adopted bundler with a rich ecosystem</p></li>
             <li><p>Extensive customization options and support for advanced features like code splitting and hot module replacement</p></li>
@@ -161,7 +161,7 @@ Module bundlers such as [Webpack](https://webpack.js.org), [Parcel](https://parc
         </ul>
     </div>
     <div class="cons">
-        <div>Cons:</div>
+        <div class="cons-title">Cons:</div>
         <ul>
             <li><p>Steep learning curve and can be more configuration-heavy</p></li>
             <li><p>Configuration setup can be complex, especially for beginners</p></li>
@@ -178,7 +178,7 @@ Module bundlers such as [Webpack](https://webpack.js.org), [Parcel](https://parc
         <span>Parcel</span>
     </div>
     <div class="content"><div class="pros">
-        <div>Pros:</div>
+        <div class="pros-title">Pros:</div>
         <ul>
             <li><p>Zero-configuration setup and easy to use</p></li>
             <li><p>Provides a simple and intuitive developer experience</p></li>
@@ -186,7 +186,7 @@ Module bundlers such as [Webpack](https://webpack.js.org), [Parcel](https://parc
         </ul>
     </div>
     <div class="cons">
-        <div>Cons:</div>
+        <div class="cons-title">Cons:</div>
         <ul>
             <li><p>Limited customization options and may require additional configuration for complex setups</p></li>
             <li><p>Plugin ecosystem may not be as extensive as Webpack</p></li>
@@ -202,7 +202,7 @@ Module bundlers such as [Webpack](https://webpack.js.org), [Parcel](https://parc
         <span>Rollup</span>
     </div>
     <div class="content"><div class="pros">
-        <div>Pros:</div>
+        <div class="pros-title">Pros:</div>
         <ul>
             <li><p>Lightweight and efficient bundler, ideal for creating optimized bundles</p></li>
             <li><p>Excellent at producing smaller bundle sizes</p></li>
@@ -210,7 +210,7 @@ Module bundlers such as [Webpack](https://webpack.js.org), [Parcel](https://parc
         </ul>
     </div>
     <div class="cons">
-        <div>Cons:</div>
+        <div class="cons-title">Cons:</div>
         <ul>
             <li><p>Requires more manual configuration and setup compared to other bundlers</p></li>
             <li><p>Plugin ecosystem may not be as extensive as Webpack</p></li>
@@ -308,7 +308,7 @@ CSS preprocessors such as [Sass](https://sass-lang.com/), [Less](https://lesscss
         <span>Sass</span>
     </div>
     <div class="content"><div class="pros">
-        <div>Pros:</div>
+        <div class="pros-title">Pros:</div>
         <ul>
             <li><p>Mature and widely adopted CSS preprocessor</p></li>
             <li><p>Offers a rich set of features, including variables, mixins, nesting, and inheritance, which enhance productivity and code maintainability</p></li>
@@ -317,7 +317,7 @@ CSS preprocessors such as [Sass](https://sass-lang.com/), [Less](https://lesscss
         </ul>
     </div>
     <div class="cons">
-        <div>Cons:</div>
+        <div class="cons-title">Cons:</div>
         <ul>
             <li><p>Requires a build step to compile Sass code into CSS, which adds complexity to the development process</p></li>
             <li><p>Learning curve, especially for beginners not familiar with CSS preprocessors</p></li>
@@ -332,7 +332,7 @@ CSS preprocessors such as [Sass](https://sass-lang.com/), [Less](https://lesscss
         <span>Less</span>
     </div>
     <div class="content"><div class="pros">
-        <div>Pros:</div>
+        <div class="pros-title">Pros:</div>
         <ul>
             <li><p>Easy to learn and use, especially for developers already familiar with CSS</p></li>
             <li><p>Offers a similar set of features as Sass, such as variables, mixins, and nested rules</p></li>
@@ -341,7 +341,7 @@ CSS preprocessors such as [Sass](https://sass-lang.com/), [Less](https://lesscss
         </ul>
     </div>
     <div class="cons">
-        <div>Cons:</div>
+        <div class="cons-title">Cons:</div>
         <ul>
             <li><p>Smaller community compared to Sass, resulting in a comparatively smaller ecosystem of community-created tools and resources</p></li>
             <li><p>Limited support for advanced features like built-in functions and control directives</p></li>
@@ -357,7 +357,7 @@ CSS preprocessors such as [Sass](https://sass-lang.com/), [Less](https://lesscss
         <span>Stylus</span>
     </div>
     <div class="content"><div class="pros">
-        <div>Pros:</div>
+        <div class="pros-title">Pros:</div>
         <ul>
             <li><p>Concise and expressive syntax, with a focus on simplicity and readability</p></li>
             <li><p>Powerful features like variables, mixins, and nested selectors</p></li>
@@ -366,7 +366,7 @@ CSS preprocessors such as [Sass](https://sass-lang.com/), [Less](https://lesscss
         </ul>
     </div>
     <div class="cons">
-        <div>Cons:</div>
+        <div class="cons-title">Cons:</div>
         <ul>
             <li><p>Smaller community compared to Sass and Less, which may result in fewer resources and community-generated tools</p></li>
             <li><p>Learning curve, especially for developers not familiar with Stylus or CSS preprocessors in general</p></li>
@@ -511,7 +511,7 @@ Unit tests focus on testing individual units or components of your code in isola
     <span>Jest</span>
   </div>
   <div class="content"><div class="pros">
-    <div>Pros:</div>
+    <div class="pros-title">Pros:</div>
     <ul>
         <li><p>All-in-one Solution: Jest comes bundled with everything you need for testing, including test runners, assertions, mocking, and code coverage</p> </li>
         <li><p>Easy Setup: Jest is known for its simple and straightforward setup process, making it beginner-friendly</p></li>
@@ -521,7 +521,7 @@ Unit tests focus on testing individual units or components of your code in isola
     </ul>
   </div>
   <div class="cons">
-    <div>Cons:</div>
+    <div class="cons-title">Cons:</div>
     <ul>
       <li><p>Learning Curve: Jest may have a learning curve, especially when configuring complex setups or advanced features</p></li>
      <li><p>Opinionated: Jest follows its own conventions, which may not integrate smoothly with existing projects or preferences</p></li>
@@ -537,7 +537,7 @@ Unit tests focus on testing individual units or components of your code in isola
     <span>Mocha</span>
   </div>
   <div class="content"><div class="pros">
-    <div>Pros:</div>
+    <div class="pros-title">Pros:</div>
     <ul>
         <li><p>Flexibility: Mocha is highly flexible and allows you to choose your preferred assertion library, mocking framework, and other tools</p></li>
         <li><p>Large Ecosystem: Mocha has a vast ecosystem with a wide range of plugins and integrations</p></li>
@@ -546,7 +546,7 @@ Unit tests focus on testing individual units or components of your code in isola
     </ul>
   </div>
   <div class="cons">
-    <div>Cons:</div>
+    <div class="cons-title">Cons:</div>
     <ul>
       <li><p>Configuration Required: Mocha requires additional configuration to set up assertions, mocking, and other testing tools</p></li>
       <li><p>Minimalist Approach: Mocha's simplicity can sometimes result in a lack of built-in features, requiring additional libraries for certain functionalities</p></li>
@@ -561,7 +561,7 @@ Unit tests focus on testing individual units or components of your code in isola
     <span>Jasmine</span>
   </div>
   <div class="content"><div class="pros">
-    <div>Pros:</div>
+    <div class="pros-title">Pros:</div>
     <ul>
         <li><p>Easy to Get Started: Jasmine has a simple and intuitive syntax, making it beginner-friendly</p></li>
         <li><p>Self-Contained: Jasmine provides everything you need for testing in a single package, reducing the need for additional dependencies</p></li>
@@ -570,7 +570,7 @@ Unit tests focus on testing individual units or components of your code in isola
     </ul>
   </div>
   <div class="cons">
-    <div>Cons:</div>
+    <div class="cons-title">Cons:</div>
     <ul>
       <li><p>Limited Ecosystem: Jasmine's ecosystem is smaller compared to Jest and Mocha, resulting in fewer plugins and integrations</p></li>
       <li><p>Slower Execution: Jasmine can be slower than other frameworks when running large test suites</p></li>
@@ -595,7 +595,7 @@ End-to-end (E2E) testing simulates real user scenarios by testing the entire app
     <span>Playwright</span>
   </div>
   <div class="content"><div class="pros">
-    <div>Pros:</div>
+    <div class="pros-title">Pros:</div>
     <ul>
         <li><p>Cross-browser Support: Playwright allows you to test your applications across different browsers like Chrome, Firefox, and Safari</p></li>
         <li><p>Multi-page and Multi-context Support: Playwright can handle multiple pages and contexts within a single browser instance, making it suitable for complex testing scenarios</p></li>
@@ -605,7 +605,7 @@ End-to-end (E2E) testing simulates real user scenarios by testing the entire app
     </ul>
   </div>
   <div class="cons">
-    <div>Cons:</div>
+    <div class="cons-title">Cons:</div>
     <ul>
       <li><p>Learning Curve: Playwright may have a learning curve due to its comprehensive functionality and advanced features</p></li>
     </ul>
@@ -619,7 +619,7 @@ End-to-end (E2E) testing simulates real user scenarios by testing the entire app
     <span>Cypress</span>
   </div>
   <div class="content"><div class="pros">
-    <div>Pros:</div>
+    <div class="pros-title">Pros:</div>
     <ul>
         <li><p>Easy Setup: Cypress has a simple setup process, allowing you to get started quickly</p></li>
         <li><p>Built-in Features: Cypress includes built-in features like time-travel debugging, automatic waiting, and real-time reloading</p></li>
@@ -629,7 +629,7 @@ End-to-end (E2E) testing simulates real user scenarios by testing the entire app
     </ul>
     </div>
     <div class="cons">
-        <div>Cons:</div>
+        <div class="cons-title">Cons:</div>
         <ul>
         <li><p>Limited Browser Support: Cypress primarily supports modern browsers and has limited cross-browser testing capabilities</p></li>
         <li><p>Single Tab Limitation: Cypress only supports testing within a single browser tab, which may be limiting for certain scenarios</p></li>
@@ -645,7 +645,7 @@ End-to-end (E2E) testing simulates real user scenarios by testing the entire app
     <span>Puppeteer</span>
   </div>
   <div class="content"><div class="pros">
-    <div>Pros:</div>
+    <div class="pros-title">Pros:</div>
     <ul>
         <li><p>Headless Chrome Automation: Puppeteer is built on top of the Chrome DevTools Protocol, offering powerful Chrome automation capabilities</p></li>
         <li><p>Versatile Web Scraping: Puppeteer is widely used for web scraping tasks due to its ability to navigate and interact with web pages</p></li>
@@ -654,7 +654,7 @@ End-to-end (E2E) testing simulates real user scenarios by testing the entire app
     </ul>
   </div>
   <div class="cons">
-    <div>Cons:</div>
+    <div class="cons-title">Cons:</div>
     <ul>
         <li><p>Limited to Chrome: Puppeteer only supports Chrome and does not have built-in cross-browser testing capabilities</p></li>
         <li><p>Lower-level API: Puppeteer's API is more low-level compared to other frameworks, requiring more code for common testing scenarios</p></li>
@@ -684,7 +684,7 @@ Popular CI/CD platforms include [GitHub Actions](https://github.com/features/act
     <span>GitHub Actions</span>
   </div>
   <div class="content"><div class="pros">
-    <div>Pros:</div>
+    <div class="pros-title">Pros:</div>
     <ul>
         <li><p>Tight integration with GitHub</p></li>
         <li><p>Easy to get started</p></li>
@@ -693,7 +693,7 @@ Popular CI/CD platforms include [GitHub Actions](https://github.com/features/act
     </ul>
   </div>
   <div class="cons">
-    <div>Cons:</div>
+    <div class="cons-title">Cons:</div>
     <ul>
         <li><p>Limited support for self-hosted runners</p></li>
         <li><p>Complexity for complex workflows</p></li>
@@ -710,7 +710,7 @@ Popular CI/CD platforms include [GitHub Actions](https://github.com/features/act
     <span>GitLab CI/CD</span>
   </div>
   <div class="content"><div class="pros">
-    <div>Pros:</div>
+    <div class="pros-title">Pros:</div>
     <ul>
         <li><p>Comprehensive DevOps platform</p></li>
         <li><p>Powerful pipeline configuration</p></li>
@@ -718,7 +718,7 @@ Popular CI/CD platforms include [GitHub Actions](https://github.com/features/act
     </ul>
   </div>
   <div class="cons">
-    <div>Cons:</div>
+    <div class="cons-title">Cons:</div>
     <ul>
         <li><p>Learning curve</p></li>
         <li><p>Limited marketplace for pre-built actions</p></li>
@@ -734,7 +734,7 @@ Popular CI/CD platforms include [GitHub Actions](https://github.com/features/act
     <span>CircleCI</span>
   </div>
   <div class="content"><div class="pros">
-    <div>Pros:</div>
+    <div class="pros-title">Pros:</div>
     <ul>
         <li><p>Ease of use</p></li>
         <li><p>Fast and efficient builds</p></li>
@@ -742,7 +742,7 @@ Popular CI/CD platforms include [GitHub Actions](https://github.com/features/act
     </ul>
   </div>
   <div class="cons">
-    <div>Cons:</div>
+    <div class="cons-title">Cons:</div>
     <ul>
         <li><p>Limited free tier</p></li>
         <li><p>Limited visibility into intermediate pipeline stages</p></li>

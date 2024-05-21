@@ -4,6 +4,7 @@ author: ["Juan E Quintero R / Tech Lead"]
 createTime: 2024-04-22
 tags: ["Reactive", "Flutter", "Crypto"]
 thumb: "https://s3.amazonaws.com/assets.57blocks.io/cms_uploads/illustration_tokenpad_65aea3b800.png"
+thumb_h: "./thumb_h.png"
 intro: "Modern apps need to easily adjust to new data without user help. Using Reactive Programming, they can quickly react to this data without making users wait on long loading times. This series discusses how Tokenpad uses it to keep crypto portfolios up-to-date effortlessly."
 ---
 
@@ -51,7 +52,48 @@ These steps seem logical and necessary. But what happens if the data changes dur
 There are two main scenarios of what could happen:
 
 
-<div class="row py-2"><div class="col-12 col-sm-6 mb-3"><div class="d-flex flex-row flex-nowrap align-items-center h-100 p-4 rounded-4" style="background-color:rgb(131, 113, 243, 0.06);border-bottom-left-radius:0 !important;border-top-right-radius:0 !important;"><div class="pe-3 fw-bolder lh-1 text-nowrap" style="color:var(--bs-purple);font-size:60px;">a.</div><div style="font-size:0.666667rem;">The application <strong>is aware</strong> that data has changed</div></div></div><div class="col-12 col-sm-6 mb-3"><div class="d-flex flex-row flex-nowrap align-items-center h-100 p-4 rounded-4" style="background-color:rgb(70, 155, 255, 0.06);border-bottom-left-radius:0 !important;border-top-right-radius:0 !important;"><div class="pe-3 fw-bolder lh-1 text-primary text-nowrap" style="font-size:60px;">b.</div><div style="font-size:0.666667rem;">The application <strong>isn’t aware</strong> that data has changed</div></div></div></div>
+<div class="row py-2">
+  <div class="col-12 col-sm-6 mb-3">
+    <div
+      class="d-flex flex-row flex-nowrap align-items-center h-100 p-4 rounded-4"
+      style="
+        background-color: rgb(131, 113, 243, 0.06);
+        border-bottom-left-radius: 0 !important;
+        border-top-right-radius: 0 !important;
+      "
+    >
+      <div
+        class="pe-3 fw-bolder lh-1 text-nowrap"
+        style="color: var(--bs-purple); font-size: 60px"
+      >
+        a.
+      </div>
+      <div style="font-size: 16px">
+        The application <strong>is aware</strong> that data has changed
+      </div>
+    </div>
+  </div>
+  <div class="col-12 col-sm-6 mb-3">
+    <div
+      class="d-flex flex-row flex-nowrap align-items-center h-100 p-4 rounded-4"
+      style="
+        background-color: rgb(70, 155, 255, 0.06);
+        border-bottom-left-radius: 0 !important;
+        border-top-right-radius: 0 !important;
+      "
+    >
+      <div
+        class="pe-3 fw-bolder lh-1 text-primary text-nowrap"
+        style="font-size: 60px"
+      >
+        b.
+      </div>
+      <div style="font-size: 16px">
+        The application <strong>isn’t aware</strong> that data has changed
+      </div>
+    </div>
+  </div>
+</div>
 
 **For scenario a**:          
 we can re-execute steps two through four to update the information on the screen.          
@@ -101,7 +143,7 @@ For that screen we needed to obtain the portfolios from the database and fulfill
 
 <div class="row">
   <div class="col-12 col-md-8 col-lg-12 col-xl-8 pt-3 pe-xl-2">
-    <ol class="list-unstyled lh-base" style="font-size: 0.666667rem;">
+    <ol class="list-unstyled lh-base" style="font-size: 16px;">
       <li class="d-flex flex-nowrap align-items-center rounded-4 px-3 py-2 mb-3" style="background-color: rgba(131, 113, 243, 0.06);">
         <div class="d-flex align-items-center justify-content-center pe-3 fs-6 fw-bolder" style="color: var(--bs-purple);">
           1.

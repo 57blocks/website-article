@@ -4,6 +4,7 @@ author: ["Shi Chen / Product Manager"]
 createTime: 2024-04-21
 tags: ["SEO", "Growth", "Alternative Investment"]
 thumb: "https://s3.amazonaws.com/assets.57blocks.io/cms_uploads/illustration_seo_db9bc06b49.png"
+thumb_h: "./thumb_h.png"
 intro: "The article shows how automated SEO can attract more visitors by producing lots of optimized pages. The key steps include goal planning, data handling, and using tools like a CMS for implementation. This method successfully improved online exposure and lead generation."
 ---
 
@@ -31,13 +32,13 @@ The first step is always to understand the long-term goal, define the short term
 
 We want our page to be better than competitors and provide as much useful and unique information as possible to address a large universe of search queiries. Therefore, the “dream” page in our mind needs to be a one-stop shop for things an investor would want to know about this company, and it also has to have some unique insights that an investor can’t get else where.
 
-### ![dot-primary.svg](https://s3.amazonaws.com/assets.57blocks.io/cms_uploads/dot_primary_cd3b9851e9.svg)  Seeking comprehensive and valuable information
+### Seeking comprehensive and valuable information
 
 Our partner picked companies to create page for. Then for each company, the heavy work lies in getting a somewhat full and unique view. We were able to get basic company data from Pitchbook, such as valuation history, industry, investors, etc. We also manually prepared company summary, website, SEC CIK number, search terms, and etc. Also we manually processed all company logos, to make sure it has consistent background and size so.             
   
 One argument we had is whether to use our own algorithm to calculate the company’s current evaluation. Our own algorithm, as best as we can try, would not be the \*standard\* answer. However, if we recall why we want to do this in the first place, the goal is to draw search traffic. Having each company’s current valuation adds the unique insights of the page. So in the end we decided to have it. We put together a disclaimer on the page that kind of excused us for not being perfectly accurate.
 
-### ![dot-primary.svg](https://s3.amazonaws.com/assets.57blocks.io/cms_uploads/dot_primary_cd3b9851e9.svg)  The unexpected devil: cleaning up data
+### The unexpected devil: cleaning up data
 
 During the data preparation process, what took us longer than expected was data validation. We wrote various scripts to validate excel sheets from pitchbook and our content generator. Sometimes when we run a script, there could be exceptions. For example, for the data from Pitchbook, a company’s valuation history is missing. Then we need to take a closer look – is it because of a wrong company name that get no match, or it is really missing? Then we need to either fix the company name, or build a mechanism to handle cases when the valuation history is missing.            
   

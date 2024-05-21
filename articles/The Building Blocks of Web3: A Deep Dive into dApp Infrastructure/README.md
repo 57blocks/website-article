@@ -3,7 +3,8 @@ title: "The Building Blocks of Web3: A Deep Dive into dApp Infrastructure"
 author: ["Wei Wang / Tech Lead"]
 createTime: 2024-04-18
 tags: ["Smart Contract", "Web3", "Architecture", "Dapp"]
-thumb: "https://s3.amazonaws.com/assets.57blocks.io/cms_uploads/illustration_bulding_blocks_1e732f6a88.png"
+thumb: "./thumb.png"
+thumb_h: "./thumb_h.png"
 intro: "The design of Web3 apps is much more decentralized than that of Web2. New services are constantly appearing to make building and running these projects easier and safer. Engineers must know how each part works to create effective Web3 apps."
 ---
 
@@ -75,7 +76,7 @@ Web3 dApp Architecture
 
 Let's take a closer look at the essential components of Web3 applications and explore the various tools that can be developed for each segment:
 
-#### Smart Contract
+### Smart Contract
 
 Smart contracts are fundamental to the functionality of Web3 Decentralized Applications (dApps). They are automated contracts whose terms are coded and stored on a blockchain. These contracts independently handle the logic and state of the dApp, enabling transactions and interactions that do not rely on a central authority. Once deployed to the blockchain, smart contracts become immutable, and they become the primary means of updating data on the blockchain.  
   
@@ -96,7 +97,7 @@ For the development of smart contracts, popular environments include Hardhat and
 **•** **Foundry:** Known for its robust testing tools, Foundry plays a significant role in the smart contract development lifecycle, particularly in testing and validation stages.
 
 
-#### dApp Frontend
+### dApp Frontend
 
 The frontend of a decentralized application (dApp) is essential as it forms the primary interface for users. Through the frontend, users can access their account information, check their asset balance, and interact with various dApp features, which are facilitated through smart contracts. To ensure both security and the integrity of the decentralized network, these interactions and transactions require authentication via the user's wallet.  
   
@@ -113,7 +114,7 @@ Moreover, the Web3 frontend isn't restricted to just using the wallet's built-in
 Another significant aspect of the frontend is its interaction with middleware. Middleware plays a role in efficiently retrieving historical and aggregated data. It often indexes and processes blockchain data off-chain, making it more accessible.   
 This off-chain processing enables more efficient and flexible data retrieval than directly querying the blockchain. Such capabilities are invaluable for tasks like reviewing transaction histories, generating analytical insights, and improving the overall user experience by offering a comprehensive view of on-chain activities.
 
-#### Middleware
+### Middleware
 
 Middleware in Web3 applications acts as a crucial intermediary layer, offering centralized auxiliary functions to address the technical challenges inherent in Web3 technologies. Its role is to ensure efficient and secure operations within the decentralized framework. Key functions of middleware and some popular tools include:
 
@@ -138,7 +139,7 @@ Common tools often integrate multiple functions, including above monitoring, aut
     3. **Defender** focuses on enforcing security best practices in smart contract deployment and maintenance across different blockchains.
     4. **Tenderly** provides a platform for Web3 developers to create, test, monitor, and operate smart contracts, combining debugging tools with observability and infrastructure components.
 
-#### SDK
+### SDK
 
 The Software Development Kit (SDK) in Web3 applications plays a crucial role in simplifying interactions with smart contracts. It effectively encapsulates the logic needed for reading from and writing to these contracts, focusing primarily on essential business operations.   
 This encapsulation significantly streamlines the process for users or client applications, allowing them to conduct complex blockchain transactions more easily through high-level function calls.  
@@ -151,7 +152,7 @@ Furthermore, the SDK is designed to integrate seamlessly with popular libraries 
 
 By utilizing these integrations, the SDK enhances the overall usability and accessibility of blockchain technologies, enabling both developers and end-users to engage more effectively with the decentralized ecosystem.
 
-#### Cross Chain
+### Cross Chain
 
 Blockchain cross-chain technology encompasses the methods and systems that facilitate interactions and the exchange of value between different blockchain networks. This technology is essential for enabling seamless interoperability among various blockchain systems. Key components and protocols in this domain include:  
   
