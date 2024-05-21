@@ -4,11 +4,39 @@
 
 This is the code repository for our company's articles. You can submit your articles here, and they will eventually appear on the company's website.
 
+If you have any permission issues when pushing the article, please contact Marvin or the developers of the WCP project. 
+
+If you have any special styles or effects that cannot be achieved with the default Markdown when writing documents, please contact Marvin or the developers of the WCP project.
+
+
+
 ## Features
 - Supports all basic markdown formats(reference: [link](https://docs.github.com/en/get-started/writing-on-github/getting-started-with-writing-and-formatting-on-github/basic-writing-and-formatting-syntax)).
 - The display style of articles on GitHub and official website will be different.
-- Supports some CSS/HTML codes, if you have special needs, you can embed HTML/CSS to achieve more complex display styles (since GitHub does not support by default, you can only preview on the official website).
+- Supports some CSS/HTML codes, if you have special needs, you can embed HTML/CSS to achieve more complex display styles (since GitHub does not support by default, you can only [preview on the official website](#how-to-preview-your-article-on-the-companys-website)).
 
+## Frequently used features(This effect is ineffective when previewing on GitHub, please preview it on the company's website.)
+- Center the image
+  - **Using self-defined flag** You can add the `#center` flag behind the image url.
+    ```markdown
+    Default image alignment implementation:
+    ![imageAlt](theImageUrl.png)
+    
+    Change it to:
+    ![imageAlt](theImageUrl.png#center)
+    ```
+  - **Using html tag** You can also use the HTML `<center>` method to achieve the alignment, or use CSS to implement any style you want.
+    ```html
+    // center only
+    <center><img src="theImageUrl.png"></center>
+
+    // more complex styles
+    <img src="theImageUrl.png" style="width: 50%; margin: 0 auto" />
+    ```
+- Center the text
+  ```
+  <center>any test here(which it don't support markdown inside the html tag)<center>
+  ```
 
 ## Preview:
 We have two fixed environments to display articles:
