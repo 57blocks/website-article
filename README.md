@@ -95,6 +95,8 @@ The biggest advantage of creating online is that you can drag and drop assets in
 
 
 ## How to preview your article on the company's website
+
+### Preview by url
 - First, get the raw address of your article on GitHub. You can obtain the raw url of your file by following the screenshot location below. Any of the following url formats are acceptable:
   ```
   // The article folder url
@@ -110,15 +112,17 @@ The biggest advantage of creating online is that you can drag and drop assets in
   https://raw.githubusercontent.com/57blocks/website-article/dev/articles/Image%20Quality%20Assessment/README.md
   ```
   ![image](https://github.com/57blocks/website-article/assets/6326386/685bfe0b-e318-45cf-8a90-388bcfb31578)
-
   
 
-- Use the following URL, paste your raw address, and click preview.
+- Open the url https://dev-ui.57blocks.io/blog/preview, And just paste your raw address, and click preview.
+  <img width="1620" alt="image" src="https://github.com/57blocks/website-article/assets/6326386/6fa29a85-0352-4ad4-a04b-8e9bf0845b9e">
 
-```
-https://57blocks.io/blog/preview
-```
 
 The default raw file is cached (5-minute cache) so you may not be able to get the latest preview effect.
 
+### Realtime preview by raw markdown
+- open the realtime editor: https://dev-ui.57blocks.io/blog/preview-editor
+- Just paste your markdown content into the input box and you can preview it, This is particularly useful when you need to continuously debug styles that are not supported by GitHub.
+  <img width="1608" alt="image" src="https://github.com/57blocks/website-article/assets/6326386/5ee30e56-df5f-4497-bde4-b98479909d21">
+- The input logic for the baseurl field has the same implementation logic as the "Get Markdown URL" functionality in the "preview by url" block.
 
