@@ -5,7 +5,7 @@
 This is the code repository for our company's articles. You can submit your articles here, and they will eventually appear on the company's website.
 
 ## Features
-- Supports all basic markdown formats
+- Supports all basic markdown formats(reference: [link](https://docs.github.com/en/get-started/writing-on-github/getting-started-with-writing-and-formatting-on-github/basic-writing-and-formatting-syntax)).
 - The display style of articles on GitHub and official website will be different.
 - Supports some CSS/HTML codes, if you have special needs, you can embed HTML/CSS to achieve more complex display styles (since GitHub does not support by default, you can only preview on the official website).
 
@@ -31,6 +31,7 @@ author: ["YourName / Full stack engineer", "SecondAuthorName / PositionOfTheAuth
 createTime: 2024-04-01
 tags: ["Web3", "AnyOtherTag"]
 thumb: "https://example.com/theThumbOfTheArticle.png"
+thumb_b: "https://example.com/theHorizontalThumbOfTheArticle.png"
 intro: "Some introduction to the article"
 ---
 ```
