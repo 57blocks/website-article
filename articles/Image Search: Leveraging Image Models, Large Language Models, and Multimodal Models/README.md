@@ -1,3 +1,11 @@
+---
+title: "Image Search: Leveraging Image Models, Large Language Models, and Multimodal Models"
+author: ["Alpha Xiang / Machine Learning Engineer", "Yanqi Liu / Backend Software Engineer", "Anjing Wang / Full Stack Engineer"]
+createTime: 2024-05-021
+tags: ["Image Search", "Image Retrieval", "LLM", "Image Encoder", "Image Embedding", "OCR", "Text Embedding", "CLIP"]
+thumb: ""
+intro: "This is a technical article about image and text retrieval. This paper uses a variety of cutting-edge deep learning algorithms, including Image coding, Text coding, OCR, image-to-text, multimodal large model, etc."  
+---
 # <center>Image Search: Leveraging Image Models, Large Language Models, and Multimodal Models<center>
 ## 1.Project background  
 This project is centered on information and image retrieval technology. Users can upload an image via their mobile device, and the application is tasked with returning matches from the database that are either identical or bear a high resemblance to the uploaded image. Additionally, the app retrieves and displays the related meta information and descriptions for the images, already present within the database. The algorithmic layer of the application includes advanced techniques like image-based searching, optical character recognition from image texts, text-based retrieval, and conversion from images to text.  
