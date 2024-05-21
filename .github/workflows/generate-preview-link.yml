@@ -10,7 +10,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
 
       - name: Get PR info
         id: pr_info
@@ -21,14 +21,15 @@ jobs:
           echo "pr_number=$PR_NUMBER" >> $GITHUB_OUTPUT
           echo "pr_repo=$PR_REPO" >> $GITHUB_OUTPUT
           echo "commit_hash=$COMMIT_HASH" >> $GITHUB_OUTPUT
-          
+
+      - name: Get changed files
+        id: changed-files
+        uses: tj-actions/changed-files@v44
 
       - name: Check for README.md changes
         id: check_readme
         run: |
-          git fetch origin ${{ github.event.pull_request.head.sha }}
-          git fetch origin ${{ github.event.pull_request.base.sha }}
-          FILES_CHANGED=$(git diff --name-only ${{ github.event.pull_request.base.sha }} ${{ github.event.pull_request.head.sha }})
+          FILES_CHANGED=${{ steps.changed-files.outputs.all_changed_files }}
           README_PATH=$(echo "$FILES_CHANGED" | grep "README.md" || true)
           echo "README_PATH: $README_PATH"
           if [ -n "$README_PATH" ]; then
