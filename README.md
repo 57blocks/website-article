@@ -67,7 +67,20 @@ The biggest advantage of creating online is that you can drag and drop assets in
 
 
 ## How to preview your article on the company's website
-- First, get the raw address of your article on GitHub. You can obtain the raw url of your file by following the screenshot location below. The url should be link `https://github.com/57blocks/website-article/raw/dev/articles/Image%20Quality%20Assessment/README.md`.
+- First, get the raw address of your article on GitHub. You can obtain the raw url of your file by following the screenshot location below. Any of the following url formats are acceptable:
+  ```
+  // The article folder url
+  https://github.com/57blocks/website-article/tree/dev/articles/Image%20Quality%20Assessment
+
+  // The article README blob url
+  https://github.com/57blocks/website-article/blob/dev/articles/Image%20Quality%20Assessment/README.md
+
+  // The article README raw url
+  https://github.com/57blocks/website-article/raw/dev/articles/Image%20Quality%20Assessment/README.md
+
+  // The article README raw url
+  https://raw.githubusercontent.com/57blocks/website-article/dev/articles/Image%20Quality%20Assessment/README.md
+  ```
   ![image](https://github.com/57blocks/website-article/assets/6326386/685bfe0b-e318-45cf-8a90-388bcfb31578)
 
   
