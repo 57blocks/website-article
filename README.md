@@ -15,28 +15,75 @@ If you have any special styles or effects that cannot be achieved with the defau
 - The display style of articles on GitHub and official website will be different.
 - Supports some CSS/HTML codes, if you have special needs, you can embed HTML/CSS to achieve more complex display styles (since GitHub does not support by default, you can only [preview on the official website](#how-to-preview-your-article-on-the-companys-website)).
 
-## Frequently used features(This effect is ineffective when previewing on GitHub, please preview it on the company's website.)
-- Center the image
-  - **Using self-defined flag** You can add the `#center` flag behind the image url.
-    ```markdown
-    Default image alignment implementation:
-    ![imageAlt](theImageUrl.png)
-    
-    Change it to:
-    ![imageAlt](theImageUrl.png#center)
-    ```
-  - **Using html tag** You can also use the HTML `<center>` method to achieve the alignment, or use CSS to implement any style you want.
-    ```html
-    // center only
-    <center><img src="theImageUrl.png"></center>
+## Extended markdown syntax
+To provide a richer presentation of the article content, we have extended some common Markdown syntax using Markdown plugins.
 
-    // more complex styles
-    <img src="theImageUrl.png" style="width: 50%; margin: 0 auto" />
-    ```
-- Center the text
-  ```
-  <center>any test here(which it don't support markdown inside the html tag)<center>
-  ```
+### plugin-alert
+[referrence](https://mdit-plugins.github.io/alert.html) 
+
+you can create block alerts with blockquote starting with `[!ALERT_NAME]` like:
+```
+> [!warning]
+> This is warning text
+```
+The `ALERT_NAME` isn't case sensitive and can be the following string:
+```
+note
+tip
+important
+caution
+warning
+```
+<img width="681" alt="image" src="https://github.com/57blocks/website-article/assets/6326386/43bf17a3-3a15-4de8-941c-0d7783c29ee1">
+
+### align
+[referrence](https://mdit-plugins.github.io/align.html) 
+
+```
+::: left
+Contents to align left
+:::
+
+::: center
+Contents to align center
+:::
+
+::: right
+Contents to align right
+:::
+
+::: justify
+Contents to align justify
+:::
+```
+
+### img-size
+[referrence](https://mdit-plugins.github.io/img-size.html) 
+
+You can use `=widthxheight` to specify the image size at the end of image link.
+
+Both width and height should be number which means size in pixels, and both of them are optional. The whole marker should be separated with spaces from the image link.
+
+```
+![Alt](/example.png =200x300)
+![Alt](/example.jpg "Image title" =200x)
+![Alt](/example.bmp =x300)
+```
+will be parsed as:
+```
+<img src="/example.png" width="200" height="300" />
+<img src="/example.jpg" title="Image title" width="200" />
+<img src="/example.bmp" height="300" />
+```
+
+### footnote 
+[referrence](https://mdit-plugins.github.io/footnote.html) 
+```
+Footnote 1 link[^first].
+
+[^first]: Footnote can reference [^second].
+[^second]: Other footnote.
+```
 
 ## Preview:
 We have two fixed environments to display articles:
