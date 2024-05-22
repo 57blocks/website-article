@@ -2,37 +2,42 @@
 title: "Image Search: Leveraging Image Models, Large Language Models, and Multimodal Models"
 author: ["Alpha Xiang / Machine Learning Engineer", "Yanqi Liu / Backend Software Engineer", "Anjing Wang / Full Stack Engineer"]
 createTime: 2024-05-21
-tags: ["Image Search", "Image Retrieval", "LLM", "Image Encoder", "Image Embedding", "OCR", "Text Embedding", "CLIP"]
+tags: ["Image Search", "Image Retrieval", "LLM", "Image Encoder", "Image Embedding", "OCR", "Text Embedding", "CLIP", "Multimodal"]
 thumb: ""
 intro: "This is a technical article about image and text retrieval. This paper uses a variety of cutting-edge deep learning algorithms, including Image coding, Text coding, OCR, image-to-text, multimodal large model, etc."  
 ---
-# <center>Image Search: Leveraging Image Models, Large Language Models, and Multimodal Models<center>
-## 1.Project background  
+# <center>Image Search: Leveraging Image Models, Large Language Models, and Multimodal Models</center>
+## 1. Project background  
 This project is centered on information and image retrieval technology. Users can upload an image via their mobile device, and the application is tasked with returning matches from the database that are either identical or bear a high resemblance to the uploaded image. Additionally, the app retrieves and displays the related meta information and descriptions for the images, already present within the database. The algorithmic layer of the application includes advanced techniques like image-based searching, optical character recognition from image texts, text-based retrieval, and conversion from images to text.  
-## 2.Algorithm pipeline  
+## 2. Algorithm pipeline  
 Aligned with the project's directives and after a thorough investigation of both the business requirements and the sector's solution landscape, we have devised the following algorithm pipeline:  
 Upon image upload by the user, a multimodal large language model crafts a comprehensive description of the image. Subsequently, an Image Encoder model produces an image embedding, which is utilized to search for and retrieve matching or similar images from an existing Image Embedding database, which are then presented to the user. The OCR (Optical Character Recognition) model detects textual characters within the image, triggering a Text Embedding model to create text embeddings. These embeddings are searched within an established Text Embedding database to find images with comparable semantic content.   
-![figure 1 image search framework.png](figure%201%20image%20search%20framework.png)  
-Fig 1. Algorithm pipeline  
-## 3、Algorithm details
+![figure 1 image search framework.png](figure%201%20image%20search%20framework.png#center)  
+<center>Fig 1. Algorithm pipeline  </center>
+
+## 3. Algorithm details
 ### 3.1 Image Retrieval  
 Today's myriad of image databases, stemming from educational, industrial, medical, and social sectors, among others, have generated an immense need for robust image retrieval systems. To meet this demand, two principal search methodologies have been developed.The first is text-based image retrieval, which relies on keywords to tag and search images<sup>[1]</sup>.However, this approach faces significant drawbacks: manually tagging extensive databases is impractical, user-generated tags can introduce subjective biases, and these tags are generally language-specific.To address these challenges, the second method, known as "content-based image retrieval" (CBIR), is advocated<sup>[2]</sup>. CBIR circumvents the limitations of text-based retrieval by analyzing the visual content of the images themselves, offering a more automated and objective search process that is not bound by language constraints.  
 Having recognized the pitfalls of text-based image retrieval, the shift towards CBIR has paved the way for innovative techniques that eschew reliance on linguistic metadata. Instead, CBIR focuses on the intrinsic visual properties of the images. This pivotal transition from text to content aligns with the evolution of feature extraction methods that enable images to be represented in a manner conducive to effective retrieval. It is within this context that SIFT- and CNN-based models have emerged, reflecting a paradigm shift towards more sophisticated, content-driven search mechanisms. These technologies are at the forefront of CBIR advancement, harnessing the power of visual feature extraction to transform vast image data into succinct, searchable formats.  
 In the realm of image retrieval, both SIFT- and CNN-based (or transformer-based) models follow a general pipeline that converts images into compact feature representations. For SIFT-based approaches, features are extracted using hand-crafted keypoint detectors. Conversely, CNN-based methods leverage densely applied convolutions or patch analysis to discern features.  
 Regardless of the methodology, when dealing with smaller codebooks, an encoding and pooling strategy is implemented to distill these features into condensed vector forms. However, as the codebook size increases to medium or large, SIFT-based models typically rely on an inverted index to maintain efficiency.  
 In the case of CNNs, features may also be derived through an end-to-end process by employing fine-tuned CNN architectures, enhancing the model's adaptability to specific tasks<sup>[3]</sup>.  
-![figure 2 General framework of the CBIR system.png](figure%202%20General%20framework%20of%20the%20CBIR%20system.png)  
-Fig 2.General framework of the CBIR system<sup>[4]</sup>  
-![figure 3 A general pipeline of SIFT- and CNN-based retrieval models.png](figure%203%20A%20general%20pipeline%20of%20SIFT-%20and%20CNN-based%20retrieval%20models.png)  
-Fig 3. A general pipeline of SIFT- and CNN-based retrieval models<sup>[3]</sup>.  
+![figure 2 General framework of the CBIR system.png](figure%202%20General%20framework%20of%20the%20CBIR%20system.png#center)   
+<center>Fig 2.General framework of the CBIR system<sup>[4]</sup> </center>
+
+![figure 3 A general pipeline of SIFT- and CNN-based retrieval models.png](figure%203%20A%20general%20pipeline%20of%20SIFT-%20and%20CNN-based%20retrieval%20models.png#center)  
+<center>Fig 3. A general pipeline of SIFT- and CNN-based retrieval models<sup>[3]</sup>.  </center>
+
 #### 3.1.1 Image Feature Extraction Model  
 In the scope of our project, the ResNet model<sup>[5]</sup>, grounded in CNN architecture, and the CLIP model<sup>[6]</sup>, which is built upon transformer technology, were selected as the fundamental frameworks for feature extraction. We have meticulously performed a series of validation and optimization experiments to enhance and confirm the efficacy of these two robust models.  
 ResNet is an emblematic model architecture that epitomizes CNN-based deep learning methodologies. In our project's preprocessing phase, preceding the application of ResNet for feature extraction, we implemented a methodology reminiscent of face recognition. Through extensive data augmentation processes, we generated pairs of identical or closely related samples and utilized Focal loss<sup>[15]</sup> to train a sophisticated multi-class classifier. For the actual feature extraction process, we stripped away the classifier layer of the model and repurposed the remaining structure to capture the feature vectors. Common practice dictates setting the feature dimensionality to 512 or a higher value to ensure comprehensive feature representation.  
-![figure 4 Residual learning: a building block.png](figure%204%20Residual%20learning%3A%20a%20building%20block.png)  
-Fig 4. Residual learning: a building block.  
+![figure 4 Residual learning: a building block.png](figure%204%20Residual%20learning%3A%20a%20building%20block.png#center)  
+<center>Fig 4. Residual learning: a building block. </center>. 
+
 In 2021, OpenAI heralded a new era in AI with the open-source release of CLIP, a multimodal vision-language model that underwent training with an extensive collection of around 400 million image-text pairs. This training regimen significantly enhanced the generalization performance of the Image Encoder. As a result, CLIP's Image Encoder emerged as a powerful tool for generating domain-specific image embeddings. Keen on maximizing the feature extraction efficiency in specific areas of interest, our team employed the CLIP model framework to curate custom image-text pairs, allowing us to refine and optimize the image encoder to suit our precise requirements.  
-![figure 5 clip framework.png](figure%205%20clip%20framework.png)  
-Fig 5. CLIP framework.  
+![figure 5 clip framework.png](figure%205%20clip%20framework.png#center)  
+<center>Fig 5. CLIP framework. </center> 
+
 ### 3.1.2 Dataset  
 In the academic and industrial fields, there are several open-source image retrieval datasets designed for different scenarios. Some of these include:  
 1. [The MNIST Handwritten Digit Image Database](http://yann.lecun.com/exdb/mnist/): This dataset contains 70,000 images, each 28x28 in size, encompassing 10 classes of handwritten digits from 0 to 9. In image retrieval, it is common to use the grayscale pixel values directly as features, resulting in a feature dimension of 784.  
@@ -46,13 +51,13 @@ In the academic and industrial fields, there are several open-source image retri
 ### 3.1.3 Metric  
 Image retrieval systems, including Content-Based Image Retrieval (CBIR) systems, are traditionally evaluated using several metrics. Each of these metrics quantifies different aspects of the system's performance, mostly focusing on the relevance of the retrieved images with respect to a given query image. The most common evaluation metrics include:  
 Precision: Precision measures the proportion of retrieved images that are relevant to the query. It is defined as the number of relevant images retrieved divided by the total number of images retrieved. A higher precision indicates that the retrieval system returned more relevant results.  
-![precision.png](precision.png)  
+![precision.png](precision.png#center)  
 Recall: Recall quantifies the proportion of relevant images in the database that have been retrieved for the query. It is calculated as the number of relevant images retrieved divided by the total number of relevant images in the database. High recall means the system retrieved most of the images relevant to the query.  
-![recall.png](recall.png)  
+![recall.png](recall.png#center)  
 F-Score: This metric combines precision and recall into a single number using the harmonic mean, striving for a balance between precision and recall. The F1 Score reaches its best value at 1 (perfect precision and recall) and worst at 0.  
-![f1-score.png](f1-score.png)  
+![f1-score.png](f1-score.png#center)  
 Mean Average Precision (mAP): is a comprehensive metric that calculates the average precision at each point where recall changes, then takes the mean of these average precisions over all queries in a set. It is especially useful for evaluating systems where the order of retrieved images is significant.  
-![ap_map.png](ap_map.png)  
+![ap_map.png](ap_map.png#center)  
 Where:  
 GTP:denotes the total number of ground truth positives, that is, the number of truth labels/positive samples;  
 n:denotes the number of images involved in the retrieval;  
@@ -62,29 +67,33 @@ As OCR stands for optical character recognition, OCR technology deals with the p
 Think of any kind of serial number or code consisting of numbers and letters that you need digitized. By using OCR you can transform these codes into a digital output. The technology makes use of many different techniques. Put simply, the image taken is processed, the characters extracted, and are then recognized.  
 What OCR does not do is consider the actual nature of the object that you want to scan. It simply.“takes a look” at the characters that you aim to transform into a digital format. For example, if you scan a word it will learn and recognize the letters, but not the meaning of the word.  
 OCR (Optical Character Recognition) typically consists of two crucial steps: Text Detection and Text Recognition.  
-![figure 6 OCR process.png](figure%206%20OCR%20process.png)  
-Fig 6. OCR process  
+![figure 6 OCR process.png](figure%206%20OCR%20process.png#center)  
+ <center>Fig 6. OCR process </center>  
+
 ### 3.2.1 Text Detection  
 Text detection is the process of identifying and locating the textual regions within an input image or document.This step involves applying specialized models, such as DBNet, CTPN, and EAST, to efficiently and accurately detect the spatial positions of the text.The output of the text detection step is a set of bounding boxes or text region proposals that encapsulate the textual content.  
 **DBNet**   
 DBNet<sup>[7]</sup>employs a differentiable binarization method, which can train the entire network in an end-to-end manner, avoiding the additional post-processing steps required by the traditional proposal-based methods.  
 The model adopts a lightweight encoder-decoder structure, combining convolutional blocks and LSTM modules, which can achieve real-time performance while maintaining high detection accuracy. DBNet also utilizes multi-scale feature maps for text region prediction, which can better capture the scale variations of the text.  
 Ultimately, the output of DBNet is a binarized text region prediction map, which can be further processed by simple post-processing methods like non-maximum suppression to obtain the final text detection results. This flexible post-processing approach makes DBNet a practical scene text detection solution.  
-![figure 7 DBNet framework.png](figure%207%20DBNet%20framework.png)  
-Fig 7. DBNet framework  
+![figure 7 DBNet framework.png](figure%207%20DBNet%20framework.png#center)  
+ <p> <center>Fig 7. DBNet framework </center></p> 
+
 **CTPN**  
 Rather than using the traditional horizontal anchors, CTPN<sup>[8]</sup>employs a set of vertically-arranged anchors to better capture the characteristics of text, which often have a long and narrow aspect ratio.  
 Additionally, CTPN introduces a sequential prediction module that combines a recurrent neural network (RNN) with convolutional features. This sequential module can effectively model the inherent sequential property of text, allowing the model to make more accurate text proposals.  
 The output of CTPN is a set of text proposals, which can then be fed into a subsequent text recognition model to obtain the final text transcription results. The flexible architecture of CTPN makes it a powerful and versatile text detection solution, complementing the capabilities of other models like DBNet.  
-![figure 8 CTPN framework.png](figure%208%20CTPN%20framework.png)  
-Fig 8. CTPN framework  
+![figure 8 CTPN framework.png](figure%208%20CTPN%20framework.png#center)  
+ <p> <center>Fig 8. CTPN framework  </center> </p>   
+
 **EAST**  
 The key innovation of EAST<sup>[9]</sup>is its unified detection framework, which combines text region prediction and orientation regression into a single network. This allows the model to simultaneously predict the quadrilateral bounding boxes of text regions and their orientations, eliminating the need for separate post-processing steps.  
 EAST utilizes a fully-convolutional network architecture, which enables efficient and dense predictions across the entire input image. The model employs a feature fusion module to combine multi-scale features, allowing it to handle text of varying scales and orientations.  
 Another important aspect of EAST is its pixel-level prediction, which means the model directly outputs pixel-wise scores for text regions, rather than relying on text proposal generation. This approach simplifies the detection pipeline and improves overall efficiency.  
 The output of EAST is a set of quadrilateral bounding boxes representing the detected text regions, along with their associated orientation information. This rich output can be directly used for subsequent text recognition tasks, making EAST a powerful and versatile text detection solution.  
-![figure 9 EAST framework.png](figure%209%20EAST%20framework.png)  
-Fig 9. EAST framework  
+![figure 9 EAST framework.png](figure%209%20EAST%20framework.png#center)  
+ <center>Fig 9. EAST framework</center>
+
 ### 3.2.2 Text Recognition  
 The CRNN<sup>[10]</sup>model was the first to propose a three-stage architecture for text recognition, which has since become a commonly used approach.The three-stage architecture of CRNN consists of the following components:  
 1. Feature Extraction:  
@@ -99,8 +108,9 @@ b. This module interprets the sequence-level representations from the RNN and ge
 The three-stage architecture of CRNN has become a standard approach in many modern text recognition models, as it effectively combines the strengths of CNN for feature extraction, RNN for sequence modeling, and the final transcription module for generating the recognized text.  
 This modular design allows for greater flexibility and ease of optimization, as the individual components can be fine-tuned or replaced independently to improve the overall text recognition performance.  
 The pioneering work of CRNN has paved the way for many subsequent advancements in the field of text recognition, solidifying the three-layer architecture as a foundational concept in modern OCR systems.  
-![figure 10 RCNN framework.png](figure%2010%20RCNN%20framework.png)  
-Fig 10. RCNN framework  
+![figure 10 RCNN framework.png](figure%2010%20RCNN%20framework.png#center)  
+ <p> <center>Fig 10. RCNN framework </center></p> 
+
 ### 3.2.3 OCR Solution  
 We have explored various open-source OCR (Optical Character Recognition) software options, such as EasyOCR, PaddleOCR, and Tesseract OCR. We also considered the OCR solutions offered by major cloud platforms, including AWS, GCP, and Azure. However, we found that even after fine-tuning the models, the open-source OCR solutions were unable to meet our desired performance requirements.  
 "In our design, it is imperative to employ OCR methods for extracting crucial textual information. However, in practical application scenarios, the key text often appears blurry, posing challenges for accurate extraction. In light of this situation, we conducted an analysis of the two critical processes in OCR.  
@@ -117,15 +127,16 @@ In our project, we deploy natural language processing models, including text-emb
 ## 3.4 Image-to-Text(Image Caption)  
 Image Captioning is the task of describing the content of an image in words. This task lies at the intersection of computer vision and natural language processing. Most image captioning systems use an encoder-decoder framework, where an input image is encoded into an intermediate representation of the information in the image, and then decoded into a descriptive text sequence.  
 In the last year, considerable progress has been seen in the realm of multimodal large language models (MM-LLMs). By adopting economical and efficient training methodologies, these cutting-edge models have fortified existing large language models to accommodate inputs or outputs across multiple modalities. The resultant models preserve the inherent reasoning and decision-making prowess that LLMs are known for, while also extending their capabilities to an assortment of multimodal tasks. Notably, functionalities such as generating descriptive captions for images and answering questions based on visual content are among their crucial advancements.  
-![figure 11 mm-llms.png](figure%2011%20mm-llms.png)  
-Fig 11. MM-LLMs<sup>[14]</sup>.  
+![figure 11 mm-llms.png](figure%2011%20mm-llms.png#center)  
+ <p><center>Fig 11. MM-LLMs<sup>[14]</sup>. </center></p> 
+
 MM-LLMs focusing on multimodal understanding typically encompass just the first three components: modality encoders, the core LLM backbone, and modality generators. Throughout the training phase, these elements are generally maintained in a frozen state. Optimization efforts are concentrated on the input and output projectors, which are relatively lightweight. As a result, a small fraction of the overall parameters—commonly about 2%—are actually trainable within MM-LLMs. This percentage is determined by the size of the principal LLM integrated into the MM-LLM framework. Due to this configuration, MM-LLMs can undergo cost-effective training, making the enhancement of performance in assorted multimodal tasks more attainable.  
-![figure 12 The general model architecture of MM-LLMs and the implementation choices for each component.png](figure%2012%20The%20general%20model%20architecture%20of%20MM-LLMs%20and%20the%20implementation%20choices%20for%20each%20component.png)  
-Fig12. The general model architecture of MM-LLMs and the implementation choices for each component<sup>[14]</sup>.  
+![figure 12 The general model architecture of MM-LLMs and the implementation choices for each component.png](figure%2012%20The%20general%20model%20architecture%20of%20MM-LLMs%20and%20the%20implementation%20choices%20for%20each%20component.png#center)  
+ç<center>Fig12. The general model architecture of MM-LLMs and the implementation choices for each component<sup>[14]</sup>.  </center>  </p>
 In this undertaking, we carried out validations and tests for image caption generation using GPT4 vision, LLaVa<sup>[15]</sup><sup>[16]</sup>, and Qwen-vl<sup>[13]</sup>models. We meticulously analyzed the precision of the image descriptions provided by these models. Given that GPT4 vision has not been made available for open source use, we based our further enhancements on the Qwen-vl model, selecting it as our foundational model for fine-tuning after our comparative assessments were concluded.  
-## 4 Conclusion  
+## 4. Conclusion  
 During our image retrieval endeavor, we have diligently addressed the distinctive traits of images pertinent to the business sector, taking into account crucial image features, textual information, and details from both sides of the image. By analyzing and valorizing this information, we have implemented strategies such as reverse image search, textual retrieval, and image search via text. Our deployment of advanced deep learning algorithms encompasses an array of models—ranging from those specialized in computer vision and natural language processing to multimodal algorithms, large language models, and comprehensive multimodal language-vision models. Through systematic enhancement of the performance across each model phase, we have successfully realized a retrieval process that is both effective and precise for images and accompanying text.  
-## 5 Conclusion  
+## 5. Reference
 [1] Hameed, I. M., Abdulhussain, S. H., Mahmmod, B. M., & Pham, D. T. (2021). Content-based image retrieval: A review of recent trends. Cogent Engineering, 8(1). https://doi.org/10.1080/23311916.2021.1927469  
 [2] Raghunathan, B., & Acton, S. T., “A content based retrieval engine for circuit board inspection,” in Proceedings 1999 International Conference on Image Processing (Cat. 99CH36348), vol. 1, pp. 104–108 1999. Kobe, Japan.  
 [3] L. Zheng, Y. Yang and Q. Tian, "SIFT Meets CNN: A Decade Survey of Instance Retrieval," in IEEE Transactions on Pattern Analysis and Machine Intelligence, vol. 40, no. 5, pp. 1224-1244, 1 May 2018, doi: 10.1109/TPAMI.2017.2709749.  
@@ -143,16 +154,3 @@ During our image retrieval endeavor, we have diligently addressed the distinctiv
 [15] Liu H, Li C, Li Y, et al. Improved baselines with visual instruction tuning[J]. arXiv preprint arXiv:2310.03744, 2023.  
 [16] Liu H, Li C, Wu Q, et al. Visual instruction tuning[J]. Advances in neural information processing systems, 2024, 36.  
 [17] Bai J, Bai S, Yang S, et al. Qwen-vl: A frontier large vision-language model with versatile abilities[J]. arXiv preprint arXiv:2308.12966, 2023.  
-
-
-
-
-
-
-
-
-
-
-
-
-
