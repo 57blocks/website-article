@@ -13,7 +13,8 @@ intro: "In an era where artificial intelligence is increasingly prevalent, the i
 In the data-driven age where processing high-dimensional vectors
 efficiently marks the difference between industry leaders and the competition, the significance of a top-tier vector database cannot be overstated. Such a database must possess a definitive set of characteristics that not only address the immense complexity of big data but also cater to the refined demands of advanced analytics.
 
-![Vector database funtions](./image2.png){width="5.818579396325459in" height="4.955322615923009in"}
+<img src="image2.png" alt="Vector database funtions" width="5.818579396325459in"
+height="4.955322615923009in"/>
 
 At the core, search speed stands as the linchpin of vector database
 performance, impacting user experience and real-time decision-making.
@@ -142,8 +143,8 @@ of dicts, pd.DataFrame, pa.Table, iterable record batches, Pydantic
 models, and JavaScript objects. This adaptability makes it suitable for
 various structured and semi-structured data dealings.
 
-![LancdDB Overview](./image1.png){width="6.5in"
-height="2.986111111111111in"}
+<img src="image1.png" alt="LanceDB" width="6.5in"
+height="2.986111111111111in"/>
 
 Pydantic integration with LanceDB enables the use of advanced features
 such as nested schemas and validators for building complex, valid table
@@ -212,7 +213,7 @@ Pinecone sparse-dense vectors have the following limitations:
 - In order to query an index using sparse values, the index must use the [[dot product> metric]{.underline}](https://docs.pinecone.io/docs/indexes#distance-metrics). Attempting to query any other index with sparse values returns an error.
 - Indexes created before February 22, 2023 do not support sparse values.
 
-![Pineone Record](./image3.png){width="6.125in"  height="3.6409306649168856in"}
+<img src="image3.png" alt="Pineone" width="6.125in"  height="3.6409306649168856in"/>
 
 LanceDB supports both vector search and full-text search(currently
 python only). When using the search method, if the query_type is set to
