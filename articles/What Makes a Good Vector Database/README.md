@@ -1,5 +1,5 @@
 ---
-title: "What Makes a Good Vector Database<br><center>LanceDB vs Pinecone</center>"
+title: "What Makes a Good Vector Database --- LanceDB vs Pinecone"
 author: ["Alex Hu / Backend Software Engineer", "Steven Zhang / Backend Software Engineer"]
 createTime: 2024-05-2
 tags: ["Vector Database", "LanceDB", "Pinecone"]
@@ -8,7 +8,7 @@ thumb_h: "./thumb_h.png"
 intro: "In an era where artificial intelligence is increasingly prevalent, the integration of vector databases with AI is enhancing outcomes across a myriad of application scenarios. But what exactly defines a \"Superior Vector Database\"? This article provides a comparative analysis of LanceDB and Pinecone across various aspects and delves into the application of different databases in specific scenarios. We propose that there is no one-size-fits-all \"best\" database; rather, a Superior Vector Database is one that is well-matched with its use case, meeting the unique requirements of that scenario."
 ---
 
-## **1. The Hallmarks of a Superior Vector Database**
+## 1. The Hallmarks of a Superior Vector Database
 
 In the data-driven age where processing high-dimensional vectors
 efficiently marks the difference between industry leaders and the competition, the significance of a top-tier vector database cannot be overstated. Such a database must possess a definitive set of characteristics that not only address the immense complexity of big data but also cater to the refined demands of advanced analytics.
@@ -83,9 +83,9 @@ To sum it up, a vector database that harmonizes these attributes not
 only excels in its field but also emerges as an indispensable ally in
 harnessing the full potential of vector data.
 
-## **2. Introduction**
+## 2. Introduction
 
-### **2.1. What is Pinecone?**
+### 2.1. What is Pinecone?
 
 Pinecone is a closed source, fully-managed, cloud-native vector database
 specifically designed for high-performance Artificial Intelligence (AI)
@@ -98,7 +98,7 @@ useful for applications such as recommendation systems, image search,
 and natural language processing tasks, where similarity search plays a
 vital role.
 
-### **2.1. What is LanceDB？**
+### 2.1. What is LanceDB？
 
 LanceDB is an open-source vector database that excels in handling
 multimodal data including text, images, and video. It employs a
@@ -114,9 +114,9 @@ serverless in the cloud, making the storage clearly separated from
 compute. Currently in private beta with general availability coming
 soon.
 
-## **3. Key Differences Between Lancedb and Pinecone**
+## 3. Key Differences Between Lancedb and Pinecone
 
-### **3.1. LanceDB vs Pinecone - Workflow**
+### 3.1. LanceDB vs Pinecone - Workflow
 
 The workflow in Pinecone starts with creating an index. This index must
 be established prior to uploading any vector data into the system, which
@@ -131,7 +131,7 @@ initial step involves defining a data table's schema (structure). Once
 the schema has been set, data can be added, and search operations can
 commence.
 
-### **3.2. LanceDB vs Pinecone - Data Type**
+### 3.2. LanceDB vs Pinecone - Data Type
 
 Pinecone focuses on array vector types used in high-dimensional vector
 space, essential for applications involving similarity search and
@@ -187,7 +187,7 @@ query_image = Image.open(p)
 table.search(query_image)
 ```
 
-### **3.3. LanceDB vs Pinecone - Search**
+### 3.3. LanceDB vs Pinecone - Search
 
 Pinecone Database it empowers users to perform scalable Approximate
 Nearest Neighbor (ANN) searches quickly and accurately, excels with both
@@ -230,7 +230,7 @@ constitutes a KNN (k-nearest neighbors) search. By constructing a vector
 index, LanceDB utilizes Approximate Nearest Neighbor (ANN) Search with a
 Vector Index for enhanced efficiency during query processing.
 
-### **3.4. LanceDB vs Pinecone - Index**
+### 3.4. LanceDB vs Pinecone - Index
 
 Pinecone's index is a customized, optimized structure made for
 efficient vector similarity searches, known for bolstering the
@@ -314,7 +314,7 @@ tbl.search(np.random.random((1536)))
     .to_pandas()
 ```
 
-### **3.5. LanceDB vs Pinecone - Versioning**
+### 3.5. LanceDB vs Pinecone - Versioning
 
 In Pinecone, a collection captures a static snapshot of an index at a
 specific moment, preserving the complete set of vectors and metadata in
@@ -382,7 +382,7 @@ we're just creating a new version where the schema and data is
 equivalent to the restored old version. In this way, we can keep track
 of all of the changes and always rollback to a previous state.
 
-## **4. Conclusion**
+## 4. Conclusion
 
 Selecting the ideal vector database hinges on the stark realization that
 there is no one-size-fits-all solution; the decision is intrinsically
