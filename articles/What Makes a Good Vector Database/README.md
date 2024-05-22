@@ -1,7 +1,7 @@
 ---
 title: "What Makes a Good Vector Database --- LanceDB vs Pinecone"
-author: ["Alex Hu / Backend Software Engineer", "Steven Zhang / Backend Software Engineer"]
-createTime: 2024-05-2
+author: ["Alex Hu / Machine Learning Engineer", "Steven Zhang / Backend Software Engineer", "Anjing Wang / Full Stack Engineer"]
+createTime: 2024-05-22
 tags: ["Vector Database", "LanceDB", "Pinecone"]
 thumb: "./thumb.png"
 thumb_h: "./thumb_h.png"
@@ -142,7 +142,7 @@ of dicts, pd.DataFrame, pa.Table, iterable record batches, Pydantic
 models, and JavaScript objects. This adaptability makes it suitable for
 various structured and semi-structured data dealings.
 
-![LanceDB](./image1.png)
+![LancdDB Overview](./image1.png)
 
 Pydantic integration with LanceDB enables the use of advanced features
 such as nested schemas and validators for building complex, valid table
@@ -211,7 +211,7 @@ Pinecone sparse-dense vectors have the following limitations:
 - In order to query an index using sparse values, the index must use the [[dot product> metric]{.underline}](https://docs.pinecone.io/docs/indexes#distance-metrics). Attempting to query any other index with sparse values returns an error.
 - Indexes created before February 22, 2023 do not support sparse values.
 
-![Pineone](./image3.png)
+![Pineone Record](./image3.png)
 
 LanceDB supports both vector search and full-text search(currently
 python only). When using the search method, if the query_type is set to
@@ -356,7 +356,7 @@ table.list_versions()
  {'version': 2,
   'timestamp': datetime.datetime(2023, 10, 20, 14, 33, 39, 63675),
   'metadata': {}}
- ]
+]
 ```
 
 ```python
