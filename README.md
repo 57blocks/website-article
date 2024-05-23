@@ -9,6 +9,30 @@ If you have any permission issues when pushing the article, please contact Marvi
 If you have any special styles or effects that cannot be achieved with the default Markdown when writing documents, please contact Marvin or the developers of the WCP project.
 
 
+# Guide
+
+## Standards
+1. Articles are in markdown format, using GFM format.
+2. Articles are placed under the `articles` folder and have their own independent folder, which, after slugify, will act as the article's url
+3. Articles are named `README.md` in their respective folders
+4. Each article needs to contain the metadata of the article at the beginning, the template of the metadata is as follows(yaml format):
+
+```yaml
+---
+title: "The title of the article"
+author: ["YourName / Full stack engineer", "SecondAuthorName / PositionOfTheAuthor"]
+createTime: 2024-04-01
+tags: ["Web3", "AnyOtherTag"]
+thumb: "https://example.com/theThumbOfTheArticle.png"
+thumb_b: "https://example.com/theHorizontalThumbOfTheArticle.png"
+intro: "Some introduction to the article"
+---
+```
+
+> [!important]
+> The `thumb` and `thumb_b` is coming from the designer. Please contact the designer.
+
+
 
 ## Features
 - Supports all basic markdown formats(reference: [link](https://docs.github.com/en/get-started/writing-on-github/getting-started-with-writing-and-formatting-on-github/basic-writing-and-formatting-syntax)).
@@ -89,27 +113,6 @@ Footnote 1 link[^first].
 We have two fixed environments to display articles:
 - Product Environment - Will display articles from the `main` branch
 - Testing Environment - Will display articles from the `dev` branch
-
-
-# Guide
-
-## Standards
-1. Articles are in markdown format, using GFM format.
-2. Articles are placed under the `articles` folder and have their own independent folder, which, after slugify, will act as the article's url
-3. Articles are named `README.md` in their respective folders
-4. Each article needs to contain the metadata of the article at the beginning, the template of the metadata is as follows(yaml format):
-
-```yaml
----
-title: "The title of the article"
-author: ["YourName / Full stack engineer", "SecondAuthorName / PositionOfTheAuthor"]
-createTime: 2024-04-01
-tags: ["Web3", "AnyOtherTag"]
-thumb: "https://example.com/theThumbOfTheArticle.png"
-thumb_b: "https://example.com/theHorizontalThumbOfTheArticle.png"
-intro: "Some introduction to the article"
----
-```
 
 
 ## How to submit your article
