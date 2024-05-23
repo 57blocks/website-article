@@ -3,6 +3,7 @@ title: "Frontend Performance Optimization"
 author: ["Bonnie Chen/ Full Stack"]
 createTime: 2024-05-23
 tags: ["Frontend", "Performance"]
+thumb: "loading-is-a-journey.png"
 thumb_h: "loading-is-a-journey.png"
 intro: "In today's digital era, the performance of a website is crucial for attracting and retaining users. Users are reluctant to wait for slow loading times, and fast-responsive pages will help retain visitors and improve conversion rates. Frontend performance optimization is a key factor in achieving this goal. In this article, we will explore some important frontend performance optimization strategies to enhance website speed, interactivity, and user satisfaction."
 ---
@@ -277,7 +278,7 @@ However, with the introduction of HTTP/2.0, this situation changed. HTTP/2.0 all
 
 ### Render-blocking resources
 
-The rendering path is illustrated in the diagram below, where it can be observed that CSS and JavaScript can block rendering. Hence, it is crucial to identify and optimize the loading order of key resources based on their business importance to enhance loading times. Currently, there is a non-standard attribute blocking=render which allows developers to explicitly designate a **`link`**,**`script`**, or**`style`** element as rendering-blocking, meaning it will block rendering until the specific element is processed. However, the key distinction is that it still permits the parser to continue processing the rest of the document in the meantime. This feature provides developers with more control over the rendering behavior of critical resources, allowing for a fine-tuned approach to optimizing the loading sequence for improved performance.
+The rendering path is illustrated in the diagram below, where it can be observed that CSS and JavaScript can block rendering. Hence, it is crucial to identify and optimize the loading order of key resources based on their business importance to enhance loading times. Currently, there is a non-standard attribute blocking=render which allows developers to explicitly designate a **`link`**,**`script`**, or **`style`** element as rendering-blocking, meaning it will block rendering until the specific element is processed. However, the key distinction is that it still permits the parser to continue processing the rest of the document in the meantime. This feature provides developers with more control over the rendering behavior of critical resources, allowing for a fine-tuned approach to optimizing the loading sequence for improved performance.
 ![render process](render-process.png)
 
 ### Browser Resource Hint
@@ -328,7 +329,7 @@ By using these attributes based on the business value of images, you can optimiz
 <link rel="preload" fetchpriority="high" as="image" href="image.webp" type="image/webp">
 ```
 
-**size:**
+- **size:**
 
 - Images should not provide versions larger than what is rendered on the user's screen.
 - Use responsive images by specifying multiple versions, and the browser will choose the most suitable version.
@@ -342,8 +343,8 @@ By using these attributes based on the business value of images, you can optimiz
 **`sizes`** specifies the expected display size of the image.
 
 - **width 和 height：**
-  - Both the **`width`** and **`height`** attributes should be specified appropriately to ensure that the browser allocates the correct space in the layout. This helps avoid layout shifts, improving the user experience in terms of Cumulative Layout Shift (CLS).
-  - If the specific width and height cannot be determined, consider setting an aspect ratio as a solution.
+  1. Both the **`width`** and **`height`** attributes should be specified appropriately to ensure that the browser allocates the correct space in the layout. This helps avoid layout shifts, improving the user experience in terms of Cumulative Layout Shift (CLS).
+  2. If the specific width and height cannot be determined, consider setting an aspect ratio as a solution.
 
 ```ts
 img {
@@ -353,15 +354,18 @@ img {
 }
 ```
 
-- image formate
+- **Image formate**
   For image resources, it is essential to choose the appropriate image format based on specific business requirements to optimize performance. Here are simplified and optimized recommendations:
   - **Raster Images:** Represented as pixel grids, including GIF, PNG, JPEG, and WebP.
   - **Vector Images:** Primarily used for logos and icons, defined by curves, lines, and shapes, resolution-independent, providing clear results.
-    **Image Formats and Use Cases:**
-  - JPEG: Suitable for photographic images, reducing file size through lossy and lossless optimization.
-  - SVG: Used for icons and logos, containing geometric shapes, maintaining clarity regardless of scaling.
-  - PNG: Suitable for high-resolution images, lossless compression, while WebP generally has smaller file sizes.
-  - Video: For animations, it is recommended to use video instead of GIF due to GIF's color limitations and larger file sizes.
+
+**Image Formats and Use Cases:**
+
+- JPEG: Suitable for photographic images, reducing file size through lossy and lossless optimization.
+- SVG: Used for icons and logos, containing geometric shapes, maintaining clarity regardless of scaling.
+- PNG: Suitable for high-resolution images, lossless compression, while WebP generally has smaller file sizes.
+- Video: For animations, it is recommended to use video instead of GIF due to GIF's color limitations and larger file sizes.
+
 - **Decoding**
   This property provides a hint to the browser on how it should decode the image. Specifically, it specifies whether to wait for the image to be fully decoded before rendering other content updates or allow rendering other content simultaneously during the decoding process.
   - **`sync`**: Synchronously decode the image to render it along with other content.
@@ -502,3 +506,12 @@ For example, React's virtual DOM mechanism employs batch processing as an optimi
 ### **Conclusion**
 
 Front-end performance optimization is an ongoing process that requires continuous attention and improvement. By considering the comprehensive strategies mentioned above, you can enhance your website's speed, interactivity, and user satisfaction. Continuously monitoring performance using tools, evaluating, and taking appropriate measures for improvement will help ensure that your website consistently delivers an outstanding user experience. In today's competitive internet landscape, front-end performance optimization is an indispensable component for achieving success.
+
+References：
+
+- (JavaScript Start-up Performance)[https://medium.com/reloading/javascript-start-up-performance-69200f43b201]
+- (The cost of javascript 2017)[https://medium.com/dev-channel/the-cost-of-javascript-84009f51e99e]
+- (The cost of javascript 2019)[https://medium.com/@addyosmani/the-cost-of-javascript-in-2018-7d8950fbb5d4]
+- (Web Dev)[[https://web.dev](https://web.dev/)]
+- (MDN)[[https://developer.mozilla.org](https://developer.mozilla.org/en-US/)]
+- (Understanding Event Loop, Call Stack, Event & Job Queue in Javascript)[https://medium.com/@Rahulx1/understanding-event-loop-call-stack-event-job-queue-in-javascript-63dcd2c71ecd]
