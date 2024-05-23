@@ -178,6 +178,12 @@ The default raw file is cached (5-minute cache) so you may not be able to get th
 ### Realtime preview by raw markdown
 - open the realtime editor: https://dev-ui.57blocks.io/blog/preview-editor
 - Just paste your markdown content into the input box and you can preview it, This is particularly useful when you need to continuously debug styles that are not supported by GitHub.
+> [!tip]
+> What is the baseurl and why is it needed?
+>
+> The article mentions that the images in the Markdown text may use relative paths. When the Markdown text is copied to a website, the base path for the images is lost. Therefore, the baseurl field is used to ensure the images can be displayed correctly. If you use absolute paths for the images in your article, then this field can be ignored.
+
   <img width="1608" alt="image" src="https://github.com/57blocks/website-article/assets/6326386/5ee30e56-df5f-4497-bde4-b98479909d21">
+
 - The input logic for the baseurl field has the same implementation logic as the "Get Markdown URL" functionality in the "preview by url" block.
 
