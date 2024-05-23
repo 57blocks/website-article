@@ -503,15 +503,15 @@ This mechanism is crucial when dealing with asynchronous tasks because it ensure
 
 For example, React's virtual DOM mechanism employs batch processing as an optimization strategy. It applies all changes to the virtual DOM and then submits them to the browser for redraw in one go, significantly reducing actual DOM manipulations. This approach effectively releases the main thread, enhancing performance. Batch processing is beneficial in situations where there are many DOM operations or frequent changes. By consolidating multiple operations into a single batch, it reduces the number of browser redraws, optimizing performance. In React, this mechanism helps improve page responsiveness, avoiding unnecessary redundant computations and rendering.
 
-### **Conclusion**
+## **Conclusion**
 
 Front-end performance optimization is an ongoing process that requires continuous attention and improvement. By considering the comprehensive strategies mentioned above, you can enhance your website's speed, interactivity, and user satisfaction. Continuously monitoring performance using tools, evaluating, and taking appropriate measures for improvement will help ensure that your website consistently delivers an outstanding user experience. In today's competitive internet landscape, front-end performance optimization is an indispensable component for achieving success.
 
-References：
+## References：
 
-- (JavaScript Start-up Performance)[https://medium.com/reloading/javascript-start-up-performance-69200f43b201]
-- (The cost of javascript 2017)[https://medium.com/dev-channel/the-cost-of-javascript-84009f51e99e]
-- (The cost of javascript 2019)[https://medium.com/@addyosmani/the-cost-of-javascript-in-2018-7d8950fbb5d4]
-- (Web Dev)[[https://web.dev](https://web.dev/)]
-- (MDN)[[https://developer.mozilla.org](https://developer.mozilla.org/en-US/)]
-- (Understanding Event Loop, Call Stack, Event & Job Queue in Javascript)[https://medium.com/@Rahulx1/understanding-event-loop-call-stack-event-job-queue-in-javascript-63dcd2c71ecd]
+- !(JavaScript Start-up Performance)[https://medium.com/reloading/javascript-start-up-performance-69200f43b201]
+- !(The cost of javascript 2017)[https://medium.com/dev-channel/the-cost-of-javascript-84009f51e99e]
+- !(The cost of javascript 2019)[https://medium.com/@addyosmani/the-cost-of-javascript-in-2018-7d8950fbb5d4]
+- !(Web Dev)[[https://web.dev](https://web.dev/)]
+- !(MDN)[[https://developer.mozilla.org](https://developer.mozilla.org/en-US/)]
+- !(Understanding Event Loop, Call Stack, Event & Job Queue in Javascript)[https://medium.com/@Rahulx1/understanding-event-loop-call-stack-event-job-queue-in-javascript-63dcd2c71ecd]
