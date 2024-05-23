@@ -57,7 +57,8 @@ Recall: Recall quantifies the proportion of relevant images in the database that
 F-Score: This metric combines precision and recall into a single number using the harmonic mean, striving for a balance between precision and recall. The F1 Score reaches its best value at 1 (perfect precision and recall) and worst at 0.  
 ![f1-score.png](f1-score.png#center)  
 Mean Average Precision (mAP): is a comprehensive metric that calculates the average precision at each point where recall changes, then takes the mean of these average precisions over all queries in a set. It is especially useful for evaluating systems where the order of retrieved images is significant.  
-![ap_map.png](ap_map.png#center)  
+![ap.png](ap.png)
+![map.png](map.png)
 Where:  
 GTP:denotes the total number of ground truth positives, that is, the number of truth labels/positive samples;  
 n:denotes the number of images involved in the retrieval;  
