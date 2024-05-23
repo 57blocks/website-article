@@ -123,6 +123,8 @@ Detailed version:
 - Clone this code repository locally
 - Create a branch of your own
 
+> [!note]
+> The branch can only be start with `feat/`, `author/` or `article/`.
 ```bash
 git checkout -b feat/AnyBranchYouWant
 ```
@@ -133,7 +135,10 @@ git checkout -b feat/AnyBranchYouWant
 
 
 ### Direct Online Editing
-- Create your branch online in [page](https://github.com/57blocks/website-article/branches) (Please start the branch name with `feat/*`)
+- Create your branch online in [page](https://github.com/57blocks/website-article/branches)
+> [!note]
+> The branch can only be start with `feat/`, `author/` or `article/`.
+  
   ![image](https://github.com/57blocks/website-article/assets/6326386/b0e98017-1d09-414e-9711-9d458c5e46c1)
 
 - Create your markdown file online
