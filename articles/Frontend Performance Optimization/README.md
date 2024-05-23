@@ -3,7 +3,6 @@ title: "Frontend Performance Optimization"
 author: ["Bonnie Chen/ Full Stack"]
 createTime: 2024-05-23
 tags: ["Frontend", "Performance"]
-thumb: "loading-is-a-journey.png"
 thumb_h: "loading-is-a-journey.png"
 intro: "In today's digital era, the performance of a website is crucial for attracting and retaining users. Users are reluctant to wait for slow loading times, and fast-responsive pages will help retain visitors and improve conversion rates. Frontend performance optimization is a key factor in achieving this goal. In this article, we will explore some important frontend performance optimization strategies to enhance website speed, interactivity, and user satisfaction."
 ---
@@ -52,7 +51,7 @@ In this example, the LCP is represented by **`loadingTime`**, which is 1.6. Acco
 
 #### FCP
 
-The FCP metric measures the time from when the user first navigated to the page to when any part of the page's content is rendered on the screen. You can understand the standards by examining screenshots. For a more in-depth understanding, you can click here. Another similar metric is FP (First Paint), representing the time it takes for the first pixel to be painted on the screen.
+The FCP metric measures the time from when the user first navigated to the page to when any part of the page's content is rendered on the screen. You can understand the standards by examining screenshots. For a more in-depth understanding, you can click ![here](https://web.dev/articles/fcp). Another similar metric is FP (First Paint), representing the time it takes for the first pixel to be painted on the screen.
 ![FCP](FCP.png)
 
 ```ts
@@ -112,7 +111,7 @@ Relationship with FID:
 
 INP considers all page interactions, whereas FID only considers the first interaction. INP goes beyond focusing on the initial interaction, instead, it comprehensively assesses responsiveness by sampling all interactions, making INP a more reliable overall responsiveness metric compared to FID.
 
-Since the Performance API does not provide responsiveness information for INP, specific examples are not provided here. For information on how to measure this metric, please refer to [this link](https://web.dev/articles/inp#how_is_inp_different_from_first_input_delay_fid).
+Since the Performance API does not provide responsiveness information for INP, specific examples are not provided here. For information on how to measure this metric, please refer to [link](https://web.dev/articles/inp#how_is_inp_different_from_first_input_delay_fid).
 
 #### CLS
 
@@ -225,6 +224,7 @@ ETag: "33a64df551425fcc55e4d42a148795d9f25f89d4"
 - **ETag**: Used to identify whether a resource is a specified version, while Last-Modified is a fallback for ETag, representing the last modification time on the server. ETag and Last-Modified allow the client to send a condition request to the server. If the resource has not changed, the server returns a 304 response, indicating that the cached version is still current. Otherwise, it sends a new request to fetch the resource from the server.
 
 ETag, Last-Modified, and Immutable can prevent resource revalidation, especially when reloading a page. These mechanisms help optimize cache management, ensuring the consistency and validity of resources.
+
 3.For other resources such as favicon.ico, images, API endpoints, etc., typically, similar settings are used. Conditional requests are initiated using Last-Modified and ETag to check if the resource is up-to-date.
 
 ```ts
@@ -237,7 +237,7 @@ In some scenarios, Cache-Control may appear in both the request and response, an
 
 ### CDN
 
-Content Delivery Network (CDN) is a distributed server network that caches resources from the origin server and delivers these resources through servers located closer to the user's geographical location. By reducing round-trip time (RTT) and implementing optimization strategies such as HTTP/2 or HTTP/3, caching, and compression, CDN can efficiently deliver content, enhancing user access experience. For more details, you can click [here](https://chat.openai.com/c/8cc9a4c9-b761-4a47-a8e8-aa6691d039a7#) to learn more.
+Content Delivery Network (CDN) is a distributed server network that caches resources from the origin server and delivers these resources through servers located closer to the user's geographical location. By reducing round-trip time (RTT) and implementing optimization strategies such as HTTP/2 or HTTP/3, caching, and compression, CDN can efficiently deliver content, enhancing user access experience. For more details, you can click [here](https://web.dev/articles/content-delivery-networks) to learn more.
 
 ### Code Minimization
 
@@ -256,22 +256,28 @@ Content Delivery Network (CDN) is a distributed server network that caches resou
 ### bundling optimization
 
 Each time the frontend requests a resource, a TCP connection is established, and after completing the request, the TCP connection is closed, as shown in the diagram below:
+
 ![http request](Http-request.png)
+
 The HTTP protocol has undergone several version updates, primarily including HTTP/1.0, HTTP/1.1, and HTTP/2.0. The following are some key differences in the request aspect across different versions of HTTP, presented in chart form:
+
 ![comparison with a different version of http](Comparison-with-a-different-version-of-http.png)
+
 For web developers, the adoption of HTTP/3 has not brought about significant changes, as HTTP/3 still adheres to the core principles of the HTTP protocol. With the support of the QUIC (Quick UDP Internet Connections) protocol, HTTP/3 provides lower latency during connection establishment, improves multiplexing efficiency, and introduces a more flexible flow control mechanism. Due to these advantages, HTTP/3 shows performance improvements. However, as the implementation of HTTP/3 mainly occurs at the protocol level, web developers typically do not need extensive application changes, so HTTP/3 is not often included in comparisons.
 
 It is worth noting that HTTP/2.0 introduced the Server Push feature, which is highly beneficial for improving frontend performance. Server Push allows servers to proactively push resources to the frontend. For example, when the client requests an HTML file, the server can push CSS and JavaScript resources directly to the client, saving the time it takes for the client to initiate requests.
 
 However, it's important to note that due to some limitations in the Server Push mechanism, the Chrome browser currently does not support HTTP/2 Server Push. Detailed support information can be found at this [link](https://developer.chrome.com/blog/removing-push). Despite this, developers can still leverage other performance optimization techniques, such as resource concatenation, caching strategies, etc., to enhance frontend loading performance.
-![server push](http-server-push.png)
+
+![server push](Http-server-push.png)
+
 The above description outlines the evolution of the HTTP protocol, all aimed at reducing loading times and improving request efficiency. In this process, traditional performance optimization techniques emerged, such as resource inlining and image spriting. These techniques bundle multiple small files into a single large file and transmit them over a single connection, helping reduce the overhead of transmission headers and thus improving performance. During the era of HTTP/1.0 and HTTP/1.1, such techniques were considered effective performance optimization practices.
 
 However, with the introduction of HTTP/2.0, this situation changed. HTTP/2.0 allows the simultaneous request of multiple resources on the same connection without needing to establish a separate TCP connection for each resource. This feature makes bundling optimization and other "hack" techniques less necessary in the HTTP/2.0 era because multiplexing on a single connection significantly improves the efficiency of parallel resource transmission. Therefore, in the era of HTTP/2.0, there is less urgency to rely on these traditional performance optimization techniques, allowing developers to focus more on other aspects of performance optimization to better adapt to the new protocol features. In many projects, developers may have reduced or stopped using such techniques, directing their attention to more effective performance optimization methods.
 
 ### Render-blocking resources
 
-The rendering path is illustrated in the diagram below, where it can be observed that CSS and JavaScript can block rendering. Hence, it is crucial to identify and optimize the loading order of key resources based on their business importance to enhance loading times. Currently, there is a non-standard attribute blocking=render which allows developers to explicitly designate a <link>, <script>, or <style> element as rendering-blocking, meaning it will block rendering until the specific element is processed. However, the key distinction is that it still permits the parser to continue processing the rest of the document in the meantime. This feature provides developers with more control over the rendering behavior of critical resources, allowing for a fine-tuned approach to optimizing the loading sequence for improved performance.
+The rendering path is illustrated in the diagram below, where it can be observed that CSS and JavaScript can block rendering. Hence, it is crucial to identify and optimize the loading order of key resources based on their business importance to enhance loading times. Currently, there is a non-standard attribute blocking=render which allows developers to explicitly designate a **`link`**,**`script`**, or**`style`** element as rendering-blocking, meaning it will block rendering until the specific element is processed. However, the key distinction is that it still permits the parser to continue processing the rest of the document in the meantime. This feature provides developers with more control over the rendering behavior of critical resources, allowing for a fine-tuned approach to optimizing the loading sequence for improved performance.
 ![render process](render-process.png)
 
 ### Browser Resource Hint
@@ -284,7 +290,7 @@ Help developers optimize page loading times by informing the browser how to load
 
 For compatibility, it is recommended to use DNS Prefetch and preconnect together, but careful configuration is advised to avoid overuse and potential resource wastage.
 
-```
+```ts
 <link rel="preconnect" href="https://third-party-domain.com" />
 <link rel="dns-prefetch" href="https://third-party-domain.com" />
 ```
@@ -295,12 +301,12 @@ The test results are shown in the following diagram:
 - **prerender**: The prerender feature is similar to prefetch, but the difference lies in the fact that it pre-renders the entire page instead of specific resources.
 - **preload**: preload hints to the browser to download resources as soon as possible, typically used for some **critical resources** that need to be downloaded in advance, such as crucial CSS or images affecting Largest Contentful Paint (LCP).
 
-### Defer vs async
+#### Defer vs async
 
 async and defer allow external scripts to load without blocking the HTML parser while scripts (including inline scripts) with type="module" are deferred automatically.
 ![script attribute](script-attributes.png)
 
-### Fetch Priority API
+#### Fetch Priority API
 
 You can enhance the priority of a resource using the **`fetchpriority`** attribute of the Fetch Priority API. This attribute can be employed within **`<link>`**, **`<img>`**, and **`<script>`** elements.
 
@@ -452,7 +458,7 @@ If the video serves as the Largest Contentful Paint (LCP) element, it's benefici
 
 **`requestAnimationFrame`** is called by the browser before the next repaint, and compared to **`setInterval`** or **`setTimeout`**, it can optimize more intelligently within the browser's frame rendering. Using **`setInterval`** or **`setTimeout`** may lead to the callback running at some point within a frame, potentially at the end of the frame, often resulting in missing a frame and causing interface stutter. **`requestAnimationFrame`** ensures that the callback is executed when the browser is ready for the next repaint, making the animation smoother.
 
-1. **Avoid long tasks, optimize code**
+2. **Avoid long tasks, optimize code**
 
 Long tasks refer to tasks that take more than 50 milliseconds to execute and can be released on the Main Thread by:
 
@@ -483,13 +489,13 @@ if (navigator.scheduling?.isInputPending() || performance.now() >= deadline) {
 
 3. scheduler.postTask allows scheduling tasks in a more granular way and is a mechanism to help the browser determine task priorities, ensuring that low-priority tasks can release the main thread. Although most browsers do not fully support it at present, detailed information can be found [here](https://developer.mozilla.org/en-US/docs/Web/API/Scheduler/postTask).
 
-1. scheduler.yield is a mechanism for releasing the main thread. For detailed information, refer to [here](https://developer.chrome.com/blog/introducing-scheduler-yield-origin-trial/).
+4. scheduler.yield is a mechanism for releasing the main thread. For detailed information, refer to [here](https://developer.chrome.com/blog/introducing-scheduler-yield-origin-trial/).
    It's important to note that microtasks do not release the main thread. For example, when using Promise to create a microtask, it is placed in the microtask queue, waiting to be executed immediately after the main thread finishes execution. Even microtasks created through **`queueMicrotask`** will be executed as the first one. This means that the main thread remains busy during the execution of microtasks and does not release itself to perform other tasks.A detailed visualization can be seen [here](https://www.jsv9000.app/).
 
 This mechanism is crucial when dealing with asynchronous tasks because it ensures that the logic in microtasks is executed immediately after the current task is finished. This is particularly useful for handling the results of Promises or other asynchronous operations, but it's important to note that it does not release the main thread.
 ![js execute stack](js-execute-stack.png)
 
-1. **Batch Processing**
+5. **Batch Processing**
 
 For example, React's virtual DOM mechanism employs batch processing as an optimization strategy. It applies all changes to the virtual DOM and then submits them to the browser for redraw in one go, significantly reducing actual DOM manipulations. This approach effectively releases the main thread, enhancing performance. Batch processing is beneficial in situations where there are many DOM operations or frequent changes. By consolidating multiple operations into a single batch, it reduces the number of browser redraws, optimizing performance. In React, this mechanism helps improve page responsiveness, avoiding unnecessary redundant computations and rendering.
 
