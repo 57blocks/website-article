@@ -18,19 +18,22 @@ jobs:
           PR_NUMBER=$(echo ${{ github.event.pull_request.number }})
           PR_REPO=$(echo ${{ github.event.pull_request.head.repo.full_name }})
           COMMIT_HASH=$(echo ${{ github.event.pull_request.head.sha }})
-          echo "::set-output name=pr_number::$PR_NUMBER"
-          echo "::set-output name=pr_repo::$PR_REPO"
-          echo "::set-output name=commit_hash::$COMMIT_HASH"
+          echo "pr_number=$PR_NUMBER" >> $GITHUB_OUTPUT
+          echo "pr_repo=$PR_REPO" >> $GITHUB_OUTPUT
+          echo "commit_hash=$COMMIT_HASH" >> $GITHUB_OUTPUT
+          
 
       - name: Check for README.md changes
         id: check_readme
         run: |
           git fetch origin ${{ github.event.pull_request.head.sha }}
           FILES_CHANGED=$(git diff --name-only ${{ github.event.pull_request.base.sha }} ${{ github.event.pull_request.head.sha }})
+          echo "FILES_CHANGED: $FILES_CHANGED"
           README_PATH=$(echo "$FILES_CHANGED" | grep "README.md")
+          echo "README_PATH: $README_PATH"
           if [ -n "$README_PATH" ]; then
-            echo "::set-output name=readme_changed::true"
-            echo "::set-output name=readme_path::$README_PATH"
+            echo "readme_changed=true" >> $GITHUB_OUTPUT
+            echo "readme_path=$README_PATH" >> $GITHUB_OUTPUT
           else
             echo "::set-output name=readme_changed::false"
           fi
