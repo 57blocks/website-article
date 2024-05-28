@@ -31,9 +31,12 @@ jobs:
           echo "FILES_CHANGED: $FILES_CHANGED"
           echo '.github/workflows/generate-preview-link.yml--'
           echo '.github/workflows/generate-preview-link.yml' | grep "yml"
+          echo "97"
           echo '.github/workflows/generate-preview-link.yml' | grep "READ"
 
-          echo "$FILES_CHANGED" | grep "README.md"
+          echo "98"
+          echo "$FILES_CHANGED" | grep "yml"
+          echo "99"
           README_PATH=$(echo "$FILES_CHANGED" | grep "README.md")
           echo "README_PATH: $README_PATH"
           if [ -n "$README_PATH" ]; then
