@@ -1,4 +1,4 @@
-name: PR Readme Check
+name: Check README.md in PR
 
 on:
   pull_request:
@@ -11,51 +11,46 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
-        with:
-          fetch-depth: 0
 
-      - name: Setup Node.js
-        uses: actions/setup-node@v2
-        with:
-          node-version: '14'
+      - name: Get PR info
+        id: pr_info
+        run: |
+          PR_NUMBER=$(echo ${{ github.event.pull_request.number }})
+          PR_REPO=$(echo ${{ github.event.pull_request.head.repo.full_name }})
+          COMMIT_HASH=$(echo ${{ github.event.pull_request.head.sha }})
+          echo "::set-output name=pr_number::$PR_NUMBER"
+          echo "::set-output name=pr_repo::$PR_REPO"
+          echo "::set-output name=commit_hash::$COMMIT_HASH"
 
       - name: Check for README.md changes
-        id: readme-check
+        id: check_readme
         run: |
-          const path = require('path');
-          const glob = require('glob');
-          const fs = require('fs');
-          const https = require('https');
+          git fetch origin ${{ github.sha }}
+          FILES_CHANGED=$(git diff --name-only ${{ github.event.pull_request.base.sha }} ${{ github.event.pull_request.head.sha }})
+          README_PATH=$(echo "$FILES_CHANGED" | grep "README.md")
+          if [ -n "$README_PATH" ]; then
+            echo "::set-output name=readme_changed::true"
+            echo "::set-output name=readme_path::$README_PATH"
+          else
+            echo "::set-output name=readme_changed::false"
+          fi
 
-          const getChangedFiles = async () => {
-            const { stdout } = await require('child_process').execSync(`git diff --name-only ${process.env.GITHUB_BASE_REF} ${process.env.GITHUB_HEAD_REF}`);
-            return stdout.split('\n');
-          };
-
-          const changedFiles = await getChangedFiles();
-
-          for (const file of changedFiles) {
-            if (path.basename(file) === 'README.md') {
-              const rawUrl = `https://raw.githubusercontent.com/${process.env.GITHUB_REPOSITORY}/${process.env.GITHUB_SHA}/${file}`;
-              const encodedUrl = encodeURIComponent(rawUrl);
-              const previewUrl = `https://dev-ui.57blocks.io/blog/preview?url=${encodedUrl}`;
-              return previewUrl;
-            }
-          }
-
-          return '';
-
-      - name: Create PR comment
+      - name: Comment on PR
+        if: steps.check_readme.outputs.readme_changed == 'true'
         uses: actions/github-script@v5
         with:
           github-token: ${{secrets.GITHUB_TOKEN}}
           script: |
-            const previewUrl = '${{ steps.readme-check.outputs.previewUrl }}';
-            if (previewUrl) {
-              github.rest.issues.createComment({
-                issue_number: context.issue.number,
-                owner: context.repo.owner,
-                repo: context.repo.repo,
-                body: `预览链接: ${previewUrl}`
-              });
-            }
+            const issue_number = ${{ steps.pr_info.outputs.pr_number }};
+            const repository = "${{ steps.pr_info.outputs.pr_repo }}";
+            const readme_path = "${{ steps.check_readme.outputs.readme_path }}";
+            const raw_url = `https://raw.githubusercontent.com/${repository}/${{ steps.pr_info.outputs.commit_hash }}/${readme_path}`;
+            const encoded_url = encodeURIComponent(raw_url);
+            const preview_url = `https://dev-ui.57blocks.io/blog/preview?url=${encoded_url}`;
+            const message = `The file has been modified, you can preview the modified file here: ${preview_url}`;
+            github.rest.issues.createComment({
+              issue_number: issue_number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: message
+            });
