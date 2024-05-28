@@ -24,8 +24,8 @@ jobs:
       - name: Check for README.md changes
         id: check_readme
         run: |
-          git fetch origin ${{ github.sha }}
-          FILES_CHANGED=$(git diff --name-only origin/${{ github.sha }})
+          git fetch origin ${{ github.event.pull_request.head.sha }}
+          FILES_CHANGED=$(git diff --name-only ${{ github.event.pull_request.base.sha }} ${{ github.event.pull_request.head.sha }})
           if echo "$FILES_CHANGED" | grep -q "README.md"; then
             echo "::set-output name=readme_changed::true"
           else
