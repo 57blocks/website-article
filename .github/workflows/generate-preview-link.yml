@@ -28,16 +28,7 @@ jobs:
         run: |
           git fetch origin ${{ github.event.pull_request.head.sha }}
           FILES_CHANGED=$(git diff --name-only ${{ github.event.pull_request.base.sha }} ${{ github.event.pull_request.head.sha }})
-          echo "FILES_CHANGED: $FILES_CHANGED"
-          echo '.github/workflows/generate-preview-link.yml--'
-          echo '.github/workflows/generate-preview-link.yml' | grep "yml"
-          echo "97"
-          echo '.github/workflows/generate-preview-link.yml' | grep "READ"
-
-          echo "98"
-          echo "$FILES_CHANGED" | grep "yml"
-          echo "99"
-          README_PATH=$(echo "$FILES_CHANGED" | grep "README.md")
+          README_PATH=$(echo "$FILES_CHANGED" | grep "README.md" || true)
           echo "README_PATH: $README_PATH"
           if [ -n "$README_PATH" ]; then
             echo "readme_changed=true" >> $GITHUB_OUTPUT
