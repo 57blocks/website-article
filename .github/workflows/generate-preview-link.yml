@@ -1,0 +1,63 @@
+name: PR Readme Check
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened]
+    branches: [dev]
+
+jobs:
+  check-readme:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: '14'
+
+      - name: Check for README.md changes
+        id: readme-check
+        run: |
+          const path = require('path');
+          const glob = require('glob');
+          const fs = require('fs');
+          const https = require('https');
+
+          const getChangedFiles = async () => {
+            const { stdout } = await require('child_process').execSync(`git diff --name-only ${process.env.GITHUB_BASE_REF} ${process.env.GITHUB_HEAD_REF}`);
+            return stdout.split('\n');
+          };
+
+          const changedFiles = await getChangedFiles();
+
+          for (const file of changedFiles) {
+            if (path.basename(file) === 'README.md') {
+              const rawUrl = `https://raw.githubusercontent.com/${process.env.GITHUB_REPOSITORY}/${process.env.GITHUB_SHA}/${file}`;
+              const encodedUrl = encodeURIComponent(rawUrl);
+              const previewUrl = `https://dev-ui.57blocks.io/blog/preview?url=${encodedUrl}`;
+              return previewUrl;
+            }
+          }
+
+          return '';
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Create PR comment
+        uses: actions/github-script@v5
+        with:
+          github-token: ${{secrets.GITHUB_TOKEN}}
+          script: |
+            const previewUrl = '${{ steps.readme-check.outputs.previewUrl }}';
+            if (previewUrl) {
+              github.rest.issues.createComment({
+                issue_number: context.issue.number,
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                body: `预览链接: ${previewUrl}`
+              });
+            }
