@@ -3,8 +3,8 @@ title: "Document Information Extraction with Large Language Models (framework, m
 author: ["Carvin Li / ML Engineer", "Anjing Wang / NLP, ML Engineer"]
 createTime: 2024-05-21
 tags: ["Information Extraction", "Large Language Model"]
-thumb: ""
-thumb_b: ""
+thumb: "thumb_h.png"
+thumb_b: "thumb_h.png"
 intro: "Information extraction (IE) is vital for converting raw text into structured data usable by various applications. Traditional IE methods often rely on labor-intensive handcrafted rules and patterns, which may struggle to generalize across diverse domains and languages. To tackle these challenges, this project explores the application of Large Language Models (LLMs) for information extraction tasks. Cutting-edge LLM models like the GPT series and Claude AI have showcased remarkable abilities in natural language understanding and generation tasks. In this project, we employed various LLMs such as GPT-3, GPT-4, GPT-4 Turbo, LLaMA 2, Mistral AI, and Claude 2 to help us to extract information from a large number of professional documents and compare the performance. Each of these models exhibits different capabilities in understanding long contexts and extracting information."
 ---
 
@@ -18,7 +18,7 @@ Information extraction (IE) is vital for converting raw text into structured dat
 
 Initially, we divide the unstructured text into segments based on the Large Language Models (LLMs) maximum token length, ensuring some overlap between segments to preserve contextual coherence. Subsequently, we input the text and questions into LLMs and obtain the model's initial output, which we then structure further.
 
-![img](https://lh7-us.googleusercontent.com/gA7h4ALJLCqLIvccAT1O0UnZhO_H7Fl_WKZ2AcEFr62SkzyffP8UUSDPvSrYNFl4AqOUCl68XxSRWN61oHE_W2i5aKIqQvZqWooi6l4D_vCtPltiuzGLr0YqM-9tL1NLD3Lv1ffGCs-2pxnBq4SGSZg)
+![img](structure.png)
 
 During the structuring process, standardizing the raw output ("Result Standardize" in the diagram) becomes necessary. This is crucial because the model sometimes generates answers that are un-parsable. In such cases, we may prompt the model to re-answer the question or pose a follow-up question regarding the provided response.
 
@@ -74,31 +74,31 @@ During evaluation, we exclude properties marked as "not mentioned" in both the g
 
 We defined a set of TP/TN/FP/FN to evaluate the results.
 
-![img](https://lh7-us.googleusercontent.com/IU49JqbBbMvirH7taUCTIUd4q4NxeXSSZF5oWf3Fl72wnhaMcT0_vomHJ9NIFy-pzDrzzvFeC_kgl03hZzy1hFw7rRuWhvb_cQhi4b7gi7njBGo2xWcUXPFjPGWz_l-k357YCHmA6AoGpwR_EFXa4WQ)
+![img](metrics_1.png)
 
 The below table is the confusion matrix using the definitions above.
 
-![img](https://lh7-us.googleusercontent.com/RagXCAr0qITVFk69GhOfRNGwbYVE-smdIIhppqKrU1Ynin3q8ZYRFmkKZ8oj3HVKXbVoH8iqrWIKprLI4TTISJ9Hv8bgPrNhY32rE_Hh5QedcYhweD9NAelgK3mQBr9Pn0Y64bZ_VKIg-vVtK6ayr-4)
+![img](https://lh7-us.googleusercontent.com/yVmgel3PqSGuc90UV6dim4UDGpESUGBjk6dy47RjDsztWg1fL31Eh1A_7hsyH81Mqfgj8Xjrq5Je_2neneetL1QdyVPsLbtrZxDl2euPyUv0Jyh-dI2RhYm9zPdYN5g4Rbtw4TJHhWbsdkF9Q16XIvc)
 
 There is another version of the confusion matrix that may be a little bit easier to understand.
 
-![img](https://lh7-us.googleusercontent.com/3GgWpR6pZiaulxqeu83EOySZa64DwKWjbflimqWe9W7n2r0G5sp6ISCQ6rviOiM5Q9PDwyFzzK3aadL6C41E4vGSA2WkB4ZUS8q2n9RGXNDRkiR1k5ool-3KlgIis50fwN_aTwZ91H3bZi7O1F0aX9Y)
+![img](metrics_3.png)
 
 ### **Full Evaluation Metrics**
 
-| **Metrics**  | **Definition**                                  | **Notes**                                                    |
-|--------------|-------------------------------------------------| ------------------------------------------------------------ |
-| $TP\\%$      | $TP/(TP+FP+FN)$                                 | Not a standard metric. Since our TN is usually very large, this is used to replace accuracy sometimes. |
+| **Metrics**  | **Definition**                                  | **Notes**                                                                                                                                                                                                                                                                                                                                                                                       |
+|--------------|-------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| $TP\\%$      | $TP/(TP+FP+FN)$                                 | Not a standard metric. Since our TN is usually very large, this is used to replace accuracy sometimes.                                                                                                                                                                                                                                                                                          |
 | $FP\\%$      | $FP/(TP+FP+FN)$                                 | The lower the better. High value means the model tends to have hallucinations. Type 1 red error is worse than type 1 orange, which is worse than type 2 blue error in our extraction. High value of type-2-orange error means model's reasoning is not correct. We differ type-1-red & type-1-orange errors in extract-ref.xlsx, but have not counted them separately to calculate any metrics. |
-| $FN\\%$      | $FN/(TP+FP+FN)$                                 | The lower the better. High value of type-2-blue error means model is too conservative to make extraction |
-| $TPR/Recall$ | $TP/(TP+FN)=TP/P$                               | Standard metric. For a given POSITIVE, the probability that can be extracted correctly. If we want the papers to be extracted as much as possible, we need to observe this value closely. |
-| $FPR$        | $FP/(FP+TN)=FP/N$                               | For a given NEGATIVE, the probability that turns into an type-1 error. This might be used to reflect hallucination. |
-| $TNR$        | $TN/(FP+TN)=TN/N$                               | 1- FPR; for a given NEGATIVE, the probability that it'll be correctly extracted. |
-| $FNR$        | $FN/(TP+FN)=FN/P$                               | 1 - recall; a given POSITIVE, the probability it'll be a type-2 error. |
-| $Accuracy$   | $(TP+TN)/(N+P)$                                 | standard metric. Usually very high since our TN is very large compared with TP. |
-| $Accuracy*$  | $TP\\%$                                         | not a standard metric                                        |
-| $Precision$  | $TP/(TP+FP)$                                    | standard metric; when there is a POSITIVE extraction, the probability that this extraction is right. From a data consumer perspective, this shall be the most important metric. |
-| $F1$         | $2 \* recall \* precision / (recall+precision)$ | The standard metric to show the balance between recall and precision. |
+| $FN\\%$      | $FN/(TP+FP+FN)$                                 | The lower the better. High value of type-2-blue error means model is too conservative to make extraction                                                                                                                                                                                                                                                                                        |
+| $TPR/Recall$ | $TP/(TP+FN)=TP/P$                               | Standard metric. For a given POSITIVE, the probability that can be extracted correctly. If we want the papers to be extracted as much as possible, we need to observe this value closely.                                                                                                                                                                                                       |
+| $FPR$        | $FP/(FP+TN)=FP/N$                               | For a given NEGATIVE, the probability that turns into an type-1 error. This might be used to reflect hallucination.                                                                                                                                                                                                                                                                             |
+| $TNR$        | $TN/(FP+TN)=TN/N$                               | $1 - FPR$; for a given NEGATIVE, the probability that it'll be correctly extracted.                                                                                                                                                                                                                                                                                                             |
+| $FNR$        | $FN/(TP+FN)=FN/P$                               | $1 - Recall$; a given POSITIVE, the probability it'll be a type-2 error.                                                                                                                                                                                                                                                                                                                        |
+| $Accuracy$   | $(TP+TN)/(N+P)$                                 | standard metric. Usually very high since our TN is very large compared with TP.                                                                                                                                                                                                                                                                                                                 |
+| $Accuracy*$  | $TP\\%$                                         | not a standard metric                                                                                                                                                                                                                                                                                                                                                                           |
+| $Precision$  | $TP/(TP+FP)$                                    | standard metric; when there is a POSITIVE extraction, the probability that this extraction is right. From a data consumer perspective, this shall be the most important metric.                                                                                                                                                                                                                 |
+| $F1$         | $2 \* recall \* precision / (recall+precision)$ | The standard metric to show the balance between recall and precision.                                                                                                                                                                                                                                                                                                                           |
 
 ## 5. **Error Results Analysis**
 
