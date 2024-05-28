@@ -1,0 +1,58 @@
+name: Check README.md in PR
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened]
+    branches: [dev]
+
+jobs:
+  check-readme:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Get PR info
+        id: pr_info
+        run: |
+          PR_NUMBER=$(echo ${{ github.event.pull_request.number }})
+          PR_REPO=$(echo ${{ github.event.pull_request.head.repo.full_name }})
+          COMMIT_HASH=$(echo ${{ github.event.pull_request.head.sha }})
+          echo "pr_number=$PR_NUMBER" >> $GITHUB_OUTPUT
+          echo "pr_repo=$PR_REPO" >> $GITHUB_OUTPUT
+          echo "commit_hash=$COMMIT_HASH" >> $GITHUB_OUTPUT
+          
+
+      - name: Check for README.md changes
+        id: check_readme
+        run: |
+          git fetch origin ${{ github.event.pull_request.head.sha }}
+          FILES_CHANGED=$(git diff --name-only ${{ github.event.pull_request.base.sha }} ${{ github.event.pull_request.head.sha }})
+          README_PATH=$(echo "$FILES_CHANGED" | grep "README.md" || true)
+          echo "README_PATH: $README_PATH"
+          if [ -n "$README_PATH" ]; then
+            echo "readme_changed=true" >> $GITHUB_OUTPUT
+            echo "readme_path=$README_PATH" >> $GITHUB_OUTPUT
+          else
+            echo "readme_changed=false" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Comment on PR
+        if: steps.check_readme.outputs.readme_changed == 'true'
+        uses: actions/github-script@v5
+        with:
+          github-token: ${{secrets.GITHUB_TOKEN}}
+          script: |
+            const issue_number = ${{ steps.pr_info.outputs.pr_number }};
+            const repository = "${{ steps.pr_info.outputs.pr_repo }}";
+            const readme_path = "${{ steps.check_readme.outputs.readme_path }}";
+            const raw_url = `https://raw.githubusercontent.com/${repository}/${{ steps.pr_info.outputs.commit_hash }}/${readme_path}`;
+            const encoded_url = encodeURIComponent(raw_url);
+            const preview_url = `https://dev-ui.57blocks.io/blog/preview?url=${encoded_url}`;
+            const message = `The file has been modified, you can preview the modified file here: ${preview_url}`;
+            github.rest.issues.createComment({
+              issue_number: issue_number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: message
+            });
