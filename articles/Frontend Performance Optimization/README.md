@@ -40,6 +40,7 @@ observer.observe({ type: "largest-contentful-paint", buffered: true });
 ```
 
 ![LCP](LCP-object.png)
+
 Here is an explanation and description of the given metrics:
 
 - **`element`**: The current largest content rendering element.
@@ -53,6 +54,7 @@ In this example, the LCP is represented by **`loadingTime`**, which is 1.6. Acco
 #### FCP
 
 The FCP metric measures the time from when the user first navigated to the page to when any part of the page's content is rendered on the screen. You can understand the standards by examining screenshots. For a more in-depth understanding, you can click [here](https://web.dev/articles/fcp). Another similar metric is FP (First Paint), representing the time it takes for the first pixel to be painted on the screen.
+
 ![FCP](FCP.png)
 
 ```ts
@@ -76,6 +78,7 @@ In this example, FCP is represented by **`startTime`**, which is less than 1 sec
 #### FID
 
 FID refers to the time it takes from the user's first interaction with the page to the moment when the browser can actually begin processing the event to respond to that interaction. FID measures the increment between receiving the input event and the next idle period of the main thread. FID is measured even in cases where event listeners are not registered. Additionally, FID focuses only on discrete event operations, such as clicks, touches, and key presses. In contrast, actions like zooming, scrolling, and continuous events (such as mousemove, pointermove, touchmove, wheel, and drag) are not included in this metric. For more detailed information, you can click [here](https://web.dev/articles/fid#what_counts_as_a_first_input).
+
 ![FID](FID.png)
 
 ```ts
@@ -102,7 +105,9 @@ In the example code, FID is equal to **`8574 (processingEnd) - 8558 (processingS
 #### INP
 
 The INP metric assesses the overall responsiveness of a page to user interactions by observing the delays in all clicks, touches, and keyboard interactions occurring throughout the page's lifecycle. The final INP value is the longest observed interaction, disregarding outliers. INP is set to replace FID as a core Web Vitals metric starting from March 12, 2024.
+
 ![INP](INP.png)
+
 NIP (Navigation and Input Timing) is influenced only by the following events:
 
 - Mouse clicks
@@ -118,8 +123,11 @@ Since the Performance API does not provide responsiveness information for INP, s
 #### CLS
 
 Measure the maximum Cumulative Layout Shift (CLS) that occurs throughout the entire lifecycle of a page. In this evaluation, only cases where elements change their initial position are considered, and changes such as adding new elements to the DOM or altering the width and height of elements are not taken into account. For more details, you can click [here](https://web.dev/articles/cls).
+
 ![CLS](CLS.png)
+
 ![CLS object](CLS-object.png)
+
 There are several metrics within this context:
 
 - **`value`**: Returns the layout shift score calculated as: **`layout shift score = impact fraction * distance fraction`**.
@@ -149,6 +157,7 @@ observer.observe({ type: "longtask", buffered: true });
 ```
 
 ![long task object](long-task.png)
+
 There are several metrics within this context:
 
 - **`duration`**: Represents the duration of the task, i.e., the time elapsed from start to finish.
@@ -270,6 +279,7 @@ For web developers, the adoption of HTTP/3 has not brought about significant cha
 It is worth noting that HTTP/2.0 introduced the Server Push feature, which is highly beneficial for improving frontend performance. Server Push allows servers to proactively push resources to the frontend. For example, when the client requests an HTML file, the server can push CSS and JavaScript resources directly to the client, saving the time it takes for the client to initiate requests.
 
 However, it's important to note that due to some limitations in the Server Push mechanism, the Chrome browser currently does not support HTTP/2 Server Push. Detailed support information can be found at this [link](https://developer.chrome.com/blog/removing-push). Despite this, developers can still leverage other performance optimization techniques, such as resource concatenation, caching strategies, etc., to enhance frontend loading performance.
+
 ::: center
 ![server push](Http-server-push.png)
 :::
@@ -307,6 +317,7 @@ Help developers optimize page loading times by informing the browser how to load
 #### Defer vs async
 
 async and defer allow external scripts to load without blocking the HTML parser while scripts (including inline scripts) with type="module" are deferred automatically.
+
 ![script attribute](script-attributes.png)
 
 #### Fetch Priority API
