@@ -85,7 +85,7 @@ harnessing the full potential of vector data.
 
 ## 2. Introduction
 
-### 2.1. What is Pinecone?
+### 2.1. What is Pinecone ?
 
 Pinecone is a closed source, fully-managed, cloud-native vector database
 specifically designed for high-performance Artificial Intelligence (AI)
@@ -98,7 +98,7 @@ useful for applications such as recommendation systems, image search,
 and natural language processing tasks, where similarity search plays a
 vital role.
 
-### 2.1. What is LanceDB？
+### 2.1. What is LanceDB ?
 
 LanceDB is an open-source vector database that excels in handling
 multimodal data including text, images, and video. It employs a
