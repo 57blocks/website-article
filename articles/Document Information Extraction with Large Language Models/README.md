@@ -79,7 +79,7 @@ We defined a set of TP/TN/FP/FN to evaluate the results.
 
 The below table is the confusion matrix using the definitions above.
 
-![img](https://lh7-us.googleusercontent.com/yVmgel3PqSGuc90UV6dim4UDGpESUGBjk6dy47RjDsztWg1fL31Eh1A_7hsyH81Mqfgj8Xjrq5Je_2neneetL1QdyVPsLbtrZxDl2euPyUv0Jyh-dI2RhYm9zPdYN5g4Rbtw4TJHhWbsdkF9Q16XIvc)
+![img](metrics_2.png)
 
 There is another version of the confusion matrix that may be a little bit easier to understand.
 
