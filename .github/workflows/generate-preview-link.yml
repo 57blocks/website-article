@@ -27,7 +27,7 @@ jobs:
         id: check_readme
         run: |
           git fetch origin ${{ github.event.pull_request.head.sha }}
-          FILES_CHANGED=$(git diff --name-only ${{ github.event.pull_request.base.sha }} ${{ github.event.pull_request.head.sha }})
+          FILES_CHANGED=$(git diff --name-only ${{ github.event.pull_request.base.ref }} ${{ github.event.pull_request.head.sha }})
           README_PATH=$(echo "$FILES_CHANGED" | grep "README.md" || true)
           echo "README_PATH: $README_PATH"
           if [ -n "$README_PATH" ]; then
