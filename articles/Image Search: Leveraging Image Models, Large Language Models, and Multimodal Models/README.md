@@ -78,7 +78,9 @@ OCR (Optical Character Recognition) typically consists of two crucial steps: Tex
 
 ### 3.2.1 Text Detection  
 Text detection is the process of identifying and locating the textual regions within an input image or document. This step involves applying specialized models, such as DBNet, CTPN, and EAST, to efficiently and accurately detect the spatial positions of the text. The output of the text detection step is a set of bounding boxes or text region proposals that encapsulate the textual content.  
+
 **DBNet**   
+
 DBNet<sup>[7]</sup>employs a differentiable binarization method, which can train the entire network in an end-to-end manner, avoiding the additional post-processing steps required by the traditional proposal-based methods.  
 The model adopts a lightweight encoder-decoder structure, combining convolutional blocks and LSTM modules, which can achieve real-time performance while maintaining high detection accuracy. DBNet also utilizes multi-scale feature maps for text region prediction, which can better capture the scale variations of the text.  
 Ultimately, the output of DBNet is a binarized text region prediction map, which can be further processed by simple post-processing methods like non-maximum suppression to obtain the final text detection results. This flexible post-processing approach makes DBNet a practical scene text detection solution.  
@@ -87,6 +89,7 @@ Ultimately, the output of DBNet is a binarized text region prediction map, which
 
 
 **CTPN**  
+
 Rather than using the traditional horizontal anchors, CTPN<sup>[8]</sup>employs a set of vertically-arranged anchors to better capture the characteristics of text, which often have a long and narrow aspect ratio.  
 Additionally, CTPN introduces a sequential prediction module that combines a recurrent neural network (RNN) with convolutional features. This sequential module can effectively model the inherent sequential property of text, allowing the model to make more accurate text proposals.  
 The output of CTPN is a set of text proposals, which can then be fed into a subsequent text recognition model to obtain the final text transcription results. The flexible architecture of CTPN makes it a powerful and versatile text detection solution, complementing the capabilities of other models like DBNet.  
@@ -95,6 +98,7 @@ The output of CTPN is a set of text proposals, which can then be fed into a subs
 
 
 **EAST**  
+
 The key innovation of EAST<sup>[9]</sup>is its unified detection framework, which combines text region prediction and orientation regression into a single network. This allows the model to simultaneously predict the quadrilateral bounding boxes of text regions and their orientations, eliminating the need for separate post-processing steps.  
 EAST utilizes a fully-convolutional network architecture, which enables efficient and dense predictions across the entire input image. The model employs a feature fusion module to combine multi-scale features, allowing it to handle text of varying scales and orientations.  
 Another important aspect of EAST is its pixel-level prediction, which means the model directly outputs pixel-wise scores for text regions, rather than relying on text proposal generation. This approach simplifies the detection pipeline and improves overall efficiency.  
