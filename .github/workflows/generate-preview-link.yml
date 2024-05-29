@@ -69,7 +69,7 @@ jobs:
             const messageTemplate = `Generated Preview Link 
             
             | Reviewer Preview🚀🚀🚀 |
-            |:----:|
+            |:----|
             | The file has been modified, you can preview the latest file here: |
             | ================== <br /> ${preview_urls.join('<br /><br />')} <br /> ================== |
             `;
