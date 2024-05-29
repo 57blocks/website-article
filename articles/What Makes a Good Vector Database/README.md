@@ -116,7 +116,7 @@ soon.
 
 ## 3. Key Differences Between Lancedb and Pinecone
 
-### 3.1. LanceDB vs Pinecone - Workflow
+### 3.1. Workflow
 
 The workflow in Pinecone starts with creating an index. This index must
 be established prior to uploading any vector data into the system, which
@@ -131,7 +131,7 @@ initial step involves defining a data table's schema (structure). Once
 the schema has been set, data can be added, and search operations can
 commence.
 
-### 3.2. LanceDB vs Pinecone - Data Type
+### 3.2. Data Type
 
 Pinecone focuses on array vector types used in high-dimensional vector
 space, essential for applications involving similarity search and
