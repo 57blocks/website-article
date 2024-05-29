@@ -186,7 +186,7 @@ query_image = Image.open(p)
 table.search(query_image)
 ```
 
-### 3.3. LanceDB vs Pinecone - Search
+### 3.3. Search
 
 Pinecone Database it empowers users to perform scalable Approximate
 Nearest Neighbor (ANN) searches quickly and accurately, excels with both
@@ -229,7 +229,7 @@ constitutes a KNN (k-nearest neighbors) search. By constructing a vector
 index, LanceDB utilizes Approximate Nearest Neighbor (ANN) Search with a
 Vector Index for enhanced efficiency during query processing.
 
-### 3.4. LanceDB vs Pinecone - Index
+### 3.4. Index
 
 Pinecone's index is a customized, optimized structure made for
 efficient vector similarity searches, known for bolstering the
