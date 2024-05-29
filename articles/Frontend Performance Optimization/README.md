@@ -255,7 +255,7 @@ Content Delivery Network (CDN) is a distributed server network that caches resou
   </picture>
   ```
 
-### bundling optimization
+### Bundling optimization
 
 Each time the frontend requests a resource, a TCP connection is established, and after completing the request, the TCP connection is closed, as shown in the diagram below:
 
@@ -271,7 +271,7 @@ It is worth noting that HTTP/2.0 introduced the Server Push feature, which is hi
 
 However, it's important to note that due to some limitations in the Server Push mechanism, the Chrome browser currently does not support HTTP/2 Server Push. Detailed support information can be found at this [link](https://developer.chrome.com/blog/removing-push). Despite this, developers can still leverage other performance optimization techniques, such as resource concatenation, caching strategies, etc., to enhance frontend loading performance.
 
-                      ![server push](Http-server-push.png)
+![server push](Http-server-push.png)
 
 The above description outlines the evolution of the HTTP protocol, all aimed at reducing loading times and improving request efficiency. In this process, traditional performance optimization techniques emerged, such as resource inlining and image spriting. These techniques bundle multiple small files into a single large file and transmit them over a single connection, helping reduce the overhead of transmission headers and thus improving performance. During the era of HTTP/1.0 and HTTP/1.1, such techniques were considered effective performance optimization practices.
 
@@ -348,16 +348,17 @@ You can enhance the priority of a resource using the **`fetchpriority`** attribu
   1. Both the **`width`** and **`height`** attributes should be specified appropriately to ensure that the browser allocates the correct space in the layout. This helps avoid layout shifts, improving the user experience in terms of Cumulative Layout Shift (CLS).
   2. If the specific width and height cannot be determined, consider setting an aspect ratio as a solution.
 
-    ```ts
-    img {
-      aspect-ratio: 16 / 9;
-      width: 100%;
-      object-fit: cover;
-    }
-    ```
+  ```ts
+  img {
+    aspect-ratio: 16 / 9;
+    width: 100%;
+    object-fit: cover;
+  }
+  ```
 
 - **Image formate**
   For image resources, it is essential to choose the appropriate image format based on specific business requirements to optimize performance. Here are simplified and optimized recommendations:
+
   - **Raster Images:** Represented as pixel grids, including GIF, PNG, JPEG, and WebP.
   - **Vector Images:** Primarily used for logos and icons, defined by curves, lines, and shapes, resolution-independent, providing clear results.
 
@@ -368,7 +369,7 @@ You can enhance the priority of a resource using the **`fetchpriority`** attribu
   - PNG: Suitable for high-resolution images, lossless compression, while WebP generally has smaller file sizes.
   - Video: For animations, it is recommended to use video instead of GIF due to GIF's color limitations and larger file sizes.
 
-**Decoding**
+- **Decoding**
 
 This property provides a hint to the browser on how it should decode the image. Specifically, it specifies whether to wait for the image to be fully decoded before rendering other content updates or allow rendering other content simultaneously during the decoding process.
 
@@ -464,7 +465,7 @@ If the video serves as the Largest Contentful Paint (LCP) element, it's benefici
 
 1. **For UI changes, use `requestAnimationFrame`**
 
-  **`requestAnimationFrame`** is called by the browser before the next repaint, and compared to **`setInterval`** or **`setTimeout`**, it can optimize more intelligently within the browser's frame rendering. Using **`setInterval`** or **`setTimeout`** may lead to the callback running at some point within a frame, potentially at the end of the frame, often resulting in missing a frame and causing interface stutter. **`requestAnimationFrame`** ensures that the callback is executed when the browser is ready for the next repaint, making the animation smoother.
+   **`requestAnimationFrame`** is called by the browser before the next repaint, and compared to **`setInterval`** or **`setTimeout`**, it can optimize more intelligently within the browser's frame rendering. Using **`setInterval`** or **`setTimeout`** may lead to the callback running at some point within a frame, potentially at the end of the frame, often resulting in missing a frame and causing interface stutter. **`requestAnimationFrame`** ensures that the callback is executed when the browser is ready for the next repaint, making the animation smoother.
 
 2. **Avoid long tasks, optimize code**
 
@@ -496,17 +497,17 @@ If the video serves as the Largest Contentful Paint (LCP) element, it's benefici
     }
     ```
 
-  3. scheduler.postTask allows scheduling tasks in a more granular way and is a mechanism to help the browser determine task priorities, ensuring that low-priority tasks can release the main thread. Although most browsers do not fully support it at present, detailed information can be found [here](https://developer.mozilla.org/en-US/docs/Web/API/Scheduler/postTask).
+    3. scheduler.postTask allows scheduling tasks in a more granular way and is a mechanism to help the browser determine task priorities, ensuring that low-priority tasks can release the main thread. Although most browsers do not fully support it at present, detailed information can be found [here](https://developer.mozilla.org/en-US/docs/Web/API/Scheduler/postTask).
 
-  4. scheduler.yield is a mechanism for releasing the main thread. For detailed information, refer to [here](https://developer.chrome.com/blog/introducing-scheduler-yield-origin-trial/).
+    4. scheduler.yield is a mechanism for releasing the main thread. For detailed information, refer to [here](https://developer.chrome.com/blog/introducing-scheduler-yield-origin-trial/).
     It's important to note that microtasks do not release the main thread. For example, when using Promise to create a microtask, it is placed in the microtask queue, waiting to be executed immediately after the main thread finishes execution. Even microtasks created through **`queueMicrotask`** will be executed as the first one. This means that the main thread remains busy during the execution of microtasks and does not release itself to perform other tasks.A detailed visualization can be seen [here](https://www.jsv9000.app/).
 
-  This mechanism is crucial when dealing with asynchronous tasks because it ensures that the logic in microtasks is executed immediately after the current task is finished. This is particularly useful for handling the results of Promises or other asynchronous operations, but it's important to note that it does not release the main thread.
-  ![js execute stack](js-execute-stack.png)
+    This mechanism is crucial when dealing with asynchronous tasks because it ensures that the logic in microtasks is executed immediately after the current task is finished. This is particularly useful for handling the results of Promises or other asynchronous operations, but it's important to note that it does not release the main thread.
+    ![js execute stack](js-execute-stack.png)
 
-  5. **Batch Processing**
+    5. **Batch Processing**
 
-  For example, React's virtual DOM mechanism employs batch processing as an optimization strategy. It applies all changes to the virtual DOM and then submits them to the browser for redraw in one go, significantly reducing actual DOM manipulations. This approach effectively releases the main thread, enhancing performance. Batch processing is beneficial in situations where there are many DOM operations or frequent changes. By consolidating multiple operations into a single batch, it reduces the number of browser redraws, optimizing performance. In React, this mechanism helps improve page responsiveness, avoiding unnecessary redundant computations and rendering.
+    For example, React's virtual DOM mechanism employs batch processing as an optimization strategy. It applies all changes to the virtual DOM and then submits them to the browser for redraw in one go, significantly reducing actual DOM manipulations. This approach effectively releases the main thread, enhancing performance. Batch processing is beneficial in situations where there are many DOM operations or frequent changes. By consolidating multiple operations into a single batch, it reduces the number of browser redraws, optimizing performance. In React, this mechanism helps improve page responsiveness, avoiding unnecessary redundant computations and rendering.
 
 ## Conclusion
 
