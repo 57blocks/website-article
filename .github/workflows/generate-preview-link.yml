@@ -38,15 +38,19 @@ jobs:
           script: |
             const issue_number = ${{ steps.pr_info.outputs.pr_number }};
             const repository = "${{ steps.pr_info.outputs.pr_repo }}";
-            const readme_path = JSON.parse("${{ steps.changed-files.outputs.all_changed_files }}");
+            const readme_paths = JSON.parse("${{ steps.changed-files.outputs.all_changed_files }}");
             
-            const raw_url = `https://raw.githubusercontent.com/${repository}/${{ steps.pr_info.outputs.commit_hash }}/${readme_path}`;
-            const encoded_url = encodeURIComponent(raw_url);
-            const preview_url = `https://dev-ui.57blocks.io/blog/preview?url=${encoded_url}`;
-            const message = `The file has been modified, you can preview the modified file here: ${preview_url}`;
+            const messages = [];
+            for (let file_path of readme_paths) {
+              const raw_url = `https://raw.githubusercontent.com/${repository}/${{ steps.pr_info.outputs.commit_hash }}/${file_path}`;
+              const encoded_url = encodeURIComponent(raw_url);
+              const preview_url = `https://dev-ui.57blocks.io/blog/preview?url=${encoded_url}`;
+              messages.push(`The file has been modified, you can preview the modified file here: ${preview_url}`);
+            }
+            
             github.rest.issues.createComment({
               issue_number: issue_number,
               owner: context.repo.owner,
               repo: context.repo.repo,
-              body: message
+              body: messages.join('\n')
             });
