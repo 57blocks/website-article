@@ -42,7 +42,7 @@ In 2021, OpenAI heralded a new era in AI with the open-source release of CLIP, a
 ![figure 5 clip framework.png](figure%205%20clip%20framework.png#center)  
 
 
-### 3.1.2 Dataset  
+#### 3.1.2 Dataset  
 In the academic and industrial fields, there are several open-source image retrieval datasets designed for different scenarios. Some of these include:  
 1. [The MNIST Handwritten Digit Image Database](http://yann.lecun.com/exdb/mnist/): This dataset contains 70,000 images, each 28x28 in size, encompassing 10 classes of handwritten digits from 0 to 9. In image retrieval, it is common to use the grayscale pixel values directly as features, resulting in a feature dimension of 784.  
 2. The [CIFAR-10](http://www.cs.toronto.edu/~kriz/cifar.html) and [CIFAR-100](http://www.cs.toronto.edu/~kriz/cifar.html) Datasets: These datasets consist of 60,000 images each, divided into 10 and 100 classes respectively, with a resolution of 32x32 for each image. If CIFAR-100 seems too small, there is a larger option: the Tiny Images Dataset, from which CIFAR-10 and CIFAR-100 are derived. The Tiny Images Dataset comprises 80 million images.  
@@ -52,7 +52,7 @@ In the academic and industrial fields, there are several open-source image retri
 6. [The Paris Dataset (Oxford Paris)](http://www.robots.ox.ac.uk/~vgg/data/parisbuildings/): The VGG group from Oxford collected 6,412 images of Parisian landmarks from Flickr, including sights like the Eiffel Tower.  
 7. [The CTurin180 and 201Books DataSets](http://pacific.tilab.com/www/datasets/): Made available by Telecom Italia for Compact Descriptors for Visual Search, this dataset includes images of 201 book covers captured from multiple angles with a Nokia E7 (6 images for each book, totaling 1.3GB), and video images of 180 buildings in Turin captured with various cameras including the Galaxy S, iPhone 3, Canon A410, and Canon S5 IS (collectively 2.7GB).  
 8. [The Stanford Mobile Visual Search Dataset](https://purl.stanford.edu/rb470rw0983): Released in February 2011 by Stanford, this dataset contains images from 8 different categories such as CD covers and paintings. Each category's images are captured with various cameras, including mobile phones, with a total of 500 images across all categories.  
-### 3.1.3 Metric  
+#### 3.1.3 Metric  
 Image retrieval systems, including Content-Based Image Retrieval (CBIR) systems, are traditionally evaluated using several metrics. Each of these metrics quantifies different aspects of the system's performance, mostly focusing on the relevance of the retrieved images with respect to a given query image. The most common evaluation metrics include:  
 Precision: Precision measures the proportion of retrieved images that are relevant to the query. It is defined as the number of relevant images retrieved divided by the total number of images retrieved. A higher precision indicates that the retrieval system returned more relevant results.  
 ![precision.png](precision.png#center)  
@@ -67,7 +67,7 @@ Where:
 GTP:denotes the total number of ground truth positives, that is, the number of truth labels/positive samples;  
 n:denotes the number of images involved in the retrieval;  
 rel@k: is a schematic function that is set to 1 when the first retrieval candidate is a similar sample and 0 otherwise.  
-## 3.2 OCR
+### 3.2 OCR
 As OCR stands for optical character recognition, OCR technology deals with the problem of recognizing all kinds of different characters. Both handwritten and printed characters can be recognized and converted into a machine-readable, digital data format.  
 Think of any kind of serial number or code consisting of numbers and letters that you need digitized. By using OCR you can transform these codes into a digital output. The technology makes use of many different techniques. Put simply, the image taken is processed, the characters extracted, and are then recognized.  
 What OCR does not do is consider the actual nature of the object that you want to scan. It simply "takes a look" at the characters that you aim to transform into a digital format. For example, if you scan a word it will learn and recognize the letters, but not the meaning of the word.  
@@ -76,7 +76,7 @@ OCR (Optical Character Recognition) typically consists of two crucial steps: Tex
 ![figure 6 OCR process.png](figure%206%20OCR%20process.png#center)  
 
 
-### 3.2.1 Text Detection  
+#### 3.2.1 Text Detection  
 Text detection is the process of identifying and locating the textual regions within an input image or document. This step involves applying specialized models, such as DBNet, CTPN, and EAST, to efficiently and accurately detect the spatial positions of the text. The output of the text detection step is a set of bounding boxes or text region proposals that encapsulate the textual content.  
 
 **DBNet**   
@@ -107,7 +107,7 @@ The output of EAST is a set of quadrilateral bounding boxes representing the det
 ![figure 9 EAST framework.png](figure%209%20EAST%20framework.png#center)  
 
 
-### 3.2.2 Text Recognition  
+#### 3.2.2 Text Recognition  
 The CRNN<sup>[10]</sup>model was the first to propose a three-stage architecture for text recognition, which has since become a commonly used approach. The three-stage architecture of CRNN consists of the following components:  
 1. Feature Extraction:  
 a. The first stage is a Convolutional Neural Network (CNN) that extracts visual features from the input text image.  
@@ -125,20 +125,20 @@ The pioneering work of CRNN has paved the way for many subsequent advancements i
 ![figure 10 RCNN framework.png](figure%2010%20RCNN%20framework.png#center)  
 
 
-### 3.2.3 OCR Solution  
+#### 3.2.3 OCR Solution  
 We have explored various open-source OCR (Optical Character Recognition) software options, such as EasyOCR, PaddleOCR, and Tesseract OCR. We also considered the OCR solutions offered by major cloud platforms, including AWS, GCP, and Azure. However, we found that even after fine-tuning the models, the open-source OCR solutions were unable to meet our desired performance requirements.  
 "In our design, it is imperative to employ OCR methods for extracting crucial textual information. However, in practical application scenarios, the key text often appears blurry, posing challenges for accurate extraction. In light of this situation, we conducted an analysis of the two critical processes in OCR.  
 Regarding text detection, detecting blurry text proves arduous for text detection algorithms. Our evaluation of Paddle OCR and AWS OCR revealed suboptimal results in text detection. Specifically, AWS OCR's text detection encountered three issues: tag omission, incomplete coverage of bounding boxes, and semantic fragmentation of bounding boxes. Faced with these challenges, we sought a more suitable approach that deviated from traditional text detection methods and instead adopted YOLO. YOLO, although not specifically designed for text detection, functions more like a boundary finder for textual images. While conventional text detection methods can identify text boundaries in various scenarios, YOLO demonstrates even more remarkable performance when dealing with blurry text in a single scene.  
 For text recognition, we opted for AWS OCR due to its absolute advantage of achieving an impressive accuracy rate of up to 98% after effectively handling text orientation challenges.  
 In light of the above, we ultimately chose the concatenated approach of YOLO (text detection) and AWS OCR (text recognition) as the solution for this practical implementation.
-## 3.3 Text Retrieval  
+### 3.3 Text Retrieval  
 Text matching is a quintessential task in Natural Language Processing (NLP). Drawing from experimental studies in scholarly papers, this domain can be broadly sorted into ad-hoc text retrieval, paraphrase identification, natural language inference (NLI), and question-answering (QA) matching. Furthermore, additional tasks such as entity disambiguation can leverage the principles of text matching. Despite divergent goals across various text matching tasks, the underlying models tend to be strikingly similar, offering a level of interchangeability with potential variations in efficacy.  
 These text matching endeavors aim to identify the most suitable document or to aggregate a list of documents in a descending order of relevance to a given query. To articulate the context, we denote the pair of texts subjected to the matching process as text_left and text_right. Here, text_left corresponds to the text of the query, and text_right represents a candidate document.  
 Conventionally, text matching tasks have employed a feature-centric strategy, harnessing both texts' tf-idf, BM25, or lexical-level attributes, then applying standard machine learning algorithms like Logistic Regression or Support Vector Machines for training. The appeal of this methodology lies in its interpretability; however, the dependence on manual feature discovery and iterative experimentation has shown limitations in generalizability. Moreover, the model's performance is relatively unremarkable due to inherent restrictions in the number of features, which in turn limits the model's parameter space.  
 The advent of deep learning since 2012, coupled with the proliferation of powerful GPUs, has made it feasible to cultivate large deep neural networks. This technological renaissance has sent ripples through numerous disciplines, not least among them computer vision and natural language processing. Within the realm of NLP, text matching has certainly not been spared, evidenced by Microsoft's groundbreaking introduction of the Deep Structured Semantic Model (DSSM) in 2013. This move signified a paradigm shift, propelling text matching into the deep learning epoch.  
 In contrast to the traditional feature-centric approach, methods of text matching in the deep learning era can be distilled into two main categories: representation-based matching and interaction-based matching. In the realm of representation-based matching, each text is handled independently during the initial phase. Texts are encoded via deep neural net layers to form their respective representations. Subsequently, these representations serve as a basis for calculating the texts' similarity through specialized similarity computation functions. Conversely, the interaction-based matching approach critiques the late-stage similarity calculation of the prior method for its heavy dependence on representation quality and potential loss of fundamental text characteristics, such as lexical and syntactic features. Advocating for a more preemptive engagement of textual features, this method prioritizes capturing core characteristics early on. These foundational matching features are then aggregated and used to derive a matching score at a more advanced processing level.  
 In our project, we deploy natural language processing models, including text-embedding-3-small, text-embedding-ada-002, and GTE Base, to generate embeddings for character text data recognized in images. We then calculate the cosine similarity of these text embeddings against those of query texts, which allows us to gauge the semantic relatedness of the texts. This approach forms the cornerstone of our text retrieval system, effectively harnessing semantic similarity to identify and retrieve relevant text information.  
-## 3.4 Image-to-Text(Image Caption)  
+### 3.4 Image-to-Text(Image Caption)  
 Image Captioning is the task of describing the content of an image in words. This task lies at the intersection of computer vision and natural language processing. Most image captioning systems use an encoder-decoder framework, where an input image is encoded into an intermediate representation of the information in the image, and then decoded into a descriptive text sequence.  
 In the last year, considerable progress has been seen in the realm of multimodal large language models (MM-LLMs). By adopting economical and efficient training methodologies, these cutting-edge models have fortified existing large language models to accommodate inputs or outputs across multiple modalities. The resultant models preserve the inherent reasoning and decision-making prowess that LLMs are known for, while also extending their capabilities to an assortment of multimodal tasks. Notably, functionalities such as generating descriptive captions for images and answering questions based on visual content are among their crucial advancements.  
 
