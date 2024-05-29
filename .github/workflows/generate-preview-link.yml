@@ -43,8 +43,9 @@ jobs:
               owner: context.repo.owner,
               repo: context.repo.repo
             });
-            console.log(comments.data);
             const bot_comments = comments.data.filter(comment => comment.user.login === 'github-actions[bot]' && comment.body.startsWith('Generated Preview Link'));
+            console.log(bot_comments.map(comment => comment.id));
+            
             return bot_comments.map(comment => comment.id);
 
       - name: Comment on PR
@@ -66,6 +67,7 @@ jobs:
               preview_urls.push(preview_url)
             }
             
+            console.log(${{steps.all_comments.outputs.result}});
             const messageTemplate = `Generated Preview Link 
             
             | Reviewer Preview🚀🚀🚀 |
