@@ -313,7 +313,7 @@ tbl.search(np.random.random((1536)))
     .to_pandas()
 ```
 
-### 3.5. LanceDB vs Pinecone - Versioning
+### 3.5. Versioning
 
 In Pinecone, a collection captures a static snapshot of an index at a
 specific moment, preserving the complete set of vectors and metadata in
