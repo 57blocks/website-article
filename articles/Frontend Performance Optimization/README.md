@@ -212,41 +212,41 @@ Usually, we configure appropriate directives based on the update frequency of re
 
 1. For HTML files with a high update frequency, the directive settings commonly used are:
 
-    ```ts
-    Cache-Control: no-cache
-    ```
+   ```ts
+   Cache-Control: no-cache
+   ```
 
-    Indicates caching, but before use, it will validate with the server to ensure it has the latest data. If the client already has the latest data, the server typically responds with 304 (Not Modified); otherwise, new data will be provided. This approach ensures that each retrieval obtains the latest response. As most HTTP 1.0 does not support no-cache, we can adopt a fallback solution.
+   Indicates caching, but before use, it will validate with the server to ensure it has the latest data. If the client already has the latest data, the server typically responds with 304 (Not Modified); otherwise, new data will be provided. This approach ensures that each retrieval obtains the latest response. As most HTTP 1.0 does not support no-cache, we can adopt a fallback solution.
 
-    ```ts
-    Cache-Control: max-age=0, must-revalidate
-    ```
+   ```ts
+   Cache-Control: max-age=0, must-revalidate
+   ```
 
-    Here's an additional detail: typically, we also include the following information. If the resource belongs to user-specific content, it can be specified as private; otherwise, it is public. One way to determine if a resource is personal data is to check if the Authorization field is present in the request header. If it is, it implies that this is personal data, and there is usually no need to explicitly specify it as private. Additionally, if the cache control header includes must-revalidate, it also indicates that this is personal data. This means that before each resource retrieval, it needs to be validated for freshness, using the new data if it is new or the cached old data if it is not. This approach helps ensure the real-time and consistent handling of personal data.
+   Here's an additional detail: typically, we also include the following information. If the resource belongs to user-specific content, it can be specified as private; otherwise, it is public. One way to determine if a resource is personal data is to check if the Authorization field is present in the request header. If it is, it implies that this is personal data, and there is usually no need to explicitly specify it as private. Additionally, if the cache control header includes must-revalidate, it also indicates that this is personal data. This means that before each resource retrieval, it needs to be validated for freshness, using the new data if it is new or the cached old data if it is not. This approach helps ensure the real-time and consistent handling of personal data.
 
 2. For frontend static resources, such as bundled scripts and stylesheets, it is common to append a hash or version number to the file name. This practice aids in more effective cache management. For such static files, we typically set the following cache directives:
 
-    ```ts
-    Cache-Control: public, immutable, max-age=31536000
-    Last-Modified: Wed, 21 Oct 2023 07:28:00 GMT
-    ETag: "33a64df551425fcc55e4d42a148795d9f25f89d4"
-    ```
+   ```ts
+   Cache-Control: public, immutable, max-age=31536000
+   Last-Modified: Wed, 21 Oct 2023 07:28:00 GMT
+   ETag: "33a64df551425fcc55e4d42a148795d9f25f89d4"
+   ```
 
-  - **Max-age**: This directive can be added in both request and response to indicate the expiration time of the cached resource in seconds. For example, in the given example, **`max-age=31536000`** means the resource will expire in the client cache after 365 days.
-  - **Immutable**: Exists in the response and indicates that the resource will not be updated before a new version is available. In this example, if the hash or version of the static file changes, the resource is considered new, triggering a re-fetch and storage. This pattern is known as [cache-busting](https://www.keycdn.com/support/what-is-cache-busting).
-  - **ETag**: Used to identify whether a resource is a specified version, while Last-Modified is a fallback for ETag, representing the last modification time on the server. ETag and Last-Modified allow the client to send a condition request to the server. If the resource has not changed, the server returns a 304 response, indicating that the cached version is still current. Otherwise, it sends a new request to fetch the resource from the server.
+- **Max-age**: This directive can be added in both request and response to indicate the expiration time of the cached resource in seconds. For example, in the given example, **`max-age=31536000`** means the resource will expire in the client cache after 365 days.
+- **Immutable**: Exists in the response and indicates that the resource will not be updated before a new version is available. In this example, if the hash or version of the static file changes, the resource is considered new, triggering a re-fetch and storage. This pattern is known as [cache-busting](https://www.keycdn.com/support/what-is-cache-busting).
+- **ETag**: Used to identify whether a resource is a specified version, while Last-Modified is a fallback for ETag, representing the last modification time on the server. ETag and Last-Modified allow the client to send a condition request to the server. If the resource has not changed, the server returns a 304 response, indicating that the cached version is still current. Otherwise, it sends a new request to fetch the resource from the server.
 
-    ETag, Last-Modified, and Immutable can prevent resource revalidation, especially when reloading a page. These mechanisms help optimize cache management, ensuring the consistency and validity of resources.
+  ETag, Last-Modified, and Immutable can prevent resource revalidation, especially when reloading a page. These mechanisms help optimize cache management, ensuring the consistency and validity of resources.
 
 3. For other resources such as favicon.ico, images, API endpoints, etc., typically, similar settings are used. Conditional requests are initiated using Last-Modified and ETag to check if the resource is up-to-date.
 
-    ```ts
-    Cache-Control: no-cache
-    Last-Modified: Tue, 22 Feb 2022 20:20:20 GMT
-    ETag: AAPuIbAOdvAGEETbgAA2ABwqAsAAE
-    ```
+   ```ts
+   Cache-Control: no-cache
+   Last-Modified: Tue, 22 Feb 2022 20:20:20 GMT
+   ETag: AAPuIbAOdvAGEETbgAA2ABwqAsAAE
+   ```
 
-    In some scenarios, Cache-Control may appear in both the request and response, and in case of conflicts, the settings on the response usually take precedence.
+   In some scenarios, Cache-Control may appear in both the request and response, and in case of conflicts, the settings on the response usually take precedence.
 
 ### CDN
 
@@ -362,13 +362,13 @@ You can enhance the priority of a resource using the **`fetchpriority`** attribu
   1. Both the **`width`** and **`height`** attributes should be specified appropriately to ensure that the browser allocates the correct space in the layout. This helps avoid layout shifts, improving the user experience in terms of Cumulative Layout Shift (CLS).
   2. If the specific width and height cannot be determined, consider setting an aspect ratio as a solution.
 
-      ```ts
-      img {
-        aspect-ratio: 16 / 9;
-        width: 100%;
-        object-fit: cover;
-      }
-      ```
+     ```ts
+     img {
+       aspect-ratio: 16 / 9;
+       width: 100%;
+       object-fit: cover;
+     }
+     ```
 
 - **Image formate**
   For image resources, it is essential to choose the appropriate image format based on specific business requirements to optimize performance. Here are simplified and optimized recommendations:
@@ -376,12 +376,12 @@ You can enhance the priority of a resource using the **`fetchpriority`** attribu
   - **Raster Images:** Represented as pixel grids, including GIF, PNG, JPEG, and WebP.
   - **Vector Images:** Primarily used for logos and icons, defined by curves, lines, and shapes, resolution-independent, providing clear results.
 
-      **Image Formats and Use Cases:**
+    **Image Formats and Use Cases:**
 
-      - JPEG: Suitable for photographic images, reducing file size through lossy and lossless optimization.
-      - SVG: Used for icons and logos, containing geometric shapes, maintaining clarity regardless of scaling.
-      - PNG: Suitable for high-resolution images, lossless compression, while WebP generally has smaller file sizes.
-      - Video: For animations, it is recommended to use video instead of GIF due to GIF's color limitations and larger file sizes.
+    - JPEG: Suitable for photographic images, reducing file size through lossy and lossless optimization.
+    - SVG: Used for icons and logos, containing geometric shapes, maintaining clarity regardless of scaling.
+    - PNG: Suitable for high-resolution images, lossless compression, while WebP generally has smaller file sizes.
+    - Video: For animations, it is recommended to use video instead of GIF due to GIF's color limitations and larger file sizes.
 
 - **Decoding**
 
@@ -483,44 +483,44 @@ If the video serves as the Largest Contentful Paint (LCP) element, it's benefici
 
 2. **Avoid long tasks, optimize code**
 
-    Long tasks refer to tasks that take more than 50 milliseconds to execute and can be released on the Main Thread by:
+   Long tasks refer to tasks that take more than 50 milliseconds to execute and can be released on the Main Thread by:
 
-  - **Web Workers:** Web Workers run in the background as independent threads with their own stack, heap memory, and message queue. Communication with the main thread can only be done through the **`postMessage`** method, and direct manipulation of the DOM is not possible. Therefore, Web Workers are well-suited for tasks that do not require direct interaction with the DOM. For example, performing operations such as sorting or searching on large datasets can be done in a Web Worker, avoiding the blocking of the main thread by these computationally intensive tasks, ensuring the responsiveness of the main thread. By executing these time-consuming tasks in a Web Worker, not only can the performance and responsiveness of the main thread be improved, but it also takes better advantage of the performance benefits of multi-core processors. This separation of computational tasks from user interface operations helps improve the overall user experience and ensures smooth page operation.
-  - **Service Worker:** A Service Worker is a script that runs in the background and intercepts and handles network requests. By making reasonable use of Service Workers, resources can be cached, reducing dependence on the main thread and improving application performance.
-  - **Long Task**: To ensure that long-running tasks do not block the main thread, we can adopt a strategy of breaking these long tasks into small, asynchronously executed sub-tasks. Strategies include:
+- **Web Workers:** Web Workers run in the background as independent threads with their own stack, heap memory, and message queue. Communication with the main thread can only be done through the **`postMessage`** method, and direct manipulation of the DOM is not possible. Therefore, Web Workers are well-suited for tasks that do not require direct interaction with the DOM. For example, performing operations such as sorting or searching on large datasets can be done in a Web Worker, avoiding the blocking of the main thread by these computationally intensive tasks, ensuring the responsiveness of the main thread. By executing these time-consuming tasks in a Web Worker, not only can the performance and responsiveness of the main thread be improved, but it also takes better advantage of the performance benefits of multi-core processors. This separation of computational tasks from user interface operations helps improve the overall user experience and ensures smooth page operation.
+- **Service Worker:** A Service Worker is a script that runs in the background and intercepts and handles network requests. By making reasonable use of Service Workers, resources can be cached, reducing dependence on the main thread and improving application performance.
+- **Long Task**: To ensure that long-running tasks do not block the main thread, we can adopt a strategy of breaking these long tasks into small, asynchronously executed sub-tasks. Strategies include:
 
-    1. Using **`requestIdleCallback`** as an optimization, which schedules the execution of low-priority or background tasks when the main thread is idle, improving the responsiveness of the page. This method helps ensure that task execution does not interfere with user interaction and page rendering, but occurs when the main thread is idle.
-    
-    2. Manually deferring code execution can face the issue of tasks being placed at the end of the queue without being able to directly specify priority. The code might look like:
+  1.  Using **`requestIdleCallback`** as an optimization, which schedules the execution of low-priority or background tasks when the main thread is idle, improving the responsiveness of the page. This method helps ensure that task execution does not interfere with user interaction and page rendering, but occurs when the main thread is idle.
 
-        ```ts
-        function yieldToMain() {
-          //Wrapping with Promise is for presenting it in a synchronous manner."
-          return new Promise((resolve) => {
-            setTimeout(resolve, 0);
-          });
-        }
+  2.  Manually deferring code execution can face the issue of tasks being placed at the end of the queue without being able to directly specify priority. The code might look like:
 
-        //isInputPending is true when user attempts to interact with the page
-        // performance.now() >= deadline is isInputPending fallback
-        if (navigator.scheduling?.isInputPending() || performance.now() >= deadline) {
-          await yieldToMain();
-          deadline = performance.now() + 50;
-          continue;
-        } else {
-          otherTask();
-        }
-        ```
+      ```ts
+      function yieldToMain() {
+        //Wrapping with Promise is for presenting it in a synchronous manner."
+        return new Promise((resolve) => {
+          setTimeout(resolve, 0);
+        });
+      }
 
-    3. scheduler.postTask allows scheduling tasks in a more granular way and is a mechanism to help the browser determine task priorities, ensuring that low-priority tasks can release the main thread. Although most browsers do not fully support it at present, detailed information can be found [here](https://developer.mozilla.org/en-US/docs/Web/API/Scheduler/postTask).
+      //isInputPending is true when user attempts to interact with the page
+      // performance.now() >= deadline is isInputPending fallback
+      if (navigator.scheduling?.isInputPending() || performance.now() >= deadline) {
+        await yieldToMain();
+        deadline = performance.now() + 50;
+        continue;
+      } else {
+        otherTask();
+      }
+      ```
 
-    4. scheduler.yield is a mechanism for releasing the main thread. For detailed information, refer to [here](https://developer.chrome.com/blog/introducing-scheduler-yield-origin-trial/).
-    It's important to note that microtasks do not release the main thread. For example, when using Promise to create a microtask, it is placed in the microtask queue, waiting to be executed immediately after the main thread finishes execution. Even microtasks created through **`queueMicrotask`** will be executed as the first one. This means that the main thread remains busy during the execution of microtasks and does not release itself to perform other tasks.A detailed visualization can be seen [here](https://www.jsv9000.app/).
+  3.  scheduler.postTask allows scheduling tasks in a more granular way and is a mechanism to help the browser determine task priorities, ensuring that low-priority tasks can release the main thread. Although most browsers do not fully support it at present, detailed information can be found [here](https://developer.mozilla.org/en-US/docs/Web/API/Scheduler/postTask).
 
-        This mechanism is crucial when dealing with asynchronous tasks because it ensures that the logic in microtasks is executed immediately after the current task is finished. This is particularly useful for handling the results of Promises or other asynchronous operations, but it's important to note that it does not release the main thread.
-        ![js execute stack](js-execute-stack.png)
+  4.  scheduler.yield is a mechanism for releasing the main thread. For detailed information, refer to [here](https://developer.chrome.com/blog/introducing-scheduler-yield-origin-trial/).
+      It's important to note that microtasks do not release the main thread. For example, when using Promise to create a microtask, it is placed in the microtask queue, waiting to be executed immediately after the main thread finishes execution. Even microtasks created through **`queueMicrotask`** will be executed as the first one. This means that the main thread remains busy during the execution of microtasks and does not release itself to perform other tasks.A detailed visualization can be seen [here](https://www.jsv9000.app/).
 
-    5. **Batch Processing**: For example, React's virtual DOM mechanism employs batch processing as an optimization strategy. It applies all changes to the virtual DOM and then submits them to the browser for redraw in one go, significantly reducing actual DOM manipulations. This approach effectively releases the main thread, enhancing performance. Batch processing is beneficial in situations where there are many DOM operations or frequent changes. By consolidating multiple operations into a single batch, it reduces the number of browser redraws, optimizing performance. In React, this mechanism helps improve page responsiveness, avoiding unnecessary redundant computations and rendering.
+          This mechanism is crucial when dealing with asynchronous tasks because it ensures that the logic in microtasks is executed immediately after the current task is finished. This is particularly useful for handling the results of Promises or other asynchronous operations, but it's important to note that it does not release the main thread.
+          ![js execute stack](js-execute-stack.png)
+
+  5.  **Batch Processing**: For example, React's virtual DOM mechanism employs batch processing as an optimization strategy. It applies all changes to the virtual DOM and then submits them to the browser for redraw in one go, significantly reducing actual DOM manipulations. This approach effectively releases the main thread, enhancing performance. Batch processing is beneficial in situations where there are many DOM operations or frequent changes. By consolidating multiple operations into a single batch, it reduces the number of browser redraws, optimizing performance. In React, this mechanism helps improve page responsiveness, avoiding unnecessary redundant computations and rendering.
 
 ## Conclusion
 
