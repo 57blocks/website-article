@@ -30,7 +30,25 @@ jobs:
           files: |
             articles/**/README.md
 
+      - name: Get all action comments
+        id: all_comments
+        if: steps.changed-files.outputs.any_changed == 'true'
+        uses: actions/github-script@v5
+        with:
+          github-token: ${{secrets.GITHUB_TOKEN}}
+          script: |
+            const issue_number = ${{ steps.pr_info.outputs.pr_number }};
+            const comments = await github.rest.issues.listComments({
+              issue_number: issue_number,
+              owner: context.repo.owner,
+              repo: context.repo.repo
+            });
+            const bot_comments = comments.data.filter(comment => comment.user.login === 'github-actions[bot]' && comment.body.startsWith('Generated Preview Link'));
+            
+            return bot_comments.map(comment => comment.id);
+
       - name: Comment on PR
+        id: new_comment
         if: steps.changed-files.outputs.any_changed == 'true'
         uses: actions/github-script@v5
         with:
@@ -40,17 +58,42 @@ jobs:
             const repository = "${{ steps.pr_info.outputs.pr_repo }}";
             const readme_paths = JSON.parse("${{ steps.changed-files.outputs.all_changed_files }}");
             
-            const messages = ["The file has been modified, you can preview the modified file here:"];
+            const preview_urls = [];
             for (let file_path of readme_paths) {
               const raw_url = `https://raw.githubusercontent.com/${repository}/${{ steps.pr_info.outputs.commit_hash }}/${file_path}`;
               const encoded_url = encodeURIComponent(raw_url);
-              const preview_url = `[${file_path}](https://dev-ui.57blocks.io/blog/preview?url=${encoded_url})`;
-              messages.push(`${preview_url}`);
+              const preview_url = `https://dev-ui.57blocks.io/blog/preview?url=${encoded_url}`;
+              preview_urls.push(preview_url)
             }
             
-            github.rest.issues.createComment({
+            const messageTemplate = `Generated Preview Link 
+            
+            | Reviewer Preview🚀🚀🚀 |
+            |:----:|
+            | The file has been modified, you can preview the latest file here: |
+            | ================== <br /> ${preview_urls.join('<br /><br />')} <br /> ================== |
+            `;
+            
+            const comment = await github.rest.issues.createComment({
               issue_number: issue_number,
               owner: context.repo.owner,
               repo: context.repo.repo,
-              body: messages.join('\n')
+              body: messageTemplate
             });
+            return comment.data.id;
+
+      - name: Delete all old action comments
+        if: steps.changed-files.outputs.any_changed == 'true' && steps.all_comments.outputs.result != '[]'
+        uses: actions/github-script@v5
+        with:
+          github-token: ${{secrets.GITHUB_TOKEN}}
+          script: |
+            const issue_number = ${{ steps.pr_info.outputs.pr_number }};
+            const comment_ids = ${{ steps.all_comments.outputs.result }};
+            for (let comment_id of comment_ids) {
+              await github.rest.issues.deleteComment({
+                comment_id: comment_id,
+                owner: context.repo.owner,
+                repo: context.repo.repo
+              });
+            }
