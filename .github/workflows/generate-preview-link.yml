@@ -66,7 +66,7 @@ jobs:
               preview_urls.push(preview_url)
             }
             
-            console.log('teps.all_comments.outputs', ${{steps.all_comments.outputs}});
+            console.log('teps.all_comments.outputs', ${{steps.all_comments.outputs.result}}, ${{steps.all_comments.outputs.result.length}});
             const messageTemplate = `Generated Preview Link 
             
             | Reviewer Preview🚀🚀🚀 |
