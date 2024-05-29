@@ -27,7 +27,9 @@ Now, taking **Performance Observer** as an example, let's delve into the specifi
 #### LCP
 
 LCP reports the render time of the largest image or text block visible in the viewport, relative to when the user first navigated to the page. You can assess its standards by examining screenshots. For a more in-depth understanding, please click [here](https://web.dev/articles/lcp#how_to_measure_lcp).
+
 ![LCP](LCP.png)
+
 The analysis of Largest Contentful Paint (LCP) takes into account all content it discovers, even including content that has been removed from the DOM. Each time a new largest content is found, it creates a new entry, so there may be multiple objects. However, when scrolling or input events occur, LCP analysis stops searching for larger content. Therefore, in general, LCP data takes the last-found content as the result.
 
 ```ts
@@ -518,9 +520,7 @@ If the video serves as the Largest Contentful Paint (LCP) element, it's benefici
         This mechanism is crucial when dealing with asynchronous tasks because it ensures that the logic in microtasks is executed immediately after the current task is finished. This is particularly useful for handling the results of Promises or other asynchronous operations, but it's important to note that it does not release the main thread.
         ![js execute stack](js-execute-stack.png)
 
-    5. **Batch Processing**
-
-        For example, React's virtual DOM mechanism employs batch processing as an optimization strategy. It applies all changes to the virtual DOM and then submits them to the browser for redraw in one go, significantly reducing actual DOM manipulations. This approach effectively releases the main thread, enhancing performance. Batch processing is beneficial in situations where there are many DOM operations or frequent changes. By consolidating multiple operations into a single batch, it reduces the number of browser redraws, optimizing performance. In React, this mechanism helps improve page responsiveness, avoiding unnecessary redundant computations and rendering.
+    5. **Batch Processing**: For example, React's virtual DOM mechanism employs batch processing as an optimization strategy. It applies all changes to the virtual DOM and then submits them to the browser for redraw in one go, significantly reducing actual DOM manipulations. This approach effectively releases the main thread, enhancing performance. Batch processing is beneficial in situations where there are many DOM operations or frequent changes. By consolidating multiple operations into a single batch, it reduces the number of browser redraws, optimizing performance. In React, this mechanism helps improve page responsiveness, avoiding unnecessary redundant computations and rendering.
 
 ## Conclusion
 
