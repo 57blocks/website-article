@@ -5,7 +5,8 @@ createTime: 2024-05-21
 tags: ["Information Extraction", "Large Language Model"]
 thumb: "thumb_h.png"
 thumb_b: "thumb_h.png"
-intro: "Information extraction (IE) is vital for converting raw text into structured data usable by various applications. Traditional IE methods often rely on labor-intensive handcrafted rules and patterns, which may struggle to generalize across diverse domains and languages. To tackle these challenges, this project explores the application of Large Language Models (LLMs) for information extraction tasks. Cutting-edge LLM models like the GPT series and Claude AI have showcased remarkable abilities in natural language understanding and generation tasks. In this project, we employed various LLMs such as GPT-3, GPT-4, GPT-4 Turbo, LLaMA 2, Mistral AI, and Claude 2 to help us to extract information from a large number of professional documents and compare the performance. Each of these models exhibits different capabilities in understanding long contexts and extracting information."
+intro: "
+This project explores using Large Language Models (LLMs) such as GPT-3, GPT-4, LLaMA 2, Mistral AI, and Claude 2 for information extraction tasks to convert raw text into structured data, addressing the limitations of traditional, labor-intensive IE methods."
 ---
 
 # **Document Information Extraction with Large Language Models (framework, methods, ensemble, and evaluation)**
