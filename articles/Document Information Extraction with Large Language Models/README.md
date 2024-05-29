@@ -13,7 +13,7 @@ This project explores using Large Language Models (LLMs) such as GPT-3, GPT-4, L
 
 ## 1. Introduction
 
-Information extraction (IE) is vital for converting raw text into structured data usable by various applications. Traditional IE methods often rely on labor-intensive handcrafted rules and patterns, which may struggle to generalize across diverse domains and languages. To tackle these challenges, this project explores the application of Large Language Models (LLMs) for information extraction tasks. Cutting-edge LLM models like the GPT series and Claude AI have showcased remarkable abilities in natural language understanding and generation tasks. In this project, we employed various LLMs such as GPT-3, GPT-4, GPT-4 Turbo, LLaMA 2, Mistral AI, and Claude 2 to help us to extract information from a large number of professional documents and compare the performance. Each of these models exhibits different capabilities in understanding long contexts and extracting information.
+Information extraction (IE) is vital for converting raw text into structured data usable by various applications. Traditional IE methods often rely on labor-intensive handcrafted rules and patterns, which may struggle to generalize across diverse domains and languages. To tackle these challenges, this project explores the application of Large Language Models (LLMs) for information extraction tasks. Cutting-edge LLM models like the GPT series and Claude AI have showcased remarkable abilities in natural language understanding and generation tasks. In this project, we employed various LLMs such as GPT-3, GPT-4, GPT-4 Turbo, LLaMA 2, Mistral AI, and Claude 2 to help us to extract information from a large number of academic papers and compare the performance. Each of these models exhibits different capabilities in understanding long contexts and extracting information.
 
 ## 2. Processing Workflow
 
@@ -37,7 +37,7 @@ Finally, we employ ensemble methods to select outputs from multiple models, aimi
 
 ### System Prompt
 
-At the outset, the model is configured with system information and performs as a content extractor. Our goal is to fine-tune the settings to ensure the model relies on explicitly stated content in the text and minimizes speculation. When uncertain about extracted results, we prefer a "not mentioned" result extracted by LLMS over potentially incorrect answers. In information extraction, false positives are deemed more detrimental than false negatives.
+At the outset, the model is configured with system information and performs as a content extractor. Our goal is to fine-tune the settings to ensure the model relies on explicitly stated content in the text and minimizes speculation. When uncertain about extracted results, we prefer a "not mentioned" result extracted by LLMs over potentially incorrect answers. In information extraction, false positives are deemed more detrimental than false negatives.
 
 ### User Prompt
 
@@ -49,7 +49,7 @@ Moreover, unit measurements may be required to specify in prompt. To make evalua
 
 ### **Results Ensemble**
 
-Ensemble LLMs amalgamate predictions from multiple LLMs using diverse aggregation strategies like averaging, voting and stacking. This approach is motivated by addressing limitations inherent in individual LLMs, such as understanding complex contexts, performing mathematical calculations, or avoiding hallucination. Ensembles offer a promising solution by aggregating predictions, enhancing overall performance, and bolstering robustness across varied tasks and datasets.
+Ensemble LLMs amalgamate predictions from multiple LLMs using various strategies like averaging, voting and stacking. This approach is motivated by addressing limitations inherent in individual LLMs, such as understanding complex contexts, performing mathematical calculations, or avoiding hallucination. Ensembles offer a promising solution by aggregating predictions, enhancing overall performance, and bolstering robustness across varied tasks and datasets.
 
 Among Ensemble strategies of Bagging, Boosting and Stacking, Stacking aligns well with our task requirements. Due to certain constraints, training or fine-tuning LLMs may not be viable. Therefore, our emphasis is on meta-model design. We've explored some different methods including random selection, adjusting weights based on historical evaluations, and leveraging confidence scores from LLMs for final result selection. Our ultimate aim is to outperform individual models.
 
@@ -101,7 +101,7 @@ There is another version of the confusion matrix that may be a little bit easier
 | $Precision$  | $TP/(TP+FP)$                                    | standard metric; when there is a POSITIVE extraction, the probability that this extraction is right. From a data consumer perspective, this shall be the most important metric.                                                                                                                                                                                                                 |
 | $F1$         | $2 \* recall \* precision / (recall+precision)$ | The standard metric to show the balance between recall and precision.                                                                                                                                                                                                                                                                                                                           |
 
-## 5. **Error Results Analysis**
+## 5. **Error Analysis**
 
 ### **Misunderstanding & Terminology Confusion**
 
@@ -119,7 +119,7 @@ To mitigate this issue, we minimize the reliance on LLMs for mathematical operat
 
 ### **Human Labeling Errors** 
 
-Unfortunately, the Ground Truth is not always accurate. Various errors may occur during the data annotation process, such as omissions (missing to label) and inaccuracies (incorrect labels). Strictly speaking, these human labeling errors should not be attributed to LLMs’ mistake but to inaccuracies in the Ground Truth. Therefore, when reviewing extraction results, we also need to cross-check the Ground Truth against the original text to enhance its accuracy.
+The Ground Truth theoretically is always 100% correct. The annotation results labeled by human as ground truth but might be wrong. Various mistakes, such as omissions (missing to label) and inaccuracies (incorrect labels), may occur. This kind of mistakes should not be attributed to LLMs but to inaccuracies of the Ground Truth. Therefore, when reviewing extraction results, it is necessary to cross-check the Ground Truth against the original text to enhance its accuracy.
 
 ## 6. **Performance**
 
@@ -137,7 +137,7 @@ Designing a meta-model for Ensemble Stacking presents another challenge. Without
 
 ### **Data Annotation**
 
-Data annotation for information extraction is notably challenging. Annotators, particularly for specialized articles, must be professionals or experts to ensure annotation’s accuracy and completeness. Reading articles is time-consuming, especially with thousands of documents. Initial annotation efforts began with a few papers, gradually increasing to dozens, and eventually hundreds or thousands as the program developed. However, this quantity still falls short of reflecting the overall distribution realistically. While programs can alleviate some initial annotation work, manual validation remains necessary, with the required time increasing alongside text volume. 
+Data annotation for information extraction is notably challenging. Annotators, particularly for academic papers, must be professionals or experts to ensure annotation’s accuracy and completeness. Reading articles is time-consuming, especially with thousands of documents. Initial annotation efforts began with a few papers, gradually increasing to dozens, and eventually hundreds or thousands as the program developed. However, this quantity still falls short of reflecting the overall distribution realistically. While programs can alleviate some initial annotation work, manual validation remains necessary, with the required time increasing alongside text volume. 
 
 ## 8. **Conclusion**
 
