@@ -43,7 +43,12 @@ jobs:
               owner: context.repo.owner,
               repo: context.repo.repo
             });
-            const bot_comments = comments.data.filter(comment => comment.user.login === 'github-actions[bot]' && comment.body.startsWith('Generated Preview Link'));
+            const bot_comments = comments.data.filter(comment => {
+              console.log('---', comment.user.login, comment.body.startsWith('Generated Preview Link'));
+              return comment.user.login === 'github-actions[bot]' && comment.body.startsWith('Generated Preview Link')
+            });
+            console.log("bot_comments.map(comment => comment.id)");
+            console.log("bot_comments.map(comment => comment.id)");
             console.log(bot_comments.map(comment => comment.id));
             
             return bot_comments.map(comment => comment.id);
