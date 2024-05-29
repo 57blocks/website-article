@@ -75,10 +75,6 @@ During evaluation, we exclude properties marked as "not mentioned" in both the g
 
 We defined a set of TP/TN/FP/FN to evaluate the results.
 
-![img](metrics_1.png)
-
-The below table is the confusion matrix using the definitions above.
-
 ![img](metrics_2.png)
 
 There is another version of the confusion matrix that may be a little bit easier to understand.
