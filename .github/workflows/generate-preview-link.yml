@@ -84,7 +84,7 @@ jobs:
             return comment.data.id;
 
       - name: Delete all old action comments
-#        if: steps.changed-files.outputs.any_changed == 'true' && steps.all_comments.outputs.result.length > 0
+        if: steps.changed-files.outputs.any_changed == 'true' && steps.all_comments.outputs.result.length > 0
         uses: actions/github-script@v5
         with:
           github-token: ${{secrets.GITHUB_TOKEN}}
