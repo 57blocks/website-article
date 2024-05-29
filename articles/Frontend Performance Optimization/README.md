@@ -225,7 +225,7 @@ Usually, we configure appropriate directives based on the update frequency of re
   - **Immutable**: Exists in the response and indicates that the resource will not be updated before a new version is available. In this example, if the hash or version of the static file changes, the resource is considered new, triggering a re-fetch and storage. This pattern is known as [cache-busting](https://www.keycdn.com/support/what-is-cache-busting).
   - **ETag**: Used to identify whether a resource is a specified version, while Last-Modified is a fallback for ETag, representing the last modification time on the server. ETag and Last-Modified allow the client to send a condition request to the server. If the resource has not changed, the server returns a 304 response, indicating that the cached version is still current. Otherwise, it sends a new request to fetch the resource from the server.
 
-  ETag, Last-Modified, and Immutable can prevent resource revalidation, especially when reloading a page. These mechanisms help optimize cache management, ensuring the consistency and validity of resources.
+    ETag, Last-Modified, and Immutable can prevent resource revalidation, especially when reloading a page. These mechanisms help optimize cache management, ensuring the consistency and validity of resources.
 
 3. For other resources such as favicon.ico, images, API endpoints, etc., typically, similar settings are used. Conditional requests are initiated using Last-Modified and ETag to check if the resource is up-to-date.
 
@@ -272,6 +272,7 @@ It is worth noting that HTTP/2.0 introduced the Server Push feature, which is hi
 However, it's important to note that due to some limitations in the Server Push mechanism, the Chrome browser currently does not support HTTP/2 Server Push. Detailed support information can be found at this [link](https://developer.chrome.com/blog/removing-push). Despite this, developers can still leverage other performance optimization techniques, such as resource concatenation, caching strategies, etc., to enhance frontend loading performance.
 ::: center
 ![server push](Http-server-push.png)
+:::
 
 The above description outlines the evolution of the HTTP protocol, all aimed at reducing loading times and improving request efficiency. In this process, traditional performance optimization techniques emerged, such as resource inlining and image spriting. These techniques bundle multiple small files into a single large file and transmit them over a single connection, helping reduce the overhead of transmission headers and thus improving performance. During the era of HTTP/1.0 and HTTP/1.1, such techniques were considered effective performance optimization practices.
 
