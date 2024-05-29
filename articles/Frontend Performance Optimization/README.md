@@ -1,11 +1,11 @@
 ---
 title: "Frontend Performance Optimization"
-author: ["Bonnie Chen/ Full Stack"]
+author: ["Bonnie Chen/ Engineer"]
 createTime: 2024-05-23
 tags: ["Frontend", "Performance"]
 thumb: "loading-is-a-journey.png"
 thumb_h: "loading-is-a-journey.png"
-intro: "In today's digital era, the performance of a website is crucial for attracting and retaining users. Users are reluctant to wait for slow loading times, and fast-responsive pages will help retain visitors and improve conversion rates. Frontend performance optimization is a key factor in achieving this goal. In this article, we will explore some important frontend performance optimization strategies to enhance website speed, interactivity, and user satisfaction."
+intro: "This article is about front-end performance including strategy metrics, improvement strategies."
 ---
 
 In today's digital era, the performance of a website is crucial for attracting and retaining users. Users are reluctant to wait for slow loading times, and fast-responsive pages will help retain visitors and improve conversion rates. Frontend performance optimization is a key factor in achieving this goal. In this article, we will explore some important frontend performance optimization strategies to enhance website speed, interactivity, and user satisfaction.
@@ -52,7 +52,7 @@ In this example, the LCP is represented by **`loadingTime`**, which is 1.6. Acco
 
 #### FCP
 
-The FCP metric measures the time from when the user first navigated to the page to when any part of the page's content is rendered on the screen. You can understand the standards by examining screenshots. For a more in-depth understanding, you can click ![here](https://web.dev/articles/fcp). Another similar metric is FP (First Paint), representing the time it takes for the first pixel to be painted on the screen.
+The FCP metric measures the time from when the user first navigated to the page to when any part of the page's content is rendered on the screen. You can understand the standards by examining screenshots. For a more in-depth understanding, you can click [here](https://web.dev/articles/fcp). Another similar metric is FP (First Paint), representing the time it takes for the first pixel to be painted on the screen.
 ![FCP](FCP.png)
 
 ```ts
@@ -367,7 +367,9 @@ img {
 - Video: For animations, it is recommended to use video instead of GIF due to GIF's color limitations and larger file sizes.
 
 - **Decoding**
+
   This property provides a hint to the browser on how it should decode the image. Specifically, it specifies whether to wait for the image to be fully decoded before rendering other content updates or allow rendering other content simultaneously during the decoding process.
+
   - **`sync`**: Synchronously decode the image to render it along with other content.
   - **`async`**: Asynchronously decode the image, allowing rendering of other content before its completion.
   - **`auto`**: No preference for decoding mode; the browser decides the most favorable way for the user. This is the default value, but different browsers have different default values:
