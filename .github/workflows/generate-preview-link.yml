@@ -26,21 +26,9 @@ jobs:
         id: changed-files
         uses: tj-actions/changed-files@v44
         with:
+          json: true
           files: |
             articles/**/README.md
-
-#      - name: Check for README.md changes
-#        id: check_readme
-#        run: |
-#          FILES_CHANGED=${{ steps.changed-files.outputs.all_changed_files }}
-#          README_PATH=$(echo "$FILES_CHANGED" | grep "README.md" || true)
-#          echo "README_PATH: $README_PATH"
-#          if [ -n "$README_PATH" ]; then
-#            echo "readme_changed=true" >> $GITHUB_OUTPUT
-#            echo "readme_path=$README_PATH" >> $GITHUB_OUTPUT
-#          else
-#            echo "readme_changed=false" >> $GITHUB_OUTPUT
-#          fi
 
       - name: Comment on PR
         if: steps.changed-files.outputs.any_changed == 'true'
@@ -50,7 +38,7 @@ jobs:
           script: |
             const issue_number = ${{ steps.pr_info.outputs.pr_number }};
             const repository = "${{ steps.pr_info.outputs.pr_repo }}";
-            const readme_path = "${{ steps.changed-files.outputs.all_changed_files }}";
+            const readme_path = JSON.parse("${{ steps.changed-files.outputs.all_changed_files }}");
             
             const raw_url = `https://raw.githubusercontent.com/${repository}/${{ steps.pr_info.outputs.commit_hash }}/${readme_path}`;
             const encoded_url = encodeURIComponent(raw_url);
