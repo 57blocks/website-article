@@ -3,7 +3,7 @@ title: "Document Information Extraction with Large Language Models (framework, m
 author: ["Carvin Li / ML Engineer", "Anjing Wang / NLP, ML Engineer"]
 createTime: 2024-05-21
 tags: ["Information Extraction", "Large Language Model"]
-thumb: "thumb_h.png"
+thumb: "thumb_v.png"
 thumb_b: "thumb_h.png"
 intro: "
 This project explores using Large Language Models (LLMs) such as GPT-3, GPT-4, LLaMA 2, Mistral AI, and Claude 2 for information extraction tasks to convert raw text into structured data, addressing the limitations of traditional, labor-intensive IE methods."
