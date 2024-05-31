@@ -188,7 +188,7 @@ table.search(query_image)
 
 ### 3.3. Search
 
-Pinecone Database it empowers users to perform scalable Approximate
+Pinecone Database empowers users to perform scalable Approximate
 Nearest Neighbor (ANN) searches quickly and accurately, excels with both
 sparse and dense vector support, allowing for mixed searches in a
 singular index. This hybrid approach combines semantic depth with
@@ -196,9 +196,8 @@ keyword precision for improved relevance and accuracy in results.
 Additionally, Pinecone enables the attachment of metadata key-value
 pairs to indexed vectors, coupled with detailed filter expressions
 during queries, enabling tailored searches based on specific criteria.
-With support for up to 40 kb of metadata per vector, [[selective
-metadata
-indexing]{.underline}](https://docs.pinecone.io/docs/manage-indexes/#selective-metadata-indexing)
+With support for up to 40 kb of metadata per vector, [selective
+metadata indexing](https://docs.pinecone.io/docs/manage-indexes/#selective-metadata-indexing)
 is advised to prevent unnecessary high-cardinality metadata from being
 indexed when not required for filtering. This adaptability allows users
 to create diverse search experiences, from simple text searches to
@@ -208,7 +207,7 @@ Pinecone sparse-dense vectors have the following limitations:
 - Pinecone supports sparse vector values of sizes up to 1000 non-zero
  values.
 - Pinecone only supports upserting sparse-dense vectors to p1 and s1 indexes.
-- In order to query an index using sparse values, the index must use the [[dot product> metric]{.underline}](https://docs.pinecone.io/docs/indexes#distance-metrics). Attempting to query any other index with sparse values returns an error.
+- In order to query an index using sparse values, the index must use the [dot product> metric](https://docs.pinecone.io/docs/indexes#distance-metrics). Attempting to query any other index with sparse values returns an error.
 - Indexes created before February 22, 2023 do not support sparse values.
 
 ![Pineone Record](./image3.png)
