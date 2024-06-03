@@ -83,6 +83,8 @@ There is another version of the confusion matrix that may be a little bit easier
 
 ### **Full Evaluation Metrics**
 
+<div class="min-width-table">
+
 | **Metrics**  | **Definition**                                  | **Notes**                                                                                                                                                                                                                                                                                                                                                                                       |
 |--------------|-------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | $TP\\%$      | $TP/(TP+FP+FN)$                                 | Not a standard metric. Since our TN is usually very large, this is used to replace accuracy sometimes.                                                                                                                                                                                                                                                                                          |
@@ -96,6 +98,9 @@ There is another version of the confusion matrix that may be a little bit easier
 | $Accuracy*$  | $TP\\%$                                         | not a standard metric                                                                                                                                                                                                                                                                                                                                                                           |
 | $Precision$  | $TP/(TP+FP)$                                    | standard metric; when there is a POSITIVE extraction, the probability that this extraction is right. From a data consumer perspective, this shall be the most important metric.                                                                                                                                                                                                                 |
 | $F1$         | $2 \* recall \* precision / (recall+precision)$ | The standard metric to show the balance between recall and precision.                                                                                                                                                                                                                                                                                                                           |
+
+</div>
+
 
 ## 5. **Error Analysis**
 
