@@ -24,13 +24,13 @@ author: ["YourName / Full stack engineer", "SecondAuthorName / PositionOfTheAuth
 createTime: 2024-04-01
 tags: ["Web3", "AnyOtherTag"]
 thumb: "https://example.com/theThumbOfTheArticle.png"
-thumb_b: "https://example.com/theHorizontalThumbOfTheArticle.png"
+thumb_h: "https://example.com/theHorizontalThumbOfTheArticle.png"
 intro: "Some introduction to the article"
 ---
 ```
 
 > [!important]
-> The `thumb` and `thumb_b` is coming from the designer. Please contact the designer.
+> The `thumb` and `thumb_h` is coming from the designer. Please contact the designer.
 
 
 
