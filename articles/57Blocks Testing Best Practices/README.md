@@ -80,7 +80,7 @@ After the software application has been released, Jenkins can be used to monitor
 Different kinds of tests require different frameworks. Most test frameworks can support multiple languages. 57Blocks has projects using both Python and Javascript. The choice between Python and JavaScript will depend on the project requirements and the skills of the team. If the project is web-based and requires front-end testing, then JavaScript may be the better choice. However, if you are looking for a language that is easy to learn and has a rich set of test libraries, then Python may be the better choice.
 
 
-### Benefits of the Python test framework:
+### Benefits of the Python test framework
 
 - **Easy to learn**: Python is known for its simple syntax, which makes it easy for beginners to learn and use.
 - **Large community**: Python has a large and active community, which means that there is a wealth of resources and support available.
