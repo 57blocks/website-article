@@ -215,11 +215,13 @@ Upon generating the PR, you will receive a preview URL. Use this link to get des
 ## Merging and Deployment
 
 ### Final Testing
+When the author feels they have completed all the preparation work for the article and are ready to publish it, the author should contact the WCP team or the testing team. The testing team will perform the final testing and verification of the article.
 
-After the PR is approved and merged into the `dev` branch, the testing team will validate the article on the dev environment. 
+If the tester or designer has any feedback, **please add the corresponding feedback or comments in the PR**. The author will only be able to merge the code once they have addressed all the feedback and made the necessary adjustments to the article.
 
-If the tester or designer has any feedback, **please add the corresponding feedback or comments in the PR**. The author will adjust the article based on the feedback. If you need any technical support during the process, please contact the wcp project team.
+Once the testing team has validated the article on the dev environment and all feedback has been addressed, the author can then merge the code into the `dev` branch.
 
+If you need any technical support during the process, please contact the wcp project team.
 
 ### Deployment to Main Branch
 
