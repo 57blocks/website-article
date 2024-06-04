@@ -1,21 +1,45 @@
-# website-article
+# Guide to Publishing Articles
 
-# Introduction:
+---
 
-This is the code repository for our company's articles. You can submit your articles here, and they will eventually appear on the company's website.
+## Table of Contents
 
-If you have any permission issues when pushing the article, please contact Marvin or the developers of the WCP project. 
+1. [Introduction](#introduction)
+2. [Standards and Structure](#standards-and-structure)
+   - [Metadata](#metadata)
+   - [Folder and File Naming](#folder-and-file-naming)
+3. [Writing and Styling](#writing-and-styling)
+   - [Markdown Syntax](#markdown-syntax)
+   - [Extended Markdown Syntax](#extended-markdown-syntax)
+4. [Submitting Your Article](#submitting-your-article)
+   - [Local Submission](#local-submission)
+   - [Online Editing](#direct-online-editing)
+5. [Previewing Your Article](#previewing-your-article)
+   - [Preview by URL](#preview-by-url)
+   - [Realtime Preview](#realtime-preview)
+6. [Review and Approval Process](#review-and-approval-process)
+   - [Pull Request Creation](#pull-request-creation)
+   - [Content Review](#content-review)
+   - [Image Optimization](#image-optimization)
+7. [Merging and Deployment](#merging-and-deployment)
+   - [Final Testing](#final-testing)
+   - [Deployment to Main Branch](#deployment-to-main-branch)
 
-If you have any special styles or effects that cannot be achieved with the default Markdown when writing documents, please contact Marvin or the developers of the WCP project.
+---
 
+## Introduction
 
-# Guide
+Welcome to the article publishing repository for our company's website. This guide will walk you through the steps of writing, submitting, and optimizing your articles using GitHub. If you encounter any issues with permissions or require assistance with specific Markdown features, please contact Marvin or the WCP development team.
 
-## Standards
-1. Articles are in markdown format, using GFM format.
-2. Articles are placed under the `articles` folder and have their own independent folder, which, after slugify, will act as the article's url
-3. Articles are named `README.md` in their respective folders
-4. Each article needs to contain the metadata of the article at the beginning, the template of the metadata is as follows(yaml format):
+---
+
+## Standards and Structure
+
+### Metadata
+
+Each article must begin with metadata in YAML format. This metadata provides essential information that helps in organizing and displaying the article correctly on the company's website.
+
+*Metadata Template*
 
 ```yaml
 ---
@@ -28,162 +52,181 @@ thumb_h: "https://example.com/theHorizontalThumbOfTheArticle.png"
 intro: "Some introduction to the article"
 ---
 ```
-
-> [!important]
-> The `thumb` and `thumb_h` is coming from the designer. Please contact the designer.
-
-
-
-## Features
-- Supports all basic markdown formats(reference: [link](https://docs.github.com/en/get-started/writing-on-github/getting-started-with-writing-and-formatting-on-github/basic-writing-and-formatting-syntax)).
-- The display style of articles on GitHub and official website will be different.
-- Supports some CSS/HTML codes, if you have special needs, you can embed HTML/CSS to achieve more complex display styles (since GitHub does not support by default, you can only [preview on the official website](#how-to-preview-your-article-on-the-companys-website)).
-
-## Extended markdown syntax
-To provide a richer presentation of the article content, we have extended some common Markdown syntax using Markdown plugins.
-
-### plugin-alert
-[referrence](https://mdit-plugins.github.io/alert.html) 
-
-you can create block alerts with blockquote starting with `[!ALERT_NAME]` like:
-```
-> [!warning]
-> This is warning text
-```
-The `ALERT_NAME` isn't case sensitive and can be the following string:
-```
-note
-tip
-important
-caution
-warning
-```
-<img width="681" alt="image" src="https://github.com/57blocks/website-article/assets/6326386/43bf17a3-3a15-4de8-941c-0d7783c29ee1">
-
-### align
-[referrence](https://mdit-plugins.github.io/align.html) 
-
-```
-::: left
-Contents to align left
-:::
-
-::: center
-Contents to align center
-:::
-
-::: right
-Contents to align right
-:::
-
-::: justify
-Contents to align justify
-:::
-```
-
-### img-size
-[referrence](https://mdit-plugins.github.io/img-size.html) 
-
-You can use `=widthxheight` to specify the image size at the end of image link.
-
-Both width and height should be number which means size in pixels, and both of them are optional. The whole marker should be separated with spaces from the image link.
-
-```
-![Alt](/example.png =200x300)
-![Alt](/example.jpg "Image title" =200x)
-![Alt](/example.bmp =x300)
-```
-will be parsed as:
-```
-<img src="/example.png" width="200" height="300" />
-<img src="/example.jpg" title="Image title" width="200" />
-<img src="/example.bmp" height="300" />
-```
-
-### footnote 
-[referrence](https://mdit-plugins.github.io/footnote.html) 
-```
-Footnote 1 link[^first].
-
-[^first]: Footnote can reference [^second].
-[^second]: Other footnote.
-```
-
-## Preview:
-We have two fixed environments to display articles:
-- Product Environment - Will display articles from the `main` branch
-- Testing Environment - Will display articles from the `dev` branch
-
-
-## How to submit your article
-One-liner version: Add your article according to the standards and merge it into the `dev` branch in any way you like.
-
-Detailed version:
-### Local Submission
-- Clone this code repository locally
-- Create a branch of your own
+</details>
 
 > [!note]
-> The branch can only be start with `feat/`, `author/` or `article/`.
-```bash
-git checkout -b feat/AnyBranchYouWant
-```
+> The `thumb` and `thumb_h` images are placeholders and should be redesigned later. Contact the designer for the final images.
 
-- Create your article content according to the standards. You can use any markdown editor you like
-- You can add the assets needed for the article directly to the code.
-- Submit your code and create a pull request to `dev` branch.
+### Folder and File Naming
 
+1. Articles should be in Markdown format, using GFM (GitHub Flavored Markdown).
+2. Each article should be placed in its own independent folder within the `articles` directory.
+3. Folder names should be slugified and will serve as the article's URL.
+4. Each article must be named `README.md`.
+
+---
+
+## Writing and Styling
+
+### Markdown Syntax
+
+Our repository supports all basic Markdown formats. For a detailed guide, refer to [GitHub's Markdown Guide](https://docs.github.com/en/get-started/writing-on-github/getting-started-with-writing-and-formatting-on-github/basic-writing-and-formatting-syntax).
+
+### Extended Markdown Syntax
+
+To enhance the presentation of your articles, we support several Markdown plugins:
+
+- **plugin-alert** [referrence](https://mdit-plugins.github.io/alert.html) 
+  <details>
+  <summary>Usage Example</summary>
+
+  ```markdown
+  > [!warning]
+  > This is warning text
+  ```
+  </details>
+
+  Supported alert types: `note`, `tip`, `important`, `caution`, `warning`.
+
+- **align** [referrence](https://mdit-plugins.github.io/align.html) 
+  <details>
+  <summary>Usage Example</summary>
+
+  ```markdown
+  ::: left
+  Contents to align left
+  :::
+
+  ::: center
+  Contents to align center
+  :::
+
+  ::: right
+  Contents to align right
+  :::
+
+  ::: justify
+  Contents to align justify
+  :::
+  ```
+  </details>
+
+- **img-size** [referrence](https://mdit-plugins.github.io/img-size.html) 
+  <details>
+  <summary>Usage Example</summary>
+
+  ```markdown
+  ![Alt](/example.png =200x300)
+  ![Alt](/example.jpg "Image title" =200x)
+  ![Alt](/example.bmp =x300)
+  ```
+  </details>
+
+- **footnote** [referrence](https://mdit-plugins.github.io/footnote.html) 
+  <details>
+  <summary>Usage Example</summary>
+
+  ```markdown
+  Footnote 1 link[^first].
+
+  [^first]: Footnote can reference [^second].
+  [^second]: Other footnote.
+  ```
+  </details>
+
+If you require additional markdown syntax support, please contact the WCP project team.
+
+---
+
+## Submitting Your Article
+
+### Local Submission
+
+1. Clone the repository locally.
+2. Create a new branch.
+
+   **Note**: The branch name should start with `feat/`, `author/`, or `article/`.
+
+   ```bash
+   git checkout -b feat/YourBranchName
+   ```
+
+3. Write your article adhering to the standards and guidelines.
+4. Add necessary assets directly to the code.
+5. Commit your changes and push to your branch.
+6. Create a pull request (PR) to the `dev` branch for review.
 
 ### Direct Online Editing
-- Create your branch online in [page](https://github.com/57blocks/website-article/branches)
-> [!note]
-> The branch can only be start with `feat/`, `author/` or `article/`.
-  
-  ![image](https://github.com/57blocks/website-article/assets/6326386/b0e98017-1d09-414e-9711-9d458c5e46c1)
 
-- Create your markdown file online
-  ![image](https://github.com/57blocks/website-article/assets/6326386/26e05825-2e00-4469-bde1-b331609bddb9)
+1. Create a branch on [GitHub](https://github.com/57blocks/website-article/branches).
 
-The biggest advantage of creating online is that you can drag and drop assets into the editor window for upload and real-time preview.
-- Save and submit the file to your branch.
-- After you finish editing the article, create a pull request to `dev` branch.
+   **Note**: The branch name should start with `feat/`, `author/`, or `article/`.
 
+2. Create your markdown file using GitHub's online editor.
+3. Save and submit the file to your branch.
+4. Create a pull request (PR) to the `dev` branch once editing is complete.
 
-## How to preview your article on the company's website
-
-### Preview by url
-- First, get the raw address of your article on GitHub. You can obtain the raw url of your file by following the screenshot location below. Any of the following url formats are acceptable:
-  ```
-  // The article folder url
-  https://github.com/57blocks/website-article/tree/dev/articles/Image%20Quality%20Assessment
-
-  // The article README blob url
-  https://github.com/57blocks/website-article/blob/dev/articles/Image%20Quality%20Assessment/README.md
-
-  // The article README raw url
-  https://github.com/57blocks/website-article/raw/dev/articles/Image%20Quality%20Assessment/README.md
-
-  // The article README raw url
-  https://raw.githubusercontent.com/57blocks/website-article/dev/articles/Image%20Quality%20Assessment/README.md
-  ```
-  ![image](https://github.com/57blocks/website-article/assets/6326386/685bfe0b-e318-45cf-8a90-388bcfb31578)
-  
-
-- Open the url https://dev-ui.57blocks.io/blog/preview, And just paste your raw address, and click preview.
-  <img width="1620" alt="image" src="https://github.com/57blocks/website-article/assets/6326386/6fa29a85-0352-4ad4-a04b-8e9bf0845b9e">
-
-
-The default raw file is cached (5-minute cache) so you may not be able to get the latest preview effect.
-
-### Realtime preview by raw markdown
-- open the realtime editor: https://dev-ui.57blocks.io/blog/preview-editor
-- Just paste your markdown content into the input box and you can preview it, This is particularly useful when you need to continuously debug styles that are not supported by GitHub.
 > [!tip]
-> What is the baseurl and why is it needed?
->
-> The article mentions that the images in the Markdown text may use relative paths. When the Markdown text is copied to a website, the base path for the images is lost. Therefore, the baseurl field is used to ensure the images can be displayed correctly. If you use absolute paths for the images in your article, then this field can be ignored.
+> Online editing allows real-time preview and asset drag-and-drop functionality, providing a more seamless editing experience.
 
-  <img width="1608" alt="image" src="https://github.com/57blocks/website-article/assets/6326386/5ee30e56-df5f-4497-bde4-b98479909d21">
+---
 
-- The input logic for the baseurl field has the same implementation logic as the "Get Markdown URL" functionality in the "preview by url" block.
+## Previewing Your Article
+
+### Preview by URL
+
+1. Obtain the raw URL of your article from GitHub, considering there is a 5-minute cache delay.
+
+   Accepted formats:
+
+   - `https://github.com/57blocks/website-article/tree/dev/articles/YourArticle`
+   - `https://github.com/57blocks/website-article/blob/dev/articles/YourArticle/README.md`
+   - `https://github.com/57blocks/website-article/raw/dev/articles/YourArticle/README.md`
+   - `https://raw.githubusercontent.com/57blocks/website-article/dev/articles/YourArticle/README.md`
+
+2. Use the [Preview Tool](https://dev-ui.57blocks.io/blog/preview) and paste your raw URL to preview how it will appear on the company's website.
+
+### Realtime Preview
+
+For continuous style debugging, use the [Realtime Editor](https://dev-ui.57blocks.io/blog/preview-editor). Paste your markdown content into the input field and preview it in real time.
+
+**Note**: The `baseurl` field ensures that images with relative paths display correctly. If using absolute paths, this can be ignored.
+
+---
+
+## Review and Approval Process
+
+### Pull Request Creation
+
+Create a pull request (PR) from your feature branch to the `dev` branch. Include a clear description of your changes.
+
+Each time you make a modification to the PR, a bot will automatically generate a preview URL, allowing reviewers and designers to provide feedback conveniently.
+
+### Content Review
+
+A designated reviewer will evaluate the content of your article. Ensure all feedback and required revisions are addressed.
+
+### Image Optimization
+
+Upon generating the PR, you will receive a preview URL. Use this link to get design feedback and optimize images in your article. Large PNG images from sources like Figma may need compression using tools like [TinyPNG](https://tinify.com/).
+
+---
+
+## Merging and Deployment
+
+### Final Testing
+
+After the PR is approved and merged into the `dev` branch, the testing team will validate the article on the dev environment. 
+
+If the tester or designer has any feedback, **please add the corresponding feedback or comments in the PR**. The author will adjust the article based on the feedback. If you need any technical support during the process, please contact the wcp project team.
+
+
+### Deployment to Main Branch
+
+Once the testing is complete and the article is validated, the website publisher will merge the `dev` branch to the `main` branch, finalizing the deployment to the production environment.
+
+---
+
+By following these guidelines, you ensure a consistent, smooth, and high-quality publishing process for your articles. Happy writing!
+
 
