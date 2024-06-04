@@ -1,6 +1,6 @@
 ---
 title: "Image Search: Leveraging Image Models, Large Language Models, and Multimodal Models"
-author: ["Alpha Xiang / Machine Learning Engineer", "Yanqi Liu / Backend Software Engineer", "Anjing Wang / Full Stack Engineer"]
+author: ["Alpha Xiang / Machine Learning Engineer", "Yanqi Liu / Backend Software Engineer", "Anjing Wang / NLP, ML Engineer"]
 createTime: 2024-05-21
 tags: ["Image Search", "Image Retrieval", "LLM", "Image Encoder", "Image Embedding", "OCR", "Text Embedding", "CLIP", "Multimodal"]
 thumb: "thumb.png"
@@ -46,11 +46,11 @@ In 2021, OpenAI heralded a new era in AI with the open-source release of CLIP, a
 In the academic and industrial fields, there are several open-source image retrieval datasets designed for different scenarios. Some of these include:  
 1. [The MNIST Handwritten Digit Image Database](http://yann.lecun.com/exdb/mnist/): This dataset contains 70,000 images, each 28x28 in size, encompassing 10 classes of handwritten digits from 0 to 9. In image retrieval, it is common to use the grayscale pixel values directly as features, resulting in a feature dimension of 784.  
 2. The [CIFAR-10](http://www.cs.toronto.edu/~kriz/cifar.html) and [CIFAR-100](http://www.cs.toronto.edu/~kriz/cifar.html) Datasets: These datasets consist of 60,000 images each, divided into 10 and 100 classes respectively, with a resolution of 32x32 for each image. If CIFAR-100 seems too small, there is a larger option: the Tiny Images Dataset, from which CIFAR-10 and CIFAR-100 are derived. The Tiny Images Dataset comprises 80 million images.  
-3. [Caltech101](http://www.vision.caltech.edu/Image_Datasets/Caltech101/) and [Caltech256](http://www.vision.caltech.edu/Image_Datasets/Caltech256/): These datasets contain images across various classes, and as the names suggest, they feature 101 and 256 classes respectively. While they are commonly used for image classification, they are also well-suited for Content-Based Image Retrieval (CBIR). Caltech256, with nearly 30k images, is widely recognized as sufficient for academic publication. However, for industrial applications involving millions of images, alternative larger datasets would be needed.  
-4. [The INRIA Holidays Dataset](http://lear.inrialpes.fr/people/jegou/data.php#holidays): This dataset, frequently used in CBIR research, features 1,491 holiday-themed images taken by researchers from the Herve Jegou Institute, including 500 query images (one image per group) and 991 corresponding relevant images. The dataset comes with 4,455,091 extracted 128-dimensional SIFT descriptors and visual dictionaries derived from Flickr60K.  
+3. Caltech101 and Caltech256: These datasets contain images across various classes, and as the names suggest, they feature 101 and 256 classes respectively. While they are commonly used for image classification, they are also well-suited for Content-Based Image Retrieval (CBIR). Caltech256, with nearly 30k images, is widely recognized as sufficient for academic publication. However, for industrial applications involving millions of images, alternative larger datasets would be needed.  
+4. The INRIA Holidays Dataset: This dataset, frequently used in CBIR research, features 1,491 holiday-themed images taken by researchers from the Herve Jegou Institute, including 500 query images (one image per group) and 991 corresponding relevant images. The dataset comes with 4,455,091 extracted 128-dimensional SIFT descriptors and visual dictionaries derived from Flickr60K.  
 5. [The Oxford Buildings Dataset](http://www.robots.ox.ac.uk/~vgg/data/oxbuildings/) (5k Dataset images): This collection contains 5,062 images and is released by the VGG group at Oxford University. It is often cited in research papers involving vocabulary tree-based retrieval systems.  
 6. [The Paris Dataset (Oxford Paris)](http://www.robots.ox.ac.uk/~vgg/data/parisbuildings/): The VGG group from Oxford collected 6,412 images of Parisian landmarks from Flickr, including sights like the Eiffel Tower.  
-7. [The CTurin180 and 201Books DataSets](http://pacific.tilab.com/www/datasets/): Made available by Telecom Italia for Compact Descriptors for Visual Search, this dataset includes images of 201 book covers captured from multiple angles with a Nokia E7 (6 images for each book, totaling 1.3GB), and video images of 180 buildings in Turin captured with various cameras including the Galaxy S, iPhone 3, Canon A410, and Canon S5 IS (collectively 2.7GB).  
+7. The CTurin180 and 201Books DataSets: Made available by Telecom Italia for Compact Descriptors for Visual Search, this dataset includes images of 201 book covers captured from multiple angles with a Nokia E7 (6 images for each book, totaling 1.3GB), and video images of 180 buildings in Turin captured with various cameras including the Galaxy S, iPhone 3, Canon A410, and Canon S5 IS (collectively 2.7GB).  
 8. [The Stanford Mobile Visual Search Dataset](https://purl.stanford.edu/rb470rw0983): Released in February 2011 by Stanford, this dataset contains images from 8 different categories such as CD covers and paintings. Each category's images are captured with various cameras, including mobile phones, with a total of 500 images across all categories.  
 #### 3.1.3 Metric  
 Image retrieval systems, including Content-Based Image Retrieval (CBIR) systems, are traditionally evaluated using several metrics. Each of these metrics quantifies different aspects of the system's performance, mostly focusing on the relevance of the retrieved images with respect to a given query image. The most common evaluation metrics include:  
@@ -64,8 +64,8 @@ Mean Average Precision (mAP): is a comprehensive metric that calculates the aver
 ![ap.png](ap.png)
 ![map.png](map.png)
 Where:  
-GTP:denotes the total number of ground truth positives, that is, the number of truth labels/positive samples;  
-n:denotes the number of images involved in the retrieval;  
+GTP: denotes the total number of ground truth positives, that is, the number of truth labels/positive samples;  
+n: denotes the number of images involved in the retrieval;  
 rel@k: is a schematic function that is set to 1 when the first retrieval candidate is a similar sample and 0 otherwise.  
 ### 3.2 OCR
 As OCR stands for optical character recognition, OCR technology deals with the problem of recognizing all kinds of different characters. Both handwritten and printed characters can be recognized and converted into a machine-readable, digital data format.  
@@ -148,7 +148,6 @@ In the last year, considerable progress has been seen in the realm of multimodal
 MM-LLMs focusing on multimodal understanding typically encompass just the first three components: modality encoders, the core LLM backbone, and modality generators. Throughout the training phase, these elements are generally maintained in a frozen state. Optimization efforts are concentrated on the input and output projectors, which are relatively lightweight. As a result, a small fraction of the overall parameters—commonly about 2%—are actually trainable within MM-LLMs. This percentage is determined by the size of the principal LLM integrated into the MM-LLM framework. Due to this configuration, MM-LLMs can undergo cost-effective training, making the enhancement of performance in assorted multimodal tasks more attainable.  
 
 ![figure 12 The general model architecture of MM-LLMs and the implementation choices for each component.png](figure%2012%20The%20general%20model%20architecture%20of%20MM-LLMs%20and%20the%20implementation%20choices%20for%20each%20component.png#center)    
-<center>Fig12. The general model architecture of MM-LLMs and the implementation choices for each component<sup>[14]</sup>.  </center>  </p>  
 
 In this undertaking, we carried out validations and tests for image caption generation using GPT4 vision, LLaVa<sup>[15]</sup><sup>[16]</sup>, and Qwen-vl<sup>[13]</sup>models. We meticulously analyzed the precision of the image descriptions provided by these models. Given that GPT4 vision has not been made available for open source use, we based our further enhancements on the Qwen-vl model, selecting it as our foundational model for fine-tuning after our comparative assessments were concluded.  
 ## 4. Conclusion  
