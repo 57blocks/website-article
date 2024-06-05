@@ -1,6 +1,25 @@
 {
   "articles": [
     {
+      "title": "What Makes a Good Vector Database --- LanceDB vs Pinecone",
+      "author": [
+        "Alex Hu / Machine Learning Engineer",
+        "Steven Zhang / Backend Software Engineer",
+        "Anjing Wang / Full Stack Engineer"
+      ],
+      "createTime": "2024-05-22T00:00:00.000Z",
+      "tags": [
+        "Vector Database",
+        "LanceDB",
+        "Pinecone"
+      ],
+      "thumb": "./thumb.png",
+      "thumb_h": "./thumb_h.png",
+      "intro": "In an era where artificial intelligence is increasingly prevalent, the integration of vector databases with AI is enhancing outcomes across a myriad of application scenarios. But what exactly defines a \"Superior Vector Database\"? This article provides a comparative analysis of LanceDB and Pinecone across various aspects and delves into the application of different databases in specific scenarios. We propose that there is no one-size-fits-all \"best\" database; rather, a Superior Vector Database is one that is well-matched with its use case, meeting the unique requirements of that scenario.",
+      "path": "articles/What Makes a Good Vector Database/README.md",
+      "slug": "what-makes-a-good-vector-database"
+    },
+    {
       "title": "Document Information Extraction with Large Language Models (framework, methods,  ensemble, and evaluation)",
       "author": [
         "Carvin Li / ML Engineer",
