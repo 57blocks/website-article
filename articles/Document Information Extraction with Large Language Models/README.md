@@ -9,7 +9,7 @@ intro: "
 This project explores using Large Language Models (LLMs) such as GPT-3, GPT-4, LLaMA 2, Mistral AI, and Claude 2 for information extraction tasks to convert raw text into structured data, addressing the limitations of traditional, labor-intensive IE methods."
 ---
 
-# **Document Information Extraction with Large Language Models (framework, methods, ensemble, and evaluation)**
+# Document Information Extraction with Large Language Models (framework, methods, ensemble, and evaluation)
 
 ## 1. Introduction
 
@@ -47,31 +47,31 @@ Complex situations can arise, particularly with range values. For instance, when
 
 Moreover, unit measurements may be required to specify in prompt. To make evaluation easy, we expect LLMs to present units in some firm format if the result comes with a unit. To standardize units through prompts, model outputs often exhibit inconsistencies. Therefore, additional processing such as unit convert may be required to ensure unit forms closely match those in the Ground Truth.
 
-### **Results Ensemble**
+### Results Ensemble
 
 Ensemble LLMs amalgamate predictions from multiple LLMs using various strategies like averaging, voting and stacking. This approach is motivated by addressing limitations inherent in individual LLMs, such as understanding complex contexts, performing mathematical calculations, or avoiding hallucination. Ensembles offer a promising solution by aggregating predictions, enhancing overall performance, and bolstering robustness across varied tasks and datasets.
 
 Among Ensemble strategies of Bagging, Boosting and Stacking, Stacking aligns well with our task requirements. Due to certain constraints, training or fine-tuning LLMs may not be viable. Therefore, our emphasis is on meta-model design. We've explored some different methods including random selection, adjusting weights based on historical evaluations, and leveraging confidence scores from LLMs for final result selection. Our ultimate aim is to outperform individual models.
 
-## 4. **Results Evaluation**
+## 4. Results Evaluation
 
-### **Alternative Evaluation Approach**
+### Alternative Evaluation Approach
 
 Traditional classification evaluation methods may not be suitable for our task, which involves assessing a combination of different problem types. To simplify evaluation, we devised a customized method based on traditional principles, tailored specifically for tasks akin to ours.
 
-### **Diverse Value Types**
+### Diverse Value Types
 
 Our task entails extracting numerous properties, each with various value types: binary, multi-class, numerical, and textual. Before extracting the property value, each property is classified as either "mentioned" or "not mentioned". For properties without specific values, such as equipment or techniques mentioned in the text, we would define a binary response from the LLM: "mentioned" and "not mentioned". 
 
 Multi-class properties may have different values across articles, but each article typically has a unique one. If a property is absent, it is marked as "not mentioned". Numeric and textual properties represent values as numbers or text, respectively, and are also marked as "not mentioned" for absence.
 
-### **Sparse and Dense Data**
+### Sparse and Dense Data
 
 Generally, the data density is different in each article. Due to the varying theme of each article, some may mention more properties compared to the other articles. If the article is too sparse, simply guessing every property to "not mentioned" may yield an over $90\\%$ accuracy. However, this result is obviously not our expectation.   
 
 During evaluation, we exclude properties marked as "not mentioned" in both the ground truth and LLM results from statistical analysis. Our focus lies on properties with values presented in the Ground Truth but differing from LLMs’ results.
 
-### **Confusion Matrix (Customized)**
+### Confusion Matrix (Customized)
 
 We defined a set of TP/TN/FP/FN to evaluate the results.
 
@@ -81,7 +81,7 @@ There is another version of the confusion matrix that may be a little bit easier
 
 ![img](metrics_3.png)
 
-### **Full Evaluation Metrics**
+### Full Evaluation Metrics
 
 <div class="min-width-table">
 
@@ -102,44 +102,44 @@ There is another version of the confusion matrix that may be a little bit easier
 </div>
 
 
-## 5. **Error Analysis**
+## 5. Error Analysis
 
-### **Misunderstanding & Terminology Confusion**
+### Misunderstanding & Terminology Confusion
 
 LLMs may occasionally struggle to distinguish between terms like "Injection" and "Re-injection" though they can provide correct answers when queried directly (ask LLM difference between "Injection" and "Re-injection"). In practice, when an article mentions "Injection" , the LLM may misinterpret it as "Re-injection" , potentially overlooking distinctions crucial to our task. To mitigate such errors without extensive model training, we optimize prompts by adding constraints or explanations. However, verbose prompts often yield unsatisfactory results, creating a "Whack-A-Mole" scenario.
 
-### **Unit Conversion Issues** 
+### Unit Conversion Issues
 
 Incorrect units accompanying numerical values may distort assessments, even if LLM results are accurate. We address this by parsing units during extraction or employing LLMs for unit conversion.
 
-### **Mathematical Mistakes**
+### Mathematical Mistakes
 
 In practice, LLMs may struggle with basic arithmetic operations like addition, subtraction, multiplication, and division, which is possible to lead to inaccuracies in properties such as a property like "Water-to-Oil Ratio". These properties often require mathematical calculations, as the exact values are not provided in the text but the components for calculation are mentioned. Consequently, the model may incorrectly label them as "not mentioned".
 
 To mitigate this issue, we minimize the reliance on LLMs for mathematical operations whenever possible. For example, when extracting the "Water-to-Oil Ratio", we may concurrently extract the necessary factors for calculation. If the extraction is successful, the result would be reserved. Otherwise, if the contributing factors are extracted, we calculate the ratio. If neither is extracted, we would assign a value of "not mentioned" to the property. Additionally, the contributing factors themselves may not always be included in the extraction result evaluation.
 
-### **Human Labeling Errors** 
+### Human Labeling Errors 
 
 The Ground Truth theoretically is always 100% correct. The annotation results labeled by human as ground truth but might be wrong. Various mistakes, such as omissions (missing to label) and inaccuracies (incorrect labels), may occur. This kind of mistakes should not be attributed to LLMs but to inaccuracies of the Ground Truth. Therefore, when reviewing extraction results, it is necessary to cross-check the Ground Truth against the original text to enhance its accuracy.
 
-## 6. **Performance**
+## 6. Performance
 
 Despite encountering challenges, we've achieved significant milestones. For annotated documents, we achieved an over $90\\%$ extraction accuracy for all properties and an over $70\\%$ accuracy excluding "not mentioned" properties in both Ground Truth and LLM results. We observed varying extraction accuracy among different LLM models. GPT-4 stands out, surpassing even GPT-4 Turbo, possibly due to its better handling of lengthy text, leading to a more detailed understanding. GPT-4 also excels in adhering to output format constraints. Claude2 demonstrates comparable understanding to GPT-4 and occasionally provides overlooked details. This prompted us to introduce the ensemble approach. Conversely, GPT3-Turbo and LLaMA2 showed a weaker performance, often misunderstanding prompts and disregarding result format requirements. Mistral AI's performance falls between GPT-4 and GPT-3 Turbo.
 
-## 7. **Challenges**
+## 7. Challenges
 
-### **Text Expression Diversity**
+### Text Expression Diversity
 
 Text expression may vary significantly across articles due to diverse themes, writing styles, purposes, and authors' cultural backgrounds. Using the same prompt for different articles often yields disparate results, akin to playing "Whack-A-Mole". Covering all expressions exhaustively, especially in large text volumes, is nearly impossible. Tailoring prompts for specific articles may lead to over-fitting, necessitating a focus on encompassing general cases and avoiding overly specific descriptions.
 
-### **Design of Meta-Model of Ensemble**
+### Design of Meta-Model of Ensemble
 
 Designing a meta-model for Ensemble Stacking presents another challenge. Without Ground Truth reference, determining which model performs best for each property when ensemble different LLM results is very difficult. We've explored a meta-model design based on past evaluation results and LLM-provided confidence, marginally improving $TP\\%$ values by approximately $3\\%$ - $5\\%$. Further research may be needed for continued enhancement.
 
-### **Data Annotation**
+### Data Annotation
 
 Data annotation for information extraction is notably challenging. Annotators, particularly for academic papers, must be professionals or experts to ensure annotation’s accuracy and completeness. Reading articles is time-consuming, especially with thousands of documents. Initial annotation efforts began with a few papers, gradually increasing to dozens, and eventually hundreds or thousands as the program developed. However, this quantity still falls short of reflecting the overall distribution realistically. While programs can alleviate some initial annotation work, manual validation remains necessary, with the required time increasing alongside text volume. 
 
-## 8. **Conclusion**
+## 8. Conclusion
 
 Compared to traditional machine learning tasks like image recognition and text classification, text information extraction presents greater challenges. Particularly in professional domains, diverse content is generated daily. Comprehending these articles often demands extensive background knowledge and experience. Structured data enables a more intuitive grasp of the information within these articles and streamlines integration with downstream applications. In this project, we explored a pathway for text information extraction using Large Language Models as a powerful tool, and achieving some success. However, our work marks just the beginning of a longer journey ahead.
