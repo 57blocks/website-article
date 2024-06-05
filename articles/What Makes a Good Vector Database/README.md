@@ -389,8 +389,7 @@ specific use cases of a given project.
 
 Here are some potential application scenarios for LanceDB and Pinecone:
 
-
-
+<div class="min-width-table">
 
 | Application Scenarios | LanceDB | Pinecone |
 | :----------- | :----------- | :----------- |
@@ -400,6 +399,8 @@ Here are some potential application scenarios for LanceDB and Pinecone:
 | Real-Time Recommendation Systems | | Optimized for high-speed, real-time data handling, ideal for recommendation engines needing immediate, accurate similarity matches. |
 | High-Precision Similarity Search | | Optimal for precision-focused, high-dimensional vector search projects with efficient scaling and resource management to maximize accuracy and limit false positives. |
 | Low Latency, High Throughput Situations | | Ideal for low-latency, high-throughput use cases like financial risk, cybersecurity, smart homes, and security, where Pinecone offers quick setup for high-performance vector search. |
+
+</div>
 
 
 LanceDB's extensive feature set is designed to manage a plethora of
