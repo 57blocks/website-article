@@ -34,7 +34,7 @@ performance.
 
 Data migration capabilities are also vital, facilitating smooth
 transitions and scaling by allowing efficient replication of
-tables---even those with considerable volumes of data. This ensures that
+tables-even those with considerable volumes of data. This ensures that
 the database remains adaptable and responsive as organizational needs
 evolve, without interrupting existing processes.
 
@@ -49,12 +49,12 @@ deployments.
 Features that assure data persistence and reliability are indicative of
 a vector database's caliber. Leading databases provide secure data
 storage with resilience against system failures, maintaining consistent
-performance and response times even under high demand---a requirement
+performance and response times even under high demand-a requirement
 for enterprise-grade applications.
 
 In today's diverse technological ecosystem, a vector database's
 integration capabilities must be broad. Compatibility becomes
-critical---it should align with a variety of data formats and integrate
+critical-it should align with a variety of data formats and integrate
 smoothly with the prevailing data science and machine learning
 ecosystems.
 
@@ -242,9 +242,9 @@ allowing operations and queries to be restricted to specific, isolated
 segments. This facilitates differentiated search experiences tailored to
 particular subsets of data.
 
-Indexes can be scaled horizontally---by adding pods, which suspends
+Indexes can be scaled horizontally-by adding pods, which suspends
 upserts temporarily and increases general capacity, or by adding
-replicas, which boosts throughput without disrupting upserts---and
+replicas, which boosts throughput without disrupting upserts-and
 vertically for accommodating different load requirements.
 
 It's important to be aware that the GCP starter environment doesn't
