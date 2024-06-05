@@ -1,5 +1,5 @@
 ---
-title: "What Makes a Good Vector Database --- LanceDB vs Pinecone"
+title: "What Makes a Good Vector Database - LanceDB vs Pinecone"
 author: ["Alex Hu / Machine Learning Engineer", "Steven Zhang / Backend Software Engineer", "Anjing Wang / NLP, ML Engineer"]
 createTime: 2024-05-22
 tags: ["Vector Database", "LanceDB", "Pinecone"]
