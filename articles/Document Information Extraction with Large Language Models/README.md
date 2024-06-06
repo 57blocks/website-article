@@ -2,7 +2,7 @@
 title: "Document Information Extraction with Large Language Models (framework, methods,  ensemble, and evaluation)"
 author: ["Carvin Li / Machine Learning Engineer", "Anjing Wang / AI Lead"]
 createTime: 2024-05-21
-tags: ["Information Extraction", "Large Language Model"]
+tags: ["Information Extraction", "LLM"]
 thumb: "thumb_v.png"
 thumb_h: "thumb_h.png"
 intro: "
