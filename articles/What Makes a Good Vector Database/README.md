@@ -13,7 +13,7 @@ intro: "In an era where artificial intelligence is increasingly prevalent, the i
 In the data-driven age where processing high-dimensional vectors
 efficiently marks the difference between industry leaders and the competition, the significance of a top-tier vector database cannot be overstated. Such a database must possess a definitive set of characteristics that not only address the immense complexity of big data but also cater to the refined demands of advanced analytics.
 
-![Vector database funtions](./image2.png)
+![Vector database funtions](./image1.png)
 
 At the core, search speed stands as the linchpin of vector database
 performance, impacting user experience and real-time decision-making.
@@ -142,7 +142,7 @@ of dicts, pd.DataFrame, pa.Table, iterable record batches, Pydantic
 models, and JavaScript objects. This adaptability makes it suitable for
 various structured and semi-structured data dealings.
 
-![LancdDB Overview](./image1.png)
+![LancdDB Overview](./image2.png)
 
 Pydantic integration with LanceDB enables the use of advanced features
 such as nested schemas and validators for building complex, valid table
@@ -288,13 +288,14 @@ setting 'accelerator' to 'cuda' or 'mps' (for Apple Silicon
 devices) to facilitate GPU training.
 
 Search refinement can be fine-tuned using two parameters:
-'[[nprobes]{.underline}](https://lancedb.github.io/lancedb/ann_indexes/#querying-an-ann-index)',
+'[nprobes](https://lancedb.github.io/lancedb/ann_indexes/#querying-an-ann-index)',
 which adjusts the number of partitions to search in, and
 'refine_factor', influencing the refinement passes. These tools help
 in fine-tuning the search for a balance between speed and accuracy.
 
 ```python
 import lance
+
 
 dataset = lance.dataset("/tmp/sift.lance")
 dataset.create_index(
