@@ -1,47 +1,11 @@
 {
   "articles": [
     {
-      "title": "What Makes a Good Vector Database - LanceDB vs Pinecone",
-      "author": [
-        "Alex Hu / ML Engineer",
-        "Steven Zhang / Backend Software Engineer",
-        "Anjing Wang / NLP, ML Engineer"
-      ],
-      "createTime": "2024-05-22T00:00:00.000Z",
-      "tags": [
-        "Vector Database",
-        "LanceDB",
-        "Pinecone"
-      ],
-      "thumb": "./thumb.png",
-      "thumb_h": "./thumb_h.png",
-      "intro": "In an era where artificial intelligence is increasingly prevalent, the integration of vector databases with AI is enhancing outcomes across a myriad of application scenarios. But what exactly defines a \"Superior Vector Database\"? This article provides a comparative analysis of LanceDB and Pinecone across various aspects and delves into the application of different databases in specific scenarios. We propose that there is no one-size-fits-all \"best\" database; rather, a Superior Vector Database is one that is well-matched with its use case, meeting the unique requirements of that scenario.",
-      "path": "articles/What Makes a Good Vector Database/README.md",
-      "slug": "what-makes-a-good-vector-database"
-    },
-    {
-      "title": "Document Information Extraction with Large Language Models (framework, methods,  ensemble, and evaluation)",
-      "author": [
-        "Carvin Li / ML Engineer",
-        "Anjing Wang / NLP, ML Engineer"
-      ],
-      "createTime": "2024-05-21T00:00:00.000Z",
-      "tags": [
-        "Information Extraction",
-        "Large Language Model"
-      ],
-      "thumb": "thumb_v.png",
-      "thumb_h": "thumb_h.png",
-      "intro": " This project explores using Large Language Models (LLMs) such as GPT-3, GPT-4, LLaMA 2, Mistral AI, and Claude 2 for information extraction tasks to convert raw text into structured data, addressing the limitations of traditional, labor-intensive IE methods.",
-      "path": "articles/Document Information Extraction with Large Language Models/README.md",
-      "slug": "document-information-extraction-with-large-language-models"
-    },
-    {
       "title": "Image Search: Leveraging Image Models, Large Language Models, and Multimodal Models",
       "author": [
         "Alpha Xiang / Machine Learning Engineer",
         "Yanqi Liu / Backend Software Engineer",
-        "Anjing Wang / NLP, ML Engineer"
+        "Anjing Wang / AI Lead"
       ],
       "createTime": "2024-05-21T00:00:00.000Z",
       "tags": [
@@ -58,8 +22,45 @@
       "thumb": "thumb.png",
       "thumb_h": "thumb_h.png",
       "intro": "This is a technical article about image and text retrieval. This paper uses a variety of cutting-edge deep learning algorithms, including Image coding, Text coding, OCR, image-to-text, multimodal large model, etc.",
+      "top": true,
       "path": "articles/Image Search: Leveraging Image Models, Large Language Models, and Multimodal Models/README.md",
       "slug": "image-search-leveraging-image-models-large-language-models-and-multimodal-models"
+    },
+    {
+      "title": "What Makes a Good Vector Database - LanceDB vs Pinecone",
+      "author": [
+        "Alex Hu / Machine Learning Engineer",
+        "Steven Zhang / Backend Software Engineer",
+        "Anjing Wang / AI Lead"
+      ],
+      "createTime": "2024-05-22T00:00:00.000Z",
+      "tags": [
+        "Vector Database",
+        "LanceDB",
+        "Pinecone"
+      ],
+      "thumb": "./thumb.png",
+      "thumb_h": "./thumb_h.png",
+      "intro": "In an era where artificial intelligence is increasingly prevalent, the integration of vector databases with AI is enhancing outcomes across a myriad of application scenarios. But what exactly defines a \"Superior Vector Database\"? This article provides a comparative analysis of LanceDB and Pinecone across various aspects and delves into the application of different databases in specific scenarios. We propose that there is no one-size-fits-all \"best\" database; rather, a Superior Vector Database is one that is well-matched with its use case, meeting the unique requirements of that scenario.",
+      "path": "articles/What Makes a Good Vector Database/README.md",
+      "slug": "what-makes-a-good-vector-database"
+    },
+    {
+      "title": "Document Information Extraction with Large Language Models (framework, methods,  ensemble, and evaluation)",
+      "author": [
+        "Carvin Li / Machine Learning Engineer",
+        "Anjing Wang / AI Lead"
+      ],
+      "createTime": "2024-05-21T00:00:00.000Z",
+      "tags": [
+        "Information Extraction",
+        "Large Language Model"
+      ],
+      "thumb": "thumb_v.png",
+      "thumb_h": "thumb_h.png",
+      "intro": " This project explores using Large Language Models (LLMs) such as GPT-3, GPT-4, LLaMA 2, Mistral AI, and Claude 2 for information extraction tasks to convert raw text into structured data, addressing the limitations of traditional, labor-intensive IE methods.",
+      "path": "articles/Document Information Extraction with Large Language Models/README.md",
+      "slug": "document-information-extraction-with-large-language-models"
     },
     {
       "title": "Overcoming challenges in Android Gradle Dependency Management",
