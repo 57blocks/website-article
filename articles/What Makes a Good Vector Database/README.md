@@ -1,6 +1,6 @@
 ---
 title: "What Makes a Good Vector Database - LanceDB vs Pinecone"
-author: ["Alex Hu / ML Engineer", "Steven Zhang / Backend Software Engineer", "Anjing Wang / NLP, ML Engineer"]
+author: ["Alex Hu / Machine Learning Engineer", "Steven Zhang / Backend Software Engineer", "Anjing Wang / AI Lead"]
 createTime: 2024-05-22
 tags: ["Vector Database", "LanceDB", "Pinecone"]
 thumb: "./thumb.png"
@@ -114,7 +114,7 @@ serverless in the cloud, making the storage clearly separated from
 compute. Currently in private beta with general availability coming
 soon.
 
-## 3. Key Differences Between Lancedb and Pinecone
+## 3. Key Differences Between LanceDB and Pinecone
 
 ### 3.1. Workflow
 

@@ -1,6 +1,6 @@
 ---
 title: "Document Information Extraction with Large Language Models (framework, methods,  ensemble, and evaluation)"
-author: ["Carvin Li / ML Engineer", "Anjing Wang / NLP, ML Engineer"]
+author: ["Carvin Li / Machine Learning Engineer", "Anjing Wang / AI Lead"]
 createTime: 2024-05-21
 tags: ["Information Extraction", "Large Language Model"]
 thumb: "thumb_v.png"
@@ -29,7 +29,7 @@ In the "Result Merge" step, we establish how to handle answers for the same ques
 
 In certain specialized fields of literature, specific properties may not be explicitly stated. Instead, the necessary computation factors are provided. However, due to the limited knowledge reservoir of Large Language Models (LLMs) in niche fields, they may not fully grasp the relationship between a property and its calculation factors. In such cases, we can only inquire about the computation factors and then calculate the actual value for the properties of interest based on specific formulas.
 
-Once the extracted data is structured, the next step is to evaluate the results using pre-annotated texts. This allows us to assess the performance of each LLM. For incorrect answers, we conduct further analysis to identify the causes of the error (see the "Error Results Analysis" section for specifics). After analyzing the causes, potential methods such as prompt engineering for more accurate questioning, ground truth correction, and optimization of the LLM Result Processor may be undertaken (details in the "Result Evaluation" section):
+Once the extracted data is structured, the next step is to evaluate the results using pre-annotated texts. This allows us to assess the performance of each LLM. For incorrect answers, we conduct further analysis to identify the causes of the error (see the "Error Results Analysis" section for specifics). After analyzing the causes, potential methods such as prompt engineering for more accurate questioning, ground truth correction, and optimization of the LLM Result Processor may be undertaken (details in the "Result Evaluation" section).
 
 Finally, we employ ensemble methods to select outputs from multiple models, aiming to retain the results with the highest accuracy.
 
