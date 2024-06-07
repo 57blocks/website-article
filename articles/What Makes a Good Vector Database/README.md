@@ -85,7 +85,7 @@ harnessing the full potential of vector data.
 
 ## 2. Introduction
 
-### 2.1. What is Pinecone ?
+### 2.1 What is Pinecone
 
 Pinecone is a closed source, fully-managed, cloud-native vector database
 specifically designed for high-performance Artificial Intelligence (AI)
@@ -98,7 +98,7 @@ useful for applications such as recommendation systems, image search,
 and natural language processing tasks, where similarity search plays a
 vital role.
 
-### 2.1. What is LanceDB ?
+### 2.2 What is LanceDB
 
 LanceDB is an open-source vector database that excels in handling
 multimodal data including text, images, and video. It employs a
@@ -116,7 +116,7 @@ soon.
 
 ## 3. Key Differences Between LanceDB and Pinecone
 
-### 3.1. Workflow
+### 3.1 Workflow
 
 The workflow in Pinecone starts with creating an index. This index must
 be established prior to uploading any vector data into the system, which
@@ -131,7 +131,7 @@ initial step involves defining a data table's schema (structure). Once
 the schema has been set, data can be added, and search operations can
 commence.
 
-### 3.2. Data Type
+### 3.2 Data Type
 
 Pinecone focuses on array vector types used in high-dimensional vector
 space, essential for applications involving similarity search and
@@ -186,7 +186,7 @@ query_image = Image.open(p)
 table.search(query_image)
 ```
 
-### 3.3. Search
+### 3.3 Search
 
 Pinecone Database empowers users to perform scalable Approximate
 Nearest Neighbor (ANN) searches quickly and accurately, excels with both
@@ -228,7 +228,7 @@ constitutes a KNN (k-nearest neighbors) search. By constructing a vector
 index, LanceDB utilizes Approximate Nearest Neighbor (ANN) Search with a
 Vector Index for enhanced efficiency during query processing.
 
-### 3.4. Index
+### 3.4 Index
 
 Pinecone's index is a customized, optimized structure made for
 efficient vector similarity searches, known for bolstering the
@@ -313,7 +313,7 @@ tbl.search(np.random.random((1536)))
     .to_pandas()
 ```
 
-### 3.5. Versioning
+### 3.5 Versioning
 
 In Pinecone, a collection captures a static snapshot of an index at a
 specific moment, preserving the complete set of vectors and metadata in
