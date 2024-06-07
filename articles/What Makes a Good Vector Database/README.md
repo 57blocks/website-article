@@ -390,19 +390,29 @@ specific use cases of a given project.
 
 Here are some potential application scenarios for LanceDB and Pinecone:
 
-<div class="min-width-table">
+> **1. Multimodal Data Analysis**
+> - **LanceDB**: Designed for integrating and analyzing diverse data types (such as images, text, audio), suitable for multimedia search engines, cross-modal retrieval, and smart recommendation systems.
+> - **Pinecone**: Primarily optimized for efficient vector search, not specifically optimized for handling and analyzing diverse multimodal data.
 
-| Application Scenarios | LanceDB | Pinecone |
-| :----------- | :----------- | :----------- |
-| Multimodal Data Analysis         | Ideal for projects that integrate and analyze diverse data (like images, text, audio), suitable for multimedia search engines, cross-modal retrieval, or smart recommendation systems.        |         |
-| Customizable Search and Analysis | Ideal for projects needing deep customization of search algorithms and processing workflows, useful in research institutions or corporate R&D departments where researchers may need special preprocessing, indexing, or querying of vector data. | |
-| Hybrid or Private Cloud Deployment | Supports flexible storage with MinIO and S3 integration, ideal for secure, compliant data handling in hybrid/private clouds. | |
-| Real-Time Recommendation Systems | | Optimized for high-speed, real-time data handling, ideal for recommendation engines needing immediate, accurate similarity matches. |
-| High-Precision Similarity Search | | Optimal for precision-focused, high-dimensional vector search projects with efficient scaling and resource management to maximize accuracy and limit false positives. |
-| Low Latency, High Throughput Situations | | Ideal for low-latency, high-throughput use cases like financial risk, cybersecurity, smart homes, and security, where Pinecone offers quick setup for high-performance vector search. |
+> **2. Customizable Search and Analysis**
+> - **LanceDB**: Supports deep customization of search algorithms and processing workflows, making it ideal for research institutions and corporate R&D departments that require specialized preprocessing, indexing, or querying of vector data.
+> - **Pinecone**: Offers limited customization compared to LanceDB; mainly focusing on efficient default settings, which may be less flexible for scenarios requiring deeply customized search logic or workflows.
 
-</div>
+> **3. Hybrid or Private Cloud Deployment**
+> - **LanceDB**: Supports flexible storage with MinIO and S3 integration, suitable for secure and compliant data management in hybrid or private cloud environments.
+> - **Pinecone**: Primarily built as a cloud service; its support for private or hybrid cloud deployments is less flexible compared to LanceDB, with a focus on leveraging the convenience and scalability of cloud platforms.
 
+> **4. Real-Time Recommendation Systems**
+> - **LanceDB**: While capable of handling diverse data, it does not specifically emphasize optimization for high-concurrency data processing required by real-time recommendation systems.
+> - **Pinecone**: Specially optimized for high-throughput real-time data processing, making it highly suitable for recommendation engines that require immediate and accurate similarity matching.
+
+> **5. High-Precision Similarity Search**
+> - **LanceDB**: Although capable of handling high-dimensional vector search, its optimization and resource management strategies for high-precision search are less prominent compared to those of Pinecone.
+> - **Pinecone**: Specifically optimized for high-precision, high-dimensional vector search, excelling in efficient scaling and resource management to minimize false positives, making it suitable for scenarios with very high accuracy requirements.
+
+> **6. Low Latency, High Throughput Situations**
+> - **LanceDB**: Not explicitly optimized for the extreme demands of low latency and high throughput.
+> - **Pinecone**: Optimized for low latency and high throughput scenarios, such as financial risk management, cybersecurity, smart homes, and security, offering a high-performance vector search solution that is quick to deploy and especially suitable for applications with strict response time and processing capacity requirements.
 
 LanceDB's extensive feature set is designed to manage a plethora of
 data types and complex queries adeptly. Nevertheless, in scenarios where
