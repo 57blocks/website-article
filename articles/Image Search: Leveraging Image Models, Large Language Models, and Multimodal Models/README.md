@@ -21,7 +21,7 @@ Aligned with the project's directives and after a thorough investigation of both
 ![figure 1 image search framework.png](figure%201%20image%20search%20framework.png#center)
 
 ::: center
-**Fig 1.Algorithm Pipline**
+Fig 1.Algorithm Pipline
 :::
 
 ## 3. Algorithm details
@@ -41,11 +41,11 @@ In the case of CNNs, features may also be derived through an end-to-end process 
 ![figure 2 General framework of the CBIR system.png](figure%202%20General%20framework%20of%20the%20CBIR%20system.png#center)
 
 ::: center
-**Fig 2.General Framework of the CBIR system[^first]**
+Fig 2.General Framework of the CBIR system[^first]
 :::
 ![figure 3 A general pipeline of SIFT- and CNN-based retrieval models.png](figure%203%20A%20general%20pipeline%20of%20SIFT-%20and%20CNN-based%20retrieval%20models.png#center)
 ::: center
-**Fig 3.A general pipline of SIFT- and CNN-based retrieval models[^third]**
+Fig 3.A general pipline of SIFT- and CNN-based retrieval models[^third]
 :::
 
 #### 3.1.1 Image Feature Extraction Model
@@ -55,14 +55,14 @@ ResNet is an emblematic model architecture that epitomizes CNN-based deep learni
 
 ![figure 4 Residual learning: a building block.png](figure%204%20Residual%20learning%3A%20a%20building%20block.png#center)
 ::: center
-**Fig 4.Residual learning: a building block**
+Fig 4.Residual learning: a building block
 :::
 
 In 2021, OpenAI heralded a new era in AI with the open-source release of CLIP, a multimodal vision-language model that underwent training with an extensive collection of around 400 million image-text pairs. This training regimen significantly enhanced the generalization performance of the Image Encoder. As a result, CLIP's Image Encoder emerged as a powerful tool for generating domain-specific image embeddings. Keen on maximizing the feature extraction efficiency in specific areas of interest, our team employed the CLIP model framework to curate custom image-text pairs, allowing us to refine and optimize the image encoder to suit our precise requirements.
 
 ![figure 5 clip framework.png](figure%205%20clip%20framework.png#center)
 ::: center
-**Fig 5.CLIP Framework**
+Fig 5.CLIP Framework
 :::
 
 #### 3.1.2 Dataset
@@ -113,7 +113,7 @@ OCR (Optical Character Recognition) typically consists of two crucial steps: Tex
 
 ![figure 6 OCR process.png](figure%206%20OCR%20process.png#center)
 ::: center
-**Fig 6.OCR Process**
+Fig 6.OCR Process
 :::
 
 #### 3.2.1 Text Detection
@@ -129,7 +129,7 @@ Ultimately, the output of DBNet is a binarized text region prediction map, which
 
 ![figure 7 DBNet framework.png](figure%207%20DBNet%20framework.png#center)
 ::: center
-**Fig 7.DBNet Framework**
+Fig 7.DBNet Framework
 :::
 
 **CTPN**
@@ -140,7 +140,7 @@ The output of CTPN is a set of text proposals, which can then be fed into a subs
 
 ![figure 8 CTPN framework.png](figure%208%20CTPN%20framework.png#center)
 ::: center
-**Fig 8.CTPN Framework**
+Fig 8.CTPN Framework
 :::
 
 **EAST**
@@ -155,7 +155,7 @@ The output of EAST is a set of quadrilateral bounding boxes representing the det
 
 ![figure 9 EAST framework.png](figure%209%20EAST%20framework.png#center)
 ::: center
-**Fig 9.EAST Framework**
+Fig 9.EAST Framework
 :::
 
 #### 3.2.2 Text Recognition
@@ -179,7 +179,7 @@ The pioneering work of CRNN has paved the way for many subsequent advancements i
 
 ![figure 10 RCNN framework.png](figure%2010%20RCNN%20framework.png#center)
 ::: center
-**Fig 10.RCNN Framework**
+Fig 10.RCNN Framework
 :::
 
 #### 3.2.3 OCR Solution
@@ -211,7 +211,7 @@ In the last year, considerable progress has been seen in the realm of multimodal
 
 ![figure 11 mm-llms.png](figure%2011%20mm-llms.png#center)
 ::: center
-**Fig 11.MM-LLMs[^fourteen]**
+Fig 11.MM-LLMs[^fourteen]
 :::
 
 
@@ -219,7 +219,7 @@ MM-LLMs focusing on multimodal understanding typically encompass just the first 
 
 ![figure 12 The general model architecture of MM-LLMs and the implementation choices for each component.png](figure%2012%20The%20general%20model%20architecture%20of%20MM-LLMs%20and%20the%20implementation%20choices%20for%20each%20component.png#center)
 ::: center
-**Fig 12.The general model architecture of MM-LLMs and the implementation choices for each component[^fourteen]**
+Fig 12.The general model architecture of MM-LLMs and the implementation choices for each component[^fourteen]
 :::
 
 In this undertaking, we carried out validations and tests for image caption generation using GPT4 vision, LLaVa[^fifteen][^sixteen], and Qwen-vl[^thirteen]models. We meticulously analyzed the precision of the image descriptions provided by these models. Given that GPT4 vision has not been made available for open source use, we based our further enhancements on the Qwen-vl model[^seventeen], selecting it as our foundational model for fine-tuning after our comparative assessments were concluded.
