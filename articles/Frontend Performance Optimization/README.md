@@ -3,7 +3,7 @@ title: "Frontend Performance Optimization"
 author: ["Bonnie Chen/ Engineer"]
 createTime: 2024-05-23
 tags: ["Frontend", "Performance"]
-thumb: "loading-is-a-journey.png"
+thumb: "thumb.png"
 thumb_h: "loading-is-a-journey.png"
 intro: "This article is about front-end performance including strategy metrics, improvement strategies."
 ---
