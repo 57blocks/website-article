@@ -21,7 +21,7 @@ Aligned with the project's directives and after a thorough investigation of both
 ![figure 1 image search framework.png](figure%201%20image%20search%20framework.png#center)
 
 ::: center
-Fig 1.Algorithm Pipline
+Fig 1. Algorithm pipline
 :::
 
 ## 3. Algorithm details
@@ -41,11 +41,11 @@ In the case of CNNs, features may also be derived through an end-to-end process 
 ![figure 2 General framework of the CBIR system.png](figure%202%20General%20framework%20of%20the%20CBIR%20system.png#center)
 
 ::: center
-Fig 2.General Framework of the CBIR system[^first]
+Fig 2. General framework of the CBIR system[^first]
 :::
 ![figure 3 A general pipeline of SIFT- and CNN-based retrieval models.png](figure%203%20A%20general%20pipeline%20of%20SIFT-%20and%20CNN-based%20retrieval%20models.png#center)
 ::: center
-Fig 3.A general pipline of SIFT- and CNN-based retrieval models[^third]
+Fig 3. A general pipline of SIFT- and CNN-based retrieval models[^third]
 :::
 
 #### 3.1.1 Image Feature Extraction Model
@@ -55,25 +55,25 @@ ResNet is an emblematic model architecture that epitomizes CNN-based deep learni
 
 ![figure 4 Residual learning: a building block.png](figure%204%20Residual%20learning%3A%20a%20building%20block.png#center)
 ::: center
-Fig 4.Residual learning: a building block
+Fig 4. Residual learning: a building block
 :::
 
 In 2021, OpenAI heralded a new era in AI with the open-source release of CLIP, a multimodal vision-language model that underwent training with an extensive collection of around 400 million image-text pairs. This training regimen significantly enhanced the generalization performance of the Image Encoder. As a result, CLIP's Image Encoder emerged as a powerful tool for generating domain-specific image embeddings. Keen on maximizing the feature extraction efficiency in specific areas of interest, our team employed the CLIP model framework to curate custom image-text pairs, allowing us to refine and optimize the image encoder to suit our precise requirements.
 
 ![figure 5 clip framework.png](figure%205%20clip%20framework.png#center)
 ::: center
-Fig 5.CLIP Framework
+Fig 5. CLIP framework
 :::
 
 #### 3.1.2 Dataset
 In the academic and industrial fields, there are several open-source image retrieval datasets designed for different scenarios. Some of these include:
 1. [The MNIST Handwritten Digit Image Database](http://yann.lecun.com/exdb/mnist/): This dataset contains 70,000 images, each 28x28 in size, encompassing 10 classes of handwritten digits from 0 to 9. In image retrieval, it is common to use the grayscale pixel values directly as features, resulting in a feature dimension of 784.
 2. The [CIFAR-10](http://www.cs.toronto.edu/~kriz/cifar.html) and [CIFAR-100](http://www.cs.toronto.edu/~kriz/cifar.html) Datasets: These datasets consist of 60,000 images each, divided into 10 and 100 classes respectively, with a resolution of 32x32 for each image. If CIFAR-100 seems too small, there is a larger option: the Tiny Images Dataset, from which CIFAR-10 and CIFAR-100 are derived. The Tiny Images Dataset comprises 80 million images.
-3. [Caltech101](http://www.vision.caltech.edu/Image_Datasets/Caltech101/) and [Caltech256](http://www.vision.caltech.edu/Image_Datasets/Caltech256/): These datasets contain images across various classes, and as the names suggest, they feature 101 and 256 classes respectively. While they are commonly used for image classification, they are also well-suited for Content-Based Image Retrieval (CBIR). Caltech256, with nearly 30k images, is widely recognized as sufficient for academic publication. However, for industrial applications involving millions of images, alternative larger datasets would be needed.
-4. [The INRIA Holidays Dataset](http://lear.inrialpes.fr/people/jegou/data.php#holidays): This dataset, frequently used in CBIR research, features 1,491 holiday-themed images taken by researchers from the Herve Jegou Institute, including 500 query images (one image per group) and 991 corresponding relevant images. The dataset comes with 4,455,091 extracted 128-dimensional SIFT descriptors and visual dictionaries derived from Flickr60K.
+3. Caltech101 and Caltech256: These datasets contain images across various classes, and as the names suggest, they feature 101 and 256 classes respectively. While they are commonly used for image classification, they are also well-suited for Content-Based Image Retrieval (CBIR). Caltech256, with nearly 30k images, is widely recognized as sufficient for academic publication. However, for industrial applications involving millions of images, alternative larger datasets would be needed.
+4. The INRIA Holidays Dataset: This dataset, frequently used in CBIR research, features 1,491 holiday-themed images taken by researchers from the Herve Jegou Institute, including 500 query images (one image per group) and 991 corresponding relevant images. The dataset comes with 4,455,091 extracted 128-dimensional SIFT descriptors and visual dictionaries derived from Flickr60K.
 5. [The Oxford Buildings Dataset](http://www.robots.ox.ac.uk/~vgg/data/oxbuildings/) (5k Dataset images): This collection contains 5,062 images and is released by the VGG group at Oxford University. It is often cited in research papers involving vocabulary tree-based retrieval systems.
 6. [The Paris Dataset (Oxford Paris)](http://www.robots.ox.ac.uk/~vgg/data/parisbuildings/): The VGG group from Oxford collected 6,412 images of Parisian landmarks from Flickr, including sights like the Eiffel Tower.
-7. [The CTurin180 and 201Books DataSets](http://pacific.tilab.com/www/datasets/): Made available by Telecom Italia for Compact Descriptors for Visual Search, this dataset includes images of 201 book covers captured from multiple angles with a Nokia E7 (6 images for each book, totaling 1.3GB), and video images of 180 buildings in Turin captured with various cameras including the Galaxy S, iPhone 3, Canon A410, and Canon S5 IS (collectively 2.7GB).
+7. The CTurin180 and 201Books DataSets: Made available by Telecom Italia for Compact Descriptors for Visual Search, this dataset includes images of 201 book covers captured from multiple angles with a Nokia E7 (6 images for each book, totaling 1.3GB), and video images of 180 buildings in Turin captured with various cameras including the Galaxy S, iPhone 3, Canon A410, and Canon S5 IS (collectively 2.7GB).
 8. [The Stanford Mobile Visual Search Dataset](https://purl.stanford.edu/rb470rw0983): Released in February 2011 by Stanford, this dataset contains images from 8 different categories such as CD covers and paintings. Each category's images are captured with various cameras, including mobile phones, with a total of 500 images across all categories.
 #### 3.1.3 Metric
 Image retrieval systems, including Content-Based Image Retrieval (CBIR) systems, are traditionally evaluated using several metrics. Each of these metrics quantifies different aspects of the system's performance, mostly focusing on the relevance of the retrieved images with respect to a given query image. The most common evaluation metrics include:   
@@ -113,7 +113,7 @@ OCR (Optical Character Recognition) typically consists of two crucial steps: Tex
 
 ![figure 6 OCR process.png](figure%206%20OCR%20process.png#center)
 ::: center
-Fig 6.OCR Process
+Fig 6. OCR process
 :::
 
 #### 3.2.1 Text Detection
@@ -129,7 +129,7 @@ Ultimately, the output of DBNet is a binarized text region prediction map, which
 
 ![figure 7 DBNet framework.png](figure%207%20DBNet%20framework.png#center)
 ::: center
-Fig 7.DBNet Framework
+Fig 7. DBNet framework
 :::
 
 **CTPN**
@@ -140,7 +140,7 @@ The output of CTPN is a set of text proposals, which can then be fed into a subs
 
 ![figure 8 CTPN framework.png](figure%208%20CTPN%20framework.png#center)
 ::: center
-Fig 8.CTPN Framework
+Fig 8. CTPN framework
 :::
 
 **EAST**
@@ -155,7 +155,7 @@ The output of EAST is a set of quadrilateral bounding boxes representing the det
 
 ![figure 9 EAST framework.png](figure%209%20EAST%20framework.png#center)
 ::: center
-Fig 9.EAST Framework
+Fig 9. EAST framework
 :::
 
 #### 3.2.2 Text Recognition
@@ -179,7 +179,7 @@ The pioneering work of CRNN has paved the way for many subsequent advancements i
 
 ![figure 10 RCNN framework.png](figure%2010%20RCNN%20framework.png#center)
 ::: center
-Fig 10.RCNN Framework
+Fig 10. RCNN framework
 :::
 
 #### 3.2.3 OCR Solution
@@ -211,7 +211,7 @@ In the last year, considerable progress has been seen in the realm of multimodal
 
 ![figure 11 mm-llms.png](figure%2011%20mm-llms.png#center)
 ::: center
-Fig 11.MM-LLMs[^fourteen]
+Fig 11. MM-LLMs[^fourteen]
 :::
 
 
@@ -219,7 +219,7 @@ MM-LLMs focusing on multimodal understanding typically encompass just the first 
 
 ![figure 12 The general model architecture of MM-LLMs and the implementation choices for each component.png](figure%2012%20The%20general%20model%20architecture%20of%20MM-LLMs%20and%20the%20implementation%20choices%20for%20each%20component.png#center)
 ::: center
-Fig 12.The general model architecture of MM-LLMs and the implementation choices for each component[^fourteen]
+Fig 12. The general model architecture of MM-LLMs and the implementation choices for each component[^fourteen]
 :::
 
 In this undertaking, we carried out validations and tests for image caption generation using GPT4 vision, LLaVa[^fifteen][^sixteen], and Qwen-vl[^thirteen]models. We meticulously analyzed the precision of the image descriptions provided by these models. Given that GPT4 vision has not been made available for open source use, we based our further enhancements on the Qwen-vl model[^seventeen], selecting it as our foundational model for fine-tuning after our comparative assessments were concluded.
