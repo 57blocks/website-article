@@ -29,7 +29,7 @@ In the "Result Merge" step, we establish how to handle answers for the same ques
 
 In certain specialized fields of literature, specific properties may not be explicitly stated. Instead, the necessary computation factors are provided. However, due to the limited knowledge reservoir of LLMs in niche fields, they may not fully grasp the relationship between a property and its calculation factors. In such cases, we can only inquire about the computation factors and then calculate the actual value for the properties of interest based on specific formulas.
 
-Once the extracted data is structured, the next step is to evaluate the results using pre-annotated texts. This allows us to assess the performance of each LLM. For incorrect answers, we conduct further analysis to identify the causes of the error. Then, potential methods such as prompt engineering for more accurate questioning, ground truth correction, and optimization of the LLM Result Processor would be taken (see the "Error Analysis" section for specifics).
+Once the extracted data is structured, the next step is to evaluate the results using pre-annotated texts. This allows us to assess the performance of each LLM. For incorrect answers, we conduct further analysis to identify the causes of the error. Then, potential methods such as prompt engineering for more accurate questioning, Ground Truth correction, and optimization of the LLM Result Processor would be taken (see the "Error Analysis" section for specifics).
 
 Finally, we employ ensemble methods to select outputs from multiple models, aiming to retain the results with the highest accuracy.
 
