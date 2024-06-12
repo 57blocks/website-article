@@ -89,9 +89,10 @@ Image retrieval systems, including Content-Based Image Retrieval (CBIR) systems,
 
 Where:  
 
-**GTP:** denotes the total number of ground truth positives, that is, the number of truth labels/positive samples;  
-**n:** denotes the number of images involved in the retrieval;  
-**rel@k:** is a schematic function that is set to 1 when the first retrieval candidate is a similar sample and 0 otherwise.  
+- **GTP:** denotes the total number of ground truth positives, that is, the number of truth labels/positive samples;  
+- **n:** denotes the number of images involved in the retrieval;  
+- **rel@k:** is a schematic function that is set to 1 when the first retrieval candidate is a similar sample and 0 otherwise.  
+
 
 ### 3.2 OCR
 As OCR stands for optical character recognition, OCR technology deals with the problem of recognizing all kinds of different characters. Both handwritten and printed characters can be recognized and converted into a machine-readable, digital data format.  
