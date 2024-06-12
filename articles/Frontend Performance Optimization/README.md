@@ -503,7 +503,10 @@ If the video serves as the Largest Contentful Paint (LCP) element, it's benefici
 
       //isInputPending is true when user attempts to interact with the page
       // performance.now() >= deadline is isInputPending fallback
-      if (navigator.scheduling?.isInputPending() || performance.now() >= deadline) {
+      if (
+        navigator.scheduling?.isInputPending() ||
+        performance.now() >= deadline
+      ) {
         await yieldToMain();
         deadline = performance.now() + 50;
         continue;
@@ -518,6 +521,7 @@ If the video serves as the Largest Contentful Paint (LCP) element, it's benefici
       It's important to note that microtasks do not release the main thread. For example, when using Promise to create a microtask, it is placed in the microtask queue, waiting to be executed immediately after the main thread finishes execution. Even microtasks created through **`queueMicrotask`** will be executed as the first one. This means that the main thread remains busy during the execution of microtasks and does not release itself to perform other tasks.A detailed visualization can be seen [here](https://www.jsv9000.app/).
 
           This mechanism is crucial when dealing with asynchronous tasks because it ensures that the logic in microtasks is executed immediately after the current task is finished. This is particularly useful for handling the results of Promises or other asynchronous operations, but it's important to note that it does not release the main thread.
+
           ![js execute stack](js-execute-stack.png)
 
   5.  **Batch Processing**: For example, React's virtual DOM mechanism employs batch processing as an optimization strategy. It applies all changes to the virtual DOM and then submits them to the browser for redraw in one go, significantly reducing actual DOM manipulations. This approach effectively releases the main thread, enhancing performance. Batch processing is beneficial in situations where there are many DOM operations or frequent changes. By consolidating multiple operations into a single batch, it reduces the number of browser redraws, optimizing performance. In React, this mechanism helps improve page responsiveness, avoiding unnecessary redundant computations and rendering.
