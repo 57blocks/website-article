@@ -191,12 +191,25 @@ Image Captioning is the task of describing the content of an image in words. Thi
 In the last year, considerable progress has been seen in the realm of multimodal large language models (MM-LLMs). By adopting economical and efficient training methodologies, these cutting-edge models have fortified existing large language models to accommodate inputs or outputs across multiple modalities. The resultant models preserve the inherent reasoning and decision-making prowess that LLMs are known for, while also extending their capabilities to an assortment of multimodal tasks. Notably, functionalities such as generating descriptive captions for images and answering questions based on visual content are among their crucial advancements.
 
 ![figure 11 mm-llms.png](figure%2011%20mm-llms.png#center)
- <p><center>Fig 11. MM-LLMs[^fourteen]. </center></p>
+ <p>
+  
+  <center>
+   
+   Fig 11. MM-LLMs[^fourteen]. 
+   
+   </center>
+  </p>
 
 MM-LLMs focusing on multimodal understanding typically encompass just the first three components: modality encoders, the core LLM backbone, and modality generators. Throughout the training phase, these elements are generally maintained in a frozen state. Optimization efforts are concentrated on the input and output projectors, which are relatively lightweight. As a result, a small fraction of the overall parameters—commonly about 2%—are actually trainable within MM-LLMs. This percentage is determined by the size of the principal LLM integrated into the MM-LLM framework. Due to this configuration, MM-LLMs can undergo cost-effective training, making the enhancement of performance in assorted multimodal tasks more attainable.
 
 ![figure 12 The general model architecture of MM-LLMs and the implementation choices for each component.png](figure%2012%20The%20general%20model%20architecture%20of%20MM-LLMs%20and%20the%20implementation%20choices%20for%20each%20component.png#center)
-<center>Fig12. The general model architecture of MM-LLMs and the implementation choices for each component[^fourteen].  </center>  </p>
+</p>
+<center>
+ 
+ Fig12. The general model architecture of MM-LLMs and the implementation choices for each component[^fourteen].  
+ 
+</center> 
+</p>
 
 In this undertaking, we carried out validations and tests for image caption generation using GPT4 vision, LLaVa[^fifteen][^sixteen], and Qwen-vl[^thirteen]models. We meticulously analyzed the precision of the image descriptions provided by these models. Given that GPT4 vision has not been made available for open source use, we based our further enhancements on the Qwen-vl model[^seventeen], selecting it as our foundational model for fine-tuning after our comparative assessments were concluded.
 ## 4. Conclusion
