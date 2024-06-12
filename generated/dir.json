@@ -1,6 +1,32 @@
 {
   "articles": [
     {
+      "title": "Image Search: Leveraging Image Models, Large Language Models, and Multimodal Models",
+      "author": [
+        "Alpha Xiang / Machine Learning Engineer",
+        "Yanqi Liu / Backend Software Engineer",
+        "Anjing Wang / AI Lead"
+      ],
+      "createTime": "2024-05-21T00:00:00.000Z",
+      "tags": [
+        "Image Search",
+        "Image Retrieval",
+        "LLM",
+        "Image Encoder",
+        "Image Embedding",
+        "OCR",
+        "Text Embedding",
+        "CLIP",
+        "Multimodal"
+      ],
+      "thumb": "thumb.png",
+      "thumb_h": "thumb_h.png",
+      "intro": "Search using images rather than text. As we know, people can upload an image via their mobile device, and the search application on their phone may be tasked with returning matches from the database that are either identical or bear a high resemblance to the uploaded image. Here, we describe the technology that enables that functionality. ",
+      "top": true,
+      "path": "articles/Image Search: Leveraging Image Models, Large Language Models, and Multimodal Models/README.md",
+      "slug": "image-search-leveraging-image-models-large-language-models-and-multimodal-models"
+    },
+    {
       "title": "What Makes a Good Vector Database - LanceDB vs Pinecone",
       "author": [
         "Alex Hu / Machine Learning Engineer",
@@ -35,31 +61,6 @@
       "intro": " This project explores using Large Language Models (LLMs) such as GPT-3, GPT-4, LLaMA 2, Mistral AI, and Claude 2 for information extraction tasks to convert raw text into structured data, addressing the limitations of traditional, labor-intensive IE methods.",
       "path": "articles/Document Information Extraction with Large Language Models/README.md",
       "slug": "document-information-extraction-with-large-language-models"
-    },
-    {
-      "title": "Image Search: Leveraging Image Models, Large Language Models, and Multimodal Models",
-      "author": [
-        "Alpha Xiang / Machine Learning Engineer",
-        "Yanqi Liu / Backend Software Engineer",
-        "Anjing Wang / AI Lead"
-      ],
-      "createTime": "2024-05-21T00:00:00.000Z",
-      "tags": [
-        "Image Search",
-        "Image Retrieval",
-        "LLM",
-        "Image Encoder",
-        "Image Embedding",
-        "OCR",
-        "Text Embedding",
-        "CLIP",
-        "Multimodal"
-      ],
-      "thumb": "thumb.png",
-      "thumb_h": "thumb_h.png",
-      "intro": "Search using images rather than text. As we know, people can upload an image via their mobile device, and the search application on their phone may be tasked with returning matches from the database that are either identical or bear a high resemblance to the uploaded image. Here, we describe the technology that enables that functionality. ",
-      "path": "articles/Image Search: Leveraging Image Models, Large Language Models, and Multimodal Models/README.md",
-      "slug": "image-search-leveraging-image-models-large-language-models-and-multimodal-models"
     },
     {
       "title": "Overcoming challenges in Android Gradle Dependency Management",
