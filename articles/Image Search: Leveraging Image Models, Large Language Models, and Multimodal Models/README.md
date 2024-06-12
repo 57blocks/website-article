@@ -242,3 +242,6 @@ During our image retrieval endeavor, we have diligently addressed the distinctiv
 [^fifteen]: Liu H, Li C, Li Y, et al. Improved baselines with visual instruction tuning[J]. arXiv preprint arXiv:2310.03744, 2023.
 [^sixteen]: Liu H, Li C, Wu Q, et al. Visual instruction tuning[J]. Advances in neural information processing systems, 2024, 36.
 [^seventeen]:  Bai J, Bai S, Yang S, et al. Qwen-vl: A frontier large vision-language model with versatile abilities[J]. arXiv preprint arXiv:2308.12966, 2023.
+
+*[RNN]: Recurrent Neural Network 
+*[CNN]: Convolutional Neural Network
