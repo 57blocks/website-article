@@ -1,11 +1,11 @@
 ---
-title: "What Makes a Good Vector Database - LanceDB vs Pinecone"
+title: "What Makes a Good Vector Database - Pinecone vs LanceDB"
 author: ["Alex Hu / Machine Learning Engineer", "Steven Zhang / Backend Software Engineer", "Anjing Wang / AI Lead"]
 createTime: 2024-05-22
-tags: ["Vector Database", "LanceDB", "Pinecone"]
+tags: ["Vector Database", "Pinecone", "LanceDB"]
 thumb: "./thumb.png"
 thumb_h: "./thumb_h.png"
-intro: "In an era where artificial intelligence is increasingly prevalent, the integration of vector databases with AI is enhancing outcomes across a myriad of application scenarios. But what exactly defines a \"Superior Vector Database\"? This article provides a comparative analysis of LanceDB and Pinecone across various aspects and delves into the application of different databases in specific scenarios. We propose that there is no one-size-fits-all \"best\" database; rather, a Superior Vector Database is one that is well-matched with its use case, meeting the unique requirements of that scenario."
+intro: "In an era where artificial intelligence is increasingly prevalent, the integration of vector databases with AI is enhancing outcomes across a myriad of application scenarios. But what exactly defines a \"Superior Vector Database\"? This article provides a comparative analysis of Pinecone and LanceDB across various aspects and delves into the application of different databases in specific scenarios. We propose that there is no one-size-fits-all \"best\" database; rather, a Superior Vector Database is one that is well-matched with its use case, meeting the unique requirements of that scenario."
 ---
 
 ## 1. The Hallmarks of a Superior Vector Database
