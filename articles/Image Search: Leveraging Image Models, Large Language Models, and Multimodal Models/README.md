@@ -165,7 +165,7 @@ a. The first stage is a CNN that extracts visual features from the input text im
 b. The CNN learns to capture the spatial and local patterns within the text, effectively encoding the visual representations.   
 
 2. Sequence Modeling:  
-a. The second stage is a RNN , typically a Bidirectional LSTM (Bi-LSTM) network.  
+a. The second stage is a RNN, typically a Bidirectional LSTM (Bi-LSTM) network.  
 b. The RNN takes the CNN-extracted features as input and models the inherent sequential nature of text, capturing the contextual relationships between characters.
 3. Transcription:  
 a. The final stage is a Transcription module, often a Connectionist Temporal Classification (CTC) layer or an attention-based decoder.    
