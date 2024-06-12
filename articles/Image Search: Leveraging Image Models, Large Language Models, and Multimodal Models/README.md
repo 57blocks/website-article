@@ -65,9 +65,9 @@ Mean Average Precision (mAP): is a comprehensive metric that calculates the aver
 ![ap.png](ap.png)
 ![map.png](map.png)
 Where:  
-GTP: denotes the total number of ground truth positives, that is, the number of truth labels/positive samples;  
-n: denotes the number of images involved in the retrieval;  
-rel@k: is a schematic function that is set to 1 when the first retrieval candidate is a similar sample and 0 otherwise.  
+- GTP: denotes the total number of ground truth positives, that is, the number of truth labels/positive samples;  
+- n: denotes the number of images involved in the retrieval;  
+- rel@k: is a schematic function that is set to 1 when the first retrieval candidate is a similar sample and 0 otherwise.  
 ### 3.2 OCR
 As OCR stands for optical character recognition, OCR technology deals with the problem of recognizing all kinds of different characters. Both handwritten and printed characters can be recognized and converted into a machine-readable, digital data format.  
 Think of any kind of serial number or code consisting of numbers and letters that you need digitized. By using OCR you can transform these codes into a digital output. The technology makes use of many different techniques. Put simply, the image taken is processed, the characters extracted, and are then recognized.  
