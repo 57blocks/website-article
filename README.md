@@ -76,6 +76,17 @@ Our repository supports all basic Markdown formats. For a detailed guide, refer 
 
 To enhance the presentation of your articles, we support several Markdown plugins:
 
+- **plugin-abbr** [referrence](https://mdit-plugins.github.io/zh/abbr.html) 
+  <details>
+  <summary>Usage Example</summary>
+
+  ```
+  *[HTML]: Hyper Text Markup Language
+  *[W3C]:  World Wide Web Consortium
+  The HTML specification is maintained by the W3C.
+  ```
+  </details>
+
 - **plugin-alert** [referrence](https://mdit-plugins.github.io/alert.html) 
   <details>
   <summary>Usage Example</summary>
