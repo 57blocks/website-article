@@ -1,6 +1,6 @@
 ---
 title: "Image Search: Leveraging Image Models, Large Language Models, and Multimodal Models"
-author: ["Alpha Xiang / Machine Learning Engineer", "Yanqi Liu / Backend Software Engineer", "Anjing Wang / Full Stack Engineer"]
+author: ["Alpha Xiang / Machine Learning Engineer", "Yanqi Liu / Backend Software Engineer", "Anjing Wang / AI Lead"]
 createTime: 2024-05-21
 tags: ["Image Search", "Image Retrieval", "LLM", "Image Encoder", "Image Embedding", "OCR", "Text Embedding", "CLIP", "Multimodal"]
 thumb: "thumb.png"
