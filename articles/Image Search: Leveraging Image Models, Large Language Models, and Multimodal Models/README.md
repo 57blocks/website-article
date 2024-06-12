@@ -13,7 +13,7 @@ This project is centered on information and image retrieval technology. Users ca
 ## 2. Algorithm pipeline
 Aligned with the project's directives and after a thorough investigation of both the business requirements and the sector's solution landscape, we have devised the following algorithm pipeline:
 - Upon image upload by the user, a multimodal large language model crafts a comprehensive description of the image.
--  Subsequently, an Image Encoder model produces an image embedding, which is utilized to search for and retrieve matching or similar images from an existing Image Embedding database, which are then presented to the user.
+-  Subsequently, an Image Encoder model produces an image embedding, which is utilized to search for and retrieve matching or similar images from an existing Image Embedding database.The result of this operation is then presented to the user.
 - The OCR (Optical Character Recognition) model detects textual characters within the image, triggering a Text Embedding model to create text embeddings.
 - These embeddings are searched within an established Text Embedding database to find images with comparable semantic content.
 
