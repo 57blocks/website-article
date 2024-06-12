@@ -6,6 +6,7 @@ tags: ["Image Search", "Image Retrieval", "LLM", "Image Encoder", "Image Embeddi
 thumb: "thumb.png"
 thumb_h: "thumb_h.png"
 intro: "Search using images rather than text. As we know, people can upload an image via their mobile device, and the search application on their phone may be tasked with returning matches from the database that are either identical or bear a high resemblance to the uploaded image. Here, we describe the technology that enables that functionality. "
+top: true
 ---
 # <center>Image Search: Leveraging Image Models, Large Language Models, and Multimodal Models</center>
 ## 1. Project background
