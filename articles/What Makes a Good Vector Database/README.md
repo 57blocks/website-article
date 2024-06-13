@@ -59,7 +59,7 @@ deployments.
 Features that assure data persistence and reliability are indicative of
 a vector database's caliber. Leading databases provide secure data
 storage with resilience against system failures, maintaining consistent
-performance and response times even under high demand-a requirement
+performance and response times even under high demand–a requirement
 for enterprise-grade applications.
 
 In today's diverse technological ecosystem, a vector database's
