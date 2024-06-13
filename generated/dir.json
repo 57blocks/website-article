@@ -23,8 +23,8 @@
       "thumb_h": "thumb_h.png",
       "intro": "Search using images rather than text. Users can upload an image via their mobile device, and the search application on their phone is designed to return matches from the database that are either identical or bear a high resemblance to the uploaded image. Here, we describe the technology that enables this functionality.",
       "top": true,
-      "path": "articles/Image Search: Leveraging Image Models, Large Language Models, and Multimodal Models/README.md",
-      "slug": "image-search-leveraging-image-models-large-language-models-and-multimodal-models"
+      "path": "articles/Image Search: Leveraging AI Models/README.md",
+      "slug": "image-search-leveraging-ai-models"
     },
     {
       "title": "What Makes a Good Vector Database–Pinecone vs LanceDB",
