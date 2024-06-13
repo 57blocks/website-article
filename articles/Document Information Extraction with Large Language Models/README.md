@@ -17,7 +17,7 @@ Information extraction (IE) is vital for converting raw text into structured dat
 
 ## 2. Processing Workflow
 
-Initially, we divided the unstructured text into segments based on the Large Language Models (LLMs) maximum token length, ensuring some overlap between segments to preserve contextual coherence. Subsequently, we input the text and questions into LLMs and obtain the model's initial output, which we then structure further.
+Initially, we divided the unstructured text into segments based on the Large Language Models (LLMs) maximum token length, ensuring some overlap between segments to preserve contextual coherence. Subsequently, we input the text and questions into LLMs and obtained the model's initial output, which we then structured further.
 
 ![img](structure.png)
 
