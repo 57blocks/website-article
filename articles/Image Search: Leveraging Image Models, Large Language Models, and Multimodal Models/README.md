@@ -1,11 +1,11 @@
 ---
-title: "Image Search: Leveraging Image Models, Large Language Models, and Multimodal Models"
+title: "Image Search: Leveraging AI Models"
 author: ["Alpha Xiang / Machine Learning Engineer", "Yanqi Liu / Backend Software Engineer", "Anjing Wang / AI Lead"]
 createTime: 2024-05-21
 tags: ["Image Search", "Image Retrieval", "LLM", "Image Encoder", "Image Embedding", "OCR", "Text Embedding", "CLIP", "Multimodal"]
 thumb: "thumb.png"
 thumb_h: "thumb_h.png"
-intro: "Search using images rather than text. As we know, people can upload an image via their mobile device, and the search application on their phone may be tasked with returning matches from the database that are either identical or bear a high resemblance to the uploaded image. Here, we describe the technology that enables that functionality. "
+intro: "Search using images rather than text. Users can upload an image via their mobile device, and the search application on their phone is designed to return matches from the database that are either identical or bear a high resemblance to the uploaded image. Here, we describe the technology that enables this functionality."
 top: true
 ---
 # <center>Image Search: Leveraging Image Models, Large Language Models, and Multimodal Models</center>
