@@ -1,11 +1,11 @@
 ---
-title: "Image Search: Leveraging Image Models, Large Language Models, and Multimodal Models"
+title: "Image Search: Leveraging AI Models"
 author: ["Alpha Xiang / Machine Learning Engineer", "Yanqi Liu / Backend Software Engineer", "Anjing Wang / AI Lead"]
 createTime: 2024-05-21
 tags: ["Image Search", "Image Retrieval", "LLM", "Image Encoder", "Image Embedding", "OCR", "Text Embedding", "CLIP", "Multimodal"]
 thumb: "thumb.png"
 thumb_h: "thumb_h.png"
-intro: "Search using images rather than text. As we know, people can upload an image via their mobile device, and the search application on their phone may be tasked with returning matches from the database that are either identical or bear a high resemblance to the uploaded image. Here, we describe the technology that enables that functionality. "
+intro: "Search using images rather than text. Users can upload an image via their mobile device, and the search application on their phone is designed to return matches from the database that are either identical or bear a high resemblance to the uploaded image. Here, we describe the technology that enables this functionality."
 top: true
 ---
 # <center>Image Search: Leveraging Image Models, Large Language Models, and Multimodal Models</center>
@@ -121,7 +121,7 @@ Text detection is the process of identifying and locating the textual regions wi
 
 **DBNet**
 
-DBNet[^seven]employs a differentiable binarization method, which can train the entire network in an end-to-end manner, avoiding the additional post-processing steps required by the traditional proposal-based methods.  
+DBNet[^seven] employs a differentiable binarization method, which can train the entire network in an end-to-end manner, avoiding the additional post-processing steps required by the traditional proposal-based methods.  
 
 The model adopts a lightweight encoder-decoder structure, combining convolutional blocks and LSTM modules, which can achieve real-time performance while maintaining high detection accuracy. DBNet also utilizes multi-scale feature maps for text region prediction, which can better capture the scale variations of the text.  
 
@@ -134,7 +134,7 @@ Fig 7. DBNet framework
 
 **CTPN**
 
-Rather than using the traditional horizontal anchors, CTPN[^eight]employs a set of vertically-arranged anchors to better capture the characteristics of text, which often have a long and narrow aspect ratio.
+Rather than using the traditional horizontal anchors, CTPN[^eight] employs a set of vertically-arranged anchors to better capture the characteristics of text, which often have a long and narrow aspect ratio.
 Additionally, CTPN introduces a sequential prediction module that combines a RNN with convolutional features. This sequential module can effectively model the inherent sequential property of text, allowing the model to make more accurate text proposals.
 The output of CTPN is a set of text proposals, which can then be fed into a subsequent text recognition model to obtain the final text transcription results. The flexible architecture of CTPN makes it a powerful and versatile text detection solution, complementing the capabilities of other models like DBNet.
 
@@ -183,7 +183,7 @@ Fig 10. RCNN framework
 :::
 
 #### 3.2.3 OCR Solution
-We have explored various open-source OCR software options, such as EasyOCR, PaddleOCR, and Tesseract OCR. We also considered the OCR solutions offered by major cloud platforms, including AWS, GCP, and Azure. However, we found that even after fine-tuning the models, the open-source OCR solutions were unable to meet our desired performance requirements.  
+We have evaluated various open-source OCR software options, such as EasyOCR, PaddleOCR, and Tesseract OCR. We also considered the OCR solutions offered by major cloud platforms, including AWS, GCP, and Azure. However, we found that even after fine-tuning the models, the open-source OCR solutions were unable to meet our desired performance requirements.  
 
 In our design, it is imperative to employ OCR methods for extracting crucial textual information. However, in practical application scenarios, the key text often appears blurry, posing challenges for accurate extraction. In light of this situation, we conducted an analysis of the two critical processes in OCR.  
 
