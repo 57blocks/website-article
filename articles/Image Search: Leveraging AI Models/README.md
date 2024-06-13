@@ -145,7 +145,7 @@ Fig 8. CTPN framework
 
 **EAST**
 
-The key innovation of EAST[^nine]is its unified detection framework, which combines text region prediction and orientation regression into a single network. This allows the model to simultaneously predict the quadrilateral bounding boxes of text regions and their orientations, eliminating the need for separate post-processing steps.  
+The key innovation of EAST[^nine] is its unified detection framework, which combines text region prediction and orientation regression into a single network. This allows the model to simultaneously predict the quadrilateral bounding boxes of text regions and their orientations, eliminating the need for separate post-processing steps.  
 
 EAST utilizes a fully-convolutional network architecture, which enables efficient and dense predictions across the entire input image. The model employs a feature fusion module to combine multi-scale features, allowing it to handle text of varying scales and orientations.  
 
@@ -159,7 +159,7 @@ Fig 9. EAST framework
 :::
 
 #### 3.2.2 Text Recognition
-The CRNN[^ten]model was the first to propose a three-stage architecture for text recognition, which has since become a commonly used approach. The three-stage architecture of CRNN consists of the following components:
+The CRNN[^ten] model was the first to propose a three-stage architecture for text recognition, which has since become a commonly used approach. The three-stage architecture of CRNN consists of the following components:
 1. Feature Extraction:  
 a. The first stage is a CNN that extracts visual features from the input text image.  
 b. The CNN learns to capture the spatial and local patterns within the text, effectively encoding the visual representations.   
@@ -222,7 +222,7 @@ MM-LLMs focusing on multimodal understanding typically encompass just the first 
 Fig 12. The general model architecture of MM-LLMs and the implementation choices for each component[^fourteen]
 :::
 
-In this undertaking, we carried out validations and tests for image caption generation using GPT4 vision, LLaVa[^fifteen][^sixteen], and Qwen-vl[^thirteen]models. We meticulously analyzed the precision of the image descriptions provided by these models. Given that GPT4 vision has not been made available for open source use, we based our further enhancements on the Qwen-vl model[^seventeen], selecting it as our foundational model for fine-tuning after our comparative assessments were concluded.
+In this undertaking, we carried out validations and tests for image caption generation using GPT4 vision, LLaVa[^fifteen][^sixteen], and Qwen-vl[^thirteen] models. We meticulously analyzed the precision of the image descriptions provided by these models. Given that GPT4 vision has not been made available for open source use, we based our further enhancements on the Qwen-vl model[^seventeen], selecting it as our foundational model for fine-tuning after our comparative assessments were concluded.
 ## 4. Conclusion
 During our image retrieval endeavor, we have diligently addressed the distinctive traits of images pertinent to the business sector, taking into account crucial image features, textual information, and details from both sides of the image. By analyzing and valorizing this information, we have implemented strategies such as reverse image search, textual retrieval, and image search via text. Our deployment of advanced deep learning algorithms encompasses an array of models—ranging from those specialized in computer vision and natural language processing to multimodal algorithms, large language models, and comprehensive multimodal language-vision models. Through systematic enhancement of the performance across each model phase, we have successfully realized a retrieval process that is both effective and precise for images and accompanying text.
 ## Reference
