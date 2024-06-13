@@ -1,7 +1,7 @@
 {
   "articles": [
     {
-      "title": "Image Search: Leveraging Image Models, Large Language Models, and Multimodal Models",
+      "title": "Image Search: Leveraging AI Models",
       "author": [
         "Alpha Xiang / Machine Learning Engineer",
         "Yanqi Liu / Backend Software Engineer",
@@ -21,7 +21,7 @@
       ],
       "thumb": "thumb.png",
       "thumb_h": "thumb_h.png",
-      "intro": "Search using images rather than text. As we know, people can upload an image via their mobile device, and the search application on their phone may be tasked with returning matches from the database that are either identical or bear a high resemblance to the uploaded image. Here, we describe the technology that enables that functionality. ",
+      "intro": "Search using images rather than text. Users can upload an image via their mobile device, and the search application on their phone is designed to return matches from the database that are either identical or bear a high resemblance to the uploaded image. Here, we describe the technology that enables this functionality.",
       "top": true,
       "path": "articles/Image Search: Leveraging Image Models, Large Language Models, and Multimodal Models/README.md",
       "slug": "image-search-leveraging-image-models-large-language-models-and-multimodal-models"
