@@ -1,14 +1,17 @@
 ---
-title: "Image Search: Leveraging AI Models"
+title: "Image Search with AI Models"
+subTitle: "How to leverage Image Models, Large Language Models, and Multimodal Models to provide users with the right results"
 author: ["Alpha Xiang / Machine Learning Engineer", "Yanqi Liu / Backend Software Engineer", "Anjing Wang / AI Lead"]
 createTime: 2024-05-21
 tags: ["Image Search", "Image Retrieval", "LLM", "Image Encoder", "Image Embedding", "OCR", "Text Embedding", "CLIP", "Multimodal"]
 thumb: "thumb.png"
 thumb_h: "thumb_h.png"
-intro: "Search using images rather than text. Users can upload an image via their mobile device, and the search application on their phone is designed to return matches from the database that are either identical or bear a high resemblance to the uploaded image. Here, we describe the technology that enables this functionality."
+intro: "By using just an image on a mobile device, the search application is designed to return matches from the database that are either identical or bear a high resemblance to the original uploaded image. Here, we describe the technology behind this powerful functionality."
 top: true
+previousSlugs: ['image-search-leveraging-ai-models']
 ---
-# <center>Image Search: Leveraging Image Models, Large Language Models, and Multimodal Models</center>
+# <center>Image Search with AI Models</center>
+
 ## 1. Project background
 This project is centered on information and image retrieval technology. Users can upload an image via their mobile device, and the application is tasked with returning matches from the database that are either identical or bear a high resemblance to the uploaded image. Additionally, the app retrieves and displays the related meta information and descriptions for the images, already present within the database. The algorithmic layer of the application includes advanced techniques like image-based searching, optical character recognition from image texts, text-based retrieval, and conversion from images to text.
 ## 2. Algorithm pipeline
