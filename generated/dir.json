@@ -1,7 +1,8 @@
 {
   "articles": [
     {
-      "title": "Image Search: Leveraging AI Models",
+      "title": "Image Search with AI Models",
+      "subTitle": "How to leverage Image Models, Large Language Models, and Multimodal Models to provide users with the right results",
       "author": [
         "Alpha Xiang / Machine Learning Engineer",
         "Yanqi Liu / Backend Software Engineer",
@@ -21,13 +22,16 @@
       ],
       "thumb": "thumb.png",
       "thumb_h": "thumb_h.png",
-      "intro": "Search using images rather than text. Users can upload an image via their mobile device, and the search application on their phone is designed to return matches from the database that are either identical or bear a high resemblance to the uploaded image. Here, we describe the technology that enables this functionality.",
+      "intro": "By using just an image on a mobile device, the search application is designed to return matches from the database that are either identical or bear a high resemblance to the original uploaded image. Here, we describe the technology behind this powerful functionality.",
       "top": true,
-      "path": "articles/Image Search: Leveraging AI Models/README.md",
-      "slug": "image-search-leveraging-ai-models"
+      "previousSlugs": [
+        "image-search-leveraging-ai-models"
+      ],
+      "path": "articles/Image Search with AI Models/README.md",
+      "slug": "image-search-with-ai-models"
     },
     {
-      "title": "What Makes a Good Vector Database–Pinecone vs LanceDB",
+      "title": "What Makes a Good Vector Database? Comparing Pinecone and LanceDB",
       "author": [
         "Alex Hu / Machine Learning Engineer",
         "Steven Zhang / Backend Software Engineer",
@@ -41,12 +45,15 @@
       ],
       "thumb": "./thumb.png",
       "thumb_h": "./thumb_h.png",
-      "intro": "In an era where artificial intelligence is increasingly prevalent, the integration of vector databases with AI is enhancing outcomes across a myriad of application scenarios. But what exactly defines a \"Superior Vector Database\"? This article provides a comparative analysis of Pinecone and LanceDB across various aspects and delves into the application of different databases in specific scenarios. We propose that there is no one-size-fits-all \"best\" database; rather, a Superior Vector Database is one that is well-matched with its use case, meeting the unique requirements of that scenario.",
-      "path": "articles/What Makes a Good Vector Database/README.md",
-      "slug": "what-makes-a-good-vector-database"
+      "intro": "Which vector database is best to use? It depends. Based on our experiences using them, there is no one-size-fits-all \"best\" database. Rather, a Superior Vector Database is one that is well-matched with its use case, meeting the unique requirements of that scenario. Read our comparative analysis to discover why.",
+      "previousSlugs": [
+        "what-makes-a-good-vector-database"
+      ],
+      "path": "articles/What Makes a Good Vector Database? Comparing Pinecone and LanceDB/README.md",
+      "slug": "what-makes-a-good-vector-database-comparing-pinecone-and-lancedb"
     },
     {
-      "title": "Document Information Extraction with Large Language Models (framework, methods,  ensemble, and evaluation)",
+      "title": "How to Use LLMs to Extract Document Information",
       "author": [
         "Carvin Li / Machine Learning Engineer",
         "Anjing Wang / AI Lead"
@@ -58,9 +65,12 @@
       ],
       "thumb": "thumb_v.png",
       "thumb_h": "thumb_h.png",
-      "intro": " This project explores using Large Language Models (LLMs) such as GPT-3, GPT-4, LLaMA 2, Mistral AI, and Claude 2 for information extraction tasks to convert raw text into structured data, addressing the limitations of traditional, labor-intensive IE methods.",
-      "path": "articles/Document Information Extraction with Large Language Models/README.md",
-      "slug": "document-information-extraction-with-large-language-models"
+      "intro": "Today, there is no easy way to convert raw text from volumes of academic papers into structured data, or complete information extraction (IE). Traditional IE methods often rely on labor-intensive handcrafted rules and patterns, which may not generalize across diverse domains and languages. We used various Large Language Models (LLMs) from GPT to Claude to complete IE from these documents and compared their performance. We share what we learned here.",
+      "previousSlugs": [
+        "document-information-extraction-with-large-language-models"
+      ],
+      "path": "articles/How to Use LLMs to Extract Document Information/README.md",
+      "slug": "how-to-use-llms-to-extract-document-information"
     },
     {
       "title": "Overcoming challenges in Android Gradle Dependency Management",
