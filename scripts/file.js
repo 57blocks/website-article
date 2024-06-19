@@ -101,3 +101,8 @@ export function beautifyUR(title) {
     strict: true,
   });
 }
+
+// Function to encode the entire path for URL
+export function encodePath(path) {
+  return path.split('/').map(encodeURIComponent).join('/');
+}

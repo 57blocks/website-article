@@ -5,6 +5,7 @@ import {
   exportJSONFile,
   sortMetadata,
   beautifyUR,
+  encodePath,
 } from './file.js';
 
 async function main() {
@@ -17,7 +18,7 @@ async function main() {
     const slug = beautifyUR(lastDir);
 
     if (meta) {
-      metaDataList.push({...meta, path: filePath, slug});
+      metaDataList.push({...meta, path: encodePath(filePath), slug});
     }
   }
 
