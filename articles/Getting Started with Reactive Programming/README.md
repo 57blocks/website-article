@@ -1,11 +1,13 @@
 ---
-title: "Reactive Programming in Tokenpad"
+title: "Getting Started with Reactive Programming"
+subTitle: "Tokenpad: A Case Study in Displaying Real-Time Data"
 author: ["Juan E Quintero R / Tech Lead"]
 createTime: 2024-04-22
 tags: ["Reactive", "Flutter", "Crypto"]
 thumb: "https://s3.amazonaws.com/assets.57blocks.io/cms_uploads/illustration_tokenpad_65aea3b800.png"
 thumb_h: "./thumb_h.png"
-intro: "Modern apps need to easily adjust to new data without user help. Using Reactive Programming, they can quickly react to this data without making users wait on long loading times. This series discusses how Tokenpad uses it to keep crypto portfolios up-to-date effortlessly."
+intro: "Users expect to see real-time data while using apps and don't want to refresh the screen. Achieve this by using Reactive Programming. In this article, discover why Reactive Programming exists and how it enables our apps to update with new data in real-time."
+previousSlugs: ["reactive-programming-in-tokenpad"]
 ---
 
 ## Introduction
