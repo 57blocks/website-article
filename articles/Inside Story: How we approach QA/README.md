@@ -1,11 +1,12 @@
 ---
-title: "57Blocks Testing Best Practices"
+title: "Inside Story: How we approach QA"
 author: ["Jia Chen / QA Engineer", "Martha Luo / QA Engineer"]
 createTime: 2024-05-07
-tags: ["Software Testing Lifecycle", "Continuous Integration",  "Test Automation Frameworks"]
+tags: ["QA strategy", "CI",  "Automation Framework"]
 thumb: "./thumb.png"
 thumb_h: "./thumb_h.png"
-intro: "This article explores the practical testing best practices adopted by 57blocks QA teams to navigate the software testing complexities effectively. These strategies are born from hands-on application in real-world projects, offering actionable insights into how embracing these methods can not only mitigate difficulties but potentially convert them into leverage for elevating software quality, enhancing team performance, and improving overall project delivery."
+intro: "To us, our Quality Assurance (QA) team does much more than making sure that features work. Our QA team is working to elevate software quality, enhance team performance, and improve project delivery overall. Here, we share with you the QA strategies we leverage for our projects, all of which evolved from our client projects. We'll also show how embracing these methods can not only mitigate difficulties but improve results."
+previousSlugs: ["57blocks-testing-best-practices"]
 ---
 
 ## Introduction
