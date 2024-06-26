@@ -1,11 +1,12 @@
 ---
-title: "Maximizing Online Visibility: The Power of Programmatic SEO for Boosting Search Traffic and Leads"
+title: "Boost Traffic and Leads with Programmatic SEO"
 author: ["Shi Chen / Product Manager"]
 createTime: 2024-04-21
 tags: ["SEO", "Growth", "Alternative Investment"]
 thumb: "https://s3.amazonaws.com/assets.57blocks.io/cms_uploads/illustration_seo_db9bc06b49.png"
 thumb_h: "./thumb_h.png"
-intro: "The article shows how automated SEO can attract more visitors by producing lots of optimized pages. The key steps include goal planning, data handling, and using tools like a CMS for implementation. This method successfully improved online exposure and lead generation."
+intro: "You may have heard how programmatic SEO could be a way to boost site traffic from search engines and increase leads. It can be intimidating to consider how to implement it, knowing the complexities it can bring. Here, we describe how we designed the system with our client and implemented it, along with our reflections during the experience. Additionally, we outline the many benefits our client experienced after launch."
+previousSlugs: ["maximizing-online-visibility-the-power-of-programmatic-seo-for-boosting-search-traffic-and-leads"]
 ---
 
 ## Background

@@ -1,11 +1,12 @@
 ---
-title: "Modernizing Front-End Build Pipelines"
+title: "Our Guide to Modern Front-End Build Pipelines"
 author: ["Andy Lai / Fullstack Engineer"]
 createTime: 2024-04-23
 tags: ["JavaScript Framework", "React", "Webpack"]
 thumb: "https://s3.amazonaws.com/assets.57blocks.io/cms_uploads/illustration_cup_an_laptop_e12de970e5.png"
 thumb_h: "./thumb_h.png"
-intro: "Web development has advanced, offering a vast array of building tools. Choosing the right ones for a project is now much more complex due to their number and the need for them to work well together."
+intro: "Overwhelmed by all of the tools available for the front-end build pipeline in your organization? Don't worry. We gathered all that we have learned about these tools while working on our projects and summarized it here. We collected all of the advice into a single place."
+previousSlugs: ["modernizing-front-end-build-pipelines"]
 ---
 
 ## Introduction

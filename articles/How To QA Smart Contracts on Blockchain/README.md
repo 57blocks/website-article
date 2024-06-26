@@ -1,11 +1,12 @@
 ---
-title: "Smart Contract Development: A Step-by-Step Quality Assurance Guide"
+title: "How To QA Smart Contracts on Blockchain"
 author: ["Lily Hu / Smart Contract Engineer"]
 createTime: 2024-04-19
 tags: ["Smart Contract", "Web3", "QA"]
 thumb: "./thumb.png"
 thumb_h: "./thumb_h.png"
-intro: "Because smart contracts are on a public blockchain, they need a lot of testing to be good quality. Engineers must know the whole process, including regular testing, external reviews, and fixing problems after launch."
+intro: "Deploying a smart contract on the public blockchain is a significant milestone, but it's also fraught with risk. The immutability of blockchain technology means that any flaws in the contract's code can have irreversible consequences. In this guide, we will walk you through a systematic and detailed approach to ensure that your smart contract functions as intended, remains secure against malicious attacks, and is optimized for performance and cost-effectiveness."
+previousSlugs: ["smart-contract-development-a-step-by-step-quality-assurance-guide"]
 ---
 
 ## Introduction

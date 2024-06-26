@@ -1,11 +1,12 @@
 ---
-title: "The Building Blocks of Web3: A Deep Dive into dApp Infrastructure"
+title: "Guide to Web3 and dApp Infrastructure"
 author: ["Wei Wang / Tech Lead"]
 createTime: 2024-04-18
 tags: ["Smart Contract", "Web3", "Architecture", "Dapp"]
 thumb: "./thumb.png"
 thumb_h: "./thumb_h.png"
-intro: "The design of Web3 apps is much more decentralized than that of Web2. New services are constantly appearing to make building and running these projects easier and safer. Engineers must know how each part works to create effective Web3 apps."
+intro: "We created this guide to help people new to Web3 and the dApp Infrastructure get started using this technology in their organizations. The design of Web3 apps is much more decentralized than that of Web2. New services are constantly appearing to make building and running these projects easier and safer. Engineers must know how each part works to create effective Web3 apps. And we describe this here."
+previousSlugs: ["the-building-blocks-of-web3-a-deep-dive-into-dapp-infrastructure"]
 ---
 
 ## Overview of the Web3 dApp Landscape

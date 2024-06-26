@@ -1,11 +1,12 @@
 ---
-title: "Image Quality Assessment"
+title: "Image Quality Assessment Using Machine Learning"
 author: ["Damon Wang / Android Engineer", "Roy Xie / Tech Lead"]
 createTime: 2024-04-20
 tags: ["Image Quality", "CNN", "OpenCV"]
 thumb: "https://s3.amazonaws.com/assets.57blocks.io/cms_uploads/illustration_blue_squares_c1bbaab97b.png"
 thumb_h: "./thumb_h.png"
-intro: "This article discusses Image Quality Assessment (IQA), which is a crucial process for determining the accuracy and fidelity of images. IQA algorithms analyze images and generate a quality score based on their precision. There are three main methodologies in IQA: Full-Reference IQA, Reduced-Reference IQA, and Objective Blind IQA (no-reference IQA)."
+intro: "Image Quality Assessment (IQA), specifically Objective Blind or no-reference IQA, is a crucial function to determine image fidelity or the quality of image accuracy. Further, IQA helps maintain the integrity of visual data, ensuring its accurate representation. Here, we share an analysis of the best machine learning models that support IQA, diving deeper into their operations, the challenges and advantages, and its significance in the ever-evolving field of image quality assessment."
+previousSlugs: ["image-quality-assessment"]
 ---
 
 ## Introduction
