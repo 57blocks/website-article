@@ -1,12 +1,12 @@
 ---
-title: "Make Release Manageable With \"Shipping As Small As Possible.\""
+title: "Make Releases Manageable with \"Shipping As Small As Possible\""
 author: ["Yongzhi Yang / Back-End Engineer, Team Lead"]
 createTime: 2024-05-09
 tags: ["CI/CD", "Workflow"]
 thumb: "./thumb.png"
 thumb_h: "./thumb_h.png"
 intro: "If you need to release complex features but want to align with the principles of Continuous Integration and Continuous Deployment (CI/CD), we outline here an approach that we use with our clients. By breaking down large features into manageable components, we have noticed that organizations can mitigate issues, ensure smoother data management and migration, and minimize disruptions to dependent clients. Further, this approach supports an Agile and iterative deployment process, enhancing stability and the user experience."
-previousSlugs: ["shipping-as-small-as-possible"]
+previousSlugs: ["shipping-as-small-as-possible", "make-release-manageable-with-shipping-as-small-as-possible"]
 
 ---
 

@@ -1,5 +1,5 @@
 ---
-title: "How To Use Gradle To Optimize Android Development"
+title: "How to Use Gradle to Optimize Android Development"
 author: ["Rafael Ruiz / Android Engineer"]
 createTime: 2024-05-09
 tags: ["Mobile", "Android"]
