@@ -1,6 +1,6 @@
 ---
 title: "Image Search with AI Models"
-subTitle: "How to leverage Image Models, Large Language Models, and Multimodal Models to provide users with the right results"
+subTitle: "How to Leverage Image Models, Large Language Models, and Multimodal Models to Provide Users with the Right Results"
 author: ["Alpha Xiang / Machine Learning Engineer", "Yanqi Liu / Backend Software Engineer", "Anjing Wang / AI Lead"]
 createTime: 2024-05-21
 tags: ["Image Search", "Image Retrieval", "LLM", "Image Encoder", "Image Embedding", "OCR", "Text Embedding", "CLIP", "Multimodal"]

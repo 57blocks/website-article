@@ -1,5 +1,5 @@
 ---
-title: "How To QA Smart Contracts on Blockchain"
+title: "How to QA Smart Contracts on Blockchain"
 author: ["Lily Hu / Smart Contract Engineer"]
 createTime: 2024-04-19
 tags: ["Smart Contract", "Web3", "QA"]

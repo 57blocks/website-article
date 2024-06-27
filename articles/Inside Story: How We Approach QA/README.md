@@ -1,5 +1,5 @@
 ---
-title: "Inside Story: How we approach QA"
+title: "Inside Story: How We Approach QA"
 author: ["Jia Chen / QA Engineer", "Martha Luo / QA Engineer"]
 createTime: 2024-05-07
 tags: ["QA strategy", "CI",  "Automation Framework"]
