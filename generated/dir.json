@@ -2,7 +2,7 @@
   "articles": [
     {
       "title": "Image Search with AI Models",
-      "subTitle": "How to leverage Image Models, Large Language Models, and Multimodal Models to provide users with the right results",
+      "subTitle": "How to Leverage Image Models, Large Language Models, and Multimodal Models to Provide Users with the Right Results",
       "author": [
         "Alpha Xiang / Machine Learning Engineer",
         "Yanqi Liu / Backend Software Engineer",
@@ -73,7 +73,7 @@
       "slug": "how-to-use-llms-to-extract-document-information"
     },
     {
-      "title": "How To Use Gradle To Optimize Android Development",
+      "title": "How to Use Gradle to Optimize Android Development",
       "author": [
         "Rafael Ruiz / Android Engineer"
       ],
@@ -88,11 +88,11 @@
       "previousSlugs": [
         "overcoming-challenges-in-android-gradle-dependency-management"
       ],
-      "path": "articles/How%20To%20Use%20Gradle%20To%20Optimize%20Android%20Development/README.md",
+      "path": "articles/How%20to%20Use%20Gradle%20to%20Optimize%20Android%20Development/README.md",
       "slug": "how-to-use-gradle-to-optimize-android-development"
     },
     {
-      "title": "Make Release Manageable With \"Shipping As Small As Possible.\"",
+      "title": "Make Releases Manageable with \"Shipping As Small As Possible\"",
       "author": [
         "Yongzhi Yang / Back-End Engineer, Team Lead"
       ],
@@ -105,13 +105,14 @@
       "thumb_h": "./thumb_h.png",
       "intro": "If you need to release complex features but want to align with the principles of Continuous Integration and Continuous Deployment (CI/CD), we outline here an approach that we use with our clients. By breaking down large features into manageable components, we have noticed that organizations can mitigate issues, ensure smoother data management and migration, and minimize disruptions to dependent clients. Further, this approach supports an Agile and iterative deployment process, enhancing stability and the user experience.",
       "previousSlugs": [
-        "shipping-as-small-as-possible"
+        "shipping-as-small-as-possible",
+        "make-release-manageable-with-shipping-as-small-as-possible"
       ],
-      "path": "articles/Make%20Release%20Manageable%20With%20%22Shipping%20As%20Small%20As%20Possible.%22/README.md",
-      "slug": "make-release-manageable-with-shipping-as-small-as-possible"
+      "path": "articles/Make%20Releases%20Manageable%20with%20%22Shipping%20As%20Small%20As%20Possible%22/README.md",
+      "slug": "make-releases-manageable-with-shipping-as-small-as-possible"
     },
     {
-      "title": "Inside Story: How we approach QA",
+      "title": "Inside Story: How We Approach QA",
       "author": [
         "Jia Chen / QA Engineer",
         "Martha Luo / QA Engineer"
@@ -128,7 +129,7 @@
       "previousSlugs": [
         "57blocks-testing-best-practices"
       ],
-      "path": "articles/Inside%20Story%3A%20How%20we%20approach%20QA/README.md",
+      "path": "articles/Inside%20Story%3A%20How%20We%20Approach%20QA/README.md",
       "slug": "inside-story-how-we-approach-qa"
     },
     {
@@ -214,7 +215,7 @@
       "slug": "image-quality-assessment-using-machine-learning"
     },
     {
-      "title": "How To QA Smart Contracts on Blockchain",
+      "title": "How to QA Smart Contracts on Blockchain",
       "author": [
         "Lily Hu / Smart Contract Engineer"
       ],
@@ -230,7 +231,7 @@
       "previousSlugs": [
         "smart-contract-development-a-step-by-step-quality-assurance-guide"
       ],
-      "path": "articles/How%20To%20QA%20Smart%20Contracts%20on%20Blockchain/README.md",
+      "path": "articles/How%20to%20QA%20Smart%20Contracts%20on%20Blockchain/README.md",
       "slug": "how-to-qa-smart-contracts-on-blockchain"
     },
     {
