@@ -6,24 +6,24 @@
 
 1. [Introduction](#introduction)
 2. [Standards and Structure](#standards-and-structure)
-   - [Metadata](#metadata)
-   - [Folder and File Naming](#folder-and-file-naming)
+    - [Metadata](#metadata)
+    - [Folder and File Naming](#folder-and-file-naming)
 3. [Writing and Styling](#writing-and-styling)
-   - [Markdown Syntax](#markdown-syntax)
-   - [Extended Markdown Syntax](#extended-markdown-syntax)
+    - [Markdown Syntax](#markdown-syntax)
+    - [Extended Markdown Syntax](#extended-markdown-syntax)
 4. [Submitting Your Article](#submitting-your-article)
-   - [Local Submission](#local-submission)
-   - [Online Editing](#direct-online-editing)
+    - [Local Submission](#local-submission)
+    - [Online Editing](#direct-online-editing)
 5. [Previewing Your Article](#previewing-your-article)
-   - [Preview by URL](#preview-by-url)
-   - [Realtime Preview](#realtime-preview)
+    - [Preview by URL](#preview-by-url)
+    - [Realtime Preview](#realtime-preview)
 6. [Review and Approval Process](#review-and-approval-process)
-   - [Pull Request Creation](#pull-request-creation)
-   - [Content Review](#content-review)
-   - [Image Optimization](#image-optimization)
+    - [Pull Request Creation](#pull-request-creation)
+    - [Content Review](#content-review)
+    - [Image Optimization](#image-optimization)
 7. [Merging and Deployment](#merging-and-deployment)
-   - [Final Testing](#final-testing)
-   - [Deployment to Main Branch](#deployment-to-main-branch)
+    - [Final Testing](#final-testing)
+    - [Deployment to Main Branch](#deployment-to-main-branch)
 
 ---
 
@@ -76,7 +76,7 @@ Our repository supports all basic Markdown formats. For a detailed guide, refer 
 
 To enhance the presentation of your articles, we support several Markdown plugins:
 
-- **plugin-abbr** [referrence](https://mdit-plugins.github.io/zh/abbr.html) 
+- **plugin-abbr** [referrence](https://mdit-plugins.github.io/zh/abbr.html)
   <details>
   <summary>Usage Example</summary>
 
@@ -87,7 +87,7 @@ To enhance the presentation of your articles, we support several Markdown plugin
   ```
   </details>
 
-- **plugin-alert** [referrence](https://mdit-plugins.github.io/alert.html) 
+- **plugin-alert** [referrence](https://mdit-plugins.github.io/alert.html)
   <details>
   <summary>Usage Example</summary>
 
@@ -99,7 +99,7 @@ To enhance the presentation of your articles, we support several Markdown plugin
 
   Supported alert types: `note`, `tip`, `important`, `caution`, `warning`.
 
-- **align** [referrence](https://mdit-plugins.github.io/align.html) 
+- **align** [referrence](https://mdit-plugins.github.io/align.html)
   <details>
   <summary>Usage Example</summary>
 
@@ -122,7 +122,7 @@ To enhance the presentation of your articles, we support several Markdown plugin
   ```
   </details>
 
-- **img-size** [referrence](https://mdit-plugins.github.io/img-size.html) 
+- **img-size** [referrence](https://mdit-plugins.github.io/img-size.html)
   <details>
   <summary>Usage Example</summary>
 
@@ -133,7 +133,7 @@ To enhance the presentation of your articles, we support several Markdown plugin
   ```
   </details>
 
-- **footnote** [referrence](https://mdit-plugins.github.io/footnote.html) 
+- **footnote** [referrence](https://mdit-plugins.github.io/footnote.html)
   <details>
   <summary>Usage Example</summary>
 
@@ -190,10 +190,10 @@ If you require additional markdown syntax support, please contact the WCP projec
 
    Accepted formats:
 
-   - `https://github.com/57blocks/website-article/tree/dev/articles/YourArticle`
-   - `https://github.com/57blocks/website-article/blob/dev/articles/YourArticle/README.md`
-   - `https://github.com/57blocks/website-article/raw/dev/articles/YourArticle/README.md`
-   - `https://raw.githubusercontent.com/57blocks/website-article/dev/articles/YourArticle/README.md`
+    - `https://github.com/57blocks/website-article/tree/dev/articles/YourArticle`
+    - `https://github.com/57blocks/website-article/blob/dev/articles/YourArticle/README.md`
+    - `https://github.com/57blocks/website-article/raw/dev/articles/YourArticle/README.md`
+    - `https://raw.githubusercontent.com/57blocks/website-article/dev/articles/YourArticle/README.md`
 
 2. Use the [Preview Tool](https://dev-ui.57blocks.io/blog/preview) and paste your raw URL to preview how it will appear on the company's website.
 
@@ -241,5 +241,3 @@ Once the testing is complete and the article is validated, the website publisher
 ---
 
 By following these guidelines, you ensure a consistent, smooth, and high-quality publishing process for your articles. Happy writing!
-
-
