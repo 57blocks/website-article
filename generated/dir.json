@@ -31,6 +31,22 @@
       "slug": "image-search-with-ai-models"
     },
     {
+      "title": "Frontend Performance Optimization",
+      "author": [
+        "Bonnie Chen/ Engineer"
+      ],
+      "createTime": "2024-05-23T00:00:00.000Z",
+      "tags": [
+        "Frontend",
+        "Performance"
+      ],
+      "thumb": "thumb.png",
+      "thumb_h": "loading-is-a-journey.png",
+      "intro": "This article is about front-end performance including strategy metrics, improvement strategies.",
+      "path": "articles/Frontend%20Performance%20Optimization/README.md",
+      "slug": "frontend-performance-optimization"
+    },
+    {
       "title": "What Makes a Good Vector Database? Comparing Pinecone and LanceDB",
       "author": [
         "Alex Hu / Machine Learning Engineer",
