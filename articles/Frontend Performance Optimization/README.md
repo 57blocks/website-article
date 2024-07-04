@@ -1,10 +1,10 @@
 ---
 title: "Frontend Performance Optimization"
-author: ["Bonnie Chen/ Engineer"]
+author: ["Bonnie Chen/ Front-End Engineer"]
 createTime: 2024-05-23
 tags: ["Frontend", "Performance"]
 thumb: "thumb.png"
-thumb_h: "loading-is-a-journey.png"
+thumb_h: "thumb_h.png"
 intro: "This article is about front-end performance including strategy metrics, improvement strategies."
 ---
 
@@ -26,7 +26,7 @@ Now, taking **Performance Observer** as an example, let's delve into the specifi
 
 #### LCP (Largest Contentful Paint)
 
-LCP reports the render time of the largest image or text block visible in the viewport, relative to when the user first navigated to the page. You can assess its standards by examining screenshots. For a more in-depth understanding, please click [here](https://web.dev/articles/lcp#how_to_measure_lcp).
+LCP reports the render time of the largest image or text block visible in the viewport, relative to when the user first navigated to the page. You can assess its standards by examining screenshots. For a more in-depth understanding, please click [here](https://web.dev/articles/lcp#how_to_measure_lcp).
 
 ![LCP](LCP.png)
 
@@ -53,7 +53,7 @@ Here is an explanation and description of the given metrics:
 
 In this example, the LCP is represented by **`loadingTime`**, which is 1.6. According to the mentioned metrics, this is considered good. It indicates that the largest content element (an image in this case) in the viewport successfully rendered within 1.6 seconds, meeting the criteria for a relatively good user experience.
 
-#### FCP（First Contentful Paint）
+#### FCP (First Contentful Paint)
 
 The FCP metric measures the time from when the user first navigated to the page to when any part of the page's content is rendered on the screen. You can understand the standards by examining screenshots. For a more in-depth understanding, you can click [here](https://web.dev/articles/fcp). Another similar metric is FP (First Paint), representing the time it takes for the first pixel to be painted on the screen.
 
@@ -77,7 +77,7 @@ In the given metric:
 
 In this example, FCP is represented by **`startTime`**, which is less than 1 second. According to the provided standards, this is considered good.
 
-#### FID（First Input Delay）
+#### FID (First Input Delay)
 
 FID refers to the time it takes from the user's first interaction with the page to the moment when the browser can actually begin processing the event to respond to that interaction. FID measures the increment between receiving the input event and the next idle period of the main thread. FID is measured even in cases where event listeners are not registered. Additionally, FID focuses only on discrete event operations, such as clicks, touches, and key presses. In contrast, actions like zooming, scrolling, and continuous events (such as mousemove, pointermove, touchmove, wheel, and drag) are not included in this metric. For more detailed information, you can click [here](https://web.dev/articles/fid#what_counts_as_a_first_input).
 
@@ -104,7 +104,7 @@ In the given metrics:
 
 In the example code, FID is equal to **`8574 (processingEnd) - 8558 (processingStart) = 16`**. According to the provided standards, this is considered good.
 
-#### INP（Interaction to Next Paint）
+#### INP (Interaction to Next Paint)
 
 The INP metric assesses the overall responsiveness of a page to user interactions by observing the delays in all clicks, touches, and keyboard interactions occurring throughout the page's lifecycle. The final INP value is the longest observed interaction, disregarding outliers. INP is set to replace FID as a core Web Vitals metric starting from March 12, 2024.
 
@@ -183,7 +183,7 @@ Lazy loading and code splitting are both strategies used to optimize frontend pe
 
 In the context of React, these concepts are often applied by combining code splitting with lazy loading.
 
-```ts
+```tsx
 const DownloadFile = lazy(() => import("./page/OperateFile/OperateFile"));
 const TimeSelect = lazy(() => import("./page/TimeSelect/TimeSelect"));
 
@@ -212,13 +212,13 @@ Usually, we configure appropriate directives based on the update frequency of re
 
 1. For HTML files with a high update frequency, the directive settings commonly used are:
 
-   ```ts
+   ```http
    Cache-Control: no-cache
    ```
 
    Indicates caching, but before use, it will validate with the server to ensure it has the latest data. If the client already has the latest data, the server typically responds with 304 (Not Modified); otherwise, new data will be provided. This approach ensures that each retrieval obtains the latest response. As most HTTP 1.0 does not support no-cache, we can adopt a fallback solution.
 
-   ```ts
+   ```http
    Cache-Control: max-age=0, must-revalidate
    ```
 
@@ -226,7 +226,7 @@ Usually, we configure appropriate directives based on the update frequency of re
 
 2. For frontend static resources, such as bundled scripts and stylesheets, it is common to append a hash or version number to the file name. This practice aids in more effective cache management. For such static files, we typically set the following cache directives:
 
-   ```ts
+   ```http
    Cache-Control: public, immutable, max-age=31536000
    Last-Modified: Wed, 21 Oct 2023 07:28:00 GMT
    ETag: "33a64df551425fcc55e4d42a148795d9f25f89d4"
@@ -240,7 +240,7 @@ Usually, we configure appropriate directives based on the update frequency of re
 
 3. For other resources such as favicon.ico, images, API endpoints, etc., typically, similar settings are used. Conditional requests are initiated using Last-Modified and ETag to check if the resource is up-to-date.
 
-   ```ts
+   ```http
    Cache-Control: no-cache
    Last-Modified: Tue, 22 Feb 2022 20:20:20 GMT
    ETag: AAPuIbAOdvAGEETbgAA2ABwqAsAAE
@@ -258,7 +258,7 @@ Content Delivery Network (CDN) is a distributed server network that caches resou
 - Regarding CSS, in Webpack, the **`mini-css-extract-plugin`** plugin is commonly employed for optimization. This plugin independently extracts a single CSS file from each JavaScript file that contains CSS, enabling separate loading of styles. Furthermore, the plugin supports on-demand loading and Source Maps, providing a more flexible and efficient way for style management.
 - For image resources, using the WebP format instead of JPEG and PNG can significantly reduce file sizes, typically achieving a reduction of 25%-35%. Additionally, optimizing image loading with Content Delivery Networks (CDN) has a notable effect, often resulting in savings of 40%-80% of image sizes. To account for compatibility, the following approaches can be employed
 
-  ```ts
+  ```html
   <picture>
   <source type="image/webp" srcset="flower.webp">
   <source type="image/jpeg" srcset="flower.jpg">
@@ -269,11 +269,11 @@ Content Delivery Network (CDN) is a distributed server network that caches resou
 ### Bundling Optimization
 
 Each time the frontend requests a resource, a TCP connection is established, and after completing the request, the TCP connection is closed, as shown in the diagram below:
-![http request](Http-request.png)
+![http request](Http-request.png#center)
 
 The HTTP protocol has undergone several version updates, primarily including HTTP/1.0, HTTP/1.1, and HTTP/2.0. The following are some key differences in the request aspect across different versions of HTTP, presented in chart formO
 
-![comparison with a different version of http](Comparison-with-a-different-version-of-http.png)
+![comparison with a different version of http](Comparison-with-a-different-version-of-http.png#center)
 
 For web developers, the adoption of HTTP/3 has not brought about significant changes, as HTTP/3 still adheres to the core principles of the HTTP protocol. With the support of the QUIC (Quick UDP Internet Connections) protocol, HTTP/3 provides lower latency during connection establishment, improves multiplexing efficiency, and introduces a more flexible flow control mechanism. Due to these advantages, HTTP/3 shows performance improvements. However, as the implementation of HTTP/3 mainly occurs at the protocol level, web developers typically do not need extensive application changes, so HTTP/3 is not often included in comparisons.
 
@@ -282,7 +282,7 @@ It is worth noting that HTTP/2.0 introduced the Server Push feature, which is hi
 However, it's important to note that due to some limitations in the Server Push mechanism, the Chrome browser currently does not support HTTP/2 Server Push. Detailed support information can be found at this [link](https://developer.chrome.com/blog/removing-push). Despite this, developers can still leverage other performance optimization techniques, such as resource concatenation, caching strategies, etc., to enhance frontend loading performance.
 
 ::: center
-![server push](Http-server-push.png)
+![server push](Http-server-push.png#center)
 :::
 
 The above description outlines the evolution of the HTTP protocol, all aimed at reducing loading times and improving request efficiency. In this process, traditional performance optimization techniques emerged, such as resource inlining and image spriting. These techniques bundle multiple small files into a single large file and transmit them over a single connection, helping reduce the overhead of transmission headers and thus improving performance. During the era of HTTP/1.0 and HTTP/1.1, such techniques were considered effective performance optimization practices.
@@ -293,7 +293,7 @@ However, with the introduction of HTTP/2.0, this situation changed. HTTP/2.0 all
 
 The rendering path is illustrated in the diagram below, where it can be observed that CSS and JavaScript can block rendering. Hence, it is crucial to identify and optimize the loading order of key resources based on their business importance to enhance loading times. Currently, there is a non-standard attribute blocking=render which allows developers to explicitly designate a **`link`**,**`script`**, or **`style`** element as rendering-blocking, meaning it will block rendering until the specific element is processed. However, the key distinction is that it still permits the parser to continue processing the rest of the document in the meantime. This feature provides developers with more control over the rendering behavior of critical resources, allowing for a fine-tuned approach to optimizing the loading sequence for improved performance.
 
-![render process](render-process.png)
+![render process](render-process.png#center)
 
 ### Browser Resource Hint
 
@@ -305,7 +305,7 @@ Help developers optimize page loading times by informing the browser how to load
 
   For compatibility, it is recommended to use DNS Prefetch and preconnect together, but careful configuration is advised to avoid overuse and potential resource wastage.
 
-  ```ts
+  ```html
   <link rel="preconnect" href="https://third-party-domain.com" />
   <link rel="dns-prefetch" href="https://third-party-domain.com" />
   ```
@@ -318,7 +318,7 @@ Help developers optimize page loading times by informing the browser how to load
 
 #### Defer Vs Async
 
-async and defer allow external scripts to load without blocking the HTML parser while scripts (including inline scripts) with type="module" are deferred automatically.
+async and defer allow external scripts to load without blocking the HTML parser while scripts (including inline scripts) with type="module" are deferred automatically.
 
 ![script attribute](script-attributes.png)
 
@@ -332,7 +332,7 @@ You can enhance the priority of a resource using the **`fetchpriority`** attribu
 
 ### Img
 
-- `Loading`: The loading attribute informs the browser how to load images.
+- **`Loading`**: The loading attribute informs the browser how to load images.
 
   - **`eager`**: Loads the image immediately, regardless of its visibility.
   - **`lazy`**: Delays the loading of the image until it appears in the viewport, saving bandwidth. It is recommended to include width and height attributes for images.
@@ -341,7 +341,7 @@ You can enhance the priority of a resource using the **`fetchpriority`** attribu
 
   By using these attributes based on the business value of images, you can optimize Web Core Vitals metrics and enhance overall performance. Additionally, preloading critical image resources can also be achieved using the **`link`** tag.
 
-  ```ts
+  ```html
   <link rel="preload" fetchpriority="high" as="image" href="image.webp" type="image/webp">
   ```
 
@@ -350,7 +350,7 @@ You can enhance the priority of a resource using the **`fetchpriority`** attribu
   - Images should not provide versions larger than what is rendered on the user's screen.
   - Use responsive images by specifying multiple versions, and the browser will choose the most suitable version.
 
-  ```ts
+  ```html
   <img src="flower-large.jpg" srcset="example-small.jpg 480w, example-large.jpg 1080w" sizes="50vw">
   ```
 
@@ -358,12 +358,12 @@ You can enhance the priority of a resource using the **`fetchpriority`** attribu
 
   **`sizes`** specifies the expected display size of the image.
 
-- Width And Height：
+- Width And Height:
 
   1. Both the **`width`** and **`height`** attributes should be specified appropriately to ensure that the browser allocates the correct space in the layout. This helps avoid layout shifts, improving the user experience in terms of Cumulative Layout Shift (CLS).
   2. If the specific width and height cannot be determined, consider setting an aspect ratio as a solution.
 
-     ```ts
+     ```css
      img {
        aspect-ratio: 16 / 9;
        width: 100%;
@@ -410,7 +410,7 @@ The **`preload`** attribute is designed to provide the browser with hints about 
 
 The default value varies for each browser. The specification recommends setting it to **`metadata`**. Specifically, if you want to defer the loading of the video, it can be written as follows:
 
-```ts
+```html
 <video controls preload="none" poster="placeholder.jpg">
   <source src="video.mp4" type="video/mp4">
   <p>
@@ -424,13 +424,15 @@ The default value varies for each browser. The specification recommends setting 
 
 Video files are typically smaller than GIF images at the same visual quality. The following example demonstrates lazy loading a video with autoplay. It utilizes IntersectionObserver to monitor whether the video enters the visible range and loads and plays it when necessary. This approach can enhance the initial loading time.
 
-```ts
-//The playsinline attribute is compatible with autoplay on iOS for automatically playing videos.
-//The poster attribute serves as a placeholder for a video.
+```html
+<!--The playsinline attribute is compatible with autoplay on iOS for automatically playing videos.-->
+<!--The poster attribute serves as a placeholder for a video.-->
 <video class="lazy" autoplay muted loop playsinline width="610" height="254" poster="one-does-not-simply.jpg">
   <source data-src="one-does-not-simply.webm" type="video/webm">
   <source data-src="one-does-not-simply.mp4" type="video/mp4">
 </video>
+
+<script>
 document.addEventListener("DOMContentLoaded", function() {
   var lazyVideos = [].slice.call(document.querySelectorAll("video.lazy"));
 
@@ -457,11 +459,12 @@ document.addEventListener("DOMContentLoaded", function() {
     });
   }
 });
+</script>
 ```
 
 If the video serves as the Largest Contentful Paint (LCP) element, it's beneficial to pre-fetch a placeholder image for the poster. This helps enhance LCP performance.
 
-```ts
+```html
 <link rel="preload" as="image" href="poster.jpg" fetchpriority="high">
 ```
 

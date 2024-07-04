@@ -14,7 +14,7 @@ Susan was a marketer organizing a large event. Every year, she started this proj
 In the past, Susan tried a few different approaches to get print quotes:
 
 +   **Working with online printers** saved money, but often meant a lower\-quality product.
-+   **Working with a trusted print buyer**–one point of contact who worked with dozens of trusted printers–simplified the project but added overhead costs.
++   **Working with a trusted print buyer**—one point of contact who worked with dozens of trusted printers–simplified the project but added overhead costs.
 +   **Working with printers in different specialty areas** required Susan to manage many emails, phone calls, and spreadsheets to track the jobs. Just overwhelming.
 +   **Sending a request for quote (RFQ)** to printers allowed her to choose the one with the best price. Even with select printers in mind, such an effort took weeks between writing the RFQ, accepting responses, and then selecting a printer.
 
@@ -47,7 +47,7 @@ Once a buyer select a print product, the pricing engine helps define the basics 
 
 +   Determines the paper to use
 +   Selects the right presses for the paper
-+   Indicates any services required for paper cutting or finishing.
++   Indicates any services required for paper cutting or finishing
 
 Then the pricing engine determines the best supplier to produce the job. The best supplier has the paper specified in stock and a press that can work with that paper. The best supplier also charges the lowest price.
 
@@ -67,13 +67,13 @@ Additionally, the pricing engine determines the production turnaround time and a
 
 To better understand the scale of the data used to identify a supplier and then generate a price and delivery date, let's review the elements of the pricing engine in more detail:
 
-+   Core databases for papers and presses,
-+   A SKU system (press, paper, services),
-+   Shipping management,
-+   Markup management,
-+   Delivery date calculations,
-+   Industry average, and
-+   Supplier networks.
++   Core databases for papers and presses
++   A SKU system (press, paper, services)
++   Shipping management
++   Markup management
++   Delivery date calculations
++   Industry average
++   Supplier networks
 
 ### Core databases for papers and press
 
@@ -85,10 +85,10 @@ Consistent data is a requirement for any ERP system, and this print pricing syst
 
 These attributes included:
 
-+   Size (flat size, finished size),
-+   Number of sheets (pages, folding),
-+   Paper selection (with sub-categories like color and weight), and
-+   Services for the print item (like foil or a finish) or to package the final product for shipping (e.g., bundling).
++   Size (flat size, finished size)
++   Number of sheets (pages, folding)
++   Paper selection (with sub-categories like color and weight)
++   Services for the print item (like foil or a finish) or to package the final product for shipping (e.g., bundling)
 
 These standards are consistent with what Adobe and HP have defined for their products and map cleanly to them.
 
@@ -106,7 +106,7 @@ Every organization involved in producing a print job will add its own markups fo
 
 Buyers consider two factors when ordering print: the total job cost and when they will receive the printed item. Customers will adjust turnaround times and shipping options to find that sweet spot of an acceptable delivery date and cost. To support this, we needed to determine not only the cost and size of the printed item, but parcel sizes, number of parcels, shipping costs, and delivery time added to the turnaround time to produce the job.
 
-### Industry Average
+### Industry average
 
 To compare prices in the system, our client created the idea of an "industry average" that presented the average costs of papers, presses, services, markup, and shipping. This helped a buyer and the system determine if a job could be produced and if pricing was reasonable.
 
