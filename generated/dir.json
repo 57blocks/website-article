@@ -31,6 +31,26 @@
       "slug": "image-search-with-ai-models"
     },
     {
+      "title": "Get a Print Quote in Seconds - Not Weeks",
+      "subTitle": "When Thousands of Data Points Converge to a Decision in Less Than Three Seconds",
+      "author": [
+        "Yanqi Liu / Back-End Engineer",
+        "Teki Yang / Tech Lead"
+      ],
+      "createTime": "2024-07-03T00:00:00.000Z",
+      "tags": [
+        "Cloud App",
+        "Multithreading",
+        "Cache Data",
+        "ERP"
+      ],
+      "thumb": "./thumb.png",
+      "thumb_h": "./thumb_h.png",
+      "intro": "How do you approach creating a system that indicates the right supplier and provides a price in less than 3 seconds using hundreds of data points? By seeing this system as being an ERP system in the cloud, we were able to keep the system fast at a low cost. Here we share how we did it. ",
+      "path": "articles/Get%20a%20Print%20Quote%20in%20Seconds%20-%20Not%20Weeks/README.md",
+      "slug": "get-a-print-quote-in-seconds-not-weeks"
+    },
+    {
       "title": "Frontend Performance Optimization",
       "author": [
         "Bonnie Chen/ Engineer"
