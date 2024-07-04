@@ -53,7 +53,7 @@
     {
       "title": "Frontend Performance Optimization",
       "author": [
-        "Bonnie Chen/ Engineer"
+        "Bonnie Chen/ Front-End Engineer"
       ],
       "createTime": "2024-05-23T00:00:00.000Z",
       "tags": [
@@ -61,7 +61,7 @@
         "Performance"
       ],
       "thumb": "thumb.png",
-      "thumb_h": "loading-is-a-journey.png",
+      "thumb_h": "thumb_h.png",
       "intro": "This article is about front-end performance including strategy metrics, improvement strategies.",
       "path": "articles/Frontend%20Performance%20Optimization/README.md",
       "slug": "frontend-performance-optimization"
