@@ -24,7 +24,7 @@ Now, taking **Performance Observer** as an example, let's delve into the specifi
 
 ### Web Vitals
 
-#### LCP ( Largest Contentful Paint )
+#### LCP (Largest Contentful Paint)
 
 LCP reports the render time of the largest image or text block visible in the viewport, relative to when the user first navigated to the page. You can assess its standards by examining screenshots. For a more in-depth understanding, please click [here](https://web.dev/articles/lcp#how_to_measure_lcp).
 
@@ -53,7 +53,7 @@ Here is an explanation and description of the given metrics:
 
 In this example, the LCP is represented by **`loadingTime`**, which is 1.6. According to the mentioned metrics, this is considered good. It indicates that the largest content element (an image in this case) in the viewport successfully rendered within 1.6 seconds, meeting the criteria for a relatively good user experience.
 
-#### FCP（ First Contentful Paint ）
+#### FCP（First Contentful Paint）
 
 The FCP metric measures the time from when the user first navigated to the page to when any part of the page's content is rendered on the screen. You can understand the standards by examining screenshots. For a more in-depth understanding, you can click [here](https://web.dev/articles/fcp). Another similar metric is FP (First Paint), representing the time it takes for the first pixel to be painted on the screen.
 
@@ -77,7 +77,7 @@ In the given metric:
 
 In this example, FCP is represented by **`startTime`**, which is less than 1 second. According to the provided standards, this is considered good.
 
-#### FID （ First Input Delay ）
+#### FID（First Input Delay）
 
 FID refers to the time it takes from the user's first interaction with the page to the moment when the browser can actually begin processing the event to respond to that interaction. FID measures the increment between receiving the input event and the next idle period of the main thread. FID is measured even in cases where event listeners are not registered. Additionally, FID focuses only on discrete event operations, such as clicks, touches, and key presses. In contrast, actions like zooming, scrolling, and continuous events (such as mousemove, pointermove, touchmove, wheel, and drag) are not included in this metric. For more detailed information, you can click [here](https://web.dev/articles/fid#what_counts_as_a_first_input).
 
@@ -104,7 +104,7 @@ In the given metrics:
 
 In the example code, FID is equal to **`8574 (processingEnd) - 8558 (processingStart) = 16`**. According to the provided standards, this is considered good.
 
-#### INP（ Interaction to Next Paint ）
+#### INP（Interaction to Next Paint）
 
 The INP metric assesses the overall responsiveness of a page to user interactions by observing the delays in all clicks, touches, and keyboard interactions occurring throughout the page's lifecycle. The final INP value is the longest observed interaction, disregarding outliers. INP is set to replace FID as a core Web Vitals metric starting from March 12, 2024.
 
@@ -122,7 +122,7 @@ INP considers all page interactions, whereas FID only considers the first intera
 
 Since the Performance API does not provide responsiveness information for INP, specific examples are not provided here. For information on how to measure this metric, please refer to [link](https://web.dev/articles/inp#how_is_inp_different_from_first_input_delay_fid).
 
-#### CLS ( Cumulative Layout Shift )
+#### CLS (Cumulative Layout Shift)
 
 Measure the maximum Cumulative Layout Shift (CLS) that occurs throughout the entire lifecycle of a page. In this evaluation, only cases where elements change their initial position are considered, and changes such as adding new elements to the DOM or altering the width and height of elements are not taken into account. For more details, you can click [here](https://web.dev/articles/cls).
 
@@ -332,7 +332,7 @@ You can enhance the priority of a resource using the **`fetchpriority`** attribu
 
 ### Img
 
-- `Loading`**: The loading attribute informs the browser how to load images.
+- `Loading`: The loading attribute informs the browser how to load images.
 
   - **`eager`**: Loads the image immediately, regardless of its visibility.
   - **`lazy`**: Delays the loading of the image until it appears in the viewport, saving bandwidth. It is recommended to include width and height attributes for images.
