@@ -133,9 +133,13 @@ This table summarizes how we approached solving this problem:
 
 </div>
 
+![](./chart%201.png)
+
 ### The importance of tenant expansion
 
 Each supplier maintains its own data stored on the platform. With tenant-level data isolation, the individual tenant nodes only need the data of the supplier network. This greatly reduces the data scope of each individual node, allowing for horizontal scalability and greatly improved performance and resource utilization.
+
+![](./chart%202.png)
 
 ### Cache data to memory rather than calling the database to get a current price
 
@@ -155,9 +159,20 @@ By storing the data in cache memory and making it reusable, the system avoided c
 
 If a supplier did update its data, we added "double insurance" to ensure that the system would always provide a buyer with an accurate price from cache memory data. Since the cache memory and databases are separate systems, we knew that we needed a way to keep the cache current to provide that accurate price. We decided to use the sub-pub model and schedule task synchronization to keep the cached data current and pricing accurate.
 
+![](./chart%203.png)
+::: center
+Cache data directly to memory
+:::
+
 ### Parallelism or multithreading
 
 Since we used the same algorithms across the system to generate a price, we realized that we could clone the algorithms, print specifications, and quote strategy elements and use them simultaneously to compute prices for all suppliers in a network using cache data with multithreading. To reduce latency, we automated CPU resource allocation to increase or decrease depending on the number of suppliers or transactions occurring concurrently. Further, supplier data could be used repeatedly without reallocating memory.
+
+![](./chart%204.png)
+::: center
+Parallelism between suppliers
+:::
+
 
 ### The system could always identify a supplier
 
@@ -167,7 +182,7 @@ As you've read earlier, a standardized set of attributes using the SKU system wa
 
 If a specific paper or press wasn't an exact match for any supplier in the system, the pricing engine would use standardized paper or press attributes (abstracted job specification elements) so at least one supplier could produce the job at the desired quality. There would always be a way to find a supplier, even in the most complex cases.
 
-![](./structure.png#center)
+![](./chart%205.png)
 
 As shown, with the three-tier structure, tenants could complete the standardization of Bookmark and Brochure, while buyers could complete the customization needs of Bookmark and Brochure.
 
