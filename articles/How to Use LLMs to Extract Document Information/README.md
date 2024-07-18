@@ -3,7 +3,7 @@ title: "How to Use LLMs to Extract Document Information"
 author: ["Carvin Li / Machine Learning Engineer", "Anjing Wang / AI Lead"]
 createTime: 2024-05-21
 tags: ["Information Extraction", "LLM"]
-thumb: "thumb_v.png"
+thumb: "thumb.png"
 thumb_h: "thumb_h.png"
 intro: "Today, there is no easy way to convert raw text from volumes of academic papers into structured data, or complete information extraction (IE). Traditional IE methods often rely on labor-intensive handcrafted rules and patterns, which may not generalize across diverse domains and languages. We used various Large Language Models (LLMs) from GPT to Claude to complete IE from these documents and compared their performance. We share what we learned here."
 previousSlugs: ['document-information-extraction-with-large-language-models']
