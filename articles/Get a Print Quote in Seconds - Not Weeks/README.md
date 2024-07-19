@@ -4,7 +4,7 @@ title: "Get a Print Quote in Seconds - Not Weeks"
 subTitle: "When Thousands of Data Points Converge to a Decision Point in Less Than Three Seconds"
 author: ["Yanqi Liu / Back-End Engineer", "Teki Yang / Tech Lead"]
 createTime: 2024-07-03
-tags: ["B2B", "Multi-tenancy", "Parallel Computing", "Microservices"]
+tags: ["B2B", "Multi-tenancy", "Parallel Computing", "Microservices Architecture"]
 thumb: "./thumb.png"
 thumb_h: "./thumb_h.png"
 intro: "How do you approach creating a system that finds the right supplier and provides a price in less than 3 seconds using hundreds of data points? By approaching this system as an ERP system in the cloud, we were able to keep the system fast at a low cost. Here we share how we did it. "
