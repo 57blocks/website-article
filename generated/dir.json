@@ -31,6 +31,7 @@
       "slug": "image-search-with-ai-models"
     },
     {
+      "devOnly": true,
       "title": "Get a Print Quote in Seconds - Not Weeks",
       "subTitle": "When Thousands of Data Points Converge to a Decision in Less Than Three Seconds",
       "author": [
@@ -51,6 +52,7 @@
       "slug": "get-a-print-quote-in-seconds-not-weeks"
     },
     {
+      "devOnly": true,
       "title": "Frontend Performance Optimization",
       "author": [
         "Bonnie Chen/ Front-End Engineer"
