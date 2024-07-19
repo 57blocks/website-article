@@ -5,7 +5,7 @@
       "subTitle": "How to Leverage Image Models, Large Language Models, and Multimodal Models to Provide Users with the Right Results",
       "author": [
         "Alpha Xiang / Machine Learning Engineer",
-        "Yanqi Liu / Backend Software Engineer",
+        "Yanqi Liu / Back-End Engineer",
         "Anjing Wang / AI Lead"
       ],
       "createTime": "2024-05-21T00:00:00.000Z",
@@ -31,10 +31,48 @@
       "slug": "image-search-with-ai-models"
     },
     {
+      "devOnly": true,
+      "title": "Get a Print Quote in Seconds - Not Weeks",
+      "subTitle": "When Thousands of Data Points Converge to a Decision in Less Than Three Seconds",
+      "author": [
+        "Yanqi Liu / Back-End Engineer",
+        "Teki Yang / Tech Lead"
+      ],
+      "createTime": "2024-07-03T00:00:00.000Z",
+      "tags": [
+        "Cloud App",
+        "Multithreading",
+        "Cache Data",
+        "ERP"
+      ],
+      "thumb": "./thumb.png",
+      "thumb_h": "./thumb_h.png",
+      "intro": "How do you approach creating a system that indicates the right supplier and provides a price in less than 3 seconds using hundreds of data points? By seeing this system as being an ERP system in the cloud, we were able to keep the system fast at a low cost. Here we share how we did it. ",
+      "path": "articles/Get%20a%20Print%20Quote%20in%20Seconds%20-%20Not%20Weeks/README.md",
+      "slug": "get-a-print-quote-in-seconds-not-weeks"
+    },
+    {
+      "devOnly": true,
+      "title": "Frontend Performance Optimization",
+      "author": [
+        "Bonnie Chen/ Front-End Engineer"
+      ],
+      "createTime": "2024-05-23T00:00:00.000Z",
+      "tags": [
+        "Frontend",
+        "Performance"
+      ],
+      "thumb": "thumb.png",
+      "thumb_h": "thumb_h.png",
+      "intro": "This article is about front-end performance including strategy metrics, improvement strategies.",
+      "path": "articles/Frontend%20Performance%20Optimization/README.md",
+      "slug": "frontend-performance-optimization"
+    },
+    {
       "title": "What Makes a Good Vector Database? Comparing Pinecone and LanceDB",
       "author": [
         "Alex Hu / Machine Learning Engineer",
-        "Steven Zhang / Backend Software Engineer",
+        "Steven Zhang / Back-End Engineer",
         "Anjing Wang / AI Lead"
       ],
       "createTime": "2024-05-22T00:00:00.000Z",
@@ -63,7 +101,7 @@
         "Information Extraction",
         "LLM"
       ],
-      "thumb": "thumb_v.png",
+      "thumb": "thumb.png",
       "thumb_h": "thumb_h.png",
       "intro": "Today, there is no easy way to convert raw text from volumes of academic papers into structured data, or complete information extraction (IE). Traditional IE methods often rely on labor-intensive handcrafted rules and patterns, which may not generalize across diverse domains and languages. We used various Large Language Models (LLMs) from GPT to Claude to complete IE from these documents and compared their performance. We share what we learned here.",
       "previousSlugs": [
