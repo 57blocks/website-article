@@ -161,18 +161,12 @@ By storing the data in cache memory and making it reusable, the system avoided c
 If a supplier did update its data, we added "double insurance" to ensure that the system would always provide a buyer with an accurate price from cache memory data. Since the cache memory and databases are separate systems, we knew that we needed a way to keep the cache current to provide that accurate price. We decided to use the sub-pub model and schedule task synchronization to keep the cached data current and pricing accurate.
 
 ![](./chart%203.png)
-::: center
-Cache data directly to memory
-:::
 
 ### Parallelism or Multithreading
 
 Since we used the same algorithms across the system to generate a price, we realized that we could clone the algorithms, print specifications, and quote strategy elements and use them simultaneously to compute prices for all suppliers in a network using cache data with multithreading. To reduce latency, we automated CPU resource allocation to increase or decrease depending on the number of suppliers or transactions occurring concurrently. Further, supplier data could be used repeatedly without reallocating memory.
 
 ![](./chart%204.png)
-::: center
-Parallelism between suppliers
-:::
 
 
 ### The System Could Always Identify a Supplier
@@ -197,4 +191,4 @@ She didn't know that the pricing engine identified the right press, paper, and s
 
 Susan ordered all the jobs within minutes, paid for them, and tracked their status online at the site. She trusted that the supplier selected would do a great job. And she knew she could simply reorder the same items next year, changing the artwork.
 
-She saved hours and hundreds of dollars, knowing she got the best price for high-quality printed items delivered on time. Further suppliers who were a better fit to produce what she needed were able to provide her an instant quote and meet her printing needs. To Susan, this was as easy as a few clicks. She had no idea that the secret to this success was thousands of data points, complex algorithms and logic, and advanced system resource management.
+She saved hours and hundreds of dollars, knowing she got the best price for high-quality printed items delivered on time. Further, suppliers who were a better fit to produce what she needed were able to provide her an instant quote and meet her printing needs. To Susan, this was as easy as a few clicks. She had no idea that the secret to this success was thousands of data points, complex algorithms and logic, and advanced system resource management.
