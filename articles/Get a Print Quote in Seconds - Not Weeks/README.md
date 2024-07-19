@@ -1,13 +1,13 @@
 ---
 devOnly: true
 title: "Get a Print Quote in Seconds - Not Weeks"
-subTitle: "When Thousands of Data Points Converge to a Decision in Less Than Three Seconds"
+subTitle: "When Thousands of Data Points Converge to a Decision Point in Less Than Three Seconds"
 author: ["Yanqi Liu / Back-End Engineer", "Teki Yang / Tech Lead"]
 createTime: 2024-07-03
-tags: ["Cloud App", "Multithreading", "Cache Data", "ERP"]
+tags: ["B2B", "Multi-tenancy", "Parallel Computing", "Microservices"]
 thumb: "./thumb.png"
 thumb_h: "./thumb_h.png"
-intro: "How do you approach creating a system that indicates the right supplier and provides a price in less than 3 seconds using hundreds of data points? By seeing this system as being an ERP system in the cloud, we were able to keep the system fast at a low cost. Here we share how we did it. "
+intro: "How do you approach creating a system that finds the right supplier and provides a price in less than 3 seconds using hundreds of data points? By approaching this system as an ERP system in the cloud, we were able to keep the system fast at a low cost. Here we share how we did it. "
 ---
 
 Susan was a marketer organizing a large event. Every year, she started this project by getting last year's list of printed items, knowing that she would need the same items for this year's event. She then would contact last year's printer to get a price quote for the list. She liked that printer and trusted that they would deliver pretty good work on time. Further, Susan didn't really understand print and wanted everything for this event to be as nice as the previous year.
@@ -21,15 +21,15 @@ In the past, Susan tried a few different approaches to get print quotes:
 
 All of these approaches are manual, tedious, and time-consuming, requiring someone to work with known and trusted printers. Printing is complex. We may assume that printing is nothing more than using a copier, but depending on what's needed, there may be complex presses, color processing, or special paper finishing involved. And finding the right trusted printer to produce that type of job can take time and money.
 
-**Our startup client was solving this business problem.** And their solution was to create a marketplace that would connect print buyers, like Susan, with trusted, specialized printers (suppliers). The system would then provide buyers the best price for any print specification. No one would need to understand how print "works", create a list of trusted printers to contact, understand specialty printer offerings, or find a print broker. The system would guide the user step-by–step to order a print job, automatically identify the best supplier, and provide a price.
+**Our startup client was solving this business problem.** And their solution was to create a marketplace that would connect print buyers, like Susan, with trusted, specialized printers (suppliers). The system would then provide buyers the best price for any print specification. No one would need to understand how print "works," create a list of trusted printers to contact, understand specialty printer offerings, or find a print broker. The system would guide the user step-by-step to order a print job, automatically identify the best supplier, and provide a price.
 
-## Our technical vision
+## Our Technical Vision
 
 When we heard about the idea, we immediately thought that this system sounded more like an ERP system within a cloud marketplace than an online store. Long-term, we could envision how the system would eventually access third-party paper systems, presses in print shops, payment systems, and other data sources through various APIs. However, during the first iterations of what we would build, supplier data would need to exist in a cloud database that would be easily accessible for pricing and timing calculations and allow the system to determine which supplier could produce the job that the buyer ordered.
 
 The first step to creating that simple step-by-step buyer experience would require us to develop the ERP infrastructure for a shared supplier platform. We'd also need to build a technical architecture that optimized computing resources, using only what was needed at any time.
 
-## Developing the platform
+## Developing the Platform
 
 When we started building the application, we noticed that it included several systems:
 
@@ -40,11 +40,11 @@ When we started building the application, we noticed that it included several sy
 +   Job and order history (including reorder functionality)
 +   RFQ management
 
-Because the application includes a wide range of functionality that would pages to describe, we will keep this article focused on explaining the technical architecture and decisions made when building the pricing engine, the core of the application.
+Because the application includes a wide range of functionality that would require pages to describe, we will keep this article focused on explaining the technical architecture and decisions made when building the pricing engine, the core of the application.
 
-## A high-level overview of how the pricing engine works
+## A High-level Overview of How the Pricing Engine Works
 
-Once a buyer select a print product, the pricing engine helps define the basics of the job:
+Once a buyer select a print product, the pricing engine automatically defines the basics of the job:
 
 +   Determines the paper to use
 +   Selects the right presses for the paper
@@ -62,7 +62,7 @@ Then, the pricing engine calculates the following costs to create a buyer price:
 +   Shipping
 +   Markup
 +   Tax
-+   Total job
++   Total job price
 
 Additionally, the pricing engine determines the production turnaround time and a delivery date once a shipping option has been selected.
 
@@ -76,13 +76,13 @@ To better understand the scale of the data used to identify a supplier and then 
 +   Industry average
 +   Supplier networks
 
-### Core databases for papers and press
+### Core Databases for Papers and Press
 
 To provide a price to a buyer, a supplier would need to indicate the presses it had in its organization, manually enter the press run time and operations data, and indicate the papers and its qualities. These values would be used to determine if the printer has the press and paper available to produce a job, as well as calculate the job price and turnaround time.
 
-### A SKU system
+### A SKU System
 
-Consistent data is a requirement for any ERP system, and this print pricing system was no different. With the intention of creating a standard across the industry, the client normalized print job data elements by using a SKU system with overarching categories (e.g., single-page, multi-page, envelopes, etc.) defining abstracted options, or attributes.
+Consistent data is a requirement for any ERP system, and this print pricing system is no different. With the intention of creating a standard across the industry, the client normalized print job data elements by using a SKU system with overarching categories (e.g., single-page, multi-page, envelopes, etc.) defining abstracted options, or attributes.
 
 These attributes included:
 
@@ -103,19 +103,19 @@ The system supports all major shipping carriers and supplier delivery options. I
 
 Every organization involved in producing a print job will add its own markups for a specific product, press, paper, service, parcel, shipping, or the overall job cost. Today, printers add these markups manually or use formulas in a series of spreadsheets. We needed to automate markup in our application to calculate a buyer and supplier price.
 
-### Delivery date
+### Delivery Date
 
 Buyers consider two factors when ordering print: the total job cost and when they will receive the printed item. Customers will adjust turnaround times and shipping options to find that sweet spot of an acceptable delivery date and cost. To support this, we needed to determine not only the cost and size of the printed item, but parcel sizes, number of parcels, shipping costs, and delivery time added to the turnaround time to produce the job.
 
-### Industry average
+### Industry Average
 
 To compare prices in the system, our client created the idea of an "industry average" that presented the average costs of papers, presses, services, markup, and shipping. This helped a buyer and the system determine if a job could be produced and if pricing was reasonable.
 
-### Supplier network
+### Supplier Network
 
 An organization could work with many suppliers. We needed to allow an organization to include the data of multiple suppliers in the pricing engine calculations so the system could select the best supplier to produce a print job within their own network.
 
-## How all of these systems provide pricing to buyers ASAP
+## How All of These Systems Provide Pricing to Buyers ASAP
 
 Our goal for this project was to design a system that used supplier data from all these systems to identify the best supplier to produce a buyer's print job and generate the necessary pricing and delivery date in less than 3 seconds.
 
@@ -136,13 +136,13 @@ This table summarizes how we approached solving this problem:
 
 ![](./chart%201.png)
 
-### The importance of tenant expansion
+### The Importance of Tenant Expansion
 
 Each supplier maintains its own data stored on the platform. With tenant-level data isolation, the individual tenant nodes only need the data of the supplier network. This greatly reduces the data scope of each individual node, allowing for horizontal scalability and greatly improved performance and resource utilization.
 
 ![](./chart%202.png)
 
-### Cache data to memory rather than calling the database to get a current price
+### Cache Data to Memory Rather Than Calling the Database to Get a Current Price
 
 We knew these two facts about the system to be true:
 
@@ -161,21 +161,15 @@ By storing the data in cache memory and making it reusable, the system avoided c
 If a supplier did update its data, we added "double insurance" to ensure that the system would always provide a buyer with an accurate price from cache memory data. Since the cache memory and databases are separate systems, we knew that we needed a way to keep the cache current to provide that accurate price. We decided to use the sub-pub model and schedule task synchronization to keep the cached data current and pricing accurate.
 
 ![](./chart%203.png)
-::: center
-Cache data directly to memory
-:::
 
-### Parallelism or multithreading
+### Parallelism or Multithreading
 
 Since we used the same algorithms across the system to generate a price, we realized that we could clone the algorithms, print specifications, and quote strategy elements and use them simultaneously to compute prices for all suppliers in a network using cache data with multithreading. To reduce latency, we automated CPU resource allocation to increase or decrease depending on the number of suppliers or transactions occurring concurrently. Further, supplier data could be used repeatedly without reallocating memory.
 
 ![](./chart%204.png)
-::: center
-Parallelism between suppliers
-:::
 
 
-### The system could always identify a supplier
+### The System Could Always Identify a Supplier
 
 Occasionally, there would be no supplier identified to produce a buyer's job specifications. However, we found a way for the system to abstract the job specification by leveraging the standardized attributes defined and find a supplier as needed.
 
@@ -193,8 +187,8 @@ Let's revisit the scenario at the beginning where this time, Susan uses this sys
 
 Susan needed to print materials for a tradeshow, but this year, she knew that this print pricing system existed. Rather than calling her printer to receive pricing quotes up to a week later, she went to the application and entered the job specifications as requested in the step-by-step form. On each page of the form, she saw an updated price.
 
-She didn't know that the pricing engine identified the right press and paper and supplier to produce the job, and then calculated the press, paper, services, markup, shipping and parcel costs. The system also provided her with a delivery date based on her selections. All within less than 3 seconds.
+She didn't know that the pricing engine identified the right press, paper, and supplier to produce the job, and then calculated the press, paper, services, markup, shipping and parcel costs along with delivery timelines. All she knew was that the system provided her with a total price and a delivery date based on her selections within less than 3 seconds.
 
 Susan ordered all the jobs within minutes, paid for them, and tracked their status online at the site. She trusted that the supplier selected would do a great job. And she knew she could simply reorder the same items next year, changing the artwork.
 
-She saved hours and dollars, knowing she got the best price for high-quality printed items delivered on time. And suppliers who were a better fit to produce what she needed met her printing needs. To Susan, this was as easy as a few clicks. She didn't know that the secret to this success was thousands of data points, complex algorithms and logic, and advanced system resource management.
+She saved hours and hundreds of dollars, knowing she got the best price for high-quality printed items delivered on time. Further, suppliers who were a better fit to produce what she needed were able to provide her an instant quote and meet her printing needs. To Susan, this was as easy as a few clicks. She had no idea that the secret to this success was thousands of data points, complex algorithms and logic, and advanced system resource management.
