@@ -61,15 +61,16 @@ The basic properties of elliptic curves are:
 - Must satisfy the equation: ( y^2 = x^3 + ax + b )
 - Symmetry about the X-axis (e.g., ( p ), ( p' ))
 - Any non-vertical line intersects the curve at most three times (e.g., points ( G ), ( P ), ( m ))
-- Any two points on the curve can be added to obtain a new point (e.g., ( G \cdot P = m ))
-  Below are the general steps and applications of elliptic curve encryption:
+- Any two points on the curve can be added to obtain a new point (e.g., ( G dot P = m ))
+
+Below are the general steps and applications of elliptic curve encryption:
 
 In elliptic curve encryption, the **private key** is not derived through any computation but is randomly chosen. The private key is usually a very large number, and this number is secret, known only to the holder of the private key.
 
-The generation of the public key is based on the private key: First, choose a public base point, noted as ( G ). Then, use your private key ( \text{priv} ) as a scalar and perform point multiplication with the base point ( G ), which involves adding ( G ) to itself ( \text{priv} ) times. The result of this scalar multiplication is another point on the curve, which serves as the public key, noted as ( P ). Thus, ( P = \text{priv} \times G ), where ( \times ) represents scalar multiplication on the elliptic curve, distinct from traditional multiplication. The process of deriving the private key from the public key in elliptic curve cryptography is known as the elliptic curve discrete logarithm problem (ECDLP). This problem is computationally difficult, especially when the prime number is large. This property forms the basis of the trapdoor function, crucial for public key encryption and digital signature systems, and is key to the security of the encryption algorithm.
+The generation of the public key is based on the private key: First, choose a public base point, noted as ( G ). Then, use your private key as a scalar and perform point multiplication with the base point ( G ), which involves adding ( G ) to itself times. The result of this scalar multiplication is another point on the curve, which serves as the public key, noted as ( P ). Thus, ( P = privateKey * G ), where * represents scalar multiplication on the elliptic curve, distinct from traditional multiplication. The process of deriving the private key from the public key in elliptic curve cryptography is known as the elliptic curve discrete logarithm problem (ECDLP). This problem is computationally difficult, especially when the prime number is large. This property forms the basis of the trapdoor function, crucial for public key encryption and digital signature systems, and is key to the security of the encryption algorithm.
 ![ecc](ecc.png)
 
-Elliptic Curve Applications in Blockchain
+Elliptic Curve Applications in Blockchain:
 
 1. Key Generation
 
@@ -102,9 +103,12 @@ To enhance the security of the hash function, a random input called a salt can b
 **Application**
 
 1. Hash Functions and Blockchain State
+
    Hash functions are used to represent the current state of the blockchain. The hash value of each block depends on the hash of the previous block, linking all blocks together. This creates a tamper-resistant chain, as any modification to transaction data will change the block's hash value, thereby breaking the chain. A visual demonstration can be found [here](https://ethereum.org/en/developers/docs/intro-to-ethereum).
 
-2. PoW Mining: Miners use hash functions to search for a random number (nonce) that, when combined with block data, produces a hash value that meets certain conditions. Only by finding a valid nonce can they generate a valid block and add it to the blockchain. PoW blockchains typically aim to have ASIC resistance (referring mainly to hardware specialized for cryptocurrency mining) to mitigate centralization tendencies. ASIC-resistant PoW mining is more decentralized, as users do not need to obtain specialized hardware first, thereby lowering the entry barrier.
+2. PoW Mining: 
+
+    Miners use hash functions to search for a random number (nonce) that, when combined with block data, produces a hash value that meets certain conditions. Only by finding a valid nonce can they generate a valid block and add it to the blockchain. PoW blockchains typically aim to have ASIC resistance (referring mainly to hardware specialized for cryptocurrency mining) to mitigate centralization tendencies. ASIC-resistant PoW mining is more decentralized, as users do not need to obtain specialized hardware first, thereby lowering the entry barrier.
 
 ### Attribute-Based Encryption (ABE)
 
