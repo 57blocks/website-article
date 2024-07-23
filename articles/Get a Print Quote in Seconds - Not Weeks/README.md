@@ -132,6 +132,8 @@ This table summarizes how we approached solving this problem:
 | We needed to be mindful of cloud budget usage (it was a startup with limited budget).<br><br>We needed to support limitless scaling (unlimited suppliers and buyers and unlimited transactions at any moment).       | Run the calculations concurrently using parallelism and multithreading.            |
 | We needed a contingency plan if a supplier couldn't be identified.                                                                                                                                                   | Standardize and generalize systems to find a supplier for any print specification. |
 
+{.fixed-table}
+
 </div>
 
 ![](./chart%201.png)
@@ -191,4 +193,4 @@ She didn't know that the pricing engine identified the right press, paper, and s
 
 Susan ordered all the jobs within minutes, paid for them, and tracked their status online at the site. She trusted that the supplier selected would do a great job. And she knew she could simply reorder the same items next year, changing the artwork.
 
-She saved hours and hundreds of dollars, knowing she got the best price for high-quality printed items delivered on time. Further, suppliers who were a better fit to produce what she needed were able to provide her an instant quote and meet her printing needs. To Susan, this was as easy as a few clicks. She had no idea that the secret to this success was thousands of data points, complex algorithms and logic, and advanced system resource management.
+She saved hours and hundreds of dollars, knowing she got the best price for high-quality printed items delivered on time. Further, suppliers who were a better fit to produce what she needed were able to provide her an instant quote and meet her printing needs. To Susan, this was as easy as a few clicks. She had no idea that the secret to this success included thousands of data points, complex algorithms and logic, and advanced system resource management.
