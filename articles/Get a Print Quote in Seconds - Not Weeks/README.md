@@ -2,7 +2,7 @@
 title: "Get a Print Quote in Seconds - Not Weeks"
 subTitle: "When Thousands of Data Points Converge to a Decision Point in Less Than Three Seconds"
 author: ["Yanqi Liu / Back-End Engineer", "Teki Yang / Tech Lead"]
-createTime: 2024-07-03
+createTime: 2024-07-26
 tags: ["B2B", "Multi-tenancy", "Parallel Computing", "Microservices Architecture"]
 thumb: "./thumb.png"
 thumb_h: "./thumb_h.png"
