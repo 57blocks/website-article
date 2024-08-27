@@ -20,7 +20,7 @@ In the past, Susan tried a few different approaches to get print quotes:
 
 These approaches are manual, tedious, and time-consuming, requiring someone to work with known and trusted printers. Printing is complex. Depending on what's needed, complex presses, color processing, or special paper finishing may be involved. And finding the right trusted printer to produce that type of job can take time and money.
 
-**Our startup client was solving this business problem.** Their solution was to create a marketplace connecting print buyers, like Susan, with trusted, specialized printers (suppliers). The system would provide buyers with the best price for any print specification. No one would need to understand how print 'works,' create a list of trusted printers to contact, understand specialty printer offerings, or find a print broker. The system, designed to be user-friendly, would guide the user step-by-step in ordering a print job, automatically identifying the best supplier, and providing a price.
+**Our startup client was solving this business problem.** Their solution was to create a marketplace connecting print buyers, like Susan with trusted, specialized printers (suppliers). The system would provide buyers with the best price for any print specification. No one would need to understand how print 'works,' create a list of trusted printers to contact, understand specialty printer offerings, or find a print broker. The system, designed to be user-friendly, would guide the user step-by-step in ordering a print job, automatically identifying the best supplier, and providing a price.
 
 ## Our Technical Vision
 
