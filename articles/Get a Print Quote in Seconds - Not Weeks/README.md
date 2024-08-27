@@ -127,17 +127,8 @@ This table summarizes how we approached solving this problem:
 | What we knew about the system                                                                                                                                                                                        | Solutions to optimize resources and deliver a price in under three seconds             |
 |:---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|:-----------------------------------------------------------------------------------|
 | The suppliers shared data structures but not data values.                                                                                                                                                            | Leverage tenant expansion to manage the data scope of a node.                       |
-| The algorithms and calculations were the same for all suppliers across the system.
-
-
-|A lot of data and algorithms were used to make calculations at any single moment.
-
-
-|Supplier data was rarely updated. | Cache data to memory rather than calling the database to get a current price.      |
-| We needed to be mindful of cloud budget usage (it was a startup with a limited budget).
-
-
-|We needed to support limitless scaling (unlimited suppliers and buyers and unlimited transactions at any moment).       | Run the calculations concurrently using parallelism and multithreading.            |
+| The algorithms and calculations were the same for all suppliers across the system. <p>A lot of data and algorithms were used to make calculations at any single moment.</p>Supplier data was rarely updated. | Cache data to memory rather than calling the database to get a current price.      |
+| We needed to be mindful of cloud budget usage (it was a startup with a limited budget).<p>We needed to support limitless scaling (unlimited suppliers and buyers and unlimited transactions at any moment).</p>       | Run the calculations concurrently using parallelism and multithreading.            |
 | We needed a contingency plan if a supplier couldn't be identified.                                                                                                                                                   | Standardize and generalize systems to find a supplier for any print specification. |
 
 {.fixed-table}
