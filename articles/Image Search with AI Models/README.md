@@ -52,11 +52,11 @@ Fig 3. A general pipeline of SIFT- and CNN-based retrieval models[^third]
 :::
 
 #### 3.1.1 Image Feature Extraction Model
-In the scope of our project, the ResNet model[^four], grounded in CNN architecture, and the CLIP model[^five], which is built upon transformer technology, were selected as the fundamental frameworks for feature extraction. We have meticulously performed a series of validation and optimization experiments to enhance and confirm the efficacy of these two robust models.  
+In the scope of our project, the ResNet model[^five], grounded in CNN architecture, and the CLIP model[^six], which is built upon transformer technology, were selected as the fundamental frameworks for feature extraction. We have meticulously performed a series of validation and optimization experiments to enhance and confirm the efficacy of these two robust models.  
 
 ResNet is an emblematic model architecture that epitomizes CNN-based deep learning methodologies. In our project's pre-processing phase, preceding the application of ResNet for feature extraction (Relu is a common activation function), we implemented a methodology reminiscent of face recognition.
 
-We generated pairs of identical or closely related samples through extensive data augmentation processes and used Focal loss[^six] to train a sophisticated multi-class classifier. For the actual feature extraction process, we stripped away the classifier layer of the model and repurposed the remaining structure to capture the feature vectors. Standard practice dictates setting the feature dimensionality to 512 or a higher value to ensure comprehensive feature representation.
+We generated pairs of identical or closely related samples through extensive data augmentation processes and used Focal loss[^eleven] to train a sophisticated multi-class classifier. For the actual feature extraction process, we stripped away the classifier layer of the model and repurposed the remaining structure to capture the feature vectors. Standard practice dictates setting the feature dimensionality to 512 or a higher value to ensure comprehensive feature representation.
 
 ![figure 4 Residual learning: a building block.png](figure%204%20Residual%20learning%3A%20a%20building%20block.png#center)
 ::: center
