@@ -77,11 +77,11 @@ To better understand the scale of the data used to identify a supplier and then 
 
 ### Core Databases for Papers and Press
 
-To provide the buyer with a price, a supplier would need to indicate the presses it had in its organization, manually enter the press run time and operations data, and indicate the papers and their qualities. These values would be used to determine if the printer has the press and paper available to produce a job, and calculate the job price and turnaround time.
+To provide the buyer with a price, a supplier would need to indicate the presses it had in its organization, manually enter the press run time and operations data, and indicate the papers and their qualities. These values would be used to determine if the printer has the press and paper available to produce a job and calculate the job price and turnaround time.
 
 ### A SKU System
 
-Consistent data is a requirement for any ERP system, and this print pricing system is no different. To create a standard across the industry, the client normalized print job data elements using an SKU system with overarching categories (e.g., single-page, multi-page, envelopes, etc.) defining abstracted options or attributes.
+Consistent data is a requirement for any ERP system, and this print pricing system is no different. To create a standard across the industry, the client normalized print job data elements using a SKU system with overarching categories (e.g., single-page, multi-page, envelopes, etc.) defining abstracted options or attributes.
 
 These attributes included:
 
@@ -118,7 +118,7 @@ An organization could work with many suppliers. We needed to allow an organizati
 
 Our project aimed to design a system that used supplier data from all these systems to identify the best supplier to produce a buyer's print job and generate the necessary pricing and delivery date in less than three seconds.
 
-We discovered early in the project, that the pricing engine calculations didn't take much time or processing power for a single supplier. However, the processing time and power exponentially increased when applying the pricing formula to the data set of every supplier across a supplier network.
+We discovered early in the project that the pricing engine calculations didn't take much time or processing power for a single supplier. However, the processing time and power exponentially increased when applying the pricing formula to the data set of every supplier across a supplier network.
 
 This table summarizes how we approached solving this problem:
 
