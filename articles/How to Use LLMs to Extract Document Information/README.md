@@ -113,7 +113,7 @@ The False Positive cases may consist of two different cases. LLM extracts an inc
 
 ### Misunderstanding and Terminology Confusion
 
-LLMs may occasionally struggle to distinguish between terms like "Injection" and "Re-injection". However they can provide correct answers when queried directly (ask LLM the difference between "Injection" and "Re-injection"). When an article mentions "Injection," the LLM may misinterpret it as "Re-injection," potentially overlooking distinctions crucial to our task. To mitigate such errors without extensive model training, we optimize prompts by adding constraints or explanations. However, verbose prompts often yield unsatisfactory results, creating a "Whack-A-Mole" scenario.
+LLMs may occasionally struggle to distinguish between terms like "Injection" and "Re-injection." However, they can provide correct answers when queried directly (ask LLM the difference between "Injection" and "Re-injection"). When an article mentions "Injection," the LLM may misinterpret it as "Re-injection," potentially overlooking distinctions crucial to our task. To mitigate such errors without extensive model training, we optimize prompts by adding constraints or explanations. However, verbose prompts often yield unsatisfactory results, creating a "Whack-A-Mole" scenario.
 
 ### Unit Conversion Issues
 
@@ -149,7 +149,7 @@ Designing a meta-model for Ensemble Stacking presents another challenge. With Gr
 
 ### Data Annotation
 
-Data annotation for information extraction is notably challenging. Annotators, must be professionals or experts to ensure annotation's accuracy and completeness, particularly for academic papers. Reading articles is time-consuming, especially with thousands of documents. Initial annotation efforts began with a few papers, gradually increasing to dozens and eventually hundreds or thousands as the program developed. However, this quantity still falls short of realistically reflecting the overall distribution. While programs can alleviate some initial annotation work, manual validation remains necessary, with the required time increasing alongside the text volume. 
+Data annotation for information extraction is notably challenging. Annotators must be professionals or experts to ensure annotation's accuracy and completeness, particularly for academic papers. Reading articles is time-consuming, especially with thousands of documents. Initial annotation efforts began with a few papers, gradually increasing to dozens and eventually hundreds or thousands as the program developed. However, this quantity still falls short of realistically reflecting the overall distribution. While programs can alleviate some initial annotation work, manual validation remains necessary, with the required time increasing alongside the text volume. 
 
 ## Conclusion
 
