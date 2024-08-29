@@ -22,7 +22,7 @@
       ],
       "thumb": "thumb.png",
       "thumb_h": "thumb_h.png",
-      "intro": "By using just an image on a mobile device, the search application is designed to return matches from the database that are either identical or bear a high resemblance to the original uploaded image. Here, we describe the technology behind this powerful functionality.",
+      "intro": "Using just an image on a mobile device, the search application is designed to return matches from the database that are either identical or resemble the original uploaded image. In this blog, we describe the technology behind this powerful functionality.",
       "top": true,
       "previousSlugs": [
         "image-search-leveraging-ai-models"
