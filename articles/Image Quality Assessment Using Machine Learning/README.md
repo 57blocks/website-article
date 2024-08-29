@@ -5,7 +5,7 @@ createTime: 2024-04-20
 tags: ["Image Quality", "CNN", "OpenCV"]
 thumb: "https://s3.amazonaws.com/assets.57blocks.io/cms_uploads/illustration_blue_squares_c1bbaab97b.png"
 thumb_h: "./thumb_h.png"
-intro: "Image Quality Assessment (IQA), specifically Objective Blind or no-reference IQA, is a crucial function determining image fidelity or the quality of image accuracy. Further, IQA helps maintain the integrity of visual data, ensuring its accurate representation. In this article, we share an analysis of the best machine learning models that support IQA, including BRISQUE, DIQA, NIMA and OpenCV. We will delve deeper into their operations, the challenges and advantages, and their significance in the ever-evolving field of image quality assessment."
+intro: "Image Quality Assessment (IQA), specifically Objective Blind or no-reference IQA, is a crucial function in determining image fidelity or the quality of image accuracy. Further, IQA helps maintain the integrity of visual data, ensuring its accurate representation. In this article, we share an analysis of the best machine learning models that support IQA, including BRISQUE, DIQA, NIMA and OpenCV. We will delve deeper into their operations, the challenges and advantages, and their significance in the ever-evolving field of image quality assessment."
 previousSlugs: ["image-quality-assessment"]
 ---
 
@@ -267,7 +267,7 @@ The versatility of both machine learning and OpenCV solutions allows them to be 
 
 ## Conclusion
 
-Using machine learning solutions for Image Quality Assessment presents its unique challenges.
+Using machine learning solutions for Image Quality Assessment presents unique challenges.
 
 Firstly, the task involves identifying an efficient machine learning model that can effectively assess image quality. Once the model is determined, it must be trained with data. This data collection and organization that goes into training can be complex and laborious, requiring adept handling, sorting, and labeling of massive amounts of image data.
 
