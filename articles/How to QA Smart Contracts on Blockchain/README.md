@@ -75,21 +75,11 @@ If your contract is designed to be upgradable or requires migrations, test these
   
 By undergoing rigorous testing, smart contracts can be trusted to manage transactions and execute terms autonomously on the blockchain with reduced risk of hacks, funds loss, or unintended consequences.  
   
-- **Hardhat:** 
-
-Is one of the most popular programming environments based on Javascript for developing Ethereum-based decentralized applications.  
-- **Foundry:**   
-
-Is a convenient Ethereum application development toolkit written in Rust.Foundry that is rapid, modular, and portable. Essentially, Foundry is a reinvention of the dapp.tools testing framework.   
-- **Brownie:**   
-
-Is a Python-based testing framework for smart contracts targeting blockchains that operate an Ethereum Virtual Machine. Developers can run tests before deploying contracts on EVM-compatible networks.  
-- **Waffle:**   
-
-Typescript-compatible smart contract testing library for Ethereum that works with ethers.js.  
-- **Truffle:**   
-
-Is the leading Ethereum development environment for building, deploying, and testing smart contracts. (The Truffle suite is being [phased out](https://consensys.io/blog/consensys-announces-the-sunset-of-truffle-and-ganache-and-new-hardhat?utm_source=github&utm_medium=referral&utm_campaign=2023_Sep_truffle-sunset-2023_announcement_); we advise against using it moving forward)
+- **Hardhat:** Is one of the most popular programming environments based on Javascript for developing Ethereum-based decentralized applications.  
+- **Foundry:** Is a convenient Ethereum application development toolkit written in Rust.Foundry that is rapid, modular, and portable. Essentially, Foundry is a reinvention of the dapp.tools testing framework.   
+- **Brownie:** Is a Python-based testing framework for smart contracts targeting blockchains that operate an Ethereum Virtual Machine. Developers can run tests before deploying contracts on EVM-compatible networks.  
+- **Waffle:** Typescript-compatible smart contract testing library for Ethereum that works with ethers.js.  
+- **Truffle:** Is the leading Ethereum development environment for building, deploying, and testing smart contracts. (The Truffle suite is being [phased out](https://consensys.io/blog/consensys-announces-the-sunset-of-truffle-and-ganache-and-new-hardhat?utm_source=github&utm_medium=referral&utm_campaign=2023_Sep_truffle-sunset-2023_announcement_); we advise against using it moving forward)
 
 
 
@@ -109,15 +99,9 @@ Once the preliminary testing phases have been finished, you should engage expert
   
 Some prominent audit firms specializing in smart contract security have gained recognition in the blockchain community: [Trail of Bits](https://www.trailofbits.com/), [Spearbit](https://spearbit.com/), [PeckShield](https://peckshield.com/), [Secure3](https://www.secure3.io/), and [OpenZeppelin](https://www.openzeppelin.com/security-audits).
   
-- **Trail of Bits:**   
-
-Is a blockchain auditing company and open-source web3 security tool developer offering various services and products. Trail of Bits helps blockchain companies harden smart contracts, understand contract storage, and manage and identify many potential vulnerabilities.
-- **Spearbit:**    
-
-Is a decentralized network of security experts that offers web3 security consulting services. Spearbit offers one-off security reviews by a hand-selected team of experts and recurring security reviews in the form of retainer agreements.  
-- **PeckShield:**  
-
-Is a blockchain security firm offering audits, pen tests, threat monitoring, and more. 
+- **Trail of Bits:** Is a blockchain auditing company and open-source web3 security tool developer offering various services and products. Trail of Bits helps blockchain companies harden smart contracts, understand contract storage, and manage and identify many potential vulnerabilities.
+- **Spearbit:** Is a decentralized network of security experts that offers web3 security consulting services. Spearbit offers one-off security reviews by a hand-selected team of experts and recurring security reviews in the form of retainer agreements.  
+- **PeckShield:** Is a blockchain security firm offering audits, pen tests, threat monitoring, and more. 
 
 
 
@@ -166,15 +150,9 @@ After deploying the smart contracts to the Mainnet, initiating a bug bounty prog
 
 Employ tracking tools such as [Tenderly](https://tenderly.co/), [Forta](https://forta.org/), or [Etherscan](https://etherscan.io/) to monitor your contract's activities. These services provide notifications for any anomalous actions that could indicate potential security issues.  
 
-- **Tenderly:**   
-
-Ethereum developer platform for real-time monitoring, debugging, and simulating smart contracts.  
-- **Forta:**  
-
-Is a real-time decentralized cybersecurity network on Ethereum, Polygon, and multiple other blockchains.  
-- **Etherscan:** 
-
-Is an Ethereum block explorer and analytics platform that allows you to see and analyze assets, balances, and transactions. You can also interact with Etherscan contracts and view gas prices.  
+- **Tenderly:** Ethereum developer platform for real-time monitoring, debugging, and simulating smart contracts.  
+- **Forta:** Is a real-time decentralized cybersecurity network on Ethereum, Polygon, and multiple other blockchains.  
+- **Etherscan:** Is an Ethereum block explorer and analytics platform that allows you to see and analyze assets, balances, and transactions. You can also interact with Etherscan contracts and view gas prices.  
 
 **Tenderly Tool Categories:**
 
