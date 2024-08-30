@@ -46,7 +46,7 @@
       ],
       "thumb": "./thumb.png",
       "thumb_h": "./thumb_h.png",
-      "intro": "How do you approach creating a system that finds the right supplier and provides a price in less than 3 seconds using hundreds of data points? By approaching this system as an ERP system in the cloud, we were able to keep the system fast at a low cost. Here we share how we did it. ",
+      "intro": "How do you approach creating a system that finds the right supplier and provides a price in less than three seconds using hundreds of data points? By approaching this system as an ERP system in the cloud, we were able to make the process fast and low cost. Here we share how we did it. ",
       "path": "articles/Get%20a%20Print%20Quote%20in%20Seconds%20-%20Not%20Weeks/README.md",
       "slug": "get-a-print-quote-in-seconds-not-weeks"
     },
