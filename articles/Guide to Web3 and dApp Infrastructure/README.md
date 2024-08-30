@@ -19,10 +19,12 @@ Tools and platforms that enable users to access and interact with Web3. These in
 
 2. **Applications**  
          
-These act as a bridge between end-users and the underlying blockchain protocols and primitives, providing a user interface and experience.           
+These act as a bridge between end-users and the underlying blockchain protocols and primitives, providing a user interface and experience.       
+
 3. **Primitives**  
 
-Fundamental components within the decentralized ecosystem. They are interoperable building blocks that developers use to create complex dApps.           
+Fundamental components within the decentralized ecosystem. They are interoperable building blocks that developers use to create complex dApps.        
+   
 4. **Protocols**   
 
 Frameworks and systems providing infrastructure for decentralized networks. They define data storage, transmission, and processing across a blockchain network.
