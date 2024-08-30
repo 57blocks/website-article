@@ -100,13 +100,16 @@ The development process of smart contracts generally involves several key steps:
   
 1. **Analysis of Business Logic**  
 
-Initially, the underlying business logic is analyzed to ensure that the smart contract will function as intended.  
+Initially, the underlying business logic is analyzed to ensure that the smart contract will function as intended. 
+
 2. **Coding the Contract**  
 
 The contract is then coded, typically using Solidity, the primary language for Ethereum smart contracts.  
+
 3. **Testing**  
 
 Rigorous testing is essential to identify errors and confirm the contract's functionality.  
+
 4. **Audit**  
 
 Before deployment, the smart contract undergoes a critical audit phase. This step is crucial for identifying vulnerabilities and ensuring the contract operates correctly in all scenarios. The audit helps prevent exploits, which protects user funds and maintains trust in the application.  
