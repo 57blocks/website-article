@@ -76,7 +76,7 @@ If your contract is designed to be upgradable or requires migrations, test these
 By undergoing rigorous testing, smart contracts can be trusted to manage transactions and execute terms autonomously on the blockchain with reduced risk of hacks, funds loss, or unintended consequences.  
   
 - **Hardhat:** Is one of the most popular programming environments based on Javascript for developing Ethereum-based decentralized applications.  
-- **Foundry:** Is a convenient Ethereum application development toolkit written in Rust.Foundry that is rapid, modular, and portable. Essentially, Foundry is a reinvention of the dapp.tools testing framework.   
+- **Foundry:** Is a convenient Ethereum application development toolkit written in Rust. Foundry that is rapid, modular, and portable. Essentially, Foundry is a reinvention of the dapp.tools testing framework.   
 - **Brownie:** Is a Python-based testing framework for smart contracts targeting blockchains that operate an Ethereum Virtual Machine. Developers can run tests before deploying contracts on EVM-compatible networks.  
 - **Waffle:** Typescript-compatible smart contract testing library for Ethereum that works with ethers.js.  
 - **Truffle:** Is the leading Ethereum development environment for building, deploying, and testing smart contracts. (The Truffle suite is being [phased out](https://consensys.io/blog/consensys-announces-the-sunset-of-truffle-and-ganache-and-new-hardhat?utm_source=github&utm_medium=referral&utm_campaign=2023_Sep_truffle-sunset-2023_announcement_); we advise against using it moving forward)
@@ -87,7 +87,7 @@ By undergoing rigorous testing, smart contracts can be trusted to manage transac
 
 Gas Consumption Analysis refers to evaluating the amount of gas required for executing operations within a smart contract on the Ethereum blockchain. This analysis is crucial to optimize efficiency and cost-effectiveness, as gas fees impact the overall expense for users interacting with the contract. Developers perform gas consumption analysis to reduce unnecessary computational work, streamline contract functions, and ensure the economic viability of transactions for end users. Hardhat and Foundry have features that can analyze gas usage for smart contracts.  
   
-**Hardhat-gas-reporter Result: graph**
+**Hardhat-gas-reporter Result:**
 
 ![hardhat-gas-reporter-result.png](https://s3.amazonaws.com/assets.57blocks.io/cms_uploads/hardhat_gas_reporter_result_47b800a14d.png)
 
