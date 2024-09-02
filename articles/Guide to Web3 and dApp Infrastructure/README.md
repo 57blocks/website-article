@@ -125,7 +125,7 @@ Middleware gathers and processes data from smart contracts, creating an accessib
     1. Subgraph is a tool for extracting and processing blockchain data, storing it in a format easily queried via GraphQL.
     2. Dune offers analytics for the blockchain ecosystem, allowing users to access and share data from various blockchain networks, such as Ethereum, xDai, Polygon, and others.
 
-2. **Monitoring**
+2. **Monitoring**  
 This involves constant surveillance of smart contracts, detecting and responding to state and transaction events changes. This is critical for maintaining the integrity and functionality of smart contracts.  
   
 3. **Autotask**  
@@ -136,10 +136,10 @@ Middleware can be configured to send alerts based on predetermined criteria. The
 
 These common tools often integrate multiple functions, including above monitoring, automation, and alerting:
 
-    1. **Sentio** is a user-friendly tool for gaining insights, securing assets, and troubleshooting transactions for decentralized applications.
-    2. **Gelato** is known as Web3’s decentralized backend, enabling the creation of augmented smart contracts that are automated and off-chain aware.
-    3. **Defender** focuses on enforcing security best practices in smart contract deployment and maintenance across blockchains.
-    4. **Tenderly** provides a platform for Web3 developers to create, test, monitor, and operate smart contracts, combining debugging tools with observability and infrastructure components.
+    1. **Sentio**  is a user-friendly tool for gaining insights, securing assets, and troubleshooting transactions for decentralized applications.
+    2. **Gelato**  is known as Web3’s decentralized backend, enabling the creation of augmented smart contracts that are automated and off-chain aware.
+    3. **Defender**  focuses on enforcing security best practices in smart contract deployment and maintenance across blockchains.
+    4. **Tenderly**  provides a platform for Web3 developers to create, test, monitor, and operate smart contracts, combining debugging tools with observability and infrastructure components.
 
 ### SDK
 
