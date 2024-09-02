@@ -61,19 +61,14 @@ Web3 key components
 
    
 - **Blockchain Foundation**  
-
 At its core, a Web3 application is built on a blockchain, which serves as a decentralized and immutable ledger. This ledger ensures the integrity and transparency of the data within the application.  
 - **Smart Contracts**  
-
 These are programs stored on the blockchain, which are crucial for the functionality of the Web3 application. Smart contracts autonomously execute actions based on certain conditions and govern the business logic and rules of the decentralized ecosystem.  
 - **Frontend Interface**  
-
 The frontend of a Web3 application is often developed using traditional web development tools and frameworks. It offers an intuitive user interface for interacting with smart contracts on the blockchain. Libraries like web3.js or ethers.js are integrated to facilitate the connection between the user interface and the blockchain.  
 - **Middleware Layer**  
-
 In Web3 architecture, the middleware layer acts as a relieving intermediary between the raw data on the blockchain and the frontend. It simplifies essential tasks such as querying blockchain events, translating them into a user-friendly format, and managing complex computations and interactions that occur off the blockchain, reducing the complexity and making the process more manageable.  
 - **Cross-Chain Interoperability**  
-
 A significant aspect of Web3 applications is their ability to bridge different blockchains, enhancing interoperability. This cross-chain functionality enables the application to utilize the strengths of various networks, allowing for the smooth transfer and exchange of assets and information across diverse blockchain systems, which would otherwise be isolated and fragmented.  
   
 In summary, Web3 architecture is distinguished by its decentralized foundation, with blockchain technology at its heart, supported by smart contracts, and enhanced by user-friendly frontends, efficient middleware, and cross-chain interoperability for a seamless experience.  
@@ -91,19 +86,15 @@ Smart contracts are fundamental to the functionality of Web3 Decentralized Appli
 The development process of smart contracts generally involves several key steps:  
   
 1. **Analysis of Business Logic**  
-
 Initially, the underlying business logic is analyzed to ensure that the smart contract will function as intended. 
 
 2. **Coding the Contract**  
-
 The contract is then coded, typically using Solidity, the primary language for Ethereum smart contracts.  
 
 3. **Testing**  
-
 Rigorous testing is essential to identify errors and confirm the contract's functionality.  
 
 4. **Audit**  
-
 Before deployment, the smart contract undergoes a critical audit phase. This step is crucial for identifying vulnerabilities and ensuring the contract operates correctly in all scenarios. The audit helps prevent exploits, which protects user funds and maintains trust in the application.  
   
 For the development of smart contracts, popular environments include Hardhat and Foundry.  
@@ -135,22 +126,18 @@ Off-chain processing enables more efficient and flexible data retrieval than dir
 Middleware in Web3 applications acts as a crucial intermediary layer, offering centralized auxiliary functions to address the technical challenges inherent in Web3 technologies. Its role is to ensure efficient and secure operations within the decentralized framework. Key functions of middleware and some popular tools include:
 
 1. **Data Indexing**  
-
 Middleware gathers and processes data from smart contracts, creating an accessible layer for efficient data querying and retrieval. This is essential because direct on-chain data retrieval can be cumbersome due to the decentralized nature of blockchain data storage.
 
     1. Subgraph is a tool for extracting and processing blockchain data, storing it in a format easily queried via GraphQL.
     2. Dune offers analytics for the blockchain ecosystem, allowing users to access and share data from various blockchain networks, such as Ethereum, xDai, Polygon, and others.
 
 2. **Monitoring**
-
 This involves constant surveillance of smart contracts, detecting and responding to state and transaction events changes. This is critical for maintaining the integrity and functionality of smart contracts.  
   
 3. **Autotask**  
-
 This function automates the execution of specific smart contract actions in response to certain events or conditions, ensuring smooth and timely operations without manual intervention.  
   
 4.  **Alerting**  
-
 Middleware can be configured to send alerts based on predetermined criteria. These alerts can be communicated through various channels, such as email, user notifications, on-call services, or messages, facilitating quick responses to important events or conditions within the blockchain environment.  
 These common tools often integrate multiple functions, including above monitoring, automation, and alerting:
 
