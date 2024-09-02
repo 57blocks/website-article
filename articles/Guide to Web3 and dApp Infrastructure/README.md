@@ -14,43 +14,35 @@ previousSlugs: ["the-building-blocks-of-web3-a-deep-dive-into-dapp-infrastructur
 The Web3 decentralized application (dApp) landscape is extensive and complex, featuring a variety of applications that use blockchain technology. These decentralized, interoperable applications often incentivize participation through cryptographic tokens. The key categories within this landscape include:  
 
 1. **Doors**  
-
 Tools and platforms that enable users to access and interact with Web3. These interfaces and applications bridge the gap between traditional web users and the decentralized protocols of Web3.           
 
 2. **Applications**  
-         
 These act as a bridge between end-users and the underlying blockchain protocols and primitives, providing a user interface and experience.       
 
 3. **Primitives**  
-
 Fundamental components within the decentralized ecosystem. They are interoperable building blocks that developers use to create complex dApps.        
    
 4. **Protocols**   
-
 Frameworks and systems providing infrastructure for decentralized networks. They define data storage, transmission, and processing across a blockchain network.
 
 ---
 
 - **Doors**  
-
 Enable users to access and interact with web3
 
   ![the-building-blocks-of-web3-doors.png](https://s3.amazonaws.com/assets.57blocks.io/cms_uploads/the_building_blocks_of_web3_doors_836a803b8b.png)
 
 - **Applications**  
-
 Connect users with protocols and Primitives via a user interface and experience
 
   ![the-building-blocks-of-web3-applications.png](https://s3.amazonaws.com/assets.57blocks.io/cms_uploads/the_building_blocks_of_web3_applications_21f6200efe.png)
 
 - **Primitives**  
-
 Are the task-specific, interoperable building blocks for decentralized Applications
 
   ![the-building-blocks-of-web3-primitives.png](https://s3.amazonaws.com/assets.57blocks.io/cms_uploads/the_building_blocks_of_web3_primitives_b2fcf86bf2.png)
 
 - **Protocols**  
-
 Construct the foundational blockchain architecture of web3
 
   ![the-building-blocks-of-web3-protocols.png](https://s3.amazonaws.com/assets.57blocks.io/cms_uploads/the_building_blocks_of_web3_protocols_f61611bf40.png)
@@ -186,20 +178,17 @@ By using these integrations, the SDK enhances the overall usability and accessib
 Blockchain cross-chain technology encompasses the methods and systems facilitating interactions and value exchange between blockchain networks. This technology is essential for enabling seamless interoperability among various blockchain systems. Key components and protocols in this domain include:  
   
 1. **Token Bridge**  
-
 A token bridge enables the transfer of tokens between two different blockchain networks. It enhances blockchain interoperability, allowing users to utilize the unique features of multiple chains without being confined to a single blockchain's ecosystem.
 
-    **Stargate Protocol:** This comprehensive liquidity transport protocol is designed to support cross-chain transfers and communication. Built on the LayerZero infrastructure, Stargate Protocol enables efficient and fluid cross-chain interactions.
-    **Cross-Chain Transfer Protocol (CCTP):** CCTP is an on-chain utility that allows for the secure transfer of USDC (a stablecoin) between blockchain networks. It employs mechanisms like native burning and minting to facilitate these transfers.
+    +   **Stargate Protocol:** This comprehensive liquidity transport protocol is designed to support cross-chain transfers and communication. Built on the LayerZero infrastructure, Stargate Protocol enables efficient and fluid cross-chain interactions.
+    +   **Cross-Chain Transfer Protocol (CCTP):** CCTP is an on-chain utility that allows for the secure transfer of USDC (a stablecoin) between blockchain networks. It employs mechanisms like native burning and minting to facilitate these transfers.
 
 2. **Message Bridge**  
-
 This mechanism facilitates the transfer of information and messages between different blockchains, contributing to their interoperability. It uses a standardized communication protocol to ensure reliable message transmission. This process typically involves a mix of smart contracts and off-chain components like relay nodes or oracles.
 
-    **LayerZero:** LayerZero provides a foundational infrastructure that simplifies connectivity across supported blockchains. It enables various functions, such as swaps, transfers, and lending, across different blockchain networks.
+    - **LayerZero:** LayerZero provides a foundational infrastructure that simplifies connectivity across supported blockchains. It enables various functions, such as swaps, transfers, and lending, across different blockchain networks.
 
 3. **Cross-Chain Aggregator**  
-
 These platforms or protocols combine liquidity and functionalities from multiple blockchain networks into a single interface. They integrate cross-chain bridges, liquidity pools, and decentralized finance (DeFi) protocols. By accessing a broad spectrum of liquidity sources, users benefit from optimized rates, reduced slippage, and enhanced liquidity. Cross-chain aggregators also aim to optimize transaction paths for efficiency and cost-effectiveness when moving assets across chains.
 
     +   **LI.FI:** This aggregation protocol offers decentralized exchange (DEX) connectivity and cross-chain data messaging capabilities. LI.FI integrates these functions at the API/Contract level and as widgets for developers to incorporate directly into their products.
