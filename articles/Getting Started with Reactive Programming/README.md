@@ -28,8 +28,6 @@ Tokenpad can handle hundreds of tokens from hundreds of different wallets, chain
 
 ![](https://s3.amazonaws.com/assets.57blocks.io/cms_uploads/tokenpad_mobile_49a30f59cb.png)
 
-## Graphic of Tokenpad
-
 Processing and displaying all that information requires time to:
 
 + Fetch data from all the required data sources
@@ -195,8 +193,6 @@ For that screen, we needed to obtain the portfolios from the database and fulfil
   </div>
 </div>
 
-## Graphic
-
 To achieve these operations using the Observer Pattern, we could have the following code:
 
 ```dart
@@ -284,8 +280,6 @@ class PortfoliosSubscriber implements Subscriber<List<Portfolio>> {
   }
 }
 ```
-## Code Graphic
-
 In the code, we can see how to receive new events in the processEvent method and start to process, step by step, the received list of Portfolios to calculate the necessary information to be displayed in the Consolidated Tokens screen.   
 
 It is important to note that although the logic is divided into steps, all of it depends on the processEvent argument (the list of Portfolios). As a result, the logic piles up inside the processEvent block. We could use the [Extract Method](https://refactoring.guru/extract-method) refactoring to move the logic out of that block. However, in the end, all the logic will still depend on the same processEvent argument. That code block will grow with every new feature that depends on it.
@@ -305,10 +299,10 @@ Reactive Programming allows us to have the benefit of the Observer Pattern's pus
 ## What exactly is Reactive Programming?  
   
 In their book “Reactive Programming with RxJava," Tomasz Nurkiewicz and Ben Christensen define Reactive Programming as:   
+
+> Reactive Programming is a general programming term that is focused on reacting to changes, such as data values or events. It can and often is done imperatively. A callback is an approach to reactive programming done imperatively. A spreadsheet is a great example of reactive programming: cells dependent on other cells automatically “react” when those other cells change\[…\]   
   
-Reactive Programming is a general programming term that is focused on reacting to changes, such as data values or events. It can and often is done imperatively. A callback is an approach to reactive programming done imperatively. A spreadsheet is a great example of reactive programming: cells dependent on other cells automatically “react” when those other cells change\[…\]   
-  
-Therefore, it is a programming approach - an abstraction on top of imperative systems - that allows us to program asynchronous and event-driven use cases without having to think like the computer itself and imperatively define the complex interactions of state, particularly across thread and network boundaries.   
+> Therefore, it is a programming approach - an abstraction on top of imperative systems - that allows us to program asynchronous and event-driven use cases without having to think like the computer itself and imperatively define the complex interactions of state, particularly across thread and network boundaries.   
   
 **That definition mentions two key concepts: reacting to change (a piece of what we already saw in the Observer Pattern) and not having to think like the computer itself.**   
   
@@ -324,8 +318,6 @@ int sum = a + b; // sum = 25
 
 b = 25; // sum stays as 25 instead of increasing to 35
 ```
-
-## Code Graphic
 
 This is an example of static code. The variable b is initialized as 15, and then the variable sum is calculated in terms of a and b. Subsequently, b is updated from 15 to 25. In a reactive world, the value of the sum would be updated to 35, but given that this code is not reactive (it's static), its value stays at 25.    
   
@@ -348,8 +340,6 @@ b.listen((int newBValue) { // 2: The subscription is created
   int sum = a + newBValue;
 });
 ```
-## Code Graphic
-
 This code adds a and b, but this time uses Streams.  
   
 The sum value is recalculated whenever the value of b is updated (The Stream emits). The subscription to a Stream is created by calling the Stream’s listen method, which is equivalent to calling addSubscriber in the Observer Pattern.  
