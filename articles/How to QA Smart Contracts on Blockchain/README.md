@@ -137,7 +137,7 @@ Most integrated development environments are equipped with features that enable 
 
 ## Bug Bounties and Public Review
 
-After deploying the smart contracts to the Mainnet, initiating a bug bounty program may be advantageous and encourage the wider community to examine your code. This incentivizes external security experts and enthusiasts to identify and report any residual bugs or vulnerabilities internal testing may have missed. Immunefi is a widely recognized tool for bug bounty programs in the realm of smart contracts.
+After deploying the smart contracts to the Mainnet, initiating a bug bounty program may be advantageous and encourage the wider community to examine your code. This incentivizes external security experts and enthusiasts to identify and report any residual bugs or vulnerabilities internal testing may have missed. [Immunefi](https://immunefi.com/) is a widely recognized tool for bug bounty programs in the realm of smart contracts.
 
 - **Immunefi:** This is the premier bug bounty platform for smart contracts and DeFi projects, where security researchers review code, disclose vulnerabilities, get paid, and make crypto safer.
 
