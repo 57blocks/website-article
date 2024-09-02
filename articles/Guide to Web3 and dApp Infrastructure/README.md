@@ -27,23 +27,19 @@ Frameworks and systems providing infrastructure for decentralized networks. They
 
 ---
 
-- **Doors**  
-Enable users to access and interact with web3
+- **Doors:** Enable users to access and interact with web3
 
   ![the-building-blocks-of-web3-doors.png](https://s3.amazonaws.com/assets.57blocks.io/cms_uploads/the_building_blocks_of_web3_doors_836a803b8b.png)
 
-- **Applications**  
-Connect users with protocols and Primitives via a user interface and experience
+- **Applications:** Connect users with protocols and Primitives via a user interface and experience
 
   ![the-building-blocks-of-web3-applications.png](https://s3.amazonaws.com/assets.57blocks.io/cms_uploads/the_building_blocks_of_web3_applications_21f6200efe.png)
 
-- **Primitives**  
-Are the task-specific, interoperable building blocks for decentralized Applications
+- **Primitives:** Are the task-specific, interoperable building blocks for decentralized Applications
 
   ![the-building-blocks-of-web3-primitives.png](https://s3.amazonaws.com/assets.57blocks.io/cms_uploads/the_building_blocks_of_web3_primitives_b2fcf86bf2.png)
 
-- **Protocols**  
-Construct the foundational blockchain architecture of web3
+- **Protocols:** Construct the foundational blockchain architecture of web3
 
   ![the-building-blocks-of-web3-protocols.png](https://s3.amazonaws.com/assets.57blocks.io/cms_uploads/the_building_blocks_of_web3_protocols_f61611bf40.png)
 
@@ -87,13 +83,10 @@ The development process of smart contracts generally involves several key steps:
   
 1. **Analysis of Business Logic**  
 Initially, the underlying business logic is analyzed to ensure that the smart contract will function as intended. 
-
 2. **Coding the Contract**  
 The contract is then coded, typically using Solidity, the primary language for Ethereum smart contracts.  
-
 3. **Testing**  
 Rigorous testing is essential to identify errors and confirm the contract's functionality.  
-
 4. **Audit**  
 Before deployment, the smart contract undergoes a critical audit phase. This step is crucial for identifying vulnerabilities and ensuring the contract operates correctly in all scenarios. The audit helps prevent exploits, which protects user funds and maintains trust in the application.  
   
@@ -119,6 +112,7 @@ Moreover, the Web3 frontend is open to more than just using the wallet's built-i
 +   **Infura** is a scalable and reliable blockchain infrastructure service that provides developers with easy-to-use APIs and tools to connect applications to Ethereum and IPFS without running their nodes.
 
 Another significant aspect of the frontend is its interaction with middleware. Middleware efficiently retrieves historical and aggregated data. It often indexes and processes blockchain data off-chain, making it more accessible.   
+
 Off-chain processing enables more efficient and flexible data retrieval than directly querying the blockchain. Such capabilities are invaluable for reviewing transaction histories, generating analytical insights, and improving the overall user experience by offering a comprehensive view of on-chain activities.
 
 ### Middleware
@@ -139,6 +133,7 @@ This function automates the execution of specific smart contract actions in resp
   
 4.  **Alerting**  
 Middleware can be configured to send alerts based on predetermined criteria. These alerts can be communicated through various channels, such as email, user notifications, on-call services, or messages, facilitating quick responses to important events or conditions within the blockchain environment.  
+
 These common tools often integrate multiple functions, including above monitoring, automation, and alerting:
 
     1. **Sentio** is a user-friendly tool for gaining insights, securing assets, and troubleshooting transactions for decentralized applications.
