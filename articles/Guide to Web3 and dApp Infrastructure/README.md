@@ -189,14 +189,14 @@ Blockchain cross-chain technology encompasses the methods and systems facilitati
 
 A token bridge enables the transfer of tokens between two different blockchain networks. It enhances blockchain interoperability, allowing users to utilize the unique features of multiple chains without being confined to a single blockchain's ecosystem.
 
-    +   **Stargate Protocol:** This comprehensive liquidity transport protocol is designed to support cross-chain transfers and communication. Built on the LayerZero infrastructure, Stargate Protocol enables efficient and fluid cross-chain interactions.
-    +   **Cross-Chain Transfer Protocol (CCTP):** CCTP is an on-chain utility that allows for the secure transfer of USDC (a stablecoin) between blockchain networks. It employs mechanisms like native burning and minting to facilitate these transfers.
+    **Stargate Protocol:** This comprehensive liquidity transport protocol is designed to support cross-chain transfers and communication. Built on the LayerZero infrastructure, Stargate Protocol enables efficient and fluid cross-chain interactions.
+    **Cross-Chain Transfer Protocol (CCTP):** CCTP is an on-chain utility that allows for the secure transfer of USDC (a stablecoin) between blockchain networks. It employs mechanisms like native burning and minting to facilitate these transfers.
 
 2. **Message Bridge**  
 
 This mechanism facilitates the transfer of information and messages between different blockchains, contributing to their interoperability. It uses a standardized communication protocol to ensure reliable message transmission. This process typically involves a mix of smart contracts and off-chain components like relay nodes or oracles.
 
-    - **LayerZero:** LayerZero provides a foundational infrastructure that simplifies connectivity across supported blockchains. It enables various functions, such as swaps, transfers, and lending, across different blockchain networks.
+    **LayerZero:** LayerZero provides a foundational infrastructure that simplifies connectivity across supported blockchains. It enables various functions, such as swaps, transfers, and lending, across different blockchain networks.
 
 3. **Cross-Chain Aggregator**  
 
