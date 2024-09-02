@@ -134,7 +134,7 @@ This function automates the execution of specific smart contract actions in resp
 4.  **Alerting**  
 Middleware can be configured to send alerts based on predetermined criteria. These alerts can be communicated through various channels, such as email, user notifications, on-call services, or messages, facilitating quick responses to important events or conditions within the blockchain environment.  
 
-These common tools often integrate multiple functions, including above monitoring, automation, and alerting:
+These common tools often integrate multiple functions, including above monitoring, automation, and alerting:  
     1. **Sentio**  is a user-friendly tool for gaining insights, securing assets, and troubleshooting transactions for decentralized applications.
     2. **Gelato**  is known as Web3’s decentralized backend, enabling the creation of augmented smart contracts that are automated and off-chain aware.
     3. **Defender**  focuses on enforcing security best practices in smart contract deployment and maintenance across blockchains.
