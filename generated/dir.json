@@ -264,7 +264,7 @@
       ],
       "thumb": "./thumb.png",
       "thumb_h": "./thumb_h.png",
-      "intro": "Deploying a smart contract on the public blockchain is a significant milestone, but it's also fraught with risk. The immutability of blockchain technology means that any flaws in the contract's code can have irreversible consequences. In this guide, we will walk you through a systematic and detailed approach to ensure that your smart contract functions as intended, remains secure against malicious attacks, and is optimized for performance and cost-effectiveness.",
+      "intro": "Deploying a smart contract on the public blockchain is a significant milestone but also fraught with risk. Blockchain technology's immutability means that any flaws in the contract's code can have irreversible consequences. In this guide, we will walk you through a systematic and detailed approach to ensuring that your smart contract functions as intended, remains secure against malicious attacks, and is optimized for performance and cost-effectiveness.",
       "previousSlugs": [
         "smart-contract-development-a-step-by-step-quality-assurance-guide"
       ],
