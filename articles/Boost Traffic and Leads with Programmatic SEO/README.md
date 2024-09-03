@@ -39,7 +39,7 @@ Our team's dedication to providing better and more valuable information than our
 
 Our partner chose companies for which we created pages. Then, for each company, the focus lies in getting a full and unique view. We extracted basic company data from Pitchbook, such as valuation history, industry, investors, etc. Then, manually prepared the company summary, website, SEC CIK number, search terms and also processed all company logos to ensure they have a consistent background and size.             
   
-One discussed whether to use our algorithm to calculate the company's current evaluation. Despite our efforts, or algorithm, would not be the \*standard\* answer. However, the goal was to draw search traffic. Having each company's current valuation adds unique insights to the page. So, we decided to add a disclaimer to explain any inaccuracies.
+We discussed whether to use our algorithm to calculate the company's current evaluation. Despite our efforts, our algorithm would not be the \*standard\* answer. However, the goal was to draw search traffic. Having each company's current valuation adds unique insights to the page. So, we decided to add a disclaimer to explain any inaccuracies.
 
 ### The Unexpected Devil: Cleaning Up Data
 
@@ -95,7 +95,7 @@ The number of impressions and clicks has also increased since the initial releas
 
   
 
-In 2023, over 3 million impressions and over 60,000 clicks were generated primarily related to this SEO project. And it is not just numbers —— the company (based in the U.S.) is connected to people from all over the world. Investors from Poland and the U.K. reached out to us, stayed connected, and even became our customers.        
+In 2023, over 3 million impressions and over 60,000 clicks were generated primarily related to this SEO project. And it is not just numbers — the company (based in the U.S.) is connected to people from all over the world. Investors from Poland and the U.K. reached out to us, stayed connected, and even became our customers.        
   
 This program has been very stable since its initial release. Very few bugs were reported, and our partner has been extremely satisfied with the results.          
   
