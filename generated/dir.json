@@ -285,7 +285,7 @@
       ],
       "thumb": "./thumb.png",
       "thumb_h": "./thumb_h.png",
-      "intro": "We created this guide to help people new to Web3 and the dApp Infrastructure get started using this technology in their organizations. The design of Web3 apps is much more decentralized than that of Web2. New services are constantly appearing to make building and running these projects easier and safer. Engineers must know how each part works to create effective Web3 apps. And we describe this here.",
+      "intro": "We created this guide to help people new to Web3 and the dApp infrastructures use this technology in their organizations. The design of Web3 apps is much more decentralized than that of Web2. New services are constantly appearing to make building and running these projects easier and safer. Engineers must know how each part works to create effective Web3 apps. We describe this here.",
       "previousSlugs": [
         "the-building-blocks-of-web3-a-deep-dive-into-dapp-infrastructure"
       ],
