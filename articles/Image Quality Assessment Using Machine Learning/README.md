@@ -85,7 +85,7 @@ This term refers to an image directly captured by a camera without subsequent po
     <img width="999" src="https://s3.amazonaws.com/assets.57blocks.io/cms_uploads/image_quality_flg_3_b_b9d393d54c.png" />
   </div>
 </div>
-<figcaption>Fig. 3 Natural Image (left) and Noisy Image (distorted, right)</figcaption>
+<figcaption>Fig. 3. Natural Image (left) and Noisy Image (distorted, right)</figcaption>
 
 
 
@@ -123,7 +123,7 @@ BRISQUE takes advantage of this marked contrast pattern. It considers the degree
     <img width="999" src="https://s3.amazonaws.com/assets.57blocks.io/cms_uploads/image_quality_fig_solution_mscn_11e2413f8b.png" />
   </div>
 </div>
-<figcaption>Fig. 4 On the left, a natural image with no artificial effects added fits the Gaussian distribution. On the right, an artificial image doesn't fit the same distribution well.</figcaption>
+<figcaption>Fig. 4. On the left, a natural image with no artificial effects added fits the Gaussian distribution. On the right, an artificial image doesn't fit the same distribution well.</figcaption>
 
 
 ### Deep CNN-Based Blind Image Quality Predictor (DIQA)
