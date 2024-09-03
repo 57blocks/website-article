@@ -5,7 +5,7 @@ createTime: 2024-05-07
 tags: ["QA strategy", "CI",  "Automation Framework"]
 thumb: "./thumb.png"
 thumb_h: "./thumb_h.png"
-intro: "Our Quality Assurance (QA) team plays a pivotal role in ensuring the quality, and excellence of our software. We are dedicated to enhancing software quality, team performance, and overall project delivery. This article shares the QA strategies we employ for our projects. We'll also demonstrate how embracing these methods can mitigate difficulties and improve results and provide you with the assurance that our software is of the highest quality."
+intro: "Our Quality Assurance (QA) team plays a pivotal role in ensuring the quality and excellence of our software. We are dedicated to enhancing software quality, team performance, and overall project delivery. This article shares the QA strategies we employ for our projects. We'll also demonstrate how embracing these methods can mitigate difficulties and improve results and provide you with the assurance that our software is of the highest quality."
 previousSlugs: ["57blocks-testing-best-practices"]
 ---
 
@@ -17,13 +17,13 @@ A multitude of goals drives the adoption of testing best practices. These includ
 
 Despite the benefits, these practices come with their own set of challenges. Complex codebases, evolving technologies, tight deadlines, and resource constraints pose significant hurdles. With the myriad of tests—from unit to integration to system testing—the need to prioritize becomes paramount. Moreover, there's a pressing requirement to incorporate these practices into agile methodologies and continuous integration pipelines, ensuring they add value and not overhead.
 
-This article, delves into the testing best practices 57blocks QA teams leverage to overcome these obstacles. These practices are both theoretical ideals and pragmatic approaches honed by real-project experiences. We'll explore how adopting these practices can alleviate difficulties and transform them into opportunities for improving software quality, team efficiency, and project outcomes.
+This article delves into the testing best practices 57blocks QA teams leverage to overcome these obstacles. These practices are both theoretical ideals and pragmatic approaches honed by real-project experiences. We'll explore how adopting these practices can alleviate difficulties and transform them into opportunities for improving software quality, team efficiency, and project outcomes.
 
 ## New feature manual testing and automated regression tests
 
 - **Identify the new features**: When new features are added to the software, it is important to identify them, know how they work (within the system and how they impact the system), and ensure they are tested thoroughly.
 - **Create and review manual test cases**: Manual test cases should be created and reviewed to test the new features, including any edge cases or scenarios that automated testing may not cover. Here are the critical elements to consider when writing a manual test case: Test Case ID, Title, Description, Preconditions, Module/Feature, Test Steps, Test Data, Expected Result, Actual Result (to be filled during test execution), Status (to be filled during test execution), Priority, Owner, Severity, Comments/Notes.
-- **Execute manual test cases**: The manual test cases should ensure the new features works as intended and identify any issues or defects. Implementing new features may affect existing automated test cases, so start building automated tests in parallel to ensure the new functionality is integrated and doesn't impact the automated test cases.
+- **Execute manual test cases**: The test cases should ensure the new features work as intended and identify any issues or defects. Implementing new features may affect existing automated test cases, so start building automated tests in parallel to ensure the new functionality is integrated and doesn't impact the automated test cases.
 - **Identify, create and update automated tests**: Consider which tests should be identified to automate. Automate repetitive, time-consuming regression tests that verify core functionality and don't change frequently. Also existing automated tests affected by changes and new features should be updated.
 - **Integrate automated testing**: Once the manual testing of new features is complete, automated testing should be integrated into the testing process.
 - **Run automated tests**: Automated regression tests should be run to ensure that the new features do not negatively impact existing software functionality.
@@ -36,7 +36,7 @@ This process should be repeated for each release, focusing on testing new featur
 ![test process](test_process.png)
 
 
-## Why you should prepare multiple environments.
+## Why you should prepare multiple environments
 
 Multiple test environments ensure that the software application is thoroughly tested and validated before it is released to end-users. Each environment serves a specific purpose in the software development and testing process.
 
@@ -58,7 +58,7 @@ Before release, Jenkins can integrate development and automated testing to detec
 
 - **The first step in the development environment**: Creating and configuring a new project in Jenkins. This involves defining the steps necessary to build the software application, such as compiling the code, packaging it, and deploying it to a test environment.
 - **Configure test automation**: Once the build job is configured, the next step is configuring automated tests to run as part of the build process. This can include unit tests, integration tests, and other automated tests.
-- **Configure a trigger**: Jenkins can be configured to automatically trigger a build when code changes are committed to the version control system. This ensures that builds are automatically QA-checked whenever changes are made to the codebase. We can extend this functionality to create different triggers, such as a trigger for code changes, a trigger to happen at a  specified time, or a manual trigger.
+- **Configure a trigger**: Jenkins can be configured to automatically trigger a build when code changes are committed to the version control system. This ensures that builds are automatically QA-checked whenever changes are made to the codebase. We can extend this functionality to create different triggers, such as a trigger for code changes, a trigger to happen at a specified time, or a manual trigger.
 - **Run automated tests**: Once the build job is triggered, Jenkins will automatically run the configured automated tests. The tests will be run in the test environment, and Jenkins will record the results.
 - **Generate a test report**: Once completed, Jenkins will generate a report summarizing the test results. The report will include information such as the number of tests that passed, the number of failed tests, and any errors or issues encountered during the testing process.
 - **Review and analyze the test report**: The test report should be reviewed and analyzed to ensure the software application is ready for release. Any issues or errors identified during testing should be addressed before releasing the software application.
@@ -78,7 +78,7 @@ After the software application has been released, here’s how Jenkins can monit
 
 ## Choose a suitable script/language/framework for the project and team
 
-Different kinds of tests require different frameworks. Most test frameworks can support multiple languages. 57Blocks has projects using both Python and Javascript. The choice between Python and JavaScript will depend on the project requirements and the team's skills. JavaScript may be better if the project is web-based and requires front-end. However, if you are looking for a language that is easy to learn and has a rich set of test libraries, then Python may be the better choice.
+Different kinds of tests require different frameworks. Most test frameworks can support multiple languages. 57Blocks has projects using both Python and Javascript. The choice between Python and JavaScript will depend on the project requirements and the team's skills. JavaScript may be better if the project is web-based and requires front-end testing. However, if you are looking for a language that is easy to learn and has a rich set of test libraries, then Python may be the better choice.
 
 
 ### The benefits of the Python test framework:
@@ -86,7 +86,7 @@ Different kinds of tests require different frameworks. Most test frameworks can 
 - **Easy to learn**: Python is known for its simple syntax, which makes it easy for beginners to learn and use.
 - **Large community**: Python has a large and active community, which means a wealth of resources and support is available.
 - **Rich test libraries**: Python has a rich set of test libraries, such as PyTest and unittest, offering a range of automation testing features.
-- **Multi-purpose language**: Python is a multi-purpose language that it can be used for various tasks beyond automation testing.
+- **Multi-purpose language**: Python is a multi-purpose language that can be used for various tasks beyond automation testing.
 
 
 ### Benefits of the JavaScript test framework
@@ -102,9 +102,9 @@ JavaScript is a popular choice for web applications, which means it is well-suit
 
 Setting up an automation framework for a project can help you streamline your testing efforts and improve the overall quality of your application.
 
-- **Identify reusable UI components**: This includes page objects like text boxes, buttons, links, etc. That are reused across tests and the site.
+- **Identify reusable UI components**: This includes page objects like text boxes, buttons, links, etc. that are reused across tests and the site.
 - **Use locators wisely**: Locators like ID, name, XPath, CSS, etc. are used to find UI elements. Elements may sometimes change due to new features and bug fixes. Using locators wisely  in automated tests is important and helps reduce changes in automated tests. Make the locators as specific as possible. We prefer using ID and name over XPath.
-- **Modularize the tests**: Break down large end-to-end tests into smaller, focused tests based on functionality. This makes the tests easier to maintain and debug. Integrating the automated testing framework with BDD (Behavior-driven development) or BDD thinking to is better for making the test easier to understand and reducing code changes caused by business changes.
+- **Modularize the tests**: Break down large end-to-end tests into smaller, focused tests based on functionality. This makes the tests easier to maintain and debug. Integrating the automated testing framework with BDD (Behavior-driven development) or BDD thinking is better for making the test easier to understand and reducing code changes caused by business changes.
 - **Use data-driven testing**: Pass test data from external files (Excel, CSV) and iterate your tests over the data. This allows you to expand test coverage without writing too many repetitive tests.
 - **Add assertions**: Validate that the actual results of UI interactions match the expected results. Check and verify elements like page title, URL, button text, form field values, etc.
 - **Add screenshots and videos**: This helps debug failed tests and understand what went wrong at runtime.
