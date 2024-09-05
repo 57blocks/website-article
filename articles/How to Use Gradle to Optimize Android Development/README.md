@@ -98,7 +98,7 @@ Finally, we can use tools, such as [VersionCatalogUpdatePlugin](https://github.c
 
 ## Base Project Architecture
 
-We’ve created a [sample project](https://github.com/ramruizni/DepsManagement) to effectively demonstrate how to configure dependencies to overcome the issues we previously faced. Many code examples in this project are adapted from the nowinandroid application, which, as stated in its [GitHub repository](https://github.com/android/nowinandroid), follows Android design and development best practices and is intended to be a valuable reference for developers.
+We’ve created a [sample project](https://github.com/ramruizni/DepsManagement) to effectively demonstrate how to configure dependencies to overcome the issues we previously faced. Many code examples in this project are adapted from the nowinandroid application, which, as stated in its [GitHub repository](https://github.com/android/nowinandroid), "follows Android design and development best practices and is intended to be a valuable reference for developers."
 
 We start with a base project that embraces a modular architecture to foster maintainability, scalability, and a clear separation of concerns. The project includes the following modules:
 
