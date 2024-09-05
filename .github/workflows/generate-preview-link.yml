@@ -21,14 +21,19 @@ jobs:
           echo "pr_number=$PR_NUMBER" >> $GITHUB_OUTPUT
           echo "pr_repo=$PR_REPO" >> $GITHUB_OUTPUT
           echo "commit_hash=$COMMIT_HASH" >> $GITHUB_OUTPUT
+          
+
 
       - name: Get changed files
         id: changed-files
-        uses: tj-actions/changed-files@v44
+        uses: tj-actions/changed-files@v45
         with:
+          use_rest_api: true
           json: true
+          escape_json: false
           files: |
             articles/**/README.md
+      
 
       - name: Get all action comments
         id: all_comments

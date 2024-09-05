@@ -10,7 +10,7 @@ previousSlugs: ["shipping-as-small-as-possible", "make-release-manageable-with-s
 
 ---
 
-## Abstract
+## Abstract2
 
 Do you face challenges when deploying large features? Do you find yourself needing to temporarily shut down services to ensure the smooth functioning of an entire feature, such as managing basic data feeding, migrating legacy data, or avoiding disruptions to dependent clients? 
 
