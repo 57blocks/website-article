@@ -28,7 +28,7 @@ jobs:
         with:
           json: true
           files: |
-            articles/**/README.md
+            articles/Make Releases Manageable with \"Shipping As Small As Possible\"/README.md
 
       - name: Get all action comments
         id: all_comments
