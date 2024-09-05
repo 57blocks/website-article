@@ -22,6 +22,24 @@ jobs:
           echo "pr_repo=$PR_REPO" >> $GITHUB_OUTPUT
           echo "commit_hash=$COMMIT_HASH" >> $GITHUB_OUTPUT
 
+      # -----------------------------------------------------------------------------------------------------------
+      # Example 1
+      # -----------------------------------------------------------------------------------------------------------
+      - name: Get changed files-debug
+        id: changed-files-debug
+        uses: tj-actions/changed-files@v44
+        # To compare changes between the current commit and the last pushed remote commit set `since_last_remote_commit: true`. e.g
+        # with:
+        #   since_last_remote_commit: true
+
+      - name: List all changed files
+        env:
+          ALL_CHANGED_FILES: ${{ steps.hanged-files-debug.outputs.all_changed_files }}
+        run: |
+          for file in ${ALL_CHANGED_FILES}; do
+            echo "$file was changed"
+          done
+
       - name: Get changed files
         id: changed-files
         uses: tj-actions/changed-files@v44

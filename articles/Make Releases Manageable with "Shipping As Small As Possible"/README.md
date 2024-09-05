@@ -21,7 +21,6 @@ In most cases, you can avoid this by adopting the practice of shipping as small 
 
 It is essential to break down features into manageable components to achieve the goal of shipping small, solid, and deliverable changes. The following principles can guide us in this process.
 
-
 ### New Features
 
 Building new features without exposing them to clients or users is relatively easy. However, it’s important to keep them as small as possible. Here's a recommended approach:
