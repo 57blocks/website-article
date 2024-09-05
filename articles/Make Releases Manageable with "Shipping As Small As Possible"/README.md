@@ -120,5 +120,5 @@ Updates to existing user interfaces often require new APIs. In such cases, both 
 By adopting the practice of shipping as small as possible, you can expedite the deployment of changes without waiting for the entire feature to be completed. This approach minimizes the risk of rolling back an entire feature if it doesn't function as expected since reverting to previous features can be done on a smaller scale.
 
 Shipping small changes offers numerous benefits, including reasonable change splitting, ease of review, streamlined branch models, faster delivery, early data feeding, seamless legacy data migration, client verification before release, and the ability to release new features anytime. However, the potential drawbacks include the risk of breaking existing features, the need to control public client access to changes, and the management of feature flags.
-
+  
 By following the recommended approaches and considering these examples, you can effectively manage small shipping changes, ensure smoother deployments, and minimize system disruptions.
