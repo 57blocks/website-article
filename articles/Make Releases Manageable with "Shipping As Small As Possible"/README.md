@@ -17,7 +17,7 @@ Do you face challenges when deploying large features? Do you need to temporarily
 In most cases, you can avoid this by adopting the practice of shipping as small as possible, which aligns with the principles of Continuous Integration and Continuous Deployment (CI/CD).
 
 
-## Getting Started
+## Getting Started1
 
 It is essential to break down features into manageable components to achieve the goal of shipping small, solid, and deliverable changes. The following principles can guide us in this process.
 
