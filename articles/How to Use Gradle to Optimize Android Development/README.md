@@ -5,35 +5,34 @@ createTime: 2024-05-09
 tags: ["Mobile", "Android"]
 thumb: "./thumb.png"
 thumb_h: "./thumb_h.png"
-intro: "Dependency conflicts, version compatibility, and maintaining a clean dependency tree can make dependency management challenging. However, effective use of Gradle and Dependency Injection (DI) ensures a smooth process and maintains a modular architecture that follows the principles of Clean Architecture. Read how we have successfully achieved this on our projects."
+intro: "Dependency conflicts, version compatibility, and maintaining a clean dependency tree can  pose challenges in Android development. However, by harnessing the power of Gradle and Dependency Injection (DI), you can navigate these hurdles with confidence. These tools ensure a smooth process and maintain a modular architecture that follows the principles of Clean Architecture. Read how we have successfully achieved this on our projects, and how you can too."
 previousSlugs: ["overcoming-challenges-in-android-gradle-dependency-management"]
 ---
 
 
 ## Introduction
 
-Efficient dependency management is a critical aspect of Android development. In the dynamic landscape of Android app creation, where Gradle serves as the build automation tool, applying good architectural practices to our code (like single responsibility or reusability) is just the beginning. Sometimes, we overlook the significance of well-organized Gradle dependencies. 
-This oversight becomes more pronounced when working on large, multi-modular projects, where problems related to dependency management can significantly impact project efficiency. Whether you're developing a feature-rich social networking app or a performance-oriented gaming application, mastering Gradle is paramount to ensure a smooth and optimized development process.
+Efficient dependency management is a critical aspect of Android development. In the dynamic landscape of Android app creation, where Gradle is the build automation tool, applying good architectural practices to our code (like single responsibility or reusability) is just the beginning. Sometimes, we overlook the significance of well-organized Gradle dependencies. This oversight becomes more pronounced when working on large, multi-modular projects, where problems related to dependency management can significantly impact project efficiency. Whether developing a feature-rich social networking app or a performance-oriented gaming application, mastering Gradle is paramount to ensure a smooth and optimized development process.
 
 Another crucial aspect that often goes hand in hand with efficient dependency management is the need for [Dependency Injection (DI)](https://martinfowler.com/articles/injection.html). Dependency injection is a design pattern that plays a pivotal role in adhering to the principles of [Clean Architecture](https://blog.cleancoder.com/uncle-bob/2012/08/13/the-clean-architecture.html), particularly the Inversion of the Control (IoC) principle.
 
-In Clean Architecture, the Inversion of Control principle suggests that high-level modules (which contain the core business logic) should not depend on low-level modules (which contain details like database access or UI rendering). Instead, both should depend on abstractions. This is where dependency injection comes into play. By injecting dependencies from higher-level modules into lower-level modules, we achieve a more flexible and maintainable architecture.
+In Clean Architecture, the Inversion of Control principle suggests that high-level modules (which contain the core business logic) should not depend on low-level modules (which contain details like database access or UI rendering). Instead, both should depend on abstractions, which is where dependency injection comes into play. We achieve a more flexible and maintainable architecture by injecting dependencies from higher-level modules into lower-level modules.
 
-The absence of proper dependency injection can lead to tightly coupled components, making it challenging to replace or modify one component without affecting others. In Android development, where modularity is essential for scalability and maintainability, adopting a robust dependency injection framework becomes imperative.
+The absence of proper dependency injection can lead to tightly coupled components, making it challenging to replace or modify one component without affecting others. In the dynamic world of Android development, where modularity is essential for scalability and maintainability, adopting a robust dependency injection framework becomes imperative.
 
-[It's possible that at some point, Bazel will become the optimal tool for building Android applications](https://developer.squareup.com/blog/stampeding-elephants/). But, at present, we must pay attention to all the tools Gradle provides to [save development hours and reduce the cognitive load when interpreting our build scripts](https://developer.squareup.com/blog/herding-elephants/).
+[It's possible that Bazel will eventually become the optimal tool for building Android applications](https://developer.squareup.com/blog/stampeding-elephants/). But for now, we are focusing on all the tools Gradle provides to [save development hours and reduce the cognitive load when interpreting our build scripts](https://developer.squareup.com/blog/herding-elephants/).
 
-This article delves into the challenges faced in Android dependency management, offering solutions through tools like Convention Plugins and Version Catalogs. This [sample repository](https://github.com/ramruizni/DepsManagement) demonstrates the before-and-after results of implementing such a migration. Additionally, it emphasizes the need for proper dependency injection as an integral part of maintaining a clean and modular codebase, in alignment with the principles of Clean Architecture.
+This article delves into the challenges faced in Android dependency management, offering solutions through tools like Convention Plugins and Version Catalogs. This [sample repository](https://github.com/ramruizni/DepsManagement) demonstrates the before-and-after results of implementing such a migration. Additionally, it emphasizes the need for proper dependency injection as an integral part of maintaining a clean and modular codebase in alignment with the principles of Clean Architecture.
 
 ## Challenges in Dependency Management
 
-Dependency management issues can balloon into major setbacks, causing build failures, preventing scalability, and complicating team collaboration. By acknowledging these potential pitfalls upfront, we equip ourselves with the necessary awareness to preemptively address them. In the following list, we will explore common challenges teams face when managing dependencies, their implications for your projects, and how these obstacles can be systematically tackled to streamline development processes, improve build times, and ultimately deliver a more robust product.
+Understanding the potential pitfalls in dependency management is crucial. These issues, if not addressed, can lead to major setbacks such as build failures, prevent scalability, and complicate team collaboration. By acknowledging these challenges upfront, you equip yourself with the awareness to address them preemptively. In the following list, we will explore common challenges teams face when managing dependencies, their implications for your projects, and how these obstacles can be systematically tackled to streamline development processes, improve build times, and ultimately deliver a more robust product.
 
 - **There is often a lot of repeated code**: Some plugins (such as when using Hilt) are commonly used in similar modules. The same happens with dependencies. For example, many modules containing views often include Android libraries, Material, Compose, Lifecycle, etc. Other logic blocks, like buildFeatures or kotlinOptions, are repeated quite frequently. This repeated code often leads to errors because one module may have a dependency while the other does not, even though their responsibilities are similar.
 
 - **Multiple versions of SDK, Java, Kotlin, JVM target, and more**: It's quite common for many modules to contain similar code snippets like:
 
-```gradle
+```Graphic
 compileOptions {
     sourceCompatibility = JavaVersion.VERSION_1_8
     targetCompatibility = JavaVersion.VERSION_1_8
@@ -44,12 +43,12 @@ kotlinOptions {
 }
 ```
 
-Ensuring that each module lists the correct versions can be a tedious task and often leads to bugs when interacting with other modules.
+Ensuring that each module lists the correct versions can be tedious and often leads to bugs when interacting with other modules.
 
 - **No update highlights on some configurations**: Many guides for setting up projects from scratch don't integrate seamlessly with Android Studio and don't notify the user when a new version of a library is available. Here are two examples:
 
-```kts
-// File: settings.gradle.kts
+```Graphic
+// File: settings.gradle.kts graphic
 
 dependencyResolutionManagement {
     versionCatalogs {
@@ -73,53 +72,53 @@ versions.sql_cipher = '4.4.2'
 versions.appcompat = '1.6.0-rc01'
 ```
 
-Such configurations also often do not allow for automatic dependency updates through their automated toolkits.
+These configurations often do not allow automatic dependency updates through their automated toolkits.
 
-- **The specific architecture of a project is not taken into account**: Android Studio provides us with plugins to distinguish, for example, an Android library (com.android.library) from a Java library (java-library). But what if we want to differentiate between a module containing use cases and another containing repositories? In that case, we would have to use the same dependencies in similar modules, leading to duplicated code once again.
+- **The specific architecture of a project is not considered**: Android Studio provides us with plugins to distinguish, for example, an Android library (com.android.library) from a Java library (java-library). But what if we want to differentiate between a module containing use cases and another containing repositories? In that case, we would have to use the same dependencies in similar modules, again leading to duplicated code.
 
-- **Using the buildSrc folder**: Many projects (including some [Google architecture samples](https://github.com/android/compose-samples)) use it to store build logic. However, it is advisable to separate the build logic from the **buildSrc** folder [through the use of composite builds](https://proandroiddev.com/stop-using-gradle-buildsrc-use-composite-builds-instead-3c38ac7a2ab3), maintaining a single source of truth for common module configurations.
+- **Using the buildSrc folder**: Many projects (including some [Google architecture samples](https://github.com/android/compose-samples)) use it to store build logic. However, it is advisable to separate the build logic from the **buildSrc** folder [through composite builds](https://proandroiddev.com/stop-using-gradle-buildsrc-use-composite-builds-instead-3c38ac7a2ab3), maintaining a single source of truth for common module configurations.
 
-Let's take a look at what we can do to solve these issues.
+Let's examine what we can do to solve these issues.
 
 
 ## Using Gradle Version Catalogs
 
-Version Catalogs offer flexibility that surpasses many alternatives. They simplify dependency management by allowing bundles, reducing Gradle file clutter. These catalog files are shareable, promoting consistency across projects and allowing third-party plugins to automate version updates. This article provides an illustrative example of their usage while acknowledging that [their suitability for specific projects is a subject of discussion](https://github.com/jjohannes/idiomatic-gradle/issues/4).
+Version Catalogs offer flexibility that surpasses many alternatives. They simplify dependency management by allowing bundles and reducing Gradle file clutter. These catalog files are shareable, promoting project consistency and allowing third-party plugins to automate version updates. This article provides an illustrative example of their usage while acknowledging that [their suitability for specific projects is a subject of discussion](https://github.com/jjohannes/idiomatic-gradle/issues/4).
 
-The dependencies are stored in a .toml file with sections for versions, libraries, and plugins, offering us suggestions when new versions become available.
+The dependencies are stored in a .toml file with sections for versions, libraries, and plugins. When new versions become available, suggestions are offered.
 
 ![](upgrade_reminder.png)
 
-The current version of Android Studio (Android Studio Hedgehog | 2023.1.1 Patch 2) provides the option to create a project with Version Catalogs. To migrate an existing project, you can follow the [official guide](https://developer.android.com/build/migrate-to-catalogs).
+The current version of Android Studio (Android Studio Hedgehog | 2023.1.1 Patch 2) allows you to create a project with Version Catalogs. To migrate an existing project, follow the [official guide](https://developer.android.com/build/migrate-to-catalogs).
 
 ![](build_language.png)
 
-
-Finally, we can use tools to automate the updating of dependencies in our Version Catalogs, such as [VersionCatalogUpdatePlugin](https://github.com/littlerobots/version-catalog-update-plugin) or [RenovateBot](https://github.com/renovatebot/renovate).
+Finally, we can use tools, such as [VersionCatalogUpdatePlugin](https://github.com/littlerobots/version-catalog-update-plugin) or [RenovateBot](https://github.com/renovatebot/renovate), to automate the updating of dependencies in our Version Catalogs.
 
 
 ## Base Project Architecture
 
-We’ve created a [sample project](https://github.com/ramruizni/DepsManagement) to demonstrate how to configure dependencies effectively, overcoming the issues we previously faced. Many code examples in this project are adapted from the nowinandroid application, which, as stated in its [GitHub repository](https://github.com/android/nowinandroid), 'follows Android design and development best practices and is intended to be a useful reference for developers'.
+We’ve created a [sample project](https://github.com/ramruizni/DepsManagement) to effectively demonstrate how to configure dependencies to overcome the issues we previously faced. Many code examples in this project are adapted from the nowinandroid application, which, as stated in its [GitHub repository](https://github.com/android/nowinandroid), "follows Android design and development best practices and is intended to be a valuable reference for developers."
 
 We start with a base project that embraces a modular architecture to foster maintainability, scalability, and a clear separation of concerns. The project includes the following modules:
 
 ![](./project_architecture.png)
 
+## Modules \[Deps Management]
 
 - **app**: The core module contains the base application, navigation files, and essential dependency injection modules. It orchestrates interactions between features.
 - **model**: Stores shared entities to maintain consistency across features.
-- **feature-\[feature_name]-domain**: Business logic specific to a particular feature. It houses use cases, which define the interactions between different parts of the application. The business logic abstraction ensures that core functionalities remain independent of external changes, protecting them from the impact of modifications in the UI or data layer.
-- **feature-\[feature_name]-infrastructure**: Acts as the bridge between business logic and the data layer. It includes the repository, connecting use cases to the database. This isolation shields core business logic from data implementation details.
-- **feature-\[feature_name]-view**: Presentation layer for a feature, containing the screen composable, view model, and base navigation components. Separating UI concerns in this module prevents compromising the underlying business logic with changes in the user interface.
-- **database**: Dedicated to the data layer, including the database, Data Access Objects (Daos), and entities.
+- **feature-\[feature_name]-domain**: Business logic specific to a particular feature. It houses use cases defining the interactions between different application parts. The business logic abstraction ensures that core functionalities remain independent of external changes, protecting them from the impact of UI or data layer modifications.
+- **feature-\[feature_name]-infrastructure**: Acts as the bridge between business logic and the data layer. It includes the repository and connecting use cases to the database. This isolation shields core business logic from data implementation details.
+- **feature-\[feature_name]-view**: This module is the presentation layer for a feature, containing the screen composable, view model, and base navigation components. Separating UI concerns in this module prevents compromising the underlying business logic with changes in the user interface.
+- **database**: This is dedicated to the data layer, including the database, Data Access Objects (Daos), and entities.
 
 ![](./project_layer.png)
 
 Initially, we add the dependencies (sorted alphabetically) that we will use in our **libs.versions.toml** file to each respective section:
 
 ```toml
-# File: libs.versions.toml
+# File: libs.versions.toml graphic
 
 [versions]
 android-desugar-jdk-libs = "2.0.4"
@@ -180,7 +179,7 @@ We create the following package structure to store the build logic:
 We configure the **versionCatalogs** in this file to recognize the original libs.versions.toml:
 
 ```kts 
-// File: build-logic/settings.gradle.kts
+// File: build-logic/settings.gradle.kts graphic
 
 dependencyResolutionManagement {
     repositories {
@@ -198,10 +197,10 @@ rootProject.name = "build-logic"
 include(":convention")
 ```
 
-We define the use of **kotlin-dsl** and specify a Java version for the plugins we will define in the future:
+We define the use of **kotlin-dsl** and specify a Java version for the plugins which we will define in the future:
 
 ```kts 
-// File: build-logic/convention/build.gradle.kts
+// File: build-logic/convention/build.gradle.kts graphic
 
 plugins {
     `kotlin-dsl`
@@ -232,7 +231,7 @@ dependencies {
 We add to the global settings.gradle.kts of the project to include our build-logic folder:
 
 ```kts 
-// File: settings.gradle.kts
+// File: settings.gradle.kts graphic
 
 pluginManagement {
     includeBuild("build-logic")
@@ -248,15 +247,15 @@ Now that we have placed the build logic correctly, we will create our Gradle plu
 
 ## Gradle Convention Plugins
 
-[Gradle, at its core, is not equipped to compile Java code by itself. Instead, compiling Java is handled by specific plugins](https://docs.gradle.org/current/userguide/plugins.html). Applying a plugin to a module allows it to extend another's capabilities (like compiling Kotlin or importing [Room](https://mvnrepository.com/artifact/androidx.room/room-gradle-plugin/2.6.0) components). One that we use all the time is the [Android Library Gradle Plugin](https://mvnrepository.com/artifact/com.android.library/com.android.library.gradle.plugin?repo=google), which allows us to build Android applications.
+[At its core, Gradle is not equipped to compile Java code by itself. Instead, compiling Java is handled by specific plugins](https://docs.gradle.org/current/userguide/plugins.html). Applying a plugin to a module allows it to extend another's capabilities (like compiling Kotlin or importing [Room](https://mvnrepository.com/artifact/androidx.room/room-gradle-plugin/2.6.0) components). One that we use all the time is the [Android Library Gradle Plugin](https://mvnrepository.com/artifact/com.android.library/com.android.library.gradle.plugin?repo=google), which allows us to build Android applications.
 
-Plugins tend to be more useful if they are additive, composable and have a single responsibility. You should be able to add Room to your project without needing to add Hilt as well.
+Plugins are more useful if they are additive, composable, and have a single responsibility. For example, you should be able to add Room to your project without needing to add Hilt.
 
 In this section, we will look at some Plugin examples that we can add to our project to minimize the overall build logic of our modules.
 
 We start by creating this extension to access the Version Catalogs from our plugins:
 
-```kt 
+```Graphic 
 // File: build-logic/convention/src/main/java/com/example/depsmanagement/convention/ProjectExtensions.kt
 
 val Project.libs
@@ -266,7 +265,7 @@ val Project.libs
 Now that the extension is in place, let's add some plugins to our build-logic/convention folder. The first will be the AndroidHiltConventionPlugin from [nowinandroid](https://github.com/android/nowinandroid). It allows us to apply the dagger.hilt.android.plugin and org.jetbrains.kotlin.kapt plugins, along with the hilt.android and hilt.compiler dependencies:
 
 
-```kt 
+```Graphic 
 // File: build-logic/convention/src/main/java/AndroidHiltConventionPlugin.kt
 
 import com.example.depsmanagement.convention.libs
@@ -293,7 +292,7 @@ class AndroidHiltConventionPlugin : Plugin<Project> {
 
 Let's also add the AndroidRoomConventionPlugin:
 
-```kt 
+```Graphic 
 // File: build-logic/convention/src/main/java/AndroidRoomConventionPlugin.kt
 
 ​​import androidx.room.gradle.RoomExtension
@@ -328,7 +327,7 @@ class AndroidRoomConventionPlugin : Plugin<Project> {
 
 So that the rest of the project can recognize them, we register our plugins in our **build-logic** kts file:
 
-```kts 
+```Graphic 
 // File: build-logic/convention/build.gradle.kts
 
 gradlePlugin {
@@ -348,7 +347,7 @@ gradlePlugin {
 And then, we add the IDs to the Version Catalogs with an unspecified version:
 
 
-```toml 
+```Graphic 
 # File: libs.versions.toml
 
 [plugins]
@@ -356,9 +355,9 @@ depsmanagement-android-hilt = { id = "depsmanagement.android.hilt", version = "u
 depsmanagement-android-room = { id = "depsmanagement.android.room", version = "unspecified" }
 ```
 
-The good thing about these plugins is that they are **composable** and **additive**. If we want to add Room and Hilt in any of our modules, we can now simply reference these plugins, saving us a lot of code:
+The advantage of these plugins is that they are **composable** and **additive**. If we want to add Room and Hilt in any of our modules, we can now reference these plugins, saving us a lot of code:
 
-```kts
+```Graphic
 plugins {
     alias(libs.plugins.depsmanagement.android.room)
     alias(libs.plugins.depsmanagement.android.hilt)
@@ -368,7 +367,7 @@ plugins {
 To standardize the version of Kotlin we want to use across all project libraries, we can use the AndroidLibraryConventionPlugin (from [nowinandroid](https://github.com/android/nowinandroid) as well):
 
 
-```kt 
+```Graphic 
 // File: build-logic/convention/src/main/java/AndroidLibraryConventionPlugin.kt
 
 import com.android.build.api.variant.LibraryAndroidComponentsExtension
@@ -408,7 +407,7 @@ class AndroidLibraryConventionPlugin : Plugin<Project> {
 
 The plugin uses this extension function to standardize the versions:
 
-```kt 
+```Graphic 
 // File: build-logic/convention/src/main/java/com/example/depsmanagement/convention/KotlinAndroid.kt
 
 package com.example.depsmanagement.convention
@@ -490,14 +489,14 @@ private fun Project.configureKotlin() {
 }
 ```
 
-With this, we have successfully standardized the Kotlin versions of all Android libraries in our project and reduced a significant amount of boilerplate code when using Room or Hilt.
+This has successfully standardized the Kotlin versions of all Android libraries in our project and reduced a significant amount of boilerplate code when using Room or Hilt.
 
 
-## Using the plugins with our architecture
+## Using the Plugins with Our Architecture
 
-We anticipate that each view module in our project will share common dependencies such as UI, Material, Navigation, and Lifecycle. To streamline our project, we'll create a plugin for each module type we use. For instance, we have the ArchViewConventionPlugin, which we define for every feature view in our application.
+We anticipate that each view module in our project will share common dependencies such as UI, Material, Navigation, and Lifecycle. To streamline our project, we'll create a plugin for each module type. For instance, we have the ArchViewConventionPlugin, which we define for every feature view in our application.
 
-```kt 
+```Graphic 
 // File: build-logic/convention/src/main/java/ArchViewConventionPlugin.kt
 
 import com.android.build.gradle.LibraryExtension
@@ -551,7 +550,7 @@ class ArchViewConventionPlugin : Plugin<Project> {
 
 Because we can now use this plugin, we will transition from using a file like this:
 
-```kts 
+```Graphic 
 // File: build-logic/convention/src/main/java/// File (old): feature/first/view/build.gradle.kts
 
 plugins {
@@ -623,7 +622,7 @@ dependencies {
 
 To one like this:
 
-```kts 
+```Graphic 
 // File (new): feature/first/view/build.gradle.kts
 
 plugins {
@@ -641,7 +640,7 @@ dependencies {
 
 We can also define a plugin for the infrastructure and domain modules:
 
-```kt 
+```Graphic 
 // File: build-logic/convention/src/main/java/ArchInfrastructureConventionPlugin.kt
 
 import org.gradle.api.Plugin
@@ -665,37 +664,14 @@ class ArchInfrastructureConventionPlugin : Plugin<Project> {
 }
 ```
 
-```kt 
-// File: build-logic/convention/src/main/java/ArchDomainConventionPlugin.kt
-
-import org.gradle.api.Plugin
-import org.gradle.api.Project
-import org.gradle.kotlin.dsl.dependencies
-import org.gradle.kotlin.dsl.project
-
-class ArchDomainConventionPlugin : Plugin<Project> {
-    override fun apply(target: Project) {
-        with(target) {
-            pluginManager.apply {
-                apply("depsmanagement.jvm.library")
-            }
-
-            dependencies {
-                add("implementation", project(":model"))
-            }
-        }
-    }
-}
-```
-
-It's advisable not to include all Gradle values in a convention plugin. For example, **versionCode** and **versionName** in the app module are often extensively used in CI platforms like Bitrise to be modified based on a build ID. Additionally, values like **android.namespace** are unique to each module. It's best to use convention plugins only to encapsulate reusable logic.
+It's a good idea to leave some Gradle values out of a convention plugin. For example, **versionCode** and **versionName** in the app module are often extensively used in CI platforms like Bitrise to be modified based on a build ID. Additionally, values like **android.namespace** are unique to each module. It's best to use convention plugins only to encapsulate reusable logic.
 
 
 ## Closing thoughts
 
-As we can see, we have significantly reduced the lines of code in each of the new modules in our project. We also have a way to reuse and standardize the dependencies for each module based on its type, avoiding bugs resulting from different Java/Kotlin versions and/or different configurations. When used in conjunction with Version Catalogs, we have good support for library updates.
+As you can see, we have significantly reduced the lines of code in each of the new modules in our project. We can also reuse and standardize the dependencies for each module based on its type, avoiding bugs resulting from different Java/Kotlin versions and configurations. When used with Version Catalogs, we provide good support for library updates.
 
-To access the code samples presented in this article, please refer to the [sample project](https://github.com/ramruizni/DepsManagement). If you're interested in delving deeper, I highly recommend exploring the [nowinandroid](https://github.com/android/nowinandroid) repository, which offers a wealth of additional examples showcasing the capabilities of Convention Plugins, including the definition of [Flavors](https://developer.android.com/build/build-variants?hl=zh-cn), integration of testing libraries, establishment of [Baseline Profiles](https://developer.android.com/topic/performance/baselineprofiles/overview?hl=zh-cn), configuration of [Gradle Managed Devices](https://developer.android.com/studio/test/gradle-managed-devices), Firebase modules, and more.
+To access the code samples presented in this article, please refer to the [sample project](https://github.com/ramruizni/DepsManagement). If you're interested in delving deeper, we highly recommend exploring the [nowinandroid](https://github.com/android/nowinandroid) repository, which offers a wealth of additional examples showcasing the capabilities of Convention Plugins, including the definition of [Flavors](https://developer.android.com/build/build-variants?hl=zh-cn), integration of testing libraries, establishment of [Baseline Profiles](https://developer.android.com/topic/performance/baselineprofiles/overview?hl=zh-cn), configuration of [Gradle Managed Devices](https://developer.android.com/studio/test/gradle-managed-devices), Firebase modules, and more.
 
 
 ## External resources
