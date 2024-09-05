@@ -93,14 +93,12 @@ The current version of Android Studio (Android Studio Hedgehog | 2023.1.1 Patch 
 
 ![](build_language.png)
 
-Build configuration language graphic
-
 Finally, we can use tools, such as [VersionCatalogUpdatePlugin](https://github.com/littlerobots/version-catalog-update-plugin) or [RenovateBot](https://github.com/renovatebot/renovate), to automate the updating of dependencies in our Version Catalogs.
 
 
 ## Base Project Architecture
 
-We’ve created a [sample project](https://github.com/ramruizni/DepsManagement) to effectively demonstrate how to configure dependencies to overcome the issues we previously faced. Many code examples in this project are adapted from the nowinandroid application, which, as stated in its [GitHub repository](https://github.com/android/nowinandroid), 'follows Android design and development best practices and is intended to be a valuable reference for developers'.
+We’ve created a [sample project](https://github.com/ramruizni/DepsManagement) to effectively demonstrate how to configure dependencies to overcome the issues we previously faced. Many code examples in this project are adapted from the nowinandroid application, which, as stated in its [GitHub repository](https://github.com/android/nowinandroid), follows Android design and development best practices and is intended to be a valuable reference for developers.
 
 We start with a base project that embraces a modular architecture to foster maintainability, scalability, and a clear separation of concerns. The project includes the following modules:
 
@@ -659,29 +657,6 @@ class ArchInfrastructureConventionPlugin : Plugin<Project> {
 
             dependencies {
                 add("implementation", project(":database"))
-                add("implementation", project(":model"))
-            }
-        }
-    }
-}
-```
-
-```Graphic 
-// File: build-logic/convention/src/main/java/ArchDomainConventionPlugin.kt
-
-import org.gradle.api.Plugin
-import org.gradle.api.Project
-import org.gradle.kotlin.dsl.dependencies
-import org.gradle.kotlin.dsl.project
-
-class ArchDomainConventionPlugin : Plugin<Project> {
-    override fun apply(target: Project) {
-        with(target) {
-            pluginManager.apply {
-                apply("depsmanagement.jvm.library")
-            }
-
-            dependencies {
                 add("implementation", project(":model"))
             }
         }
