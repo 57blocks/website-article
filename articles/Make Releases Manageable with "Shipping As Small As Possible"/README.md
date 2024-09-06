@@ -98,7 +98,7 @@ When modifying APIs used by various components, it’s important to avoid breaki
     - If yes, add new fields to update the response. For example, if the existing API only returns a user's name but requirements dictate displaying the user's information, add an object field to contain all user information.
     - If not, create a new version of the API to replace the existing one.
 
-![](./update_api.png)
+![](./update_api.svg)
 
 
 ### Build a New UI
