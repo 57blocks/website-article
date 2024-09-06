@@ -484,7 +484,7 @@ To make the most of these tools, set up pre-commit hooks that automatically lint
     }
     ```
 
-    This configuration sets up a pre-commit hook using Husky that triggers lint-staged, which in turn runs ESLint with the —fix flag-to fix linting issues and Prettier to format the code automatically. Finally, it stages the modified files using git add.
+    This configuration sets up a pre-commit hook using Husky that triggers lint-staged, which in turn runs ESLint with the fix flag to fix linting issues and Prettier to format the code automatically. Finally, it stages the modified files using git add.
 
 5. **Run the pre-commit hook**: When you commit, the pre-commit hook will automatically run ESLint and Prettier on the staged files. If there are any linting errors or formatting inconsistencies, it will attempt to fix them before the commit is made.
 
