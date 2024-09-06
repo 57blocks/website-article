@@ -182,7 +182,7 @@
       ],
       "thumb": "https://s3.amazonaws.com/assets.57blocks.io/cms_uploads/illustration_cup_an_laptop_e12de970e5.png",
       "thumb_h": "./thumb_h.png",
-      "intro": "Overwhelmed by all of the tools available for the front-end build pipeline in your organization? Don't worry. We gathered all that we have learned about these tools while working on our projects and summarized it here. We collected all of the advice into a single place.",
+      "intro": "Feeling overwhelmed by the number of tools available for your oprganization’s front-end build pipeline? Don't worry. We're sharing all we've learned about these tools while working on our projects and summarized it here. This comprehensive guide is designed to provide you with the knowledge and confidence to navigate the complexities of modern front-end development, mitigating difficulties and improving results.",
       "previousSlugs": [
         "modernizing-front-end-build-pipelines"
       ],
