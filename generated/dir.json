@@ -22,7 +22,7 @@
       ],
       "thumb": "thumb.png",
       "thumb_h": "thumb_h.png",
-      "intro": "By using just an image on a mobile device, the search application is designed to return matches from the database that are either identical or bear a high resemblance to the original uploaded image. Here, we describe the technology behind this powerful functionality.",
+      "intro": "Using just an image on a mobile device, the search application is designed to return matches from the database that are either identical or resemble the original uploaded image. In this blog, we describe the technology behind this powerful functionality.",
       "top": true,
       "previousSlugs": [
         "image-search-leveraging-ai-models"
@@ -46,7 +46,7 @@
       ],
       "thumb": "./thumb.png",
       "thumb_h": "./thumb_h.png",
-      "intro": "How do you approach creating a system that finds the right supplier and provides a price in less than 3 seconds using hundreds of data points? By approaching this system as an ERP system in the cloud, we were able to keep the system fast at a low cost. Here we share how we did it. ",
+      "intro": "How do you approach creating a system that finds the right supplier and provides a price in less than three seconds using hundreds of data points? By approaching this system as an ERP system in the cloud, we were able to make the process fast and low cost. Here we share how we did it. ",
       "path": "articles/Get%20a%20Print%20Quote%20in%20Seconds%20-%20Not%20Weeks/README.md",
       "slug": "get-a-print-quote-in-seconds-not-weeks"
     },
@@ -82,7 +82,7 @@
       ],
       "thumb": "./thumb.png",
       "thumb_h": "./thumb_h.png",
-      "intro": "Which vector database is best to use? It depends. Based on our experiences using them, there is no one-size-fits-all \"best\" database. Rather, a Superior Vector Database is one that is well-matched with its use case, meeting the unique requirements of that scenario. Read our comparative analysis to discover why.",
+      "intro": "Which vector database to use? It depends. Based on our experiences, there is no one-size-fits-all \"best\" database. Instead, a superior vector database is well-matched with its use case, meeting the unique requirements of that scenario. Our comparative analysis offers a promising path to discovering the ideal database for your specific needs.",
       "previousSlugs": [
         "what-makes-a-good-vector-database"
       ],
@@ -102,7 +102,7 @@
       ],
       "thumb": "thumb.png",
       "thumb_h": "thumb_h.png",
-      "intro": "Today, there is no easy way to convert raw text from volumes of academic papers into structured data, or complete information extraction (IE). Traditional IE methods often rely on labor-intensive handcrafted rules and patterns, which may not generalize across diverse domains and languages. We used various Large Language Models (LLMs) from GPT to Claude to complete IE from these documents and compared their performance. We share what we learned here.",
+      "intro": "Today, we are pioneering a new approach to information extraction (IE) from volumes of academic papers. Traditional IE methods, with their reliance on labor-intensive handcrafted rules and patterns, often struggle to generalize across diverse domains and languages. In contrast, we are harnessing the power of Large Language Models (LLMs) from GPT to Claude to complete IE from these documents and compare their performance. We're excited to share our innovative approach in the field of information extraction.",
       "previousSlugs": [
         "document-information-extraction-with-large-language-models"
       ],
@@ -121,7 +121,7 @@
       ],
       "thumb": "./thumb.png",
       "thumb_h": "./thumb_h.png",
-      "intro": "Dependency conflicts, version compatibility, and maintaining a clean dependency tree can make dependency management challenging. However, effective use of Gradle and Dependency Injection (DI) ensures a smooth process and maintains a modular architecture that follows the principles of Clean Architecture. Read how we have successfully achieved this on our projects.",
+      "intro": "Dependency conflicts, version compatibility, and maintaining a clean dependency tree can  pose challenges in Android development. However, by harnessing the power of Gradle and Dependency Injection (DI), you can navigate these hurdles with confidence. These tools ensure a smooth process and maintain a modular architecture that follows the principles of Clean Architecture. Read how we have successfully achieved this on our projects, and how you can too.",
       "previousSlugs": [
         "overcoming-challenges-in-android-gradle-dependency-management"
       ],
@@ -140,7 +140,7 @@
       ],
       "thumb": "./thumb.png",
       "thumb_h": "./thumb_h.png",
-      "intro": "If you need to release complex features but want to align with the principles of Continuous Integration and Continuous Deployment (CI/CD), we outline here an approach that we use with our clients. By breaking down large features into manageable components, we have noticed that organizations can mitigate issues, ensure smoother data management and migration, and minimize disruptions to dependent clients. Further, this approach supports an Agile and iterative deployment process, enhancing stability and the user experience.",
+      "intro": "If you're finding it challenging to release complex features while adhering to the principles of Continuous Integration and Continuous Deployment (CI/CD), we’re excited to share our proven approach. By breaking down large features into manageable components, we can relieve the burden of managing these large features, ensuring smoother data management and migration, and minimizing disruptions to dependent clients. This approach also supports an agile and iterative deployment process, enhancing stability and the user experience.",
       "previousSlugs": [
         "shipping-as-small-as-possible",
         "make-release-manageable-with-shipping-as-small-as-possible"
@@ -162,7 +162,7 @@
       ],
       "thumb": "./thumb.png",
       "thumb_h": "./thumb_h.png",
-      "intro": "To us, our Quality Assurance (QA) team does much more than making sure that features work. Our QA team is working to elevate software quality, enhance team performance, and improve project delivery overall. Here, we share with you the QA strategies we leverage for our projects, all of which evolved from our client projects. We'll also show how embracing these methods can not only mitigate difficulties but improve results.",
+      "intro": "Our Quality Assurance (QA) team plays a pivotal role in ensuring the quality and excellence of our software. We are dedicated to enhancing software quality, team performance, and overall project delivery. This article shares the QA strategies we employ for our projects. We'll also demonstrate how embracing these methods can mitigate difficulties and improve results and provide you with the assurance that our software is of the highest quality.",
       "previousSlugs": [
         "57blocks-testing-best-practices"
       ],
@@ -182,7 +182,7 @@
       ],
       "thumb": "https://s3.amazonaws.com/assets.57blocks.io/cms_uploads/illustration_cup_an_laptop_e12de970e5.png",
       "thumb_h": "./thumb_h.png",
-      "intro": "Overwhelmed by all of the tools available for the front-end build pipeline in your organization? Don't worry. We gathered all that we have learned about these tools while working on our projects and summarized it here. We collected all of the advice into a single place.",
+      "intro": "Feeling overwhelmed by the number of tools available for your oprganization’s front-end build pipeline? Don't worry. We're sharing all we've learned about these tools while working on our projects and summarized it here. This comprehensive guide is designed to provide you with the knowledge and confidence to navigate the complexities of modern front-end development, mitigating difficulties and improving results.",
       "previousSlugs": [
         "modernizing-front-end-build-pipelines"
       ],
@@ -203,7 +203,7 @@
       ],
       "thumb": "https://s3.amazonaws.com/assets.57blocks.io/cms_uploads/illustration_tokenpad_65aea3b800.png",
       "thumb_h": "./thumb_h.png",
-      "intro": "Users expect to see real-time data while using apps and don't want to refresh the screen. Achieve this by using Reactive Programming. In this article, discover why Reactive Programming exists and how it enables our apps to update with new data in real-time.",
+      "intro": "Users expect to see real-time data while using apps and don't want to refresh the screen. This is achieved by using Reactive Programming. In this article, you’ll explore why Reactive Programming exists and how it enables apps to update with new data in real time.",
       "previousSlugs": [
         "reactive-programming-in-tokenpad"
       ],
@@ -223,7 +223,7 @@
       ],
       "thumb": "https://s3.amazonaws.com/assets.57blocks.io/cms_uploads/illustration_seo_db9bc06b49.png",
       "thumb_h": "./thumb_h.png",
-      "intro": "You may have heard how programmatic SEO could be a way to boost site traffic from search engines and increase leads. It can be intimidating to consider how to implement it, knowing the complexities it can bring. Here, we describe how we designed the system with our client and implemented it, along with our reflections during the experience. Additionally, we outline the many benefits our client experienced after launch.",
+      "intro": "You may have heard that programmatic SEO could boost site traffic from search engines and increase leads. However, considering the complexities of implementation can be intimidating. In this blog, we describe our design and client collaboration process, along with our findings and we outline the numerous client benefits after launch.",
       "previousSlugs": [
         "maximizing-online-visibility-the-power-of-programmatic-seo-for-boosting-search-traffic-and-leads"
       ],
@@ -244,7 +244,7 @@
       ],
       "thumb": "https://s3.amazonaws.com/assets.57blocks.io/cms_uploads/illustration_blue_squares_c1bbaab97b.png",
       "thumb_h": "./thumb_h.png",
-      "intro": "Image Quality Assessment (IQA), specifically Objective Blind or no-reference IQA, is a crucial function to determine image fidelity or the quality of image accuracy. Further, IQA helps maintain the integrity of visual data, ensuring its accurate representation. Here, we share an analysis of the best machine learning models that support IQA, diving deeper into their operations, the challenges and advantages, and its significance in the ever-evolving field of image quality assessment.",
+      "intro": "Image Quality Assessment (IQA), specifically Objective Blind or no-reference IQA, is a crucial function in determining image fidelity or the quality of image accuracy. Further, IQA helps maintain the integrity of visual data, ensuring its accurate representation. In this article, we share an analysis of the best machine learning models that support IQA, including BRISQUE, DIQA, NIMA and OpenCV. We will delve deeper into their operations, the challenges and advantages, and their significance in the ever-evolving field of image quality assessment.",
       "previousSlugs": [
         "image-quality-assessment"
       ],
@@ -264,7 +264,7 @@
       ],
       "thumb": "./thumb.png",
       "thumb_h": "./thumb_h.png",
-      "intro": "Deploying a smart contract on the public blockchain is a significant milestone, but it's also fraught with risk. The immutability of blockchain technology means that any flaws in the contract's code can have irreversible consequences. In this guide, we will walk you through a systematic and detailed approach to ensure that your smart contract functions as intended, remains secure against malicious attacks, and is optimized for performance and cost-effectiveness.",
+      "intro": "Deploying a smart contract on the public blockchain is a significant milestone but also fraught with risk. Blockchain technology's immutability means that any flaws in the contract's code can have irreversible consequences. In this guide, we will walk you through a systematic and detailed approach to ensuring that your smart contract functions as intended, remains secure against malicious attacks, and is optimized for performance and cost-effectiveness.",
       "previousSlugs": [
         "smart-contract-development-a-step-by-step-quality-assurance-guide"
       ],
@@ -285,7 +285,7 @@
       ],
       "thumb": "./thumb.png",
       "thumb_h": "./thumb_h.png",
-      "intro": "We created this guide to help people new to Web3 and the dApp Infrastructure get started using this technology in their organizations. The design of Web3 apps is much more decentralized than that of Web2. New services are constantly appearing to make building and running these projects easier and safer. Engineers must know how each part works to create effective Web3 apps. And we describe this here.",
+      "intro": "We created this guide to help people new to Web3 and the dApp infrastructures use this technology in their organizations. The design of Web3 apps is much more decentralized than that of Web2. New services are constantly appearing to make building and running these projects easier and safer. Engineers must know how each part works to create effective Web3 apps. We describe this here.",
       "previousSlugs": [
         "the-building-blocks-of-web3-a-deep-dive-into-dapp-infrastructure"
       ],
