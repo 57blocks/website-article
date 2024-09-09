@@ -108,8 +108,8 @@ Web Vitals are a collection of essential metrics that evaluate key aspects of re
 
    | Element | Description |
    | ------- | ----------- |
-   | duration ｜Represents the time from startTime to the next rendering paint, which is 0 in this case.｜
-   | startTime ｜Returns the timestamp when the painting occurred.｜
+   | duration｜Represents the time from startTime to the next rendering paint, which is 0 in this case.｜
+   | startTime｜Returns the timestamp when the painting occurred.｜
 
    In this example, FCP is represented by `startTime`, which is less than one second. According to the provided standards, this is considered good.
 
@@ -345,13 +345,13 @@ There are several optimization measures to improve website performance. Here, we
     - Regarding CSS, in Webpack, the mini-css-extract-plugin plugin is commonly employed for optimization. This plugin independently extracts a single CSS file from each JavaScript file that contains CSS, enabling styles to be loaded separately. Furthermore, the plugin supports on-demand loading and Source Maps, providing a more flexible and efficient way for style management.
     - For image resources, using the WebP format instead of JPEG and PNG can significantly reduce file sizes, typically achieving a reduction of 25%-35%.** Optimizing image loading with Content Delivery Networks (CDN) has a notable effect, often reducing image file sizes by 40%-80%. To account for compatibility, the following approaches can be employed:
 
-    ```html
-    <picture>
-    <source type="image/webp" srcset="flower.webp" />
-	<source type="image/jpeg" srcset="flower.jpg" />
-    <img src="flower.jpg" alt="" />
-    </picture>
-    ```
+		```html
+		<picture>
+		<source type="image/webp" srcset="flower.webp" />
+		<source type="image/jpeg" srcset="flower.jpg" />
+		<img src="flower.jpg" alt="" />
+		</picture>
+		```
 
 5.  Bundling Optimization
 
@@ -588,6 +588,7 @@ There are several optimization measures to improve website performance. Here, we
     ```
 
 9.  Pre-render
+
     Pre-rendering techniques such as Server-Side Rendering (SSR) and Static Site Generation (SSG) can significantly boost key performance metrics like LCP, FCP, FID, and INP. By generating HTML content on the server or at build time, these optimizations deliver fast initial page loads, improve content rendering, and enhance user interactivity, resulting in a superior user experience.
 
     1. SSR (Server-Side Rendering)
