@@ -54,6 +54,9 @@ Web Vitals are a collection of essential metrics that evaluate key aspects of re
    During the Loading Feedback and Content Rendering Phases, developers use the LCP metric to determine the render time of the largest image or text block visible in the viewport relative to when the user first navigates to the page. LCP is a crucial, stable Core Web Vital metric for measuring perceived load speed as it signifies the point in the page load timeline when the page's main content has likely loaded. A fast LCP reassures the user that the page is useful. [This article](https://web.dev/articles/lcp#how_to_measure_lcp) provides a more detailed understanding of this metric.
 
    ![LCP](lcp.png)
+   ::: center
+   Metric and measurement ranges
+   :::
 
    The Largest Contentful Paint (LCP) analysis considers all content it discovers including content removed from the DOM, like a loading spinner. Each time a new largest content space is found, it creates a new entry, so there may be multiple objects. However, LCP analysis stops searching for larger content. Therefore, LCP data takes the last-found content as the result.
 
@@ -105,7 +108,7 @@ Web Vitals are a collection of essential metrics that evaluate key aspects of re
 
    | Element | Description |
    | ------- | ----------- |
-   |duration ｜ Represents the time from startTime to the next rendering paint, which is 0 in this case.｜
+   | duration ｜ Represents the time from startTime to the next rendering paint, which is 0 in this case.｜
    ｜ startTime ｜ Returns the timestamp when the painting occurred ｜
 
    In this example, FCP is represented by `startTime`, which is less than one second. According to the provided standards, this is considered good.
@@ -324,11 +327,11 @@ There are several optimization measures to improve website performance. Here, we
 
     3.  Similar settings are typically used for resources such as favicon.ico, images, API endpoints, etc. Conditional requests are initiated using Last-Modified and ETag to check if the resource is up to date.
 
-    ```ts
-    Cache-Control: no-cache
-    Last-Modified: Tue, 22 Feb 2022 20:20:20 GMT
-    ETag: AAPuIbAOdvAGEETbgAA2ABwqAsAAE
-    ```
+		```ts
+		Cache-Control: no-cache
+		Last-Modified: Tue, 22 Feb 2022 20:20:20 GMT
+		ETag: AAPuIbAOdvAGEETbgAA2ABwqAsAAE
+		```
 
     In some scenarios, Cache-Control may appear in both the request and response, and in case of conflicts, the settings on the response usually take precedence.
 
@@ -337,18 +340,18 @@ There are several optimization measures to improve website performance. Here, we
 
 4.  Code Minimization
     Code minimization involves reducing the size of your codebase by removing unnecessary characters. Consequently, LCP and FCP benefit from quicker resource loading, and reduced file sizes lead to less strain on the main thread, indirectly improving FID and INP. Additionally, minimizing code can decrease the overall load time and reduce the chances of layout shifts, positively influencing CLS.
+        
+	- To minimize and compress JavaScript code, we currently utilize the Terser tool. This tool includes removing unused code (Tree Shaking), shortening variable names, and eliminating spaces and uglifiers. This optimization technique has been applied in both Rollup.js and Webpack to reduce code volume and decrease download time.
+    - Regarding CSS, in Webpack, the mini-css-extract-plugin plugin is commonly employed for optimization. This plugin independently extracts a single CSS file from each JavaScript file that contains CSS, enabling styles to be loaded separately. Furthermore, the plugin supports on-demand loading and Source Maps, providing a more flexible and efficient way for style management.
+    - For image resources, using the WebP format instead of JPEG and PNG can significantly reduce file sizes, typically achieving a reduction of 25%-35%.** Optimizing image loading with Content Delivery Networks (CDN) has a notable effect, often reducing image file sizes by 40%-80%. To account for compatibility, the following approaches can be employed:
 
-        - To minimize and compress JavaScript code, we currently utilize the Terser tool. This tool includes removing unused code (Tree Shaking), shortening variable names, and eliminating spaces and uglifiers. This optimization technique has been applied in both Rollup.js and Webpack to reduce code volume and decrease download time.
-        - Regarding CSS, in Webpack, the mini-css-extract-plugin plugin is commonly employed for optimization. This plugin independently extracts a single CSS file from each JavaScript file that contains CSS, enabling styles to be loaded separately. Furthermore, the plugin supports on-demand loading and Source Maps, providing a more flexible and efficient way for style management.
-        - For image resources, using the WebP format instead of JPEG and PNG can significantly reduce file sizes, typically achieving a reduction of 25%-35%.** Optimizing image loading with Content Delivery Networks (CDN) has a notable effect, often reducing image file sizes by 40%-80%. To account for compatibility, the following approaches can be employed:
-
-          ```html
-          <picture>
-        	<source type="image/webp" srcset="flower.webp" />
-        	<source type="image/jpeg" srcset="flower.jpg" />
-        	<img src="flower.jpg" alt="" />
-          </picture>
-          ```
+    ```html
+    <picture>
+    <source type="image/webp" srcset="flower.webp" />
+	<source type="image/jpeg" srcset="flower.jpg" />
+    <img src="flower.jpg" alt="" />
+    </picture>
+    ```
 
 5.  Bundling Optimization
 
@@ -395,10 +398,10 @@ There are several optimization measures to improve website performance. Here, we
 
           It is recommended to use DNS Prefetch and preconnect together, but careful configuration is advised to avoid overuse and potential resource wastage.
 
-        ```html
-        <link rel="preconnect" href="https://third-party-domain.com" />
-        <link rel="dns-prefetch" href="https://third-party-domain.com" />
-        ```
+			```html
+			<link rel="preconnect" href="https://third-party-domain.com" />
+			<link rel="dns-prefetch" href="https://third-party-domain.com" />
+			```
           The test results are shown in the following diagram:
           ![compared-pre-render](compared-pre-render.png)
 
@@ -408,7 +411,7 @@ There are several optimization measures to improve website performance. Here, we
     3.  Defer Vs Async
 
         Async and defer allow external scripts to load page elements without blocking the HTML parser while scripts (including inline scripts) with type "module" are deferred automatically.
-        [script attribute](script-attributes.png)
+        ![script attribute](script-attributes.png)
 
     4.  Fetch Priority API
         As a developer, you can indicate the priority of a resource using the `fetchpriority` attribute of the Fetch Priority API. This attribute can be employed within `<link>`, `<img>`, and `<script>` elements.
@@ -428,15 +431,15 @@ There are several optimization measures to improve website performance. Here, we
 
       Using these attributes based on the business value of images (one example is loading ads first for encouraged engagement and revenue), you can optimize Web Core Vitals metrics and enhance overall performance. Preloading critical image resources can also be achieved using the link tag.
 
-    ```html
-    <link
-      rel="preload"
-      fetchpriority="high"
-      as="image"
-      href="image.webp"
-      type="image/webp"
-    />
-    ```
+		```html
+		<link
+		rel="preload"
+		fetchpriority="high"
+		as="image"
+		href="image.webp"
+		type="image/webp"
+		/>
+		```
 
     - Size:
 
