@@ -48,6 +48,7 @@ Here, we’ll list and explain the core Web Vitals and important performance met
 Web Vitals are a collection of essential metrics that evaluate key aspects of real-world user experience on the web. They include specific measurements and target thresholds for each metric, assisting developers in understanding whether their site's user experience is classified as "good," "needs improvement," or "poor." By focusing on these vitals, you can directly impact and improve your users' experience.
 
 1. LCP (Largest Contentful Paint) - Core Metric
+
    **When to use in loading journey**: Loading Feedback Phase, Content Rendering Phase
    
    During the Loading Feedback and Content Rendering Phases, developers use the LCP metric to determine the render time of the largest image or text block visible in the viewport relative to when the user first navigates to the page. LCP is a crucial, stable Core Web Vital metric for measuring perceived load speed as it signifies the point in the page load timeline when the page's main content has likely loaded. A fast LCP reassures the user that the page is useful. [This article](https://web.dev/articles/lcp#how_to_measure_lcp) provides a more detailed understanding of this metric.
@@ -72,13 +73,14 @@ Web Vitals are a collection of essential metrics that evaluate key aspects of re
 	| ----------- | ------------------------------|
 	| element | The current largest content rendering element. |
 	| loadingTime | Loading time or time to download and display all content of a web page in a browser. |
-	| renderTime | Rendering time, or how long it takes for a web page to load so the user can engage with the content and functionality. If it's a cross-origin request, it will be 0. |
+	| renderTime | Rendering time, or how long it takes for a web page to load so the user can engage with the 	content and functionality. If it's a cross-origin request, it will be 0. |
 	| size | The area of the element itself. |
 	| startTime | If renderTime is not 0, it returns renderTime; otherwise, it returns loadingTime. |
 
 	In this example, the LCP is represented by loadingTime, and its value is 1.6, which is considered good. It indicates that the largest content element (an image in this case) was successfully rendered within 1.6 seconds, meeting the criteria for a relatively good user experience.
 
 2. FCP (First Contentful Paint) - Not a core metric
+
    **When to use in loading journey**: Loading Feedback Phase
    
    The FCP metric measures from when the user first navigates to the page to when any part of the page's content is rendered on the screen. FCP is a crucial, user-focused metric for assessing perceived load speed. It indicates the first moment in the page load journey when the user can see any content on the screen. A quick FCP reassures the user that progress is being made by loading the page. A more in-depth explanation is provided in this article. FP (First Paint) is a similar metric representing the time it takes for the first pixel to be painted on the screen.
@@ -108,6 +110,7 @@ Web Vitals are a collection of essential metrics that evaluate key aspects of re
 	In this example, FCP is represented by `startTime`, which is less than one second. According to the provided standards, this is considered good.
 
 3. FID (First Input Delay) - Core Metric
+
    **When to use in loading journey**: Content Rendering Phase, Interactive Phase
 
 	   FID measures the initial impression of site interactivity and responsiveness. Or rather, the time it takes from the user's first interaction with the page to when the browser can begin processing the event to respond to that interaction. Technically, we measure the incremental time between receiving the input event and the next idle period of the main thread. You can only track FID on discrete event operations, such as clicks, touches, and key presses. In contrast, this metric does not include actions like zooming, scrolling, and continuous events (for example, mouse move, pointer move, touch move, wheel, and drag). Note that this metric is measured even in cases where event listeners are not registered. More detailed information is available in this [article](https://web.dev/articles/fid#what_counts_as_a_first_input).
@@ -138,6 +141,7 @@ Web Vitals are a collection of essential metrics that evaluate key aspects of re
 	In the example code, FID equals `8574 (processingEnd) - 8558 (processingStart) = 16`. According to the provided standards, this is considered good.
 
 4. INP (Interaction to Next Paint) - Not a Core Metric
+
    **When to use in loading journey**: Interactive Phase
 
 	INP assesses a page’s overall responsiveness to user interactions by observing the delays in all clicks, touches, and keyboard interactions throughout the page's lifecycle. The final INP value is the longest observed interaction, disregarding outliers. INP replaced FID as a core Web Vitals metric on March 12, 2024.
@@ -156,6 +160,7 @@ Web Vitals are a collection of essential metrics that evaluate key aspects of re
 	Since the Performance API does not provide responsiveness information for INP, specific examples are not provided here. For information measuring this metric, please refer to [this article at Google's web.dev resource](https://web.dev/articles/inp#how_is_inp_different_from_first_input_delay_fid).
 
 5. CLS (Cumulative Layout Shift) - Core Metric
+
    **When to use in loading journey**: Content Rendering Phase, Interactive Phase
    
 	   Usually, we measure the maximum CLS value that occurs throughout the entire lifecycle of a page. In this evaluation, only instances where elements change their initial positions or sizes are considered such as adding new elements to the DOM or altering the width and height of the original page element. For additional information, please refer to this [article](https://web.dev/articles/cls).
@@ -175,6 +180,7 @@ Web Vitals are a collection of essential metrics that evaluate key aspects of re
 	In this example, CLS is represented by the value 0, which is considered good according to provided standards.
 
 6. Long Task - Not a core metric
+
    **When to use in loading journey**: Loading Feedback Phase, Content Rendering Phase, Interactive Phase (or all phases)
 
 	Tasks that block the main thread for over 50 milliseconds can lead to various adverse effects, including delayed responses to events and stuttering animations. When long tasks occupy the main thread, the browser cannot promptly respond to user input and handle other events, affecting the user experience.
@@ -198,15 +204,14 @@ Web Vitals are a collection of essential metrics that evaluate key aspects of re
 	Following are explanations and descriptions of the metrics:
 
 	| Metric                | Description                                                                       |
-		| --------------------- | --------------------------------------------------------------------------------- |
-		| duration              | Represents the duration of the task, i.e., the time elapsed from start to finish. |
-		| TaskAttributionTiming |This is an object associated with Long Tasks, used to track and attribute the execution of long tasks. This object may contain detailed information about the long task, such as its source, triggering events, etc. Through this object, developers can gain a better understanding of the context and reasons for long tasks, facilitating performance optimization and debugging.
-		|
-
-	Because long tasks significantly impact user experience, they are highlighted separately, even though they are not part of Web Vitals.
+	| --------------------- | --------------------------------------------------------------------------------- |
+	| duration              | Represents the duration of the task, i.e., the time elapsed from start to finish. |
+	| TaskAttributionTiming |This is an object associated with Long Tasks, used to track and attribute the execution of long tasks. This object may contain detailed information about the long task, such as its source, triggering events, etc. Through this object, developers can gain a better understanding of the context and reasons for long tasks, facilitating performance optimization and debugging.
+	|Because long tasks significantly impact user experience, they are highlighted separately, even though they are not part of Web Vitals.
 
 7. FP (First Paint) - Not a core metric
-  ** When to use in loading journey**: Loading Feedback Phase
+
+  **When to use in loading journey**: Loading Feedback Phase
    
    FP (good:0-1.sec, normal:1 sec-2.5 sec, poor 2.5 )wait for ux design
    
@@ -278,13 +283,13 @@ There are several optimization measures to improve website performance. Here, we
 
 	1. For HTML files with a high update frequency, the directive settings commonly used are:
 
-			```http
+			```ts
 			Cache-Control: no-cache
 			```
 
 		This code snippet indicates that caching occurs for the page. However, it also indicates to the system that the browser should check the server to ensure it displays the latest data. If the client or browser already is displaying and using the latest data, the server typically responds with 304 (Not Modified) response; otherwise, new data will be provided from the server. This approach ensures that each retrieval obtains the latest response. Since most HTTP/1.0 does not support no-cache, we can adopt a backup solution for backward support and compatibility.
 
-		```http
+		```ts
 		Cache-Control: max-age=0, must-revalidate
 		```
 
@@ -295,7 +300,7 @@ There are several optimization measures to improve website performance. Here, we
 
 	2. For frontend static resources, such as bundled scripts and stylesheets, it is common to append a hash or version number to the file name. This practice aids in more effective cache management. For such static files, we typically set the following cache directives:
 
-		```http
+		```ts
 		Cache-Control: public, immutable, max-age=31536000
 		Last-Modified: Wed, 21 Oct 2023 07:28:00 GMT
 		ETag: "33a64df551425fcc55e4d42a148795d9f25f89d4"
@@ -309,7 +314,7 @@ There are several optimization measures to improve website performance. Here, we
 
 	3. Similar settings are typically used for resources such as favicon.ico, images, API endpoints, etc. Conditional requests are initiated using Last-Modified and ETag to check if the resource is up to date.
 
-		   ```http
+		   ```ts
 		   Cache-Control: no-cache
 		   Last-Modified: Tue, 22 Feb 2022 20:20:20 GMT
 		   ETag: AAPuIbAOdvAGEETbgAA2ABwqAsAAE
