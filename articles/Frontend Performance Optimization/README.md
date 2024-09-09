@@ -108,8 +108,8 @@ Web Vitals are a collection of essential metrics that evaluate key aspects of re
 
    | Element | Description |
    | ------- | ----------- |
-   | duration ｜ Represents the time from startTime to the next rendering paint, which is 0 in this case.｜
-   ｜ startTime ｜ Returns the timestamp when the painting occurred ｜
+   | duration ｜Represents the time from startTime to the next rendering paint, which is 0 in this case.｜
+   | startTime ｜Returns the timestamp when the painting occurred.｜
 
    In this example, FCP is represented by `startTime`, which is less than one second. According to the provided standards, this is considered good.
 
