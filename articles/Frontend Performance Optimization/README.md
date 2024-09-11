@@ -30,7 +30,7 @@ Let’s explore the stages of the journey in more depth:
 
 For this article, I introduce measurement tools to determine how quickly a browser’s page load journey happens, outline key metrics to indicate where trouble may be happening, and provide recommendations to improve frontend performance.
 
-# Measurement Tools
+## Measurement Tools
 
 As a developer, you have the power to ensure your site meets key metrics by using a few common front end development measurement tools that are used to ensure that we are meeting key metrics.
 
@@ -41,11 +41,11 @@ As a developer, you have the power to ensure your site meets key metrics by usin
 I prefer to use PerformanceObserver because it integrates well with other APIs and tools that developers might use for performance analysis and optimization.
 Here, we’ll list and explain the core Web Vitals and important performance metrics supported by PerformanceObserve.
 
-# Web Vitals
+## Web Vitals
 
 Web Vitals are a collection of essential metrics that evaluate key aspects of real-world user experience on the web. They include specific measurements and target thresholds for each metric, assisting developers in understanding whether their site's user experience is classified as "good," "needs improvement," or "poor." By focusing on these vitals, you can directly impact and improve your users' experience.
 
-## 1. LCP (Largest Contentful Paint) - Core Metric
+### 1. LCP (Largest Contentful Paint) - Core Metric
 
    **When to use in loading journey**: Loading Feedback Phase, Content Rendering Phase
 
@@ -80,7 +80,7 @@ Web Vitals are a collection of essential metrics that evaluate key aspects of re
 
    In this example, the LCP is represented by loadingTime, and its value is 1.6, which is considered good. It indicates that the largest content element (an image in this case) was successfully rendered within 1.6 seconds, meeting the criteria for a relatively good user experience.
 
-## 2. FCP (First Contentful Paint) - Not a core metric
+### 2. FCP (First Contentful Paint) - Not a core metric
 
    **When to use in loading journey**: Loading Feedback Phase
 
@@ -111,7 +111,7 @@ Web Vitals are a collection of essential metrics that evaluate key aspects of re
 
    In this example, FCP is represented by `startTime`, which is less than one second. According to the provided standards, this is considered good.
 
-## 3. FID (First Input Delay) - Core Metric
+### 3. FID (First Input Delay) - Core Metric
 
    **When to use in loading journey**: Content Rendering Phase, Interactive Phase
 
@@ -146,7 +146,7 @@ Web Vitals are a collection of essential metrics that evaluate key aspects of re
 
    In the example code, FID equals `8574 (processingEnd) - 8558 (processingStart) = 16`. According to the provided standards, this is considered good.
 
-4. INP (Interaction to Next Paint) - Not a Core Metric
+### 4. INP (Interaction to Next Paint) - Not a Core Metric
 
    **When to use in loading journey**: Interactive Phase
 
@@ -167,7 +167,7 @@ Web Vitals are a collection of essential metrics that evaluate key aspects of re
 
    Since the Performance API does not provide responsiveness information for INP, specific examples are not provided here. For information measuring this metric, please refer to [this article at Google's web.dev resource](https://web.dev/articles/inp#how_is_inp_different_from_first_input_delay_fid).
 
-5. CLS (Cumulative Layout Shift) - Core Metric
+### 5. CLS (Cumulative Layout Shift) - Core Metric
 
    **When to use in loading journey**: Content Rendering Phase, Interactive Phase
 
@@ -190,7 +190,7 @@ Web Vitals are a collection of essential metrics that evaluate key aspects of re
 
    In this example, CLS is represented by the value 0, which is considered good according to provided standards.
 
-6. Long Task - Not a core metric
+### 6. Long Task - Not a core metric
 
    **When to use in loading journey**: Loading Feedback Phase, Content Rendering Phase, Interactive Phase (or all phases)
 
@@ -219,7 +219,7 @@ Web Vitals are a collection of essential metrics that evaluate key aspects of re
    | duration              | Represents the duration of the task, i.e., the time elapsed from start to finish.                                                                                                                                                                                                                                                                                                                                                                                                                                           |
    | TaskAttributionTiming | This is an object associated with Long Tasks, used to track and attribute the execution of long tasks. This object may contain detailed information about the long task, such as its source, triggering events, etc. Through this object, developers can gain a better understanding of the context and reasons for long tasks, facilitating performance optimization and debugging. Because long tasks significantly impact user experience, they are highlighted separately, even though they are not part of Web Vitals. |
 
-7. FP (First Paint) - Not a core metric
+### 7. FP (First Paint) - Not a core metric
 
    **When to use in loading journey**: Loading Feedback Phase
 
@@ -251,11 +251,11 @@ Web Vitals are a collection of essential metrics that evaluate key aspects of re
 
    Now, let’s say your Web Vital numbers could improve and you want to improve them. The following sections provide strategies to do that.
 
-# Optimization Measures
+## Optimization Measures
 
 There are several optimization measures to improve website performance. Here, we outline the ten most used strategies for improving Web Vitals metrics.
 
-1. Code Splitting And Lazy Loading
+### 1. Code Splitting And Lazy Loading
 
     Code splitting and lazy loading offer significant benefits in frontend development. The main goal of code splitting is to reduce the initial JavaScript file size required during the loading phase, which improves the initial page load speed, thus improving LCP and FCP. In more technical terms, code splitting breaks down the application code into multiple chunks, often based on routes or features, allowing for on-demand loading. It also alleviates the main thread workload, which reduces FID and INP latency, and minimizes Long Tasks.
     By implementing code splitting, we can improve load times, optimize caching support, and reduce bandwidth usage since only necessary code is loaded at first making the site more efficient. This practice also helps manage and debug smaller bundles (HTML, JavaScript, images, or CSS) easily.
@@ -284,7 +284,7 @@ There are several optimization measures to improve website performance. Here, we
     ];
     ```
 
-2. Http Cache
+### 2. Http Cache
     HTTP caching has several benefits.
 
     - It significantly reduces website load times allowing browsers access and load cached files, effectively improving LCP and FCP by enabling faster resource retrieval.
@@ -336,10 +336,10 @@ There are several optimization measures to improve website performance. Here, we
 
     In some scenarios, Cache-Control may appear in both the request and response, and in case of conflicts, the settings on the response usually take precedence.
 
-3. Content Delivery Network (CDN)
+### 3. Content Delivery Network (CDN)
     CDN is a distributed server network that caches resources from the origin server and delivers these resources through servers located closer to the user's geographical location. CDN can efficiently deliver content by reducing round-trip time (RTT) and implementing optimization strategies for HTTP/2 or HTTP/3, caching, and compression, enhancing user access experience and reducing LCP and FCP values. The CDN's ability to deliver optimized and cached content also helps to minimize layout shifts, thus positively impacting CLS. Additional insights explained in this [web.dev article](https://web.dev/articles/content-delivery-networks).
 
-4. Code Minimization
+### 4. Code Minimization
     Code minimization involves reducing the size of your codebase by removing unnecessary characters. Consequently, LCP and FCP benefit from quicker resource loading, and reduced file sizes lead to less strain on the main thread, indirectly improving FID and INP. Additionally, minimizing code can decrease the overall load time and reduce the chances of layout shifts, positively influencing CLS.
 
     - To minimize and compress JavaScript code, we currently utilize the Terser tool. This tool includes removing unused code (Tree Shaking), shortening variable names, and eliminating spaces and uglifiers. This optimization technique has been applied in both Rollup.js and Webpack to reduce code volume and decrease download time.
@@ -354,7 +354,7 @@ There are several optimization measures to improve website performance. Here, we
       </picture>
       ```
 
-5. Bundling Optimization
+### 5. Bundling Optimization
 
     In the era of HTTP/2.0 and HTTP/3.0, there is a shift away from more traditional performance optimization techniques used for HTTP/1.0. This opens new opportunities for developers to focus on other aspects of performance optimization and better adapt to the new protocol features. However, bundling optimization may still be relevant in specific scenarios where backward compatibility with HTTP/1.x is required or for the optimized handling of certain resource types that benefit from minimized round-trip times.
 
@@ -378,7 +378,7 @@ There are several optimization measures to improve website performance. Here, we
 
     With the introduction of HTTP/2.0, the need for traditional performance optimization techniques, such as bundling, has significantly reduced. HTTP/2.0’s ability to allow the simultaneous request of multiple resources on the same connection without establishing a separate TCP connection for each resource has made bundling optimization and other "hack" techniques less necessary because multiplexing on a single connection significantly improves the efficiency of parallel resource transmission. While HTTP/2 reduces the need forbundling, the strategy should be evaluated on a case-by-case basis, considering specific performance characteristics and requirements.
 
-6. Critical Path Optimization
+### 6. Critical Path Optimization
 
     Four approaches to optimizing the frontend based on page load order exist.
 
@@ -421,7 +421,7 @@ There are several optimization measures to improve website performance. Here, we
         - low: Fetches the image with lower priority compared to other images.
         - auto: Default mode, indicating no preference for fetch priority. The browser decides the most advantageous approach for the user.
 
-7. Img
+### 7. Img
 
     The img embeds an image into a webpage in HTML. This tag is self-closing, meaning it does not require an end tag.
     Here are some key attributes and usages of the <img> tag to improve performance:
@@ -502,7 +502,7 @@ There are several optimization measures to improve website performance. Here, we
 
     Like preload and preconnect for images, decode can substantially enhance key performance metrics such as LCP, FCP, FID, and INP. By fetching and loading critical images earlier, these strategies result in faster content rendering, reduced latency, and improved user interactivity, leading to a better overall user experience.
 
-8. Video Preload
+### 8. Video Preload
 
     The `preload` attribute is designed to provide the browser “hints” about what content the author believes should be preloaded before video playback to ensure the best user experience. Video preload strategies can significantly improve performance metrics such as LCP, FCP, FID, and INP.
 
@@ -589,7 +589,7 @@ There are several optimization measures to improve website performance. Here, we
     <link rel="preload" as="image" href="poster.jpg" fetchpriority="high" />
     ```
 
-9. Pre-render
+### 9. Pre-render
 
     Pre-rendering techniques such as Server-Side Rendering (SSR) and Static Site Generation (SSG) can significantly boost key performance metrics like LCP, FCP, FID, and INP. By generating HTML content on the server or at build time, these optimizations deliver fast initial page loads, improve content rendering, and enhance user interactivity, resulting in a superior user experience.
 
@@ -605,7 +605,7 @@ There are several optimization measures to improve website performance. Here, we
 
        SSG is particularly suitable when the rendered page content is the same for all users, relatively fixed, or updated infrequently. Some examples include blogs and documentation sites. Pre-rendering during the build process generates static files, allowing them to be cached for quick access and, reducing the burden on the server during runtime while providing better performance.
 
-10. Optimizing Javascript Execution
+### 10. Optimizing Javascript Execution
 
     **For UI changes, use `requestAnimationFrame`**
 
@@ -662,12 +662,12 @@ There are several optimization measures to improve website performance. Here, we
 
     Implementing strategies such as using requestAnimationFrame and avoiding long tasks can significantly enhance key performance metrics like LCP, FCP, FID, and INP. By ensuring smoother animations, reducing central thread blocking, and improving interaction responsiveness, these optimizations lead to a faster, more interactive, and user-friendly web experience.
 
-# Conclusion
+## Conclusion
 
 Frontend performance optimization is an ongoing process that requires continuous attention and improvement. Considering the comprehensive strategies mentioned above, you can improve your website's speed, interactivity, and user satisfaction.
 By continuously monitoring frontend performance using tools, evaluating metrics, and taking appropriate improvement measures, you will ensure that your website consistently delivers an outstanding user experience. In today's competitive internet landscape, frontend performance optimization is indispensable for success.
 
-# References
+## References
 
 - [JavaScript Start-up Performance](https://medium.com/reloading/javascript-start-up-performance-69200f43b201)
 - [The cost of javascript 2017](https://medium.com/dev-channel/the-cost-of-javascript-84009f51e99e)
