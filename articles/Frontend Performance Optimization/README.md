@@ -30,7 +30,7 @@ Let’s explore the stages of the journey in more depth:
 
 For this article, I introduce measurement tools to determine how quickly a browser’s page load journey happens, outline key metrics to indicate where trouble may be happening, and provide recommendations to improve frontend performance.
 
-## Measurement Tools
+# Measurement Tools
 
 As a developer, you have the power to ensure your site meets key metrics by using a few common front end development measurement tools that are used to ensure that we are meeting key metrics.
 
@@ -41,11 +41,11 @@ As a developer, you have the power to ensure your site meets key metrics by usin
 I prefer to use PerformanceObserver because it integrates well with other APIs and tools that developers might use for performance analysis and optimization.
 Here, we’ll list and explain the core Web Vitals and important performance metrics supported by PerformanceObserve.
 
-## Web Vitals
+# Web Vitals
 
 Web Vitals are a collection of essential metrics that evaluate key aspects of real-world user experience on the web. They include specific measurements and target thresholds for each metric, assisting developers in understanding whether their site's user experience is classified as "good," "needs improvement," or "poor." By focusing on these vitals, you can directly impact and improve your users' experience.
 
-1. LCP (Largest Contentful Paint) - Core Metric
+## 1. LCP (Largest Contentful Paint) - Core Metric
 
    **When to use in loading journey**: Loading Feedback Phase, Content Rendering Phase
 
@@ -80,7 +80,7 @@ Web Vitals are a collection of essential metrics that evaluate key aspects of re
 
    In this example, the LCP is represented by loadingTime, and its value is 1.6, which is considered good. It indicates that the largest content element (an image in this case) was successfully rendered within 1.6 seconds, meeting the criteria for a relatively good user experience.
 
-2. FCP (First Contentful Paint) - Not a core metric
+## 2. FCP (First Contentful Paint) - Not a core metric
 
    **When to use in loading journey**: Loading Feedback Phase
 
@@ -111,7 +111,7 @@ Web Vitals are a collection of essential metrics that evaluate key aspects of re
 
    In this example, FCP is represented by `startTime`, which is less than one second. According to the provided standards, this is considered good.
 
-3. FID (First Input Delay) - Core Metric
+## 3. FID (First Input Delay) - Core Metric
 
    **When to use in loading journey**: Content Rendering Phase, Interactive Phase
 
@@ -251,7 +251,7 @@ Web Vitals are a collection of essential metrics that evaluate key aspects of re
 
    Now, let’s say your Web Vital numbers could improve and you want to improve them. The following sections provide strategies to do that.
 
-## Optimization Measures
+# Optimization Measures
 
 There are several optimization measures to improve website performance. Here, we outline the ten most used strategies for improving Web Vitals metrics.
 
@@ -662,12 +662,12 @@ There are several optimization measures to improve website performance. Here, we
 
     Implementing strategies such as using requestAnimationFrame and avoiding long tasks can significantly enhance key performance metrics like LCP, FCP, FID, and INP. By ensuring smoother animations, reducing central thread blocking, and improving interaction responsiveness, these optimizations lead to a faster, more interactive, and user-friendly web experience.
 
-## Conclusion
+# Conclusion
 
 Frontend performance optimization is an ongoing process that requires continuous attention and improvement. Considering the comprehensive strategies mentioned above, you can improve your website's speed, interactivity, and user satisfaction.
 By continuously monitoring frontend performance using tools, evaluating metrics, and taking appropriate improvement measures, you will ensure that your website consistently delivers an outstanding user experience. In today's competitive internet landscape, frontend performance optimization is indispensable for success.
 
-## References
+# References
 
 - [JavaScript Start-up Performance](https://medium.com/reloading/javascript-start-up-performance-69200f43b201)
 - [The cost of javascript 2017](https://medium.com/dev-channel/the-cost-of-javascript-84009f51e99e)
