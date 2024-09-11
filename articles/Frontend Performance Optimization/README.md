@@ -377,7 +377,7 @@ HTTP/2.0 introduced the Server Push feature, a significant advancement that grea
 
 However, it's important to note that the Chrome browser currently does not support HTTP/2 Server Push. Detailed support information can be found at this link. However, developers can still leverage other performance optimization techniques, such as resource concatenation, caching strategies, etc., to enhance frontend loading performance.
 ::: center
-![server push](http-server-push.png =200x)
+![server push](http-server-push.png =300x)
 :::
 The above description outlines the evolution of the HTTP protocol, all aimed at reducing loading times and improving request efficiency. Traditional performance optimization techniques emerged, such as resource inlining and image spiriting. These techniques bundle multiple small files into a single large file and transmit them over a single connection, helping reduce the overhead of transmission headers. This can significantly reduce the initial load time, improving LCP and FCP. Efficient bundling can also minimize the overhead of repeated downloads and parsing, benefiting FID and INP. During the era of HTTP/1.0 and HTTP/1.1, such techniques were considered effective performance optimization practices.
 
@@ -387,14 +387,14 @@ With the introduction of HTTP/2.0, the need for traditional performance optimiza
 
 Four approaches to optimizing the frontend based on page load order exist.
 
-1.  Render-Blocking Resources
+- Render-Blocking Resources
     As you may know, loading CSS and JavaScript on a page can block the rendering of other page elements until all the CSS and JavaScript elements are loaded (see the diagram below). That makes it crucial to identify and optimize the loading order of key resources based on their business importance to enhance load times.
     Currently, a non-standard attribute, blocking=render, allows developers to explicitly designate a `link`,`script`, or `style` element as rendering-blocking, which will block rendering until that specific element is processed. However, the key distinction is that using this attribute permits the parser to process the rest of the page. This feature gives developers more control over the rendering behavior of critical resources, allowing for a fine-tuned approach to optimizing the loading sequence.
     We can significantly enhance key performance metrics like LCP, FCP, FID, INP, and CLS by optimizing or deferring render-blocking resources, such as CSS and synchronous JavaScript. This leads to faster page rendering, improved load times, and a better overall user experience.
 
     ![render process](render-process.png#center)
 
-2.  Browser Resource Hint
+- Browser Resource Hint
 
     These commands help developers optimize page loading times by informing the browser how to load and prioritize resources. These approaches can significantly improve key performance metrics like LCP, FCP, FID, and INP by proactively fetching and loading critical resources. The specific operations are as follows:
 
@@ -415,12 +415,12 @@ Four approaches to optimizing the frontend based on page load order exist.
     - prerender: The prerender feature is like prefetch, but this command pre-renders the entire page instead of specific, individual resources.
     - preload: preload informs the browser that upon page load, the system should download resources as soon as possible. This is typically used for critical resources that need to be downloaded in advance, such as crucial CSS or images affecting Largest Contentful Paint (LCP).
 
-3.  Defer Vs Async
+- Defer Vs Async
 
     Async and defer allow external scripts to load page elements without blocking the HTML parser while scripts (including inline scripts) with type "module" are deferred automatically.
     ![script attribute](script-attributes.png)
 
-4.  Fetch Priority API
+- Fetch Priority API
     As a developer, you can indicate the priority of a resource using the `fetchpriority` attribute of the Fetch Priority API. This attribute can be employed within `<link>`, `<img>`, and `<script>` elements.
     - high: Fetches the image with higher priority compared to other images.
     - low: Fetches the image with lower priority compared to other images.
@@ -440,15 +440,15 @@ Here are some key attributes and usages of the <img> tag to improve performance:
 
 Using these attributes based on the business value of images (one example is loading ads first for encouraged engagement and revenue), you can optimize Web Core Vitals metrics and enhance overall performance. Preloading critical image resources can also be achieved using the link tag.
 
-```html
-<link
-  rel="preload"
-  fetchpriority="high"
-  as="image"
-  href="image.webp"
-  type="image/webp"
-/>
-```
+  ```html
+  <link
+    rel="preload"
+    fetchpriority="high"
+    as="image"
+    href="image.webp"
+    type="image/webp"
+  />
+  ```
 
 - Size:
 
@@ -507,7 +507,7 @@ Using these attributes based on the business value of images (one example is loa
 
   The effect of the **`decoding`** property may only be significant on very large, high-resolution images, as these images have longer decoding times.
 
-  Like preload and preconnect for images, decode can substantially enhance key performance metrics such as LCP, FCP, FID, and INP. By fetching and loading critical images earlier, these strategies result in faster content rendering, reduced latency, and improved user interactivity, leading to a better overall user experience.
+Like preload and preconnect for images, decode can substantially enhance key performance metrics such as LCP, FCP, FID, and INP. By fetching and loading critical images earlier, these strategies result in faster content rendering, reduced latency, and improved user interactivity, leading to a better overall user experience.
 
 ### 8. Video Preload
 
@@ -622,13 +622,13 @@ Pre-rendering techniques such as Server-Side Rendering (SSR) and Static Site Gen
 Avoid long tasks and optimize code.
 Long tasks take more than 50 milliseconds to execute and can be released on the Main Thread by:
 
-- **Web Workers:** Web Workers run in the background as independent threads with their own stack, heap memory, and message queue. Communication with the main thread can only be done through the `postMessage` method, and direct manipulation of the DOM is not possible. That makes Web Workers well-suited for tasks that do not require direct interaction with the DOM.
+- Web Workers: Web Workers run in the background as independent threads with their own stack, heap memory, and message queue. Communication with the main thread can only be done through the `postMessage` method, and direct manipulation of the DOM is not possible. That makes Web Workers well-suited for tasks that do not require direct interaction with the DOM.
   For example, a Web Worker can perform operations such as sorting or searching on large datasets, avoiding blocking the main thread with computationally intensive tasks and ensuring the responsiveness of the main thread.
   By executing these time-consuming tasks in a Web Worker, the performance and responsiveness of the main thread be improved, and it also takes better advantage of the performance benefits of multi-core processors. Separating computational tasks from user interface operations helps improve the overall user experience and ensures smooth page operation.
 
-- **Service Worker:** A Service Worker is a script that runs in the background and intercepts or handles network requests. By making reasonable use of Service Workers, reducing dependence on the main thread and improving application performance, resources can be cached.
+- Service Worker: A Service Worker is a script that runs in the background and intercepts or handles network requests. By making reasonable use of Service Workers, reducing dependence on the main thread and improving application performance, resources can be cached.
 
-- **Long Task**: To ensure that long-running tasks do not block the main thread, we can break these long tasks into small, asynchronously executed sub-tasks. Such strategies include:
+- Long Task: To ensure that long-running tasks do not block the main thread, we can break these long tasks into small, asynchronously executed sub-tasks. Such strategies include:
 
   1. Using `requestIdleCallback` as an optimization schedules the execution of low-priority or background tasks when the main thread is idle, improving page responsiveness. This method helps ensure that task execution does not interfere with user interaction and page rendering, but occurs when the main thread is idle.
 
