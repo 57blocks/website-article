@@ -30,7 +30,7 @@ Let’s explore the stages of the journey in more depth:
 
 For this article, I introduce measurement tools to determine how quickly a browser’s page load journey happens, outline key metrics to indicate where trouble may be happening, and provide recommendations to improve frontend performance.
 
-### Measurement Tools
+## Measurement Tools
 
 As a developer, you have the power to ensure your site meets key metrics by using a few common front end development measurement tools that are used to ensure that we are meeting key metrics.
 
@@ -41,7 +41,7 @@ As a developer, you have the power to ensure your site meets key metrics by usin
 I prefer to use PerformanceObserver because it integrates well with other APIs and tools that developers might use for performance analysis and optimization.
 Here, we’ll list and explain the core Web Vitals and important performance metrics supported by PerformanceObserve.
 
-### Web Vitals
+## Web Vitals
 
 Web Vitals are a collection of essential metrics that evaluate key aspects of real-world user experience on the web. They include specific measurements and target thresholds for each metric, assisting developers in understanding whether their site's user experience is classified as "good," "needs improvement," or "poor." By focusing on these vitals, you can directly impact and improve your users' experience.
 
@@ -251,7 +251,7 @@ Web Vitals are a collection of essential metrics that evaluate key aspects of re
 
    Now, let’s say your Web Vital numbers could improve and you want to improve them. The following sections provide strategies to do that.
 
-### Optimization Measures
+## Optimization Measures
 
 There are several optimization measures to improve website performance. Here, we outline the ten most used strategies for improving Web Vitals metrics.
 
