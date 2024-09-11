@@ -255,13 +255,15 @@ Web Vitals are a collection of essential metrics that evaluate key aspects of re
 
 There are several optimization measures to improve website performance. Here, we outline the ten most used strategies for improving Web Vitals metrics.
 
-### 1. Code Splitting And Lazy Loading
+### 1.Code Splitting And Lazy Loading
 
     Code splitting and lazy loading offer significant benefits in frontend development. The main goal of code splitting is to reduce the initial JavaScript file size required during the loading phase, which improves the initial page load speed, thus improving LCP and FCP. In more technical terms, code splitting breaks down the application code into multiple chunks, often based on routes or features, allowing for on-demand loading. It also alleviates the main thread workload, which reduces FID and INP latency, and minimizes Long Tasks.
+
     By implementing code splitting, we can improve load times, optimize caching support, and reduce bandwidth usage since only necessary code is loaded at first making the site more efficient. This practice also helps manage and debug smaller bundles (HTML, JavaScript, images, or CSS) easily.
+
     Lazy loading is a strategy that allows you to defer loading certain heavy resources like components, resources, or functionalities until later in the journey or when they are needed rather than loading them during the initial page load. By deferring the loading of non-critical resources, the initial load time is significantly decreased, enhancing LCP and FCP. This delay also optimizes memory usage and prioritizes content loading, while reducing the resource burden during the initial load, improving page speed. This approach ensures critical content is available, resulting in a seamless user experience. When working with React, we often combine implementing code splitting with lazy loading. See the example below illustrating how this is addressed.
 
-    ```tsx
+    ```ts
     const DownloadFile = lazy(() => import("./page/OperateFile/OperateFile"));
     const TimeSelect = lazy(() => import("./page/TimeSelect/TimeSelect"));
 
@@ -285,6 +287,7 @@ There are several optimization measures to improve website performance. Here, we
     ```
 
 ### 2. Http Cache
+
     HTTP caching has several benefits.
 
     - It significantly reduces website load times allowing browsers access and load cached files, effectively improving LCP and FCP by enabling faster resource retrieval.
@@ -337,9 +340,11 @@ There are several optimization measures to improve website performance. Here, we
     In some scenarios, Cache-Control may appear in both the request and response, and in case of conflicts, the settings on the response usually take precedence.
 
 ### 3. Content Delivery Network (CDN)
+
     CDN is a distributed server network that caches resources from the origin server and delivers these resources through servers located closer to the user's geographical location. CDN can efficiently deliver content by reducing round-trip time (RTT) and implementing optimization strategies for HTTP/2 or HTTP/3, caching, and compression, enhancing user access experience and reducing LCP and FCP values. The CDN's ability to deliver optimized and cached content also helps to minimize layout shifts, thus positively impacting CLS. Additional insights explained in this [web.dev article](https://web.dev/articles/content-delivery-networks).
 
 ### 4. Code Minimization
+
     Code minimization involves reducing the size of your codebase by removing unnecessary characters. Consequently, LCP and FCP benefit from quicker resource loading, and reduced file sizes lead to less strain on the main thread, indirectly improving FID and INP. Additionally, minimizing code can decrease the overall load time and reduce the chances of layout shifts, positively influencing CLS.
 
     - To minimize and compress JavaScript code, we currently utilize the Terser tool. This tool includes removing unused code (Tree Shaking), shortening variable names, and eliminating spaces and uglifiers. This optimization technique has been applied in both Rollup.js and Webpack to reduce code volume and decrease download time.
