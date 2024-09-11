@@ -47,215 +47,215 @@ Web Vitals are a collection of essential metrics that evaluate key aspects of re
 
 ### 1. LCP (Largest Contentful Paint) - Core Metric
 
-   **When to use in loading journey**: Loading Feedback Phase, Content Rendering Phase
+**When to use in loading journey**: Loading Feedback Phase, Content Rendering Phase
 
-   During the Loading Feedback and Content Rendering Phases, developers use the LCP metric to determine the render time of the largest image or text block visible in the viewport relative to when the user first navigates to the page. LCP is a crucial, stable Core Web Vital metric for measuring perceived load speed as it signifies the point in the page load timeline when the page's main content has likely loaded. A fast LCP reassures the user that the page is useful. [This article](https://web.dev/articles/lcp#how_to_measure_lcp) provides a more detailed understanding of this metric.
+During the Loading Feedback and Content Rendering Phases, developers use the LCP metric to determine the render time of the largest image or text block visible in the viewport relative to when the user first navigates to the page. LCP is a crucial, stable Core Web Vital metric for measuring perceived load speed as it signifies the point in the page load timeline when the page's main content has likely loaded. A fast LCP reassures the user that the page is useful. [This article](https://web.dev/articles/lcp#how_to_measure_lcp) provides a more detailed understanding of this metric.
 
-   ![LCP](lcp.png)
-   ::: center
-   Metric and measurement ranges
-   :::
+![LCP](lcp.png)
+::: center
+Metric and measurement ranges
+:::
 
-   The Largest Contentful Paint (LCP) analysis considers all content it discovers including content removed from the DOM, like a loading spinner. Each time a new largest content space is found, it creates a new entry, so there may be multiple objects. However, LCP analysis stops searching for larger content. Therefore, LCP data takes the last-found content as the result.
+The Largest Contentful Paint (LCP) analysis considers all content it discovers including content removed from the DOM, like a loading spinner. Each time a new largest content space is found, it creates a new entry, so there may be multiple objects. However, LCP analysis stops searching for larger content. Therefore, LCP data takes the last-found content as the result.
 
-   ```ts
-   const observer = new PerformanceObserver((list) => {
-     const entries = list.getEntries();
-     const lastEntry = entries[entries.length - 1];
-     console.log(lastEntry);
-   });
-   observer.observe({ type: "largest-contentful-paint", buffered: true });
-   ```
+```ts
+const observer = new PerformanceObserver((list) => {
+  const entries = list.getEntries();
+  const lastEntry = entries[entries.length - 1];
+  console.log(lastEntry);
+});
+observer.observe({ type: "largest-contentful-paint", buffered: true });
+```
 
-   ![LCP](lcp-object.png)
+![LCP](lcp-object.png)
 
-   Following are explanations and descriptions of the metrics:
-   | Element | Description |
-   | ----------- | ------------------------------|
-   | element | The current largest content rendering element. |
-   | loadingTime | Loading time or time to download and display all content of a web page in a browser. |
-   | renderTime | Rendering time, or how long it takes for a web page to load so the user can engage with the content and functionality. If it's a cross-origin request, it will be 0. |
-   | size | The area of the element itself. |
-   | startTime | If renderTime is not 0, it returns renderTime; otherwise, it returns loadingTime. |
+Following are explanations and descriptions of the metrics:
+| Element | Description |
+| ----------- | ------------------------------|
+| element | The current largest content rendering element. |
+| loadingTime | Loading time or time to download and display all content of a web page in a browser. |
+| renderTime | Rendering time, or how long it takes for a web page to load so the user can engage with the content and functionality. If it's a cross-origin request, it will be 0. |
+| size | The area of the element itself. |
+| startTime | If renderTime is not 0, it returns renderTime; otherwise, it returns loadingTime. |
 
-   In this example, the LCP is represented by loadingTime, and its value is 1.6, which is considered good. It indicates that the largest content element (an image in this case) was successfully rendered within 1.6 seconds, meeting the criteria for a relatively good user experience.
+In this example, the LCP is represented by loadingTime, and its value is 1.6, which is considered good. It indicates that the largest content element (an image in this case) was successfully rendered within 1.6 seconds, meeting the criteria for a relatively good user experience.
 
 ### 2. FCP (First Contentful Paint) - Not a core metric
 
-   **When to use in loading journey**: Loading Feedback Phase
+**When to use in loading journey**: Loading Feedback Phase
 
-   The FCP metric measures from when the user first navigates to the page to when any part of the page's content is rendered on the screen. FCP is a crucial, user-focused metric for assessing perceived load speed. It indicates the first moment in the page load journey when the user can see any content on the screen. A quick FCP reassures the user that progress is being made by loading the page. A more in-depth explanation is provided in this article. FP (First Paint) is a similar metric representing the time it takes for the first pixel to be painted on the screen.
+The FCP metric measures from when the user first navigates to the page to when any part of the page's content is rendered on the screen. FCP is a crucial, user-focused metric for assessing perceived load speed. It indicates the first moment in the page load journey when the user can see any content on the screen. A quick FCP reassures the user that progress is being made by loading the page. A more in-depth explanation is provided in this article. FP (First Paint) is a similar metric representing the time it takes for the first pixel to be painted on the screen.
 
-   ![FCP](fcp.png)
-   ::: center
-   Metric and measurement ranges
-   :::
+![FCP](fcp.png)
+::: center
+Metric and measurement ranges
+:::
 
-   ```ts
-   const observer = new PerformanceObserver((list) => {
-     list.getEntries().forEach((entry) => {
-       console.log(entry);
-     });
-   });
-   observer.observe({ type: "paint", buffered: true });
-   ```
+```ts
+const observer = new PerformanceObserver((list) => {
+  list.getEntries().forEach((entry) => {
+    console.log(entry);
+  });
+});
+observer.observe({ type: "paint", buffered: true });
+```
 
-   Following are explanations and descriptions of the metrics:
+Following are explanations and descriptions of the metrics:
 
-   ![FCP](fcp-object.png)
+![FCP](fcp-object.png)
 
-   | Element   | Description                                                                                |
-   | --------- | ------------------------------------------------------------------------------------------ |
-   | duration  | Represents the time from `startTime` to the next rendering paint, which is 0 in this case. |
-   | startTime | Returns the timestamp when the painting occurred.                                          |
+| Element   | Description                                                                                |
+| --------- | ------------------------------------------------------------------------------------------ |
+| duration  | Represents the time from `startTime` to the next rendering paint, which is 0 in this case. |
+| startTime | Returns the timestamp when the painting occurred.                                          |
 
-   In this example, FCP is represented by `startTime`, which is less than one second. According to the provided standards, this is considered good.
+In this example, FCP is represented by `startTime`, which is less than one second. According to the provided standards, this is considered good.
 
 ### 3. FID (First Input Delay) - Core Metric
 
-   **When to use in loading journey**: Content Rendering Phase, Interactive Phase
+**When to use in loading journey**: Content Rendering Phase, Interactive Phase
 
-   FID measures the initial impression of site interactivity and responsiveness. Or rather, the time it takes from the user's first interaction with the page to when the browser can begin processing the event to respond to that interaction. Technically, we measure the incremental time between receiving the input event and the next idle period of the main thread. You can only track FID on discrete event operations, such as clicks, touches, and key presses. In contrast, this metric does not include actions like zooming, scrolling, and continuous events (for example, mouse move, pointer move, touch move, wheel, and drag). Note that this metric is measured even in cases where event listeners are not registered. More detailed information is available in this [article](https://web.dev/articles/fid#what_counts_as_a_first_input).
+FID measures the initial impression of site interactivity and responsiveness. Or rather, the time it takes from the user's first interaction with the page to when the browser can begin processing the event to respond to that interaction. Technically, we measure the incremental time between receiving the input event and the next idle period of the main thread. You can only track FID on discrete event operations, such as clicks, touches, and key presses. In contrast, this metric does not include actions like zooming, scrolling, and continuous events (for example, mouse move, pointer move, touch move, wheel, and drag). Note that this metric is measured even in cases where event listeners are not registered. More detailed information is available in this [article](https://web.dev/articles/fid#what_counts_as_a_first_input).
 
-   ![FID](fid.png)
+![FID](fid.png)
 
-   ::: center
-   Metric and measurement ranges
-   :::
+::: center
+Metric and measurement ranges
+:::
 
-   ```ts
-   const observer = new PerformanceObserver((list) => {
-     list.getEntries().forEach((entry) => {
-       const FID = entry.processingStart - entry.startTime;
-       console.log(entry);
-     });
-   });
-   observer.observe({ type: "first-input", buffered: true });
-   ```
+```ts
+const observer = new PerformanceObserver((list) => {
+  list.getEntries().forEach((entry) => {
+    const FID = entry.processingStart - entry.startTime;
+    console.log(entry);
+  });
+});
+observer.observe({ type: "first-input", buffered: true });
+```
 
-   ![FID](fid-object.png)
+![FID](fid-object.png)
 
-   Following are explanations and descriptions of the metrics:
+Following are explanations and descriptions of the metrics:
 
-   | Element         | Description                                                                      |
-   | --------------- | -------------------------------------------------------------------------------- |
-   | duration        | Represents the time from startTime to the next rendering paint. paint.           |
-   | processingStart | Measures the time between a user interaction and the start of the event handler. |
-   | processingEnd   | Measures the time taken by the event handler to run.                             |
-   | target          | Returns the DOM associated with the event.                                       |
+| Element         | Description                                                                      |
+| --------------- | -------------------------------------------------------------------------------- |
+| duration        | Represents the time from startTime to the next rendering paint. paint.           |
+| processingStart | Measures the time between a user interaction and the start of the event handler. |
+| processingEnd   | Measures the time taken by the event handler to run.                             |
+| target          | Returns the DOM associated with the event.                                       |
 
-   In the example code, FID equals `8574 (processingEnd) - 8558 (processingStart) = 16`. According to the provided standards, this is considered good.
+In the example code, FID equals `8574 (processingEnd) - 8558 (processingStart) = 16`. According to the provided standards, this is considered good.
 
 ### 4. INP (Interaction to Next Paint) - Not a Core Metric
 
-   **When to use in loading journey**: Interactive Phase
+**When to use in loading journey**: Interactive Phase
 
-   INP assesses a page’s overall responsiveness to user interactions by observing the delays in all clicks, touches, and keyboard interactions throughout the page's lifecycle. The final INP value is the longest observed interaction, disregarding outliers. INP replaced FID as a core Web Vitals metric on March 12, 2024.
+INP assesses a page’s overall responsiveness to user interactions by observing the delays in all clicks, touches, and keyboard interactions throughout the page's lifecycle. The final INP value is the longest observed interaction, disregarding outliers. INP replaced FID as a core Web Vitals metric on March 12, 2024.
 
-   ![INP](inp.png)
-   ::: center
-   Metric and measurement ranges
-   :::
+![INP](inp.png)
+::: center
+Metric and measurement ranges
+:::
 
-   INP is influenced only by the following events:
+INP is influenced only by the following events:
 
-   - Mouse clicks
-   - Taps on devices with touch screens
-   - Pressing a key on a physical keyboard or a on-screen keyboard
-     Relationship with FID:
-     INP may sound like FID, but there is a notable difference–INP considers all page interactions, whereas FID only considers the first interaction. INP comprehensively assesses responsiveness by sampling all interactions on a page, making INP a more reliable overall responsiveness metric compared to FID.
+- Mouse clicks
+- Taps on devices with touch screens
+- Pressing a key on a physical keyboard or a on-screen keyboard
+  Relationship with FID:
+  INP may sound like FID, but there is a notable difference–INP considers all page interactions, whereas FID only considers the first interaction. INP comprehensively assesses responsiveness by sampling all interactions on a page, making INP a more reliable overall responsiveness metric compared to FID.
 
-   Since the Performance API does not provide responsiveness information for INP, specific examples are not provided here. For information measuring this metric, please refer to [this article at Google's web.dev resource](https://web.dev/articles/inp#how_is_inp_different_from_first_input_delay_fid).
+Since the Performance API does not provide responsiveness information for INP, specific examples are not provided here. For information measuring this metric, please refer to [this article at Google's web.dev resource](https://web.dev/articles/inp#how_is_inp_different_from_first_input_delay_fid).
 
 ### 5. CLS (Cumulative Layout Shift) - Core Metric
 
-   **When to use in loading journey**: Content Rendering Phase, Interactive Phase
+**When to use in loading journey**: Content Rendering Phase, Interactive Phase
 
-   Usually, we measure the maximum CLS value that occurs throughout the entire lifecycle of a page. In this evaluation, only instances where elements change their initial positions or sizes are considered such as adding new elements to the DOM or altering the width and height of the original page element. For additional information, please refer to this [article](https://web.dev/articles/cls).
+Usually, we measure the maximum CLS value that occurs throughout the entire lifecycle of a page. In this evaluation, only instances where elements change their initial positions or sizes are considered such as adding new elements to the DOM or altering the width and height of the original page element. For additional information, please refer to this [article](https://web.dev/articles/cls).
 
-   ![CLS](cls.png)
-   ::: center
-   Metric and measurement ranges
-   :::
+![CLS](cls.png)
+::: center
+Metric and measurement ranges
+:::
 
-   ![CLS object](cls-object.png)
+![CLS object](cls-object.png)
 
-   Following are explanations and descriptions of the metrics:
+Following are explanations and descriptions of the metrics:
 
-   | Metric         | Description                                                                                                                                                                                                                                                 |
-   | -------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-   | value          | Returns the layout shift score calculated as: layout shift score = impact fraction \* distance fraction.                                                                                                                                                    |
-   | hadRecentInput | Returns true if lastInputTime is less than 500 milliseconds ago.                                                                                                                                                                                            |
-   | lastInputTime  | Returns the time of the most recent excluded user input, or 0 if there is none. Only unexpected shifts due to discrete events like clicking links, buttons, or showing loading indicators in response to user interaction are considered reasonable shifts. |
+| Metric         | Description                                                                                                                                                                                                                                                 |
+| -------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| value          | Returns the layout shift score calculated as: layout shift score = impact fraction \* distance fraction.                                                                                                                                                    |
+| hadRecentInput | Returns true if lastInputTime is less than 500 milliseconds ago.                                                                                                                                                                                            |
+| lastInputTime  | Returns the time of the most recent excluded user input, or 0 if there is none. Only unexpected shifts due to discrete events like clicking links, buttons, or showing loading indicators in response to user interaction are considered reasonable shifts. |
 
-   In this example, CLS is represented by the value 0, which is considered good according to provided standards.
+In this example, CLS is represented by the value 0, which is considered good according to provided standards.
 
 ### 6. Long Task - Not a core metric
 
-   **When to use in loading journey**: Loading Feedback Phase, Content Rendering Phase, Interactive Phase (or all phases)
+**When to use in loading journey**: Loading Feedback Phase, Content Rendering Phase, Interactive Phase (or all phases)
 
-   Tasks that block the main thread for over 50 milliseconds can lead to various adverse effects, including delayed responses to events and stuttering animations. When long tasks occupy the main thread, the browser cannot promptly respond to user input and handle other events, affecting the user experience.
-   Possible causes for these challenges include:
-   Long-running event handlers.
-   Costly reflows and other re-rendering operations, such as DOM manipulations, animations, etc.
-   Long-running loops exceeding 50 milliseconds.
+Tasks that block the main thread for over 50 milliseconds can lead to various adverse effects, including delayed responses to events and stuttering animations. When long tasks occupy the main thread, the browser cannot promptly respond to user input and handle other events, affecting the user experience.
+Possible causes for these challenges include:
+Long-running event handlers.
+Costly reflows and other re-rendering operations, such as DOM manipulations, animations, etc.
+Long-running loops exceeding 50 milliseconds.
 
-   ```ts
-   const observer = new PerformanceObserver((list) => {
-     list.getEntries().forEach((entry) => {
-       console.log(entry);
-     });
-   });
+```ts
+const observer = new PerformanceObserver((list) => {
+  list.getEntries().forEach((entry) => {
+    console.log(entry);
+  });
+});
 
-   observer.observe({ type: "longtask", buffered: true });
-   ```
+observer.observe({ type: "longtask", buffered: true });
+```
 
-   ![long task object](long-task.png)
+![long task object](long-task.png)
 
-   Following are explanations and descriptions of the metrics:
+Following are explanations and descriptions of the metrics:
 
-   | Metric                | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 |
-   | --------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-   | duration              | Represents the duration of the task, i.e., the time elapsed from start to finish.                                                                                                                                                                                                                                                                                                                                                                                                                                           |
-   | TaskAttributionTiming | This is an object associated with Long Tasks, used to track and attribute the execution of long tasks. This object may contain detailed information about the long task, such as its source, triggering events, etc. Through this object, developers can gain a better understanding of the context and reasons for long tasks, facilitating performance optimization and debugging. Because long tasks significantly impact user experience, they are highlighted separately, even though they are not part of Web Vitals. |
+| Metric                | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 |
+| --------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| duration              | Represents the duration of the task, i.e., the time elapsed from start to finish.                                                                                                                                                                                                                                                                                                                                                                                                                                           |
+| TaskAttributionTiming | This is an object associated with Long Tasks, used to track and attribute the execution of long tasks. This object may contain detailed information about the long task, such as its source, triggering events, etc. Through this object, developers can gain a better understanding of the context and reasons for long tasks, facilitating performance optimization and debugging. Because long tasks significantly impact user experience, they are highlighted separately, even though they are not part of Web Vitals. |
 
 ### 7. FP (First Paint) - Not a core metric
 
-   **When to use in loading journey**: Loading Feedback Phase
+**When to use in loading journey**: Loading Feedback Phase
 
-   ![first paint](fp.png)
-   ::: center
-   Metric and measurement ranges
-   :::
+![first paint](fp.png)
+::: center
+Metric and measurement ranges
+:::
 
-   FP is a web performance metric that measures the time it takes for the user to see any visual content (such as background color or text) in the browser for the first time. FP doesn’t particularly focus on the specifics of the page content but instead on the time elapsed from the moment the user initiates the page load (like clicking a link) to the appearance of the first visual element on the screen. FP is important because it reflects the user's initial perception of the page load speed.
+FP is a web performance metric that measures the time it takes for the user to see any visual content (such as background color or text) in the browser for the first time. FP doesn’t particularly focus on the specifics of the page content but instead on the time elapsed from the moment the user initiates the page load (like clicking a link) to the appearance of the first visual element on the screen. FP is important because it reflects the user's initial perception of the page load speed.
 
-   ```ts
-   const observer = new PerformanceObserver((list) => {
-     for (const entry of list.getEntriesByType("paint")) {
-       if (entry.name === "first-paint") {
-         console.log(entry);
-       }
-     }
-   });
+```ts
+const observer = new PerformanceObserver((list) => {
+  for (const entry of list.getEntriesByType("paint")) {
+    if (entry.name === "first-paint") {
+      console.log(entry);
+    }
+  }
+});
 
-   observer.observe({ type: "paint", buffered: true });
-   ```
+observer.observe({ type: "paint", buffered: true });
+```
 
-   ![first paint](fp-object.png)
+![first paint](fp-object.png)
 
-   | Element   | Description                                                                              |
-   | --------- | ---------------------------------------------------------------------------------------- |
-   | duration  | Represents the time from startTime to the next rendering paint, which is 0 in this case. |
-   | startTime | Returns the timestamp when the painting occurred.                                        |
+| Element   | Description                                                                              |
+| --------- | ---------------------------------------------------------------------------------------- |
+| duration  | Represents the time from startTime to the next rendering paint, which is 0 in this case. |
+| startTime | Returns the timestamp when the painting occurred.                                        |
 
-   Now, let’s say your Web Vital numbers could improve and you want to improve them. The following sections provide strategies to do that.
+Now, let’s say your Web Vital numbers could improve and you want to improve them. The following sections provide strategies to do that.
 
 ## Optimization Measures
 
 There are several optimization measures to improve website performance. Here, we outline the ten most used strategies for improving Web Vitals metrics.
 
-### Code Splitting And Lazy Loading
+### 1. Code Splitting And Lazy Loading
 
     Code splitting and lazy loading offer significant benefits in frontend development. The main goal of code splitting is to reduce the initial JavaScript file size required during the loading phase, which improves the initial page load speed, thus improving LCP and FCP. In more technical terms, code splitting breaks down the application code into multiple chunks, often based on routes or features, allowing for on-demand loading. It also alleviates the main thread workload, which reduces FID and INP latency, and minimizes Long Tasks.
 
