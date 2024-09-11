@@ -224,8 +224,10 @@ Web Vitals are a collection of essential metrics that evaluate key aspects of re
 7. FP (First Paint) - Not a core metric
 
    **When to use in loading journey**: Loading Feedback Phase
-
-   FP (good:0-1.sec, normal:1 sec-2.5 sec, poor 2.5 )wait for ux design
+   ![first paint](fp.png)
+   ::: center
+   Metric and measurement ranges
+   :::
 
    FP is a web performance metric that measures the time it takes for the user to see any visual content (such as background color or text) in the browser for the first time. FP doesn’t particularly focus on the specifics of the page content but instead on the time elapsed from the moment the user initiates the page load (like clicking a link) to the appearance of the first visual element on the screen. FP is important because it reflects the user's initial perception of the page load speed.
 
