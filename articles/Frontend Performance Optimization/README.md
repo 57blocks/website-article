@@ -243,7 +243,7 @@ Web Vitals are a collection of essential metrics that evaluate key aspects of re
    observer.observe({ type: "paint", buffered: true });
    ```
 
-   ![first paint](first-paint.png)
+   ![first paint](fp-object.png)
 
    | Element   | Description                                                                              |
    | --------- | ---------------------------------------------------------------------------------------- |
