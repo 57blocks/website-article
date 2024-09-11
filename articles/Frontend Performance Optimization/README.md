@@ -263,28 +263,6 @@ There are several optimization measures to improve website performance. Here, we
 
     Lazy loading is a strategy that allows you to defer loading certain heavy resources like components, resources, or functionalities until later in the journey or when they are needed rather than loading them during the initial page load. By deferring the loading of non-critical resources, the initial load time is significantly decreased, enhancing LCP and FCP. This delay also optimizes memory usage and prioritizes content loading, while reducing the resource burden during the initial load, improving page speed. This approach ensures critical content is available, resulting in a seamless user experience. When working with React, we often combine implementing code splitting with lazy loading. See the example below illustrating how this is addressed.
 
-    ```ts
-    const DownloadFile = lazy(() => import("./page/OperateFile/OperateFile"));
-    const TimeSelect = lazy(() => import("./page/TimeSelect/TimeSelect"));
-
-    export const router: Router[] = [
-      {
-        path: "/",
-        element: <App />,
-        name: "Home",
-      },
-      {
-        path: "/download-file",
-        element: <DownloadFile />,
-        name: "Download File",
-      },
-      {
-        path: "/time-select",
-        element: <TimeSelect />,
-        name: "Time Select",
-      },
-    ];
-    ```
 
 ### 2. Http Cache
 
