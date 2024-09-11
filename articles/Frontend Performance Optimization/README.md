@@ -11,8 +11,6 @@ intro: "If your site is loading slowly, what can you do to troubleshoot and fix 
 
 In the current digital landscape, a website's performance is critical factor in attracting and retaining users. With users expecting pages to load within a few seconds, sites and apps that deliver fast-loading, resolution-responsive pages tend to retain visitors for longer and experience improved conversion rates. Front end performance optimization plays a pivotal role in achieving these outcomes. This article delves into key frontend performance optimization strategies that can enhance website speed, interactivity, and user satisfaction.
 
-## Measurement Standards
-
 ![loading is a journey](loading-is-a-journey.png)
 
 According to Addy Osmani in his article, “The Cost of Javascript,” when a webpage loads in your browser, it isn’t a single-step process but a journey comprising several critical stages. Each stage needs to provide appropriate feedback to users so they understand that more content and functionality is loading onto the screen. By showing page load progress, users feel that the site is loading faster and will be worth the wait, improving their experience. Osmani identified three phases users will see when a page loads:
@@ -106,10 +104,10 @@ Web Vitals are a collection of essential metrics that evaluate key aspects of re
 
    ![FCP](fcp-object.png)
 
-   | Element     | Description                                                       |
-   |-------------|-------------------------------------------------------------------|
-   | duration    | Represents the time from `startTime` to the next rendering paint, which is 0 in this case. |
-   | startTime   | Returns the timestamp when the painting occurred.                |
+   | Element   | Description                                                                                |
+   | --------- | ------------------------------------------------------------------------------------------ |
+   | duration  | Represents the time from `startTime` to the next rendering paint, which is 0 in this case. |
+   | startTime | Returns the timestamp when the painting occurred.                                          |
 
    In this example, FCP is represented by `startTime`, which is less than one second. According to the provided standards, this is considered good.
 
@@ -136,7 +134,7 @@ Web Vitals are a collection of essential metrics that evaluate key aspects of re
    ```
 
    ![FID](fid-object.png)
-   
+
    Following are explanations and descriptions of the metrics:
 
    | Element         | Description                                                                      |
@@ -184,7 +182,7 @@ Web Vitals are a collection of essential metrics that evaluate key aspects of re
 
    Following are explanations and descriptions of the metrics:
 
-   | Metric         |Description                                                                                                                                                    |
+   | Metric         | Description                                                                                                                                                                                                                                                 |
    | -------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
    | value          | Returns the layout shift score calculated as: layout shift score = impact fraction \* distance fraction.                                                                                                                                                    |
    | hadRecentInput | Returns true if lastInputTime is less than 500 milliseconds ago.                                                                                                                                                                                            |
@@ -216,14 +214,15 @@ Web Vitals are a collection of essential metrics that evaluate key aspects of re
 
    Following are explanations and descriptions of the metrics:
 
-   | Metric                | Description    |
-   | --------------------- | -------------- |
-   | duration              | Represents the duration of the task, i.e., the time elapsed from start to finish.         |
-   | TaskAttributionTiming | This is an object associated with Long Tasks, used to track and attribute the execution of long tasks. This object may contain detailed information about the long task, such as its source, triggering events, etc. Through this object, developers can gain a better understanding of the context and reasons for long tasks, facilitating performance optimization and debugging. Because long tasks significantly impact user experience, they are highlighted separately, even though they are not part of Web Vitals.|
+   | Metric                | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 |
+   | --------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+   | duration              | Represents the duration of the task, i.e., the time elapsed from start to finish.                                                                                                                                                                                                                                                                                                                                                                                                                                           |
+   | TaskAttributionTiming | This is an object associated with Long Tasks, used to track and attribute the execution of long tasks. This object may contain detailed information about the long task, such as its source, triggering events, etc. Through this object, developers can gain a better understanding of the context and reasons for long tasks, facilitating performance optimization and debugging. Because long tasks significantly impact user experience, they are highlighted separately, even though they are not part of Web Vitals. |
 
 7. FP (First Paint) - Not a core metric
 
    **When to use in loading journey**: Loading Feedback Phase
+
    ![first paint](fp.png)
    ::: center
    Metric and measurement ranges
@@ -252,11 +251,11 @@ Web Vitals are a collection of essential metrics that evaluate key aspects of re
 
    Now, let’s say your Web Vital numbers could improve and you want to improve them. The following sections provide strategies to do that.
 
-## Optimization Measures
+### Optimization Measures
 
 There are several optimization measures to improve website performance. Here, we outline the ten most used strategies for improving Web Vitals metrics.
 
-1.  Code Splitting And Lazy Loading
+1. Code Splitting And Lazy Loading
 
     Code splitting and lazy loading offer significant benefits in frontend development. The main goal of code splitting is to reduce the initial JavaScript file size required during the loading phase, which improves the initial page load speed, thus improving LCP and FCP. In more technical terms, code splitting breaks down the application code into multiple chunks, often based on routes or features, allowing for on-demand loading. It also alleviates the main thread workload, which reduces FID and INP latency, and minimizes Long Tasks.
     By implementing code splitting, we can improve load times, optimize caching support, and reduce bandwidth usage since only necessary code is loaded at first making the site more efficient. This practice also helps manage and debug smaller bundles (HTML, JavaScript, images, or CSS) easily.
@@ -285,7 +284,7 @@ There are several optimization measures to improve website performance. Here, we
     ];
     ```
 
-2.  Http Cache
+2. Http Cache
     HTTP caching has several benefits.
 
     - It significantly reduces website load times allowing browsers access and load cached files, effectively improving LCP and FCP by enabling faster resource retrieval.
@@ -296,66 +295,66 @@ There are several optimization measures to improve website performance. Here, we
     And, as we know, faster page load times contribute to better SEO rankings.
     [Read this article at MDN Web Docs](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Cache-Control#cache_directives) to get a more detailed understanding
 
-    1.  For HTML files with a high update frequency, the directive settings commonly used are:
+    - For HTML files with a high update frequency, the directive settings commonly used are:
 
-        ```ts
-        Cache-Control: no-cache
-        ```
+      ```ts
+      Cache-Control: no-cache
+      ```
 
-        This code snippet indicates that caching occurs for the page. However, it also indicates to the system that the browser should check the server to ensure it displays the latest data. If the client or browser already is displaying and using the latest data, the server typically responds with 304 (Not Modified) response; otherwise, new data will be provided from the server. This approach ensures that each retrieval obtains the latest response. Since most HTTP/1.0 does not support no-cache, we can adopt a backup solution for backward support and compatibility.
+      This code snippet indicates that caching occurs for the page. However, it also indicates to the system that the browser should check the server to ensure it displays the latest data. If the client or browser already is displaying and using the latest data, the server typically responds with 304 (Not Modified) response; otherwise, new data will be provided from the server. This approach ensures that each retrieval obtains the latest response. Since most HTTP/1.0 does not support no-cache, we can adopt a backup solution for backward support and compatibility.
 
-        ```ts
-        Cache-Control: max-age=0, must-revalidate
-        ```
+      ```ts
+      Cache-Control: max-age=0, must-revalidate
+      ```
 
-        Typically with this code snippet, we also include the following information:
-        a. If the resource belongs to user-specific content, it can be specified as private; otherwise, it is public. One way to determine if a resource is personal data is to check if the Authorization field is in the request header. If it is, that indicates that this displays personal data, and there is usually no need to explicitly specify it as private.
+      Typically with this code snippet, we also include the following information:
+      a. If the resource belongs to user-specific content, it can be specified as private; otherwise, it is public. One way to determine if a resource is personal data is to check if the Authorization field is in the request header. If it is, that indicates that this displays personal data, and there is usually no need to explicitly specify it as private.
 
-        Additionally, if the cache control header includes “must-revalidate,” it indicates that this is personal data. This means that before each resource retrieval, it needs to be validated for freshness, using the new data if it is new or the cached old data if it is not. This approach helps ensure the real-time and consistent handling of personal data.
+      Additionally, if the cache control header includes “must-revalidate,” it indicates that this is personal data. This means that before each resource retrieval, it needs to be validated for freshness, using the new data if it is new or the cached old data if it is not. This approach helps ensure the real-time and consistent handling of personal data.
 
-    2.  For frontend static resources, such as bundled scripts and stylesheets, it is common to append a hash or version number to the file name. This practice aids in more effective cache management. For such static files, we typically set the following cache directives:
+    - For frontend static resources, such as bundled scripts and stylesheets, it is common to append a hash or version number to the file name. This practice aids in more effective cache management. For such static files, we typically set the following cache directives:
 
-        ```ts
-        Cache-Control: public, immutable, max-age=31536000
-        Last-Modified: Wed, 21 Oct 2023 07:28:00 GMT
-        ETag: "33a64df551425fcc55e4d42a148795d9f25f89d4"
-        ```
+      ```ts
+      Cache-Control: public, immutable, max-age=31536000
+      Last-Modified: Wed, 21 Oct 2023 07:28:00 GMT
+      ETag: "33a64df551425fcc55e4d42a148795d9f25f89d4"
+      ```
 
-        - Max-age: This directive can be added to both request and response to indicate the expiration time of the cached resource in seconds. For example, in the given example, `max-age=31536000` means the resource will expire in the client cache after 365 days.
-        - Immutable: Exists in the response and indicates that the resource will not be updated before a new version is available. In this example, if the hash or version of the static file changes, the resource is considered new, triggering a re-fetch and storage. This pattern is known as [cache-busting](https://www.keycdn.com/support/what-is-cache-busting).
-        - ETag: Used to identify whether a resource is a specified version, while Last-Modified is a fallback for ETag, representing the last modification time on the server. ETag and Last-Modified allow the client to send a condition request to the server. If the resource has not changed, the server returns a 304 response, indicating that the cached version is still current. Otherwise, it sends a new request to fetch the resource from the server.
+      - Max-age: This directive can be added to both request and response to indicate the expiration time of the cached resource in seconds. For example, in the given example, `max-age=31536000` means the resource will expire in the client cache after 365 days.
+      - Immutable: Exists in the response and indicates that the resource will not be updated before a new version is available. In this example, if the hash or version of the static file changes, the resource is considered new, triggering a re-fetch and storage. This pattern is known as [cache-busting](https://www.keycdn.com/support/what-is-cache-busting).
+      - ETag: Used to identify whether a resource is a specified version, while Last-Modified is a fallback for ETag, representing the last modification time on the server. ETag and Last-Modified allow the client to send a condition request to the server. If the resource has not changed, the server returns a 304 response, indicating that the cached version is still current. Otherwise, it sends a new request to fetch the resource from the server.
 
-    	ETag, Last-Modified, and Immutable can prevent resource revalidation, especially when reloading a page. These mechanisms help optimize cache management, ensuring the consistency and validity of resources.
+      ETag, Last-Modified, and Immutable can prevent resource revalidation, especially when reloading a page. These mechanisms help optimize cache management, ensuring the consistency and validity of resources.
 
-    3.  Similar settings are typically used for resources such as favicon.ico, images, API endpoints, etc. Conditional requests are initiated using Last-Modified and ETag to check if the resource is up to date.
+    - Similar settings are typically used for resources such as favicon.ico, images, API endpoints, etc. Conditional requests are initiated using Last-Modified and ETag to check if the resource is up to date.
 
-		```ts
-		Cache-Control: no-cache
-		Last-Modified: Tue, 22 Feb 2022 20:20:20 GMT
-		ETag: AAPuIbAOdvAGEETbgAA2ABwqAsAAE
-		```
+      ```ts
+      Cache-Control: no-cache
+      Last-Modified: Tue, 22 Feb 2022 20:20:20 GMT
+      ETag: AAPuIbAOdvAGEETbgAA2ABwqAsAAE
+      ```
 
     In some scenarios, Cache-Control may appear in both the request and response, and in case of conflicts, the settings on the response usually take precedence.
 
-3.  Content Delivery Network (CDN)
+3. Content Delivery Network (CDN)
     CDN is a distributed server network that caches resources from the origin server and delivers these resources through servers located closer to the user's geographical location. CDN can efficiently deliver content by reducing round-trip time (RTT) and implementing optimization strategies for HTTP/2 or HTTP/3, caching, and compression, enhancing user access experience and reducing LCP and FCP values. The CDN's ability to deliver optimized and cached content also helps to minimize layout shifts, thus positively impacting CLS. Additional insights explained in this [web.dev article](https://web.dev/articles/content-delivery-networks).
 
-4.  Code Minimization
+4. Code Minimization
     Code minimization involves reducing the size of your codebase by removing unnecessary characters. Consequently, LCP and FCP benefit from quicker resource loading, and reduced file sizes lead to less strain on the main thread, indirectly improving FID and INP. Additionally, minimizing code can decrease the overall load time and reduce the chances of layout shifts, positively influencing CLS.
-        
-	- To minimize and compress JavaScript code, we currently utilize the Terser tool. This tool includes removing unused code (Tree Shaking), shortening variable names, and eliminating spaces and uglifiers. This optimization technique has been applied in both Rollup.js and Webpack to reduce code volume and decrease download time.
+
+    - To minimize and compress JavaScript code, we currently utilize the Terser tool. This tool includes removing unused code (Tree Shaking), shortening variable names, and eliminating spaces and uglifiers. This optimization technique has been applied in both Rollup.js and Webpack to reduce code volume and decrease download time.
     - Regarding CSS, in Webpack, the mini-css-extract-plugin plugin is commonly employed for optimization. This plugin independently extracts a single CSS file from each JavaScript file that contains CSS, enabling styles to be loaded separately. Furthermore, the plugin supports on-demand loading and Source Maps, providing a more flexible and efficient way for style management.
-    - For image resources, using the WebP format instead of JPEG and PNG can significantly reduce file sizes, typically achieving a reduction of 25%-35%.** Optimizing image loading with Content Delivery Networks (CDN) has a notable effect, often reducing image file sizes by 40%-80%. To account for compatibility, the following approaches can be employed:
+    - For image resources, using the WebP format instead of JPEG and PNG can significantly reduce file sizes, typically achieving a reduction of 25%-35%.\*\* Optimizing image loading with Content Delivery Networks (CDN) has a notable effect, often reducing image file sizes by 40%-80%. To account for compatibility, the following approaches can be employed:
 
-		```html
-		<picture>
-		<source type="image/webp" srcset="flower.webp" />
-		<source type="image/jpeg" srcset="flower.jpg" />
-		<img src="flower.jpg" alt="" />
-		</picture>
-		```
+      ```html
+      <picture>
+        <source type="image/webp" srcset="flower.webp" />
+        <source type="image/jpeg" srcset="flower.jpg" />
+        <img src="flower.jpg" alt="" />
+      </picture>
+      ```
 
-5.  Bundling Optimization
+5. Bundling Optimization
 
     In the era of HTTP/2.0 and HTTP/3.0, there is a shift away from more traditional performance optimization techniques used for HTTP/1.0. This opens new opportunities for developers to focus on other aspects of performance optimization and better adapt to the new protocol features. However, bundling optimization may still be relevant in specific scenarios where backward compatibility with HTTP/1.x is required or for the optimized handling of certain resource types that benefit from minimized round-trip times.
 
@@ -372,25 +371,25 @@ There are several optimization measures to improve website performance. Here, we
     HTTP/2.0 introduced the Server Push feature, a significant advancement that greatly improves l frontend performance. This feature allows servers to proactively push resources to the frontend. For instance, when the client requests an HTML file, the server can push CSS and JavaScript resources directly to the client, saving the time it takes for the client to initiate requests. This proactive approach to resource delivery can significantly enhance frontend performance.
 
     However, it's important to note that the Chrome browser currently does not support HTTP/2 Server Push. Detailed support information can be found at this link. However, developers can still leverage other performance optimization techniques, such as resource concatenation, caching strategies, etc., to enhance frontend loading performance.
-
-    ![server push](http-server-push.png#center)
-
+    ::: center
+    ![server push](http-server-push.png =200x)
+    :::
     The above description outlines the evolution of the HTTP protocol, all aimed at reducing loading times and improving request efficiency. Traditional performance optimization techniques emerged, such as resource inlining and image spiriting. These techniques bundle multiple small files into a single large file and transmit them over a single connection, helping reduce the overhead of transmission headers. This can significantly reduce the initial load time, improving LCP and FCP. Efficient bundling can also minimize the overhead of repeated downloads and parsing, benefiting FID and INP. During the era of HTTP/1.0 and HTTP/1.1, such techniques were considered effective performance optimization practices.
 
     With the introduction of HTTP/2.0, the need for traditional performance optimization techniques, such as bundling, has significantly reduced. HTTP/2.0’s ability to allow the simultaneous request of multiple resources on the same connection without establishing a separate TCP connection for each resource has made bundling optimization and other "hack" techniques less necessary because multiplexing on a single connection significantly improves the efficiency of parallel resource transmission. While HTTP/2 reduces the need forbundling, the strategy should be evaluated on a case-by-case basis, considering specific performance characteristics and requirements.
 
-6.  Critical Path Optimization
+6. Critical Path Optimization
 
     Four approaches to optimizing the frontend based on page load order exist.
 
-    1.  Render-Blocking Resources
+    1. Render-Blocking Resources
         As you may know, loading CSS and JavaScript on a page can block the rendering of other page elements until all the CSS and JavaScript elements are loaded (see the diagram below). That makes it crucial to identify and optimize the loading order of key resources based on their business importance to enhance load times.
         Currently, a non-standard attribute, blocking=render, allows developers to explicitly designate a `link`,`script`, or `style` element as rendering-blocking, which will block rendering until that specific element is processed. However, the key distinction is that using this attribute permits the parser to process the rest of the page. This feature gives developers more control over the rendering behavior of critical resources, allowing for a fine-tuned approach to optimizing the loading sequence.
         We can significantly enhance key performance metrics like LCP, FCP, FID, INP, and CLS by optimizing or deferring render-blocking resources, such as CSS and synchronous JavaScript. This leads to faster page rendering, improved load times, and a better overall user experience.
 
         ![render process](render-process.png#center)
 
-    2.  Browser Resource Hint
+    2. Browser Resource Hint
 
         These commands help developers optimize page loading times by informing the browser how to load and prioritize resources. These approaches can significantly improve key performance metrics like LCP, FCP, FID, and INP by proactively fetching and loading critical resources. The specific operations are as follows:
 
@@ -400,28 +399,29 @@ There are several optimization measures to improve website performance. Here, we
 
           It is recommended to use DNS Prefetch and preconnect together, but careful configuration is advised to avoid overuse and potential resource wastage.
 
-			```html
-			<link rel="preconnect" href="https://third-party-domain.com" />
-			<link rel="dns-prefetch" href="https://third-party-domain.com" />
-			```
+          ```html
+          <link rel="preconnect" href="https://third-party-domain.com" />
+          <link rel="dns-prefetch" href="https://third-party-domain.com" />
+          ```
+
           The test results are shown in the following diagram:
           ![compared-pre-render](compared-pre-render.png)
 
         - prerender: The prerender feature is like prefetch, but this command pre-renders the entire page instead of specific, individual resources.
         - preload: preload informs the browser that upon page load, the system should download resources as soon as possible. This is typically used for critical resources that need to be downloaded in advance, such as crucial CSS or images affecting Largest Contentful Paint (LCP).
 
-    3.  Defer Vs Async
+    3. Defer Vs Async
 
         Async and defer allow external scripts to load page elements without blocking the HTML parser while scripts (including inline scripts) with type "module" are deferred automatically.
         ![script attribute](script-attributes.png)
 
-    4.  Fetch Priority API
+    4. Fetch Priority API
         As a developer, you can indicate the priority of a resource using the `fetchpriority` attribute of the Fetch Priority API. This attribute can be employed within `<link>`, `<img>`, and `<script>` elements.
         - high: Fetches the image with higher priority compared to other images.
         - low: Fetches the image with lower priority compared to other images.
         - auto: Default mode, indicating no preference for fetch priority. The browser decides the most advantageous approach for the user.
 
-7.  Img
+7. Img
 
     The img embeds an image into a webpage in HTML. This tag is self-closing, meaning it does not require an end tag.
     Here are some key attributes and usages of the <img> tag to improve performance:
@@ -433,15 +433,15 @@ There are several optimization measures to improve website performance. Here, we
 
       Using these attributes based on the business value of images (one example is loading ads first for encouraged engagement and revenue), you can optimize Web Core Vitals metrics and enhance overall performance. Preloading critical image resources can also be achieved using the link tag.
 
-		```html
-		<link
-		rel="preload"
-		fetchpriority="high"
-		as="image"
-		href="image.webp"
-		type="image/webp"
-		/>
-		```
+      ```html
+      <link
+        rel="preload"
+        fetchpriority="high"
+        as="image"
+        href="image.webp"
+        type="image/webp"
+      />
+      ```
 
     - Size:
 
@@ -502,7 +502,7 @@ There are several optimization measures to improve website performance. Here, we
 
     Like preload and preconnect for images, decode can substantially enhance key performance metrics such as LCP, FCP, FID, and INP. By fetching and loading critical images earlier, these strategies result in faster content rendering, reduced latency, and improved user interactivity, leading to a better overall user experience.
 
-8.  Video Preload
+8. Video Preload
 
     The `preload` attribute is designed to provide the browser “hints” about what content the author believes should be preloaded before video playback to ensure the best user experience. Video preload strategies can significantly improve performance metrics such as LCP, FCP, FID, and INP.
 
@@ -589,7 +589,7 @@ There are several optimization measures to improve website performance. Here, we
     <link rel="preload" as="image" href="poster.jpg" fetchpriority="high" />
     ```
 
-9.  Pre-render
+9. Pre-render
 
     Pre-rendering techniques such as Server-Side Rendering (SSR) and Static Site Generation (SSG) can significantly boost key performance metrics like LCP, FCP, FID, and INP. By generating HTML content on the server or at build time, these optimizations deliver fast initial page loads, improve content rendering, and enhance user interactivity, resulting in a superior user experience.
 
@@ -599,7 +599,7 @@ There are several optimization measures to improve website performance. Here, we
 
        Remember that network and device performance are out of your control as a developer, but server processing time can be managed and improved. In practice, the advantages of SSR often outweigh its drawbacks, especially when considering improvements to user experience and search engine rankings.
 
-    1. SSG (Static-Site Generation)
+    2. SSG (Static-Site Generation)
 
        Static-Site Generation is the process of compiling and rendering a website program during build time. It generates static files, including HTML files, JavaScript, and CSS assets. These static files are reused on each request without regeneration. By caching statically generated pages on a CDN, performance without additional configuration.
 
