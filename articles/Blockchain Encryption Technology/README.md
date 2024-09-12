@@ -138,7 +138,3 @@ In blockchain technology, hash functions also play crucial roles, and different 
 ## Conclusion
 
 Blockchain encryption technology provides a robust safeguard for the security of digital assets. Through asymmetric encryption techniques and advanced cryptographic algorithms, users can conduct secure transactions and communications on the blockchain, ensuring the preservation and circulation of digital assets.
-
-## References
-
-- [A blockchain-based traceable and secure data-sharing scheme](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC10280384/)
