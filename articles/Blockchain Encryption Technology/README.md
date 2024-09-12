@@ -54,17 +54,18 @@ Elliptic Curve Cryptography (ECC) is a public key cryptographic system character
 
 Basic Characteristics of Elliptic Curves:
 
-The equation must satisfy the form: ( y^2 = x^3 + ax + b ),
-Symmetric about the x-axis (as shown by points p and p'),
-Any non-vertical line intersects the curve at most three times (as depicted by points G, P, and m),
-Any two points on the curve can be multiplied to obtain a new point ( ( G \cdot P = m ) ).
+- The equation must satisfy the form: ( y^2 = x^3 + ax + b ),
+- Symmetric about the x-axis (as shown by points p and p'),
+- Any non-vertical line intersects the curve at most three times (as depicted by points G, P, and m),
+- Any two points on the curve can be multiplied to obtain a new point ( ( G dot P = m ) ).
 
 General Steps and Applications of Elliptic Curve Cryptography:
+
 In elliptic curve cryptography, the private key is not derived through any calculations but is rather a randomly selected number. The private key is generally a large number, known only to the holder and kept secret.
-The generation of the public key is based on the private key. First, a common base point, denoted as ( G ), is selected. Then, the private key ( \text{priv} ) as a scalar is multiplied by the base point ( G ), effectively adding ( G ) to itself ( \text{priv} ) times. The result of the scalar multiplication on the curve is another point, which serves as the public key, denoted as ( P ).
-[ \text{Public key } P = \text{Private key } \text{priv} \times \text{Base point } G ]
-Here, ( \times ) represents scalar multiplication in the context of elliptic curves, distinct from traditional multiplication or exponentiation (( ^ )). Point addition and scalar multiplication on elliptic curves are uniquely defined operations, differing from conventional arithmetic rules.
-Deriving the private key from the public key in elliptic curve cryptography involves the elliptic curve discrete logarithm problem (ECDLP). Mathematically, this is an intractable problem, especially with large prime numbers. This inherent difficulty forms the trapdoor function, which is the foundation for the security in public key encryption and digital signature systems. The security of cryptographic algorithms fundamentally depends on this property.
+
+The generation of the public key is based on the private key. First, a common base point, denoted as _G_, is selected. Then, the private key _priv_ as a scalar is multiplied by the base point _G_, effectively adding _G_ to itself _priv_ times. The result of the scalar multiplication on the curve is another point, which serves as the public key, denoted as _P_ (_P_ = _Priv_ \* G)  
+Here, \* represents scalar multiplication in the context of elliptic curves, distinct from traditional multiplication or exponentiation (_^_). Point addition and scalar multiplication on elliptic curves are uniquely defined operations, differing from conventional arithmetic rules.
+Deriving the private key from the public key in elliptic curve cryptography involves the elliptic curve discrete logarithm problem . Mathematically, this is an intractable problem, especially with large prime numbers. This inherent difficulty forms the trapdoor function, which is the foundation for the security in public key encryption and digital signature systems. The security of cryptographic algorithms fundamentally depends on this property.
 
 ![Elliptic Curve Cryptography](./ecc.png)
 
