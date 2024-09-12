@@ -105,7 +105,7 @@ Deriving the private key from the public key in elliptic curve cryptography invo
 4. Multi-Signature
    Multi-signature involves requiring multiple signatures to authorize a transaction or perform an action. This mechanism significantly increases the security and control of accounts, especially in blockchain and cryptocurrency. Multi-signature schemes are typically supported by elliptic curve algorithms through the generation of multiple key pairs and corresponding signatures. This mechanism is important for scenarios such as corporate accounts, large fund management, and decentralized governance
 
-## Hash Encryption
+### Hash Encryption
 
 The main features of hash functions include:
 
@@ -124,15 +124,15 @@ In blockchain technology, hash functions also play crucial roles, and different 
 
 - Ethereum
 
-  - Main Hash Algorithm\*\*: Keccak-256 (often incorrectly referred to as SHA-3)
+  - Main Hash Algorithm: Keccak-256 (often incorrectly referred to as SHA-3)
   - Uses: Transaction hashes, address generation, smart contract data verification, Merkle trees
 
-  - Solana
+- Solana
 
-    - Main Hash Algorithms\*\*: SHA-256 and SHA-3
-    - Uses:
-      SHA-256: Mainly used for Proof of History (PoH), data verification, generating unique identifiers
-      SHA-3: Used for smart contract execution and data verification
+  - Main Hash Algorithms: SHA-256 and SHA-3
+  - Uses:
+    - SHA-256: Mainly used for Proof of History (PoH), data verification, - generating unique identifiers
+    - SHA-3: Used for smart contract execution and data verification
 
 ## Conclusion
 
