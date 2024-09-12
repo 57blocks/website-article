@@ -10,7 +10,7 @@ intro: "The rise of blockchain technology has sparked widespread concern for the
 
 ## Introduction
 
-Blockchain technology, as a decentralized distributed ledger technology, is rapidly transforming multiple sectors, including finance, supply chain management, and smart contracts. At the core of blockchain, security is of paramount importance, and cryptographic techniques are the foundation for ensuring this security. This article will explore the primary cryptographic techniques used in blockchain, including hash functions, digital signatures, symmetric encryption, and asymmetric encryption. Additionally, it will introduce some advanced cryptographic techniques, such as zero-knowledge proofs and homomorphic encryption.
+Blockchain technology, as a decentralized distributed ledger technology, is rapidly transforming multiple sectors, including finance, supply chain management, and smart contracts. At the core of blockchain, security is of paramount importance, and cryptographic techniques are the foundation for ensuring this security. This article will explore the primary cryptographic techniques used in blockchain, including hash functions, digital signatures, symmetric encryption, and asymmetric encryption.
 
 ## Common Types of Data Encryption
 
@@ -42,28 +42,14 @@ Blockchain technology, as a decentralized distributed ledger technology, is rapi
 
 **Application Scenarios**: The primary applications of hash encryption include data integrity verification, file integrity verification, password hashing for storage, and digital signatures.
 
-![hash encryption](./hash-encryption.png)
+![hash encryption](./hash-function.png)
 
 ## Cryptographic Techniques in Blockchain
 
-### 1.Applications of Symmetric Encryption in Blockchain
+Symmetric encryption in blockchain is primarily used for data protection and encrypted communication, but its complex key management and lack of identity verification limit its application in core blockchain mechanisms. In contrast, Elliptic Curve Cryptography (ECC), a type of asymmetric encryption, offers high security and computational efficiency. It is widely used for generating digital signatures and secure key exchanges, making it a critical encryption solution in blockchain technology.
 
-- Data Storage and Protection:
-  Blockchain nodes can use symmetric encryption to protect locally stored data. For example, encrypting blockchain data backups or user data stored on a node can prevent unauthorized access.
-- Encrypted Communication:
-  During communication between nodes, symmetric encryption can be used to ensure the confidentiality of data transmission. Symmetric encryption provides efficient encryption and decryption, making it suitable for protecting large amounts of data.
-- Wallet Protection:
-  Cryptocurrency wallets can use symmetric encryption to encrypt wallet files or backups. This ensures that even if the files are stolen, the private keys or assets stored within them cannot be accessed directly.
-- Smart Contract Data:
-  In some cases, smart contracts might use symmetric encryption to protect sensitive data stored within the contract. This approach is suitable for scenarios in which the contract needs to handle and store large amounts of data.
-- Data Backup:
-  For data backups within a blockchain network, symmetric encryption can be used to protect the confidentiality and integrity of the backup data, ensuring that it is not leaked or tampered with.
+### Elliptic Curve Cryptography (ECC)
 
-### 2.Asymmetric cryptography (also called Public Key Cryptography)
-
-Public key cryptography protects information by using unique keys based on a mathematical function that is easy to compute in one direction but very difficult to reverse. Based on these functions, cryptography can create digital signatures and unforgeable digital signatures, both relying on the security of mathematical principles. A more advanced category of these mathematical functions involves arithmetic operations on elliptic curves. In elliptic curve cryptography (ECC), multiplication modulo a prime number is simple, while the inverse operation (i.e., division) is nearly impossible—this is known as the discrete logarithm problem. Currently, there is no known shortcut to solve this problem. Elliptic curve cryptography is widely used in modern computer systems, supporting private keys and digital signatures in Ethereum and other cryptocurrencies.
-
-**Elliptic Curve Cryptography (ECC)**
 Elliptic Curve Cryptography (ECC) is a public key cryptographic system characterized by being easy to compute in one direction but extremely difficult to compute in the opposite direction. This characteristic in algorithms is known as Trapdoor Functions.
 
 Basic Characteristics of Elliptic Curves:
@@ -80,7 +66,7 @@ The generation of the public key is based on the private key. First, a common ba
 Here, ( \times ) represents scalar multiplication in the context of elliptic curves, distinct from traditional multiplication or exponentiation (( ^ )). Point addition and scalar multiplication on elliptic curves are uniquely defined operations, differing from conventional arithmetic rules.
 Deriving the private key from the public key in elliptic curve cryptography involves the elliptic curve discrete logarithm problem (ECDLP). Mathematically, this is an intractable problem, especially with large prime numbers. This inherent difficulty forms the trapdoor function, which is the foundation for the security in public key encryption and digital signature systems. The security of cryptographic algorithms fundamentally depends on this property.
 
-![Elliptic Curve Cryptography](./elliptic-curve-cryptography.png)
+![Elliptic Curve Cryptography](./ecc.png)
 
 #### Application of Elliptic Curves in Blockchain
 
