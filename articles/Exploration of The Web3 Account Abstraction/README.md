@@ -1,7 +1,7 @@
 ---
 devOnly: true
 title: "Exploration of The Web3 Account Abstraction"
-author: ["Zewei Zhang/ Front-End Engineer"]
+author: ["Zewei Zhang / Front-End Engineer"]
 createTime: 2024-08-05
 tags: ["Web3", "Account Abstraction", "Wallet"]
 thumb: "thumb.png"
@@ -34,9 +34,9 @@ Finally [EIP-4337](https://eips.ethereum.org/EIPS/eip-4337) completed the task o
 4. The Bundler selects some User Operations from the mempool for bundling.
 5. After bundling, it is sent to the miner for mining and then added to the blockchain.
 
-![ERC-4337-overview.png](./ERC-4337-overview.png)
+![ERC-4337-overview.png](./ERC-4337-overview.jpg)
 
-![ERC-4337-overview.png](./ERC-4337-invocation-flow.png)
+![ERC-4337-overview.png](./ERC-4337-invocation-flow.jpg)
 
 ## The advantage of Account Abstraction
 Account Abstraction is similar to a Contract Account with the characteristics of an EOA (Externally Owned Account), allowing transactions and accounts to be decoupled from the underlying layer and become the role of High-Level smart contracts.
@@ -148,6 +148,7 @@ export default function Home() {
 }
 ```
 If you finished the code there, click the widget button, then you can login the EOA wallet you like, in this demo, we use the [Metamask](https://metamask.io/).
+
 ![login](./log-in.png)
 
 ### Connect EOA wallet to AA wallet
@@ -225,8 +226,11 @@ export default function SmartAccountClientProvider({ children }: any) {
 ```
 ### Send transaction by using the AA wallet
 Since the balance of the wallet newly created by Client is still 0, some funds need to be transferred into the smart wallet before initiating transactions for its use.
+
 ![account-detail](./account-detail.png)
+
 ![account-etherscan](./account-etherscan.png)
+
 Create the `AbstractAcount.tsx` component to display information about the current AA wallet, as well as the functionality for funding it.
 **AbstractAcount.tsx**
 ```tsx
@@ -316,10 +320,15 @@ export default function AbstractAcount() {
     </Card>
 }
 ```
+
 ![charge](./charge.png)
+
 Use the transaction functionality provided by wagmi to fund the AA wallet. After the funding is completed, you will see the interface refresh to display the amount that was just funded, and you can view it at the corresponding address.
+
 ![charge-result](./charge-result.png)
+
 ![charge-etherscan](./charge-etherscan.png)
+
 ### Send multiple transactions by using the AA wallet
 Since the AA wallet sends transactions using calldata, we only need to construct the corresponding calldata for the operations we want to perform to initiate multiple actions within a single transaction (tx).
 
@@ -482,6 +491,7 @@ const txhash = await smartAccountClient.waitForUserOperationTransaction({ hash }
 First, use the `encodeFunctionData` method provided by viem to convert the parameters for calling the contract function into calldata. Then, send all user operations to the smart wallet for transactions using the `sendUserOperation` provided by the smart client.
 
 After the transaction is sent, Alchemy will mount the contract for the smart wallet, making it a true contract wallet.
+
 ![real-tx](./real-tx.png)
 
 However, the consumption of gas fees in this process is not as cheap as one might think, which contradicts the previously mentioned advantage of reducing gas fees. This is because once users start using the AA wallet, they will inevitably make calls between contracts, which also incurs costs.
