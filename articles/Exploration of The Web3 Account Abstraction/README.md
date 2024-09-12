@@ -6,7 +6,7 @@ createTime: 2024-08-05
 tags: ["Web3", "Account Abstraction", "Wallet"]
 thumb: "thumb.png"
 thumb_h: "thumb_h.png"
-intro: "This article introduces how the account abstraction comes out, its workflow, features of it and try the exploration of it by front-end code."
+intro: "This article introduces how the account abstraction comes out, its workflow, features and try the exploration of it by front-end code."
 ---
 ## How the Account Abstraction comes out
 In Ethereum, there are two types of accounts: Externally Owned Accounts (EOAs) and Contract Accounts (CAs). 
