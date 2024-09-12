@@ -34,7 +34,7 @@ Blockchain technology, as a decentralized distributed ledger technology, is rapi
 
 ![asymmetric encryption](./asymmetric-encryption.png)
 
-### 3.Hash Encryption
+### 3. Hash Encryption
 
 **Working Principle**: Hash encryption involves converting input data into a fixed-length hash value, making it impossible to reconstruct the original data from the hash value.
 
@@ -57,7 +57,7 @@ Basic Characteristics of Elliptic Curves:
 - The equation must satisfy the form: ( y^2 = x^3 + ax + b ),
 - Symmetric about the x-axis (as shown by points p and p'),
 - Any non-vertical line intersects the curve at most three times (as depicted by points G, P, and m),
-- Any two points on the curve can be multiplied to obtain a new point ( ( G dot P = m ) ).
+- Any two points on the curve can be multiplied to obtain a new point ( G dot P = m ).
 
 General Steps and Applications of Elliptic Curve Cryptography:
 
@@ -119,21 +119,20 @@ In blockchain technology, hash functions also play crucial roles, and different 
 
 - Bitcoin
 
-  **Main Hash Algorithm**: SHA-256 (Secure Hash Algorithm 256-bit)
-  **Uses**: Mining process (Proof of Work), transaction hashes, block hashes, Merkle trees
+  - Main Hash Algorithm: SHA-256 (Secure Hash Algorithm 256-bit)
+  - Uses: Mining process (Proof of Work), transaction hashes, block hashes, Merkle trees
 
 - Ethereum
 
-  **Main Hash Algorithm**: Keccak-256 (often incorrectly referred to as SHA-3)
-  **Uses**: Transaction hashes, address generation, smart contract data verification, Merkle trees
+  - Main Hash Algorithm\*\*: Keccak-256 (often incorrectly referred to as SHA-3)
+  - Uses: Transaction hashes, address generation, smart contract data verification, Merkle trees
 
   - Solana
 
-  **Main Hash Algorithms**: SHA-256 and SHA-3
-  **Uses**:
-
-  SHA-256: Mainly used for Proof of History (PoH), data verification, generating unique identifiers
-  SHA-3: Used for smart contract execution and data verification
+    - Main Hash Algorithms\*\*: SHA-256 and SHA-3
+    - Uses:
+      SHA-256: Mainly used for Proof of History (PoH), data verification, generating unique identifiers
+      SHA-3: Used for smart contract execution and data verification
 
 ## Conclusion
 
