@@ -63,8 +63,7 @@ General Steps and Applications of Elliptic Curve Cryptography:
 
 In elliptic curve cryptography, the private key is not derived through any calculations but is rather a randomly selected number. The private key is generally a large number, known only to the holder and kept secret.
 
-The generation of the public key is based on the private key. First, a common base point, denoted as _G_, is selected. Then, the private key _priv_ as a scalar is multiplied by the base point _G_, effectively adding _G_ to itself _priv_ times. The result of the scalar multiplication on the curve is another point, which serves as the public key, denoted as _P_ (_P_ = _Priv_ \* G)  
-Here, \* represents scalar multiplication in the context of elliptic curves, distinct from traditional multiplication or exponentiation (_^_). Point addition and scalar multiplication on elliptic curves are uniquely defined operations, differing from conventional arithmetic rules.
+The generation of the public key is based on the private key. First, a common base point, denoted as _G_, is selected. Then, the private key _priv_ as a scalar is multiplied by the base point _G_, effectively adding _G_ to itself _priv_ times. The result of the scalar multiplication on the curve is another point, which serves as the public key, denoted as _P_ (_P_ = _Priv_ \* G). Here, \* represents scalar multiplication in the context of elliptic curves, distinct from traditional multiplication or exponentiation (_^_). Point addition and scalar multiplication on elliptic curves are uniquely defined operations, differing from conventional arithmetic rules.
 Deriving the private key from the public key in elliptic curve cryptography involves the elliptic curve discrete logarithm problem . Mathematically, this is an intractable problem, especially with large prime numbers. This inherent difficulty forms the trapdoor function, which is the foundation for the security in public key encryption and digital signature systems. The security of cryptographic algorithms fundamentally depends on this property.
 
 ![Elliptic Curve Cryptography](./ecc.png)
@@ -74,8 +73,8 @@ Deriving the private key from the public key in elliptic curve cryptography invo
 1. Key Pair Generation
    Elliptic curve algorithms are crucial for generating public-private key pairs for blockchain users. The public key is used to generate wallet addresses, while the private key is used to sign transactions, control funds, and validate identity.
 
-   Public Key Generation: Generating a public key from a private key is a mathematical operation involving point multiplication on an elliptic curve.
-   Private Key Protection: The private key must be securely stored. Possession of the private key equates to control over all assets in the associated account.
+   - Public Key Generation: Generating a public key from a private key is a mathematical operation involving point multiplication on an elliptic curve.
+   - Private Key Protection: The private key must be securely stored. Possession of the private key equates to control over all assets in the associated account.
 
    The methods by which Bitcoin, Ethereum, and Solana generate wallet addresses from public keys include:
 
@@ -86,8 +85,8 @@ Deriving the private key from the public key in elliptic curve cryptography invo
 2. Digital Signatures
    Elliptic curve digital signature algorithms are used to sign transactions. The signing process ensures the transaction's integrity and authenticity, making it tamper-proof.
 
-   Signing Transactions: Users sign transaction data with their private key to create a digital signature.
-   Verifying Signatures: Other nodes use the public key to verify the signature's validity, ensuring that the transaction has not been tampered with and was indeed initiated by the holder of the corresponding private key.
+   - Signing Transactions: Users sign transaction data with their private key to create a digital signature.
+   - Verifying Signatures: Other nodes use the public key to verify the signature's validity, ensuring that the transaction has not been tampered with and was indeed initiated by the holder of the corresponding private key.
 
    There are three main purposes for digital signatures:
 
@@ -96,8 +95,6 @@ Deriving the private key from the public key in elliptic curve cryptography invo
    - Transaction Integrity: Authorized transactions cannot be altered by unauthorized third parties.
 
    In Ethereum and Solana, transactions also include calls to smart contracts, which require digital signatures to verify the legitimacy of the caller.
-
-   This translation includes the main points while ensuring clarity and proper technical terminology in English. If you need the rest of the document translated, let me know!
 
 3. Identity Verification
    Elliptic curve algorithms are used for identity verification, ensuring that only authorized users can access specific blockchain resources or perform certain operations.
@@ -118,23 +115,25 @@ The main features of hash functions include:
 - Irreversibility: It is infeasible to derive the original message from the hash value, equivalent to performing a brute-force search over all possible messages.
 - Collision Protection: It is infeasible to find two different messages that produce the same hash output.
 
-In blockchain technology, hash functions also play crucial roles, and different blockchains often adopt different hash algorithms to meet specific security and performance requirements. Below are some mainstream blockchains and their employed hash algorithms: - Bitcoin
+In blockchain technology, hash functions also play crucial roles, and different blockchains often adopt different hash algorithms to meet specific security and performance requirements. Below are some mainstream blockchains and their employed hash algorithms:
 
-    **Main Hash Algorithm**: SHA-256 (Secure Hash Algorithm 256-bit)
-    **Uses**: Mining process (Proof of Work), transaction hashes, block hashes, Merkle trees
+- Bitcoin
 
-    - Ethereum
+  **Main Hash Algorithm**: SHA-256 (Secure Hash Algorithm 256-bit)
+  **Uses**: Mining process (Proof of Work), transaction hashes, block hashes, Merkle trees
 
-    **Main Hash Algorithm**: Keccak-256 (often incorrectly referred to as SHA-3)
-    **Uses**: Transaction hashes, address generation, smart contract data verification, Merkle trees
+- Ethereum
 
-    - Solana
+  **Main Hash Algorithm**: Keccak-256 (often incorrectly referred to as SHA-3)
+  **Uses**: Transaction hashes, address generation, smart contract data verification, Merkle trees
 
-    **Main Hash Algorithms**: SHA-256 and SHA-3
-    **Uses**:
+  - Solana
 
-    SHA-256: Mainly used for Proof of History (PoH), data verification, generating unique identifiers
-    SHA-3: Used for smart contract execution and data verification
+  **Main Hash Algorithms**: SHA-256 and SHA-3
+  **Uses**:
+
+  SHA-256: Mainly used for Proof of History (PoH), data verification, generating unique identifiers
+  SHA-3: Used for smart contract execution and data verification
 
 ## Conclusion
 
