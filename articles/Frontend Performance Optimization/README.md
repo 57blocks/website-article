@@ -9,7 +9,7 @@ thumb_h: "thumb_h.png"
 intro: "If your site is loading slowly, what can you do to troubleshoot and fix what’s causing those long page load times? Here, we provide a way to approach front end troubleshooting and strategies to improve page load results. To help visualize how page loading works, we explain the page load journey including associated metrics for each step. Read on to discover how to improve your front end site experience using seven Web Vitals (some of which are Core Metrics) and ten optimization strategies."
 ---
 
-In the current digital landscape, a website's performance is a critical factor in attracting and retaining users. With users expecting pages to load within a few seconds, sites and apps that deliver fast-loading, resolution-responsive pages tend to retain visitors for longer and experience improved conversion rates. Front end performance optimization plays a pivotal role in achieving these outcomes. This article delves into key frontend performance optimization strategies that can enhance website speed, interactivity, and user satisfaction.
+In the current digital landscape, a website's performance is a critical factor in attracting and retaining users. With users expecting pages to load within a few seconds, sites and apps that deliver fast-loading, resolution-responsive pages tend to retain visitors for longer and experience improved conversion rates. Frontend performance optimization plays a pivotal role in achieving these outcomes. This article delves into key frontend performance optimization strategies that can enhance website speed, interactivity, and user satisfaction.
 
 ![loading is a journey](loading-is-a-journey.png)
 
@@ -74,12 +74,12 @@ Following are explanations and descriptions of the metrics:
 | Element | Description |
 | ----------- | ------------------------------|
 | element | The current largest content rendering element. |
-| loadingTime | Loading time or time to download and display all content of a web page in a browser. |
-| renderTime | Rendering time, or how long it takes for a web page to load so the user can engage with the content and functionality. If it's a cross-origin request, it will be 0. |
-| size | The area of the element itself. |
-| startTime | If renderTime is not 0, it returns renderTime; otherwise, it returns loadingTime. |
+| `loadingTime` | Loading time or time to download and display all content of a web page in a browser. |
+| `renderTime` | Rendering time, or how long it takes for a web page to load so the user can engage with the content and functionality. If it's a cross-origin request, it will be 0. |
+| `size` | The area of the element itself. |
+| `startTime` | If `renderTime` is not 0, it returns `renderTime`; otherwise, it returns `loadingTime`. |
 
-In this example, the LCP is represented by loadingTime, and its value is 1.6, which is considered good. It indicates that the largest content element (an image in this case) was successfully rendered within 1.6 seconds, meeting the criteria for a relatively good user experience.
+In this example, the LCP is represented by `loadingTime`, and its value is 1.6, which is considered good. It indicates that the largest content element (an image in this case) was successfully rendered within 1.6 seconds, meeting the criteria for a relatively good user experience.
 
 ### 2. FCP (First Contentful Paint) - Not a core metric
 
@@ -107,8 +107,8 @@ Following are explanations and descriptions of the metrics:
 
 | Element   | Description                                                                                |
 | --------- | ------------------------------------------------------------------------------------------ |
-| duration  | Represents the time from `startTime` to the next rendering paint, which is 0 in this case. |
-| startTime | Returns the timestamp when the painting occurred.                                          |
+| `duration`  | Represents the time from `startTime` to the next rendering paint, which is 0 in this case. |
+| `startTime` | Returns the timestamp when the painting occurred.                                          |
 
 In this example, FCP is represented by `startTime`, which is less than one second. According to the provided standards, this is considered good.
 
@@ -140,10 +140,10 @@ Following are explanations and descriptions of the metrics:
 
 | Element         | Description                                                                      |
 | --------------- | -------------------------------------------------------------------------------- |
-| duration        | Represents the time from startTime to the next rendering paint.                  |
-| processingStart | Measures the time between a user interaction and the start of the event handler. |
-| processingEnd   | Measures the time taken by the event handler to run.                             |
-| target          | Returns the DOM associated with the event.                                       |
+| `duration`        | Represents the time from `startTime` to the next rendering paint.                  |
+| `processingStar`t | Measures the time between a user interaction and the start of the event handler. |
+| `processingEnd`   | Measures the time taken by the event handler to run.                             |
+| `target`          | Returns the DOM associated with the event.                                       |
 
 In the example code, FID equals `8574 (processingEnd) - 8558 (processingStart) = 16`. According to the provided standards, this is considered good.
 
@@ -186,9 +186,9 @@ Following are explanations and descriptions of the metrics:
 
 | Metric         | Description                                                                                                                                                                                                                                                 |
 | -------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| value          | Returns the layout shift score calculated as: layout shift score = impact fraction \* distance fraction.                                                                                                                                                    |
-| hadRecentInput | Returns true if lastInputTime is less than 500 milliseconds ago.                                                                                                                                                                                            |
-| lastInputTime  | Returns the time of the most recent excluded user input, or 0 if there is none. Only unexpected shifts due to discrete events like clicking links, buttons, or showing loading indicators in response to user interaction are considered reasonable shifts. |
+| `value`          | Returns the layout shift score calculated as: `layout shift score = impact fraction \* distance fraction`.                                                                                                                                                    |
+| `hadRecentInput` | Returns true if `lastInputTime` is less than 500 milliseconds ago.                                                                                                                                                                                            |
+| `lastInputTime`  | Returns the time of the most recent excluded user input, or 0 if there is none. Only unexpected shifts due to discrete events like clicking links, buttons, or showing loading indicators in response to user interaction are considered reasonable shifts. |
 
 In this example, CLS is represented by the value 0, which is considered good according to provided standards.
 
@@ -219,8 +219,8 @@ Following are explanations and descriptions of the metrics:
 
 | Metric                | Description                                                                                                                                                                                                                                                                                                                                                                          |
 | --------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| duration              | Represents the duration of the task, i.e., the time elapsed from start to finish.                                                                                                                                                                                                                                                                                                    |
-| TaskAttributionTiming | This is an object associated with Long Tasks, used to track and attribute the execution of long tasks. This object may contain detailed information about the long task, such as its source, triggering events, etc. Through this object, developers can gain a better understanding of the context and reasons for long tasks, facilitating performance optimization and debugging. |
+| `duration`              | Represents the duration of the task, i.e., the time elapsed from start to finish.                                                                                                                                                                                                                                                                                                    |
+| `TaskAttributionTiming` | This is an object associated with Long Tasks, used to track and attribute the execution of long tasks. This object may contain detailed information about the long task, such as its source, triggering events, etc. Through this object, developers can gain a better understanding of the context and reasons for long tasks, facilitating performance optimization and debugging. |
 
 Because long tasks significantly impact user experience, they are highlighted separately, even though they are not part of Web Vitals.
 
@@ -251,8 +251,8 @@ observer.observe({ type: "paint", buffered: true });
 
 | Element   | Description                                                                              |
 | --------- | ---------------------------------------------------------------------------------------- |
-| duration  | Represents the time from startTime to the next rendering paint, which is 0 in this case. |
-| startTime | Returns the timestamp when the painting occurred.                                        |
+| `duration`  | Represents the time from `startTime` to the next rendering paint, which is 0 in this case. |
+| `startTime` | Returns the timestamp when the painting occurred.                                        |
 
 Now, let’s say your Web Vital numbers could improve and you want to improve them. The following sections provide strategies to do that.
 
@@ -316,10 +316,11 @@ And, as we know, faster page load times contribute to better SEO rankings.
   ```
 
   Typically with this code snippet, we also include the following information:
-  A. If the resource belongs to user-specific content, it can be specified as private; otherwise, it is public.
-  B. One way to determine if a resource is personal data is to check if the Authorization field is in the request header. If it is, that indicates that this displays personal data, and there is usually no need to explicitly specify it as private.
 
-  Additionally, if the cache control header includes “must-revalidate,” it indicates that this is personal data. This means that before each resource retrieval, it needs to be validated for freshness, using the new data if it is new or the cached old data if it is not. This approach helps ensure the real-time and consistent handling of personal data.
+  - A. If the resource belongs to user-specific content, it can be specified as private; otherwise, it is public.
+  - B. One way to determine if a resource is personal data is to check if the `Authorization` field is in the request header. If it is, that indicates that this displays personal data, and there is usually no need to explicitly specify it as private.
+
+  Additionally, if the cache control header includes `must-revalidate`, it indicates that this is personal data. This means that before each resource retrieval, it needs to be validated for freshness, using the new data if it is new or the cached old data if it is not. This approach helps ensure the real-time and consistent handling of personal data.
 
 - For frontend static resources, such as bundled scripts and stylesheets, it is common to append a hash or version number to the file name. This practice aids in more effective cache management. For such static files, we typically set the following cache directives:
 
@@ -329,13 +330,14 @@ And, as we know, faster page load times contribute to better SEO rankings.
   ETag: "33a64df551425fcc55e4d42a148795d9f25f89d4"
   ```
 
-  - Max-age: This directive can be added to both request and response to indicate the expiration time of the cached resource in seconds. For example, in the given example, `max-age=31536000` means the resource will expire in the client cache after 365 days.
-  - Immutable: Exists in the response and indicates that the resource will not be updated before a new version is available. In this example, if the hash or version of the static file changes, the resource is considered new, triggering a re-fetch and storage. This pattern is known as [cache-busting](https://www.keycdn.com/support/what-is-cache-busting).
-  - ETag: Used to identify whether a resource is a specified version, while Last-Modified is a fallback for ETag, representing the last modification time on the server. ETag and Last-Modified allow the client to send a condition request to the server. If the resource has not changed, the server returns a 304 response, indicating that the cached version is still current. Otherwise, it sends a new request to fetch the resource from the server.
+  - **Max-age**: This directive can be added to both request and response to indicate the expiration time of the cached resource in seconds. For example, in the given example, `max-age=31536000` means the resource will expire in the client cache after 365 days.
+  - **Immutable**: Exists in the response and indicates that the resource will not be updated before a new version is available. In this example, if the hash or version of the static file changes, the resource is considered new, triggering a re-fetch and storage. This pattern is known as [cache-busting](https://www.keycdn.com/support/what-is-cache-busting).
+  - **ETag**: Used to identify whether a resource is a specified version, while `Last-Modified
+  `is a fallback for `ETag`, representing the last modification time on the server. `ETag` and `Last-Modified` allow the client to send a condition request to the server. If the resource has not changed, the server returns a 304 response, indicating that the cached version is still current. Otherwise, it sends a new request to fetch the resource from the server.
 
-  ETag, Last-Modified, and Immutable can prevent resource revalidation, especially when reloading a page. These mechanisms help optimize cache management, ensuring the consistency and validity of resources.
+  `ETag`, `Last-Modified`, and `Immutable` can prevent resource revalidation, especially when reloading a page. These mechanisms help optimize cache management, ensuring the consistency and validity of resources.
 
-- Similar settings are typically used for resources such as favicon.ico, images, API endpoints, etc. Conditional requests are initiated using Last-Modified and ETag to check if the resource is up to date.
+- Similar settings are typically used for resources such as favicon.ico, images, API endpoints, etc. Conditional requests are initiated using `Last-Modified` and `ETag` to check if the resource is up to date.
 
   ```ts
   Cache-Control: no-cache
@@ -343,7 +345,7 @@ And, as we know, faster page load times contribute to better SEO rankings.
   ETag: AAPuIbAOdvAGEETbgAA2ABwqAsAAE
   ```
 
-In some scenarios, Cache-Control may appear in both the request and response, and in case of conflicts, the settings on the response usually take precedence.
+In some scenarios, `Cache-Control` may appear in both the request and response, and in case of conflicts, the settings on the response usually take precedence.
 
 ### 3. Content Delivery Network (CDN)
 
@@ -397,7 +399,7 @@ Four approaches to optimizing the frontend based on page load order exist.
 
   As you may know, loading CSS and JavaScript on a page can block the rendering of other page elements until all the CSS and JavaScript elements are loaded (see the diagram below). That makes it crucial to identify and optimize the loading order of key resources based on their business importance to enhance load times.
 
-  Currently, a non-standard attribute, blocking=render, allows developers to explicitly designate a `link`,`script`, or `style` element as rendering-blocking, which will block rendering until that specific element is processed. However, the key distinction is that using this attribute permits the parser to process the rest of the page. This feature gives developers more control over the rendering behavior of critical resources, allowing for a fine-tuned approach to optimizing the loading sequence.
+  Currently, a non-standard attribute, `blocking=render`, allows developers to explicitly designate a `link`,`script`, or `style` element as rendering-blocking, which will block rendering until that specific element is processed. However, the key distinction is that using this attribute permits the parser to process the rest of the page. This feature gives developers more control over the rendering behavior of critical resources, allowing for a fine-tuned approach to optimizing the loading sequence.
 
   We can significantly enhance key performance metrics like LCP, FCP, FID, INP, and CLS by optimizing or deferring render-blocking resources, such as CSS and synchronous JavaScript. This leads to faster page rendering, improved load times, and a better overall user experience.
 
@@ -407,11 +409,11 @@ Four approaches to optimizing the frontend based on page load order exist.
 
   These commands help developers optimize page loading times by informing the browser how to load and prioritize resources. These approaches can significantly improve key performance metrics like LCP, FCP, FID, and INP by proactively fetching and loading critical resources. The specific operations are as follows:
 
-  - prefetch: Used for the browser to fetch and cache resources that might be used in future subpage loads, thereby reducing loading times. This mechanism has a lower priority and is suitable for resource fetching during main thread idle periods.
-  - dns-prefetch: Optimizes the time to resolve a domain to an IP address (DNS Lookup), especially useful when loading resources from third-party domains.
-  - preconnect: Encompasses steps like DNS query, TLS negotiation, and TCP handshake, thoroughly preparing the connection to a remote server.
+  - **prefetch**: Used for the browser to fetch and cache resources that might be used in future subpage loads, thereby reducing loading times. This mechanism has a lower priority and is suitable for resource fetching during main thread idle periods.
+  - **dns-prefetch**: Optimizes the time to resolve a domain to an IP address (DNS Lookup), especially useful when loading resources from third-party domains.
+  - **preconnect**: Encompasses steps like DNS query, TLS negotiation, and TCP handshake, thoroughly preparing the connection to a remote server.
 
-    It is recommended to use DNS Prefetch and preconnect together, but careful configuration is advised to avoid overuse and potential resource wastage.
+    It is recommended to use DNS `Prefetch` and `preconnect` together, but careful configuration is advised to avoid overuse and potential resource wastage.
 
     ```html
     <link rel="preconnect" href="https://third-party-domain.com" />
@@ -421,8 +423,8 @@ Four approaches to optimizing the frontend based on page load order exist.
     The test results are shown in the following diagram:
     ![compared-pre-render](compared-pre-render.png)
 
-  - prerender: The prerender feature is like prefetch, but this command pre-renders the entire page instead of specific, individual resources.
-  - preload: preload informs the browser that upon page load, the system should download resources as soon as possible. This is typically used for critical resources that need to be downloaded in advance, such as crucial CSS or images affecting Largest Contentful Paint (LCP).
+  - **prerender**: The `prerender `feature is like `prefetch`, but this command pre-renders the entire page instead of specific, individual resources.
+  - **preload**: `preload` informs the browser that upon page load, the system should download resources as soon as possible. This is typically used for critical resources that need to be downloaded in advance, such as crucial CSS or images affecting Largest Contentful Paint (LCP).
 
 - **Defer Vs Async**
 
@@ -442,12 +444,12 @@ Four approaches to optimizing the frontend based on page load order exist.
 The \<img\> embeds an image into a webpage in HTML. This tag is self-closing, meaning it does not require an end tag.
 Here are some key attributes and usages of the \<img\> tag to improve performance:
 
-- **`Loading`**: The loading attribute informs the browser how to load images.
+- **Loading**: The `loading` attribute informs the browser how to load images.
 
-  - **`eager`**: Loads the image immediately, regardless of its visibility.
-  - **`lazy`**: Delays the image loading until it appears in the viewport, saving bandwidth. It is recommended that width and height attributes be included in the images.
+  - **eager**: Loads the image immediately, regardless of its visibility.
+  - **lazy**: Delays the image loading until it appears in the viewport, saving bandwidth. It is recommended that width and height attributes be included in the images.
 
-- The `fetchpriority` attribute can specify the priority of loading images.
+- **fetchpriority**:The `fetchpriority` attribute can specify the priority of loading images.
 
 Using these attributes based on the business value of images (one example is loading ads first for encouraged engagement and revenue), you can optimize Web Core Vitals metrics and enhance overall performance. Preloading critical image resources can also be achieved using the \<link\> tag.
 
@@ -461,7 +463,7 @@ Using these attributes based on the business value of images (one example is loa
 />
 ```
 
-- Size:
+- **Size**:
 
   - Images should not be resized using code, or the source file should not be larger or smaller than what is rendered on the user's screen.
   - Use responsive images by specifying multiple versions; the browser will choose the most suitable version.
@@ -477,10 +479,10 @@ Using these attributes based on the business value of images (one example is loa
   `480w` informs the browser that the image width is equivalent to 480 pixels when downloading the image unnecessary.
   `sizes` specifies the expected display size of the image.
 
-- Width And Height:
+- **Width And Height**:
 
   - Both the `width` and `height` attributes should be specified appropriately to ensure that the browser allocates the correct space in the layout. This helps avoid layout shifts, improving Cumulative Layout Shift (CLS) user experience.
-  - If the specific width and height cannot be determined, consider setting an aspect ratio as a solution.
+  - If the specific `width` and `height` cannot be determined, consider setting an aspect ratio as a solution.
 
   ```css
   img {
@@ -490,7 +492,7 @@ Using these attributes based on the business value of images (one example is loa
   }
   ```
 
-- Image Format
+- **Image Format**
 
   For image resources, choosing the appropriate image format based on specific business requirements to optimize performance. Here are simplified and optimized recommendations:
 
@@ -504,21 +506,21 @@ Using these attributes based on the business value of images (one example is loa
   | PNG        | Suitable for high-resolution images, lossless compression, while WebP generally has smaller file sizes.             |
   | Video      | For animations, it is recommended to use video instead of GIF due to GIF's color limitations and larger file sizes. |
 
-- Decoding
+- **Decoding**
 
   This image property tells the browser how to decode the image the system provides. It specifies whether the system should wait for the image to be fully decoded before rendering other content updates or simultaneously rendering, allowing other content to render during the decoding process.
 
-  - **`sync`**: Synchronously decodes the image to render it along with other.
-  - **`async`**: Asynchronously decodes the image, allowing rendering of other content before its completion.
-  - **`auto`**: No preference for decoding mode; the browser decides the most favorable way for the user. This is the default value, but different browsers have different default values:
+  - **sync**: Synchronously decodes the image to render it along with other.
+  - **async**: Asynchronously decodes the image, allowing rendering of other content before its completion.
+  - **auto**: No preference for decoding mode; the browser decides the most favorable way for the user. This is the default value, but different browsers have different default values:
 
-    - Chromium defaults to "sync".
-    - Firefox defaults to "async".
-    - Safari defaults to "sync".
+    - Chromium defaults to `sync`.
+    - Firefox defaults to `async`.
+    - Safari defaults to `sync`.
 
   The effect of the **`decoding`** property may only be significant on very large, high-resolution images, as these images have longer decoding times.
 
-Like preload and preconnect for images, decode can substantially enhance key performance metrics such as LCP, FCP, FID, and INP. By fetching and loading critical images earlier, these strategies result in faster content rendering, reduced latency, and improved user interactivity, leading to a better overall user experience.
+Like `preload` and `preconnect` for images, `decode` can substantially enhance key performance metrics such as LCP, FCP, FID, and INP. By fetching and loading critical images earlier, these strategies result in faster content rendering, reduced latency, and improved user interactivity, leading to a better overall user experience.
 
 ### 8. Video Preload
 
@@ -546,7 +548,7 @@ The default value can vary for each browser. The specification recommends settin
 
 **For video acting as an animated GIF replacement**
 
-Video files are typically smaller than GIF images at the same visual quality. The following example demonstrates lazy loading applied to a video with autoplay. It utilizes IntersectionObserver to monitor whether the video enters the visible range and loads and plays it when necessary. This approach can enhance the initial loading time.
+Video files are typically smaller than GIF images at the same visual quality. The following example demonstrates lazy loading applied to a video with `autoplay`. It utilizes `IntersectionObserver` to monitor whether the video enters the visible range and loads and plays it when necessary. This approach can enhance the initial loading time.
 
 ```html
 <!--The playsinline attribute is compatible with autoplay on iOS for automatically playing videos.-->
@@ -628,16 +630,15 @@ Pre-rendering techniques such as Server-Side Rendering (SSR) and Static Site Gen
 For UI changes, use `requestAnimationFrame`
 `requestAnimationFrame` is called by the browser before the next repaint, and compared to `setInterval` or `setTimeout`, it can optimize more intelligently within the browser's frame rendering. Using `setInterval` or `setTimeout` may lead to the callback running at some point within a frame, potentially at the end of the frame, often resulting in missing a frame and causing interface stutter. `requestAnimationFrame `ensures that the callback is executed when the browser is ready for the next repaint, making the animation smoother.
 
-Avoid long tasks and optimize code.
-Long tasks take more than 50 milliseconds to execute and can be released on the Main Thread by:
+Avoid long tasks and optimize code. Long tasks take more than 50 milliseconds to execute and can be released on the Main Thread by:
 
 - **Web Workers**: Web Workers run in the background as independent threads with their own stack, heap memory, and message queue. Communication with the main thread can only be done through the `postMessage` method, and direct manipulation of the DOM is not possible. That makes Web Workers well-suited for tasks that do not require direct interaction with the DOM.
 
-For example, a Web Worker can perform operations such as sorting or searching on large datasets, avoiding blocking the main thread with computationally intensive tasks and ensuring the responsiveness of the main thread.
+  For example, a `Web Worker` can perform operations such as sorting or searching on large datasets, avoiding blocking the main thread with computationally intensive tasks and ensuring the responsiveness of the main thread.
 
-By executing these time-consuming tasks in a Web Worker, the performance and responsiveness of the main thread be improved, and it also takes better advantage of the performance benefits of multi-core processors. Separating computational tasks from user interface operations helps improve the overall user experience and ensures smooth page operation.
+  By executing these time-consuming tasks in a `Web Worker`, the performance and responsiveness of the main thread can be improved, and it also takes better advantage of the performance benefits of multi-core processors. Separating computational tasks from user interface operations helps improve the overall user experience and ensures smooth page operation.
 
-- **Service Worker**: A Service Worker is a script that runs in the background and intercepts or handles network requests. By making reasonable use of Service Workers, reducing dependence on the main thread and improving application performance, resources can be cached.
+- **Service Worker**: A `Service Worker` is a script that runs in the background and intercepts or handles network requests. By making reasonable use of Service Workers, reducing dependence on the main thread and improving application performance, resources can be cached.
 
 - **Long Task**: To ensure that long-running tasks do not block the main thread, we can break these long tasks into small, asynchronously executed sub-tasks. Such strategies include:
 
@@ -671,15 +672,15 @@ By executing these time-consuming tasks in a Web Worker, the performance and res
 
   4. **Scheduler.yield** is typically used to release the main thread. ([Learn more in this Chrome article](https://developer.chrome.com/blog/introducing-scheduler-yield-origin-trial)).
 
-  This means that the main thread remains busy during the execution of microtasks and does not release itself to perform other tasks. A detailed visualization can be seen [here](https://www.jsv9000.app/). This mechanism is crucial when dealing with asynchronous tasks because it ensures that the logic in microtasks is executed immediately after the current task is finished. This is particularly useful for handling the results of Promises or other asynchronous operations, but it's important to note that it does not release the main thread.
+    This means that the main thread remains busy during the execution of microtasks and does not release itself to perform other tasks. A detailed visualization can be seen [here](https://www.jsv9000.app/). This mechanism is crucial when dealing with asynchronous tasks because it ensures that the logic in microtasks is executed immediately after the current task is finished. This is particularly useful for handling the results of Promises or other asynchronous operations, but it's important to note that it does not release the main thread.
 
-  For example, when using Promise to create a microtask, such a task is placed in the microtask queue, waiting to be executed immediately after the main thread finishes execution. Even microtasks created through queueMicrotask will be executed as the first one.
+    For example, when using Promise to create a microtask, such a task is placed in the microtask queue, waiting to be executed immediately after the main thread finishes execution. Even microtasks created through queueMicrotask will be executed as the first one.
 
-  ![js execute stack](js-execute-stack.png)
+    ![js execute stack](js-execute-stack.png)
 
   5. **Batch processing**: React's virtual DOM mechanism employs batch processing as an optimization strategy. It applies all changes to the virtual DOM and then submits them to the browser for redrawing the first time, significantly reducing actual DOM manipulations. This approach effectively releases the main thread, enhancing performance. Batch processing is beneficial when there are many DOM operations or frequent changes. Consolidating multiple operations into a single batch reduces the number of browser redraws, optimizing performance. This mechanism helps improve page responsiveness in React, avoiding unnecessary, redundant computations and rendering.
 
-  Implementing strategies such as using requestAnimationFrame and avoiding long tasks can significantly enhance key performance metrics like LCP, FCP, FID, and INP. By ensuring smoother animations, reducing central thread blocking, and improving interaction responsiveness, these optimizations lead to a faster, more interactive, and user-friendly web experience.
+  Implementing strategies such as using `requestAnimationFrame` and avoiding long tasks can significantly enhance key performance metrics like LCP, FCP, FID, and INP. By ensuring smoother animations, reducing central thread blocking, and improving interaction responsiveness, these optimizations lead to a faster, more interactive, and user-friendly web experience.
 
 ## Conclusion
 
