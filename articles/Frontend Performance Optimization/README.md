@@ -672,11 +672,11 @@ Avoid long tasks and optimize code. Long tasks take more than 50 milliseconds to
 
   4. **Scheduler.yield** is typically used to release the main thread. ([Learn more in this Chrome article](https://developer.chrome.com/blog/introducing-scheduler-yield-origin-trial)).
 
-    This means that the main thread remains busy during the execution of microtasks and does not release itself to perform other tasks. A detailed visualization can be seen [here](https://www.jsv9000.app/). This mechanism is crucial when dealing with asynchronous tasks because it ensures that the logic in microtasks is executed immediately after the current task is finished. This is particularly useful for handling the results of Promises or other asynchronous operations, but it's important to note that it does not release the main thread.
+      This means that the main thread remains busy during the execution of microtasks and does not release itself to perform other tasks. A detailed visualization can be seen [here](https://www.jsv9000.app/). This mechanism is crucial when dealing with asynchronous tasks because it ensures that the logic in microtasks is executed immediately after the current task is finished. This is particularly useful for handling the results of Promises or other asynchronous operations, but it's important to note that it does not release the main thread.
 
-    For example, when using Promise to create a microtask, such a task is placed in the microtask queue, waiting to be executed immediately after the main thread finishes execution. Even microtasks created through queueMicrotask will be executed as the first one.
+      For example, when using Promise to create a microtask, such a task is placed in the microtask queue, waiting to be executed immediately after the main thread finishes execution. Even microtasks created through queueMicrotask will be executed as the first one.
 
-    ![js execute stack](js-execute-stack.png)
+      ![js execute stack](js-execute-stack.png)
 
   5. **Batch processing**: React's virtual DOM mechanism employs batch processing as an optimization strategy. It applies all changes to the virtual DOM and then submits them to the browser for redrawing the first time, significantly reducing actual DOM manipulations. This approach effectively releases the main thread, enhancing performance. Batch processing is beneficial when there are many DOM operations or frequent changes. Consolidating multiple operations into a single batch reduces the number of browser redraws, optimizing performance. This mechanism helps improve page responsiveness in React, avoiding unnecessary, redundant computations and rendering.
 
