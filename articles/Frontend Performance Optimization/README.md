@@ -9,11 +9,11 @@ thumb_h: "thumb_h.png"
 intro: "If your site is loading slowly, what can you do to troubleshoot and fix what’s causing those long page load times? Here, we provide a way to approach front end troubleshooting and strategies to improve page load results. To help visualize how page loading works, we explain the page load journey including associated metrics for each step. Read on to discover how to improve your front end site experience using seven Web Vitals (some of which are Core Metrics) and ten optimization strategies."
 ---
 
-In the current digital landscape, a website's performance is critical factor in attracting and retaining users. With users expecting pages to load within a few seconds, sites and apps that deliver fast-loading, resolution-responsive pages tend to retain visitors for longer and experience improved conversion rates. Front end performance optimization plays a pivotal role in achieving these outcomes. This article delves into key frontend performance optimization strategies that can enhance website speed, interactivity, and user satisfaction.
+In the current digital landscape, a website's performance is a critical factor in attracting and retaining users. With users expecting pages to load within a few seconds, sites and apps that deliver fast-loading, resolution-responsive pages tend to retain visitors for longer and experience improved conversion rates. Front end performance optimization plays a pivotal role in achieving these outcomes. This article delves into key frontend performance optimization strategies that can enhance website speed, interactivity, and user satisfaction.
 
 ![loading is a journey](loading-is-a-journey.png)
 
-According to Addy Osmani in his article, “The Cost of Javascript,” when a webpage loads in your browser, it isn’t a single-step process but a journey comprising several critical stages. Each stage needs to provide appropriate feedback to users so they understand that more content and functionality is loading onto the screen. By showing page load progress, users feel that the site is loading faster and will be worth the wait, improving their experience. Osmani identified three phases users will see when a page loads:
+According to Addy Osmani in his article, “[The Cost of Javascript](https://medium.com/@addyosmani/the-cost-of-javascript-in-2018-7d8950fbb5d4),” when a webpage loads in your browser, it isn’t a single-step process but a journey comprising several critical stages. Each stage needs to provide appropriate feedback to users so they understand that more content and functionality is loading onto the screen. By showing page load progress, users feel that the site is loading faster and will be worth the wait, improving their experience. Osmani identified three phases users will see when a page loads:
 
 - Loading Feedback Phase - confirmation that the page is loading (Is it happening?)
 - Content Rendering Phase - see useful content quickly (Is it useful?), and finally,
@@ -21,11 +21,11 @@ According to Addy Osmani in his article, “The Cost of Javascript,” when a we
 
 Let’s explore the stages of the journey in more depth:
 
-1. Loading Feedback Phase (Is it happening?):
+1. **Loading Feedback Phase (Is it happening?)**:
    This phase provides users immediate feedback and confirmation that their request to load the webpage (after clicking a link or entering a URL) has been received by the system and the system is delivering that request to the browser. Visual indicators like a loading spinner, progress bar, or any form of initial feedback reassure users that system activity is happening. Metrics like First Contentful Paint (FCP) and First Paint (FP) indicate how quickly first content becomes visible to a user.
-2. Content Rendering Phase (Is it useful?) :
+2. **Content Rendering Phase (Is it useful?):**
    During this phase, the webpage renders useful content in the browser relatively quickly even if the page hasn’t fully loaded. Essential parts of the webpage, like main text, images, or primary navigation elements, appear. Users can start understanding page structure and potentially get some value from the displayed content, even if they can’t yet interact with all page elements.
-3. Interactive Phase (Is it usable?):
+3. **Interactive Phase (Is it usable?):**
    This final phase of the page load journey indicates to the user that the page is fully functional. All resources, including JavaScript and CSS, have been loaded, parsed, and executed, and users can interact with it smoothly without timing delays. Users can complete activities like clicking buttons and filling out forms. The Time to Interactive (TTI) metric is typical for this phase.
 
 For this article, I introduce measurement tools to determine how quickly a browser’s page load journey happens, outline key metrics to indicate where trouble may be happening, and provide recommendations to improve frontend performance.
@@ -39,7 +39,8 @@ As a developer, you have the power to ensure your site meets key metrics by usin
 - [PerformanceObserver](https://developer.mozilla.org/en-US/docs/Web/API/PerformanceObserver)
 
 I prefer to use PerformanceObserver because it integrates well with other APIs and tools that developers might use for performance analysis and optimization.
-Here, we’ll list and explain the core Web Vitals and important performance metrics supported by PerformanceObserve.
+
+Here, we’ll list and explain the core Web Vitals and important performance metrics supported by PerformanceObserver.
 
 ## Web Vitals
 
@@ -139,7 +140,7 @@ Following are explanations and descriptions of the metrics:
 
 | Element         | Description                                                                      |
 | --------------- | -------------------------------------------------------------------------------- |
-| duration        | Represents the time from startTime to the next rendering paint. paint.           |
+| duration        | Represents the time from startTime to the next rendering paint.                  |
 | processingStart | Measures the time between a user interaction and the start of the event handler. |
 | processingEnd   | Measures the time taken by the event handler to run.                             |
 | target          | Returns the DOM associated with the event.                                       |
@@ -163,7 +164,8 @@ INP is influenced only by the following events:
 - Taps on devices with touch screens
 - Pressing a key on a physical keyboard or a on-screen keyboard
   Relationship with FID:
-  INP may sound like FID, but there is a notable difference–INP considers all page interactions, whereas FID only considers the first interaction. INP comprehensively assesses responsiveness by sampling all interactions on a page, making INP a more reliable overall responsiveness metric compared to FID.
+
+  **INP may sound like FID, but there is a notable difference–INP considers all page interactions, whereas FID only considers the first interaction. INP comprehensively assesses responsiveness by sampling all interactions on a page, making INP a more reliable overall responsiveness metric compared to FID**.
 
 Since the Performance API does not provide responsiveness information for INP, specific examples are not provided here. For information measuring this metric, please refer to [this article at Google's web.dev resource](https://web.dev/articles/inp#how_is_inp_different_from_first_input_delay_fid).
 
@@ -196,9 +198,10 @@ In this example, CLS is represented by the value 0, which is considered good acc
 
 Tasks that block the main thread for over 50 milliseconds can lead to various adverse effects, including delayed responses to events and stuttering animations. When long tasks occupy the main thread, the browser cannot promptly respond to user input and handle other events, affecting the user experience.
 Possible causes for these challenges include:
-Long-running event handlers.
-Costly reflows and other re-rendering operations, such as DOM manipulations, animations, etc.
-Long-running loops exceeding 50 milliseconds.
+
+- Long-running event handlers.
+- Costly reflows and other re-rendering operations, such as DOM manipulations, animations, etc.
+- Long-running loops exceeding 50 milliseconds.
 
 ```ts
 const observer = new PerformanceObserver((list) => {
@@ -214,10 +217,12 @@ observer.observe({ type: "longtask", buffered: true });
 
 Following are explanations and descriptions of the metrics:
 
-| Metric                | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 |
-| --------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| duration              | Represents the duration of the task, i.e., the time elapsed from start to finish.                                                                                                                                                                                                                                                                                                                                                                                                                                           |
-| TaskAttributionTiming | This is an object associated with Long Tasks, used to track and attribute the execution of long tasks. This object may contain detailed information about the long task, such as its source, triggering events, etc. Through this object, developers can gain a better understanding of the context and reasons for long tasks, facilitating performance optimization and debugging. Because long tasks significantly impact user experience, they are highlighted separately, even though they are not part of Web Vitals. |
+| Metric                | Description                                                                                                                                                                                                                                                                                                                                                                          |
+| --------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| duration              | Represents the duration of the task, i.e., the time elapsed from start to finish.                                                                                                                                                                                                                                                                                                    |
+| TaskAttributionTiming | This is an object associated with Long Tasks, used to track and attribute the execution of long tasks. This object may contain detailed information about the long task, such as its source, triggering events, etc. Through this object, developers can gain a better understanding of the context and reasons for long tasks, facilitating performance optimization and debugging. |
+
+Because long tasks significantly impact user experience, they are highlighted separately, even though they are not part of Web Vitals.
 
 ### 7. FP (First Paint) - Not a core metric
 
@@ -311,7 +316,8 @@ And, as we know, faster page load times contribute to better SEO rankings.
   ```
 
   Typically with this code snippet, we also include the following information:
-  a. If the resource belongs to user-specific content, it can be specified as private; otherwise, it is public. One way to determine if a resource is personal data is to check if the Authorization field is in the request header. If it is, that indicates that this displays personal data, and there is usually no need to explicitly specify it as private.
+  A. If the resource belongs to user-specific content, it can be specified as private; otherwise, it is public.
+  B. One way to determine if a resource is personal data is to check if the Authorization field is in the request header. If it is, that indicates that this displays personal data, and there is usually no need to explicitly specify it as private.
 
   Additionally, if the cache control header includes “must-revalidate,” it indicates that this is personal data. This means that before each resource retrieval, it needs to be validated for freshness, using the new data if it is new or the cached old data if it is not. This approach helps ensure the real-time and consistent handling of personal data.
 
@@ -347,9 +353,9 @@ CDN is a distributed server network that caches resources from the origin server
 
 Code minimization involves reducing the size of your codebase by removing unnecessary characters. Consequently, LCP and FCP benefit from quicker resource loading, and reduced file sizes lead to less strain on the main thread, indirectly improving FID and INP. Additionally, minimizing code can decrease the overall load time and reduce the chances of layout shifts, positively influencing CLS.
 
-- To minimize and compress JavaScript code, we currently utilize the Terser tool. This tool includes removing unused code (Tree Shaking), shortening variable names, and eliminating spaces and uglifiers. This optimization technique has been applied in both Rollup.js and Webpack to reduce code volume and decrease download time.
-- Regarding CSS, in Webpack, the mini-css-extract-plugin plugin is commonly employed for optimization. This plugin independently extracts a single CSS file from each JavaScript file that contains CSS, enabling styles to be loaded separately. Furthermore, the plugin supports on-demand loading and Source Maps, providing a more flexible and efficient way for style management.
-- For image resources, using the WebP format instead of JPEG and PNG can significantly reduce file sizes, typically achieving a reduction of 25%-35%.\*\* Optimizing image loading with Content Delivery Networks (CDN) has a notable effect, often reducing image file sizes by 40%-80%. To account for compatibility, the following approaches can be employed:
+- **To minimize and compress JavaScript code, we currently utilize the Terser tool.** This tool includes removing unused code (Tree Shaking), shortening variable names, and eliminating spaces and uglifiers. This optimization technique has been applied in both Rollup.js and Webpack to reduce code volume and decrease download time.
+- **Regarding CSS, in Webpack, the mini-css-extract-plugin plugin is commonly employed for optimization.** This plugin independently extracts a single CSS file from each JavaScript file that contains CSS, enabling styles to be loaded separately. Furthermore, the plugin supports on-demand loading and Source Maps, providing a more flexible and efficient way for style management.
+- **For image resources, using the WebP format instead of JPEG and PNG can significantly reduce file sizes, typically achieving a reduction of 25%-35%.** Optimizing image loading with Content Delivery Networks (CDN) has a notable effect, often reducing image file sizes by 40%-80%. To account for compatibility, the following approaches can be employed:
   ````html
   <picture>
     <source type="image/webp" srcset="flower.webp" />
@@ -371,84 +377,89 @@ The HTTP protocol has undergone several version updates, primarily HTTP/1.0, HTT
 
 ![comparison with a different version of http](comparison-with-a-different-version-of-http.png#center)
 
-For web developers, adopting HTTP/3 has yet to bringabout significant changes, as HTTP/3 still adheres to the core principles of the HTTP protocol. With the support of the QUIC (Quick UDP Internet Connections) protocol, HTTP/3 provides lower latency during connection establishment, improves multiplexing efficiency, and introduces a more flexible flow control mechanism. Due to these advantages, HTTP/3 shows performance improvements. However, as the implementation of HTTP/3 mainly occurs at the protocol level, web developers typically do not need extensive application changes, so HTTP/3 is not often included in comparisons.
+For web developers, adopting HTTP/3 has yet to bring about significant changes, as HTTP/3 still adheres to the core principles of the HTTP protocol. With the support of the QUIC (Quick UDP Internet Connections) protocol, HTTP/3 provides lower latency during connection establishment, improves multiplexing efficiency, and introduces a more flexible flow control mechanism. Due to these advantages, HTTP/3 shows performance improvements. However, as the implementation of HTTP/3 mainly occurs at the protocol level, web developers typically do not need extensive application changes, so HTTP/3 is not often included in comparisons.
 
-HTTP/2.0 introduced the Server Push feature, a significant advancement that greatly improves l frontend performance. This feature allows servers to proactively push resources to the frontend. For instance, when the client requests an HTML file, the server can push CSS and JavaScript resources directly to the client, saving the time it takes for the client to initiate requests. This proactive approach to resource delivery can significantly enhance frontend performance.
+HTTP/2.0 introduced the Server Push feature, a significant advancement that greatly improves frontend performance. This feature allows servers to proactively push resources to the frontend. For instance, when the client requests an HTML file, the server can push CSS and JavaScript resources directly to the client, saving the time it takes for the client to initiate requests. This proactive approach to resource delivery can significantly enhance frontend performance.
 
-However, it's important to note that the Chrome browser currently does not support HTTP/2 Server Push. Detailed support information can be found at this link. However, developers can still leverage other performance optimization techniques, such as resource concatenation, caching strategies, etc., to enhance frontend loading performance.
+However, it's important to note that the Chrome browser currently does not support HTTP/2 Server Push. Detailed support information can be found at this [link](https://developer.chrome.com/blog/removing-push). However, developers can still leverage other performance optimization techniques, such as resource concatenation, caching strategies, etc., to enhance frontend loading performance.
 ::: center
 ![server push](http-server-push.png =300x)
 :::
 The above description outlines the evolution of the HTTP protocol, all aimed at reducing loading times and improving request efficiency. Traditional performance optimization techniques emerged, such as resource inlining and image spiriting. These techniques bundle multiple small files into a single large file and transmit them over a single connection, helping reduce the overhead of transmission headers. This can significantly reduce the initial load time, improving LCP and FCP. Efficient bundling can also minimize the overhead of repeated downloads and parsing, benefiting FID and INP. During the era of HTTP/1.0 and HTTP/1.1, such techniques were considered effective performance optimization practices.
 
-With the introduction of HTTP/2.0, the need for traditional performance optimization techniques, such as bundling, has significantly reduced. HTTP/2.0’s ability to allow the simultaneous request of multiple resources on the same connection without establishing a separate TCP connection for each resource has made bundling optimization and other "hack" techniques less necessary because multiplexing on a single connection significantly improves the efficiency of parallel resource transmission. While HTTP/2 reduces the need forbundling, the strategy should be evaluated on a case-by-case basis, considering specific performance characteristics and requirements.
+With the introduction of HTTP/2.0, the need for traditional performance optimization techniques, such as bundling, has significantly reduced. HTTP/2.0’s ability to allow the simultaneous request of multiple resources on the same connection without establishing a separate TCP connection for each resource has made bundling optimization and other "hack" techniques less necessary because multiplexing on a single connection significantly improves the efficiency of parallel resource transmission. While HTTP/2 reduces the need for bundling, the strategy should be evaluated on a case-by-case basis, considering specific performance characteristics and requirements.
 
 ### 6. Critical Path Optimization
 
 Four approaches to optimizing the frontend based on page load order exist.
 
-- Render-Blocking Resources
-    As you may know, loading CSS and JavaScript on a page can block the rendering of other page elements until all the CSS and JavaScript elements are loaded (see the diagram below). That makes it crucial to identify and optimize the loading order of key resources based on their business importance to enhance load times.
-    Currently, a non-standard attribute, blocking=render, allows developers to explicitly designate a `link`,`script`, or `style` element as rendering-blocking, which will block rendering until that specific element is processed. However, the key distinction is that using this attribute permits the parser to process the rest of the page. This feature gives developers more control over the rendering behavior of critical resources, allowing for a fine-tuned approach to optimizing the loading sequence.
-    We can significantly enhance key performance metrics like LCP, FCP, FID, INP, and CLS by optimizing or deferring render-blocking resources, such as CSS and synchronous JavaScript. This leads to faster page rendering, improved load times, and a better overall user experience.
+- **Render-Blocking Resources**
 
-    ![render process](render-process.png#center)
+  As you may know, loading CSS and JavaScript on a page can block the rendering of other page elements until all the CSS and JavaScript elements are loaded (see the diagram below). That makes it crucial to identify and optimize the loading order of key resources based on their business importance to enhance load times.
 
-- Browser Resource Hint
+  Currently, a non-standard attribute, blocking=render, allows developers to explicitly designate a `link`,`script`, or `style` element as rendering-blocking, which will block rendering until that specific element is processed. However, the key distinction is that using this attribute permits the parser to process the rest of the page. This feature gives developers more control over the rendering behavior of critical resources, allowing for a fine-tuned approach to optimizing the loading sequence.
 
-    These commands help developers optimize page loading times by informing the browser how to load and prioritize resources. These approaches can significantly improve key performance metrics like LCP, FCP, FID, and INP by proactively fetching and loading critical resources. The specific operations are as follows:
+  We can significantly enhance key performance metrics like LCP, FCP, FID, INP, and CLS by optimizing or deferring render-blocking resources, such as CSS and synchronous JavaScript. This leads to faster page rendering, improved load times, and a better overall user experience.
 
-    - prefetch: Used for the browser to fetch and cache resources that might be used in future subpage loads, thereby reducing loading times. This mechanism has a lower priority and is suitable for resource fetching during main thread idle periods.
-    - dns-prefetch: Optimizes the time to resolve a domain to an IP address (DNS Lookup), especially useful when loading resources from third-party domains.
-    - preconnect: Encompasses steps like DNS query, TLS negotiation, and TCP handshake, thoroughly preparing the connection to a remote server.
+  ![render process](render-process.png#center)
 
-      It is recommended to use DNS Prefetch and preconnect together, but careful configuration is advised to avoid overuse and potential resource wastage.
+- **Browser Resource Hint**
 
-      ```html
-      <link rel="preconnect" href="https://third-party-domain.com" />
-      <link rel="dns-prefetch" href="https://third-party-domain.com" />
-      ```
+  These commands help developers optimize page loading times by informing the browser how to load and prioritize resources. These approaches can significantly improve key performance metrics like LCP, FCP, FID, and INP by proactively fetching and loading critical resources. The specific operations are as follows:
 
-      The test results are shown in the following diagram:
-      ![compared-pre-render](compared-pre-render.png)
+  - prefetch: Used for the browser to fetch and cache resources that might be used in future subpage loads, thereby reducing loading times. This mechanism has a lower priority and is suitable for resource fetching during main thread idle periods.
+  - dns-prefetch: Optimizes the time to resolve a domain to an IP address (DNS Lookup), especially useful when loading resources from third-party domains.
+  - preconnect: Encompasses steps like DNS query, TLS negotiation, and TCP handshake, thoroughly preparing the connection to a remote server.
 
-    - prerender: The prerender feature is like prefetch, but this command pre-renders the entire page instead of specific, individual resources.
-    - preload: preload informs the browser that upon page load, the system should download resources as soon as possible. This is typically used for critical resources that need to be downloaded in advance, such as crucial CSS or images affecting Largest Contentful Paint (LCP).
+    It is recommended to use DNS Prefetch and preconnect together, but careful configuration is advised to avoid overuse and potential resource wastage.
 
-- Defer Vs Async
+    ```html
+    <link rel="preconnect" href="https://third-party-domain.com" />
+    <link rel="dns-prefetch" href="https://third-party-domain.com" />
+    ```
 
-    Async and defer allow external scripts to load page elements without blocking the HTML parser while scripts (including inline scripts) with type "module" are deferred automatically.
-    ![script attribute](script-attributes.png)
+    The test results are shown in the following diagram:
+    ![compared-pre-render](compared-pre-render.png)
 
-- Fetch Priority API
-    As a developer, you can indicate the priority of a resource using the `fetchpriority` attribute of the Fetch Priority API. This attribute can be employed within `<link>`, `<img>`, and `<script>` elements.
-    - high: Fetches the image with higher priority compared to other images.
-    - low: Fetches the image with lower priority compared to other images.
-    - auto: Default mode, indicating no preference for fetch priority. The browser decides the most advantageous approach for the user.
+  - prerender: The prerender feature is like prefetch, but this command pre-renders the entire page instead of specific, individual resources.
+  - preload: preload informs the browser that upon page load, the system should download resources as soon as possible. This is typically used for critical resources that need to be downloaded in advance, such as crucial CSS or images affecting Largest Contentful Paint (LCP).
+
+- **Defer Vs Async**
+
+  Async and defer allow external scripts to load page elements without blocking the HTML parser while scripts (including inline scripts) with type "module" are deferred automatically.
+  ![script attribute](script-attributes.png)
+
+- **Fetch Priority API**
+
+  As a developer, you can indicate the priority of a resource using the `fetchpriority` attribute of the Fetch Priority API. This attribute can be employed within `<link>`, `<img>`, and `<script>` elements.
+
+  - **high**: Fetches the image with higher priority compared to other images.
+  - **low**: Fetches the image with lower priority compared to other images.
+  - **auto**: Default mode, indicating no preference for fetch priority. The browser decides the most advantageous approach for the user.
 
 ### 7. Img
 
-The img embeds an image into a webpage in HTML. This tag is self-closing, meaning it does not require an end tag.
-Here are some key attributes and usages of the <img> tag to improve performance:
+The \<img\> embeds an image into a webpage in HTML. This tag is self-closing, meaning it does not require an end tag.
+Here are some key attributes and usages of the \<img\> tag to improve performance:
 
-- `Loading`: The loading attribute informs the browser how to load images.
+- **`Loading`**: The loading attribute informs the browser how to load images.
 
-  - `eager`: Loads the image immediately, regardless of its visibility.
-  - `lazy`: Delays the image loading until it appears in the viewport, saving bandwidth. It is recommended that width and height attributes be included in the images.
+  - **`eager`**: Loads the image immediately, regardless of its visibility.
+  - **`lazy`**: Delays the image loading until it appears in the viewport, saving bandwidth. It is recommended that width and height attributes be included in the images.
 
 - The `fetchpriority` attribute can specify the priority of loading images.
 
-Using these attributes based on the business value of images (one example is loading ads first for encouraged engagement and revenue), you can optimize Web Core Vitals metrics and enhance overall performance. Preloading critical image resources can also be achieved using the link tag.
+Using these attributes based on the business value of images (one example is loading ads first for encouraged engagement and revenue), you can optimize Web Core Vitals metrics and enhance overall performance. Preloading critical image resources can also be achieved using the \<link\> tag.
 
-  ```html
-  <link
-    rel="preload"
-    fetchpriority="high"
-    as="image"
-    href="image.webp"
-    type="image/webp"
-  />
-  ```
+```html
+<link
+  rel="preload"
+  fetchpriority="high"
+  as="image"
+  href="image.webp"
+  type="image/webp"
+/>
+```
 
 - Size:
 
@@ -600,13 +611,13 @@ If the video serves as the Largest Contentful Paint (LCP) element, it's benefici
 
 Pre-rendering techniques such as Server-Side Rendering (SSR) and Static Site Generation (SSG) can significantly boost key performance metrics like LCP, FCP, FID, and INP. By generating HTML content on the server or at build time, these optimizations deliver fast initial page loads, improve content rendering, and enhance user interactivity, resulting in a superior user experience.
 
-1.  SSR (Server-Side Rendering)
+1.  **SSR (Server-Side Rendering)**
 
     Server-Side Rendering involves executing client application logic on the server and generating a response that contains the complete HTML markup in response to requests for HTML documents. By requesting relevant resource files on the server, SSR improves the initial page loading speed and enhances Search Engine Optimization (SEO) results. Although SSR requires additional server processing time and needs to regenerate for each page request, this trade-off is often worthwhile.
 
     Remember that network and device performance are out of your control as a developer, but server processing time can be managed and improved. In practice, the advantages of SSR often outweigh its drawbacks, especially when considering improvements to user experience and search engine rankings.
 
-2.  SSG (Static-Site Generation)
+2.  **SSG (Static-Site Generation)**
 
     Static-Site Generation is the process of compiling and rendering a website program during build time. It generates static files, including HTML files, JavaScript, and CSS assets. These static files are reused on each request without regeneration. By caching statically generated pages on a CDN, performance without additional configuration.
 
@@ -614,25 +625,25 @@ Pre-rendering techniques such as Server-Side Rendering (SSR) and Static Site Gen
 
 ### 10. Optimizing Javascript Execution
 
-**For UI changes, use `requestAnimationFrame`**
+For UI changes, use `requestAnimationFrame`
 `requestAnimationFrame` is called by the browser before the next repaint, and compared to `setInterval` or `setTimeout`, it can optimize more intelligently within the browser's frame rendering. Using `setInterval` or `setTimeout` may lead to the callback running at some point within a frame, potentially at the end of the frame, often resulting in missing a frame and causing interface stutter. `requestAnimationFrame `ensures that the callback is executed when the browser is ready for the next repaint, making the animation smoother.
-
-**Avoid long tasks, optimize code**
 
 Avoid long tasks and optimize code.
 Long tasks take more than 50 milliseconds to execute and can be released on the Main Thread by:
 
-- Web Workers: Web Workers run in the background as independent threads with their own stack, heap memory, and message queue. Communication with the main thread can only be done through the `postMessage` method, and direct manipulation of the DOM is not possible. That makes Web Workers well-suited for tasks that do not require direct interaction with the DOM.
-  For example, a Web Worker can perform operations such as sorting or searching on large datasets, avoiding blocking the main thread with computationally intensive tasks and ensuring the responsiveness of the main thread.
-  By executing these time-consuming tasks in a Web Worker, the performance and responsiveness of the main thread be improved, and it also takes better advantage of the performance benefits of multi-core processors. Separating computational tasks from user interface operations helps improve the overall user experience and ensures smooth page operation.
+- **Web Workers**: Web Workers run in the background as independent threads with their own stack, heap memory, and message queue. Communication with the main thread can only be done through the `postMessage` method, and direct manipulation of the DOM is not possible. That makes Web Workers well-suited for tasks that do not require direct interaction with the DOM.
 
-- Service Worker: A Service Worker is a script that runs in the background and intercepts or handles network requests. By making reasonable use of Service Workers, reducing dependence on the main thread and improving application performance, resources can be cached.
+For example, a Web Worker can perform operations such as sorting or searching on large datasets, avoiding blocking the main thread with computationally intensive tasks and ensuring the responsiveness of the main thread.
 
-- Long Task: To ensure that long-running tasks do not block the main thread, we can break these long tasks into small, asynchronously executed sub-tasks. Such strategies include:
+By executing these time-consuming tasks in a Web Worker, the performance and responsiveness of the main thread be improved, and it also takes better advantage of the performance benefits of multi-core processors. Separating computational tasks from user interface operations helps improve the overall user experience and ensures smooth page operation.
 
-  1. Using `requestIdleCallback` as an optimization schedules the execution of low-priority or background tasks when the main thread is idle, improving page responsiveness. This method helps ensure that task execution does not interfere with user interaction and page rendering, but occurs when the main thread is idle.
+- **Service Worker**: A Service Worker is a script that runs in the background and intercepts or handles network requests. By making reasonable use of Service Workers, reducing dependence on the main thread and improving application performance, resources can be cached.
 
-  2. Manually deferring code execution can cause tasks to be placed at the end of the queue without being able to specify priority directly. The code might look like:
+- **Long Task**: To ensure that long-running tasks do not block the main thread, we can break these long tasks into small, asynchronously executed sub-tasks. Such strategies include:
+
+  1. **Using `requestIdleCallback` as an optimization** schedules the execution of low-priority or background tasks when the main thread is idle, improving page responsiveness. This method helps ensure that task execution does not interfere with user interaction and page rendering, but occurs when the main thread is idle.
+
+  2. **Manually deferring code execution can cause tasks to be placed at the end of the queue without being able to specify priority directly.** The code might look like:
 
      ```ts
      function yieldToMain() {
@@ -656,21 +667,24 @@ Long tasks take more than 50 milliseconds to execute and can be released on the 
      }
      ```
 
-  3. Scheduler.postTask is a mechanism that allows a developer to schedule tasks more granularly and determine task priorities in the browser, ensuring that low-priority tasks can release the main thread. Although most browsers do not fully support it, detailed information can be found [in this MDN resource](https://developer.mozilla.org/en-US/docs/Web/API/Scheduler/postTask).
+  3. **Scheduler.postTask** is a mechanism that allows a developer to schedule tasks more granularly and determine task priorities in the browser, ensuring that low-priority tasks can release the main thread. Although most browsers do not fully support it, detailed information can be found [in this MDN resource](https://developer.mozilla.org/en-US/docs/Web/API/Scheduler/postTask).
 
-  4. Scheduler.yield is typically used to release the main thread. ([Learn more in this Chrome article](https://developer.chrome.com/blog/introducing-scheduler-yield-origin-trial)).
+  4. **Scheduler.yield** is typically used to release the main thread. ([Learn more in this Chrome article](https://developer.chrome.com/blog/introducing-scheduler-yield-origin-trial)).
 
-     This means that the main thread remains busy during the execution of microtasks and does not release itself to perform other tasks. A detailed visualization can be seen [here](https://www.jsv9000.app/). This mechanism is crucial when dealing with asynchronous tasks because it ensures that the logic in microtasks is executed immediately after the current task is finished. This is particularly useful for handling the results of Promises or other asynchronous operations, but it's important to note that it does not release the main thread.
+  This means that the main thread remains busy during the execution of microtasks and does not release itself to perform other tasks. A detailed visualization can be seen [here](https://www.jsv9000.app/). This mechanism is crucial when dealing with asynchronous tasks because it ensures that the logic in microtasks is executed immediately after the current task is finished. This is particularly useful for handling the results of Promises or other asynchronous operations, but it's important to note that it does not release the main thread.
 
-     ![js execute stack](js-execute-stack.png)
+  For example, when using Promise to create a microtask, such a task is placed in the microtask queue, waiting to be executed immediately after the main thread finishes execution. Even microtasks created through queueMicrotask will be executed as the first one.
 
-  5. Batch processing: React's virtual DOM mechanism employs batch processing as an optimization strategy. It applies all changes to the virtual DOM and then submits them to the browser for redrawing the first time, significantly reducing actual DOM manipulations. This approach effectively releases the main thread, enhancing performance. Batch processing is beneficial when there are many DOM operations or frequent changes. Consolidating multiple operations into a single batch reduces the number of browser redraws, optimizing performance. This mechanism helps improve page responsiveness in React, avoiding unnecessary, redundant computations and rendering.
+  ![js execute stack](js-execute-stack.png)
+
+  5. **Batch processing**: React's virtual DOM mechanism employs batch processing as an optimization strategy. It applies all changes to the virtual DOM and then submits them to the browser for redrawing the first time, significantly reducing actual DOM manipulations. This approach effectively releases the main thread, enhancing performance. Batch processing is beneficial when there are many DOM operations or frequent changes. Consolidating multiple operations into a single batch reduces the number of browser redraws, optimizing performance. This mechanism helps improve page responsiveness in React, avoiding unnecessary, redundant computations and rendering.
 
   Implementing strategies such as using requestAnimationFrame and avoiding long tasks can significantly enhance key performance metrics like LCP, FCP, FID, and INP. By ensuring smoother animations, reducing central thread blocking, and improving interaction responsiveness, these optimizations lead to a faster, more interactive, and user-friendly web experience.
 
 ## Conclusion
 
 Frontend performance optimization is an ongoing process that requires continuous attention and improvement. Considering the comprehensive strategies mentioned above, you can improve your website's speed, interactivity, and user satisfaction.
+
 By continuously monitoring frontend performance using tools, evaluating metrics, and taking appropriate improvement measures, you will ensure that your website consistently delivers an outstanding user experience. In today's competitive internet landscape, frontend performance optimization is indispensable for success.
 
 ## References
