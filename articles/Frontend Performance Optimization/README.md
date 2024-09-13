@@ -6,7 +6,7 @@ createTime: 2024-05-23
 tags: ["Frontend", "Performance"]
 thumb: "thumb.png"
 thumb_h: "thumb_h.png"
-intro: "If your site is loading slowly, what can you do to troubleshoot and fix what’s causing those long page load times? Here, we provide a way to approach front end troubleshooting and strategies to improve page load results. To help visualize how page loading works, we explain the page load journey including associated metrics for each step. Read on to discover how to improve your front end site experience using seven Web Vitals (some of which are Core Metrics) and ten optimization strategies."
+intro: "If your site is loading slowly, what can you do to troubleshoot and fix what’s causing those long page load times? Here, we provide a way to approach frontend troubleshooting and strategies to improve page load results. To help visualize how page loading works, we explain the page load journey including associated metrics for each step. Read on to discover how to improve your frontend site experience using seven Web Vitals (some of which are Core Metrics) and ten optimization strategies."
 ---
 
 In the current digital landscape, a website's performance is a critical factor in attracting and retaining users. With users expecting pages to load within a few seconds, sites and apps that deliver fast-loading, resolution-responsive pages tend to retain visitors for longer and experience improved conversion rates. Frontend performance optimization plays a pivotal role in achieving these outcomes. This article delves into key frontend performance optimization strategies that can enhance website speed, interactivity, and user satisfaction.
@@ -32,15 +32,15 @@ For this article, I introduce measurement tools to determine how quickly a brows
 
 ## Measurement Tools
 
-As a developer, you have the power to ensure your site meets key metrics by using a few common front end development measurement tools that are used to ensure that we are meeting key metrics.
+As a developer, you have the power to ensure your site meets key metrics by using a few common frontend development measurement tools that are used to ensure that we are meeting key metrics.
 
 - Chrome Developer Tools: [Lighthouse](https://developer.chrome.com/docs/lighthouse/overview), [Performance](https://developer.chrome.com/docs/devtools/performance/reference)
 - [WebPageTest](https://www.webpagetest.org/)
 - [PerformanceObserver](https://developer.mozilla.org/en-US/docs/Web/API/PerformanceObserver)
 
-I prefer to use PerformanceObserver because it integrates well with other APIs and tools that developers might use for performance analysis and optimization.
+I prefer to use `PerformanceObserver` because it integrates well with other APIs and tools that developers might use for performance analysis and optimization.
 
-Here, we’ll list and explain the core Web Vitals and important performance metrics supported by PerformanceObserver.
+Here, we’ll list and explain the core Web Vitals and important performance metrics supported by `PerformanceObserver`.
 
 ## Web Vitals
 
@@ -73,10 +73,10 @@ observer.observe({ type: "largest-contentful-paint", buffered: true });
 Following are explanations and descriptions of the metrics:
 | Element | Description |
 | ----------- | ------------------------------|
-| element | The current largest content rendering element. |
+| `element` | The current largest content rendering element. |
 | `loadingTime` | Loading time or time to download and display all content of a web page in a browser. |
 | `renderTime` | Rendering time, or how long it takes for a web page to load so the user can engage with the content and functionality. If it's a cross-origin request, it will be 0. |
-| `size` | The area of the element itself. |
+| `size` | The area of the `element` itself. |
 | `startTime` | If `renderTime` is not 0, it returns `renderTime`; otherwise, it returns `loadingTime`. |
 
 In this example, the LCP is represented by `loadingTime`, and its value is 1.6, which is considered good. It indicates that the largest content element (an image in this case) was successfully rendered within 1.6 seconds, meeting the criteria for a relatively good user experience.
@@ -85,7 +85,7 @@ In this example, the LCP is represented by `loadingTime`, and its value is 1.6, 
 
 **When to use in loading journey**: Loading Feedback Phase
 
-The FCP metric measures from when the user first navigates to the page to when any part of the page's content is rendered on the screen. FCP is a crucial, user-focused metric for assessing perceived load speed. It indicates the first moment in the page load journey when the user can see any content on the screen. A quick FCP reassures the user that progress is being made by loading the page. A more in-depth explanation is provided in this article. FP (First Paint) is a similar metric representing the time it takes for the first pixel to be painted on the screen.
+The FCP metric measures from when the user first navigates to the page to when any part of the page's content is rendered on the screen. FCP is a crucial, user-focused metric for assessing perceived load speed. It indicates the first moment in the page load journey when the user can see any content on the screen. A quick FCP reassures the user that progress is being made by loading the page. A more in-depth explanation is provided in this [article](https://web.dev/articles/fcp). FP (First Paint) is a similar metric representing the time it takes for the first pixel to be painted on the screen.
 
 ![FCP](fcp.png)
 ::: center
@@ -105,8 +105,8 @@ Following are explanations and descriptions of the metrics:
 
 ![FCP](fcp-object.png)
 
-| Element   | Description                                                                                |
-| --------- | ------------------------------------------------------------------------------------------ |
+| Element     | Description                                                                                |
+| ----------- | ------------------------------------------------------------------------------------------ |
 | `duration`  | Represents the time from `startTime` to the next rendering paint, which is 0 in this case. |
 | `startTime` | Returns the timestamp when the painting occurred.                                          |
 
@@ -138,9 +138,9 @@ observer.observe({ type: "first-input", buffered: true });
 
 Following are explanations and descriptions of the metrics:
 
-| Element         | Description                                                                      |
-| --------------- | -------------------------------------------------------------------------------- |
-| `duration`        | Represents the time from `startTime` to the next rendering paint.                  |
+| Element           | Description                                                                      |
+| ----------------- | -------------------------------------------------------------------------------- |
+| `duration`        | Represents the time from `startTime` to the next rendering paint.                |
 | `processingStar`t | Measures the time between a user interaction and the start of the event handler. |
 | `processingEnd`   | Measures the time taken by the event handler to run.                             |
 | `target`          | Returns the DOM associated with the event.                                       |
@@ -165,7 +165,7 @@ INP is influenced only by the following events:
 - Pressing a key on a physical keyboard or a on-screen keyboard
   Relationship with FID:
 
-  **INP may sound like FID, but there is a notable difference–INP considers all page interactions, whereas FID only considers the first interaction. INP comprehensively assesses responsiveness by sampling all interactions on a page, making INP a more reliable overall responsiveness metric compared to FID**.
+**INP may sound like FID, but there is a notable difference–INP considers all page interactions, whereas FID only considers the first interaction. INP comprehensively assesses responsiveness by sampling all interactions on a page, making INP a more reliable overall responsiveness metric compared to FID**.
 
 Since the Performance API does not provide responsiveness information for INP, specific examples are not provided here. For information measuring this metric, please refer to [this article at Google's web.dev resource](https://web.dev/articles/inp#how_is_inp_different_from_first_input_delay_fid).
 
@@ -184,10 +184,10 @@ Metric and measurement ranges
 
 Following are explanations and descriptions of the metrics:
 
-| Metric         | Description                                                                                                                                                                                                                                                 |
-| -------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `value`          | Returns the layout shift score calculated as: `layout shift score = impact fraction \* distance fraction`.                                                                                                                                                    |
-| `hadRecentInput` | Returns true if `lastInputTime` is less than 500 milliseconds ago.                                                                                                                                                                                            |
+| Metric           | Description                                                                                                                                                                                                                                                 |
+| ---------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `value`          | Returns the layout shift score calculated as: `layout shift score = impact fraction \* distance fraction`.                                                                                                                                                  |
+| `hadRecentInput` | Returns true if `lastInputTime` is less than 500 milliseconds ago.                                                                                                                                                                                          |
 | `lastInputTime`  | Returns the time of the most recent excluded user input, or 0 if there is none. Only unexpected shifts due to discrete events like clicking links, buttons, or showing loading indicators in response to user interaction are considered reasonable shifts. |
 
 In this example, CLS is represented by the value 0, which is considered good according to provided standards.
@@ -217,8 +217,8 @@ observer.observe({ type: "longtask", buffered: true });
 
 Following are explanations and descriptions of the metrics:
 
-| Metric                | Description                                                                                                                                                                                                                                                                                                                                                                          |
-| --------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| Metric                  | Description                                                                                                                                                                                                                                                                                                                                                                          |
+| ----------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
 | `duration`              | Represents the duration of the task, i.e., the time elapsed from start to finish.                                                                                                                                                                                                                                                                                                    |
 | `TaskAttributionTiming` | This is an object associated with Long Tasks, used to track and attribute the execution of long tasks. This object may contain detailed information about the long task, such as its source, triggering events, etc. Through this object, developers can gain a better understanding of the context and reasons for long tasks, facilitating performance optimization and debugging. |
 
@@ -249,10 +249,10 @@ observer.observe({ type: "paint", buffered: true });
 
 ![first paint](fp-object.png)
 
-| Element   | Description                                                                              |
-| --------- | ---------------------------------------------------------------------------------------- |
+| Element     | Description                                                                                |
+| ----------- | ------------------------------------------------------------------------------------------ |
 | `duration`  | Represents the time from `startTime` to the next rendering paint, which is 0 in this case. |
-| `startTime` | Returns the timestamp when the painting occurred.                                        |
+| `startTime` | Returns the timestamp when the painting occurred.                                          |
 
 Now, let’s say your Web Vital numbers could improve and you want to improve them. The following sections provide strategies to do that.
 
@@ -303,7 +303,7 @@ HTTP caching has several benefits.
 And, as we know, faster page load times contribute to better SEO rankings.
 [Read this article at MDN Web Docs](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Cache-Control#cache_directives) to get a more detailed understanding
 
-- For HTML files with a high update frequency, the directive settings commonly used are:
+- **For HTML files with a high update frequency, the directive settings commonly used are:**
 
   ```ts
   Cache-Control: no-cache
@@ -322,7 +322,7 @@ And, as we know, faster page load times contribute to better SEO rankings.
 
   Additionally, if the cache control header includes `must-revalidate`, it indicates that this is personal data. This means that before each resource retrieval, it needs to be validated for freshness, using the new data if it is new or the cached old data if it is not. This approach helps ensure the real-time and consistent handling of personal data.
 
-- For frontend static resources, such as bundled scripts and stylesheets, it is common to append a hash or version number to the file name. This practice aids in more effective cache management. For such static files, we typically set the following cache directives:
+- **For frontend static resources, such as bundled scripts and stylesheets, it is common to append a hash or version number to the file name.** This practice aids in more effective cache management. For such static files, we typically set the following cache directives:
 
   ```ts
   Cache-Control: public, immutable, max-age=31536000
@@ -333,11 +333,11 @@ And, as we know, faster page load times contribute to better SEO rankings.
   - **Max-age**: This directive can be added to both request and response to indicate the expiration time of the cached resource in seconds. For example, in the given example, `max-age=31536000` means the resource will expire in the client cache after 365 days.
   - **Immutable**: Exists in the response and indicates that the resource will not be updated before a new version is available. In this example, if the hash or version of the static file changes, the resource is considered new, triggering a re-fetch and storage. This pattern is known as [cache-busting](https://www.keycdn.com/support/what-is-cache-busting).
   - **ETag**: Used to identify whether a resource is a specified version, while `Last-Modified
-  `is a fallback for `ETag`, representing the last modification time on the server. `ETag` and `Last-Modified` allow the client to send a condition request to the server. If the resource has not changed, the server returns a 304 response, indicating that the cached version is still current. Otherwise, it sends a new request to fetch the resource from the server.
+`is a fallback for `ETag`, representing the last modification time on the server. `ETag` and `Last-Modified` allow the client to send a condition request to the server. If the resource has not changed, the server returns a 304 response, indicating that the cached version is still current. Otherwise, it sends a new request to fetch the resource from the server.
 
   `ETag`, `Last-Modified`, and `Immutable` can prevent resource revalidation, especially when reloading a page. These mechanisms help optimize cache management, ensuring the consistency and validity of resources.
 
-- Similar settings are typically used for resources such as favicon.ico, images, API endpoints, etc. Conditional requests are initiated using `Last-Modified` and `ETag` to check if the resource is up to date.
+- **Similar settings are typically used for resources such as favicon.ico, images, API endpoints, etc. Conditional requests are initiated using `Last-Modified` and `ETag` to check if the resource is up to date.**
 
   ```ts
   Cache-Control: no-cache
@@ -451,17 +451,17 @@ Here are some key attributes and usages of the \<img\> tag to improve performanc
 
 - **fetchpriority**:The `fetchpriority` attribute can specify the priority of loading images.
 
-Using these attributes based on the business value of images (one example is loading ads first for encouraged engagement and revenue), you can optimize Web Core Vitals metrics and enhance overall performance. Preloading critical image resources can also be achieved using the \<link\> tag.
+  Using these attributes based on the business value of images (one example is loading ads first for encouraged engagement and revenue), you can optimize Web Core Vitals metrics and enhance overall performance. Preloading critical image resources can also be achieved using the \<link\> tag.
 
-```html
-<link
-  rel="preload"
-  fetchpriority="high"
-  as="image"
-  href="image.webp"
-  type="image/webp"
-/>
-```
+  ```html
+  <link
+    rel="preload"
+    fetchpriority="high"
+    as="image"
+    href="image.webp"
+    type="image/webp"
+  />
+  ```
 
 - **Size**:
 
@@ -680,7 +680,7 @@ Avoid long tasks and optimize code. Long tasks take more than 50 milliseconds to
 
   5. **Batch processing**: React's virtual DOM mechanism employs batch processing as an optimization strategy. It applies all changes to the virtual DOM and then submits them to the browser for redrawing the first time, significantly reducing actual DOM manipulations. This approach effectively releases the main thread, enhancing performance. Batch processing is beneficial when there are many DOM operations or frequent changes. Consolidating multiple operations into a single batch reduces the number of browser redraws, optimizing performance. This mechanism helps improve page responsiveness in React, avoiding unnecessary, redundant computations and rendering.
 
-  Implementing strategies such as using `requestAnimationFrame` and avoiding long tasks can significantly enhance key performance metrics like LCP, FCP, FID, and INP. By ensuring smoother animations, reducing central thread blocking, and improving interaction responsiveness, these optimizations lead to a faster, more interactive, and user-friendly web experience.
+Implementing strategies such as using `requestAnimationFrame` and avoiding long tasks can significantly enhance key performance metrics like LCP, FCP, FID, and INP. By ensuring smoother animations, reducing central thread blocking, and improving interaction responsiveness, these optimizations lead to a faster, more interactive, and user-friendly web experience.
 
 ## Conclusion
 
