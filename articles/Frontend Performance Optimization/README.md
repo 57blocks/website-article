@@ -164,7 +164,7 @@ INP is influenced only by the following events:
 - Taps on devices with touch screens
 - Pressing a key on a physical keyboard or a on-screen keyboard
 
-Relationship with FID:INP may sound like FID, but there is a notable difference–INP considers **all** page interactions, whereas FID **only** considers the **first** interaction. INP comprehensively assesses responsiveness by sampling **all** interactions on a page, making INP a more reliable overall responsiveness metric compared to FID.
+Relationship with FID: INP may sound like FID, but there is a notable difference–INP considers ***all*** page interactions, whereas FID ***only*** considers the ***first*** interaction. INP comprehensively assesses responsiveness by sampling ***all*** interactions on a page, making INP a more reliable overall responsiveness metric compared to FID.
 
 Since the Performance API does not provide responsiveness information for INP, specific examples are not provided here. For information measuring this metric, please refer to [this article at Google's web.dev resource](https://web.dev/articles/inp#how_is_inp_different_from_first_input_delay_fid).
 
