@@ -163,9 +163,8 @@ INP is influenced only by the following events:
 - Mouse clicks
 - Taps on devices with touch screens
 - Pressing a key on a physical keyboard or a on-screen keyboard
-  Relationship with FID:
 
-**INP may sound like FID, but there is a notable difference–INP considers all page interactions, whereas FID only considers the first interaction. INP comprehensively assesses responsiveness by sampling all interactions on a page, making INP a more reliable overall responsiveness metric compared to FID**.
+Relationship with FID:INP may sound like FID, but there is a notable difference–INP considers **all** page interactions, whereas FID **only** considers the **first** interaction. INP comprehensively assesses responsiveness by sampling **all** interactions on a page, making INP a more reliable overall responsiveness metric compared to FID.
 
 Since the Performance API does not provide responsiveness information for INP, specific examples are not provided here. For information measuring this metric, please refer to [this article at Google's web.dev resource](https://web.dev/articles/inp#how_is_inp_different_from_first_input_delay_fid).
 
@@ -197,6 +196,7 @@ In this example, CLS is represented by the value 0, which is considered good acc
 **When to use in loading journey**: Loading Feedback Phase, Content Rendering Phase, Interactive Phase (or all phases)
 
 Tasks that block the main thread for over 50 milliseconds can lead to various adverse effects, including delayed responses to events and stuttering animations. When long tasks occupy the main thread, the browser cannot promptly respond to user input and handle other events, affecting the user experience.
+
 Possible causes for these challenges include:
 
 - Long-running event handlers.
@@ -672,11 +672,11 @@ Avoid long tasks and optimize code. Long tasks take more than 50 milliseconds to
 
   4. **Scheduler.yield** is typically used to release the main thread. ([Learn more in this Chrome article](https://developer.chrome.com/blog/introducing-scheduler-yield-origin-trial)).
 
-      This means that the main thread remains busy during the execution of microtasks and does not release itself to perform other tasks. A detailed visualization can be seen [here](https://www.jsv9000.app/). This mechanism is crucial when dealing with asynchronous tasks because it ensures that the logic in microtasks is executed immediately after the current task is finished. This is particularly useful for handling the results of Promises or other asynchronous operations, but it's important to note that it does not release the main thread.
+     This means that the main thread remains busy during the execution of microtasks and does not release itself to perform other tasks. A detailed visualization can be seen [here](https://www.jsv9000.app/). This mechanism is crucial when dealing with asynchronous tasks because it ensures that the logic in microtasks is executed immediately after the current task is finished. This is particularly useful for handling the results of Promises or other asynchronous operations, but it's important to note that it does not release the main thread.
 
-      For example, when using Promise to create a microtask, such a task is placed in the microtask queue, waiting to be executed immediately after the main thread finishes execution. Even microtasks created through queueMicrotask will be executed as the first one.
+     For example, when using Promise to create a microtask, such a task is placed in the microtask queue, waiting to be executed immediately after the main thread finishes execution. Even microtasks created through queueMicrotask will be executed as the first one.
 
-      ![js execute stack](js-execute-stack.png)
+     ![js execute stack](js-execute-stack.png)
 
   5. **Batch processing**: React's virtual DOM mechanism employs batch processing as an optimization strategy. It applies all changes to the virtual DOM and then submits them to the browser for redrawing the first time, significantly reducing actual DOM manipulations. This approach effectively releases the main thread, enhancing performance. Batch processing is beneficial when there are many DOM operations or frequent changes. Consolidating multiple operations into a single batch reduces the number of browser redraws, optimizing performance. This mechanism helps improve page responsiveness in React, avoiding unnecessary, redundant computations and rendering.
 
