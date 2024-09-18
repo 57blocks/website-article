@@ -31,6 +31,22 @@
       "slug": "image-search-with-ai-models"
     },
     {
+      "title": "Frontend Performance Optimization",
+      "author": [
+        "Bonnie Chen/ Front-End Engineer"
+      ],
+      "createTime": "2024-09-18T00:00:00.000Z",
+      "tags": [
+        "Frontend",
+        "Performance"
+      ],
+      "thumb": "thumb.png",
+      "thumb_h": "thumb_h.png",
+      "intro": "If your site is loading slowly, what can you do to troubleshoot and fix what’s causing those long page load times? Here, we provide a way to approach frontend troubleshooting and strategies to improve page load results. To help visualize how page loading works, we explain the page load journey including associated metrics for each step. Read on to discover how to improve your frontend site experience using seven Web Vitals (some of which are Core Metrics) and ten optimization strategies.",
+      "path": "articles/Frontend%20Performance%20Optimization/README.md",
+      "slug": "frontend-performance-optimization"
+    },
+    {
       "title": "Get a Print Quote in Seconds - Not Weeks",
       "subTitle": "When Thousands of Data Points Converge to a Decision Point in Less Than Three Seconds",
       "author": [
@@ -49,23 +65,6 @@
       "intro": "How do you approach creating a system that finds the right supplier and provides a price in less than three seconds using hundreds of data points? By approaching this system as an ERP system in the cloud, we were able to make the process fast and low cost. Here we share how we did it. ",
       "path": "articles/Get%20a%20Print%20Quote%20in%20Seconds%20-%20Not%20Weeks/README.md",
       "slug": "get-a-print-quote-in-seconds-not-weeks"
-    },
-    {
-      "devOnly": true,
-      "title": "Frontend Performance Optimization",
-      "author": [
-        "Bonnie Chen/ Front-End Engineer"
-      ],
-      "createTime": "2024-05-23T00:00:00.000Z",
-      "tags": [
-        "Frontend",
-        "Performance"
-      ],
-      "thumb": "thumb.png",
-      "thumb_h": "thumb_h.png",
-      "intro": "If your site is loading slowly, what can you do to troubleshoot and fix what’s causing those long page load times? Here, we provide a way to approach frontend troubleshooting and strategies to improve page load results. To help visualize how page loading works, we explain the page load journey including associated metrics for each step. Read on to discover how to improve your frontend site experience using seven Web Vitals (some of which are Core Metrics) and ten optimization strategies.",
-      "path": "articles/Frontend%20Performance%20Optimization/README.md",
-      "slug": "frontend-performance-optimization"
     },
     {
       "title": "What Makes a Good Vector Database? Comparing Pinecone and LanceDB",
