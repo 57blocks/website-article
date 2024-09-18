@@ -140,7 +140,7 @@ Following are explanations and descriptions of the metrics:
 | Element           | Description                                                                      |
 | ----------------- | -------------------------------------------------------------------------------- |
 | `duration`        | Represents the time from `startTime` to the next rendering paint.                |
-| `processingStar`t | Measures the time between a user interaction and the start of the event handler. |
+| `processingStart` | Measures the time between a user interaction and the start of the event handler. |
 | `processingEnd`   | Measures the time taken by the event handler to run.                             |
 | `target`          | Returns the DOM associated with the event.                                       |
 
@@ -163,7 +163,7 @@ INP is influenced only by the following events:
 - Taps on devices with touch screens
 - Pressing a key on a physical keyboard or a on-screen keyboard
 
-Relationship with FID: INP may sound like FID, but there is a notable difference–INP considers ***all*** page interactions, whereas FID ***only*** considers the ***first*** interaction. INP comprehensively assesses responsiveness by sampling ***all*** interactions on a page, making INP a more reliable overall responsiveness metric compared to FID.
+Relationship with FID: INP may sound like FID, but there is a notable difference–INP considers **_all_** page interactions, whereas FID **_only_** considers the **_first_** interaction. INP comprehensively assesses responsiveness by sampling **_all_** interactions on a page, making INP a more reliable overall responsiveness metric compared to FID.
 
 Since the Performance API does not provide responsiveness information for INP, specific examples are not provided here. For information measuring this metric, please refer to [this article at Google's web.dev resource](https://web.dev/articles/inp#how_is_inp_different_from_first_input_delay_fid).
 
@@ -357,14 +357,13 @@ Code minimization involves reducing the size of your codebase by removing unnece
 - **To minimize and compress JavaScript code, we currently utilize the Terser tool.** This tool includes removing unused code (Tree Shaking), shortening variable names, and eliminating spaces and uglifiers. This optimization technique has been applied in both Rollup.js and Webpack to reduce code volume and decrease download time.
 - **Regarding CSS, in Webpack, the mini-css-extract-plugin plugin is commonly employed for optimization.** This plugin independently extracts a single CSS file from each JavaScript file that contains CSS, enabling styles to be loaded separately. Furthermore, the plugin supports on-demand loading and Source Maps, providing a more flexible and efficient way for style management.
 - **For image resources, using the WebP format instead of JPEG and PNG can significantly reduce file sizes, typically achieving a reduction of 25%-35%.** Optimizing image loading with Content Delivery Networks (CDN) has a notable effect, often reducing image file sizes by 40%-80%. To account for compatibility, the following approaches can be employed:
-  ````html
+  ```html
   <picture>
     <source type="image/webp" srcset="flower.webp" />
     <source type="image/jpeg" srcset="flower.jpg" />
     <img src="flower.jpg" alt="" />
   </picture>
   ```
-  ````
 
 ### 5. Bundling Optimization
 
