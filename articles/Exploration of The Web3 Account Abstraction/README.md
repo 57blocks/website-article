@@ -74,7 +74,7 @@ Currently, there are many Web3 wallets that support AA (Account Abstraction). We
 1. [Dynamic](https://www.dynamic.xyz/)
 2. [Alchemy](https://accountkit.alchemy.com/)
 
-### Use the dynamic EAO wallet
+### Use the dynamic EOA wallet
 
 **WalletProvider.tsx**
 
