@@ -510,4 +510,4 @@ Leveraging the characteristic of AA, it can greatly lower the barrier to entry f
 3. [Account abstraction offers benefits like social recovery, role-based access control, batch transactions.](https://medium.com/@chainexeth/account-abstraction-offers-benefits-like-social-recovery-role-based-access-control-batch-78d18552c975)
 4. [What is Account Abstraction (ERC-4337)](https://transak.com/blog/what-is-account-abstraction)
 5. [Discover How Social Recovery Works For Account Abstraction Wallets](https://medium.com/portkey-aa-wallet-did/portkey-account-abstraction-wallet-and-social-recovery-mechanism-30f4a9fa1262)
-6. [Gihub Demo of this article](https://github.com/zhangzewei/account-abstraction-practice)
+6. [Github Demo of this article](https://github.com/zhangzewei/account-abstraction-practice)
