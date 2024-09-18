@@ -1,8 +1,7 @@
 ---
-devOnly: true
 title: "Frontend Performance Optimization"
 author: ["Bonnie Chen/ Front-End Engineer"]
-createTime: 2024-05-23
+createTime: 2024-09-18
 tags: ["Frontend", "Performance"]
 thumb: "thumb.png"
 thumb_h: "thumb_h.png"
