@@ -23,7 +23,7 @@ In light of the aforementioned limitations,the concept of AA (Account Abstractio
 
 The concept of AA (Account Abstraction) accounts was initially proposed in [EIP-2938](https://eips.ethereum.org/EIPS/eip-2938), which introduced a complete concept for account abstraction.
 
-Subsequently [EIP-3074](https://eips.ethereum.org/EIPS/eip-3074)，introduced a new OpCode AUTH (0xf6) and AUTHCALL (0xf7) for "authorizing smart contracts to act on behalf of EOAs".
+Subsequently [EIP-3074](https://eips.ethereum.org/EIPS/eip-3074), introduced a new OpCode AUTH (0xf6) and AUTHCALL (0xf7) for "authorizing smart contracts to act on behalf of EOAs".
 
 Finally [EIP-4337](https://eips.ethereum.org/EIPS/eip-4337) completed the task of account abstraction with maximum compatibility, and currently, we refer to AA wallets as Smart Wallets or Smart Contract Accounts (SCA).
 
@@ -42,7 +42,7 @@ Finally [EIP-4337](https://eips.ethereum.org/EIPS/eip-4337) completed the task o
 Account Abstraction is similar to a Contract Account with the characteristics of an EOA (Externally Owned Account), allowing transactions and accounts to be decoupled from the underlying layer and become the role of High-Level smart contracts.
 
 ### Private Key Management
-In the [EIP-4337](https://eips.ethereum.org/EIPS/eip-4337), due to the fact that Signature is no longer limited to Ethereum's traditional ECDSA, one can freely use the desired signature algorithm. Therefore, essentially, AA Wallet can support native multi-signature wallets (MultiSig Wallet), allowing for more flexible joint management of accounts by multiple parties. Additionally, it is also possible to reset the ownership of contract accounts through social recovery, using email verification such as Gmail to regain access to contract accounts(refer to [UniPass Wallet](https://docs.wallet.unipass.id/))。
+In the [EIP-4337](https://eips.ethereum.org/EIPS/eip-4337), due to the fact that Signature is no longer limited to Ethereum's traditional ECDSA, one can freely use the desired signature algorithm. Therefore, essentially, AA Wallet can support native multi-signature wallets (MultiSig Wallet), allowing for more flexible joint management of accounts by multiple parties. Additionally, it is also possible to reset the ownership of contract accounts through social recovery, using email verification such as Gmail to regain access to contract accounts refer to [UniPass Wallet](https://docs.wallet.unipass.id/).
 
 ### Enhanced security
 Smart contract makes the AA wallet can implement multi-signature authorization and other functions, requiring approval from multiple parties before the transaction is completed. Compared with relying solely on private keys, this reduces the risk of unauthorized access.
@@ -152,7 +152,7 @@ If you finished the code there, click the widget button, then you can login the 
 ![login](./log-in.png)
 
 ### Connect EOA wallet to AA wallet
-Refer to the [example](https://docs.dynamic.xyz/account-abstraction/aa-providers/alchemy) of Dynamic，which links the EOA wallet with Alchemy's AA wallet. The main task is to pass the Signer to Alchemy for its use. Alchemy will create a smart contract wallet called Client. Through the Client, you can obtain the wallet address and balance, and of course, you can also use the Client to conduct transactions.
+Refer to the [example](https://docs.dynamic.xyz/account-abstraction/aa-providers/alchemy) of Dynamic, which links the EOA wallet with Alchemy's AA wallet. The main task is to pass the Signer to Alchemy for its use. Alchemy will create a smart contract wallet called Client. Through the Client, you can obtain the wallet address and balance, and of course, you can also use the Client to conduct transactions.
 
 **SmartAccountClientProvider.tsx**
 ```tsx
