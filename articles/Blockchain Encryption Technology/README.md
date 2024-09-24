@@ -4,7 +4,7 @@ author: ["Bonnie Chen/ Engineer"]
 createTime: 2024-07-22
 tags: ["Blockchain", "Encryption"]
 thumb: "thumb.png"
-thumb_h: ""
+thumb_h: "thumb-h.png"
 intro: "The rise of blockchain technology has sparked widespread concern for the security of digital assets, with encryption technology becoming a critical defense in their protection. In this context, asymmetric encryption plays a pivotal role."
 ---
 
@@ -66,7 +66,9 @@ In elliptic curve cryptography, the private key is not derived through any calcu
 The generation of the public key is based on the private key. First, a common base point, denoted as _G_, is selected. Then, the private key _priv_ as a scalar is multiplied by the base point _G_, effectively adding _G_ to itself _priv_ times. The result of the scalar multiplication on the curve is another point, which serves as the public key, denoted as _P_ (_P_ = _Priv_ \* G). Here, \* represents scalar multiplication in the context of elliptic curves, distinct from traditional multiplication or exponentiation (_^_). Point addition and scalar multiplication on elliptic curves are uniquely defined operations, differing from conventional arithmetic rules.
 Deriving the private key from the public key in elliptic curve cryptography involves the elliptic curve discrete logarithm problem . Mathematically, this is an intractable problem, especially with large prime numbers. This inherent difficulty forms the trapdoor function, which is the foundation for the security in public key encryption and digital signature systems. The security of cryptographic algorithms fundamentally depends on this property.
 
-![Elliptic Curve Cryptography](./ecc.png)
+:::center
+![Elliptic Curve Cryptography](./ecc.png =500x500)
+:::
 
 #### Application of Elliptic Curves in Blockchain
 
