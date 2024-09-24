@@ -34,9 +34,9 @@ Finally [EIP-4337](https://eips.ethereum.org/EIPS/eip-4337) completed the task o
 4. The Bundler selects some User Operations from the mempool for bundling.
 5. After bundling, it is sent to the miner for mining and then added to the blockchain.
 
-![ERC-4337-overview.png](./ERC-4337-overview.jpg)
+![ERC-4337-overview.png](./ERC-4337-overview.png)
 
-![ERC-4337-overview.png](./ERC-4337-invocation-flow.jpg)
+![ERC-4337-overview.png](./ERC-4337-invocation-flow.png)
 
 ## The advantage of Account Abstraction
 Account Abstraction is similar to a Contract Account with the characteristics of an EOA (Externally Owned Account), allowing transactions and accounts to be decoupled from the underlying layer and become the role of High-Level smart contracts.
