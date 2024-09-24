@@ -3,7 +3,7 @@ title: "Blockchain Encryption Technology: A Critical Defense for Protecting Digi
 author: ["Bonnie Chen/ Engineer"]
 createTime: 2024-07-22
 tags: ["Blockchain", "Encryption"]
-thumb: ""
+thumb: "thumb.png"
 thumb_h: ""
 intro: "The rise of blockchain technology has sparked widespread concern for the security of digital assets, with encryption technology becoming a critical defense in their protection. In this context, asymmetric encryption plays a pivotal role."
 ---
