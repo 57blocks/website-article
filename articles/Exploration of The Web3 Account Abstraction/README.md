@@ -149,8 +149,6 @@ export default function Home() {
 ```
 If you finished the code there, click the widget button, then you can login the EOA wallet you like, in this demo, we use the [Metamask](https://metamask.io/).
 
-![login](./log-in.png)
-
 ### Connect EOA wallet to AA wallet
 Refer to the [example](https://docs.dynamic.xyz/account-abstraction/aa-providers/alchemy) of Dynamic, which links the EOA wallet with Alchemy's AA wallet. The main task is to pass the Signer to Alchemy for its use. Alchemy will create a smart contract wallet called Client. Through the Client, you can obtain the wallet address and balance, and of course, you can also use the Client to conduct transactions.
 
