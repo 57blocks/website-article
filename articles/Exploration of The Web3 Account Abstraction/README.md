@@ -312,6 +312,7 @@ export default function AbstractAcount() {
 ![charge](./charge.png)
 
 Use the transaction functionality provided by Wagmi to fund the AA wallet. After the funding is completed, the interface will refresh to display the amount that was just funded, which you can view at the corresponding address.
+
 ![charge-result](./charge-result.png)
 ![charge-etherscan](./charge-etherscan.png)
 
