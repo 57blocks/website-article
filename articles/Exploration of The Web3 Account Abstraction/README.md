@@ -6,22 +6,22 @@ createTime: 2024-08-05
 tags: ["Web3", "Account Abstraction", "Wallet"]
 thumb: "thumb.png"
 thumb_h: "thumb_h.png"
-intro: "This article introduces how account abstraction comes out, its workflow, and its features and explores them though front-end code."
+intro: "This article introduces how account abstraction comes out, its workflow, and its features and explores them through front-end code."
 ---
-## How The Account Abstraction Comes Out
-Ethereum has two types of accounts: Externally Owned Accounts (EOAs) and Contract Accounts (CAs). Only EOAs can initiate a transaction (TX) whereas CAs can only be called by EOAs and then interact with other accounts.  EOAs are the main drivers of all transactions on the Ethereum network.
+## How Account Abstraction Comes Out
+Ethereum has two types of accounts: Externally Owned Accounts (EOAs) and Contract Accounts (CAs). Only EOAs can initiate a transaction (TX), whereas CAs can only be called by EOAs and then interact with other accounts.  EOAs are the main drivers of all transactions on the Ethereum network.
 
 However, EOAs have many limitations, and CAs are constrained by EOAs:
 1. They require the maintenance of private keys or mnemonic words, and losing them or being hacked means losing all assets.
-2. EOAs lack flexibility and cannot define Functional and Logic Programming (for example, setting up a blacklistn and daily transaction limits).
+2. EOAs lack flexibility and cannot define Functional and Logic Programming (for example, setting up a blacklist and daily transaction limits).
 3. EOAs can only use Ether to pay for transaction fees.
 4. They do not support native multi-signature wallets and rely on smart contracts to perform tasks.
 
-Given these limitations,the concept of Account Abstraction(AA) accounts has started to take shape.
+Given these limitations, the concept of Account Abstraction (AA) accounts has started to take shape.
 
 The concept of AA accounts was initially proposed in [EIP-2938](https://eips.ethereum.org/EIPS/eip-2938), which introduced a complete concept for account abstraction. Subsequently, [EIP-3074](https://eips.ethereum.org/EIPS/eip-3074), introduced a new OpCode AUTH (0xf6) and AUTHCALL (0xf7) for "authorizing smart contracts to act on behalf of EOAs." Finally, [EIP-4337](https://eips.ethereum.org/EIPS/eip-4337) completed the task of account abstraction with maximum compatibility, and currently, we refer to AA wallets as Smart Wallets or Smart Contract Accounts (SCA).
 
-## Here is The Workflow of Account Abstraction
+## Here is the Workflow of Account Abstraction
 1. The user creates a User Operation.
 2. The user signs the User Operation with any signature algorithm (in the past, Ethereum transactions could only use ECDSA).
 3. The user sends the User Operation to the off-chain User Operation mempool.
@@ -30,11 +30,11 @@ The concept of AA accounts was initially proposed in [EIP-2938](https://eips.eth
 ![ERC-4337-overview.png](./ERC-4337-overview.png)
 ![ERC-4337-overview.png](./ERC-4337-invocation-flow.png)
 
-## The Advantage of Account Abstraction
+## The Advantages of Account Abstraction
 Account Abstraction is similar to a Contract Account with the characteristics of an EOA (Externally Owned Account). It allows transactions and accounts to be decoupled from the underlying layer and become the role of high-level smart contracts.
 
 ### Private Key Management
-In the [EIP-4337](https://eips.ethereum.org/EIPS/eip-4337), one can freely use the desired signature algorithm because the signature is no longer limited to Ethereum's traditional ECDSA. Therefore, AA Wallet can essentially support native multi-signature wallets (MultiSig Wallets), allowing for more flexible joint account management by multiple parties. It is also possible to reset the ownership of contract accounts through social recovery, using email verification such as Gmail to regain access to contract accounts such as [UniPass Wallet](https://docs.wallet.unipass.id/).
+In the [EIP-4337](https://eips.ethereum.org/EIPS/eip-4337), one can freely use the desired signature algorithm because the signature is no longer limited to Ethereum's traditional ECDSA. Therefore, AA Wallet can essentially support native multi-signature wallets (MultiSig Wallets), allowing for more flexible joint account management by multiple parties. It is also possible to reset the ownership of contract accounts through social recovery, using email verification, such as, Gmail to regain access to contract accounts such as [UniPass Wallet](https://docs.wallet.unipass.id/).
 
 ### Enhanced Security
 A smart contract allows the AA wallet to implement multi-signature authorization and other functions, requiring approval from multiple parties before the transaction is completed. Compared with relying solely on private keys, this reduces the risk of unauthorized access.
@@ -48,7 +48,7 @@ Previously, an EOA could only perform one transaction at a time. However, with E
 ### Social Media Recovery
 Social account recovery is also an advantage of AA Wallet; you can set up a social account as the guardian of the wallet, and you can retrieve the access rights to the contract account through social account verification. Currently, losing the private key means you can never access Ethereum funds. Account Abstraction separates account access from the private key. With social recovery, you can designate trusted contacts (such as family or friends) who can help you regain access if you lose your signing key. This may involve a multi-step verification process or delayed access procedures to prevent unauthorized recovery.
 
-## The Disadvantage of Account Abstraction
+## The Disadvantages of Account Abstraction
 ### May Result in Higher Gas Fees
 In the past, a transfer between EOAs (External Owned Accounts) only required consumption of 21000 Gwei. Still after using ERC 4337, because a contract call will occur, it also generates additional costs, leading to a higher cost for User Operation. ([Details can be referred to in this article](https://www.stackup.sh/blog/how-much-more-expensive-is-erc-4337)) Currently, the best solution is to use Layer 2 for transactions, which can significantly reduce the cost of gas fees.
 
@@ -481,12 +481,12 @@ After the transaction is sent, Alchemy will mount the contract for the smart wal
 
 ![real-tx](./real-tx.png)
 
-However, the consumption of gas fees in this process is more expensive than one might think, which contradicts the previously mentioned advantage of reducing gas fees. This is because users will inevitably make calls between contracts, once they start using the AA wallet, which also incurs costs. 
+However, the consumption of gas fees in this process is more expensive than one might think, which contradicts the previously mentioned advantage of reducing gas fees. This is because users will inevitably make calls between contracts once they start using the AA wallet, which also incurs costs. 
 
 The best solution currently is to use Layer 2 for transactions, which can significantly reduce gas fees.
 
 ## Summary
-Leveraging AA's characteristics, it can significantly lower the barrier to entry for web3 and create a new era of wallet applications with various functionalities. 
+Leveraging AA's characteristics can significantly lower the barrier to entry for web3 and create a new era of wallet applications with various functionalities. 
 - Simplify the joining process through familiar login methods or without immediate encryption requirements.
 - Provide recovery options to eliminate losing web3 assets due to key loss.
 - Integrate with fiat currency gateways so that users can directly purchase web3 assets.
