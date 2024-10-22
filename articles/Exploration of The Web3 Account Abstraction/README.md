@@ -19,7 +19,7 @@ However, EOAs have many limitations, and CAs are constrained by EOAs:
 
 Given these limitations, the concept of Account Abstraction (AA) accounts has started to take shape.
 
-The concept of AA accounts was initially proposed in [EIP-2938](https://eips.ethereum.org/EIPS/eip-2938), which introduced a complete concept for account abstraction. Subsequently, [EIP-3074](https://eips.ethereum.org/EIPS/eip-3074), introduced a new OpCode AUTH (0xf6) and AUTHCALL (0xf7) for "authorizing smart contracts to act on behalf of EOAs." Finally, [EIP-4337](https://eips.ethereum.org/EIPS/eip-4337) completed the task of account abstraction with maximum compatibility, and currently, we refer to AA wallets as Smart Wallets or Smart Contract Accounts (SCA).
+The concept of AA accounts was initially proposed in [EIP-2938](https://eips.ethereum.org/EIPS/eip-2938), which introduced a complete concept for account abstraction. Subsequently, [EIP-3074](https://eips.ethereum.org/EIPS/eip-3074) introduced a new OpCode AUTH (0xf6) and AUTHCALL (0xf7) for "authorizing smart contracts to act on behalf of EOAs." Finally, [EIP-4337](https://eips.ethereum.org/EIPS/eip-4337) completed the task of account abstraction with maximum compatibility, and currently, we refer to AA wallets as Smart Wallets or Smart Contract Accounts (SCA).
 
 ## Here is the Workflow of Account Abstraction
 1. The user creates a User Operation.
@@ -34,7 +34,7 @@ The concept of AA accounts was initially proposed in [EIP-2938](https://eips.eth
 Account Abstraction is similar to a Contract Account with the characteristics of an EOA (Externally Owned Account). It allows transactions and accounts to be decoupled from the underlying layer and become the role of high-level smart contracts.
 
 ### Private Key Management
-In the [EIP-4337](https://eips.ethereum.org/EIPS/eip-4337), one can freely use the desired signature algorithm because the signature is no longer limited to Ethereum's traditional ECDSA. Therefore, AA Wallet can essentially support native multi-signature wallets (MultiSig Wallets), allowing for more flexible joint account management by multiple parties. It is also possible to reset the ownership of contract accounts through social recovery, using email verification, such as, Gmail to regain access to contract accounts such as [UniPass Wallet](https://docs.wallet.unipass.id/).
+In the [EIP-4337](https://eips.ethereum.org/EIPS/eip-4337), one can freely use the desired signature algorithm because the signature is no longer limited to Ethereum's traditional ECDSA. Therefore, AA Wallet can essentially support native multi-signature wallets (MultiSig Wallets), allowing for more flexible joint account management by multiple parties. It is also possible to reset the ownership of contract accounts through social recovery, using email verification, such as Gmail, to regain access to contract accounts, such as [UniPass Wallet](https://docs.wallet.unipass.id/).
 
 ### Enhanced Security
 A smart contract allows the AA wallet to implement multi-signature authorization and other functions, requiring approval from multiple parties before the transaction is completed. Compared with relying solely on private keys, this reduces the risk of unauthorized access.
@@ -50,7 +50,7 @@ Social account recovery is also an advantage of AA Wallet; you can set up a soci
 
 ## The Disadvantages of Account Abstraction
 ### May Result in Higher Gas Fees
-In the past, a transfer between EOAs (External Owned Accounts) only required consumption of 21000 Gwei. Still after using ERC 4337, because a contract call will occur, it also generates additional costs, leading to a higher cost for User Operation. ([Details can be referred to in this article](https://www.stackup.sh/blog/how-much-more-expensive-is-erc-4337)) Currently, the best solution is to use Layer 2 for transactions, which can significantly reduce the cost of gas fees.
+In the past, a transfer between EOAs (External Owned Accounts) only required consumption of 21000 Gwei. Still, after using ERC 4337, because a contract call will occur, it also generates additional costs, leading to a higher cost for User Operation. ([Details can be referred to in this article](https://www.stackup.sh/blog/how-much-more-expensive-is-erc-4337)) Currently, the best solution is to use Layer 2 for transactions, which can significantly reduce the cost of gas fees.
 
 ### Security
 As previously mentioned, the reason why Paymaster needs to stake native tokens to the EntryPoint is to prevent malicious Paymasters from conducting DoS (Denial of Service) attacks. Since the Paymaster is a contract implemented by a third party, following the process below, it can make the Bundler send invalid transactions, such as:
@@ -139,7 +139,7 @@ export default function Home() {
 	);
 }
 ```
-If you finish the code there, click the widget button. Then you can log in to the EOA wallet you like. In this demo, we use the [Metamask](https://metamask.io/).
+If you finish the code there, click the widget button. Then, you can log in to the EOA wallet you like. In this demo, we use the [Metamask](https://metamask.io/).
 
 ### Connecting the EOA Wallet to the AA Wallet
 Refer to the [example](https://docs.dynamic.xyz/account-abstraction/aa-providers/alchemy) of Dynamic, which links the EOA wallet with Alchemy's AA wallet. The main task is to pass the Signer to Alchemy for its use. Alchemy will create a smart contract wallet called a Client. Through the Client, you can obtain the wallet address and balance, and of course, you can also use the Client to conduct transactions.
@@ -214,12 +214,12 @@ export default function SmartAccountClientProvider({ children }: any) {
     </SmartAccountClientContext.Provider>
 }
 ```
-### Sending Transaction Using the AA Wallet
+### Sending Transactions Using the AA Wallet
 Since the balance of the wallet newly created by the Client is still 0, some funds need to be transferred into the smart wallet before initiating transactions for its use.
 ![account-detail](./account-detail.png)
 ![account-etherscan](./account-etherscan.png)
 
-Create the  `AbstractAcount.tsx`  component to display information about the current AA wallet, and the functionality for funding it. 
+Create the  `AbstractAcount.tsx`  component to display information about the current AA wallet and the functionality for funding it. 
 
 **AbstractAcount.tsx**
 ```tsx
