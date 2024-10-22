@@ -317,7 +317,7 @@ Use the transaction functionality provided by Wagmi to fund the AA wallet. After
 ![charge-etherscan](./charge-etherscan.png)
 
 ### Send Multiple Transactions Using the AA Wallet
-Since the AA wallet sends transactions using calldata, we only need to construct the corresponding calldata for the operations we want to perform to initiate multiple actions within a single transaction (tx).
+Since the AA wallet sends transactions using calldata, we only need to construct the corresponding calldata for the operations we want to perform to initiate multiple actions within a single transaction (TX).
 
 **txSample.ts**
 ```ts
