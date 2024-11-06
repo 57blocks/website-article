@@ -43,7 +43,7 @@ All earnings generated within a liquidity pool go directly to LPs and are not re
 
 Curve supports multiple blockchain networks, making it a highly flexible and compatible DeFi platform. Currently, Curve supports a variety of chains, including both main and side chains like Ethereum, Polygon, and Arbitrum. By supporting these different chains, Curve offers users more options, allowing them to diversify investments, reduce risk, and optimize returns. Users can choose a chain based on their preferences, such as lower fees, faster transactions, or a richer asset portfolio. Curve’s multi-chain support enhances platform flexibility and ensures that users can access optimal liquidity and returns across various blockchain ecosystems. The functionality of Curve’s liquidity pools remains consistent across chains, allowing users to transfer assets easily and efficiently.
 
-![curve-support-chain](curve-support-chain.png)
+![curve-support-chain](curve-support-chain.png =200x400)
 
 ## Investment Process
 
@@ -73,11 +73,11 @@ After selecting the pool, you’ll need to authorize the token transfer before a
 
 Once authorized, you can proceed to add liquidity. Before clicking **Deposit**, double-check the information displayed, including the deposit amount, LP token quantity, and exchange rate. If everything looks correct, click **Deposit**, confirm the transaction in your wallet, and pay the gas fee. After the transaction completes, you’ll receive LP tokens, indicating that you’ve successfully added liquidity to the pool.
 
-![curve-pool-deposit](curve-pool-deposit.png)
+![curve-pool-deposit](curve-pool-deposit.png =400x)
 
 After adding liquidity, you’ll start earning Base vAPY rewards. If you want additional rewards, you can stake these LP tokens to earn CRV incentives. Each liquidity pool on Curve has a corresponding Gauge contract for staking. In the Deposit tab, select **Stake** to stake your LP tokens. On the staking page, authorize the Gauge contract to use your LP tokens for the first time, then enter the amount to stake, confirm the transaction, and you’re done.
 
-![curve-pool-stake](curve-pool-stake.png)
+![curve-pool-stake](curve-pool-stake.png =400x)
 
 You can combine the **Deposit** and **Stake** actions by selecting **Deposit & Stake** in the Deposit tab. Enter the deposit amount and staking quantity
 
@@ -89,7 +89,7 @@ Once staked, your LP tokens will start generating CRV rewards, known as Reward t
 
 Claiming rewards on Curve is straightforward. Go to the pool page, enter the `2BTC-ng` liquidity pool, select **Withdraw/Claim**, then **Claim Rewards**. Here you’ll see all available rewards, including CRV, ARB, and other tokens.
 
-![curve-pool-claim](curve-pool-claim.png)
+![curve-pool-claim](curve-pool-claim.png =400x)
 
 You can click **Claim CRV** to transfer the CRV reward to your wallet, or **Claim Rewards** to claim other token rewards like ARB.
 
@@ -101,11 +101,11 @@ For the CRV rewards you’ve claimed, you have several management options: you c
 
 Withdrawing liquidity from Curve is the reverse of the deposit process. First, unstake your tokens from the Gauge contract. Enter the pool page, select **Withdraw/Claim**, then **Unstake**. Enter the amount of LP tokens to unstake, click **Unstake**, confirm in your wallet, and pay the gas fee. Once the transaction completes, your LP tokens will be returned to your wallet.
 
-![curve-pool-unstack](curve-pool-unstack.png)
+![curve-pool-unstack](curve-pool-unstack.png =400x)
 
 Next, withdraw from the liquidity pool. Go to **Withdraw/Claim**, then select **Withdraw**. Enter the amount of LP tokens to withdraw, and you can choose to receive the entire amount in one token or a mix of tokens. After confirming the details, click **Approve Spending** to authorize the Curve contract to use your LP tokens. When ready, click **Withdraw**, confirm the transaction, and pay the gas fee. Your tokens will then be transferred back to your wallet.
 
-![curve-pool-withdraw](curve-pool-withdraw.png)
+![curve-pool-withdraw](curve-pool-withdraw.png =400x)
 
 After exiting, you might want to convert these tokens into your preferred assets. To get the best exchange rate, consider comparing the rates offered by other decentralized exchanges (DEXs) and choose the one most advantageous to you.
 
@@ -123,7 +123,7 @@ The Gauge contract, also an ERC20 token contract, handles liquidity mining and i
 
 Below are the LP Token and Gauge contract addresses for the `2BTC-ng` pool:
 
-![curve-pool-contracts](curve-pool-contracts.png)
+![curve-pool-contracts](curve-pool-contracts.png =300x)
 
 ### Investment Amount
 
