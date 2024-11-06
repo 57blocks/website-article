@@ -52,7 +52,7 @@ Curve supports multiple blockchain networks, making it a highly flexible and com
 Investing in Curve involves two main processes: depositing and withdrawing. Before investing, users need to convert their tokens into those supported by the liquidity pool. After investing in a liquidity pool, users can also stake LP tokens to earn additional rewards. When withdrawing, users need to unstake their LP tokens before withdrawing them from the liquidity pool back to their wallet. Here is a basic flowchart for investing in Curve:
 
 ::: center
-![curve-deposit-flow](curve-deposit-flow.png =300x)
+![curve-deposit-flow](curve-deposit-flow.png =500x)
 :::
 
 Before starting on Curve, there are some preparatory steps. First, set up a wallet by installing a supported Ethereum network wallet, such as [MetaMask](https://metamask.io/), and ensure you have enough ETH for gas fees. Next, switch your wallet to the appropriate blockchain network. Then, prepare funds based on your investment plan—typically stablecoins like USDT, USDC, or DAI—and transfer them to your wallet. It's recommended to start with a **small amount** for testing to get familiar with the process.
@@ -98,7 +98,7 @@ Once staked, your LP tokens will start generating CRV rewards, known as Reward t
 Claiming rewards on Curve is straightforward. Go to the pool page, enter the `2BTC-ng` liquidity pool, select **Withdraw/Claim**, then **Claim Rewards**. Here you’ll see all available rewards, including CRV, ARB, and other tokens.
 
 ::: center
-![curve-pool-claim](curve-pool-claim.png =300x)
+![curve-pool-claim](curve-pool-claim.png =400x)
 :::
 
 You can click **Claim CRV** to transfer the CRV reward to your wallet, or **Claim Rewards** to claim other token rewards like ARB.
@@ -112,13 +112,13 @@ For the CRV rewards you’ve claimed, you have several management options: you c
 Withdrawing liquidity from Curve is the reverse of the deposit process. First, unstake your tokens from the Gauge contract. Enter the pool page, select **Withdraw/Claim**, then **Unstake**. Enter the amount of LP tokens to unstake, click **Unstake**, confirm in your wallet, and pay the gas fee. Once the transaction completes, your LP tokens will be returned to your wallet.
 
 ::: center
-![curve-pool-unstack](curve-pool-unstack.png =300x)
+![curve-pool-unstack](curve-pool-unstack.png =400x)
 :::
 
 Next, withdraw from the liquidity pool. Go to **Withdraw/Claim**, then select **Withdraw**. Enter the amount of LP tokens to withdraw, and you can choose to receive the entire amount in one token or a mix of tokens. After confirming the details, click **Approve Spending** to authorize the Curve contract to use your LP tokens. When ready, click **Withdraw**, confirm the transaction, and pay the gas fee. Your tokens will then be transferred back to your wallet.
 
 ::: center
-![curve-pool-withdraw](curve-pool-withdraw.png =300x)
+![curve-pool-withdraw](curve-pool-withdraw.png =400x)
 :::
 
 After exiting, you might want to convert these tokens into your preferred assets. To get the best exchange rate, consider comparing the rates offered by other decentralized exchanges (DEXs) and choose the one most advantageous to you.
@@ -138,7 +138,7 @@ The Gauge contract, also an ERC20 token contract, handles liquidity mining and i
 Below are the LP Token and Gauge contract addresses for the `2BTC-ng` pool:
 
 ::: center
-![curve-pool-contracts](curve-pool-contracts.png =200x)
+![curve-pool-contracts](curve-pool-contracts.png =300x)
 :::
 
 ### Investment Amount
