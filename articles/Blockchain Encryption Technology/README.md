@@ -121,7 +121,7 @@ There are four main applications of elliptic curve cryptography in blockchain, e
    - Smart Contracts: Using digital signatures to verify the identity of the contract caller in smart contracts.
 
 4. **Multi-Signature requires multiple signatures to authorize a transaction or perform an action.**
-   This mechanism significantly increases account security and control, especially in blockchain and cryptocurrency. Elliptic curve algorithms typically support multi-signature schemes by generating multiple key pairs and corresponding signatures. This mechanism is important for corporate accounts, large fund management, and decentralized governance scenarios. The multi-signature mechanism significantly enhances account security and internal control by requiring multiple decision-makers to jointly authorize transactions, which is it crucial in blockchain and cryptocurrency environments.
+   This mechanism significantly increases account security and control, especially in blockchain and cryptocurrency. Elliptic curve algorithms typically support multi-signature schemes by generating multiple key pairs and corresponding signatures. This mechanism is important for corporate accounts, large fund management, and decentralized governance scenarios. The multi-signature mechanism significantly enhances account security and internal control by requiring multiple decision-makers to jointly authorize transactions, which is crucial in blockchain and cryptocurrency environments.
 
 ### Hash Encryption
 
