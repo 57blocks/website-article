@@ -335,13 +335,13 @@ export default function AbstractAcount() {
     </Card>
 }
 ```
-***Also we can search our smart account address in the [sepolia explore](https://sepolia.etherscan.io/)***
+***Also we can search our smart account address on the [sepolia explore](https://sepolia.etherscan.io/)***
 
 ![account-etherscan](./account-etherscan.png)
 
 Here we fill the ETH into the input in our DApp then click the charge, 
 our DApp will call out the EOA wallet transaction sending modal connected by dynamic, 
-and confirm the transaction,
+and confirm the transaction.
 
 ![charge](./charge.png)
 
@@ -352,7 +352,7 @@ the balance number changed, yes your charging was succeed.
 
 ![charge-result](./charge-result.png)
 
-***we can review it in the explore***
+***we can review it on the explore***
 
 ![charge-etherscan](./charge-etherscan.png)
 
@@ -526,7 +526,7 @@ After the transaction sent, Alchemy will deploy the contract for the smart walle
 
 ![real-tx](./real-tx.png)
 
-Also we can search the transaction hash in explore, here is a [demo transaction](https://basescan.org/tx/0x11e00f019f1efec4f626ebcdc9c0f896eb29df0b81db55b1725c9bdce6c29898)
+Also we can search the transaction hash on the explore, here is a [demo transaction](https://basescan.org/tx/0x11e00f019f1efec4f626ebcdc9c0f896eb29df0b81db55b1725c9bdce6c29898).
 
 However, the consumption of gas fees in this process is more expensive than one might think, which contradicts the previously mentioned advantage of reducing gas fees. This is because users will inevitably make calls between contracts once they start using the AA wallet, which also incurs costs. 
 
