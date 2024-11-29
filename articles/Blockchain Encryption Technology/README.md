@@ -57,8 +57,9 @@ A core concept of data encryption is the transformation of readable information 
 **Technologies Used**: zk-SNARKs, zk-STARKs, Bulletproofs, etc.
 
 **Application Scenarios**: Applied in privacy protection, verification optimization, and identity authentication, ensuring data privacy while enhancing verification efficiency and security.
-
+:::center
 ![ZKP](./zkp.png =500x500)
+:::
 
 ### 2. Homomorphic Encryption
 
@@ -68,7 +69,7 @@ A core concept of data encryption is the transformation of readable information 
 
 **Application Scenarios**: Applied in privacy-preserving financial transactions, decentralized finance (DeFi), decentralized data markets, medical data privacy, etc.
 
-![Homomorphic Encryption](./homomorphic-encryption.png =500x500)
+![Homomorphic Encryption](./homomorphic-encryption.png)
 
 ### 3. Threshold Cryptography
 
@@ -77,8 +78,9 @@ A core concept of data encryption is the transformation of readable information 
 **Technologies Used**: Shamir's Secret Sharing (SSS), Blakley's Secret Sharing, Threshold RSA, Threshold ECDSA
 
 **Application Scenarios**: Applied in multi-signature wallets, decentralized exchanges (DEX), distributed key management, cloud computing security, secure multi-party computation, decentralized autonomous organization (DAO) management, etc.
-
+:::center
 ![Threshold Cryptography](./threshold-cryptography.png =500x500)
+:::
 
 ## Cryptographic Techniques in Blockchain
 
