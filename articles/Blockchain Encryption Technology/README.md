@@ -48,6 +48,36 @@ A core concept of data encryption is the transformation of readable information 
 
 ![hash encryption](./hash-function.png)
 
+## Advanced Encryption Techniques
+
+### 1. Zero-Knowledge Proof, ZKP
+
+**Working Principle**: Zero-Knowledge Proof is a cryptographic protocol that allows a prover to convince a verifier that a certain statement is true without revealing the content of the information. This is achieved through sophisticated mathematical algorithms, ensuring that the verifier can trust the authenticity of the proof without gaining any additional information.
+**Technologies Used**: zk-SNARKs, zk-STARKs, Bulletproofs, etc.
+**Application Scenarios**: Applied in privacy protection, verification optimization, and identity authentication, ensuring data privacy while enhancing verification efficiency and security.
+
+![ZKP](./zkp.png)
+
+### 2. Homomorphic Encryption
+
+**Working Principle**: Homomorphic encryption is an encryption technique that allows specific computations to be performed directly on ciphertexts without first decrypting the data. The result of the computation, when decrypted, is the same as performing the computation on the plaintext and then encrypting the result.
+
+**Technologies Used**: Paillier Encryption, ElGamal Encryption, BGV (Brakerski-Gentry-Vaikuntanathan), BFV (Brakerski/Fan-Vercauteren), CKKS (Cheon-Kim-Kim-Song)
+
+**Application Scenarios**: Applied in privacy-preserving financial transactions, decentralized finance (DeFi), decentralized data markets, medical data privacy, etc.
+
+![Homomorphic Encryption](./homomorphic-encryption.png)
+
+### 3. Threshold Cryptography
+
+**Working Principle**: Threshold cryptography is a cryptographic technique where a secret (such as a private key) is divided into multiple parts and distributed to multiple participants. The secret can only be reconstructed when a sufficient number (i.e., meeting a predetermined "threshold") of participants agree to cooperate.
+
+**Technologies Used**: Shamir's Secret Sharing (SSS), Blakley's Secret Sharing, Threshold RSA, Threshold ECDSA
+
+**Application Scenarios**: Applied in multi-signature wallets, decentralized exchanges (DEX), distributed key management, cloud computing security, secure multi-party computation, decentralized autonomous organization (DAO) management, etc.
+
+![Threshold Cryptography](./threshold-cryptography.png)
+
 ## Cryptographic Techniques in Blockchain
 
 In this article, we are introducing two important encryption techniques in blockchain technology: Elliptic Curve Cryptography (ECC) and hash functions.
@@ -153,6 +183,77 @@ In blockchain technology, hash functions also play crucial roles, and different 
   - Uses:
     - SHA-256: Mainly used for Proof of History (PoH), data verification, generating unique identifiers
     - SHA-3: Used for smart contract execution and data verification
+
+### Zero-Knowledge Proof (ZKP)
+
+Each application scenario utilizes the unique attributes of specific ZKP technologies to meet the needs for privacy protection, identity verification, data privacy, decentralized decision-making, or system performance on the blockchain:
+
+1. **Privacy-Preserving Transactions:**
+
+Zcash employs zk-SNARKs to conceal transaction details (sender, receiver, and amount) to achieve privacy-preserving transactions.
+
+2. **Identity Verification:**
+
+zk-SNARKs and zk-STARKs are used for identity verification on the blockchain, allowing users to prove compliance with certain conditions without disclosing specific identity information.
+
+3.**Smart Contracts and Data Privacy:**
+
+zk-SNARKs and Bulletproofs are used in smart contracts, such as in decentralized finance (DeFi), to ensure the privacy of contract participants.
+
+4.**Decentralized Voting Systems:**
+
+zk-SNARKs and Pedersen Commitments are used to verify the legitimacy of votes and ensure the accuracy of voting results without disclosing specific vote information.
+
+5.**Efficient Verification and Scaling:**
+
+zk-Rollups (using zk-SNARKs or zk-STARKs) utilize zero-knowledge proofs to reduce on-chain data volume, verify the legitimacy of batch transactions, and increase the throughput of the main chain.
+
+### Homomorphic Encryption in Blockchain
+
+Understanding the application of homomorphic encryption in blockchain aids in grasping its potential in privacy protection, data processing, and security. Here are specific application scenarios along with relevant homomorphic encryption technologies:
+
+1.**Privacy-Preserving Transactions:**
+
+Paillier Homomorphic Encryption: Used to encrypt transaction amounts in blockchain transactions. By supporting additive homomorphism, it allows the calculation of total amounts without decrypting the transactions, thus protecting the privacy of transaction amounts.
+
+2. **Identity Verification:**
+
+Users can employ partial homomorphic encryption to encrypt identity credentials for verification purposes. On the blockchain, verifiers can confirm the legitimacy of a user’s identity without decrypting the data, thereby concealing specific identity information.
+
+3.**Smart Contracts and Data Privacy:**
+
+Used in decentralized finance (DeFi) smart contracts to encrypt data provided by participants, enabling the execution of complex financial computations without decryption, thereby ensuring data privacy.
+
+4.**Decentralized Voting Systems:**
+
+Using ElGamal Encryption for ballots in decentralized voting systems. The additive homomorphic property of encrypted votes allows tallying without decryption, ensuring the privacy of votes and transparency of the voting process.
+
+5.**Efficient Data Processing and Storage:**
+
+In scenarios involving cross-party data sharing and analysis, Fully Homomorphic Encryption (FHE) allows arbitrary computations on encrypted data. Using FHE in blockchain can protect data privacy while enhancing processing efficiency and security without needing to decrypt the data.
+These scenarios illustrate the potential applications of homomorphic encryption in blockchain, addressing needs in data privacy, transaction privacy, identity protection, and efficient data processing. Each technology poses unique challenges in computational complexity and performance, necessitating optimized design and implementation for specific applications.
+
+### Threshold Cryptography
+
+Threshold cryptography is widely used in multi-signature wallets, decentralized governance, privacy protection in smart contracts, and trustless environments supporting cross-chain transactions. It significantly enhances the security and efficiency of these applications.
+
+1.**Multi-Signature Wallets:**
+
+This distributed signing protocol combines the Elliptic Curve Digital Signature Algorithm (ECDSA) with threshold cryptography. In this system, a private key is divided into several shares, each held by different users. To produce a valid signature, at least a predefined threshold number of share holders must participate. Even if one share is compromised, it does not threaten the security of the entire system, thus enhancing wallet security.
+
+2.**Decentralized Governance:**
+
+These threshold signature schemes are exemplary for enabling DAO (Decentralized Autonomous Organization) decentralized decision-making. Governance decisions only take effect when a pre-set threshold number of votes is reached. This ensures the democratic nature of organizational decisions and prevents the concentration of control, thereby strengthening community involvement.
+
+3.**Privacy Protection in Smart Contracts:**
+
+In blockchain applications requiring privacy, schemes like Threshold RSA and Threshold ElGamal can protect transaction data confidentiality. These algorithms allow the decryption power to be distributed across multiple entities, with the original data being retrievable only through multi-party collaboration when certain conditions are met. This mechanism protects contract privacy while maintaining system transparency and trustworthiness.
+
+4.**Cross-Chain Transactions and Interoperability:**
+
+The core challenge of cross-chain transactions is achieving trustless asset exchange between different blockchains. Atomic Swaps utilize Hash Time-Locked Contracts (HTLCs) and threshold signatures to ensure that assets on the target chain are only unlocked after securing assets on the source chain. This atomicity of transactions ensures the safety and reliability of asset exchanges, thereby improving interoperability between different blockchain networks.
+
+These applications highlight how threshold cryptography can enhance security and operational efficiency in blockchain ecosystems, ensuring privacy, democracy, and trust in decentralized systems and cross-chain operations.
 
 ## Conclusion
 
