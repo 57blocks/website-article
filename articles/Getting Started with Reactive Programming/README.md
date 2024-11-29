@@ -6,27 +6,27 @@ createTime: 2024-04-22
 tags: ["Reactive", "Flutter", "Crypto"]
 thumb: "https://s3.amazonaws.com/assets.57blocks.io/cms_uploads/illustration_tokenpad_65aea3b800.png"
 thumb_h: "./thumb_h.png"
-intro: "Users expect to see real-time data while using apps and don't want to refresh the screen. Achieve this by using Reactive Programming. In this article, discover why Reactive Programming exists and how it enables our apps to update with new data in real-time."
+intro: "Users expect to see real-time data while using apps and don't want to refresh the screen. This is achieved by using Reactive Programming. In this article, you’ll explore why Reactive Programming exists and how it enables apps to update with new data in real time."
 previousSlugs: ["reactive-programming-in-tokenpad"]
 ---
 
 ## Introduction
 
-In this series of articles, I’m going to write about Reactive Programming, a programming paradigm that helps systems react to data changes. It does this by using a declarative approach, which makes it easier to dynamically change presented information as soon as new data arrives. Reactive Programming approaches allow developers to think about what we want to show instead of how we want to show it.   
+In this series of articles, I am writing about Reactive Programming. This programming paradigm helps systems react to data changes. It does this using a declarative approach, making it easier to dynamically change presented information as soon as new data arrives. Reactive Programming approaches allow developers to think about what they want to show instead of how to show it.   
   
-In this article we will take a first and brief look at Reactive Programming after discussing other alternatives. I’ll explain their pitfalls before introducing the concept of Reactive Programming. In the next article, I’ll show how to leverage Reactive Programming to build your own front-end application by showing a real-life implementation, leaving behind old approaches that are prone to showing stale or different data displayed on different screens.
+In this article, I will first briefly examine Reactive Programming after discussing other alternatives. I'll explain their pitfalls before introducing the concept of Reactive Programming. In the following article, I'll illustrate how to leverage Reactive Programming to build your front-end application by showing a real-life implementation, leaving behind old approaches prone to showing stale data or different values for the same data on different screens.
 
 ## Why Reactive Programming is Perfect for Tokenpad
 
-[Tokenpad](https://tokenpad.io/) is an application developed using Flutter, where users can aggregate their crypto portfolios (we support up to 13 chains - and growing) and have all of their information available at a glance. You could say it helps users become smarter crypto investors.   
-Users can also add their Decentralized Finances (DeFi) positions, so they have the most up-to-date information about their current yields. Additionally, Tokenpad will notify users about potential liquidations, display token price changes, and check token price history, among other features. Today, Tokenpad has thousands of daily users and handles hundreds of different cryptocurrency tokens, displaying the current status of each one for each account for each user.   
+[Tokenpad](https://tokenpad.io/) is an application developed using Flutter. It allows users to aggregate their crypto portfolios (we support up to 13 chains and growing) and have all of their information available at a glance. This helps users become smarter crypto investors.
+
+Users can also add their Decentralized Finances (DeFi) positions so they have the most up-to-date information about current yields. Additionally, Tokenpad will notify users about potential liquidations, display token price changes, and check token price history, among other features. Today, Tokenpad has thousands of daily users and handles hundreds of different cryptocurrency tokens, displaying the current status for each account and each user.   
   
-We are obsessed with meeting user needs and becoming a leading crypto aggregator app. We constantly validate market needs as well as receiving and analyzing users feedback and requests. Right now, we have new features in the pipeline such as transaction history, profit and loss calculations and investment suggestions.   
+We are obsessed with meeting user needs and becoming a leading crypto aggregator app. We constantly validate market needs and receive and analyze user feedback and requests. We have new features in the pipeline, such as transaction history, profit and loss calculations, and investment suggestions.   
   
-Tokenpad can handle hundreds of tokens from hundreds of different wallets, chains, exchanges or DeFis and store, aggregate, and display all that data to users in a friendly and understandable way on multiple screens using different views. Thanks to Reactive Programming, users can continue to use Tokenpad to access up-to-date information in the app while more information is being fetched and processed in the background. As a crypto investor, you would always have the latest data available to make your own choices.
+Tokenpad can handle hundreds of tokens from hundreds of different wallets, chains, exchanges, or DeFis and store, aggregate, and display all that data to users in a friendly and understandable way on multiple screens using different views. Thanks to Reactive Programming, users can continue to use Tokenpad to access up-to-date information in the app while more information is being fetched and processed in the background. As a crypto investor, you would always have the latest data available to make your own choices.
 
 ![](https://s3.amazonaws.com/assets.57blocks.io/cms_uploads/tokenpad_mobile_49a30f59cb.png)
-
 
 Processing and displaying all that information requires time to:
 
@@ -35,19 +35,19 @@ Processing and displaying all that information requires time to:
 + Store this data locally
 + Aggregate the stored data
 
-As we know, users don’t like to stare at a circular loader while the system is fetching and processing, waiting for data to be displayed on their screen. According to Google, 53% of users abandon a mobile web application if it takes more than three seconds to load. Users want to continue using an app and see available data.    
+As we know, users prefer to avoid staring at a circular loader while the system is fetching and processing, waiting for data to be displayed on their screen. According to Google, 53% of users abandon a mobile web application if it takes more than three seconds to load. Users want to use an app and see available data.    
   
-Our job as developers is to allow users to see the most current information as soon as it’s ready to be shown, even if it means updating the screen they’re currently viewing. Users shouldn’t have to manually refresh the screen or interact with the app in any way to see updated information reflected in the screen. The app should react to new data arriving; that’s what Reactive Programming is for.
+Our job as developers is to allow users to see the most current information as soon as it's ready to be shown, even if it means updating the screen they're viewing. Users shouldn't have to manually refresh the screen or interact with the app in any way to see updated information reflected on the screen. With Reactive Programming, the app should react to new data arriving.
 
 ## Pre-Reactivity Era
 
 **Fetching and showing data in apps before Reactive Programming**          
 Not long ago, when creating applications that fetched and displayed data on a screen, an application would follow these steps:
 
-1.  User opens desired screen.
-2.  Application fetches the data to display on the screen.
-3.  Application process the data fetched in step 2.
-4.  Application sends processed data to be displayed on the screen.
+1.  The user opens the desired screen.
+2.  The application fetches the data to display on the screen.
+3.  The application processes the data fetched in step two.
+4.  The application sends processed data to be displayed on the screen.
 
 These steps seem logical and necessary. But what happens if the data changes during steps two through four?          
   
@@ -71,7 +71,7 @@ There are two main scenarios of what could happen:
         a.
       </div>
       <div style="font-size: 16px">
-        The application <strong>is aware</strong> that data has changed
+        The application <strong>is aware</strong> that data has changed.
       </div>
     </div>
   </div>
@@ -91,56 +91,56 @@ There are two main scenarios of what could happen:
         b.
       </div>
       <div style="font-size: 16px">
-        The application <strong>isn’t aware</strong> that data has changed
+        The application <strong>isn’t aware</strong> that data has changed.
       </div>
     </div>
   </div>
 </div>
 
 **For scenario a**:          
-we can re-execute steps two through four to update the information on the screen.          
+We can re-execute steps two through four to update the information on the screen.          
   
 **For scenario b**:          
 I can think of two options:          
-**b1** - The application retrieves data in the background at regular intervals and updates the screen if data changes.          
-**b2** - The app continues to display the original data on the screen until the user decides to manually refresh data. Then the app executes steps two through four so the user can see updated information.          
+**b1** - The application regularly retrieves data in the background and updates the screen if data changes.          
+**b2** - The app displays the original data on the screen until the user manually refreshes the data. Then, the app executes steps two through four so the user can see updated information.          
   
 Both situations are sub-optimal for users as they expect to see information updated immediately.          
   
-**For option b1**, the interval in between data retrieval updates might be too long (let’s say once an hour) for the user to wait for the latest information, or too short (let’s say once every five seconds), wasting resources and negatively affecting user experience (by increasing page load times or battery consumption).          
+**For option b1**, the interval between data retrieval updates might be too long (let's say once an hour) for the user to wait for the latest information or too short (let's say once every five seconds), wasting resources and negatively affecting user experience (by increasing page load times or battery consumption).          
   
 **For option b2**, if we don’t update the information on the screen, the users won’t know that the information displayed is no longer accurate. They would need to refresh the screen whether data was updated or not. In that case, we are making the users do unnecessary work.
 
 
 ## Observer Pattern
 
-[The Observer Pattern](https://refactoring.guru/design-patterns/observer) can solve this conundrum!                         
+[The Observer Pattern](https://refactoring.guru/design-patterns/observer), a key concept in Reactive Programming, can solve this conundrum!                         
   
 **In summary, it consists of two kinds of software components:**
 
-<div class="row py-2"><div class="col-12 col-sm-6 mb-3"><div class="d-flex flex-column flex-nowrap align-items-start rounded-4 h-100" style="background-color:rgba(131, 113, 243, 0.06);border-bottom-left-radius:0 !important;border-top-right-radius:0 !important;"><div class="px-3 py-1 rounded-4" style="background-color:var(--bs-purple);border-bottom-left-radius:0 !important;border-top-right-radius:0 !important;"><span style="color:hsl(0,0%,100%);font-size:20px;"><strong>Publisher</strong></span></div><div class="px-4 pb-4 pt-3 lh-base"><div class="mb-3"><strong>A component that emits events</strong></div><div>The Publisher is in charge of informing its Subscribers whenever a relevant event occurs (e.g new data arrived)</div><div class="my-2 lh-0" style="border-top:1px solid rgba(131, 113, 243, 0.1);">&nbsp;</div><div><strong>Role:</strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br><strong style="color:var(--bs-purple);">Active Role</strong> given that it needs to fetch the information and notify its Subscribers</div></div></div></div><div class="col-12 col-sm-6 mb-3"><div class="d-flex flex-column flex-nowrap align-items-start rounded-4 h-100" style="background-color:rgb(70, 155, 255, 0.06);border-bottom-left-radius:0 !important;border-top-right-radius:0 !important;"><div class="px-3 py-1 rounded-4 bg-primary" style="border-bottom-left-radius:0 !important;border-top-right-radius:0 !important;"><span style="color:hsl(0,0%,100%);font-size:20px;"><strong>Subscriber</strong></span></div><div class="px-4 pb-4 pt-3 lh-base"><div class="mb-3"><strong>A component that listens to published events</strong></div><div>The Subscriber subscribes to a Publisher and is ready to react to the events emitted by it</div><div class="my-2 lh-0" style="border-top:1px solid rgba(70, 155, 255, 0.1);">&nbsp;</div><div><strong>Role:</strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br><strong class="text-primary">Passive Role</strong> given that it needs to receive updates from the Publisher and update the screen with the new data</div></div></div></div></div>
+<div class="row py-2"><div class="col-12 col-sm-6 mb-3"><div class="d-flex flex-column flex-nowrap align-items-start rounded-4 h-100" style="background-color:rgba(131, 113, 243, 0.06);border-bottom-left-radius:0 !important;border-top-right-radius:0 !important;"><div class="px-3 py-1 rounded-4" style="background-color:var(--bs-purple);border-bottom-left-radius:0 !important;border-top-right-radius:0 !important;"><span style="color:hsl(0,0%,100%);font-size:20px;"><strong>Publisher</strong></span></div><div class="px-4 pb-4 pt-3 lh-base"><div class="mb-3"><strong>A component that emits events</strong></div><div>The Publisher is in charge of informing its Subscribers whenever a relevant event occurs (e.g., new data arrives)</div><div class="my-2 lh-0" style="border-top:1px solid rgba(131, 113, 243, 0.1);">&nbsp;</div><div><strong>Role:</strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br><strong style="color:var(--bs-purple);">Active Role</strong> given that it needs to fetch the information and notify its Subscribers.</div></div></div></div><div class="col-12 col-sm-6 mb-3"><div class="d-flex flex-column flex-nowrap align-items-start rounded-4 h-100" style="background-color:rgb(70, 155, 255, 0.06);border-bottom-left-radius:0 !important;border-top-right-radius:0 !important;"><div class="px-3 py-1 rounded-4 bg-primary" style="border-bottom-left-radius:0 !important;border-top-right-radius:0 !important;"><span style="color:hsl(0,0%,100%);font-size:20px;"><strong>Subscriber</strong></span></div><div class="px-4 pb-4 pt-3 lh-base"><div class="mb-3"><strong>A component that listens to published events</strong></div><div>The Subscriber subscribes to a Publisher and is ready to react to its emitted events.</div><div class="my-2 lh-0" style="border-top:1px solid rgba(70, 155, 255, 0.1);">&nbsp;</div><div><strong>Role:</strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br><strong class="text-primary">Passive Role</strong>, given that it needs to receive updates from the Publisher and update the screen with the new data.</div></div></div></div></div>
 
 
-By using [the Observer Pattern](https://refactoring.guru/design-patterns/observer) we are accomplishing a few goals:
+By using [the Observer Pattern](https://refactoring.guru/design-patterns/observer), we are accomplishing a few goals:
 
 + Splitting the responsibilities of the original data gathering and display component into two components.    
-+ Decoupling the fetch and process logic from the show-data-into-screen logic by having an active component and a passive component.
-+ Moving from a pull-based paradigm (interval fetching or user manual fetching) into a push-based one (where Subscriber passively receives new data sent by the Publisher).
++ Decoupling the fetch and process logic from the show-data-into-screen logic by having active and passive components.
++ Moving from a pull-based paradigm (where the application either fetches data at regular intervals or waits for the user to manually refresh the data) into a push-based one (where the Subscriber passively receives new data sent by the Publisher).
 
-In other words, the user is **NOT** in charge of requesting data; the app reacts to data changes as soon as it’s notified about the changes.
+In other words, the user is **NOT** in charge of requesting data; the app reacts to data changes as soon as it's notified.
 
-The first time I used [the Observer Pattern](https://refactoring.guru/design-patterns/observer), I was surprised that I could actually split the responsibility between knowing when an event occurred and processing that same event. With this pattern, I can be sure that the app will only react when an event occurs, rather than constantly polling to check if a reaction is necessary.                      
+The first time I used [the Observer Pattern](https://refactoring.guru/design-patterns/observer), I was surprised that I could split the responsibility between knowing when an event occurred and processing that same event. With this pattern, I can be sure that the app will only react when an event occurs rather than constantly polling to check if a reaction is necessary.                      
 
-By using the Observer pattern, we are making our application more reactive, allowing it to properly respond to data changes and updates everywhere.
+Using the Observer pattern, we are making our application more reactive, allowing it to correctly respond to data changes and updates everywhere.
 
 
 ## Is there a Better Approach than the Observer Pattern?
 
-Even though the Observer Pattern is a substantial improvement, it’s still possible to enhance its implementation, especially when there are multiple steps and branches involved in processing the obtained data.
+Even though the Observer Pattern is a substantial improvement, its implementation can still be enhanced, especially when multiple steps and branches are involved in processing the obtained data.
 
 **Let’s consider a real-life example:**  
-In Tokenpad, there is a “Consolidated Tokens” screen, where we show aggregated information about all the tracked tokens the user owns in their portfolios.  
-For that screen we needed to obtain the portfolios from the database and fulfill the following requirements:
+Tokenpad has a "Consolidated Tokens" screen, where we show aggregated information about all the tracked tokens in the user’s portfolios. 
+For that screen, we needed to obtain the portfolios from the database and fulfill the following requirements:
 
 
 <div class="row">
@@ -151,8 +151,7 @@ For that screen we needed to obtain the portfolios from the database and fulfill
           1.
         </div>
         <div>
-          Show portfolio data grouped by similar tokens (e.g Wrapped Ethereum (WETH) and Ethereum (ETH) are grouped
-          together)
+          Show portfolio data grouped by similar tokens (e.g., Wrapped Ethereum (WETH) and Ethereum (ETH) are grouped together)
         </div>
       </li>
       <li class="d-flex flex-nowrap align-items-center rounded-4 px-3 py-2 mb-3" style="background-color: rgba(131, 113, 243, 0.06);">
@@ -168,7 +167,7 @@ For that screen we needed to obtain the portfolios from the database and fulfill
           3.
         </div>
         <div>
-          Identify the top 4 (and “Others”) token groups by percentage according to the selected filter
+          Identify the top four (and “Others”) token groups by percentage according to the selected filter
         </div>
       </li>
       <li class="d-flex flex-nowrap align-items-center rounded-4 px-3 py-2 mb-3" style="background-color: rgba(131, 113, 243, 0.06);">
@@ -194,8 +193,7 @@ For that screen we needed to obtain the portfolios from the database and fulfill
   </div>
 </div>
 
-
-To achieve these operations using the Observer Pattern we could have the following code:
+To achieve these operations using the Observer Pattern, we could have the following code:
 
 ```dart
 class Token { 
@@ -282,36 +280,33 @@ class PortfoliosSubscriber implements Subscriber<List<Portfolio>> {
   }
 }
 ```
+In the code, we can see how to receive new events in the processEvent method and start to process, step by step, the received list of Portfolios to calculate the necessary information to be displayed in the Consolidated Tokens screen.   
 
-In the code, we can see how to receive new events in the processEvent method and start to process, step by step, the received List of Portfolios to calculate the necessary information to be displayed in the Consolidated Tokens screen.   
-
-It is important to note that, although the logic is divided in steps, all of it depends on the processEvent argument (the List of Portfolios). As a result, the logic piles up inside the processEvent block. We could use the [Extract Method](https://refactoring.guru/extract-method) refactoring to move the logic out of that block. However, in the end, all the logic will still be dependent on the same processEvent argument and that block of code will grow with every new feature that depends on it.
+It is important to note that although the logic is divided into steps, all of it depends on the processEvent argument (the list of Portfolios). As a result, the logic piles up inside the processEvent block. We could use the [Extract Method](https://refactoring.guru/extract-method) refactoring to move the logic out of that block. However, in the end, all the logic will still depend on the same processEvent argument. That code block will grow with every new feature that depends on it.
 
 
 ## Say Hello to Reactive Programming
 
 I like to define Reactive Programming as the Observer Pattern on steroids.   
   
-Reactive Programming allows us to have the benefit of the Observer Pattern’s push-based approach while also having some extra benefits such as:
+Reactive Programming allows us to have the benefit of the Observer Pattern's push-based approach while also having some extra benefits, such as:
 
-+ Very good documentation
++ Excellent documentation
 + Out-of-the-shelf chaining
 + Availability in a myriad of languages
-+ A ton of chainable operators “for free”
++ A ton of chainable operators "for free."
 
-What’s exactly Reactive Programming?   
+## What exactly is Reactive Programming?  
   
-In their book “Reactive Programming with RxJava”, Tomasz Nurkiewicz and Ben Christensen define Reactive Programming as:   
-  
-Reactive Programming is a general programming term that is focused on reacting to changes, such as data values or events. It can and often is done imperatively. A callback is an approach to reactive programming done imperatively. A spreadsheet is a great example of reactive programming: cells dependent on other cells automatically “react” when those other cells change\[…\]   
-  
-Therefore is an approach to programming - an abstraction on top of imperative systems - that allows us to program asynchronous and event-driven use cases without having to think like the computer itself and imperatively define the complex interactions of state, particularly across thread and network boundaries.   
+In their book “Reactive Programming with RxJava," Tomasz Nurkiewicz and Ben Christensen define Reactive Programming as:   
+
+> Reactive Programming is a general programming term that is focused on reacting to changes, such as data values or events. It can and often is done imperatively. A callback is an approach to reactive programming done imperatively. A spreadsheet is a great example of reactive programming: cells dependent on other cells automatically “react” when those other cells change\[…\]<br><br>Therefore, it is a programming approach - an abstraction on top of imperative systems - that allows us to program asynchronous and event-driven use cases without having to think like the computer itself and imperatively define the complex interactions of state, particularly across thread and network boundaries.   
   
 **That definition mentions two key concepts: reacting to change (a piece of what we already saw in the Observer Pattern) and not having to think like the computer itself.**   
   
-The main shift when using reactive programming is that instead of imperatively telling the computer how and when to do calculations (static data and operations) we have a “living” stream of data to which we subscribe.  The code automatically reacts to its changes, updating all the calculations in a way that’s closer to how we, as humans, think instead of us having to accommodate our thinking to the computers’ way.   
+The main shift when using Reactive Programming is that instead of imperatively telling the computer how and when to do calculations (static data and operations), we have a "living" stream of data to which we subscribe. The code automatically reacts to its changes, updating all the calculations in a way that's closer to how we, as humans, think instead of us having to accommodate our thinking to the computers' way.   
   
-Let’s try to see this in code:
+Let's try to see this in the code:
 
 ```dart
 int a = 10;
@@ -322,17 +317,17 @@ int sum = a + b; // sum = 25
 b = 25; // sum stays as 25 instead of increasing to 35
 ```
 
-This is an example of static code. The variable b is initialized as 15, then the variable sum is calculated in terms of a and b. Subsequently, b is updated from 15 to 25. In a reactive world, the value of sum would be updated to 35 but, given that this code is not reactive (it’s static), its value stays a 25.    
+This is an example of static code. The variable b is initialized as 15, and then the variable sum is calculated in terms of a and b. Subsequently, b is updated from 15 to 25. In a reactive world, the value of the sum would be updated to 35, but given that this code is not reactive (it's static), its value stays at 25.    
   
-For us to update the value to 35, we need to explicitly call sum = a + b again.    
+To update the value to 35, we must explicitly call the sum = a + b again.   
   
 If we want to transform this code into Reactive, we need to reference a couple of concepts:
 
-+   **Stream:** According to [Dart’s official documentation](https://dart.dev/tutorials/language/streams), a stream is a sequence of asynchronous events. It is like an asynchronous iterable, where, instead of having to query it to check whether there’s a new event or not, the stream tells you that there is an event when it is ready.
-+   **There are two kinds of Streams:** Single subscription stream and Broadcast stream.
++   **Stream:** According to [Dart’s official documentation](https://dart.dev/tutorials/language/streams), a stream is a sequence of asynchronous events. It is like an asynchronous iterable, where instead of having to query it to check whether there's a new event, the stream tells you that there is an event when it is ready.
++   **There are two kinds of streams:** Single subscription streams and broadcast streams.
 +   **Subscription:** It’s the act of registering to receive the events emitted by a Stream.
 
-Keeping these two concepts in mind, this is how we update the static code to update the value of sum reactively:
+Keeping these two concepts in mind, this is how we update the static code to update the value of the sum reactively:
 
 ```dart
 int a = 10;
@@ -343,19 +338,18 @@ b.listen((int newBValue) { // 2: The subscription is created
   int sum = a + newBValue;
 });
 ```
-
-This code adds a and b, as before, but this time uses Streams.  
+This code adds a and b, but this time uses Streams.  
   
-Now the sum value is recalculated whenever the value of b is updated (The Stream emits). The subscription to a Stream is created by calling the Stream’s listen method, which is equivalent to calling addSubscriber in the Observer Pattern.  
+The sum value is recalculated whenever the value of b is updated (The Stream emits). The subscription to a Stream is created by calling the Stream’s listen method, which is equivalent to calling addSubscriber in the Observer Pattern.  
   
-In this example Stream b will emit in order the following values: 15, 25, 35 and 45 and we can be sure that the value of sum gets updated to 25, then 35, 45 and finally 55.  
+In this example Stream b will emit the following values in order: 15, 25, 35, and 45. We can be sure that the value of sum gets updated to 25, then 35, 45 and finally 55.  
   
-sum is updated every time b emits without us having to explicitly reassign it in a separate call.
+The sum is updated every time b emits without us having to explicitly reassign it in a separate call.
 
 ## Conclusion
 
-Building data-heavy applications requires developers to write code to retrieve, store, process and show data. Having tools that make these steps easy to write, understand, and modify, extends benefits for all involved, from the developer to the application users.   
+Building data-heavy applications requires developers to write code to retrieve, store, process, and show data. Having tools that make these steps easy to write, understand, and modify extends benefits for all involved, from the developer to the application users.   
   
-Reactive Programming is one such tool to achieve these goals. Further, it changes the way developers think about building user-facing applications, abstracting away the computer-oriented way, and  while including additional features that make it even more powerful.   
+Reactive Programming is one tool for achieving these goals. It changes the way developers think about building user-facing applications, abstracting away the computer-oriented approach while including additional features that make it even more powerful.   
   
-Stay tuned for the next part where I’ll dig deeper in the Reactive Programming world, including real life challenges in Tokenpad and how Reactive Programming helped us to sort them out.
+Stay tuned for the next part, where I'll explore the world of Reactive Programming, including real-life challenges in Tokenpad and how Reactive Programming helped us.
