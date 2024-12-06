@@ -76,6 +76,11 @@ Currently, many Web3 wallets support AA (Account Abstraction). In this demo, we 
 2. [Alchemy](https://accountkit.alchemy.com/), we will use it's Smart Account Lib to build our Smart Account Contoller.
 3. [react](https://react.dev/), a popular frontend framework, we use it to build our DApp demo.
 
+### Online Playground
+This link is the online demo, you can read code and play the demo as you like.
+
+[Online Playground](https://codesandbox.io/p/devbox/abstract-account-hslydc)
+
 ### Using the Dynamic EOA Wallet
 In this step, we use the `DynamicContextProvider` component to build a connection to `Dynamic` by using `DynamicKey`,
 then we can use `DynamicWagmiConnector` to connect the chrome extension EOA wallet. The `WagmiProvider` component will
@@ -243,7 +248,7 @@ some ETHs to the AA account.
 
 ***In our DApp, we display the address and balance of this AA account.***
 
-![account-detail](./account-detail.png)
+![login_create_account](./login_create_account.gif)
 
 Create the  `AbstractAcount.tsx`  component to display information about the current AA wallet and the functionality for funding it. 
 
@@ -343,18 +348,12 @@ Here we fill the ETH into the input in our DApp then click the charge,
 our DApp will call out the EOA wallet transaction sending modal connected by dynamic, 
 and confirm the transaction.
 
-![charge](./charge.png)
-
 After transaction finished, our DApp will refresh automatically, then you will find out 
 the balance number changed, yes your charging was succeed.
 
 ***The charge result***
 
-![charge-result](./charge-result.png)
-
-***we can review it on the explore***
-
-![charge-etherscan](./charge-etherscan.png)
+![charge](./charge.gif)
 
 ### Send Multiple Transactions Using the AA Wallet
 Because the AA wallet sends user operations, and user operations need to convert structured data into 
