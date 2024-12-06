@@ -47,6 +47,24 @@
       "slug": "frontend-performance-optimization"
     },
     {
+      "devOnly": true,
+      "title": "Exploration of the Web3 Account Abstraction",
+      "author": [
+        "Zewei Zhang / Front-End Engineer"
+      ],
+      "createTime": "2024-08-05T00:00:00.000Z",
+      "tags": [
+        "Web3",
+        "Account Abstraction",
+        "Wallet"
+      ],
+      "thumb": "thumb.png",
+      "thumb_h": "thumb_h.png",
+      "intro": "This article introduces how account abstraction comes out, its workflow, and its features and explores them through front-end code.",
+      "path": "articles/Exploration%20of%20The%20Web3%20Account%20Abstraction/README.md",
+      "slug": "exploration-of-the-web3-account-abstraction"
+    },
+    {
       "title": "Get a Print Quote in Seconds - Not Weeks",
       "subTitle": "When Thousands of Data Points Converge to a Decision Point in Less Than Three Seconds",
       "author": [
