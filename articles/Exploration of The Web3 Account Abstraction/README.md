@@ -86,6 +86,10 @@ In this step, we use the `DynamicContextProvider` component to build a connectio
 then we can use `DynamicWagmiConnector` to connect the chrome extension EOA wallet. The `WagmiProvider` component will
 help us to use wagmi lib functions in our DApp easier, like switching network, getting account information and interactting with contracts.
 
+***In the demo DApp, we display the address and balance of this AA account.***
+
+![login_create_account](./login_create_account.gif)
+
 #### **WalletProvider.tsx**
 ```tsx
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
@@ -246,11 +250,11 @@ After creating SmartAccountClient in last step, it means you have a on-chain AA 
 But now the wallet just has 0 balance, if you want to use it to send any transaction, you should send 
 some ETHs to the AA account.
 
-***In our DApp, we display the address and balance of this AA account.***
-
-![login_create_account](./login_create_account.gif)
-
 Create the  `AbstractAcount.tsx`  component to display information about the current AA wallet and the functionality for funding it. 
+
+***The deposit step***
+
+![charge](./charge.gif)
 
 #### **AbstractAcount.tsx**
 ```tsx
@@ -350,10 +354,6 @@ and confirm the transaction.
 
 After transaction finished, our DApp will refresh automatically, then you will find out 
 the balance number changed, yes your charging was succeed.
-
-***The charge result***
-
-![charge](./charge.gif)
 
 ### Send Multiple Transactions Using the AA Wallet
 Because the AA wallet sends user operations, and user operations need to convert structured data into 
