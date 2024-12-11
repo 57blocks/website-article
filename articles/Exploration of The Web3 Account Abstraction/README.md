@@ -6,8 +6,18 @@ createTime: 2024-08-05
 tags: ["Web3", "Account Abstraction", "Wallet", "Dynamic", "Alchemy"]
 thumb: "thumb.png"
 thumb_h: "thumb_h.png"
-intro: "In the evolving landscape of blockchain technology, the concept of Account Abstraction (AA) has emerged as a significant innovation. Traditional Ethereum accounts, known as Externally Owned Accounts (EOAs), have several limitations that hinder flexibility and security. Account Abstraction aims to address these limitations by decoupling transactions and accounts from the underlying layer, allowing for more advanced functionalities and enhanced security. This article delves into the origins and workflow of Account Abstraction, highlighting its advantages and disadvantages. We will explore how to build and optimize AA wallets using Dynamic and Alchemy, providing practical insights through front-end code examples. Whether you are a developer looking to implement AA wallets or simply interested in understanding this cutting-edge technology, this article will guide you through the essential concepts and practical steps. Join us as we explore the future of smart wallets and how they can revolutionize the way we interact with blockchain networks."
+intro: "Discover the concept of Account Abstraction (AA) and learn how to build and optimize smart wallets using Dynamic and Alchemy. This article covers the origins, workflow, advantages, and disadvantages of AA, providing practical insights through front-end code examples."
 ---
+
+## Introduction
+In the evolving landscape of blockchain technology, the concept of Account Abstraction (AA) has emerged as a significant innovation. 
+Traditional Ethereum accounts, known as Externally Owned Accounts (EOAs), have several limitations that hinder flexibility and security. 
+Account Abstraction aims to address these limitations by decoupling transactions and accounts from the underlying layer, 
+allowing for more advanced functionalities and enhanced security. This article delves into the origins and workflow of Account Abstraction, 
+highlighting its advantages and disadvantages. We will explore how to build and optimize AA wallets using Dynamic and Alchemy, 
+providing practical insights through front-end code examples. Whether you are a developer looking to implement AA wallets or simply interested 
+in understanding this cutting-edge technology, this article will guide you through the essential concepts and practical steps. Join us as we 
+explore the future of smart wallets and how they can revolutionize the way we interact with blockchain networks.
 
 ## How Account Abstraction Emerges
 Ethereum has two types of accounts: Externally Owned Accounts (EOAs) and Contract Accounts (CAs). Only EOAs can initiate a transaction (TX), 
