@@ -30,7 +30,7 @@ for "authorizing smart contracts to act on behalf of EOAs." Finally, [EIP-4337](
 completed the task of account abstraction with maximum compatibility, and currently, we refer to AA wallets as 
 Smart Wallets or Smart Contract Accounts (SCA).
 
-## Here is the Workflow of Account Abstraction
+## Workflow of Account Abstraction
 1. The user creates a User Operation.
 2. The user signs the User Operation with any signature algorithm (in the past, Ethereum transactions could only use ECDSA).
 3. The user sends the User Operation to the off-chain User Operation mempool.
@@ -41,7 +41,7 @@ Smart Wallets or Smart Contract Accounts (SCA).
 
 ![ERC-4337-overview.png](./ERC-4337-invocation-flow.png)
 
-## The Advantages of Account Abstraction
+## Advantages of Account Abstraction
 Account Abstraction is similar to a Contract Account with the characteristics of an EOA (Externally Owned Account). 
 It allows transactions and accounts to be decoupled from the underlying layer and become the role of high-level smart contracts. 
 
@@ -74,7 +74,7 @@ key means you can never access Ethereum funds. Account Abstraction separates acc
 recovery, you can designate trusted contacts (such as family or friends) who can help you regain access if you lose your signing 
 key. This may involve a multi-step verification process or delayed access procedures to prevent unauthorized recovery.
 
-## The Disadvantages of Account Abstraction
+## Disadvantages of Account Abstraction
 While Account Abstraction offers several advantages, it also comes with some disadvantages that need to be considered. 
 
 These disadvantages are detailed below:
