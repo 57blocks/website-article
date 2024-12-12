@@ -1,6 +1,6 @@
 ---
 devOnly: true
-title: "Exploring Account Abstraction: Building and Optimizing Smart Wallets with Dynamic and Alchemy"
+title: "Exploring Account Abstraction in Ethereum: Building and Optimizing Smart Wallets with Dynamic and Alchemy"
 author: ["Zewei Zhang / Front-End Engineer"]
 createTime: 2024-08-05
 tags: ["Web3", "Account Abstraction", "Wallet", "Dynamic", "Alchemy"]
@@ -32,6 +32,9 @@ However, EOAs have many limitations, and CAs are constrained by EOAs:
 Given these limitations, the concept of Account Abstraction (AA) accounts has started to take shape.
 
 ## The Concept of Account Abstraction
+
+Account Abstraction (AA) is a concept in blockchain technology, particularly in Ethereum, that aims to 
+enhance the flexibility and security of account management.
 
 The concept of AA accounts was initially proposed in [EIP-2938](https://eips.ethereum.org/EIPS/eip-2938), 
 which introduced a complete concept for account abstraction. Subsequently, 
@@ -574,11 +577,10 @@ To mitigate the high gas fees associated with AA wallets, it is advisable to uti
 This approach can greatly reduce costs while maintaining the advantages of account abstraction.
 
 ## Conclusion
-Account Abstraction provides Ethereum users with a more flexible and secure way to manage their accounts, 
-promising enhanced security. The flexibility in private key management improves the user experience. 
-The innovation of AA lies in its ability to integrate the best features of EOAs and CAs, 
-allowing users to control their accounts more effectively without sacrificing security or functionality. 
-However, AA is not without its challenges, such as the potential increase in gas fees and the complexity of managing third-party paymasters. 
-As Ethereum continues to evolve, adopting Account Abstraction through mechanisms like EIP-4337 can play a crucial role in defining a more 
-accessible and versatile Ethereum ecosystem. The ongoing development and optimization of AA features ensure a more user-friendly and secure 
-environment for both individual users and institutions, helping Ethereum move closer to its goal of widespread adoption.
+Account abstraction provides Ethereum users with a more flexible and secure way to manage their accounts, 
+Commitment to enhanced security. The flexibility of private key management improves the user experience. 
+The innovation of account abstraction is that it combines the best features of EOA and CA, 
+Allows users to control their accounts more effectively without sacrificing security or functionality, such as social Recovery, 
+easy integration into EOA wallets, and control of AA through EOA wallets. Of course, there are 
+disadvantages to account abstraction, such as possible increased gas costs and the complexity of managing third-party tellers, 
+but there are still ways to address these issues in order to provide better service to Ethereum users.
