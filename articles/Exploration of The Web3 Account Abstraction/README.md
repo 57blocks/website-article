@@ -80,7 +80,7 @@ ERC20 tokens, which External Owned Accounts (EOAs) could not do in the past.
 Previously, an EOA could only perform one transaction at a time. However, with ERC 4337, different transactions can all be 
 placed in the callData field of the User Operation, allowing for the atomic execution of multiple different transactions at once.
 
-### 5. Social Media Recovery
+### 5. Social Account Recovery
 Social account recovery is also an advantage of AA Wallet; you can set up a social account as the guardian of the wallet, and 
 you can retrieve the access rights to the contract account through social account verification. Currently, losing the private 
 key means you can never access Ethereum funds. Account Abstraction separates account access from the private key. With social 
@@ -98,7 +98,7 @@ because a contract call will occur, it also generates additional costs, leading 
 ([Details can be referred to in this article](https://www.stackup.sh/blog/how-much-more-expensive-is-erc-4337)) Currently, 
 the best solution is to use Layer 2 for transactions, which can significantly reduce the cost of gas fees.
 
-### 2. Security
+### 2. Need to Mitigate Malicious Paymaster Risks in Account Abstraction
 As previously mentioned, the reason why Paymaster needs to stake native tokens to the EntryPoint is to prevent malicious Paymasters 
 from conducting DoS (Denial of Service) attacks. Since the Paymaster is a contract implemented by a third party, following the process 
 below, it can make the Bundler send invalid transactions, such as:
