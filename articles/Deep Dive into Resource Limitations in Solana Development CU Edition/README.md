@@ -365,7 +365,7 @@ The CU consumption of common program constructs is summarized below:
 | ------------------ | ------------------------------------------------- |
 | For Loop           | 301 (Init) <br> 181 (Per Iteration)               |
 | If Statement       | 100                                               |
-| Different Data Sizes | 462 (Vec<u8>) <br> 628 (Vec<u32>) <br> 682 (Vec<u64>) |
+| Different Data Sizes | 462 (Vec u8) <br> 628 (Vec u32) <br> 682 (Vec u64) |
 | Hash Function      | 200                                               |
 | Function Call      | 100                                               |
 
