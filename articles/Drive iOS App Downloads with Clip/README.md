@@ -3,9 +3,9 @@ title: "Drive iOS App Downloads with Clip"
 author: ["Eric Qi / iOS engineer"]
 createTime: 2024-12-25
 tags: ["iOS", "App", "App Clip"]
-thumb: "AppClip2.png"
-thumb_h: "AppClip2.png"
-intro: "This article introduces what App Clip is, why it is beneficial to app downloads, and uses company projects as an example to explain some considerations from the development and testing perspectives."
+thumb: "https://example.com/theThumbOfTheArticle.png"
+thumb_h: "https://example.com/theHorizontalThumbOfTheArticle.png"
+intro: "This article provides a detailed exploration of resource limitations encountered during Solana development. It specifically focuses on Compute Unit (CU) restrictions, using examples and program comparisons to illustrate how these limitations can affect Solana development."
 ---
 ## What is App Clip？
 
