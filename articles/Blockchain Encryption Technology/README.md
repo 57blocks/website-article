@@ -52,22 +52,30 @@ A core concept of data encryption is the transformation of readable information 
 
 ### 1. Zero-Knowledge Proof
 
-**Working Principle**: Zero-Knowledge Proof is a cryptographic protocol that allows a prover to convince a verifier that a certain statement is true without revealing the content of the information. This is achieved through sophisticated mathematical algorithms, ensuring that the verifier can trust the authenticity of the proof without gaining any additional information.
+**Working Principle**: Zero-Knowledge Proof is a cryptographic protocol that allows a “prover” (the party trying to prove something) to convince a “verifier” (the party validating the proof) that a certain statement is true without revealing any identifying information about a user or transaction. Sophisticated mathematical algorithms are used to ensure that the “verifier” can trust the authenticity of the proof offered without requesting that additional information.
 
-**Technologies Used**: zk-SNARKs, zk-STARKs, Bulletproofs, etc.
+**Technologies Used**: zk-SNARKs, zk-STARKs, Bulletproofs.
 
-**Application Scenarios**: Applied in privacy protection, verification optimization, and identity authentication, ensuring data privacy while enhancing verification efficiency and security.
+**Application Scenarios**: This approach can be applied in situations that include untrusted or unidentified parties over an untrusted communication channel, which makes it ideal for situations involving privacy protection, verification optimization, and identity authentication. Ensure data privacy while enhancing verification efficiency and security.
+
+To illustrate, imagine a “prover” wants to demonstrate they know a password without revealing what it is. The attached diagram visually explains this process:
+
+1. The **Prover** claims, "I know the password," but does not disclose the password itself.
+2. The **Verifier** sends random challenges to test the prover’s knowledge of the password.
+3. The **Prover** responds correctly to these challenges multiple times, proving their claim without ever revealing the password.
+4. Through this iterative process, the “verifier” gains confidence that the “prover” truly knows the password, as shown by the successful responses, but never learns the password.
+
 :::center
 ![ZKP](./zkp.png =500x500)
 :::
 
 ### 2. Homomorphic Encryption
 
-**Working Principle**: Homomorphic encryption is an encryption technique that allows specific computations to be performed directly on ciphertexts without first decrypting the data. The result of the computation, when decrypted, is the same as performing the computation on the plaintext and then encrypting the result.
+**Working Principle**: Homomorphic encryption is an encryption technique that allows specific computations to be performed directly on ciphertexts without first decrypting the data. The result of the computation, when decrypted, is the same as performing the computation on the plaintext and then encrypting the result. Note that this technique allows for an infinite number of additions to encrypted data. It is often used to increase the safety and security of data, especially data accessed and used by third parties.
 
 **Technologies Used**: Paillier Encryption, ElGamal Encryption, BGV (Brakerski-Gentry-Vaikuntanathan), BFV (Brakerski/Fan-Vercauteren), CKKS (Cheon-Kim-Kim-Song)
 
-**Application Scenarios**: Applied in privacy-preserving financial transactions, decentralized finance (DeFi), decentralized data markets, medical data privacy, etc.
+**Application Scenarios**: Applied in privacy-preserving financial transactions, decentralized finance (DeFi), decentralized data markets, medical data privacy, user privacy, and related user data activities.
 
 ![Homomorphic Encryption](./homomorphic-encryption.png)
 
@@ -75,20 +83,35 @@ A core concept of data encryption is the transformation of readable information 
 
 **Working Principle**: Threshold cryptography is a cryptographic technique where a secret (such as a private key) is divided into multiple parts and distributed to multiple participants. The secret can only be reconstructed when a sufficient number (i.e., meeting a predetermined "threshold") of participants agree to cooperate.
 
+The assumption behind this method of cryptography is that since all participating entities are susceptible to compromise, decrypting the shared secret requires the cooperation of some participants. There will always be some in a group who have the appropriate credentials; one or two bad actors or keys will not jeopardize security.
+
 **Technologies Used**: Shamir's Secret Sharing (SSS), Blakley's Secret Sharing, Threshold RSA, Threshold ECDSA
 
-**Application Scenarios**: Applied in multi-signature wallets, decentralized exchanges (DEX), distributed key management, cloud computing security, secure multi-party computation, decentralized autonomous organization (DAO) management, etc.
+**Application Scenarios**: Applied in multi-signature wallets, decentralized exchanges (DEX), distributed key management, cloud computing security, secure multi-party computation, or decentralized autonomous organization (DAO) management. Basically, it used in cases when there may need to be multiple actors necessary to complete a transaction. One bad actor or corrupted value won’t impact data integrity of the whole.
+
 :::center
 ![Threshold Cryptography](./threshold-cryptography.png =500x500)
 :::
 
 ## Cryptographic Techniques in Blockchain
 
-In this article, we are introducing five important encryption techniques in blockchain technology: Elliptic Curve Cryptography (ECC) and hash functions,Zero-Knowledge Proof,Homomorphic Encryption,Threshold Cryptography.
+In this article, we are introducing five important encryption techniques in blockchain technology:
+
+- Elliptic Curve Cryptography (ECC)
+- Hash functions
+- Zero-Knowledge Proof
+- Homomorphic Encryption
+- Threshold Cryptography
 
 Elliptic Curve Cryptography (ECC) is an asymmetric encryption method known for its high security and computational efficiency. ECC provides strong encryption while using relatively short key lengths, enabling more efficient encryption and decryption processes. This makes ECC widely used in generating digital signatures and performing secure key exchanges, which are critical for ensuring the security of blockchain transactions, identity verification, and data integrity protection.
 
 Hash functions play an indispensable role in ensuring data integrity and security. By converting input data of arbitrary length into fixed-length outputs, hash functions can quickly detect any data tampering, as even a slight change in the input results in significantly different hash values. In blockchains, each block contains the previous block's hash, creating a secure and immutable chain structure. Additionally, hash functions are used to create Merkle trees, supporting efficient transaction verification and retrieval.
+
+Zero-Knowledge Proofs (ZKPs) provide a way for one party to prove to another that a statement is true without revealing any underlying information. This technology is crucial for privacy in blockchain systems, allowing for confidential transactions, secure identity verification, and proof of compliance without exposing sensitive data.
+
+Homomorphic encryption allows computations to be performed on encrypted data without needing to decrypt it first. This ensures data privacy even during processing. In blockchain, homomorphic encryption enables privacy-preserving analytics, smart contract execution, and secure data sharing, making it a powerful tool for applications requiring confidentiality.
+
+Threshold cryptography enhances security by distributing cryptographic operations among multiple parties. It splits secret keys into shares held by different participants, requiring a minimum number of them to collaborate for cryptographic actions, such as signing or decryption. This ensures that no single party can compromise the system, making it ideal for secure key management and protecting against insider threats.
 
 Together, these technologies provide foundational security guarantees for blockchains, supporting the security, transparency, and immutability of decentralized applications.
 
@@ -190,11 +213,11 @@ In blockchain technology, hash functions also play crucial roles, and different 
 
 ### Zero-Knowledge Proof (ZKP)
 
-Each application scenario utilizes the unique attributes of specific ZKP technologies to meet the needs for privacy protection, identity verification, data privacy, decentralized decision-making, or system performance on the blockchain:
+Each application scenario listed here utilizes the unique attributes of specific ZKP technologies to meet the needs for privacy protection, identity verification, data privacy, decentralized decision-making, or system performance on the blockchain.
 
 1. **Privacy-Preserving Transactions:**
 
-   Zcash employs zk-SNARKs to conceal transaction details (sender, receiver, and amount) to achieve privacy-preserving transactions.
+   Zcash, a privacy-focused cryptocurrency based on Bitcoin's codebase and developed with anonymity in mind, employs zk-SNARKs to conceal transaction details (sender, receiver, and amount) and support privacy-preserving transactions.
 
 2. **Identity Verification:**
 
@@ -202,11 +225,11 @@ Each application scenario utilizes the unique attributes of specific ZKP technol
 
 3. **Smart Contracts and Data Privacy:**
 
-   zk-SNARKs and Bulletproofs are used in smart contracts, such as in decentralized finance (DeFi), to ensure the privacy of contract participants.
+   zk-SNARKs and Bulletproofs are used in smart contracts, such as those found in decentralized finance (DeFi), to ensure the privacy of contract participants.
 
 4. **Decentralized Voting Systems:**
 
-   zk-SNARKs and Pedersen Commitments are used to verify the legitimacy of votes and ensure the accuracy of voting results without disclosing specific vote information.
+   zk-SNARKs and Pedersen Commitments are used to verify the legitimacy of votes and ensure the accuracy of voting results without disclosing specific voter selections or their personal information.
 
 5. **Efficient Verification and Scaling:**
 
@@ -214,45 +237,45 @@ Each application scenario utilizes the unique attributes of specific ZKP technol
 
 ### Homomorphic Encryption in Blockchain
 
-Understanding the application of homomorphic encryption in blockchain aids in grasping its potential in privacy protection, data processing, and security. Here are specific application scenarios along with relevant homomorphic encryption technologies:
+Understanding the application of homomorphic encryption in blockchain aids in clearly seeing its potential in privacy protection, data processing, and security. Here are specific application scenarios along with relevant homomorphic encryption technologies.
 
 1. **Privacy-Preserving Transactions:**
 
-   Paillier Homomorphic Encryption used to encrypt transaction amounts in blockchain transactions. By supporting additive homomorphism, it allows the calculation of total amounts without decrypting the transactions, thus protecting the privacy of transaction amounts.
+   Paillier Homomorphic Encryption is used to encrypt blockchain transaction values. By supporting additive homomorphism, the system can calculate transaction totals without decrypting them, providing privacy and protection for transaction values.
 
 2. **Identity Verification:**
 
-   Users can employ partial homomorphic encryption to encrypt identity credentials for verification purposes. On the blockchain, verifiers can confirm the legitimacy of a user’s identity without decrypting the data, thereby concealing specific identity information.
+   Users can employ partial homomorphic encryption to encrypt identity credentials for verification purposes. On the blockchain, verifiers can confirm the legitimacy of a user’s identity without decrypting data, additionally concealing specific identity information.
 
 3. **Smart Contracts and Data Privacy:**
 
-   Used in decentralized finance (DeFi) smart contracts to encrypt data provided by participants, enabling the execution of complex financial computations without decryption, thereby ensuring data privacy.
+   Used in decentralized finance (DeFi), smart contracts encrypt data provided by participants, enabling the execution of complex financial computations without decryption, additionally ensuring data privacy.
 
 4. **Decentralized Voting Systems:**
 
-   Using ElGamal Encryption for ballots in decentralized voting systems. The additive homomorphic property of encrypted votes allows tallying without decryption, ensuring the privacy of votes and transparency of the voting process.
+   ElGamal Encryption can be used for ballots in decentralized voting systems. The additive homomorphic property of encrypted votes allows tallying without decryption, which ensures the privacy of votes while adding transparency to the voting process.
 
 5. **Efficient Data Processing and Storage:**
 
-   In scenarios involving cross-party data sharing and analysis, Fully Homomorphic Encryption (FHE) allows arbitrary computations on encrypted data. Using FHE in blockchain can protect data privacy while enhancing processing efficiency and security without needing to decrypt the data.
+   In scenarios involving cross-party data sharing and analysis, fully Homomorphic Encryption (FHE) allows arbitrary computations on encrypted data. Using FHE in blockchain can protect data privacy while enhancing processing efficiency and security without needing to decrypt the data.
 
-These scenarios illustrate the potential applications of homomorphic encryption in blockchain, addressing needs in data privacy, transaction privacy, identity protection, and efficient data processing. Each technology poses unique challenges in computational complexity and performance, necessitating optimized design and implementation for specific applications.
+As you can see, each technology included supports an optimized design to solve the unique challenges that arise in computational complexity and performance in specific applications. Depending on your business needs related to security and data privacy, there is a homomorphic encryption technology approach available to support your business or project goal.
 
 ### Threshold Cryptography
 
-Threshold cryptography is widely used in multi-signature wallets, decentralized governance, privacy protection in smart contracts, and trustless environments supporting cross-chain transactions. It significantly enhances the security and efficiency of these applications.
+Threshold cryptography is widely used in multi-signature wallets, decentralized governance, privacy protection in smart contracts, trustless environments supporting cross-chain transactions, or anywhere multiple participants could complete a transaction. Its use significantly enhances the security and efficiency of these applications by not relying on single actors or access points that could be easily compromised.
 
 1. **Multi-Signature Wallets:**
 
-   This distributed signing protocol combines the Elliptic Curve Digital Signature Algorithm (ECDSA) with threshold cryptography. In this system, a private key is divided into several shares, each held by different users. To produce a valid signature, at least a predefined threshold number of share holders must participate. Even if one share is compromised, it does not threaten the security of the entire system, thus enhancing wallet security.
+   This distributed signing protocol combines the Elliptic Curve Digital Signature Algorithm (ECDSA) with threshold cryptography. In this system, a private key is divided into several shares, each held by different users. To produce a valid signature, a predefined threshold minimum number of share holders must participate. Even one compromised share does not threaten the security of the entire system, thus enhancing wallet security.
 
 2. **Decentralized Governance:**
 
-   These threshold signature schemes are exemplary for enabling DAO (Decentralized Autonomous Organization) decentralized decision-making. Governance decisions only take effect when a pre-set threshold number of votes is reached. This ensures the democratic nature of organizational decisions and prevents the concentration of control, thereby strengthening community involvement.
+   These threshold signature schemes are exemplary for enabling DAO (Decentralized Autonomous Organization) decentralized decision-making. Governance decisions only take effect when a pre-set threshold number of votes is reached in a distributed consensus. This ensures the democratic nature of organizational decisions and prevents the concentration of control, thereby strengthening community involvement. Some examples of this can be found in this article by Bernard Marr at Forbes about DAO.
 
 3. **Privacy Protection in Smart Contracts:**
 
-   In blockchain applications requiring privacy, schemes like Threshold RSA and Threshold ElGamal can protect transaction data confidentiality. These algorithms allow the decryption power to be distributed across multiple entities, with the original data being retrievable only through multi-party collaboration when certain conditions are met. This mechanism protects contract privacy while maintaining system transparency and trustworthiness.
+   In blockchain applications requiring privacy, schemes like Threshold RSA and Threshold ElGamal can protect transaction data confidentiality. These algorithms allow decryption to be distributed across multiple entities, with the original data being retrievable only through multi-party collaboration when certain conditions are met. This mechanism protects contract privacy while maintaining system transparency and trustworthiness.
 
 4. **Cross-Chain Transactions and Interoperability:**
 
@@ -262,13 +285,14 @@ These applications highlight how threshold cryptography can enhance security and
 
 ## Cryptography in the Age of Quantum Computing
 
-Blockchain encryption technology provides robust security for digital assets. Using asymmetric encryption and advanced cryptographic algorithms, it enables secure transactions and communications on the blockchain while ensuring asset integrity and preventing unauthorized access. This enhances trust among business partners, supports regulatory compliance, and optimizes digital asset management, opening new revenue opportunities.
+Today, blockchain encryption technology provides robust security for digital assets. Asymmetric encryption and advanced cryptographic algorithms enable secure transactions and communications on the blockchain while ensuring asset integrity and preventing unauthorized access. These mechanisms protect digital assets through secure transactions, communication, and data integrity, making blockchain systems less vulnerable to traditional computing threats. This heightened security fosters trust among business partners, aids regulatory compliance, and optimizes digital asset management, unlocking new revenue opportunities.
 
-However, quantum computing, including advancements like Google’s Willow chip, introduces both challenges and opportunities for blockchain security. Willow, with 105 qubits, marks significant progress in quantum computing but is far from the scale needed to threaten cryptocurrency encryption. Breaking Bitcoin’s security would require a quantum computer with millions of qubits to exploit vulnerabilities in cryptographic algorithms like Elliptic Curve Cryptography (ECC) and SHA-256. While Willow cannot currently compromise blockchain networks, it signals rapid evolution in quantum capabilities.
+However, future computing innovations, like quantum computing, will unearth known and yet unknown vulnerabilities in blockchain encryption technology. The algorithmic capacity of quantum systems can solve problems typically impossible for more traditional computing approaches because quantum systems can perform multiple calculations simultaneously, exponentially faster, and with greater energy efficiency. This means that hacking systems that were previously too challenging to exploit may now be at risk. Although the idea that quantum computing advantages could be misused by bad actors is not an immediate concern, as quantum computing becomes more widely adopted, such impacts should be front-of-mind. With that said, we may want to be prepared and start to considering the impacts quantum computing will have on our encryption work today.
+
+Quantum computing advancements like Google’s Willow chip with 105 qubits marks significant progress for the technology, but is far from the scale needed to threaten cryptocurrency encryption and exploit vulnerabilities in cryptographic algorithms like Elliptic Curve Cryptography (ECC) and SHA-256. Breaking Bitcoin’s security would require a quantum computer with millions of qubits. While Willow cannot currently compromise blockchain networks today, its existence signals rapid evolution in quantum capabilities.
 
 Future quantum computers could use algorithms like Shor’s to efficiently factor large numbers, exposing private keys and compromising network integrity. Similarly, Grover’s algorithm could weaken hash functions like SHA-256, endangering static addresses, dormant accounts, and blockchain security.
 
-To address these risks, the blockchain community is advancing post-quantum cryptography, using techniques like lattice-based and hash-based cryptography, as well as code-based and multivariate polynomial approaches. Quantum random-number generators are also being integrated to create unbreakable keys. Developers are rethinking wallet and protocol designs with quantum-resistant measures, such as Ethereum’s ERC-4337 and EIP-7560 proposals for enhanced security.
-Quantum computing also offers transformative opportunities, such as optimizing consensus mechanisms, accelerating transaction validation, and enabling more complex smart contracts. These advancements can improve scalability, efficiency, and functionality, driving blockchain innovation.
+To address these risks, the blockchain community is advancing post-quantum cryptography, using techniques like lattice-based and hash-based cryptography, as well as code-based and multivariate polynomial approaches. Quantum random-number generators are also being integrated to create unbreakable keys. Developers are rethinking wallet and protocol designs with quantum-resistant measures, such as Ethereum’s ERC-4337 and EIP-7560 proposals for enhanced security. Quantum computing also offers transformative opportunities, such as optimizing consensus mechanisms, accelerating transaction validation, and enabling more complex smart contracts. These advancements can improve scalability, efficiency, and functionality, driving blockchain innovation.
 
-While Google’s Willow chip does not currently threaten cryptocurrency encryption, its development underscores the urgency for blockchain systems to adopt quantum-resistant cryptography. Proactively integrating these measures ensures blockchain networks remain secure while leveraging quantum computing’s transformative potential to build scalable and efficient systems for the future.
+As stated earlier, while Google’s Willow chip does not currently threaten cryptocurrency encryption, its development underscores the urgency for blockchain systems to adopt quantum-resistant cryptography. Proactively integrating these measures ensures blockchain networks remain secure while leveraging quantum computing’s transformative potential to build scalable and efficient systems for the future.
