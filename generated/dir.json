@@ -62,7 +62,7 @@
       ],
       "thumb": "thumb.png",
       "thumb_h": "thumb_h.png",
-      "intro": "Discover the concept of Account Abstraction (AA) and learn how to build and optimize smart wallets using Dynamic and Alchemy. This article covers the origins, workflow, advantages, and disadvantages of AA, providing practical insights through front-end code examples.",
+      "intro": "Discover how Account Abstraction (AA) using Dynamic and Alchemy can be used to build and optimize smart wallets. This article covers the origins, workflow, advantages, and disadvantages of AA, as well as practical insights through front-end code examples and a demo.",
       "path": "articles/Exploration%20of%20The%20Web3%20Account%20Abstraction/README.md",
       "slug": "exploration-of-the-web3-account-abstraction"
     },
