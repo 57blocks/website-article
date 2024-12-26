@@ -17,7 +17,7 @@
 - the large size makes downloading time-consuming and takes up mobile phone storage space.
 - it will expose some personal privacy, and many considerations will make users reluctant to easily download an unused app.
 
-     On the other hand App Clip only provides key features and is very fast to download. The system will automatically delete App Clip after a period of inactivity. Users can use it anonymously without logging in and only registering when it is not necessary.
+On the other hand App Clip only provides key features and is very fast to download. The system will automatically delete App Clip after a period of inactivity. Users can use it anonymously without logging in and only registering when it is not necessary.
 
 2. App advertising costs are high, and the conversion rate is not very ideal. $2.58 – this was the average cost-per-acquisition (CPA) for the entire 2023. Clip is developed on the basis of App, and the development cost is significantly lower than that of App. It can be quickly developed and applied at a lower cost. Research shows that integrating App Clips into iOS applications can increase the conversion rate by more than 20%.
 
@@ -25,33 +25,34 @@
 
 4. Many ways to experience Clip。QR Codes, NFC Tags, App Clip Codes, Safari, Links in Messages, cards in Maps.
 
-    ![App Clip workflow](/assets/images/ClipWorkflow.png)
+    ![App Clip workflow](./ClipWorkflow.png)
 
 5. App Clip has a huge market. Take China's WeChat Mini Program as an example. Mini Programs can almost compete with AppStore in China. The key is that Mini Programs are easy to obtain and use, and there is no need to install Apps specifically. However, Mini Programs are of no help in converting to apps, and even hinder the installation of Apps. This is related to WeChat's positioning of Mini Programs. It is not for promoting apps but to maintain users on WeChat and earn high profits by charging service fees.
 
-    However, in addition to some one-time use scenarios, Clip is more about converting users to full App users. Many measures and restrictions have been taken, for example, some iOS frameworks cannot be used, pictures cannot be stored locally in Clip, APNs notifications are only valid for 8 hours, and prompts to download App can be popped up on appropriate pages.
+However, in addition to some one-time use scenarios, Clip is more about converting users to full App users. Many measures and restrictions have been taken, for example, some iOS frameworks cannot be used, pictures cannot be stored locally in Clip, APNs notifications are only valid for 8 hours, and prompts to download App can be popped up on appropriate pages.
 
 ## Implementation of App Clip in 57Blocks’s project
 
 1. 57Blocks has a successful case of Clip development. In a short period of time, we developed an App Clip that focuses on offline parties. The host can send the URL/QR Code of the party to the guest to install Clip and take photos in Clip to upload the wonderful moments of the party. In addition, the actual QR code/AppClip code can be printed and placed at the party site to let the guest participate. Clip users have good feedback, and guests are also willing to continue downloading the App to use it.
 
-![Clip Image 1](/assets/images/AppClip1.png)
-![Clip Image 2](/assets/images/AppClip2.png)
-![Clip Image 3](/assets/images/AppClip3.png)
-![Clip Image 4](/assets/images/AppClip4.png)
+![Clip Image 1](./AppClip1.png =100x200)
+![Clip Image 2](./AppClip2.png =120x130)
+![Clip Image 3](./AppClip3.png =100x200)
+![Clip Image 4](./AppClip4.png =100x200)
 
 2. At the same time, in order to further improve the user experience, Clip also adds activity/dynamic island, which can notify important information through local update or APNs. As a new feature launched in iOS16, App/Clip uses this technology to not only improve user engagement and freshness, but also enhance the value of the App itself.
 
-![Clip Activity 1](/assets/images/ClipActivity1.png)
-![Clip Activity 2](/assets/images/ClipActivity2.png)
-![Clip Activity 3](/assets/images/ClipActivity3.png)
+![Clip Activity 1](./ClipActivity1.png =120x130)
+![Clip Activity 2](./ClipActivity2.png =120x100)
+![Clip Activity 3](./ClipActivity3.png =120x100)
 
 3. Some difficulties and solutions in Clip development. Clip is a relatively new feature, and the entire development, configuration, and testing process are somewhat different from traditional Apps.
 
-    #### Clip development code should be as independent as possible from App. Clip is a part of App.
-    From the perspective of development efficiency, the fastest way is to directly reuse the code in App. However, because the codes in App usually reference each other, Clip may have to reference module B in order to reference module A, and then reference module C, etc. This will make the Clip code complex and the size increase rapidly. We recommend that Clip code be as independent as possible from App. You can consider rewriting Clip code. According to our implementation, the actual workload is not large.
+#### Clip development code should be as independent as possible from App. Clip is a part of App
 
-    In some scenarios where code reference is required, macro definitions can be used. For example, in App `Build Setting` -> `Other Swift Flags` add `-DFULL_APP`, and determine whether it is an App in the code:
+From the perspective of development efficiency, the fastest way is to directly reuse the code in App. However, because the codes in App usually reference each other, Clip may have to reference module B in order to reference module A, and then reference module C, etc. This will make the Clip code complex and the size increase rapidly. We recommend that Clip code be as independent as possible from App. You can consider rewriting Clip code. According to our implementation, the actual workload is not large.
+
+In some scenarios where code reference is required, macro definitions can be used. For example, in App `Build Setting` -> `Other Swift Flags` add `-DFULL_APP`, and determine whether it is an App in the code:
 
 ```swift
 #if FULL_APP
@@ -60,8 +61,7 @@
       //do something in Clip
 ```
 
-
- #### Maintain user clip and app experience consistency.
+#### Maintain user clip and app experience consistency
 
  *The local data of Clip can be passed to the full App through the app group. First, you need to enable `"App Groups"` at Capability, then in Clip:*
 
