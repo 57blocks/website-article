@@ -31,6 +31,23 @@
       "slug": "image-search-with-ai-models"
     },
     {
+      "title": "Drive iOS App Downloads with Clip",
+      "author": [
+        "Eric Qi / iOS engineer"
+      ],
+      "createTime": "2024-12-25T00:00:00.000Z",
+      "tags": [
+        "iOS",
+        "App",
+        "App Clip"
+      ],
+      "thumb": "https://example.com/theThumbOfTheArticle.png",
+      "thumb_h": "https://example.com/theHorizontalThumbOfTheArticle.png",
+      "intro": "This article provides a detailed exploration of resource limitations encountered during Solana development. It specifically focuses on Compute Unit (CU) restrictions, using examples and program comparisons to illustrate how these limitations can affect Solana development.",
+      "path": "articles/Drive%20iOS%20App%20Downloads%20with%20Clip/README.md",
+      "slug": "drive-ios-app-downloads-with-clip"
+    },
+    {
       "title": "Frontend Performance Optimization",
       "author": [
         "Bonnie Chen/ Front-End Engineer"
