@@ -40,7 +40,7 @@ However, in addition to some one-time use scenarios, Clip is more about converti
 
 ## Implementation of App Clip in 57Blocks’s project
 
-1. **57Blocks has a successful case of Clip development.** In a short period of time, we developed an App Clip that focuses on offline parties. The host can send the URL/QR Code of the party to the guest to install Clip and take photos in Clip to upload the wonderful moments of the party. In addition, the actual QR code/AppClip code can be printed and placed at the party site to let the guest participate. Clip users have good feedback, and guests are also willing to continue downloading the App to use it.\
+1. **57Blocks has a successful case of Clip development.** In a short period of time, we developed an App Clip that focuses on offline parties. The host can send the URL/QR Code of the party to the guest to install Clip and take photos in Clip to upload the wonderful moments of the party. In addition, the actual QR code/AppClip code can be printed and placed at the party site to let the guest participate. Clip users have good feedback, and guests are also willing to continue downloading the App to use it.
 
 <img src=./AppClip1.png width="130"/>
 <img src=./AppClip2.png width="130"/>
