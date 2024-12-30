@@ -6,7 +6,7 @@ createTime: 2024-08-05
 tags: ["Web3", "Account Abstraction", "Wallet", "Dynamic", "Alchemy"]
 thumb: "thumb.png"
 thumb_h: "thumb_h.png"
-intro: "Discover how Account Abstraction (AA) using Dynamic and Alchemy can be used to build and optimize smart wallets. This article covers the origins, workflow, advantages, and disadvantages of AA, as well as practical insights through front-end code examples and a demo."
+intro: "Discover how Account Abstraction (AA) using Dynamic and Alchemy can be used to build and optimize smart wallets. This article covers the origins, workflow, and advantages, and disadvantages of AA. The demo and front-end code examples included provide practical, tangible guidance for a developer to start implementing AA in their project or product right away."
 ---
 
 ## Introduction
@@ -24,7 +24,7 @@ whereas CAs can only be called by EOAs and then are able to interact with other 
 
 However, EOAs have many limitations, while CAs are constrained by EOAs:
 1. They require the maintenance of private keys or mnemonic words, and losing them or being hacked means losing all assets.
-2. EOAs lack flexibility and cannot define Functional and Logic Programming (for example, setting up a blacklist and daily transaction limits).
+2. EOAs lack flexibility and cannot define Functional and Logic Programming. (For example, setting up a blacklist and daily transaction limits)
 3. EOAs can only use Ether to pay for transaction fees.
 4. EOAs do not support native multi-signature wallets and rely on smart contracts to perform tasks.
 
@@ -45,7 +45,7 @@ Smart Wallets or Smart Contract Accounts (SCA).
 How someone would typically get started using AA in their accounts:
 
 1. The user creates a User Operation.
-2. The user signs the User Operation with any signature algorithm (in the past, Ethereum transactions could only use ECDSA-[Elliptic Curve Digital Signature Algorithm]).
+2. The user signs the User Operation with any signature algorithm (in the past, Ethereum transactions could only use ECDSA-(Elliptic Curve Digital Signature Algorithm)).
 3. The user sends the User Operation to the off-chain User Operation mempool.
 4. The Bundler selects some User Operations from the mempool for bundling.
 5. After bundling, it is sent to the miner for mining and then added to the blockchain.
@@ -64,13 +64,13 @@ This decoupling brings several key advantages, which are detailed below:
 In the [EIP-4337](https://eips.ethereum.org/EIPS/eip-4337), one can freely use the desired signature algorithm because 
 the signature is no longer limited to Ethereum's traditional ECDSA. Therefore, an AA Wallet can essentially support native 
 multi-signature wallets (MultiSig Wallets), allowing for more flexible joint account management by multiple parties. It 
-is also possible to reset the ownership of contract accounts through social recovery, using email verification, such as 
+is also possible to reset the ownership of contract accounts through social recovery ans using email verification, such as 
 Gmail, to regain access to contract accounts, like [UniPass Wallet](https://docs.wallet.unipass.id/).
 
 ### 2. Enhanced Security
-A smart contract allows the AA wallet to implement multi-signature authorization and other functions, requiring approval 
-from multiple parties before the transaction is completed. Compared with relying solely on private keys, this reduces the 
-risk of unauthorized access to an account.
+A smart contract allows the AA wallet to implement multi-signature authorization and other related functions, requiring approval 
+from multiple parties before the transaction is completed. This reduces the 
+risk of unauthorized access to an account compared to relying solely on private keys.
 
 ### 3. Pay Tx Fee
 Since the introduction of the Paymaster role as the fee payer, AA Wallet does not have to pay the fees itself. Dapps can 
@@ -96,13 +96,13 @@ These disadvantages are detailed below:
 ### 1. May Result in Higher Gas Fees
 In the past, a transfer between EOAs (External Owned Accounts) only required consumption of 21000 Gwei. Still, after using ERC-4337, 
 because a contract call will occur, it also generates additional costs, leading to a higher cost for User Operation. 
-([Details can be referred to in this article](https://www.stackup.sh/blog/how-much-more-expensive-is-erc-4337)) Currently, 
+([Details can be found in this article](https://www.stackup.sh/blog/how-much-more-expensive-is-erc-4337)) Currently, 
 the best solution is to use Layer 2 for transactions, which can significantly reduce the cost of gas fees.
 
 ### 2. Need to Mitigate Malicious Paymaster Risks in Account Abstraction
 As previously mentioned, the reason why Paymaster needs to stake native tokens to the EntryPoint is to prevent malicious Paymasters 
 from conducting DoS (Denial of Service) attacks. Since the Paymaster is a contract implemented by a third party, you can make the Bundler send invalid transactions, 
-Here are the steps to take to do that:
+Here are the steps to do that:
 
 - **i**. Establish a malicious Paymaster contract that returns true for all check functions.
 - **ii**. When the UserOperation enters the mempool, all simulations and checks will pass.
@@ -119,14 +119,14 @@ an AA wallet and establish a connection between the EOA (External Owned Account)
 3. [react](https://react.dev/), a popular frontend framework, we will use to build our DApp demo.
 
 ### Online Playground
-By clicking this link below, you can access the online demo where you can, you can review its code and learn from it as needed.
+By clicking this link below, you can access the online demo where you can review its code and learn from it as needed.
 
 [Online Playground](https://codesandbox.io/p/devbox/abstract-account-hslydc)
 
 ### Using the Dynamic EOA Wallet
 In this step, we use the `DynamicContextProvider` component to build a connection to `Dynamic` by using `DynamicKey`,
-then we can use `DynamicWagmiConnector` to connect the chrome extension EOA wallet. The `WagmiProvider` component will
-help us to use wagmi lib functions in our DApp more easy, almost like we are switching networks, getting account information and interacting with contracts.
+then we use `DynamicWagmiConnector` to connect the Chrome extension EOA wallet. The `WagmiProvider` component will
+help us to use wagmi lib functions in our DApp more easily, almost like we are switching networks, getting account information and interacting with contracts.
 
 ***In the demo DApp, we display the address and balance of this AA account.***
 
@@ -172,8 +172,8 @@ export default function WalletProvider({ children }: PropsWithChildren) {
 ```
 
 ### Use the DynamicWidget to Display the Wallet
-In this step, we create our home page for DApp, because we register wagmi context by `WagmiProvider` in the last step, 
-so we can use the `useAccount` hook provided by wagmi here, Note that, this hook can give us the status of connection with EOA wallet.
+In this step, we create our home page for DApp. Because we registered wagmi context by `WagmiProvider` in the last step, 
+we can use the `useAccount` hook provided by wagmi here. Note that, this hook can give us the status of connection with EOA wallet.
 
 Further, because we register dynamic context by `DynamicContextProvider`, we can use `DynamicWidget` to connect our 
 EOA wallets to those installed in the Chrome extension. 
@@ -204,18 +204,18 @@ export default function Home() {
 	);
 }
 ```
-If you finish the code there, click the widget button. Then, you can log in to the EOA wallet you like. In this demo, we use the [Metamask](https://metamask.io/).
+If you finish the code there, click the widget button. Then, you can log in to the EOA wallet you choose. In this demo, we use the [Metamask](https://metamask.io/).
 
 ### Connecting the EOA Wallet to the AA Wallet
 Here, we use the react context to create a `SmartAccountClientProvider` to allow the AA account client to be used 
 in our DApp. The `smartAccountClient` is created by `createModularAccountAlchemyClient` provided by Alchemy.
-Secondly, we need to provide `apiKey` and `signer` to `createModularAccountAlchemyClient`, the apiKey should be registered at 
-in the Dynamic website, the signer will be provided by the Dynamic.
+Secondly, we need to provide `apiKey` and `signer` to `createModularAccountAlchemyClient`. The apiKey should be registered at 
+in the Dynamic website, the signer will be provided by Dynamic.
 
 Refer to this [example](https://docs.dynamic.xyz/account-abstraction/aa-providers/alchemy) of Dynamic,
 which links the EOA wallet with Alchemy's AA wallet. The main task that needs to be completed here is to pass the Signer to Alchemy
-to use. Alchemy will create an AA contract wallet called a Client. Through the Client, you
-can obtain the wallet address and balance, and of course, you can also use the Client to conduct transactions.
+to use. Alchemy will create an AA contract wallet called "Client". Through the "Client", you
+can obtain the wallet address and balance, and of course, you can also use the "Client" to conduct transactions.
 
 #### **SmartAccountClientProvider.tsx**
 ```tsx
@@ -288,7 +288,7 @@ export default function SmartAccountClientProvider({ children }: PropsWithChildr
 }
 ```
 ### Deposit the AA Wallet
-After creating SmartAccountClient in the previous step, you should now have a on-chain AA account wallet.
+After creating SmartAccountClient in the previous step, you should now an on-chain AA account wallet.
 But now the wallet will have a 0 balance, so if you want to use it for any transaction, you should send 
 some ETHs to the AA account.
 
@@ -394,8 +394,7 @@ Here, we fill the ETH into the input in our DApp then click "charge." When this 
 our DApp will call the EOA wallet transaction sending modal connected by Dynamic, 
 and confirm the transaction in the system.
 
-After transaction has finished, our DApp will refresh automatically. Once that happens, you will discover that  
-the balance changed and your charge was succeeded.
+After the transaction has finished, our DApp will refresh automatically. Once that happens, you will discover that the balance changed and your charge was successful.
 
 ### Send Multiple Transactions Using the AA Wallet
 Because the AA wallet sends user operations, and user operations need to convert structured data into 
@@ -564,14 +563,14 @@ const { hash } = await smartAccountClient.sendUserOperation({ uo: userOperations
 const txhash = await smartAccountClient.waitForUserOperationTransaction({ hash });
 ```
 After the transaction has been sent, Alchemy will deploy the contract for the smart wallet, 
-making it a true contract wallet, Once this function has been completed, you should find a contract tab in your wallet address website.
+making it a true contract wallet. Once completed, you should find a contract tab in your wallet address website.
 
 ![real-tx](./real-tx.png)
 
 Further, we can search the transaction hash on the Explore. Here is a [demo transaction](https://basescan.org/tx/0x11e00f019f1efec4f626ebcdc9c0f896eb29df0b81db55b1725c9bdce6c29898) to illustrate this.
 
-Note that, the consumption of gas fees in this process is more expensive than one might think, which contradicts the previously mentioned advantage 
-of reducing gas fees. This is because users will inevitably make calls between contracts once they start using the AA wallet. And these calls additionally incurs costs. 
+Note that the consumption of gas fees in this process is more expensive than one might think, which contradicts the previously mentioned advantage 
+of reducing gas fees. This is because users will inevitably make calls between contracts once they start using the AA wallet. And these calls additionally incur costs. 
 
 ## Optimizing Gas Fees with Layer 2 Solutions
 
@@ -579,10 +578,10 @@ To mitigate the high gas fees associated with AA wallets, it is advisable to uti
 This approach can greatly reduce costs while maintaining the advantages of account abstraction.
 
 ## Conclusion
-AA provides Ethereum users with a more flexible and secure way to manage their accounts. A 
-commitment to enhanced security. The flexibility of private key management improves the user experience. 
+AA provides Ethereum users with a more flexible and secure way to manage their accounts. The 
+enhanced security. The flexibility of private key management improves the user experience. 
 The innovation of AA is that it combines the best features of EOA and CA, 
-allowing users to control their accounts more effectively without sacrificing security or functionality, such as social Recovery, 
+allowing users to control their accounts more effectively without sacrificing security or functionality through social recovery, 
 easy integration into EOA wallets, and control of AA through EOA wallets. Of course, there are 
 disadvantages to account abstraction, such as possible increased gas costs and the complexity of managing third-party tellers, 
 but, as described earlier, there are ways to address these issues to provide better service to Ethereum users.
