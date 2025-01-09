@@ -132,4 +132,6 @@ Clip logs in through AppleID and uses app group to pass login information:*
 
 ## Conclusion
 
-Adding Clip to an App is a method with low development cost, which can enhance user participation experience and effectively improve App conversion rate. There are many differences between Clip development and App development. After proper processing, the development can be completed quickly and smoothly. We recommend that App consider adopting App Clip.
+App Clip is a relatively new form of App that has only been added to iOS in recent years. Its original design intention is to facilitate users to use App, enhance user participation experience, and ultimately achieve the purpose of increasing App conversion rate.
+This article first analyzes what Clip is and why Clip is used. Finally, combined with the actual project developed by the company as an example, it shows that adding Clip to App is a method with high development efficiency and relatively low cost. In addition to completing the development of basic Clip functions, it also further improves the value of Clip from aspects such as user data continuity and additional live activity/dynamic island. The Clip we developed has received positive comments from users.
+However, Clip development is very different from App development. This article discusses the experience from project establishment, development, configuration and post-testing methods, as well as some core logic codes. We hope to help developers successfully complete App Clip development through our experience.
