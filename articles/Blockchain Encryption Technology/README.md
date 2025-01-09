@@ -132,7 +132,7 @@ Basic Characteristics of Elliptic Curves:
 
 In elliptic curve cryptography, the private key is not derived through calculations but rather a randomly selected number. It is generally a large number, known only to the holder, and kept secret.
 
-The generation of the public key is based on the private key. First, a common base point, denoted as G, is selected. Then, the private key priv as a scalar is multiplied by the base point G, effectively adding G to itself priv times. The result of the scalar multiplication on the curve is another point, which serves as the public key, denoted as P (P = Priv _ G). Here, _ represents scalar multiplication in the context of elliptic curves, distinct from traditional multiplication or exponentiation (^). Point addition and scalar multiplication on elliptic curves are uniquely defined operations that differ from conventional arithmetic rules.
+The generation of the public key is based on the private key. First, a common base point, denoted as G, is selected. Then, the private key priv as a scalar is multiplied by the base point G, effectively adding G to itself priv times. The result of the scalar multiplication on the curve is another point, which serves as the public key, denoted as P (P = Priv \* G). Here, \* represents scalar multiplication in the context of elliptic curves, distinct from traditional multiplication or exponentiation (^). Point addition and scalar multiplication on elliptic curves are uniquely defined operations that differ from conventional arithmetic rules.
 
 Deriving the private key from the public key in elliptic curve cryptography involves the elliptic curve discrete logarithm problem. Mathematically, this is an intractable problem, especially with large prime numbers. The inherent difficulty forms the trapdoor function, which is the foundation for the security in public key encryption and digital signature systems. The security of cryptographic algorithms fundamentally depends on this property.
 
@@ -144,7 +144,7 @@ Deriving the private key from the public key in elliptic curve cryptography invo
 
 There are four main applications of elliptic curve cryptography in blockchain, each with a different business goal and purpose.
 
-1. **Key Pair Generation Elliptic curve algorithms are crucial for generating public-private key pairs for blockchain users.** The public key is used to generate wallet addresses. In contrast, the private key is used to sign transactions, control funds, and validate identity. This mechanism ensures that only the wallet owner can authorize transactions, which prevents unauthorized access and fraud. It reduces transaction costs, enhances transparency and auditability, and ultimately provides businesses with a secure, efficient, and transparent financial operation environment.
+1. **Key Pair Generation. Elliptic curve algorithms are crucial for generating public-private key pairs for blockchain users.** The public key is used to generate wallet addresses. In contrast, the private key is used to sign transactions, control funds, and validate identity. This mechanism ensures that only the wallet owner can authorize transactions, which prevents unauthorized access and fraud. It reduces transaction costs, enhances transparency and auditability, and ultimately provides businesses with a secure, efficient, and transparent financial operation environment.
 
    - Public Key Generation: Generating a public key from a private key is a mathematical operation involving point multiplication on an elliptic curve.
 
@@ -237,7 +237,7 @@ Each application scenario listed below utilizes the unique attributes of specifi
 
 5. **Efficient Verification and Scaling:**
 
-zk-Rollups (using zk-SNARKs or zk-STARKs) utilize zero-knowledge proofs to reduce on-chain data volume, verify the legitimacy of batch transactions, and increase the throughput of the main chain.
+   zk-Rollups (using zk-SNARKs or zk-STARKs) utilize zero-knowledge proofs to reduce on-chain data volume, verify the legitimacy of batch transactions, and increase the throughput of the main chain.
 
 ### Homomorphic Encryption in Blockchain
 
