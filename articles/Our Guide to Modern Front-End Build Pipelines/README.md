@@ -1,4 +1,5 @@
 ---
+published: true
 title: "Our Guide to Modern Front-End Build Pipelines"
 author: ["Andy Lai / Fullstack Engineer"]
 createTime: 2024-04-23

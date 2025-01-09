@@ -1,4 +1,5 @@
 ---
+published: true
 title: "Make Releases Manageable with \"Shipping As Small As Possible\""
 author: ["Yongzhi Yang / Back-End Engineer, Team Lead"]
 createTime: 2024-05-09

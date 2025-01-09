@@ -1,4 +1,5 @@
 ---
+published: true
 title: "Frontend Performance Optimization"
 author: ["Bonnie Chen/ Front-End Engineer"]
 createTime: 2024-09-18
