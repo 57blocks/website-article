@@ -1,4 +1,5 @@
 ---
+published: true
 title: "Blockchain Encryption Technology: A Critical Defense for Protecting Digital Assets"
 author: ["Bonnie Chen/ Front-End Engineer"]
 createTime: 2024-07-22
