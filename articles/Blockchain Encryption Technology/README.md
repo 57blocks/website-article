@@ -26,7 +26,7 @@ A core concept of data encryption is transforming readable information (plaintex
 
 **Technologies Used**: Common symmetric encryption algorithms include Data Encryption Standard (DES), 3DES, and Advanced Encryption Standard (AES).
 
-**Application Scenarios**: Symmetric encryption is suitable for scenarios that require efficient encryption and decryption of large volumes of data, such as data storage and transmission. However, since the key is shared in advance, the security of symmetric encryption relies on protecting and distributing the key, it’s unsuitable for open communication environments.
+**Application Scenarios**: Symmetric encryption is suitable for scenarios that require efficient encryption and decryption of large volumes of data, such as data storage and transmission. However, since the key is shared in advance, the security of symmetric encryption relies on protecting and distributing the key, it unsuitable for open communication environments.
 
 ![symmetric encryption](./symmetric-encryption.png)
 
@@ -54,7 +54,7 @@ A core concept of data encryption is transforming readable information (plaintex
 
 ### 1. Zero-knowledge proof
 
-**Working Principle**: Zero-knowledge proof (ZKP) is a cryptographic protocol that allows a "prover" (the party trying to prove something) to convince a "verifier" (the party validating the proof) that a certain statement is true without revealing the identify or information about a user or transaction. Sophisticated mathematical algorithms ensure the "verifier" can trust the proof's authenticity without requesting additional information.
+**Working Principle**: Zero-knowledge proof (ZKP) is a cryptographic protocol that allows a "prover" (the party trying to prove something) to convince a "verifier" (the party validating the proof) that a certain statement is true without revealing the identity or information about a user or transaction. Sophisticated mathematical algorithms ensure the "verifier" can trust the proof's authenticity without requesting additional information.
 
 **Technologies Used**: zk-SNARKs, zk-STARKs, Bulletproofs.
 
@@ -275,7 +275,7 @@ Threshold cryptography is widely used in multi-signature wallets, decentralized 
 
 2. **Decentralized Governance:**
 
-   These threshold signature schemes are exemplary for enabling Decentralized Autonomous Organization (DAO) decision-making. Governance decisions only take effect when a pre-set threshold number of votes is reached in a distributed consensus. This ensures the democratic nature of organizational decisions and prevents the concentration of control, which strengths community involvement. Some examples of this can be found in this article by Bernard Marr (LINK needed) in Forbes about DAO.
+   These threshold signature schemes are exemplary for enabling Decentralized Autonomous Organization (DAO) decision-making. Governance decisions only take effect when a pre-set threshold number of votes is reached in a distributed consensus. This ensures the democratic nature of organizational decisions and prevents the concentration of control, which strengths community involvement. Some examples of this can be found in this [article](https://www.forbes.com/sites/bernardmarr/2022/05/25/the-best-examples-of-daos-everyone-should-know-about/) by Bernard Marr (LINK needed) in Forbes about DAO.
 
 3. **Privacy Protection in Smart Contracts:**
 
