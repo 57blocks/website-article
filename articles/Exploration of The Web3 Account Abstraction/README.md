@@ -2,7 +2,7 @@
 published: true
 title: "Exploring Account Abstraction in Ethereum: Building and Optimizing Smart Wallets with Dynamic and Alchemy"
 author: ["Zewei Zhang / Front-End Engineer"]
-createTime: 2024-08-05
+createTime: 2025-01-12
 tags: ["Web3", "Account Abstraction", "Wallet", "Dynamic", "Alchemy"]
 thumb: "thumb.png"
 thumb_h: "thumb_h.png"
