@@ -32,6 +32,23 @@
       "slug": "image-search-with-ai-models"
     },
     {
+      "published": true,
+      "title": "Blockchain Encryption Technology: A Critical Defense for Protecting Digital Assets",
+      "author": [
+        "Bonnie Chen/ Front-End Engineer"
+      ],
+      "createTime": "2025-01-10T00:00:00.000Z",
+      "tags": [
+        "Blockchain",
+        "Encryption"
+      ],
+      "thumb": "thumb.png",
+      "thumb_h": "thumb-h.png",
+      "intro": "The rise of blockchain technology has sparked widespread concern for the security of digital assets. Here, you will find the information you need to navigate this space to understand and assess the core encryption technologies used in blockchain, identify potential security risks, and apply these encryption methods to enhance system security and ensure the safety of data and transactions.",
+      "path": "articles/Blockchain%20Encryption%20Technology/README.md",
+      "slug": "blockchain-encryption-technology"
+    },
+    {
       "title": "Drive iOS App Downloads with Clip",
       "author": [
         "Eric Qi / iOS engineer"
@@ -124,23 +141,6 @@
       "intro": "How do you approach creating a system that finds the right supplier and provides a price in less than three seconds using hundreds of data points? By approaching this system as an ERP system in the cloud, we were able to make the process fast and low cost. Here we share how we did it. ",
       "path": "articles/Get%20a%20Print%20Quote%20in%20Seconds%20-%20Not%20Weeks/README.md",
       "slug": "get-a-print-quote-in-seconds-not-weeks"
-    },
-    {
-      "published": true,
-      "title": "Blockchain Encryption Technology: A Critical Defense for Protecting Digital Assets",
-      "author": [
-        "Bonnie Chen/ Front-End Engineer"
-      ],
-      "createTime": "2024-07-22T00:00:00.000Z",
-      "tags": [
-        "Blockchain",
-        "Encryption"
-      ],
-      "thumb": "thumb.png",
-      "thumb_h": "thumb-h.png",
-      "intro": "The rise of blockchain technology has sparked widespread concern for the security of digital assets. Here, you will find the information you need to navigate this space to understand and assess the core encryption technologies used in blockchain, identify potential security risks, and apply these encryption methods to enhance system security and ensure the safety of data and transactions.",
-      "path": "articles/Blockchain%20Encryption%20Technology/README.md",
-      "slug": "blockchain-encryption-technology"
     },
     {
       "published": true,
