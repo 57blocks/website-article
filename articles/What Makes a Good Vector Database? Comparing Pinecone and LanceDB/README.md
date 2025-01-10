@@ -1,4 +1,5 @@
 ---
+published: true
 title: "What Makes a Good Vector Database? Comparing Pinecone and LanceDB"
 author: ["Alex Hu / Machine Learning Engineer", "Steven Zhang / Back-End Engineer", "Anjing Wang / AI Lead"]
 createTime: 2024-05-22

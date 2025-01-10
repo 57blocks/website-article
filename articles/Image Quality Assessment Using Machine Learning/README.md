@@ -1,4 +1,5 @@
 ---
+published: true
 title: "Image Quality Assessment Using Machine Learning"
 author: ["Damon Wang / Android Engineer", "Roy Xie / Tech Lead"]
 createTime: 2024-04-20

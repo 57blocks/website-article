@@ -1,4 +1,5 @@
 ---
+published: true
 title: "Getting Started with Reactive Programming"
 subTitle: "Tokenpad: A Case Study in Displaying Real-Time Data"
 author: ["Juan E Quintero R / Tech Lead"]

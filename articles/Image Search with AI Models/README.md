@@ -1,4 +1,5 @@
 ---
+published: true
 title: "Image Search with AI Models"
 subTitle: "How to Leverage Image Models, Large Language Models, and Multimodal Models to Provide Users with the Right Results"
 author: ["Alpha Xiang / Machine Learning Engineer", "Yanqi Liu / Back-End Engineer", "Anjing Wang / AI Lead"]
