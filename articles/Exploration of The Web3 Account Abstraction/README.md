@@ -1,5 +1,5 @@
 ---
-devOnly: true
+published: true
 title: "Exploring Account Abstraction in Ethereum: Building and Optimizing Smart Wallets with Dynamic and Alchemy"
 author: ["Zewei Zhang / Front-End Engineer"]
 createTime: 2024-08-05
