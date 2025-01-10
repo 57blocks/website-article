@@ -53,7 +53,7 @@ A core concept of data encryption is transforming readable information (plaintex
 
 ## Advanced Encryption Techniques
 
-### 1. Zero-knowledge proof
+### 1. Zero-knowledge Proof (ZKP)
 
 **Working Principle**: Zero-knowledge proof (ZKP) is a cryptographic protocol that allows a "prover" (the party trying to prove something) to convince a "verifier" (the party validating the proof) that a certain statement is true without revealing the identity or information about a user or transaction. Sophisticated mathematical algorithms ensure the "verifier" can trust the proof's authenticity without requesting additional information.
 
@@ -164,7 +164,7 @@ There are four main applications of elliptic curve cryptography in blockchain, e
    - Signing Transactions: Users sign transaction data with their private key to create a digital signature.
    - Verifying Signatures: Other nodes use the public key to verify the signature's validity, ensuring that the transaction has not been tampered with and was initiated by the holder of the corresponding private key.
 
-   There are three main purposes for digital signatures:
+   There are three primary purposes for digital signatures:
 
    - **Authorization Proof:** Signatures prove that the controller of the private key, i.e., the owner of the funds, has authorized the transfer of these funds.
 
@@ -240,7 +240,7 @@ Each application scenario listed below utilizes the unique attributes of specifi
 
    zk-Rollups (using zk-SNARKs or zk-STARKs) utilize zero-knowledge proofs to reduce on-chain data volume, verify the legitimacy of batch transactions, and increase the throughput of the main chain.
 
-### Homomorphic Encryption in Blockchain
+### Homomorphic Encryption
 
 Understanding the application of homomorphic encryption in blockchain helps one clearly see its potential in privacy protection, data processing, and security. These are specific application scenarios along with relevant homomorphic encryption technologies.
 
@@ -276,7 +276,7 @@ Threshold cryptography is widely used in multi-signature wallets, decentralized 
 
 2. **Decentralized Governance:**
 
-   These threshold signature schemes are exemplary for enabling Decentralized Autonomous Organization (DAO) decision-making. Governance decisions only take effect when a pre-set threshold number of votes is reached in a distributed consensus. This ensures the democratic nature of organizational decisions and prevents the concentration of control, which strengths community involvement. Some examples of this can be found in this [article](https://www.forbes.com/sites/bernardmarr/2022/05/25/the-best-examples-of-daos-everyone-should-know-about/) by Bernard Marr (LINK needed) in Forbes about DAO.
+   These threshold signature schemes are exemplary for enabling Decentralized Autonomous Organization (DAO) decision-making. Governance decisions only take effect when a pre-set threshold number of votes is reached in a distributed consensus. This ensures the democratic nature of organizational decisions and prevents the concentration of control, which strengths community involvement. Some examples of this can be found in this [article](https://www.forbes.com/sites/bernardmarr/2022/05/25/the-best-examples-of-daos-everyone-should-know-about/) by Bernard Marr in Forbes about DAO.
 
 3. **Privacy Protection in Smart Contracts:**
 
@@ -293,6 +293,7 @@ These applications highlight how threshold cryptography can enhance security and
 Today, blockchain encryption technology provides robust security for digital assets. Asymmetric encryption and advanced cryptographic algorithms enable secure transactions and communications on the blockchain while ensuring asset integrity and preventing unauthorized access. These mechanisms protect digital assets through secure transactions, communication, and data integrity, making blockchain systems less vulnerable to traditional computing threats. This heightened security fosters trust among business partners, aids regulatory compliance, and optimizes digital asset management, which can unlock new revenue opportunities.
 
 However, future innovations like quantum computing will unearth known and yet unknown vulnerabilities in blockchain encryption technology. The algorithmic capacity of quantum systems can solve problems typically impossible for more traditional computing approaches because quantum systems can perform multiple calculations simultaneously, exponentially faster, and with greater energy efficiency. This means that hacking systems that were previously too challenging to exploit may now be at risk. The idea that bad actors could misuse quantum computing advantages is not an immediate concern. However, as quantum computing becomes more widely adopted, the potential impact of exploitation should be top of mind.
+
 Quantum computing advancements like Google's Willow chip with 105 qubits mark significant technological progress. But they are far from the scale needed to threaten cryptocurrency encryption and exploit vulnerabilities in cryptographic algorithms like Elliptic Curve Cryptography (ECC) and SHA-256. Breaking Bitcoin's security would require a quantum computer with millions of qubits. While Willow cannot currently compromise blockchain networks, its existence signals rapid evolution in quantum capabilities.
 
 Future quantum computers could use algorithms like Shor’s to efficiently factor large numbers, exposing private keys and compromising network integrity. Similarly, Grover’s algorithm could weaken hash functions like SHA-256, endangering static addresses, dormant accounts, and blockchain security.
