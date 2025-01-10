@@ -33,6 +33,26 @@
     },
     {
       "published": true,
+      "title": "Exploring Account Abstraction in Ethereum: Building and Optimizing Smart Wallets with Dynamic and Alchemy",
+      "author": [
+        "Zewei Zhang / Front-End Engineer"
+      ],
+      "createTime": "2025-01-12T00:00:00.000Z",
+      "tags": [
+        "Web3",
+        "Account Abstraction",
+        "Wallet",
+        "Dynamic",
+        "Alchemy"
+      ],
+      "thumb": "thumb.png",
+      "thumb_h": "thumb_h.png",
+      "intro": "Discover how Account Abstraction (AA) using Dynamic and Alchemy can be used to build and optimize smart wallets. This article discusses AA's origins, workflow, advantages, and disadvantages. The demo and front-end code examples provide practical, tangible guidance for developers to implement AA in their projects or products immediately.",
+      "path": "articles/Exploration%20of%20The%20Web3%20Account%20Abstraction/README.md",
+      "slug": "exploration-of-the-web3-account-abstraction"
+    },
+    {
+      "published": true,
       "title": "Blockchain Encryption Technology: A Critical Defense for Protecting Digital Assets",
       "author": [
         "Bonnie Chen/ Front-End Engineer"
@@ -100,26 +120,6 @@
       "intro": "If your site is loading slowly, what can you do to troubleshoot and fix what’s causing those long page load times? Here, we provide a way to approach frontend troubleshooting and strategies to improve page load results. To help visualize how page loading works, we explain the page load journey including associated metrics for each step. Read on to discover how to improve your frontend site experience using seven Web Vitals (some of which are Core Metrics) and ten optimization strategies.",
       "path": "articles/Frontend%20Performance%20Optimization/README.md",
       "slug": "frontend-performance-optimization"
-    },
-    {
-      "published": true,
-      "title": "Exploring Account Abstraction in Ethereum: Building and Optimizing Smart Wallets with Dynamic and Alchemy",
-      "author": [
-        "Zewei Zhang / Front-End Engineer"
-      ],
-      "createTime": "2024-08-05T00:00:00.000Z",
-      "tags": [
-        "Web3",
-        "Account Abstraction",
-        "Wallet",
-        "Dynamic",
-        "Alchemy"
-      ],
-      "thumb": "thumb.png",
-      "thumb_h": "thumb_h.png",
-      "intro": "Discover how Account Abstraction (AA) using Dynamic and Alchemy can be used to build and optimize smart wallets. This article discusses AA's origins, workflow, advantages, and disadvantages. The demo and front-end code examples provide practical, tangible guidance for developers to implement AA in their projects or products immediately.",
-      "path": "articles/Exploration%20of%20The%20Web3%20Account%20Abstraction/README.md",
-      "slug": "exploration-of-the-web3-account-abstraction"
     },
     {
       "published": true,
