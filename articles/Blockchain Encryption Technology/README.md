@@ -52,7 +52,7 @@ A core concept of data encryption is transforming readable information (plaintex
 
 ## Advanced Encryption Techniques
 
-### 1. Zero-knowledge proof
+### 1. Zero-knowledge Proof (ZKP)
 
 **Working Principle**: Zero-knowledge proof (ZKP) is a cryptographic protocol that allows a "prover" (the party trying to prove something) to convince a "verifier" (the party validating the proof) that a certain statement is true without revealing the identity or information about a user or transaction. Sophisticated mathematical algorithms ensure the "verifier" can trust the proof's authenticity without requesting additional information.
 
@@ -239,7 +239,7 @@ Each application scenario listed below utilizes the unique attributes of specifi
 
    zk-Rollups (using zk-SNARKs or zk-STARKs) utilize zero-knowledge proofs to reduce on-chain data volume, verify the legitimacy of batch transactions, and increase the throughput of the main chain.
 
-### Homomorphic Encryption in Blockchain
+### Homomorphic Encryption
 
 Understanding the application of homomorphic encryption in blockchain helps one clearly see its potential in privacy protection, data processing, and security. These are specific application scenarios along with relevant homomorphic encryption technologies.
 
@@ -275,7 +275,7 @@ Threshold cryptography is widely used in multi-signature wallets, decentralized 
 
 2. **Decentralized Governance:**
 
-   These threshold signature schemes are exemplary for enabling Decentralized Autonomous Organization (DAO) decision-making. Governance decisions only take effect when a pre-set threshold number of votes is reached in a distributed consensus. This ensures the democratic nature of organizational decisions and prevents the concentration of control, which strengths community involvement. Some examples of this can be found in this [article](https://www.forbes.com/sites/bernardmarr/2022/05/25/the-best-examples-of-daos-everyone-should-know-about/) by Bernard Marr (LINK needed) in Forbes about DAO.
+   These threshold signature schemes are exemplary for enabling Decentralized Autonomous Organization (DAO) decision-making. Governance decisions only take effect when a pre-set threshold number of votes is reached in a distributed consensus. This ensures the democratic nature of organizational decisions and prevents the concentration of control, which strengths community involvement. Some examples of this can be found in this [article](https://www.forbes.com/sites/bernardmarr/2022/05/25/the-best-examples-of-daos-everyone-should-know-about/) by Bernard Marr in Forbes about DAO.
 
 3. **Privacy Protection in Smart Contracts:**
 
