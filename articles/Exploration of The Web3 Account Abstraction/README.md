@@ -31,7 +31,7 @@ However, EOAs have many limitations, and CAs are constrained by EOAs. Here is wh
 
 Given these limitations, a new solution, as defined by Account Abstraction, has started to take shape.
 
-## The Concept of Account Abstraction
+## The Concept of Account Abstraction (AA)
 AA is a concept in blockchain technology, particularly in Ethereum, that enhances the flexibility and security of account management.
 
 AA was initially proposed in [EIP-2938](https://eips.ethereum.org/EIPS/eip-2938). Subsequently, 
@@ -44,7 +44,7 @@ Smart Wallets or Smart Contract Accounts (SCA).
 How to get started using AA in your accounts:
 
 1. The user creates a User Operation.
-2. The user signs the User Operation with any signature algorithm (in the past, Ethereum transactions could only use ECDSA).
+2. The user signs the User Operation with any signature algorithm (in the past, Ethereum transactions could only use Elliptic Curve Digital Signature Algorithm (ECDSA)).
 3. The user sends the User Operation to the off-chain User Operation mempool.
 4. The Bundler selects some User Operations from the mempool for bundling.
 5. After bundling, it is sent to the miner for mining and then added to the blockchain.
@@ -73,7 +73,7 @@ risk of unauthorized access to an account compared to relying solely on private 
 
 ### 3. Pay Tx Fee
 Since introducing the Paymaster role as the fee payer, AA Wallet has not had to pay the fees. DApps can 
-assist users in paying the fees for their operations, to improve the user experience. Users can also pay fees using 
+assist users in paying the fees for their operations to improve the user experience. Users can also pay fees using 
 ERC20 tokens, which EOAs could not do in the past.
 
 ### 4. Multi-Call
@@ -93,18 +93,18 @@ While AA offers several advantages, it also has some disadvantages that need to 
 Disadvantages can include:
 
 ### 1. May Result in Higher Gas Fees
-In the past, a transfer between EOAs only required consumption of 21000 Gwei. However, using ERC-4337, 
-creates a contract call which results in higher costs for the User Operation. 
-([Details can be found in this article](https://www.stackup.sh/blog/how-much-more-expensive-is-erc-4337).) Currently, 
+In the past, a transfer between EOAs only required consumption of 21000 Gwei. However, using ERC-4337 
+creates a contract call, which results in higher costs for the User Operation. 
+([Details can be found in this article](https://medium.com/@intuofficial/erc-4337-gas-fees-a-comparative-analysis-of-deoas-and-erc-4337-81361a51b66b#:~:text=The%20fee%20is%20determined%20by,wallet%20only%20needs%2021%2C000%20gas.).) Currently, 
 the best solution is to use Layer 2 for transactions, which can significantly reduce the cost of gas fees.
 
 ### 2. Need to Mitigate Malicious Paymaster Risks in Account Abstraction
-As previously mentioned, Paymaster need to stake native tokens to the EntryPoint to prevent malicious Paymasters 
-from conducting DoS (Denial of Service) attacks. Since the Paymaster is a contract implemented by a third party, the Bundler can send invalid transactions, 
+As previously mentioned, Paymasters need to stake native tokens to the EntryPoint to prevent malicious Paymasters 
+from conducting DoS (Denial of Service) attacks. Since the Paymaster is a contract implemented by a third party, the Bundler can send invalid transactions. 
 Here’s how:
 
 - **i**. Establish a malicious Paymaster contract that returns true for all check functions.
-- **ii**. All simulations and checks will pass.
+- **ii**. All simulations and checks will pass when the User Operation enters the mempool.
 - **iii**. When the Bundler packages and hands it to the miners, the Paymaster can withdraw all the native tokens from the contract and frontrun the Bundler's on-chain request.
 - **iv**. Ultimately, when the Bundler's transaction is executed, a revert will occur, preventing the Bundler from obtaining compensated native tokens from the postOP. So, when the Paymaster engages in malicious behavior, it can be punished through the mechanisms described in the "reputation, throttling, and banning section."
 
@@ -122,9 +122,9 @@ To review the code, click [here](https://codesandbox.io/p/devbox/abstract-accoun
 access the online demo.
 
 ### Using the Dynamic EOA Wallet
-In this step, we use the `DynamicContextProvider` component to build a connection to `Dynamic` using `DynamicKey`,
+In this step, we use the `DynamicContextProvider` component to build a connection to `Dynamic` using `DynamicKey`
 and then `DynamicWagmiConnector` to connect the Chrome extension EOA wallet. The `WagmiProvider` component will
-help us use wagmi lib functions in our DApp more easily, almost like we are switching networks, getting account information and interacting with contracts.
+help us use wagmi lib functions in our DApp more easily, almost like we are switching networks, getting account information, and interacting with contracts.
 
 ***In the DApp demo, you can see the address and balance of this AA account.***
 
@@ -207,12 +207,14 @@ If you finish the code there, click the widget button. Then, you can log in to t
 ### Connecting the EOA Wallet to the AA Wallet
 Here, we use the React context to create a `SmartAccountClientProvider` to allow the AA account client to be used 
 in our DApp. The `smartAccountClient` is generated by `createModularAccountAlchemyClient`, which Alchemy provides.
+
 Secondly, we need to provide `apiKey` and `signer` to `createModularAccountAlchemyClient`. The apiKey should be registered on 
 the Dynamic website, and Dynamic will provide it to the signer.
 
 Refer to this [example](https://docs.dynamic.xyz/account-abstraction/aa-providers/alchemy) of Dynamic,
-which links the EOA wallet with Alchemy's AA wallet. The main task is to send the Signer to Alchemy
-for use. Alchemy will create an AA contract wallet called "Client." Through the "Client," you
+which links the EOA wallet with Alchemy's AA wallet. 
+
+The main task is to send the Signer to Alchemy for use. Alchemy will create an AA contract wallet called "Client." Through the "Client," you
 can obtain the wallet address and balance and conduct transactions.
 
 #### **SmartAccountClientProvider.tsx**
@@ -388,19 +390,20 @@ export default function AbstractAccount() {
 
 ![account-etherscan](./account-etherscan.png)
 
-Here, we fill the ETH into the input in our DApp then click "charge." Next, 
-our DApp will call out the EOA wallet transaction sending tab connected by Dynamic, 
+Here, we fill the ETH into the input in our DApp, then click "charge." Next, 
+our DApp will call out the EOA wallet transaction, sending a modal connected by Dynamic 
 to confirm the transaction in the system.
 
-After the transaction has finished, our DApp will refresh automatically. Once that happens, you will discover that the balance changed and your charge was successful.
+After the transaction has finished, our DApp will refresh automatically. Once that happens, you will discover that the balance changed, and your charge was successful.
 
 ### Send Multiple Transactions Using the AA Wallet
-The process starts when AA wallet sends the user operations. Then user operations need to convert structured data into 
+The process starts when the AA wallet sends the user operations. Then, user operations need to convert structured data into 
 callData format. You will need to use `encodeFunctionData` to convert structured data into callData.
 
 In the code snippet below, we can see one of the features of the AA wallet, which combines multiple
-operations into a single transaction. This transaction is a common investment operation. The first step 
-is to request a transaction for the Approve operation, followed by the transaction for the specific 
+operations into a single transaction. This transaction is a common investment operation. 
+
+The first step is to request a transaction for the Approve operation, followed by the transaction for the specific 
 Approve operation. The AA wallet then combines these two steps into a user operation list and sends it 
 out as a single transaction.
 
@@ -565,7 +568,8 @@ making it a true contract wallet. Once completed, you should find a contract tab
 
 ![real-tx](./real-tx.png)
 
-Further, we can search the transaction hash on Explore. To illustrate, view this [demo transaction](https://basescan.org/tx/0x11e00f019f1efec4f626ebcdc9c0f896eb29df0b81db55b1725c9bdce6c29898) to illustrate this.
+Further, we can search the transaction hash on Explore. 
+To illustrate, view this [demo transaction](https://basescan.org/tx/0x11e00f019f1efec4f626ebcdc9c0f896eb29df0b81db55b1725c9bdce6c29898).
 
 Note that the consumption of gas fees in this process is more expensive than one might think, which contradicts the previously mentioned advantage 
 of reducing gas fees. This is because users will inevitably make calls between contracts once they start using the AA wallet. And these calls incur additional costs. 
