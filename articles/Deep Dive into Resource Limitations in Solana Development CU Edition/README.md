@@ -1,4 +1,5 @@
 ---
+published: true
 title: "Deep Dive into Resource Limitations in Solana Development — CU Edition"
 author: ["Jimmy Zhao / Full Stack Engineer"]
 createTime: 2024-12-19
