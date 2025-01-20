@@ -3,8 +3,8 @@ title: "Drive iOS App Downloads with Clip"
 author: ["Eric Qi / iOS engineer"]
 createTime: 2024-12-25
 tags: ["iOS", "App", "App Clip"]
-thumb: "AppClip2.png"
-thumb_h: "AppClip2.png"
+thumb: "ArticleImage.png"
+thumb_h: "ArticleImage.png"
 intro: "This article introduces what App Clip is, why it is beneficial to app downloads, and explains some considerations from the development and testing perspectives based on company projects."
 ---
 ## What is App Clip？
@@ -32,7 +32,7 @@ On the other hand App Clip only provides key features and is very fast to downlo
 
 4. **Many ways to experience Clip.** QR Codes, NFC Tags, App Clip Codes, Safari, Links in Messages, cards in Maps.
 
-    <img src=./ClipWorkflow.png height="230"/>
+    <img src=./ClipImage1.jpg height="230"/>
 
 5. **App Clip has a huge market.** Take China's WeChat Mini Program as an example. Mini Programs can almost compete with AppStore in China. The key is that Mini Programs are easy to obtain and use, and there is no need to install Apps specifically. However, Mini Programs are of no help in converting to apps, and even hinder the installation of Apps. This is related to WeChat's positioning of Mini Programs. It is not for promoting apps but to maintain users on WeChat and earn high profits by charging service fees.
 
@@ -42,16 +42,11 @@ However, in addition to some one-time use scenarios, Clip is more about converti
 
 1. **57Blocks has a successful case of Clip development.** In a short period of time, we developed an App Clip that focuses on offline parties. The host can send the URL/QR Code of the party to the guest to install Clip and take photos in Clip to upload the wonderful moments of the party. In addition, the actual QR code/AppClip code can be printed and placed at the party site to let the guest participate. Clip users have good feedback, and guests are also willing to continue downloading the App to use it.
 
-<img src=./AppClip1.png width="130"/>
-<img src=./AppClip2.png width="130"/>
-<img src=./AppClip3.png width="130"/>
-<img src=./AppClip4.png width="130"/>
+<img src=./ClipImage2.jpg height="230"/>
 
 2. At the same time, in order to further improve the user experience, **Clip also adds activity/dynamic island,** which can notify important information through local update or APNs. As a new feature launched in iOS16, App/Clip uses this technology to not only improve user engagement and freshness, but also enhance the value of the App itself.
 
-<img src=./ClipActivity1.png width="160"/>
-<img src=./ClipActivity2.png width="160"/>
-<img src=./ClipActivity3.png width="160"/>
+<img src=./ClipImage3.jpg height="230"/>
 
 3. **Some difficulties and solutions in Clip development.** Clip is a relatively new feature, and the entire development, configuration, and testing process are somewhat different from traditional Apps.
 
