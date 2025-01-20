@@ -99,8 +99,8 @@
         "App",
         "App Clip"
       ],
-      "thumb": "AppClip2.png",
-      "thumb_h": "AppClip2.png",
+      "thumb": "ArticleImage.png",
+      "thumb_h": "ArticleImage.png",
       "intro": "This article introduces what App Clip is, why it is beneficial to app downloads, and explains some considerations from the development and testing perspectives based on company projects.",
       "path": "articles/Drive%20iOS%20App%20Downloads%20with%20Clip/README.md",
       "slug": "drive-ios-app-downloads-with-clip"
