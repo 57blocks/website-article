@@ -3,86 +3,95 @@ title: "Deep Dive into Resource Limitations in Solana Development — CU Edition
 author: ["Jimmy Zhao / Full Stack Engineer"]
 createTime: 2024-12-19
 tags: ["Web3", "Blockchain", "Solana", "Resource Limitation", "Compute Unit"]
-thumb: "thumb.jpeg"
-thumb_h: "thumb_h.jpeg"
-intro: "This article provides a detailed exploration of resource limitations encountered during Solana development. It specifically focuses on Compute Unit (CU) restrictions, using examples and program comparisons to illustrate how these limitations can affect Solana development."
+thumb: "thumb.jpg"
+thumb_h: "thumb_h.jpg"
+intro: "Explore how resource limitations, specifically Compute Unit (CU) restrictions, affect Solana program development. CU restrictions in Solana are often the culprit of unexpected program errors. We outline the most common challenges that cause these errors and provide examples and program comparisons to help you best understand how to use this technology."
 ---
 
-Many developers face a common issue when building Solana programs (smart contracts)—the logic of their program appears correct, but when the program runs, unexpected errors occur. These errors often contain terms like "limit" or "exceed," indicating that the program has hit one of Solana's resource constraints. As a high-performance blockchain, Solana's core features, such as parallel processing, significantly boost transaction throughput. Behind this efficiency lies a strict resource management mechanism, requiring developers to understand these limitations in order to effectively develop and optimize Solana programs. This article introduces the various resource limitations in Solana development, with a particular focus on Compute Unit (CU) restrictions, analyzing real-world scenarios and optimization strategies.
+Many developers face a common issue when building Solana programs (or "smart contracts")—their program's logic may appear correct. However, when the program runs, unexpected errors occur. These errors often contain terms like "limit" or "exceed," indicating that the program has hit one of Solana's resource constraints. As a high-performance blockchain, Solana's core features, such as parallel processing, significantly boost transaction throughput. However, behind this efficiency lies a strict resource management mechanism, requiring developers to understand these limitations to develop and optimize Solana programs effectively. This article exposes the various resource limitations in Solana development, focusing on Compute Unit (CU) restrictions, and provides analyses of multiple real-world scenarios and optimization strategies illustrate how to avoid such program errors and improve program performance.
 
 ## Introduction to Solana
 
-[Solana](https://solana.com/) was launched in 2020 and quickly emerged as a popular blockchain network, becoming one of the leading ecosystems in the cryptocurrency industry. According to recent data, Solana accounted for 49.3% of global cryptocurrency investors' interest in specific chains in 2024, demonstrating its dominant position in the market.
+[Solana](https://solana.com/) was launched in 2020 and quickly emerged as a popular blockchain network, becoming one of the leading ecosystems in the cryptocurrency industry. In 2024, Solana accounted for 49.3% of global cryptocurrency investors' interest in specific chains, establishing its dominant position in the market.
 
 Solana is a high-performance public blockchain platform that differs from traditional blockchain networks like Bitcoin and Ethereum. Its core characteristics include high throughput and low latency, thanks to its innovative Proof of History (PoH) consensus mechanism and efficient parallel processing architecture, enabling it to process thousands of transactions per second. To maintain network stability and fairness, Solana imposes various resource limitations on program execution to ensure the proper allocation and maximization of system resources.
 
 ## Types of Resource Limitations
 
-Programs running on Solana are subject to several types of resource limitations. These limitations are designed to maintain the efficiency and stability of the network while providing developers with clear boundaries for development. These constraints cover a wide range of requirements, from computational power to data storage, ensuring that programs can use system resources fairly while maintaining performance.
+Programs running on Solana are subject to several types of resource limitations. These limitations are designed to maintain the network's efficiency and stability while providing developers with clear boundaries for development. These constraints cover various requirements, from computational power to data storage, ensuring that programs can use system resources fairly while maintaining performance.
 
 ### CU Limitations
 
-In the Solana blockchain, CU is the smallest unit used to measure computational resources consumed during transaction execution. Each transaction on the chain consumes a certain number of CUs depending on the operations it performs (e.g., account writes, cross-program invocations, system calls). Every transaction has a CU limit, which can be set to the default or modified by the program. When a transaction exceeds the CU limit, processing is halted, resulting in a failed transaction. Common operations like executing instructions, transferring data between programs, and performing cryptographic calculations consume CUs. The CU system is designed to manage resource allocation, prevent network abuse, and improve overall efficiency. For more details, refer to the official documentation [here](https://solana.com/docs/core/fees#compute-unit-limit).
+In the Solana blockchain, CU is the smallest unit used to measure the computational resources consumed during transaction execution. Each transaction on the chain consumes a certain number of CUs depending on the operations it performs (e.g., account writes, cross-program invocations, system calls). Every transaction has a CU limit, which can be set to a default value or modified by the program. When a transaction exceeds the CU limit, processing is halted, resulting in a failure. Common operations like executing instructions, transferring data between programs, and performing cryptographic calculations consume CUs. The CU system is designed to manage resource allocation, prevent network abuse, and improve overall efficiency. For more details, refer to the official documentation [here](https://solana.com/docs/core/fees#compute-unit-limit).
 
-The following CU limits apply in Solana:
+The CU limit for a transaction containing only one instruction would default to 200,000. The limit can be adjusted using the `SetComputeUnitLimit` instruction, but it cannot exceed the maximum transaction limit of 1.4 million CUs.
+
+### Storage Limitations
+
+In Solana, each account's data structure is called **AccountInfo**, which includes:
+
+- the account's state
+- program code (if it's a program account)
+- balance (in lamports, where 1 SOL = 1 billion lamports)
+- the associated owner program (program ID)
+
+In Solana's account model, each account is owned by a program, and only the program that owns the account can modify the account data or reduce the balance. Adding balance, however, is not restricted. This model ensures the security of account data and the controllability of operations. For more information, check out the documentation [here](https://solana.com/docs/core/accounts#accountinfo).
+
+### Transaction Size Limitations
+
+Solana follows a maximum transmission unit (MTU) limit of 1280 bytes, in line with the IPv6 MTU standard, to ensure the efficient and reliable transmission of cluster information via UDP. After accounting for the 48-byte IPv6 and fragmentation headers, 1232 bytes remain for data, such as serialized transactions. Each Solana transaction, including its signature and message parts, cannot exceed 1232 bytes. Each signature occupies 64 bytes, with the number of signatures depending on the transaction requirements. The message contains instructions, accounts, and metadata, each taking 32 bytes. The total size of a transaction varies depending on the number of instructions it includes. This limit ensures efficient transmission of transaction data across the network. For more details, refer to the documentation [here](https://solana.com/docs/core/transactions#transaction-size).
+
+### Call Depth Limitations
+
+To ensure efficient program execution, Solana imposes limits on each program's call stak depth. If this limit is exceeded, a `CallDepthExceeded` error is triggered. Solana also supports direct calls between programs (cross-program invocations), but the depth of such calls is also limited. Exceeding this depth triggers a `CallDepth` error. These restrictions aim to enhance network performance and resource management efficiency. For more information, refer to the documentation [here](https://solana.com/docs/programs/limitations#call-stack-depth-object-object-error).
+
+### Stack Size Limitations
+
+In Solana's virtual machine architecture, each stack frame has a size limit, using fixed stack frames instead of variable stack pointers. If the stack frame exceeds this limit, the compiler will issue a warning but not block compilation. At runtime, if the stack size is exceeded, an `AccessViolation` error occurs. Regarding heap management, Solana uses a simple heap with fast allocation via the **bump** model, which does not support memory deallocation or reallocation. Each Solana program has access to this memory and can implement custom heap management as needed. These limitations help optimize performance and resource allocation. For more details, refer to the documentation [here](https://solana.com/docs/programs/faq#stack).
+
+### Program Derived Addresses (PDA) Account Limitations
+
+In Solana, Program Derived Addresses (PDAs) offer developers a deterministic method for generating account addresses using predefined **seeds** (such as strings, numbers, or other account addresses) and the program ID. This mechanism mimics an on-chain hash map function. Additionally, Solana allows programs to sign transactions using their derived PDAs. The advantage of PDAs is that developers do not need to remember specific account addresses; instead, they only need to remember the input used to derive the address, simplifying account management and improving development efficiency. For more details, check out the documentation [here](https://solana.com/developers/courses/native-onchain-development/program-derived-addresses#seeds).
+
+### Limitations Summary
+
+#### CU
 
 - The maximum CU limit per transaction is **1.4 million**
 - The default CU limit per instruction (each transaction contains multiple instructions) is **200,000**
 - The CU limit per block is **48 million**
 - The CU limit per user in a block is **12 million**
 
-For a transaction containing only one instruction, the CU limit would default to 200,000. However, the CU limit can be adjusted using the `SetComputeUnitLimit` instruction, but cannot exceed the maximum transaction limit of 1.4 million CUs.
+#### Storage
 
-### Storage Limitations
+- The maximum storage size for each account in Solana is **10MB**
 
-In Solana, each account's data structure is called **AccountInfo**, which includes the account's state, program code (if it's a program account), balance (in lamports, where 1 SOL = 1 billion lamports), and the associated owner program (program ID). In Solana's account model, each account is owned by a program, and only the owner program can modify the account data or reduce the balance. Adding balance, however, is not restricted. This model ensures the security of account data and the controllability of operations. For more information, check out the documentation [here](https://solana.com/docs/core/accounts#accountinfo).
+#### Transaction Size
 
-Here are the storage limitations in Solana:
+- The maximum size of each transaction in Solana is **1232 bytes**
 
-- The maximum storage size for each account is **10MB**
-
-### Transaction Size Limitations
-
-Solana follows a maximum transmission unit (MTU) limit of 1280 bytes, in line with the IPv6 MTU standard, to ensure the efficient and reliable transmission of cluster information via UDP. After accounting for the 48-byte IPv6 and fragmentation headers, 1232 bytes remain for data, such as serialized transactions. This means that each Solana transaction, including its signature and message parts, cannot exceed 1232 bytes. Each signature occupies 64 bytes, with the number of signatures depending on the transaction requirements. The message part contains instructions, accounts, and other metadata, with each account taking 32 bytes. The total size of a transaction varies depending on the number of instructions it includes. This limit ensures efficient transmission of transaction data across the network. For more details, refer to the documentation [here](https://solana.com/docs/core/transactions#transaction-size).
-
-Here are the transaction size limitations in Solana:
-
-- The maximum size of each transaction is **1232 bytes**
-
-### Call Depth Limitations
-
-To ensure efficient program execution, Solana imposes limits on the call stack depth of each program. If this limit is exceeded, a `CallDepthExceeded` error is triggered. Solana also supports direct calls between programs (cross-program invocations), but the depth of such calls is also limited. Exceeding this depth triggers a `CallDepth` error. These restrictions aim to enhance network performance and resource management efficiency. For more information, refer to the documentation [here](https://solana.com/docs/programs/limitations#call-stack-depth-object-object-error).
-
-Here are the call depth limitations in Solana:
+#### Call Depth
 
 - The maximum call stack depth per program is **64 layers**
 - The maximum depth for cross-program calls is **4 layers**
 
-### Stack Size Limitations
-
-In Solana's virtual machine architecture, each stack frame has a size limit, using fixed stack frames instead of variable stack pointers. If the stack frame exceeds this limit, the compiler will issue a warning but will not block compilation. At runtime, if the stack size is exceeded, an `AccessViolation` error occurs. Regarding heap management, Solana uses a simple heap with fast allocation via the **bump** model, which does not support memory deallocation or reallocation. Each Solana program has access to this memory area and can implement custom heap management as needed. These limitations help optimize performance and resource allocation. For more details, refer to the documentation [here](https://solana.com/docs/programs/faq#stack).
-
-Here are the stack size limitations in Solana:
+### Stack Size
 
 - Each stack frame has a size limit of **4KB**
 - The program heap size is **32KB**
 
-### PDA Account Limitations
-
-In Solana, Program Derived Addresses (PDA) offer developers a deterministic method for generating account addresses using predefined **seeds** (such as strings, numbers, or other account addresses) and the program ID. This mechanism mimics an on-chain hash map function. Additionally, Solana allows programs to sign transactions using their derived PDAs. The advantage of PDAs is that developers do not need to remember specific account addresses; instead, they only need to remember the input used to derive the address, simplifying account management and improving development efficiency. For more details, check out the documentation [here](https://solana.com/developers/courses/native-onchain-development/program-derived-addresses#seeds).
-
-Here are the PDA account limitations in Solana:
+### PDA
 
 - The length of each PDA seed cannot exceed **32 bytes**
 - The total number of seeds cannot exceed **16 seeds**
 
 ## Detailed Analysis of CU Limitations
 
-Having introduced the various resource limitations in Solana, let’s now focus on the CU limitations. As mentioned earlier, CU is the smallest unit used to measure the computational resources consumed during transaction execution. Each transaction's CU consumption cannot exceed 1.2 million CUs. For developers new to Solana, this concept might not be very intuitive, so let's break it down with some examples to better understand CU consumption.
+Having introduced the various resource limitations in Solana, let's now focus on the CU limitations. As mentioned earlier, CU is the smallest unit used to measure the computational resources consumed during transaction execution. Each transaction's CU consumption cannot exceed 1.2 million CUs. This concept might not be intuitive for developers new to Solana, so let's break it down with examples to understand CU consumption better.
 
 ### Displaying CU Consumption
 
-Before analyzing CU consumption in programs, let’s first learn how to display CU consumption in Solana programs. In Solana, the `log` function can be used to output logs, including CU consumption. Here's a simple example:
+Before analyzing CU consumption in programs, let's first review how to display CU consumption in Solana programs. In Solana, the `log` function can output logs, including CU consumption. Here is a simple example:
 
 ```rust
 use solana_program::log::sol_log_compute_units;
@@ -100,9 +109,9 @@ Program consumption: 149477 units remaining
 Program consumption: 137832 units remaining
 ```
 
-By comparing the difference between two `sol_log_compute_units` calls, we can calculate the CU consumption of the program. In this example, the difference between the two values represents the CU consumed by the operations performed between the two log calls.
+By comparing the difference between two `sol_log_compute_units` calls, we can calculate the CU consumption of the program. In this example, the difference between the two values represents the CU consumed by the operations performed between the log calls.
 
-We can also encapsulate this CU logging functionality into a Rust macro for easier usage in the program. Here’s how the code would look:
+We can also encapsulate this CU logging functionality into a Rust macro for easier program usage. Here is how the code would look:
 
 ```rust
 // build a macro to log compute units
@@ -124,37 +133,37 @@ compute_fn!("create account" => {
 });
 ```
 
-Encapsulating logging as a macro makes it much more convenient to call within the program while also providing additional information, making debugging easier.
+Encapsulating logging as a macro makes it much more convenient to call within the program and provides additional information, making debugging easier.
 
 ### Solana Program Examples
 
-To better understand CU consumption in Solana programs, we can explore example programs that demonstrate the CU usage of different operations.
+To better understand CU consumption in Solana programs, you can explore example programs demonstrating the CU usage of different operations.
 
-Solana provides many learning resources for beginners, including a collection of simple example programs (`program-examples`) designed to help developers understand the Solana development process. These examples can be found in this GitHub [repository](https://github.com/solana-developers/program-examples).
+Solana provides many learning resources for beginners, including simple example programs (`program-examples`) designed to help developers understand the Solana development process. These examples can be found in this GitHub [repository](https://github.com/solana-developers/program-examples).
 
 Each example program in this repository typically has two versions: one implemented as a native program and the other using the Anchor framework.
 
-> [Anchor](https://www.anchor-lang.com/) is a widely-used development framework for the Solana blockchain, designed to simplify the creation of programs (smart contracts) and decentralized applications (DApps). It provides developers with an efficient and intuitive set of tools and libraries, significantly lowering the barrier to entry for Solana application development. Solana officially recommends using Anchor for development.
+> [Anchor](https://www.anchor-lang.com/) is a widely-used development framework for the Solana blockchain. It is designed to simplify the creation of programs (smart contracts) and decentralized applications (DApps). It provides developers with an efficient and intuitive set of tools and libraries, significantly lowering the barrier to entry for Solana application development. Solana officially recommends using Anchor for development.
 
-In the following sections, we’ll reference examples from this repository to analyze CU consumption in Solana. We’ll break this down from the perspectives of operations and programs.
+In the following sections, we'll reference examples from this repository to analyze CU consumption in Solana. We'll break this down from the perspectives of operations and programs.
 
 ### Operation Examples
 
-Let’s start by examining some common operations in Solana and analyzing their respective CU consumption.
+Let's start by examining some common operations in Solana and analyzing their respective CU consumption.
 
-**Transfer SOL**
+#### Transfer SOL
 
 Transferring SOL is one of the most common operations in Solana. Each transfer consumes a certain amount of CUs. You might wonder how many CUs are required for a single transfer. To find out, we can conduct a simple experiment on Solana's Devnet by performing a SOL transfer and then checking the transaction's CU consumption in the [Solana Explorer](https://explorer.solana.com/). The result is as follows:
 
 ![solana transfer sol cu](solana-transfer-sol-cu.png)
 
-From the transaction details in the Explorer, we can see that the transfer consumed **150** CUs. This value is not fixed but generally doesn’t vary significantly. The amount of CU consumed is unrelated to the transfer amount but is instead determined by the number and complexity of the instructions in the transaction.
+From the transaction details in the Explorer, we can see that the transfer consumed **150** CUs. This value is not fixed but generally does not vary significantly. The amount of CU consumed is unrelated to the transfer amount but is determined by the number and complexity of the instructions in the transaction.
 
-**Create Account**
+#### Create Account
 
 Creating an account is another common operation in Solana. Each account creation consumes a certain amount of CUs. We can analyze CU consumption by running an account creation example.
 
-In the `program-examples` repository, you can find a [sample program for account creation](https://github.com/solana-developers/program-examples/blob/main/basics/create-account/anchor/programs/create-system-account/src/lib.rs#L20C1-L33C12) in the `basic/create-account` directory. By adding CU logging statements to the code, we can verify CU consumption during execution. Below is the log output after running the program:
+You can find a [sample program for account creation](https://github.com/solana-developers/program-examples/blob/main/basics/create-account/anchor/programs/create-system-account/src/lib.rs#L20C1-L33C12) in the `basic/create-account` directory in the `program-examples` repository. By adding CU logging statements to the code, we can verify CU consumption during execution. Below is the log output after running the program:
 
 ```sh
 [2024-12-08T07:34:47.865105000Z DEBUG solana_runtime::message_processor::stable_log] Program consumption: 186679 units remaining
@@ -164,11 +173,11 @@ In the `program-examples` repository, you can find a [sample program for account
 [2024-12-08T07:34:47.865219000Z DEBUG solana_runtime::message_processor::stable_log] Program log: Account created succesfully.
 ```
 
-From this test, we found that creating an account consumes approximately **3000** CUs. This value is not fixed but typically remains within a close range.
+This test found that creating an account consumes approximately **3000** CUs. This value is not fixed but typically remains within a close range.
 
-**Create a Simple Data Structure**
+#### Create a Simple Data Structure
 
-Next, let’s analyze the CU consumption of creating a simple data structure. An example of this can be found in the `basic/account-data` directory of the `program-examples` repository. The full example program can be found [here](https://github.com/solana-developers/program-examples/blob/main/basics/account-data/anchor/). Below is the data structure defined in the program:
+Next, let's analyze the CU consumption of creating a simple data structure. An example of this can be found in the `basic/account-data` directory of the `program-examples` repository. The full example program can be found [here](https://github.com/solana-developers/program-examples/blob/main/basics/account-data/anchor/). Below is the data structure defined in the program:
 
 ```rust
 use anchor_lang::prelude::*;
@@ -188,17 +197,17 @@ pub struct AddressInfo {
 
 This data structure contains three string fields and one `u8` field. Each string field has a maximum length of 50. Testing reveals that creating this simple data structure consumes approximately **7000** CUs.
 
-**Counter**
+#### Counter
 
-Solana’s official example programs include a simple counter program. This can be found in the `basic/counter` directory of the `program-examples` repository. The example defines a basic counter data structure, along with instructions for creating and incrementing the counter. The full example program is available [here](https://github.com/solana-developers/program-examples/tree/main/basics/counter/anchor).
+Solana's official example programs include a simple counter program. This can be found in the `basic/counter` directory of the `program-examples` repository. The example defines a basic counter data structure and privides instructions for creating and incrementing the counter. The full example program is available [here](https://github.com/solana-developers/program-examples/tree/main/basics/counter/anchor).
 
-Testing indicates that initializing the counter consumes approximately **5000** CUs, while incrementing the counter consumes about **900** CUs.
+Testing indicates that initializing the counter consumes approximately **5000** CUs while incrementing the counter consumes about **900** CUs.
 
-**Transfer Token**
+#### Transfer Token
 
 Another relatively common but more complex operation in Solana is transferring Tokens.
 
-> In Solana, Tokens are implemented through the SPL Token standard, which is an official Solana standard for issuing, transferring, and managing tokens. SPL Token provides a standard interface to simplify token-related operations on Solana.
+> In Solana, Tokens are implemented through the SPL Token standard, an official Solana standard for issuing, transferring, and managing tokens. SPL Token provides a standard interface to simplify token-related operations on Solana.
 
 The `program-examples` repository includes an example program for transferring tokens, which can be found in the `token/transfer-tokens` directory. This program also includes operations for creating tokens, minting tokens, and burning tokens. The full example code is available [here](https://github.com/solana-developers/program-examples/tree/main/tokens/transfer-tokens/native).
 
@@ -209,13 +218,13 @@ Testing results reveal the following CU consumption for token-related operations
 - Burning a token consumes approximately **4000** CUs.
 - Transferring a token consumes approximately **4500** CUs.
 
-We can also observe the CU consumption of a token transfer in a real transaction. For example, in [this transaction](https://explorer.solana.com/tx/FiqGufYKmKeGWfnyRXAkSx3UXPwp8iyZroBPCmcSNrdxNm1ydFqtBCvfq7iU5hTscc11ZuxzHP5dowVQFbgKv5s), the CU consumption for the token transfer can be seen in the log output at the bottom of the transaction details:
+We can also observe the CU consumption of a token transfer in an actual transaction. For example, in [this transaction](https://explorer.solana.com/tx/FiqGufYKmKeGWfnyRXAkSx3UXPwp8iyZroBPCmcSNrdxNm1ydFqtBCvfq7iU5hTscc11ZuxzHP5dowVQFbgKv5s), the CU consumption for the token transfer can be seen in the log output at the bottom of the transaction details:
 
 ![solana transfer token cu](solana-transfer-token-cu.png)
 
-**Summary**
+#### Summary
 
-Here’s a summary of CU consumption for common operations:
+Here is a summary of CU consumption for common operations:
 
 | Action                    | CU Cost (approx.)                                                    |
 | ------------------------- | -------------------------------------------------------------------- |
@@ -227,9 +236,9 @@ Here’s a summary of CU consumption for common operations:
 
 ### Program Examples
 
-Having reviewed the CU consumption of common operations in Solana, let’s now look at the CU usage of frequently used program constructs and syntax.
+Having reviewed the CU consumption of common operations in Solana, let's look at the CU usage of frequently used program constructs and syntax.
 
-**Loop Statements**
+#### Loop Statements
 
 Loops are one of the common constructs in Solana programs. By analyzing loop statements, we can understand their CU consumption. Below is a comparison of CU usage for different loop sizes:
 
@@ -248,7 +257,7 @@ for i in 0..2 {
 }
 ```
 
-Tests reveal that a simple `msg!` statement consumes 226 CU. Adding a loop that runs once increases the CU consumption to 527 CU, while running the loop twice raises it to 934 CU. From this, we can deduce the following:
+Tests reveal that a simple `msg!` statement consumes 226 CU. Adding a loop that runs once increases the CU consumption to 527 CU while running the loop twice raises it to 934 CU. From this, we can deduce the following:
 
 - Initializing a loop costs approximately **301 CU** (527 - 226).
 - Each iteration costs about **181 CU** (934 - 2×226 - 301).
@@ -272,9 +281,9 @@ for i in 0..2 {
 
 As shown, the CU consumption for loops depends on the logic executed within them. However, the overhead of the loop itself is relatively small, roughly **200–300 CU**.
 
-**If Statements**
+#### If Statements
 
-`If` statements are another common construct. Let’s analyze their CU consumption:
+`If` statements are another common construct. Let's analyze their CU consumption:
 
 ```rust
 // a base function consumed 221 CU
@@ -292,11 +301,11 @@ pub fn initialize(_ctx: Context<Initialize>) -> Result<()> {
 }
 ```
 
-Tests show that an empty function consumes 221 CU. Adding an `if` statement increases the consumption to 339 CU. Thus, a basic `if` statement consumes approximately **100 CU**.
+Tests show that an empty function consumes 221 CU. Adding an `if` statement increases the consumption to 339 CU. Therefore, a basic `if` statement consumes approximately **100 CU**.
 
-**Different Data Structure Sizes**
+#### Different Data Structure Sizes
 
-The size of a data structure also affects CU consumption. Here’s a comparison of different-sized data structures:
+The size of a data structure also affects CU consumption. Here is a comparison of different-sized data structures:
 
 ```rust
 // use a default vector and push 10 items, it will consume 628 CU
@@ -305,13 +314,13 @@ for _ in 0..10 {
     a.push(1);
 }
 
-// use a 64 bit vector and do the same things, it will consume 682 CU
+// use a 64-bit vector and do the same things, it will consume 682 CU
 let mut a Vec<u64> = Vec::new();
 for _ in 0..10 {
     a.push(1);
 }
 
-// use a 8 bit vector and do the same things, it will consume 462 CU
+// use an 8-bit vector and do the same things, it will consume 462 CU
 let mut a: Vec<u8> = Vec::new();
 for _ in 0..10 {
     a.push(1);
@@ -324,9 +333,9 @@ for _ in 0..10 {
 
 This shows that the size of the data structure impacts CU usage, with larger types consuming more.
 
-**Hash Functions**
+#### Hash Functions
 
-Hash functions are a commonly used feature in Solana programs. Let’s analyze their CU consumption using a simple example:
+Hash functions are a commonly used feature in Solana programs. Let's analyze their CU consumption using a simple example:
 
 ```rust
 use solana_program::hash::hash;
@@ -338,9 +347,9 @@ pub fn initialize(_ctx: Context<Initialize>) -> Result<()> {
 }
 ```
 
-Comparing a program with and without a hash function, we find that using Solana’s hash function to compute a hash value consumes approximately **200 CU**.
+Comparing a program with and without a hash function, we find that using Solana's hash function to compute a hash value consumes approximately **200 CU**.
 
-**Function Calls**
+#### Function Calls
 
 Function calls are essential in programming. Below is an example of analyzing the CU consumption of calling a function:
 
@@ -357,25 +366,25 @@ pub fn other_func(_ctx: Context<Initialize>) -> Result<()> {
 
 Tests indicate that the CU consumption of calling a function depends on the logic within the called function. Calling an empty function consumes approximately **100 CU**.
 
-**Summary**
+#### CU Consumption Summary
 
 The CU consumption of common program constructs is summarized below:
 
-| Program Construct | CU Cost (approx.)                                  |
-| ------------------ | ------------------------------------------------- |
-| For Loop           | 301 (Init) <br> 181 (Per Iteration)               |
-| If Statement       | 100                                               |
+| Program Construct    | CU Cost (approx.)                                  |
+| -------------------- | -------------------------------------------------- |
+| For Loop             | 301 (Init) <br> 181 (Per Iteration)                |
+| If Statement         | 100                                                |
 | Different Data Sizes | 462 (Vec u8) <br> 628 (Vec u32) <br> 682 (Vec u64) |
-| Hash Function      | 200                                               |
-| Function Call      | 100                                               |
+| Hash Function        | 200                                                |
+| Function Call        | 100                                                |
 
 ## Comparison of CU Consumption Between Native Programs and Anchor Programs on Solana
 
-As previously mentioned, there are two main ways to develop Solana programs: one is by using native programs, and the other is by using the Anchor framework. Anchor is the official framework recommended by Solana, providing a set of efficient and intuitive tools and libraries that significantly reduce the barrier to entry for Solana application development. You might be curious about the difference in CU consumption between native programs and Anchor programs. In this article, we’ll compare the CU consumption of both types of programs, using the example of **Token Transfer** operations.
+As previously mentioned, there are two main ways to develop Solana programs: using native programs and the Anchor framework. Anchor is the official framework recommended by Solana, providing a set of efficient and intuitive tools and libraries that significantly reduce the barrier to entry for Solana application development. You might be curious about the difference in CU consumption between native and Anchor programs. Next, we will compare the CU consumption of both programs using the example of **Token Transfer** operations.
 
 ### CU Consumption of Native Programs
 
-Let’s first examine the CU consumption of a native program for transferring tokens. The source code for Solana programs is available in [this repository](https://github.com/solana-labs/solana-program-library), and the core method for processing token transfers, `process_transfer`, can be found [here](https://github.com/solana-labs/solana-program-library/blob/master/token/program/src/processor.rs#L229-L343). In this method, we break down the steps involved and tally up the CU consumption for each step. The results of our analysis are as follows:
+Let's first examine the CU consumption of a native program for transferring tokens. The source code for Solana programs is available in [this repository](https://github.com/solana-labs/solana-program-library), and the core method for processing token transfers, `process_transfer`, can be found [here](https://github.com/solana-labs/solana-program-library/blob/master/token/program/src/processor.rs#L229-L343). In this method, we break down the steps involved and tally up the CU consumption for each step. The results of our analysis are as follows:
 
 - Base consumption: The cost of running an empty method is 939 CU.
 - Transfer initialization: Includes account checks and initialization, costing 2641 CU.
@@ -388,7 +397,7 @@ Let’s first examine the CU consumption of a native program for transferring to
 - Handling SOL transfers: Costs 103 CU.
 - Saving account states: Costs 323 CU.
 
-The total CU consumption for the token transfer operation is about 4555 CU, which aligns closely with our previous test result (4500 CU). The highest cost is seen in the transfer initialization step, which consumes 2641 CU. We can further break down the initialization phase into more detailed steps, with the following CU consumption:
+The total CU consumption for the token transfer operation is about 4555 CU, which aligns closely with our previous test result (4500 CU). The transfer initialization step has the highest cost, which consumes 2641 CU. We can further break down the initialization phase into more detailed steps with the following CU consumption:
 
 - Initializing the source account: 106 CU.
 - Initializing mint information: 111 CU.
@@ -400,7 +409,7 @@ The unpacking operations for both accounts consume the most CU, with each unpack
 
 ### CU Consumption of Anchor Programs
 
-Now that we have seen the CU consumption of native programs, let’s look at the CU consumption of Anchor programs. An example of an Anchor program can be found in the `program-examples` repository, under the `tokens/transfer-tokens` directory. The source code for the token transfer operation can be found [here](https://github.com/solana-developers/program-examples/blob/main/tokens/transfer-tokens/anchor/programs/transfer-tokens/src/instructions/transfer.rs).
+Now that we have seen the CU consumption of native programs let's look at the CU consumption of Anchor programs. An example of an Anchor program can be found in the `program-examples` repository, under the `tokens/transfer-tokens` directory. The source code for the token transfer operation can be found [here](https://github.com/solana-developers/program-examples/blob/main/tokens/transfer-tokens/anchor/programs/transfer-tokens/src/instructions/transfer.rs).
 
 Upon running this instruction for the first time, we were surprised to find that the CU consumption for an Anchor program performing a token transfer is around 80,000 to 90,000 CU—nearly **20 times** that of the native program!
 
@@ -411,35 +420,35 @@ Why is the CU consumption of an Anchor program so much higher? We began analyzin
 - Account initialization costs 20,544 CU (from lines 9-34 in the source code).
 - The token transfer instruction costs 50,387 CU (from lines 36-67 in the source code).
 
-During account initialization, various accounts such as `sender_token_account`, `recipient_token_account`, and programs like `token_program` and `associated_token_program` need to be initialized, which costs a total of 20,544 CU.
+Various accounts, such as `sender_token_account` and `recipient_token_account`, and programs like `token_program` and `associated_token_program`, need to be initialized during account initialization, which costs 20,544 CU.
 
-For the execution of the token transfer instruction, the total cost is 50,387 CU. Further breakdown of this process reveals:
+The total cost of executing of the token transfer instruction is 50,387 CU. Further breakdown of this process reveals:
 
 - Function initialization costs 6,213 CU (even an empty method consumes this much CU).
-- The program includes three print statements that are very costly.
+- The program includes three very costly print statements.
   - The first print statement costs 11,770 CU (lines 38-41 in the source code), as it implicitly converts the account address to Base58 encoding, which is highly resource-intensive. This is one of the reasons why [Solana recommends avoiding this operation](https://solana.com/developers/guides/advanced/how-to-optimize-compute).
   - The second print statement costs 11,645 CU (lines 42-45).
   - The third print statement costs 11,811 CU (lines 46-49).
-- The transfer instruction itself costs 7,216 CU (lines 52-62), where the `anchor_spl::token::transfer` method is called. This method wraps the native `transfer` method, adding some extra functionality in addition to calling the native transfer method.
+- The transfer instruction costs 7,216 CU (lines 52-62), where the `anchor_spl::token::transfer` method is called. This method wraps up the native `transfer` method, adding some extra functionality in addition to calling it.
 - Other miscellaneous costs add up to 1,732 CU.
 
 From this analysis, we found that the actual CU consumption for the token transfer portion of the program is **7,216** CU. However, due to the initialization of the Anchor framework, account initialization, and print statements, the total CU consumption for the program reaches 81,457 CU.
 
 Although Anchor programs consume more CU, the framework provides more functionality and convenience, making this consumption understandable. Developers can choose the appropriate development method based on their needs.
 
-## Conclusion 
+## Conclusion
 
-In this article, we’ve summarized various resource limits in Solana development, focusing on the CU limit. We discussed the CU consumption for common operations and programs, and compared the CU consumption of native programs and Anchor programs. Whether you are a beginner or an experienced developer on Solana, we hope this article helps you better understand CU consumption in Solana, enabling you to plan program resources more effectively and optimize performance during development.
+This article summarizes various resource limits in Solana development, focusing on the CU limit. We discuss the CU consumption for common operations and programs and compare the CU consumption of native and Anchor programs. Whether you are a beginner or an experienced developer on Solana, we hope this article helps you better understand CU consumption in Solana, enabling you to plan program resources more effectively and optimize performance during development.
 
-We’ve also compiled some optimization tips based on Solana’s official documentation to help developers avoid pitfalls related to CU limits. The tips are as follows:
+We have also compiled some optimization tips based on Solana's official documentation to help developers avoid pitfalls related to CU limits. The tips are as follows:
 
 - Measure compute usage: Displaying CU consumption in logs can help assess the compute cost of code snippets, allowing you to identify high-cost areas.
-- Reduce logging: Logging operations (such as using the `msg!` macro) significantly increase CU consumption, especially when dealing with Base58 encoding and string concatenation. It’s recommended to log only essential information and use more efficient methods, such as `.key().log()`, for logging public keys and other data.
+- Reduce logging: Logging operations (such as using the `msg!` macro) significantly increase CU consumption, especially when dealing with Base58 encoding and string concatenation. For logging public keys and other data, logging only essential information and using more efficient methods, such as `.key().log()` is recommended.
 - Choose appropriate data types: Larger data types (like `u64`) consume more CU than smaller ones (like `u8`). Use smaller data types whenever possible to reduce CU usage.
 - Optimize serialization operations: Serialization and deserialization operations increase CU consumption. Using zero-copy techniques to interact directly with account data can help reduce the overhead of these operations.
 - Optimize PDA lookup: The computational complexity of the `find_program_address` function depends on how many attempts are needed to find a valid address. Storing the bump value during initialization and reusing it in subsequent operations can reduce CU consumption.
 
-We hope that in future articles, we can continue discussing other aspects of Solana’s resource limits, providing more insights. If you have any questions or comments, feel free to leave them in the comment section.
+In future articles, we will discuss other aspects of Solana's resource limits and provide more insights. If you have any questions or comments, please feel free to click the **Build With Us** button below.
 
 ## References
 
