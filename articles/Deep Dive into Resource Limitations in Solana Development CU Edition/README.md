@@ -75,12 +75,12 @@ In Solana, Program Derived Addresses (PDAs) offer developers a deterministic met
 - The maximum call stack depth per program is **64 layers**
 - The maximum depth for cross-program calls is **4 layers**
 
-### Stack Size
+#### Stack Size
 
 - Each stack frame has a size limit of **4KB**
 - The program heap size is **32KB**
 
-### PDA
+#### PDA
 
 - The length of each PDA seed cannot exceed **32 bytes**
 - The total number of seeds cannot exceed **16 seeds**
