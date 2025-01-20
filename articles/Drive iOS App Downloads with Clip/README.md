@@ -5,8 +5,13 @@ createTime: 2024-12-25
 tags: ["iOS", "App", "App Clip"]
 thumb: "ArticleImage.png"
 thumb_h: "ArticleImage.png"
-intro: "This article introduces what App Clip is, why it is beneficial to app downloads, and explains some considerations from the development and testing perspectives based on company projects."
+intro: "This article state why customers need App Clips based on actual company cases, and then introduces what App Clip is, why it is beneficial to app downloads, and explains some considerations from the development and testing perspectives based on company project."
 ---
+
+Our company has been helping to develop an App in the past few years. The App has 90k+ reviews on the AppStore and a lot of users. Although this App is great, the client spent a lot of resources, including money and energy, to stand out in the highly competitive AppStore and gain more users. But sometimes a lot of investment does not get the expected feedback, and the user growth is not as expected. At this time, the client took a fancy to App Clip, a relatively new App implementation method, and commissioned us to develop the Clip version corresponding to the App. After investigation, we quickly completed the development of the Clip version with only a small number of developers and launched it as scheduled. After the launch, we observed that users would try to use App Clip, and attracted a lot of new users through App Clip. The client was very satisfied that he had obtained a new user growth channel without continuous investment, such as advertising costs.
+
+Next, we will start from what App Clip is and then explain why to use App Clip. Finally, we will share the development process of App Clip through some of our experiences in the development process.
+
 ## What is App Clip？
 
   An App Clip is a small part of your App that’s discoverable at the moment it’s needed and lets people complete a quick task from your App — even before installing your full App.
