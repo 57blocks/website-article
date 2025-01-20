@@ -98,9 +98,9 @@
         "Resource Limitation",
         "Compute Unit"
       ],
-      "thumb": "thumb.jpeg",
-      "thumb_h": "thumb_h.jpeg",
-      "intro": "This article provides a detailed exploration of resource limitations encountered during Solana development. It specifically focuses on Compute Unit (CU) restrictions, using examples and program comparisons to illustrate how these limitations can affect Solana development.",
+      "thumb": "thumb.jpg",
+      "thumb_h": "thumb_h.jpg",
+      "intro": "Explore how resource limitations, specifically Compute Unit (CU) restrictions, affect Solana program development. CU restrictions in Solana are often the culprit of unexpected program errors. We outline the most common challenges that cause these errors and provide examples and program comparisons to help you best understand how to use this technology.",
       "path": "articles/Deep%20Dive%20into%20Resource%20Limitations%20in%20Solana%20Development%20CU%20Edition/README.md",
       "slug": "deep-dive-into-resource-limitations-in-solana-development-cu-edition"
     },
