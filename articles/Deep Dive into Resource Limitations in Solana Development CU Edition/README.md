@@ -29,12 +29,12 @@ The CU limit for a transaction containing only one instruction would default to 
 
 ### Storage Limitations
 
-In Solana, each account's data structure is called **AccountInfo**, which includes:
+In Solana, each account's data structure is called AccountInfo, which includes:
 
-- the account's state
-- program code (if it's a program account)
-- balance (in lamports, where 1 SOL = 1 billion lamports)
-- the associated owner program (program ID)
+- the account's state,
+- program code (if it's a program account),
+- balance (in lamports, where 1 SOL = 1 billion lamports), and
+- the associated owner program (program ID).
 
 In Solana's account model, each account is owned by a program, and only the program that owns the account can modify the account data or reduce the balance. Adding balance, however, is not restricted. This model ensures the security of account data and the controllability of operations. For more information, check out the documentation [here](https://solana.com/docs/core/accounts#accountinfo).
 
