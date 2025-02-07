@@ -144,7 +144,7 @@ Solana provides many learning resources for beginners, including simple example 
 
 Each example program in this repository typically has two versions: one implemented as a native program and the other using the Anchor framework.
 
-> [Anchor](https://www.anchor-lang.com/) is a widely-used development framework for the Solana blockchain. It is designed to simplify the creation of programs (smart contracts) and decentralized applications (DApps). It provides developers with an efficient and intuitive set of tools and libraries, significantly lowering the barrier to entry for Solana application development. Solana officially recommends using Anchor for development.
+> [Anchor](https://www.anchor-lang.com/) is a widely used development framework for the Solana blockchain. It is designed to simplify the creation of programs (smart contracts) and decentralized applications (DApps). It provides developers with an efficient and intuitive set of tools and libraries, significantly lowering the barrier to entry for Solana application development. Solana officially recommends using Anchor for development.
 
 In the following sections, we'll reference examples from this repository to analyze CU consumption in Solana. We'll break this down from the perspectives of operations and programs.
 
@@ -200,7 +200,7 @@ This data structure contains three string fields and one `u8` field. Each string
 
 #### Counter
 
-Solana's official example programs include a simple counter program. This can be found in the `basic/counter` directory of the `program-examples` repository. The example defines a basic counter data structure and privides instructions for creating and incrementing the counter. The full example program is available [here](https://github.com/solana-developers/program-examples/tree/main/basics/counter/anchor).
+Solana's official example programs include a simple counter program. This can be found in the `basic/counter` directory of the `program-examples` repository. The example defines a basic counter data structure and provides instructions for creating and incrementing the counter. The full example program is available [here](https://github.com/solana-developers/program-examples/tree/main/basics/counter/anchor).
 
 Testing indicates that initializing the counter consumes approximately **5000** CUs while incrementing the counter consumes about **900** CUs.
 
@@ -385,7 +385,7 @@ As previously mentioned, there are two main ways to develop Solana programs: usi
 
 ### CU Consumption of Native Programs
 
-Let's first examine the CU consumption of a native program for transferring tokens. The source code for Solana programs is available in [this repository](https://github.com/solana-labs/solana-program-library), and the core method for processing token transfers, `process_transfer`, can be found [here](https://github.com/solana-labs/solana-program-library/blob/master/token/program/src/processor.rs#L229-L343). In this method, we break down the steps involved and tally up the CU consumption for each step. The results of our analysis are as follows:
+Let's first examine the CU consumption of a native program for transferring tokens. The source code for Solana programs is available in [this repository](https://github.com/solana-labs/solana-program-library), and the core method for processing token transfers, `process_transfer`, can be found [here](https://github.com/solana-program/token/blob/main/program/src/processor.rs#L229-L343). In this method, we break down the steps involved and tally up the CU consumption for each step. The results of our analysis are as follows:
 
 - Base consumption: The cost of running an empty method is 939 CU.
 - Transfer initialization: Includes account checks and initialization, costing 2641 CU.
@@ -423,7 +423,7 @@ Why is the CU consumption of an Anchor program so much higher? We began analyzin
 
 Various accounts, such as `sender_token_account` and `recipient_token_account`, and programs like `token_program` and `associated_token_program`, need to be initialized during account initialization, which costs 20,544 CU.
 
-The total cost of executing of the token transfer instruction is 50,387 CU. Further breakdown of this process reveals:
+The total cost of executing the token transfer instruction is 50,387 CU. Further breakdown of this process reveals:
 
 - Function initialization costs 6,213 CU (even an empty method consumes this much CU).
 - The program includes three very costly print statements.
