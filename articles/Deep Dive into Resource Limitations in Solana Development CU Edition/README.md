@@ -9,7 +9,7 @@ thumb_h: "thumb_h.jpg"
 intro: "Explore how resource limitations, specifically Compute Unit (CU) restrictions, affect Solana program development. CU restrictions in Solana are often the culprit of unexpected program errors. We outline the most common challenges that cause these errors and provide examples and program comparisons to help you best understand how to use this technology."
 ---
 
-Many developers face a common issue when building Solana programs (or "smart contracts")—their program's logic may appear correct. However, when the program runs, unexpected errors occur. These errors often contain terms like "limit" or "exceed," indicating that the program has hit one of Solana's resource constraints. As a high-performance blockchain, Solana's core features, such as parallel processing, significantly boost transaction throughput. However, behind this efficiency lies a strict resource management mechanism, requiring developers to understand these limitations to develop and optimize Solana programs effectively. This article exposes the various resource limitations in Solana development, focusing on Compute Unit (CU) restrictions, and provides analyses of multiple real-world scenarios and optimization strategies illustrate how to avoid such program errors and improve program performance.
+Many developers face a common issue when building Solana programs (or "smart contracts")—although, their program's logic may appear correct, when the program runs, unexpected errors occur. These errors often contain terms like "limit" or "exceed," indicating that the program has hit one of Solana's resource constraints. As a high-performance blockchain, Solana's core features, such as parallel processing, significantly boost transaction throughput. However, behind this efficiency lies a strict resource management mechanism, requiring developers to understand these limitations to develop and optimize Solana programs effectively. This article exposes the various resource limitations in Solana development, focusing on Compute Unit (CU) restrictions, and provides analyses of multiple real-world scenarios and optimization strategies illustrate how to avoid such program errors and improve program performance.
 
 ## Introduction to Solana
 
@@ -23,7 +23,7 @@ Programs running on Solana are subject to several types of resource limitations.
 
 ### CU Limitations
 
-In the Solana blockchain, CU is the smallest unit used to measure the computational resources consumed during transaction execution. Each transaction on the chain consumes a certain number of CUs depending on the operations it performs (e.g., account writes, cross-program invocations, system calls). Every transaction has a CU limit, which can be set to a default value or modified by the program. When a transaction exceeds the CU limit, processing is halted, resulting in a failure. Common operations like executing instructions, transferring data between programs, and performing cryptographic calculations consume CUs. The CU system is designed to manage resource allocation, prevent network abuse, and improve overall efficiency. For more details, refer to the official documentation [here](https://solana.com/docs/core/fees#compute-unit-limit).
+In the Solana blockchain, CU is the smallest unit used to measure the computational resources consumed during transaction execution. Each transaction on the chain consumes a certain number of CUs depending on the operations it performs (e.g., account writes, cross-program invocations, or system calls to name a few). Every transaction has a CU limit, which can be set to a default value or modified by the program. When a transaction exceeds the CU limit, processing is halted, resulting in a failure. Common operations like executing instructions, transferring data between programs, and performing cryptographic calculations consume CUs. The CU system is designed to manage resource allocation, prevent network abuse, and improve overall efficiency. For more details, refer to the official documentation [here](https://solana.com/docs/core/fees#compute-unit-limit).
 
 The CU limit for a transaction containing only one instruction would default to 200,000. The limit can be adjusted using the `SetComputeUnitLimit` instruction, but it cannot exceed the maximum transaction limit of 1.4 million CUs.
 
@@ -44,7 +44,7 @@ Solana follows a maximum transmission unit (MTU) limit of 1280 bytes, in line wi
 
 ### Call Depth Limitations
 
-To ensure efficient program execution, Solana imposes limits on each program's call stak depth. If this limit is exceeded, a `CallDepthExceeded` error is triggered. Solana also supports direct calls between programs (cross-program invocations), but the depth of such calls is also limited. Exceeding this depth triggers a `CallDepth` error. These restrictions aim to enhance network performance and resource management efficiency. For more information, refer to the documentation [here](https://solana.com/docs/programs/limitations#call-stack-depth-object-object-error).
+To ensure efficient program execution, Solana imposes limits on each program's call stack depth. If this limit is exceeded, a `CallDepthExceeded` error is triggered. Solana also supports direct calls between programs (cross-program invocations), but the depth of such calls is also limited. Exceeding this depth triggers a `CallDepth` error. These restrictions aim to enhance network performance and resource management efficiency. For more information, refer to the documentation [here](https://solana.com/docs/programs/limitations#call-stack-depth-object-object-error).
 
 ### Stack Size Limitations
 
@@ -134,7 +134,7 @@ compute_fn!("create account" => {
 });
 ```
 
-Encapsulating logging as a macro makes it much more convenient to call within the program and provides additional information, making debugging easier.
+Encapsulating logging as a macro makes it much more convenient to call within the program and access additional information, making debugging easier.
 
 ### Solana Program Examples
 
@@ -387,24 +387,28 @@ As previously mentioned, there are two main ways to develop Solana programs: usi
 
 Let's first examine the CU consumption of a native program for transferring tokens. The source code for Solana programs is available in [this repository](https://github.com/solana-labs/solana-program-library), and the core method for processing token transfers, `process_transfer`, can be found [here](https://github.com/solana-program/token/blob/main/program/src/processor.rs#L229-L343). In this method, we break down the steps involved and tally up the CU consumption for each step. The results of our analysis are as follows:
 
-- Base consumption: The cost of running an empty method is 939 CU.
-- Transfer initialization: Includes account checks and initialization, costing 2641 CU.
-- Checking if an account is frozen: Costs 105 CU.
-- Checking if the source account has sufficient balance: Costs 107 CU.
-- Verifying Token type match: Costs 123 CU.
-- Checking Token address and expected decimal places: Costs 107 CU.
-- Handling self-transfers: Costs 107 CU.
-- Updating account balances: Costs 107 CU.
-- Handling SOL transfers: Costs 103 CU.
-- Saving account states: Costs 323 CU.
+| Progress    | Costs                                 |
+| -------------------- | -------------------------------------------------- |
+| Base consumption <br> Cost to run an empty method  | 939 CU              |
+| Transfer initialization <br> Includes account checks and initialization  | 2641 CU              |
+| Checking if an account is frozen  | 105 CU              |
+| Checking if the source account has sufficient balance  | 107 CU              |
+| Verifying Token type match  | 123 CU              |
+| Checking Token address and expected decimal places | 107 CU              |
+| Handling self-transfers | 107 CU              |
+| Updating account balances | 107 CU              |
+| Handling SOL transfers | 103 CU              |
+| Saving account states | 323 CU              |
 
 The total CU consumption for the token transfer operation is about 4555 CU, which aligns closely with our previous test result (4500 CU). The transfer initialization step has the highest cost, which consumes 2641 CU. We can further break down the initialization phase into more detailed steps with the following CU consumption:
 
-- Initializing the source account: 106 CU.
-- Initializing mint information: 111 CU.
-- Initializing the destination account: 106 CU.
-- Unpacking the source account: 1361 CU.
-- Unpacking the destination account: 1361 CU.
+| Progress    | Costs                                 |
+| -------------------- | -------------------------------------------------- |
+| Initializing the source account  | 106 CU              |
+| Initializing mint information  | 111 CU              |
+| Initializing the destination account  | 106 CU              |
+| Unpacking the source account  | 1361 CU              |
+| Unpacking the destination account  | 1361 CU              |
 
 The unpacking operations for both accounts consume the most CU, with each unpacking operation costing around 1361 CU, which is significant. Developers should be aware of this during the development process.
 
@@ -414,24 +418,28 @@ Now that we have seen the CU consumption of native programs let's look at the CU
 
 Upon running this instruction for the first time, we were surprised to find that the CU consumption for an Anchor program performing a token transfer is around 80,000 to 90,000 CU—nearly **20 times** that of the native program!
 
-Why is the CU consumption of an Anchor program so much higher? We began analyzing the source code of this program. An Anchor program generally consists of two parts: one for account initialization and the other for instruction execution. Both parts contribute to the CU consumption. Our detailed analysis shows the following results:
+Why is the CU consumption of an Anchor program so much higher? An Anchor program generally consists of two parts: one for account initialization and the other for instruction execution. Both parts contribute to CU consumption. When we analyzed the source code of this program, we noticed the following:
 
-- The total CU consumption of the program is 81,457 CU.
-- The initialization cost of the Anchor framework is 10,526 CU.
-- Account initialization costs 20,544 CU (from lines 9-34 in the source code).
-- The token transfer instruction costs 50,387 CU (from lines 36-67 in the source code).
+| Progress    | Costs                                 |
+| -------------------- | -------------------------------------------------- |
+| The initialization cost of the Anchor framework  | 10,526 CU              |
+| Account initialization (from lines 9-34 in the source code)  | 20,544 CU              |
+| The token transfer instruction (from lines 36-67 in the source code)  | 50,387 CU              |
+| The total CU consumption of the program  | 81,457 CU              |
 
 Various accounts, such as `sender_token_account` and `recipient_token_account`, and programs like `token_program` and `associated_token_program`, need to be initialized during account initialization, which costs 20,544 CU.
 
 The total cost of executing the token transfer instruction is 50,387 CU. Further breakdown of this process reveals:
 
-- Function initialization costs 6,213 CU (even an empty method consumes this much CU).
-- The program includes three very costly print statements.
-  - The first print statement costs 11,770 CU (lines 38-41 in the source code), as it implicitly converts the account address to Base58 encoding, which is highly resource-intensive. This is one of the reasons why [Solana recommends avoiding this operation](https://solana.com/developers/guides/advanced/how-to-optimize-compute).
-  - The second print statement costs 11,645 CU (lines 42-45).
-  - The third print statement costs 11,811 CU (lines 46-49).
-- The transfer instruction costs 7,216 CU (lines 52-62), where the `anchor_spl::token::transfer` method is called. This method wraps up the native `transfer` method, adding some extra functionality in addition to calling it.
-- Other miscellaneous costs add up to 1,732 CU.
+| Progress    | Costs                                 |
+| -------------------- | -------------------------------------------------- |
+| Function initialization costs (even an <br> empty method consumes this much CU)  | 6,213 CU              |
+| Print statement #1 (lines 38-41 in the source code) <br> implicitly converts the account address to Base58 encoding, <br> which is highly resource-intensive. <br> This is one of the reasons why <br> [Solana recommends avoiding this operation](https://solana.com/developers/guides/advanced/how-to-optimize-compute)   | 11,770 CU              |
+| Print statement #2 (lines 42-45)  | 11,645 CU              |
+| Print statement #3 (lines 46-49)  | 11,811 CU              |
+| The transfer instruction (lines 52-62), <br> where the `anchor_spl::token::transfer` method is called. <br> This method wraps up the native `transfer` method, <br> adding some extra functionality in addition to calling it  | 7,216 CU              |
+| Other miscellaneous costs add up  | 1,732 CU              |
+| Total to execute the token transfer instruction  | 50,387 CU              |
 
 From this analysis, we found that the actual CU consumption for the token transfer portion of the program is **7,216** CU. However, due to the initialization of the Anchor framework, account initialization, and print statements, the total CU consumption for the program reaches 81,457 CU.
 
