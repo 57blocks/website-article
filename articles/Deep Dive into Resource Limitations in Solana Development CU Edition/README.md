@@ -387,28 +387,28 @@ As previously mentioned, there are two main ways to develop Solana programs: usi
 
 Let's first examine the CU consumption of a native program for transferring tokens. The source code for Solana programs is available in [this repository](https://github.com/solana-labs/solana-program-library), and the core method for processing token transfers, `process_transfer`, can be found [here](https://github.com/solana-program/token/blob/main/program/src/processor.rs#L229-L343). In this method, we break down the steps involved and tally up the CU consumption for each step. The results of our analysis are as follows:
 
-| Process | Costs                                 |
+| Process | CU Cost                                 |
 | -------------------- | -------------------------------------------------- |
-| Base consumption <br> Cost to run an empty method  | 939 CU              |
-| Transfer initialization <br> Includes account checks and initialization  | 2641 CU              |
-| Checking if an account is frozen  | 105 CU              |
-| Checking if the source account has sufficient balance  | 107 CU              |
-| Verifying Token type match  | 123 CU              |
-| Checking Token address and expected decimal places | 107 CU              |
-| Handling self-transfers | 107 CU              |
-| Updating account balances | 107 CU              |
-| Handling SOL transfers | 103 CU              |
-| Saving account states | 323 CU              |
+| Base consumption <br> Cost to run an empty method  | 939              |
+| Transfer initialization <br> Includes account checks and initialization  | 2641              |
+| Checking if an account is frozen  | 105               |
+| Checking if the source account has sufficient balance  | 107               |
+| Verifying Token type match  | 123               |
+| Checking Token address and expected decimal places | 107               |
+| Handling self-transfers | 107               |
+| Updating account balances | 107               |
+| Handling SOL transfers | 103               |
+| Saving account states | 323               |
 
 The total CU consumption for the token transfer operation is about 4555 CU, which aligns closely with our previous test result (4500 CU). The transfer initialization step has the highest cost, which consumes 2641 CU. We can further break down the initialization phase into more detailed steps with the following CU consumption:
 
-| Process | Costs                                 |
+| Process | CU Cost                                 |
 | -------------------- | -------------------------------------------------- |
-| Initializing the source account  | 106 CU              |
-| Initializing mint information  | 111 CU              |
-| Initializing the destination account  | 106 CU              |
-| Unpacking the source account  | 1361 CU              |
-| Unpacking the destination account  | 1361 CU              |
+| Initializing the source account  | 106               |
+| Initializing mint information  | 111               |
+| Initializing the destination account  | 106               |
+| Unpacking the source account  | 1361               |
+| Unpacking the destination account  | 1361               |
 
 The unpacking operations for both accounts consume the most CU, with each unpacking operation costing around 1361 CU, which is significant. Developers should be aware of this during the development process.
 
@@ -420,26 +420,26 @@ Upon running this instruction for the first time, we were surprised to find that
 
 Why is the CU consumption of an Anchor program so much higher? An Anchor program generally consists of two parts: one for account initialization and the other for instruction execution. Both parts contribute to CU consumption. When we analyzed the source code of this program, we noticed the following:
 
-| Process | Costs                                 |
+| Process | CU Cost                                 |
 | -------------------- | -------------------------------------------------- |
-| The initialization cost of the Anchor framework  | 10,526 CU              |
-| Account initialization (from lines 9-34 in the source code)  | 20,544 CU              |
-| The token transfer instruction (from lines 36-67 in the source code)  | 50,387 CU              |
-| The total CU consumption of the program  | 81,457 CU              |
+| The initialization cost of the Anchor framework  | 10,526               |
+| Account initialization (from lines 9-34 in the source code)  | 20,544               |
+| The token transfer instruction (from lines 36-67 in the source code)  | 50,387               |
+| The total CU consumption of the program  | 81,457               |
 
 Various accounts, such as `sender_token_account` and `recipient_token_account`, and programs like `token_program` and `associated_token_program`, need to be initialized during account initialization, which costs 20,544 CU.
 
 The total cost of executing the token transfer instruction is 50,387 CU. Further breakdown of this process reveals:
 
-| Process | Costs                                 |
+| Process | CU Cost                                 |
 | -------------------- | -------------------------------------------------- |
-| Function initialization costs (even an <br> empty method consumes this much CU)  | 6,213 CU              |
-| Print statement #1 (lines 38-41 in the source code) <br> implicitly converts the account address to Base58 encoding, <br> which is highly resource-intensive. <br> This is one of the reasons why <br> [Solana recommends avoiding this operation](https://solana.com/developers/guides/advanced/how-to-optimize-compute)   | 11,770 CU              |
-| Print statement #2 (lines 42-45)  | 11,645 CU              |
-| Print statement #3 (lines 46-49)  | 11,811 CU              |
-| The transfer instruction (lines 52-62), <br> where the `anchor_spl::token::transfer` method is called. <br> This method wraps up the native `transfer` method, <br> adding some extra functionality in addition to calling it  | 7,216 CU              |
-| Other miscellaneous costs add up  | 1,732 CU              |
-| Total to execute the token transfer instruction  | 50,387 CU              |
+| Function initialization costs (even an <br> empty method consumes this much CU)  | 6,213               |
+| Print statement #1 (lines 38-41 in the source code) <br> implicitly converts the account address to Base58 encoding, <br> which is highly resource-intensive. <br> This is one of the reasons why <br> [Solana recommends avoiding this operation](https://solana.com/developers/guides/advanced/how-to-optimize-compute)   | 11,770              |
+| Print statement #2 (lines 42-45)  | 11,645               |
+| Print statement #3 (lines 46-49)  | 11,811               |
+| The transfer instruction (lines 52-62), <br> where the `anchor_spl::token::transfer` method is called. <br> This method wraps up the native `transfer` method, <br> adding some extra functionality in addition to calling it  | 7,216               |
+| Other miscellaneous costs add up  | 1,732               |
+| Total to execute the token transfer instruction  | 50,387               |
 
 From this analysis, we found that the actual CU consumption for the token transfer portion of the program is **7,216** CU. However, due to the initialization of the Anchor framework, account initialization, and print statements, the total CU consumption for the program reaches 81,457 CU.
 
