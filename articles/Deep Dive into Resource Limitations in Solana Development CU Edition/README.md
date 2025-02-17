@@ -11,7 +11,7 @@ intro: "Explore how resource limitations, specifically Compute Unit (CU) restric
 
 Many developers face a common issue when building Solana programs (or "smart contracts"). Although their program's logic may appear correct, unexpected errors occur when the program runs. These errors often contain terms like "limit" or "exceed," indicating that the program has hit one of Solana's resource constraints. 
 
-As a high-performance blockchain, Solana's core features, such as parallel processing, significantly boost transaction throughput. However, behind this efficiency lies a strict resource management mechanism. Developers need to understand these limitations to build develop and optimize Solana programs effectively. 
+As a high-performance blockchain, Solana's core features, such as parallel processing, significantly boost transaction throughput. However, behind this efficiency lies a strict resource management mechanism. Developers need to understand these limitations to build and optimize Solana programs effectively. 
 
 This article exposes the various resource limitations in Solana development, focusing on Compute Unit (CU) restrictions, and provides analyses of multiple real-world scenarios and optimization strategies to illustrate how to avoid such program errors and improve program performance.
 
@@ -27,7 +27,7 @@ Programs running on Solana are subject to several types of resource limitations.
 
 ### CU Limitations
 
-In the Solana blockchain, CU is the smallest unit used to measure the computational resources consumed during transaction execution. Each transaction on the chain consumes a certain number of CUs depending on the operations it performs (e.g., account writes, cross-program invocations, or system calls). Every transaction has a CU limit, which can be set to a default value or modified by the program. When a transaction exceeds the CU limit, processing is halted, resulting in a failure. Common operations like executing instructions, transferring data between programs, and performing cryptographic calculations consume CUs. CU systems are designed to manage resource allocation, prevent network abuse, and improve overall efficiency. For more details, refer to the official documentation [here](https://solana.com/docs/core/fees#compute-unit-limit).
+In the Solana blockchain, a CU is the smallest unit used to measure the computational resources consumed during transaction execution. Each transaction on the chain consumes a certain number of CUs depending on the operations it performs (e.g., account writes, cross-program invocations, or system calls). Every transaction has a CU limit, which can be set to a default value or modified by the program. When a transaction exceeds the CU limit, processing is halted, resulting in a failure. Common operations like executing instructions, transferring data between programs, and performing cryptographic calculations consume CUs. CU systems are designed to manage resource allocation, prevent network abuse, and improve overall efficiency. For more details, refer to the official documentation [here](https://solana.com/docs/core/fees#compute-unit-limit).
 
 CU limits for a transaction containing only one instruction would default to 200,000. The limit can be adjusted using the `SetComputeUnitLimit` instruction, but it cannot exceed the maximum transaction limit of 1.4 million CUs.
 
@@ -420,7 +420,7 @@ The unpacking operations for both accounts consume the most CU, with each unpack
 
 ### CU Consumption of Anchor Programs
 
-Now that we have seen native program CU consumption, let's look at CUs consumption of Anchor programs. An example of an Anchor program can be found in the `program-examples` repository under the `tokens/transfer-tokens` directory. The source code for the token transfer operation can be found [here](https://github.com/solana-developers/program-examples/blob/main/tokens/transfer-tokens/anchor/programs/transfer-tokens/src/instructions/transfer.rs).
+Now that we have seen native programs' CU consumption, let's look at CUs consumption of Anchor programs. An example of an Anchor program can be found in the `program-examples` repository under the `tokens/transfer-tokens` directory. The source code for the token transfer operation can be found [here](https://github.com/solana-developers/program-examples/blob/main/tokens/transfer-tokens/anchor/programs/transfer-tokens/src/instructions/transfer.rs).
 
 Upon running this instruction for the first time, we were surprised to find that CU consumption for an Anchor program performing a token transfer is around 80,000 to 90,000 CU—nearly **20 times** that of the native program!
 
