@@ -32,6 +32,24 @@
       "slug": "image-search-with-ai-models"
     },
     {
+      "title": "Payment Systems Development A Practical Guide",
+      "author": [
+        "GuangPeng Liu / Full stack engineer",
+        "Hum/ Full stack engineer",
+        "Ida/ Backend engineer"
+      ],
+      "createTime": "2025-02-19T00:00:00.000Z",
+      "tags": [
+        "Web2",
+        "FinTech"
+      ],
+      "thumb": "https://example.com/theThumbOfTheArticle.png",
+      "thumb_h": "https://example.com/theHorizontalThumbOfTheArticle.png",
+      "intro": "Provides a comprehensive guide on developing payment systems, covering integration strategies, modern payment trends, and detailed steps for integrating Stripe and PayPal.",
+      "path": "articles/Payment%20Systems%20Development%20A%20Practical%20Guide/README.md",
+      "slug": "payment-systems-development-a-practical-guide"
+    },
+    {
       "published": true,
       "title": "Deep Dive into Resource Limitations in Solana Development — CU Edition",
       "author": [
