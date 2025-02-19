@@ -44,7 +44,7 @@ In Solana's account model, each account is owned by a program, and only the prog
 
 ### Transaction Size Limitations
 
-Solana follows a maximum transmission unit (MTU) limit of 1280 bytes, in line with the IPv6 MTU standard, to ensure the efficient and reliable transmission of cluster information via UDP. After accounting for the 48-byte IPv6 and fragmentation headers, 1232 bytes remain for data, such as serialized transactions. Each Solana transaction, including its signature and message parts, cannot exceed 1232 bytes. Each signature occupies 64 bytes, with the number of signatures depending on the transaction requirements. The message contains instructions, accounts, and metadata, each taking 32 bytes. The total size of a transaction varies depending on the number of instructions it includes. This limit ensures efficient transmission of transaction data across the network. For more details, refer to the documentation [here](https://solana.com/docs/core/transactions#transaction-size).
+Solana follows a maximum transmission unit (MTU) limit of 1,280 bytes, in line with the IPv6 MTU standard, to ensure the efficient and reliable transmission of cluster information via UDP. After accounting for the 48-byte IPv6 and fragmentation headers, 1,232 bytes remain for data, such as serialized transactions. Each Solana transaction, including its signature and message parts, cannot exceed 1,232 bytes. Each signature occupies 64 bytes, with the number of signatures depending on the transaction requirements. The message contains instructions, accounts, and metadata, each taking 32 bytes. The total size of a transaction varies depending on the number of instructions it includes. This limit ensures efficient transmission of transaction data across the network. For more details, refer to the documentation [here](https://solana.com/docs/core/transactions#transaction-size).
 
 ### Call Depth Limitations
 
@@ -75,7 +75,7 @@ Additionally, Solana allows programs to sign transactions using their derived PD
 
 #### Transaction Size
 
-- The maximum size of each transaction in Solana is **1232 bytes**
+- The maximum size of each transaction in Solana is **1,232 bytes**
 
 #### Call Depth
 
@@ -180,7 +180,7 @@ You can find a [sample program for account creation](https://github.com/solana-d
 [2024-12-08T07:34:47.865219000Z DEBUG solana_runtime::message_processor::stable_log] Program log: Account created successfully.
 ```
 
-This test found that creating an account consumes approximately **3000** CUs. This value is not fixed but typically remains within a close range.
+This test found that creating an account consumes approximately **3,000** CUs. This value is not fixed but typically remains within a close range.
 
 #### Create a Simple Data Structure
 
@@ -202,13 +202,13 @@ pub struct AddressInfo {
 }
 ```
 
-This data structure contains three string fields and one `u8` field. Each string field has a maximum length of 50. Testing reveals that creating this simple data structure consumes approximately **7000** CUs.
+This data structure contains three string fields and one `u8` field. Each string field has a maximum length of 50. Testing reveals that creating this simple data structure consumes approximately **7,000** CUs.
 
 #### Counter
 
 Solana's official example programs include a simple counter program. This can be found in the `basic/counter` directory of the `program-examples` repository. The example defines a basic counter data structure and provides instructions for creating and incrementing the counter. The full example program is available [here](https://github.com/solana-developers/program-examples/tree/main/basics/counter/anchor).
 
-Testing indicates that initializing the counter consumes approximately **5000** CUs, while incrementing the counter consumes about **900** CUs.
+Testing indicates that initializing the counter consumes approximately **5,000** CUs, while incrementing the counter consumes about **900** CUs.
 
 #### Transfer Token
 
@@ -220,10 +220,10 @@ The `program-examples` repository includes an example program for transferring t
 
 Testing results reveal the following CU consumption for token-related operations:
 
-- Creating a token consumes approximately **3000** CUs.
-- Minting a token consumes approximately **4500** CUs.
-- Burning a token consumes approximately **4000** CUs.
-- Transferring a token consumes approximately **4500** CUs.
+- Creating a token consumes approximately **3,000** CUs.
+- Minting a token consumes approximately **4,500** CUs.
+- Burning a token consumes approximately **4,000** CUs.
+- Transferring a token consumes approximately **4,500** CUs.
 
 We can also observe CU consumption of token transfers in an actual transaction. For example, in [this transaction](https://explorer.solana.com/tx/FiqGufYKmKeGWfnyRXAkSx3UXPwp8iyZroBPCmcSNrdxNm1ydFqtBCvfq7iU5hTscc11ZuxzHP5dowVQFbgKv5s), CU consumption for the token transfer can be seen in the log output at the bottom of the transaction details:
 
@@ -236,10 +236,10 @@ Here is a summary of CU consumption for common operations:
 | Action                    | CU Cost (approx.)                                                    |
 | ------------------------- | -------------------------------------------------------------------- |
 | Transfer SOL              | 150                                                                  |
-| Create Account            | 3000                                                                 |
-| Create Simple data struct | 7000                                                                 |
-| Counter                   | 5000 (Init) <br> 900 (Add count)                                     |
-| Token                     | 3000 (Create) <br> 4500 (Mint) <br> 4000 (Burn) <br> 4500 (Transfer) |
+| Create Account            | 3,000                                                                 |
+| Create Simple data struct | 7,000                                                                 |
+| Counter                   | 5,000 (Init) <br> 900 (Add count)                                     |
+| Token                     | 3,000 (Create) <br> 4,500 (Mint) <br> 4,000 (Burn) <br> 4,500 (Transfer) |
 
 ### Program Examples
 
@@ -406,7 +406,7 @@ Let's first examine the native program CU consumption for transferring tokens. T
 | Handling SOL transfers | 103               |
 | Saving account states | 323               |
 
-The total CU consumption for the token transfer operation is about 4555 CU, which aligns closely with our previous test result (4500 CU). The transfer initialization step has the highest cost, which consumes 2641 CU. We can further break down the initialization phase into more detailed steps with the following CU consumption:
+The total CU consumption for the token transfer operation is about 4,555 CU, which aligns closely with our previous test result (4,500 CU). The transfer initialization step has the highest cost, which consumes 2,641 CU. We can further break down the initialization phase into more detailed steps with the following CU consumption:
 
 | Process | CU Cost                                 |
 | -------------------- | -------------------------------------------------- |
@@ -416,7 +416,7 @@ The total CU consumption for the token transfer operation is about 4555 CU, whic
 | Unpacking the source account  | 1,361               |
 | Unpacking the destination account  | 1,361               |
 
-The unpacking operations for both accounts consume the most CU, with each unpacking operation costing around 1361 CU, which is significant. Developers should be aware of this during the development process.
+The unpacking operations for both accounts consume the most CU, with each unpacking operation costing around 1,361 CU, which is significant. Developers should be aware of this during the development process.
 
 ### CU Consumption of Anchor Programs
 
