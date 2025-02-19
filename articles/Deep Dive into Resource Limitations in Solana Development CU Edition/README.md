@@ -396,7 +396,7 @@ Let's first examine the native program CU consumption for transferring tokens. T
 | Process | CU Cost                                 |
 | -------------------- | -------------------------------------------------- |
 | Base consumption <br> Cost to run an empty method  | 939              |
-| Transfer initialization <br> Includes account checks and initialization  | 2641              |
+| Transfer initialization <br> Includes account checks and initialization  | 2,641              |
 | Checking if an account is frozen  | 105               |
 | Checking if the source account has sufficient balance  | 107               |
 | Verifying Token type match  | 123               |
@@ -413,8 +413,8 @@ The total CU consumption for the token transfer operation is about 4555 CU, whic
 | Initializing the source account  | 106               |
 | Initializing mint information  | 111               |
 | Initializing the destination account  | 106               |
-| Unpacking the source account  | 1361               |
-| Unpacking the destination account  | 1361               |
+| Unpacking the source account  | 1,361               |
+| Unpacking the destination account  | 1,361               |
 
 The unpacking operations for both accounts consume the most CU, with each unpacking operation costing around 1361 CU, which is significant. Developers should be aware of this during the development process.
 
