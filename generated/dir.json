@@ -32,6 +32,26 @@
       "slug": "image-search-with-ai-models"
     },
     {
+      "published": true,
+      "title": "Deep Dive into Resource Limitations in Solana Development — CU Edition",
+      "author": [
+        "Jimmy Zhao / Fullstack Engineer"
+      ],
+      "createTime": "2025-02-20T00:00:00.000Z",
+      "tags": [
+        "Web3",
+        "Blockchain",
+        "Solana",
+        "Resource Limitation",
+        "Compute Unit"
+      ],
+      "thumb": "thumb.jpg",
+      "thumb_h": "thumb_h.jpg",
+      "intro": "Explore how resource limitations, specifically Compute Unit (CU) restrictions, affect Solana program development.",
+      "path": "articles/Deep%20Dive%20into%20Resource%20Limitations%20in%20Solana%20Development%20CU%20Edition/README.md",
+      "slug": "deep-dive-into-resource-limitations-in-solana-development-cu-edition"
+    },
+    {
       "title": "Payment Systems Development A Practical Guide",
       "author": [
         "GuangPeng Liu / Full stack engineer",
@@ -48,26 +68,6 @@
       "intro": "Provides a comprehensive guide on developing payment systems, covering integration strategies, modern payment trends, and detailed steps for integrating Stripe and PayPal.",
       "path": "articles/Payment%20Systems%20Development%20A%20Practical%20Guide/README.md",
       "slug": "payment-systems-development-a-practical-guide"
-    },
-    {
-      "published": true,
-      "title": "Deep Dive into Resource Limitations in Solana Development — CU Edition",
-      "author": [
-        "Jimmy Zhao / Fullstack Engineer"
-      ],
-      "createTime": "2025-01-21T00:00:00.000Z",
-      "tags": [
-        "Web3",
-        "Blockchain",
-        "Solana",
-        "Resource Limitation",
-        "Compute Unit"
-      ],
-      "thumb": "thumb.jpg",
-      "thumb_h": "thumb_h.jpg",
-      "intro": "Explore how resource limitations, specifically Compute Unit (CU) restrictions, affect Solana program development.",
-      "path": "articles/Deep%20Dive%20into%20Resource%20Limitations%20in%20Solana%20Development%20CU%20Edition/README.md",
-      "slug": "deep-dive-into-resource-limitations-in-solana-development-cu-edition"
     },
     {
       "published": true,
