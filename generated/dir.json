@@ -21,6 +21,10 @@
         "CLIP",
         "Multimodal"
       ],
+      "landingPages": [
+        "AI-AI/ML Model Dev",
+        "Blockchai-AI agent"
+      ],
       "thumb": "thumb.png",
       "thumb_h": "thumb_h.png",
       "intro": "Using just an image on a mobile device, the search application is designed to return matches from the database that are either identical or resemble the original uploaded image. In this blog, we describe the technology behind this powerful functionality.",
@@ -44,6 +48,9 @@
         "Solana",
         "Resource Limitation",
         "Compute Unit"
+      ],
+      "landingPages": [
+        "Blockchain-Onchain infra"
       ],
       "thumb": "thumb.jpg",
       "thumb_h": "thumb_h.jpg",
@@ -83,6 +90,9 @@
         "Dynamic",
         "Alchemy"
       ],
+      "landingPages": [
+        "Blockchain-Defi Protocols"
+      ],
       "thumb": "thumb.png",
       "thumb_h": "thumb_h.png",
       "intro": "Discover how Account Abstraction (AA) using Dynamic and Alchemy can be used to build and optimize smart wallets. This article discusses AA's origins, workflow, advantages, and disadvantages. The demo and front-end code examples provide practical, tangible guidance for developers to implement AA in their projects or products immediately.",
@@ -99,6 +109,9 @@
       "tags": [
         "Blockchain",
         "Encryption"
+      ],
+      "landingPages": [
+        "Blockchain-Defi Protocols"
       ],
       "thumb": "thumb.png",
       "thumb_h": "thumb-h.png",
@@ -134,6 +147,9 @@
         "Frontend",
         "Performance"
       ],
+      "landingPages": [
+        "Blockchain-dApps"
+      ],
       "thumb": "thumb.png",
       "thumb_h": "thumb_h.png",
       "intro": "If your site is loading slowly, what can you do to troubleshoot and fix what’s causing those long page load times? Here, we provide a way to approach frontend troubleshooting and strategies to improve page load results. To help visualize how page loading works, we explain the page load journey including associated metrics for each step. Read on to discover how to improve your frontend site experience using seven Web Vitals (some of which are Core Metrics) and ten optimization strategies.",
@@ -155,6 +171,9 @@
         "Parallel Computing",
         "Microservices Architecture"
       ],
+      "landingPages": [
+        "AI-Agentic Applications"
+      ],
       "thumb": "./thumb.png",
       "thumb_h": "./thumb_h.png",
       "intro": "How do you approach creating a system that finds the right supplier and provides a price in less than three seconds using hundreds of data points? By approaching this system as an ERP system in the cloud, we were able to make the process fast and low cost. Here we share how we did it. ",
@@ -174,6 +193,9 @@
         "Vector Database",
         "Pinecone",
         "LanceDB"
+      ],
+      "landingPages": [
+        "AI-Data Engineering"
       ],
       "thumb": "./thumb.png",
       "thumb_h": "./thumb_h.png",
@@ -196,6 +218,9 @@
         "Information Extraction",
         "LLM"
       ],
+      "landingPages": [
+        "AI-Data Engineering"
+      ],
       "thumb": "thumb.png",
       "thumb_h": "thumb_h.png",
       "intro": "Today, we are pioneering a new approach to information extraction (IE) from volumes of academic papers. Traditional IE methods, with their reliance on labor-intensive handcrafted rules and patterns, often struggle to generalize across diverse domains and languages. In contrast, we are harnessing the power of Large Language Models (LLMs) from GPT to Claude to complete IE from these documents and compare their performance. We're excited to share our innovative approach in the field of information extraction.",
@@ -216,6 +241,9 @@
         "Mobile",
         "Android"
       ],
+      "landingPages": [
+        "AI-AI Infra and Framework"
+      ],
       "thumb": "./thumb.png",
       "thumb_h": "./thumb_h.png",
       "intro": "Dependency conflicts, version compatibility, and maintaining a clean dependency tree can  pose challenges in Android development. However, by harnessing the power of Gradle and Dependency Injection (DI), you can navigate these hurdles with confidence. These tools ensure a smooth process and maintain a modular architecture that follows the principles of Clean Architecture. Read how we have successfully achieved this on our projects, and how you can too.",
@@ -235,6 +263,9 @@
       "tags": [
         "CI/CD",
         "Workflow"
+      ],
+      "landingPages": [
+        "AI-AI Infra and Framework"
       ],
       "thumb": "./thumb.png",
       "thumb_h": "./thumb_h.png",
@@ -259,6 +290,9 @@
         "CI",
         "Automation Framework"
       ],
+      "landingPages": [
+        "Blockchain-Onchain infra"
+      ],
       "thumb": "./thumb.png",
       "thumb_h": "./thumb_h.png",
       "intro": "Our Quality Assurance (QA) team plays a pivotal role in ensuring the quality and excellence of our software. We are dedicated to enhancing software quality, team performance, and overall project delivery. This article shares the QA strategies we employ for our projects. We'll also demonstrate how embracing these methods can mitigate difficulties and improve results and provide you with the assurance that our software is of the highest quality.",
@@ -279,6 +313,9 @@
         "JavaScript Framework",
         "React",
         "Webpack"
+      ],
+      "landingPages": [
+        "AI-AI Infra and Framework"
       ],
       "thumb": "https://s3.amazonaws.com/assets.57blocks.io/cms_uploads/illustration_cup_an_laptop_e12de970e5.png",
       "thumb_h": "./thumb_h.png",
@@ -301,6 +338,9 @@
         "Reactive",
         "Flutter",
         "Crypto"
+      ],
+      "landingPages": [
+        "AI-Agentic Applications"
       ],
       "thumb": "https://s3.amazonaws.com/assets.57blocks.io/cms_uploads/illustration_tokenpad_65aea3b800.png",
       "thumb_h": "./thumb_h.png",
@@ -345,6 +385,10 @@
         "CNN",
         "OpenCV"
       ],
+      "landingPages": [
+        "AI-AI/ML Model Dev",
+        "Blockchai-AI agent"
+      ],
       "thumb": "https://s3.amazonaws.com/assets.57blocks.io/cms_uploads/illustration_blue_squares_c1bbaab97b.png",
       "thumb_h": "./thumb_h.png",
       "intro": "Image Quality Assessment (IQA), specifically Objective Blind or no-reference IQA, is a crucial function in determining image fidelity or the quality of image accuracy. Further, IQA helps maintain the integrity of visual data, ensuring its accurate representation. In this article, we share an analysis of the best machine learning models that support IQA, including BRISQUE, DIQA, NIMA and OpenCV. We will delve deeper into their operations, the challenges and advantages, and their significance in the ever-evolving field of image quality assessment.",
@@ -365,6 +409,9 @@
         "Smart Contract",
         "Web3",
         "QA"
+      ],
+      "landingPages": [
+        "Blockchain-Onchain infra"
       ],
       "thumb": "./thumb.png",
       "thumb_h": "./thumb_h.png",
@@ -387,6 +434,9 @@
         "Web3",
         "Architecture",
         "Dapp"
+      ],
+      "landingPages": [
+        "Blockchain-dApps"
       ],
       "thumb": "./thumb.png",
       "thumb_h": "./thumb_h.png",
