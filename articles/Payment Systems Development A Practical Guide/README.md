@@ -3,8 +3,8 @@ title: "Payment Systems Development A Practical Guide"
 author: ["GuangPeng Liu / Full stack engineer","Hum/ Full stack engineer", "Ida/ Backend engineer"]
 createTime: 2025-02-19
 tags: ["Web2", "FinTech"]
-thumb: "https://example.com/theThumbOfTheArticle.png"
-thumb_h: "https://example.com/theHorizontalThumbOfTheArticle.png"
+thumb: "./theThumbOfTheArticle.png"
+thumb_h: "./theHorizontalThumbOfTheArticle.png"
 intro: "Provides a comprehensive guide on developing payment systems, covering integration strategies, modern payment trends, and detailed steps for integrating Stripe and PayPal."
 ---
 # Payment Systems Development: A Practical Guide
