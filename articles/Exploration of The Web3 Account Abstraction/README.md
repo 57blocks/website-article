@@ -4,6 +4,7 @@ title: "Exploring Account Abstraction in Ethereum: Building and Optimizing Smart
 author: ["Zewei Zhang / Front-End Engineer"]
 createTime: 2025-01-13
 tags: ["Web3", "Account Abstraction", "Wallet", "Dynamic", "Alchemy"]
+landingPages: ["Blockchain-Defi Protocols"]
 thumb: "thumb.png"
 thumb_h: "thumb_h.png"
 intro: "Discover how Account Abstraction (AA) using Dynamic and Alchemy can be used to build and optimize smart wallets. This article discusses AA's origins, workflow, advantages, and disadvantages. The demo and front-end code examples provide practical, tangible guidance for developers to implement AA in their projects or products immediately."

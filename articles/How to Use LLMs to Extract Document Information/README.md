@@ -4,6 +4,7 @@ title: "How to Use LLMs to Extract Document Information"
 author: ["Carvin Li / Machine Learning Engineer", "Anjing Wang / AI Lead"]
 createTime: 2024-05-21
 tags: ["Information Extraction", "LLM"]
+landingPages: ["AI-Data Engineering"]
 thumb: "thumb.png"
 thumb_h: "thumb_h.png"
 intro: "Today, we are pioneering a new approach to information extraction (IE) from volumes of academic papers. Traditional IE methods, with their reliance on labor-intensive handcrafted rules and patterns, often struggle to generalize across diverse domains and languages. In contrast, we are harnessing the power of Large Language Models (LLMs) from GPT to Claude to complete IE from these documents and compare their performance. We're excited to share our innovative approach in the field of information extraction."

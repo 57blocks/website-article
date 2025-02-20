@@ -5,6 +5,7 @@ subTitle: "When Thousands of Data Points Converge to a Decision Point in Less Th
 author: ["Yanqi Liu / Back-End Engineer", "Teki Yang / Tech Lead"]
 createTime: 2024-07-26
 tags: ["B2B", "Multi-tenancy", "Parallel Computing", "Microservices Architecture"]
+landingPages: ["AI-Agentic Applications"]
 thumb: "./thumb.png"
 thumb_h: "./thumb_h.png"
 intro: "How do you approach creating a system that finds the right supplier and provides a price in less than three seconds using hundreds of data points? By approaching this system as an ERP system in the cloud, we were able to make the process fast and low cost. Here we share how we did it. "
