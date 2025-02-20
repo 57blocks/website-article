@@ -63,8 +63,8 @@
         "Web2",
         "FinTech"
       ],
-      "thumb": "https://example.com/theThumbOfTheArticle.png",
-      "thumb_h": "https://example.com/theHorizontalThumbOfTheArticle.png",
+      "thumb": "./theThumbOfTheArticle.png",
+      "thumb_h": "./theHorizontalThumbOfTheArticle.png",
       "intro": "Provides a comprehensive guide on developing payment systems, covering integration strategies, modern payment trends, and detailed steps for integrating Stripe and PayPal.",
       "path": "articles/Payment%20Systems%20Development%20A%20Practical%20Guide/README.md",
       "slug": "payment-systems-development-a-practical-guide"
