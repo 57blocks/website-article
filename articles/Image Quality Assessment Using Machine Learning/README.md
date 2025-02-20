@@ -4,6 +4,7 @@ title: "Image Quality Assessment Using Machine Learning"
 author: ["Damon Wang / Android Engineer", "Roy Xie / Tech Lead"]
 createTime: 2024-04-20
 tags: ["Image Quality", "CNN", "OpenCV"]
+landingPages: ["AI-AI/ML Model Dev", "Blockchai-AI agent"]
 thumb: "https://s3.amazonaws.com/assets.57blocks.io/cms_uploads/illustration_blue_squares_c1bbaab97b.png"
 thumb_h: "./thumb_h.png"
 intro: "Image Quality Assessment (IQA), specifically Objective Blind or no-reference IQA, is a crucial function in determining image fidelity or the quality of image accuracy. Further, IQA helps maintain the integrity of visual data, ensuring its accurate representation. In this article, we share an analysis of the best machine learning models that support IQA, including BRISQUE, DIQA, NIMA and OpenCV. We will delve deeper into their operations, the challenges and advantages, and their significance in the ever-evolving field of image quality assessment."

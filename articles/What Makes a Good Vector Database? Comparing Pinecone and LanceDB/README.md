@@ -4,6 +4,7 @@ title: "What Makes a Good Vector Database? Comparing Pinecone and LanceDB"
 author: ["Alex Hu / Machine Learning Engineer", "Steven Zhang / Back-End Engineer", "Anjing Wang / AI Lead"]
 createTime: 2024-05-22
 tags: ["Vector Database", "Pinecone", "LanceDB"]
+landingPages: ["AI-Data Engineering"]
 thumb: "./thumb.png"
 thumb_h: "./thumb_h.png"
 intro: "Which vector database to use? It depends. Based on our experiences, there is no one-size-fits-all \"best\" database. Instead, a superior vector database is well-matched with its use case, meeting the unique requirements of that scenario. Our comparative analysis offers a promising path to discovering the ideal database for your specific needs."
