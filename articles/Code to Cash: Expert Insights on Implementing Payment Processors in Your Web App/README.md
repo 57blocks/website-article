@@ -1,5 +1,5 @@
 ---
-title: "Payment Systems Development A Practical Guide"
+title: "Code to Cash: Expert Insights on Implementing Payment Processors in Your Web App"
 author: ["GuangPeng Liu / Full stack engineer","Hum/ Full stack engineer", "Ida/ Backend engineer"]
 createTime: 2025-02-19
 tags: ["Web2", "FinTech"]
@@ -7,7 +7,7 @@ thumb: "./theThumbOfTheArticle.png"
 thumb_h: "./theHorizontalThumbOfTheArticle.png"
 intro: "Provides a comprehensive guide on developing payment systems, covering integration strategies, modern payment trends, and detailed steps for integrating Stripe and PayPal."
 ---
-# Payment Systems Development: A Practical Guide
+# Code to Cash: Expert Insights on Implementing Payment Processors in Your Web App
 
 ## 1. Introduction to Payment Systems
 
@@ -151,13 +151,13 @@ In the Stripe Dashboard under the "Developers" section, locate your API keys. Yo
 
 **Installing the Golang SDK**
 
-```
+```bash
 go get -u github.com/stripe/stripe-go/v81
 ```
 
 **Install the React Stripe libraries**
 
-```
+```bash
 npm install @stripe/react-stripe-js @stripe/stripe-js
 ```
 
@@ -167,7 +167,7 @@ npm install @stripe/react-stripe-js @stripe/stripe-js
 
 The Payment Intents API is central to Stripe's payment processing, allowing you to manage the lifecycle of a payment.
 
-```
+```go
 package main
 
 
@@ -251,7 +251,7 @@ In this code, we initialize the Stripe API with your secret key, create a Paymen
 
 Stripe's React components, known as Elements, provide a secure and customizable way to collect payment information.
 
-```
+```javascript
 'use client'
 
 
@@ -300,7 +300,7 @@ Here, we load Stripe.js, set up the Elements provider with the public key, and c
 
 To handle payment results, especially asynchronous events, Stripe recommends using webhooks.
 
-```
+```go
 func webhookHandler(w http.ResponseWriter, r *http.Request) {
     // Retrieve the signature header
     sigHeader := r.Header.Get("Stripe-Signature")
@@ -374,7 +374,7 @@ When developing locally, Stripe needs to communicate with your local server. Sin
 
 Run ngrok to expose your local server:
 
-```
+```bash
 ngrok http 8080
 ```
 
@@ -398,7 +398,7 @@ Stripe is a powerful payment processing platform that offers a wide range of adv
 
 Saving payment methods allows you to store a customer's payment details securely for future use. This is particularly useful for recurring payments, one-click checkouts, or when you want to offer a seamless payment experience without requiring the customer to re-enter their payment details.
 
-```
+```go
 func savePaymentMethod() {
     // Create a new customer
     customerParams := &stripe.CustomerParams{
@@ -443,7 +443,7 @@ func savePaymentMethod() {
 
 Subscription payments are ideal for businesses offering recurring services, such as SaaS platforms, membership sites, or subscription boxes. Stripe handles the complexity of recurring billing, including prorations, trial periods, and automatic retries.
 
-```
+```go
 func createSubscriptionPayment() {
     // Create a new customer
     customerParams := &stripe.CustomerParams{
@@ -503,7 +503,7 @@ func createSubscriptionPayment() {
 
 Refunds are essential for maintaining customer satisfaction and handling disputes. Stripe allows you to issue full or partial refunds, either immediately or at a later date.
 
-```
+```go
 func refundChange() {
     // Create a charge
     chargeParams := &stripe.ChargeParams{
@@ -565,13 +565,13 @@ Multi-currency support is crucial for businesses operating in multiple countries
 
 Add PayPal SDK:
 
-```
+```bash
 npm install @paypal/react-paypal-js
 ```
 
 Integrate PayPal Buttons:
 
-```
+```javascript
 import {
     PayPalButtons,
     PayPalButtonsComponentProps,
@@ -644,13 +644,13 @@ Since PayPal does not officially provide a Go SDK, you can use the standard `net
 
 Install the Library:
 
-```
+```bash
 go get github.com/plutov/paypal/v4
 ```
 
 Initialize the Client:
 
-```
+```go
 package main
 
 
@@ -671,7 +671,7 @@ func main() {
 
 create and  capture order：
 
-```
+```go
 package main
 
 
@@ -793,7 +793,7 @@ func capturePayPalOrder(w http.ResponseWriter, r *http.Request) {
    4. Signature Verification: Authenticate the webhook signature to verify event legitimacy.
 2. Example Code:
 
-```
+```go
 package main
 
 
@@ -901,7 +901,7 @@ func verifySignature(ctx context.Context,  req *http.Request, webhookID string) 
 
 Sample Function：
 
-```
+```go
 func createSubscription(client *paypal.Client) {
     billingAgreement := paypal.SubscriptionBase{
        PlanID: "P-XXXXXXXXXX", // Replace with your actual Plan ID
@@ -934,7 +934,7 @@ func createSubscription(client *paypal.Client) {
 
 Sample Function：
 
-```
+```go
 func issueRefund(client *paypal.Client, captureID string) {
 	refundRequest := paypal.CaptureRefundRequest{
 		Amount: &paypal.Amount{
