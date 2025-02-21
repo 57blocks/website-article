@@ -1,6 +1,6 @@
 ---
 title: "Code to Cash: Expert Insights on Implementing Payment Processors in Your Web App"
-author: ["GuangPeng Liu / Full stack engineer","Hum/ Full stack engineer", "Ida/ Backend engineer"]
+author: ["GuangPeng Liu / Full stack engineer","Hum Tan/ Full stack engineer", "Ida Zhou/ Backend engineer"]
 createTime: 2025-02-19
 tags: ["Web2", "FinTech"]
 thumb: "thumb.png"
