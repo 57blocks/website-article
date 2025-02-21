@@ -3,8 +3,8 @@ title: "Code to Cash: Expert Insights on Implementing Payment Processors in Your
 author: ["GuangPeng Liu / Full stack engineer","Hum/ Full stack engineer", "Ida/ Backend engineer"]
 createTime: 2025-02-19
 tags: ["Web2", "FinTech"]
-thumb: "./theThumbOfTheArticle.png"
-thumb_h: "./theHorizontalThumbOfTheArticle.png"
+thumb: "thumb.jpg"
+thumb_h: "thumb_h.jpg"
 intro: "Provides a comprehensive guide on developing payment systems, covering integration strategies, modern payment trends, and detailed steps for integrating Stripe and PayPal."
 ---
 # Code to Cash: Expert Insights on Implementing Payment Processors in Your Web App
