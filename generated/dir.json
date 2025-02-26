@@ -132,7 +132,7 @@
       ],
       "thumb": "ArticleImage.png",
       "thumb_h": "ArticleImage.png",
-      "intro": "This article state why customers need App Clips based on actual company cases, and then introduces what App Clip is, why it is beneficial to app downloads, and explains some considerations from the development and testing perspectives based on company project.",
+      "intro": "This article state why customers need App Clips based on actual company cases, and then introduces key advantages of App Clip, why it is beneficial to app downloads, and explains some technical development considerations and testing perspectives based on company project.",
       "path": "articles/Drive%20iOS%20App%20Downloads%20with%20Clip/README.md",
       "slug": "drive-ios-app-downloads-with-clip"
     },
