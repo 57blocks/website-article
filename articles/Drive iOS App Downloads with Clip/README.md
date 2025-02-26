@@ -50,12 +50,11 @@ A challenge for any app in the AppStore to get more downloads is to show consume
 
 7. **Clip has great prospects**
 
-    TikTok used Clip to encourage users to try and eventually install the TikTok app.
+ - TikTok used Clip to encourage users to try and eventually install the TikTok app.
     <img src=./ClipImage4.png height="230"/>
 
-    <a href="https://x.com/illscience/status/1879273352013267154?s=46&t=jqD_eUNYNaL8-a-0NmDklA" title="Explode">Explode</a>, as an App still under development, has received widespread attention for its Clip.
-
-    Many people have also used Clip to pay for parking when leaving the parking lot.
+- <a href="https://x.com/illscience/status/1879273352013267154?s=46&t=jqD_eUNYNaL8-a-0NmDklA" title="Explode">Explode</a>, as an App still under development, has received widespread attention for its Clip.
+- Many people have also used Clip to pay for parking when leaving the parking lot.
     
 
 However, we did find a few disadvantages for using Clip. Pictures cannot be stored locally in Clip, APN notifications are only valid for 8 hours, and some iOS frameworks cannot be used.
