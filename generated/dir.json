@@ -128,11 +128,12 @@
       "tags": [
         "iOS",
         "App",
-        "App Clip"
+        "App Clip",
+        "app downloads"
       ],
       "thumb": "ArticleImage.png",
       "thumb_h": "ArticleImage.png",
-      "intro": "This article state why customers need App Clips based on actual company cases, and then introduces key advantages of App Clip, why it is beneficial to app downloads, and explains some technical development considerations and testing perspectives based on company project.",
+      "intro": "Excited to use App Clips to help promote your app? In this article, a case study illustrates how App Clips can be used as a promotional tool to drive app downloads and engagement. The study introduces the key advantages of App Clips, discusses why it increases app downloads, and explains some technical development considerations and testing perspectives based on a recent 57Blocks project.",
       "path": "articles/Drive%20iOS%20App%20Downloads%20with%20Clip/README.md",
       "slug": "drive-ios-app-downloads-with-clip"
     },
