@@ -2,88 +2,94 @@
 title: "Drive iOS App Downloads with Clip"
 author: ["Eric Qi / iOS engineer"]
 createTime: 2024-12-25
-tags: ["iOS", "App", "App Clip"]
+tags: ["iOS", "App", "App Clip", "app downloads"]
 thumb: "ArticleImage.png"
 thumb_h: "ArticleImage.png"
-intro: "This article state why customers need App Clips based on actual company cases, and then introduces key advantages of App Clip, why it is beneficial to app downloads, and explains some technical development considerations and testing perspectives based on company project."
+intro: "Excited to use App Clips to help promote your app? In this article, a case study illustrates how App Clips can be used as a promotional tool to drive app downloads and engagement. The study introduces the key advantages of App Clips, discusses why it increases app downloads, and explains some technical development considerations and testing perspectives based on a recent 57Blocks project."
 ---
 
-Our client, Hobnob, created an app for event planning that allowed users to manage everything from invitations to guest lists to ticket sales to sharing content before, during, and after the event. This App has been on AppStore for more than five years and has over 90,000 reviews. Hobnob spent thousands on advertising each month to drive engagement and conversion. Although that all may sound like it was a popular app, in the highly competitive AppStore, it wasn’t standing out and being downloaded often.
+Our client, Hobnob, created an app for event planning that allows users to manage everything from invitations to guest lists to ticket sales and share content before, during, and after the event. This event planning app has been in the AppStore for over five years and has over 90,000 reviews. Hobnob spent thousands on monthly advertising to drive engagement and conversion, but the app didn’t stand out and wasn’t downloaded often in the highly competitive AppStore.
 
-A challenge for any app in the AppStore to get more downloads is to show consumers its value and encourage them to use it. Some people are generally reluctant to install new Apps. A few reasons we have observed:
+This is a challenge we have seen many times. We have observed some key reasons why apps aren’t downloaded:
 
-- Increasingly complex App functionality requires a higher learning curve for users to perform simple tasks. Rather than spend time learning how to use a new app, most won’t download it or will continue to use familiar apps they already have in new ways.
+- If users don’t quickly understand how an app will add value to their lives, they won’t download it
+- Increasingly complex app functionality requires a higher learning curve for users to perform simple tasks. Rather than spending time learning to use a new app, most will either not download it or continue to find new ways to use familiar apps.
 - The large file size of an app makes downloading time-consuming and takes up mobile phone storage space.
-- A new app may not be trusted and potentially expose some personal privacy issues.
+- Moreover, a new app may not be trusted, potentially exposing personal privacy issues.
+  
+Ideally, a trial version of an app would solve these problems. And Apple created just that with their offering of App Clip.
 
 ## Key Advantages of App Clip
 
-  Our client wanted to increase downloads and get their app more attention and after multiple marketing campaigns, they were out of ideas. They needed a new approach.
+  Our client wanted to increase downloads and attract more attention to their app, but after running multiple marketing campaigns, they ran out of ideas. The company needed a new approach.
   
-  We introduced them to App Clip. App Clip is a relatively new form of an App launched in iOS14. It was originally created to allow users to complete quick tasks from the main app without installing the entire App.
+  We introduced them to App Clip. An App Clip is a relatively new form of an app launched in iOS14. Its purpose is to allow users to complete quick tasks from the main app without installing the entire app.
 
-  During our research about Clip apps, we learned:
+  During our research, we learned that App Clips can:
 
-1. **They can increase app conversion rates**
+1. **Increase app conversion rates**
 
    The average cost per acquisition (CPA) was <a href="https://splitmetrics.com/blog/apple-search-ads-cost/" title="ref">$2.58 in 2023</a>. Research shows that integrating App Clips into iOS applications can  <a href="https://www.appsflyer.com/blog/tips-strategy/increase-app-downloads/" title="ref">increase the conversion rate to download and use an app by over 20%</a>.
 
-   This happens often because once users try the Clip app and are satisfied with their experience, they most likely will install the complete App to access all its features.
-2. **They provide a better user experience**
+   If App Clip users are satisfied with their experience, they are more likely to install the complete app to access all its features.
 
-   Clip apps enable customers to use an App's key features without downloading the entire app. This is ideal for one-time use scenarios such as restaurant ordering, renting bicycles, and other one-off activities.
 
-   It provides an enhanced user participation experience because it offers a defined, quick task that is easy to learn with no need to learn anything new. By easily trying the app and experiencing its usefulness, users are encouraged to download the full app and subsequently increase the conversion rate.
-3. **Numerous engagement options**
-   It is straightforward to integrate technologies like QR Codes, NFC Tags, App Clip Codes, Safari, Links in Messages, cards in Maps in a Clip. It’s quite versatile and flexible.
+2. **Provide a better user experience**
+
+   App Clips enable customers to use an app's key features without downloading the entire app. This scenario is ideal for one-time use functions such as restaurant ordering, renting bicycles, and other one-off activities.
+
+   It enhances user participation by offering a defined, quick task that is easy to learn. By making the app easy to try and experience its usefulness, users are encouraged to download the entire app, subsequently increasing the conversion rate.
+
+3. **Offer numerous engagement options**
+   Integrating technologies like QR Codes, NFC Tags, App Clip Codes, Safari, Links in Messages, and cards in Maps in a Clip is straightforward. It's very versatile and flexible.
 <img src=./ClipImage1.jpg height="230"/>
 4. **Reduced development costs**
 
     They require less development time (and cost less) to create because only part of the App’s functionality is reused or modified.
-5. **Fast download time**
+5. **Offer faster download times**
 
-    Since the app file size is smaller, it can be downloaded and used more quickly.
+    Since the app file size is smaller, it can be downloaded and used quickly.
 
-6. **Made with security and privacy in mind**
+6. **Provide security and privacy**
 
-    iOS will automatically delete the App Clip after a period of inactivity, and it can be anonymous to use since no account is required to access any functionality.
+    iOS will automatically delete the App Clip after a period of inactivity, and users can be anonymous since no account is required to access any functionality.
 
-7. **Clip has great prospects**
+7. **App Clips have a wide range of uses**
 
  - TikTok used Clip to encourage users to try and eventually install the TikTok app.
     <img src=./ClipImage4.png height="230"/>
 
-- <a href="https://x.com/illscience/status/1879273352013267154?s=46&t=jqD_eUNYNaL8-a-0NmDklA" title="Explode">Explode</a>, as an App still under development, has received widespread attention for its Clip.
-- Many people have also used Clip to pay for parking when leaving the parking lot.
-    
+- <a href="https://x.com/illscience/status/1879273352013267154?s=46&t=jqD_eUNYNaL8-a-0NmDklA" title="Explode">Explode</a>, an app still under development, has received widespread attention for its Clip functionality.
+- App Clips can be used to pay for parking when leaving the lot.
 
-However, we did find a few disadvantages for using Clip. Pictures cannot be stored locally in Clip, APN notifications are only valid for 8 hours, and some iOS frameworks cannot be used.
 
-Since the benefits far outweighed the disadvantages, our client thought the App Clip was a great idea and commissioned 57Blocks to develop a Clip version of their original app. We built an App Clip specifically for parties. A host can send or print a QR Code for guests to install the Clip and share photos taken during a party. The feedback has been positive, and guests continue downloading and using the App clip.
+However, there are a few disadvantages. Pictures cannot be stored locally, APN notifications are only valid for eight hours, and some iOS frameworks cannot be used.
 
-One developer developed and launched the Clip version of their app within 2 months from scratch.  Within months, the App clip attracted new users, providing the client a new growth channel without incurring marketing and advertising costs.
+Since the benefits far outweighed the disadvantages, Hobnob thought the App Clip was a great idea and commissioned 57Blocks to develop a version of their original app. We built an App Clip specifically for parties. A host can send or print a QR Code for guests to install the App Clip and share photos taken during a party. The feedback has been positive, and guests continue to download and use the App Clip.
+
+One developer developed and launched the Clip version of their app within two months. Although we could have leveraged some of the existing code to give us a head start, we decided to start fresh to avoid referencing code sections, and to reduce complexity and file size.  Within months, the App Clip attracted new users, providing the client a new growth channel without incurring marketing and advertising costs.
 
 <img src=./ClipImage2.jpg height="230"/>
 
-## Technical development
+## Technical Development
 
-Although a Clip may reuse an app’s code directly and be efficient to create, there are some differences between Clips and Apps.
+Although an App Clip may reuse an app's code directly and be efficient to create, the entire development, configuration, and testing process differs from that of traditional Apps.
 
-- The entire development, configuration, and testing process for Clips is different from traditional Apps, as we will see later in the article.
-- Since a Clip is just part of the App, it cannot exist independently. There is Xcode development work required based on the existing App. Its primary purpose is to entice users to download and continue to use the App.
-- Clips only provide the core functional modules of the App. Due to Apple restrictions, the maximum size of Clip in its uncompressed state does not exceed 15MB (iOS16 and above, iOS15 and below does not exceed 10MB). The small size has more stringent requirements about the features provided by Clip to ensure that users can flash download and open it for use.
+- Although an App Clip cannot exist independently and is based on the existing app, some Xcode development work is required to create the final product.
+- The App Clip's primary purpose is to entice users to download and continue to use the entire app.
+- Clips only provide the app's core functional modules. Due to Apple restrictions, the maximum size of an App Clip in its uncompressed state cannot exceed 15MB (iOS16 and above, iOS15 and below cannot exceed 10MB).
+- The small size requires more stringent feature requirements to ensure users can flash download and open the App Clip.
   
-One potential impediment: Since the codes in the App usually reference each other, Clip may have to reference module B in order to reference module A, and then reference module C, etc. This increases the code complexity and size rapidly.
+One potential impediment: Since the codes in the entire app usually reference each other, an App Clip may have to reference module B to reference module A, and then reference module C, and so forth. This increases the code complexity and size rapidly.
 
-That is why we recommend that the Clip code be as independent as possible from the App. You can consider rewriting the Clip code. According to our implementation, the actual workload is not large.
+That is why we recommend that the App Clip code be as independent as possible from the full app. Should you consider rewriting the App Clip code, the workload is not significant.
 
-In addition to completing the development of basic Clip functions, it further improves Clip's value from aspects such as user data continuity and additional live activity/dynamic island.
+In addition to completing the development of essential App Clip functions, user data continuity and additional live activity/dynamic island further improve its value.
 
 <img src=./ClipImage3.jpg height="230"/>
 
-## 57Blocks App Clip Developer Notes
+## 57Blocks App Clip Developer Notes: A Code Reference Workaround
 
-### A Code Reference Workaround
 
 *In some scenarios where code reference is required, macro definitions can be used. For example, in App `Build Setting` -> `Other Swift Flags` add `-DFULL_APP`, and determine whether it is an App in the code:*
 
@@ -94,7 +100,7 @@ In addition to completing the development of basic Clip functions, it further im
       //do something in Clip
 ```
 
- *Clip's local data can be passed to the full App through the app group. First, you need to enable `"App Groups"` at Capability, then in Clip:*
+ *Local data can be passed to the full App through the app group. First, you need to enable `"App Groups"` at Capability, then in Clip:*
 
 ```swift
     let sharedUserDefaults = UserDefaults(suiteName: "group.ClipToApp")
@@ -124,7 +130,7 @@ Clip logs in through AppleID and uses app group to pass login information:*
     ASAuthorizationAppleIDProvider().getCredentialState(forUserID: userId) {state, error in …}
 ```
 
-*Clip logs in through credential, uses keychain to pass login information, and uses kSecAttrLabel to distinguish keychain entry:*
+*This App Clip logs in via credentials, uses keychain to pass login information, and kSecAttrLabel to distinguish keychain entries:*
 
 ```swift
     let query = [
@@ -151,8 +157,8 @@ var result: AnyObject? SecItemCopyMatching(query, &result)
 
 ### How to Make QR codes/URLs/Messages More Effective
 
- A major feature of Clip is that when the camera scans the QR code, Safari opens the corresponding URL, and Message sends the corresponding URL. App Clip cards will automatically display in the camera, Safari, and Message. 
- 
+ A noteworthy feature of this App Clip is that when the camera scans the QR code, Safari opens the corresponding URL, and Message sends the corresponding URL. App Clip cards will automatically display in the camera, Safari, and Message.
+
  This feature mainly requires the configuration of the domain, including the AASA file, metadata on the web, and advanced Clip experience setting in AppstoreConnect：
 
 ```html
@@ -174,12 +180,19 @@ The typical process for users to use Clip is as follows:
 - Display App Clip cards
 - Click "Open" to download and use Clip
   
-Because it differs from the full App, the above steps to display App Clip cards require Apple's services. The clip will not be updated if the App does not pass the AppStore review and is not published. In order to test a new version of Clip, we need to configure up to three test URLs in TestFlight and then click and start it in TestFlight, which is equivalent to passing the URL as a startup parameter to Clip, and Clip will then make corresponding processing based on the URL.
+Because it differs from the full app, the above steps to display App Clip cards require Apple's services. The App Clip won't be updated if it does not pass the AppStore review and is not published. In order to test a new version of this App Clip, we needed to configure up to three test URLs in TestFlight and then click and start it in TestFlight, which is equivalent to passing the URL as a startup parameter to the App Clip. It will then begin processing based on the URL.
 
 ## Conclusion
 
-App Clip is a relatively new type of App added to iOS in recent years. Its original design intention is to encourage users to access an App quickly, which enhances user participation experience, and ultimately increase App conversion rate.
+App Clip is a relatively new type of app that has been added to iOS in recent years. Its original design intention is to encourage users to access an app quickly, enhancing the user experience and ultimately increasing the app conversion rate.
 
 Hobnob benefitted from a Clip to improve adoption and conversion. It has received overwhelmingly positive feedback from users. And the benefit of a Clip App to Hobnob - it leveraged the existing app’s functionality meaning it was low cost to produce.  In addition to completing the development of basic Clip functions, it also further improves the value of Clip from aspects such as user data continuity and additional live activity/dynamic island. The Clip we developed has received positive comments from users.
 
-However, Clip development is very different from App development. This article discusses the experience from project establishment, development, configuration and post-testing methods, as well as some core logic codes. We hope to help developers successfully complete App Clip development through our experience.
+Our event planning App Clip:
+- Helped Hobnob improve adoption and conversion.
+- Received overwhelmingly positive feedback from users.
+- Leveraged the existing app's functionality so it was low-cost to produce.
+- Further improves the value by enabling better user data continuity and additional live activity/dynamic island.
+- Has received positive user feedback.
+
+However, keep in mind that App Clip development is very different from standard app development. We hope that 57Blocks’ experience in project establishment, development, configuration, post-testing methods, and sharing some core logic codes helps developers streamline and successfully complete App Clip development.
