@@ -37,6 +37,25 @@
     },
     {
       "published": true,
+      "title": "Drive iOS App Downloads with Clip",
+      "author": [
+        "Eric Qi / iOS engineer"
+      ],
+      "createTime": "2025-03-04T00:00:00.000Z",
+      "tags": [
+        "iOS",
+        "App",
+        "App Clip",
+        "app downloads"
+      ],
+      "thumb": "ArticleImage.png",
+      "thumb_h": "ArticleImage.png",
+      "intro": "Excited to use App Clips to help promote your app? In this article, a case study illustrates how App Clips can be used as a promotional tool to drive app downloads and engagement. The study introduces the key advantages of App Clips, discusses why it increases app downloads, and explains some technical development considerations and testing perspectives based on a recent 57Blocks project.",
+      "path": "articles/Drive%20iOS%20App%20Downloads%20with%20Clip/README.md",
+      "slug": "drive-ios-app-downloads-with-clip"
+    },
+    {
+      "published": true,
       "title": "Deep Dive into Resource Limitations in Solana Development — CU Edition",
       "author": [
         "Jimmy Zhao / Fullstack Engineer"
@@ -118,25 +137,6 @@
       "intro": "The rise of blockchain technology has sparked widespread concern for the security of digital assets. Here, you will find the information you need to navigate this space to understand and assess the core encryption technologies used in blockchain, identify potential security risks, and apply these encryption methods to enhance system security and ensure the safety of data and transactions.",
       "path": "articles/Blockchain%20Encryption%20Technology/README.md",
       "slug": "blockchain-encryption-technology"
-    },
-    {
-      "published": true,
-      "title": "Drive iOS App Downloads with Clip",
-      "author": [
-        "Eric Qi / iOS engineer"
-      ],
-      "createTime": "2024-12-25T00:00:00.000Z",
-      "tags": [
-        "iOS",
-        "App",
-        "App Clip",
-        "app downloads"
-      ],
-      "thumb": "ArticleImage.png",
-      "thumb_h": "ArticleImage.png",
-      "intro": "Excited to use App Clips to help promote your app? In this article, a case study illustrates how App Clips can be used as a promotional tool to drive app downloads and engagement. The study introduces the key advantages of App Clips, discusses why it increases app downloads, and explains some technical development considerations and testing perspectives based on a recent 57Blocks project.",
-      "path": "articles/Drive%20iOS%20App%20Downloads%20with%20Clip/README.md",
-      "slug": "drive-ios-app-downloads-with-clip"
     },
     {
       "published": true,
