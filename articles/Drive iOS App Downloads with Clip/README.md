@@ -12,7 +12,7 @@ Our client, Hobnob, created an app for event planning that allows users to manag
 
 This is a challenge we have seen many times. We have observed some key reasons why apps aren’t downloaded:
 
-- If users don’t quickly understand how an app will add value to their lives, they won’t download it
+- If users don’t quickly understand how an app will add value to their lives, they won’t download it.
 - Increasingly complex app functionality requires a higher learning curve for users to perform simple tasks. Rather than spending time learning to use a new app, most will either not download it or continue to find new ways to use familiar apps.
 - The large file size of an app makes downloading time-consuming and takes up mobile phone storage space.
 - Moreover, a new app may not be trusted, potentially exposing personal privacy issues.
@@ -21,7 +21,7 @@ Ideally, a trial version of an app would solve these problems. And Apple created
 
 ## Key Advantages of App Clip
 
-  Our client wanted to increase downloads and attract more attention to their app, but after running multiple marketing campaigns, they ran out of ideas. The company needed a new approach.
+  Hobnob wanted to increase downloads and attract more attention to their app, but after running multiple marketing campaigns, they ran out of ideas. The company needed a new approach.
   
   We introduced them to App Clip. An App Clip is a relatively new form of an app launched in iOS14. Its purpose is to allow users to complete quick tasks from the main app without installing the entire app.
 
@@ -41,6 +41,7 @@ Ideally, a trial version of an app would solve these problems. And Apple created
    It enhances user participation by offering a defined, quick task that is easy to learn. By making the app easy to try and experience its usefulness, users are encouraged to download the entire app, subsequently increasing the conversion rate.
 
 3. **Offer numerous engagement options**
+
    Integrating technologies like QR Codes, NFC Tags, App Clip Codes, Safari, Links in Messages, and cards in Maps in a Clip is straightforward. It's very versatile and flexible.
 <img src=./ClipImage1.jpg height="230"/>
 4. **Reduced development costs**
@@ -80,7 +81,7 @@ Although an App Clip may reuse an app's code directly and be efficient to create
 - Clips only provide the app's core functional modules. Due to Apple restrictions, the maximum size of an App Clip in its uncompressed state cannot exceed 15MB (iOS16 and above, iOS15 and below cannot exceed 10MB).
 - The small size requires more stringent feature requirements to ensure users can flash download and open the App Clip.
   
-One potential impediment: Since the codes in the entire app usually reference each other, an App Clip may have to reference module B to reference module A, and then reference module C, and so forth. This increases the code complexity and size rapidly.
+One potential impediment: Since the codes in the entire app usually reference each other, an App Clip may have to reference module B to reference module A, and then reference module C, and so forth. This increases code complexity and size rapidly.
 
 That is why we recommend that the App Clip code be as independent as possible from the full app. Should you consider rewriting the App Clip code, the workload is not significant.
 
