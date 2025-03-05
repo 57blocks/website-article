@@ -163,6 +163,10 @@ npm install @stripe/react-stripe-js @stripe/stripe-js
 
 ### 3.2 Payment Flow Implementation
 
+Here's the Stripe payment flow swimlane diagram.
+
+![stripe-payment-process.png](stripe-payment-process.png)
+
 #### 3.2.1 Creating Payment Intents
 
 The Payment Intents API is central to Stripe's payment processing, allowing you to manage the lifecycle of a payment.
