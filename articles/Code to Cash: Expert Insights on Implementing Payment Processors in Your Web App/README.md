@@ -68,6 +68,8 @@ The architecture must be both robust enough to handle current requirements and f
 
 The digital payments landscape has undergone a remarkable transformation in recent years, revolutionizing how consumers and businesses conduct financial transactions. This evolution has been driven by technological advancements, changing consumer preferences, and the growing demand for seamless payment experiences.
 
+![modern-payment-trends.svg](modern-payment-trends.svg)
+
 ### 2.1 The Rise of Digital Payments
 
 At the forefront of this transformation is the widespread adoption of mobile wallets. Services like Apple Pay, Google Pay, and Samsung Pay have transformed smartphones into powerful payment tools, fundamentally changing how we interact with money. Their success can be attributed to several key factors:
@@ -85,8 +87,6 @@ Alongside mobile wallets, QR code payments have emerged as a transformative forc
 - Reduced need for specialized hardware
 
 ### 2.2 Alternative Payment Methods
-
-![modern-payment-trends.png](modern-payment-trends.svg)
 
 #### 2.2.1 Buy Now Pay Later (BNPL)
 
@@ -969,7 +969,7 @@ func issueRefund(client *paypal.Client, captureID string) {
 
 This overview highlights the essential components of payment systems, emphasizing the importance of robust security measures, effective error handling, seamless integration, optimized performance, and scalable architectures. As digital payment landscapes evolve, organizations must adopt comprehensive strategies that address these critical areas to ensure reliability, protect user data, and enhance user experience while maintaining compliance with regulatory standards. Continuous adaptation and improvement in these domains are vital for sustaining trust and competitiveness in the rapidly changing market.
 
-![modern-payment-trends.png](scalability-design.svg)
+![modern-payment-trends.svg](scalability-design.svg)
 
 ### 5.1 Security & Compliance
 
