@@ -86,7 +86,7 @@ Alongside mobile wallets, QR code payments have emerged as a transformative forc
 
 ### 2.2 Alternative Payment Methods
 
-![modern-payment-trends.png](modern-payment-trends.svg)
+![modern-payment-trends.png](./modern-payment-trends.svg)
 
 #### 2.2.1 Buy Now Pay Later (BNPL)
 
@@ -173,7 +173,7 @@ npm install @stripe/react-stripe-js @stripe/stripe-js
 
 Here's the Stripe payment flow swimlane diagram.
 
-![stripe-payment-process.png](stripe-payment-process.png)
+![stripe-payment-process.png](./stripe-payment-process.png)
 
 #### 3.2.1 Creating Payment Intents
 
@@ -969,7 +969,7 @@ func issueRefund(client *paypal.Client, captureID string) {
 
 This overview highlights the essential components of payment systems, emphasizing the importance of robust security measures, effective error handling, seamless integration, optimized performance, and scalable architectures. As digital payment landscapes evolve, organizations must adopt comprehensive strategies that address these critical areas to ensure reliability, protect user data, and enhance user experience while maintaining compliance with regulatory standards. Continuous adaptation and improvement in these domains are vital for sustaining trust and competitiveness in the rapidly changing market.
 
-![modern-payment-trends.png](scalability-design.svg)
+![modern-payment-trends.png](./scalability-design.svg)
 
 ### 5.1 Security & Compliance
 
