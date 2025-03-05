@@ -86,6 +86,8 @@ Alongside mobile wallets, QR code payments have emerged as a transformative forc
 
 ### 2.2 Alternative Payment Methods
 
+![modern-payment-trends.png](modern-payment-trends.svg)
+
 #### 2.2.1 Buy Now Pay Later (BNPL)
 
 The financial services landscape has been significantly disrupted by Buy Now Pay Later services. Companies like Klarna, Affirm, and Afterpay have created a new paradigm in retail financing that resonates strongly with modern consumers. Their success is built on several innovative features:
@@ -966,6 +968,8 @@ func issueRefund(client *paypal.Client, captureID string) {
 ## 5. Payment Systems Security, Error Handling, Integration, Performance, and Scalability
 
 This overview highlights the essential components of payment systems, emphasizing the importance of robust security measures, effective error handling, seamless integration, optimized performance, and scalable architectures. As digital payment landscapes evolve, organizations must adopt comprehensive strategies that address these critical areas to ensure reliability, protect user data, and enhance user experience while maintaining compliance with regulatory standards. Continuous adaptation and improvement in these domains are vital for sustaining trust and competitiveness in the rapidly changing market.
+
+![modern-payment-trends.png](scalability-design.svg)
 
 ### 5.1 Security & Compliance
 
