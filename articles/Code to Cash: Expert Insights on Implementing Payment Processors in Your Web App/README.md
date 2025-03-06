@@ -68,7 +68,7 @@ The architecture must be both robust enough to handle current requirements and f
 
 The digital payments landscape has undergone a remarkable transformation in recent years, revolutionizing how consumers and businesses conduct financial transactions. This evolution has been driven by technological advancements, changing consumer preferences, and the growing demand for seamless payment experiences.
 
-![modern-payment-trends.svg](modern-payment-trends.svg)
+![modern-payment-trends.svg](modern-payment-trends.png)
 
 ### 2.1 The Rise of Digital Payments
 
@@ -969,8 +969,6 @@ func issueRefund(client *paypal.Client, captureID string) {
 
 This overview highlights the essential components of payment systems, emphasizing the importance of robust security measures, effective error handling, seamless integration, optimized performance, and scalable architectures. As digital payment landscapes evolve, organizations must adopt comprehensive strategies that address these critical areas to ensure reliability, protect user data, and enhance user experience while maintaining compliance with regulatory standards. Continuous adaptation and improvement in these domains are vital for sustaining trust and competitiveness in the rapidly changing market.
 
-![modern-payment-trends.svg](scalability-design.svg)
-
 ### 5.1 Security & Compliance
 
 Security and compliance form the foundation of modern payment systems, where protecting user data and ensuring transaction integrity are paramount concerns. In today's sophisticated digital landscape, organizations must implement a comprehensive, defense-in-depth approach that addresses multiple security layers while navigating complex regulatory requirements.
@@ -1014,6 +1012,8 @@ In today's digital payment landscape, system performance isn't merely a technica
 ### 5.5 Scalability Design
 
 In the rapidly evolving landscape of digital payments, scalability has become a defining characteristic of successful payment systems. As global commerce continues to shift online, payment platforms must gracefully handle not only steady growth in transaction volumes but also unexpected surges in activity.
+
+![modern-payment-trends.png](scalability-design.png)
 
 - **Horizontal Scaling**: Implement stateless service design and auto-scaling policies to accommodate growth and fluctuating demands.
 - **Data Layer Scaling**: Address challenges related to maintaining ACID properties while employing database partitioning and read scaling strategies.
