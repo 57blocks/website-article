@@ -88,6 +88,8 @@ Alongside mobile wallets, QR code payments have emerged as a transformative forc
 
 ### 2.2 Alternative Payment Methods
 
+![modern-payment-trends.png](modern-payment-trends.svg)
+
 #### 2.2.1 Buy Now Pay Later (BNPL)
 
 The financial services landscape has been significantly disrupted by Buy Now Pay Later services. Companies like Klarna, Affirm, and Afterpay have created a new paradigm in retail financing that resonates strongly with modern consumers. Their success is built on several innovative features:
@@ -173,7 +175,7 @@ npm install @stripe/react-stripe-js @stripe/stripe-js
 
 Here's the Stripe payment flow swimlane diagram.
 
-![stripe-payment-process.png](stripe-payment-process.png)
+![stripe-payment-process.png](./stripe-payment-process.png)
 
 #### 3.2.1 Creating Payment Intents
 
