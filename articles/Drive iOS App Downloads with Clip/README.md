@@ -6,14 +6,14 @@ createTime: 2025-03-04
 tags: ["iOS", "App", "App Clip", "app downloads"]
 thumb: "ArticleImage.png"
 thumb_h: "ArticleImage.png"
-intro: "Excited to use App Clips to help promote your app? In this article, a case study illustrates how App Clips can be used as a promotional tool to drive app downloads and engagement. The study introduces the key advantages of App Clips, discusses why it increases app downloads, and explains some technical development considerations and testing perspectives based on a recent 57Blocks project."
+intro: "Excited to use App Clips to help promote your app? In this article, a case study illustrates how App Clips can be used as a promotional tool to drive app downloads and engagement."
 ---
 
-Our client, Hobnob, created an app for event planning that allows users to manage everything from invitations to guest lists to ticket sales and share content before, during, and after the event. This event planning app has been in the AppStore for over five years and has over 90,000 reviews. Hobnob spent thousands on monthly advertising to drive engagement and conversion, but the app didn’t stand out and wasn’t downloaded often in the highly competitive AppStore.
+Our client, Hobnob, created an app for event planning that allows users to manage everything from invitations to guest lists to ticket sales and share content before, during, and after the event. This event planning app has been in the AppStore for over five years and has over 90,000 reviews. Hobnob spent thousands on monthly advertising to drive engagement and conversion, but the app didn't stand out and wasn't downloaded often in the highly competitive AppStore.
 
-This is a challenge we have seen many times. We have observed some key reasons why apps aren’t downloaded:
+This is a challenge we have seen many times. We have observed some key reasons why apps aren't downloaded:
 
-- If users don’t quickly understand how an app will add value to their lives, they won’t download it.
+- If users don't quickly understand how an app will add value to their lives, they won't download it.
 - Increasingly complex app functionality requires a higher learning curve for users to perform simple tasks. Rather than spending time learning to use a new app, most will either not download it or continue to find new ways to use familiar apps.
 - The large file size of an app makes downloading time-consuming and takes up mobile phone storage space.
 - Moreover, a new app may not be trusted, potentially exposing personal privacy issues.
@@ -45,9 +45,9 @@ Ideally, a trial version of an app would solve these problems. And Apple created
 
    Integrating technologies like QR Codes, NFC Tags, App Clip Codes, Safari, Links in Messages, and cards in Maps in a Clip is straightforward. It's very versatile and flexible.
 <img src=./ClipImage1.jpg height="230"/>
-4. **Reduced development costs**
+4. **Reduce development costs**
 
-    They require less development time (and cost less) to create because only part of the App’s functionality is reused or modified.
+    They require less development time (and cost less) to create because only part of the app's functionality is reused or modified.
 5. **Offer faster download times**
 
     Since the app file size is smaller, it can be downloaded and used quickly.
@@ -58,11 +58,11 @@ Ideally, a trial version of an app would solve these problems. And Apple created
 
 7. **App Clips have a wide range of uses**
 
- - TikTok used Clip to encourage users to try and eventually install the TikTok app.
+    - TikTok used an App Clip to encourage users to try and eventually install the TikTok app.
     <img src=./ClipImage4.png height="230"/>
 
-- <a href="https://x.com/illscience/status/1879273352013267154?s=46&t=jqD_eUNYNaL8-a-0NmDklA" title="Explode">Explode</a>, an app still under development, has received widespread attention for its Clip functionality.
-- App Clips can be used to pay for parking when leaving the lot.
+   - <a href="https://x.com/illscience/status/1879273352013267154?s=46&t=jqD_eUNYNaL8-a-0NmDklA" title="Explode">Explode</a>, an app still under development, has received widespread attention for its Clip functionality.
+   - App Clips can be used to pay for parking when leaving the lot.
 
 
 However, there are a few disadvantages. Pictures cannot be stored locally, APN notifications are only valid for eight hours, and some iOS frameworks cannot be used.
@@ -176,19 +176,17 @@ var result: AnyObject? SecItemCopyMatching(query, &result)
 
 ### App Clip Testing Process
 
-The typical process for users to use Clip is as follows:
+The typical process for using an App Clip is as follows:
 
-- Scan the QR code/Safari to open the URL
+- Scan the QR code to use Safari to open the URL
 - Display App Clip cards
-- Click "Open" to download and use Clip
+- Click "Open" to download and use App Clip
   
 Because it differs from the full app, the above steps to display App Clip cards require Apple's services. The App Clip won't be updated if it does not pass the AppStore review and is not published. In order to test a new version of this App Clip, we needed to configure up to three test URLs in TestFlight and then click and start it in TestFlight, which is equivalent to passing the URL as a startup parameter to the App Clip. It will then begin processing based on the URL.
 
 ## Conclusion
 
 App Clip is a relatively new type of app that has been added to iOS in recent years. Its original design intention is to encourage users to access an app quickly, enhancing the user experience and ultimately increasing the app conversion rate.
-
-Hobnob benefitted from a Clip to improve adoption and conversion. It has received overwhelmingly positive feedback from users. And the benefit of a Clip App to Hobnob - it leveraged the existing app’s functionality meaning it was low cost to produce.  In addition to completing the development of basic Clip functions, it also further improves the value of Clip from aspects such as user data continuity and additional live activity/dynamic island. The Clip we developed has received positive comments from users.
 
 Our event planning App Clip:
 - Helped Hobnob improve adoption and conversion.
@@ -197,4 +195,4 @@ Our event planning App Clip:
 - Further improves the value by enabling better user data continuity and additional live activity/dynamic island.
 - Has received positive user feedback.
 
-However, keep in mind that App Clip development is very different from standard app development. We hope that 57Blocks’ experience in project establishment, development, configuration, post-testing methods, and sharing some core logic codes helps developers streamline and successfully complete App Clip development.
+However, keep in mind that App Clip development is very different from standard app development. We hope that 57Blocks' experience in project establishment, development, configuration, post-testing methods, and sharing some core logic codes helps developers streamline and successfully complete App Clip development.
