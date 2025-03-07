@@ -3,7 +3,7 @@ published: true
 title: "Drive iOS App Downloads with Clip"
 author: ["Eric Qi / iOS Engineer"]
 createTime: 2025-03-04
-tags: ["iOS", "App", "App Clip", "App Downloads"]
+tags: ["App Clip", "iOS", "App", "App Downloads"]
 thumb: "ArticleImage.png"
 thumb_h: "ArticleImage.png"
 intro: "Excited to use App Clips to help promote your app? In this article, a case study illustrates how App Clips can be used as a promotional tool to drive app downloads and engagement."
