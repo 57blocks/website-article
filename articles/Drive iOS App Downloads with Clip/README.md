@@ -3,7 +3,7 @@ published: true
 title: "Drive iOS App Downloads with Clip"
 author: ["Eric Qi / iOS Engineer"]
 createTime: 2025-03-04
-tags: ["iOS", "App", "App Clip", "App downloads"]
+tags: ["iOS", "App", "App Clip", "App Downloads"]
 thumb: "ArticleImage.png"
 thumb_h: "ArticleImage.png"
 intro: "Excited to use App Clips to help promote your app? In this article, a case study illustrates how App Clips can be used as a promotional tool to drive app downloads and engagement."
@@ -97,52 +97,50 @@ In addition to completing the development of essential App Clip functions, user 
 
 ```swift
 #if FULL_APP
-      //do something in App
+ //do something in App
 #else
-      //do something in Clip
+ //do something in Clip
 ```
 
  *Local data can be passed to the full App through the app group. First, you need to enable `"App Groups"` at Capability, then in Clip:*
 
 ```swift
-    let sharedUserDefaults = UserDefaults(suiteName: "group.ClipToApp")
-
-    sharedUserDefaults.set(encodedData, forKey: "someKeywords")
+let sharedUserDefaults = UserDefaults(suiteName: "group.ClipToApp")
+sharedUserDefaults.set(encodedData, forKey: "someKeywords")
 ```
 
 *In Full App:*
 
 ```swift
-    let data = sharedUserDefaults.data(forKey: "someKeywords")
+let data = sharedUserDefaults.data(forKey: "someKeywords")
 ```
 
  *Clip passes the user login information to the Full App, and the user can automatically log in after downloading the App.
 Clip logs in through AppleID and uses app group to pass login information:*
 
 ```swift
-    let credential = authorization.credential as? ASAuthorizationAppleIDCredential
-
-    sharedUserDefaults.set(credential.user, forKey: "SavedAppleUserID")
+let credential = authorization.credential as? ASAuthorizationAppleIDCredential
+sharedUserDefaults.set(credential.user, forKey: "SavedAppleUserID")
 ```
 
 *Full App gets AppleID:*
 
 ```swift
-    let userId = sharedUserDefaults.data(forKey: "SavedAppleUserID")
-    ASAuthorizationAppleIDProvider().getCredentialState(forUserID: userId) {state, error in …}
+let userId = sharedUserDefaults.data(forKey: "SavedAppleUserID")
+ASAuthorizationAppleIDProvider().getCredentialState(forUserID: userId) {state, error in …}
 ```
 
 *This App Clip logs in via credentials, uses keychain to pass login information, and kSecAttrLabel to distinguish keychain entries:*
 
 ```swift
-    let query = [
-        kSecAttrService: service,
-        kSecAttrAccount: account,
-        kSecClass: kSecClassGenericPassword,
-        kSecAttrLabel as String: "appClip"
-    ] as CFDictionary
-    let attributesToUpdate = [kSecValueData: credentialData] as CFDictionary
-    SecItemUpdate(query, attributesToUpdate)
+let query = [
+    kSecAttrService: service,
+    kSecAttrAccount: account,
+    kSecClass: kSecClassGenericPassword,
+    kSecAttrLabel as String: "appClip"
+] as CFDictionary
+let attributesToUpdate = [kSecValueData: credentialData] as CFDictionary
+SecItemUpdate(query, attributesToUpdate)
 ```
 
 *Full App queries the keychain data corresponding to kSecAttrLabel:*
@@ -152,8 +150,7 @@ let query = [kSecAttrService: service,
             kSecAttrAccount: account, 
             kSecClass: kSecClassGenericPassword,
             kSecReturnData: true, 
-            kSecAttrLabel as String: "appClip"] 
-            as CFDictionary 
+            kSecAttrLabel as String: "appClip"] as CFDictionary 
 var result: AnyObject? SecItemCopyMatching(query, &result)
 ```
 
@@ -164,14 +161,12 @@ var result: AnyObject? SecItemCopyMatching(query, &result)
  This feature mainly requires the configuration of the domain, including the AASA file, metadata on the web, and advanced Clip experience setting in AppstoreConnect：
 
 ```html
-"appclips": {
-        "apps":
-        ["ABCDE12345.com.example.MyApp.Clip"]
+"appclips": 
+{
+ "apps":["ABCDE12345.com.example.MyApp.Clip"]
 }
 
-<meta name="apple-itunes-app"
-      content="app-id=myAppStoreID, app-clip-bundle-id=appClipBundleID, app-clip-display=card">
-
+<meta name="apple-itunes-app" content="app-id=myAppStoreID, app-clip-bundle-id=appClipBundleID, app-clip-display=card">
 ```
 
 ### App Clip Testing Process
