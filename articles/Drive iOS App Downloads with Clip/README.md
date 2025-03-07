@@ -1,9 +1,9 @@
 ---
 published: true
 title: "Drive iOS App Downloads with Clip"
-author: ["Eric Qi / iOS engineer"]
+author: ["Eric Qi / iOS Engineer"]
 createTime: 2025-03-04
-tags: ["iOS", "App", "App Clip", "app downloads"]
+tags: ["iOS", "App", "App Clip", "App downloads"]
 thumb: "ArticleImage.png"
 thumb_h: "ArticleImage.png"
 intro: "Excited to use App Clips to help promote your app? In this article, a case study illustrates how App Clips can be used as a promotional tool to drive app downloads and engagement."
@@ -82,7 +82,7 @@ Although an App Clip may reuse an app's code directly and be efficient to create
 - Clips only provide the app's core functional modules. Due to Apple restrictions, the maximum size of an App Clip in its uncompressed state cannot exceed 15MB (iOS16 and above, iOS15 and below cannot exceed 10MB).
 - The small size requires more stringent feature requirements to ensure users can flash download and open the App Clip.
   
-One potential impediment: Since the codes in the entire app usually reference each other, an App Clip may have to reference module B to reference module A, and then reference module C, and so forth. This increases code complexity and size rapidly.
+One potential impediment: Since the codes in the entire app usually reference each other, an App Clip may have to reference module B to reference module A, and then reference module C, and so forth. This increases the code complexity and size rapidly.
 
 That is why we recommend that the App Clip code be as independent as possible from the full app. Should you consider rewriting the App Clip code, the workload is not significant.
 
