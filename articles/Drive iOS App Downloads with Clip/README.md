@@ -146,11 +146,13 @@ SecItemUpdate(query, attributesToUpdate)
 *Full App queries the keychain data corresponding to kSecAttrLabel:*
 
 ```swift
-let query = [kSecAttrService: service, 
-            kSecAttrAccount: account, 
-            kSecClass: kSecClassGenericPassword,
-            kSecReturnData: true, 
-            kSecAttrLabel as String: "appClip"] as CFDictionary 
+let query = [
+    kSecAttrService: service, 
+    kSecAttrAccount: account, 
+    kSecClass: kSecClassGenericPassword,
+    kSecReturnData: true, 
+    kSecAttrLabel as String: "appClip"
+] as CFDictionary 
 var result: AnyObject? SecItemCopyMatching(query, &result)
 ```
 
