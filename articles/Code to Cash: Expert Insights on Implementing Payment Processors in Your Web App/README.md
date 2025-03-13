@@ -4,7 +4,7 @@ author: ["GuangPeng Liu / Full stack engineer","Hum Tan/ Full stack engineer", "
 createTime: 2025-02-19
 tags: ["Web2", "FinTech"]
 thumb: "thumb.png"
-thumb_h: "thumb.png"
+thumb_h: "thumb_h.png"
 intro: "Provides a comprehensive guide on developing payment systems, covering integration strategies, modern payment trends, and detailed steps for integrating Stripe and PayPal."
 ---
 # Code to Cash: Expert Insights on Implementing Payment Processors in Your Web App
