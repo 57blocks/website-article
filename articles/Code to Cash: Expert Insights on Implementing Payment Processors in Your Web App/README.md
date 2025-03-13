@@ -38,7 +38,7 @@ The payment processing landscape is dominated by several key players, each with 
 
 
 
-![image-20250305112148812](./payment-platform-comparison.png)
+![payment-platform-comparison](./payment-platform-comparison.png)
 
 #### 1.2.2 Strategic Platform Selection
 
@@ -68,7 +68,7 @@ The architecture must be both robust enough to handle current requirements and f
 
 The digital payments landscape has undergone a remarkable transformation in recent years, revolutionizing how consumers and businesses conduct financial transactions. This evolution has been driven by technological advancements, changing consumer preferences, and the growing demand for seamless payment experiences.
 
-![modern-payment-trends.svg](modern-payment-trends.png)
+![modern-payment-trends](modern-payment-trends.png)
 
 ### 2.1 The Rise of Digital Payments
 
@@ -87,8 +87,6 @@ Alongside mobile wallets, QR code payments have emerged as a transformative forc
 - Reduced need for specialized hardware
 
 ### 2.2 Alternative Payment Methods
-
-![modern-payment-trends.png](modern-payment-trends.svg)
 
 #### 2.2.1 Buy Now Pay Later (BNPL)
 
@@ -175,7 +173,7 @@ npm install @stripe/react-stripe-js @stripe/stripe-js
 
 Here's the Stripe payment flow swimlane diagram.
 
-![stripe-payment-process.png](./stripe-payment-process.png)
+![stripe-payment-process](./stripe-payment-process.png)
 
 #### 3.2.1 Creating Payment Intents
 
@@ -577,7 +575,7 @@ Multi-currency support is crucial for businesses operating in multiple countries
 
    Here's the Paypal payment flow swimlane diagram.
 
-![image-20250305150045179](./paypal-payment-process.png)
+![paypal-payment-process](./paypal-payment-process.png)
 
 #### 4.2.1 PayPal Button Integration
 
@@ -1015,7 +1013,7 @@ In today's digital payment landscape, system performance isn't merely a technica
 
 In the rapidly evolving landscape of digital payments, scalability has become a defining characteristic of successful payment systems. As global commerce continues to shift online, payment platforms must gracefully handle not only steady growth in transaction volumes but also unexpected surges in activity.
 
-![modern-payment-trends.png](scalability-design.png)
+![scalability-design](scalability-design.png)
 
 - **Horizontal Scaling**: Implement stateless service design and auto-scaling policies to accommodate growth and fluctuating demands.
 - **Data Layer Scaling**: Address challenges related to maintaining ACID properties while employing database partitioning and read scaling strategies.
