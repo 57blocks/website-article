@@ -2,7 +2,7 @@
 published: true
 title: "Drive iOS App Downloads with Clip"
 author: ["Eric Qi / iOS Engineer"]
-createTime: 2025-03-04
+createTime: 2025-03-25
 tags: ["App Clip", "iOS", "App", "App Downloads"]
 thumb: "ArticleImage.png"
 thumb_h: "ArticleImage.png"
