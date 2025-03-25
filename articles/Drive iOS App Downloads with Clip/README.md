@@ -5,7 +5,8 @@ author: ["Eric Qi / iOS Engineer"]
 createTime: 2025-03-25
 tags: ["App Clip", "iOS", "App", "App Downloads"]
 thumb: "ArticleImage.png"
-thumb_h: "ArticleImage.png"
+thumb_h: "ArticleImage_h.png"
+landingPages: ["AI-Agentic Applications"]
 intro: "Excited to use App Clips to help promote your app? In this article, a case study illustrates how App Clips can be used as a promotional tool to drive app downloads and engagement."
 ---
 
