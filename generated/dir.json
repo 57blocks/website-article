@@ -49,7 +49,10 @@
         "App Downloads"
       ],
       "thumb": "ArticleImage.png",
-      "thumb_h": "ArticleImage.png",
+      "thumb_h": "ArticleImage_h.png",
+      "landingPages": [
+        "AI-Agentic Applications"
+      ],
       "intro": "Excited to use App Clips to help promote your app? In this article, a case study illustrates how App Clips can be used as a promotional tool to drive app downloads and engagement.",
       "path": "articles/Drive%20iOS%20App%20Downloads%20with%20Clip/README.md",
       "slug": "drive-ios-app-downloads-with-clip"
