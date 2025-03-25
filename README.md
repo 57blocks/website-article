@@ -23,6 +23,7 @@
     - [Image Optimization](#image-optimization)
 7. [Merging and Deployment](#merging-and-deployment)
     - [Final Testing](#final-testing)
+    - [Publish to QA environment](#publish-to-qa-environment)
     - [Deployment to Main Branch](#deployment-to-main-branch)
 
 ---
@@ -53,6 +54,13 @@ intro: "Some introduction to the article"
 ---
 ```
 </details>
+
+> [!warning]
+> Due to historical reasons, the terms "thumb" and "thumb_h" here refer to images for `portrait` and `landscape` orientations, respectively, and *not* to different levels of image quality.
+> 
+> `thumb`: (Portrait orientation)
+> 
+> `thumb_h`: (Landscape orientation)
 
 > [!note]
 > The `thumb` and `thumb_h` images are placeholders and should be redesigned later. Contact the designer for the final images.
@@ -233,6 +241,20 @@ If the tester or designer has any feedback, **please add the corresponding feedb
 Once the testing team has validated the article on the dev environment and all feedback has been addressed, the author can then merge the code into the `dev` branch.
 
 If you need any technical support during the process, please contact the wcp project team.
+
+### Publish to QA environment
+All you need to do is add a line to the metadata
+`published: true`
+
+```yaml
+---
+published: true
+title: "The title of the article"
+...
+...
+---
+```
+
 
 ### Deployment to Main Branch
 
