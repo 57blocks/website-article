@@ -33,7 +33,7 @@ Fintech companies are playing a pivotal role in reshaping the payment landscape,
 - **Financial Inclusion**: Fintechs are addressing gaps in traditional financial systems by creating solutions that reach underserved populations, such as mobile-based micro-lending and digital wallets for unbanked communities.
 - **Challenger Banks**: Digital-only banks, such as Revolut, N26, and Monzo, are redefining banking by offering fee-free transactions, multi-currency accounts, and real-time financial insights.
 
-#### 1.1.3 **Consumer Demand for Seamless and Instant Payments**
+#### 1.1.3 Consumer Demand for Seamless and Instant Payments
 
 Consumers increasingly expect payment experiences that are fast, secure, and frictionless, leading to a surge in demand for:
 
