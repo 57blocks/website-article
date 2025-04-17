@@ -7,7 +7,7 @@ thumb: "thumb.png"
 thumb_h: "thumb_h.png"
 intro: "Provides a comprehensive guide on developing payment systems, covering integration strategies, modern payment trends, and detailed steps for integrating Stripe and PayPal."
 ---
-# Code to Cash: : The Evolving Landscape of Payments
+# Code to Cash: The Evolving Landscape of Payments
 
 ## 1. Introduction to Payment Systems
 
