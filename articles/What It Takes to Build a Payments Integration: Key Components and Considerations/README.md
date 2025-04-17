@@ -13,26 +13,7 @@ Payment integration in 2025 has evolved into a complex ecosystem that combines t
 - Cross-border commerce requirements
 - Real-time processing expectations
 
-```mermaid
-graph LR
-    A[Payment Integration 2025] --> B[Payment Methods]
-    A --> C[Regulatory]
-    A --> D[Security]
-    A --> E[Performance]
-    A --> F[Global]
-    A --> G[Real-Time]
-
-    B --> B1[Cards/Wallets]
-    C --> C1[Compliance]
-    D --> D1[Fraud Prevention]
-    E --> E1[High Availability]
-    F --> F1[Cross-Border]
-    G --> G1[Instant Processing]
-
-    style A fill:#2563eb,stroke:#1d4ed8,stroke-width:2px,color:white
-```
-
-
+![overview](./overview.jpg)
 
 This technical guide aims to provide a comprehensive understanding of what it takes to build a robust payment integration in today's digital landscape. We'll explore the critical components, essential considerations, and best practices that form the foundation of successful payment systems.
 
@@ -52,28 +33,7 @@ When a customer taps their phone to pay, the system simultaneously:
 - Ensures regulatory compliance
 - Monitors for potential fraud signals
 
-```mermaid
-graph TD
-    A[Phone Payment] -->|Step 1| B[🔐 Biometric Check]
-    B -->|Step 2| C[🎲 Token Generation]
-    C -->|Step 3| D[🔍 Pattern Analysis]
-    D -->|Step 4| E[📜 Compliance Check]
-    E -->|Step 5| F[⚡ Fraud Detection]
-    
-    B -.->|Real-time| G((Security Hub))
-    C -.->|Real-time| G
-    D -.->|Real-time| G
-    E -.->|Real-time| G
-    F -.->|Real-time| G
-    
-    style A fill:#4CAF50,stroke:#fff,stroke-width:2px,color:#fff
-    style G fill:#FF5722,stroke:#fff,stroke-width:2px,color:#fff
-    style B fill:#2196F3,stroke:#fff,stroke-width:2px,color:#fff
-    style C fill:#2196F3,stroke:#fff,stroke-width:2px,color:#fff
-    style D fill:#2196F3,stroke:#fff,stroke-width:2px,color:#fff
-    style E fill:#2196F3,stroke:#fff,stroke-width:2px,color:#fff
-    style F fill:#2196F3,stroke:#fff,stroke-width:2px,color:#fff
-```
+![security balancing act](./security-balancing-act.jpg)
 
 All this happens faster than you can say "approved."
 
@@ -164,41 +124,7 @@ Like they say in the scouts: be prepared. In payment processing, that means bein
 
 Let's dive into what keeps payment system developers both busy and anxious - making sure everything works together perfectly and catching problems before they reach real users. It's a bit like being both a master chef testing recipes and a quality control expert at NASA - the stakes are high, and there's no room for "almost right."
 
-```mermaid
-graph TD
-    classDef mainNode fill:#2563eb,stroke:#1e40af,color:white,stroke-width:2px
-    classDef envNode fill:#22c55e,stroke:#166534,color:white,stroke-width:2px
-    classDef testNode fill:#ea580c,stroke:#9a3412,color:white,stroke-width:2px
-
-    subgraph Integration["Integration Architecture"]
-        A[Component Interfaces]:::mainNode
-        B[Circuit Breakers]:::mainNode
-        C[Retry Mechanisms]:::mainNode
-    end
-
-    subgraph Testing["Testing Strategy"]
-        D[Unit Testing]:::testNode
-        E[Integration Testing]:::testNode
-        F[System Testing]:::testNode
-    end
-
-    subgraph Environments["Test Environments"]
-        G[Development Sandbox]:::envNode
-        H[Testing Environment]:::envNode
-        I[Staging Environment]:::envNode
-    end
-
-    subgraph Deployment["Deployment Testing"]
-        J[Rollout Procedures]:::testNode
-        K[Rollback Plans]:::testNode
-    end
-
-    Integration --> Testing
-    Testing --> Environments
-    Environments --> Deployment
-```
-
-
+![integration and testing](./integration-and-testing.jpg)
 
 ### 4.1 Integration Architecture
 
@@ -238,36 +164,7 @@ Remember: every successful payment transaction you make is the result of countle
 
 In today's digital payment landscape, system performance isn't merely a technical metric—it's a critical business differentiator that directly impacts user satisfaction, transaction completion rates, and ultimately, revenue. Every millisecond of latency can affect user confidence, while system efficiency determines both operational costs and scalability potential. This chapter explores comprehensive approaches to optimizing payment system performance while maintaining the delicate balance between speed, reliability, and security.
 
-```mermaid
-graph TD
-    classDef mainNode fill:#2563eb,stroke:#1e40af,color:white,stroke-width:2px
-    classDef modNode fill:#22c55e,stroke:#166534,color:white,stroke-width:2px
-
-    P[Performance]:::mainNode
-
-    P --> D[Database]:::modNode
-    P --> A[Application]:::modNode
-    P --> C[Cache]:::modNode
-    P --> L[Load Balance]:::modNode
-    P --> M[Monitor]:::modNode
-
-    D --> D1[Query]
-    D --> D2[Sharding]
-
-    A --> A1[Request]
-    A --> A2[Memory]
-
-    C --> C1[Browser]
-    C --> C2[App]
-
-    L --> L1[Layer 7]
-    L --> L2[Geo]
-
-    M --> M1[Metrics]
-    M --> M2[Analysis]
-```
-
-
+![performance optimization](./performance-optimization.jpg)
 
 ### 5.1 Database Optimization
 
@@ -317,25 +214,7 @@ The future of payment system performance optimization lies in intelligent, adapt
 
 Let's talk about one of the most exciting challenges in payment systems - making them grow gracefully. Imagine building a highway that can magically add lanes whenever traffic gets heavy, or a restaurant that can instantly double its kitchen size during lunch rush. That's what we're trying to achieve with scalable payment systems.
 
-```mermaid
-graph LR
-    classDef mainNode fill:#2563eb,stroke:#1e40af,color:white,stroke-width:2px,rx:10
-    classDef subNode fill:#22c55e,stroke:#166534,color:white,stroke-width:2px,rx:10
-
-    S[Scalability Design]:::mainNode
-
-    subgraph Architecture
-        H[Horizontal Scaling]:::subNode
-        D[Data Layer]:::subNode
-        M[Message Queue]:::subNode
-        C[Service Split]:::subNode
-        A[Auto Deploy]:::subNode
-    end
-
-    S --> H & D & M & C & A
-```
-
-
+![scalability design](./scalability-design.png)
 
 ### 6.1 Horizontal Scaling
 
