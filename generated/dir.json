@@ -44,6 +44,8 @@
         "Hum Tan / Fullstack Engineer"
       ],
       "createTime": "2025-04-17T00:00:00.000Z",
+      "thumb": "thumb.png",
+      "thumb_h": "thumb_h.png",
       "tags": [
         "Payment",
         "Components"
