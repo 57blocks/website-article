@@ -3,6 +3,8 @@ published: true
 title: "What It Takes to Build a Payments Integration: Key Components and Considerations"
 author: ["Guangpeng Liu / Fullstack Engineer", "Ida Zhou/ Backend engineer", "Hum Tan / Fullstack Engineer"]
 createTime: 2025-04-17
+thumb: "thumb.png"
+thumb_h: "thumb_h.png"
 tags: ["Payment", "Components"]
 landingPages: ["AI-AI Infra and Framework"]
 intro: "In today's digital economy, payment integration represents far more than just a technical implementation—it's a critical business capability that can define the success or failure of modern digital platforms. Whether you're building an e-commerce platform, a subscription service, or a marketplace, the ability to process payments reliably, securely, and efficiently is fundamental to business operations."
@@ -21,7 +23,7 @@ Payment integration in 2025 has evolved into a complex ecosystem that combines t
 - Cross-border commerce requirements
 - Real-time processing expectations
 
-![overview](./overview.jpg)
+![overview](./overview.png)
 
 This technical guide aims to provide a comprehensive understanding of what it takes to build a robust payment integration in today's digital landscape. We'll explore the critical components, essential considerations, and best practices that form the foundation of successful payment systems.
 
@@ -41,7 +43,7 @@ When a customer taps their phone to pay, the system simultaneously:
 - Ensures regulatory compliance
 - Monitors for potential fraud signals
 
-![security balancing act](./security-balancing-act.jpg)
+![security balancing act](./security-balancing-act.png)
 
 All this happens faster than you can say "approved."
 
@@ -132,7 +134,7 @@ Like they say in the scouts: be prepared. In payment processing, that means bein
 
 Let's dive into what keeps payment system developers both busy and anxious - making sure everything works together perfectly and catching problems before they reach real users. It's a bit like being both a master chef testing recipes and a quality control expert at NASA - the stakes are high, and there's no room for "almost right."
 
-![integration and testing](./integration-and-testing.jpg)
+![integration and testing](./integration-and-testing.png)
 
 ### 4.1 Integration Architecture
 
@@ -172,7 +174,7 @@ Remember: every successful payment transaction you make is the result of countle
 
 In today's digital payment landscape, system performance isn't merely a technical metric—it's a critical business differentiator that directly impacts user satisfaction, transaction completion rates, and ultimately, revenue. Every millisecond of latency can affect user confidence, while system efficiency determines both operational costs and scalability potential. This chapter explores comprehensive approaches to optimizing payment system performance while maintaining the delicate balance between speed, reliability, and security.
 
-![performance optimization](./performance-optimization.jpg)
+![performance optimization](./performance-optimization.png)
 
 ### 5.1 Database Optimization
 
