@@ -15,7 +15,7 @@ The digital payments landscape has undergone a remarkable transformation in rece
 
 ![modern-payment-trends](modern-payment-trends.png)
 
-## The evolution of payment trends & technologies
+## The Evolution of Payment Trends & Technologies
 
 The financial services industry is undergoing a profound transformation, driven by the rapid adoption of digital technologies, evolving consumer expectations, and an increasingly interconnected global economy. Payments are no longer just transactional processes—they have become central to customer experience, business strategy, and global commerce. This shift has redefined the way individuals and businesses interact with money, fostering a dynamic ecosystem of innovation, disruption, and collaboration.
 
@@ -35,6 +35,7 @@ Fintech companies have become transformative forces in the payment landscape, le
 Their API-driven ecosystems facilitate seamless integration with various platforms, allowing businesses to embed payment functionalities directly into applications, as exemplified by Stripe's developer-first approach. Beyond convenience, fintechs are driving financial inclusion by addressing gaps in traditional systems through mobile-based micro-lending and digital wallets for underserved communities.
 
 Meanwhile, challenger banks like Revolut, N26, and Monzo are redefining the banking experience with fee-free transactions, multi-currency accounts, and real-time financial insights, further revolutionizing how people interact with money.
+
 ###  3. Consumer Demand for Seamless and Instant Payments
 
 Consumers increasingly expect payment experiences that are fast, secure, and frictionless, leading to a surge in demand for:
@@ -68,7 +69,6 @@ Emerging technologies are acting as catalysts for innovation across the payment 
 - **IoT Payments**: Connected devices like smartwatches, cars, and even refrigerators are increasingly being integrated with payment functionalities.
 
 
-
 ###  7. The Global Perspective
 
 The payment landscape varies significantly across regions, influenced by local consumer behavior, infrastructure, and regulations:
@@ -84,7 +84,7 @@ At the forefront of this transformation is the widespread adoption of mobile wal
 
 Alongside mobile wallets, QR code payments have emerged as a transformative force, particularly in Asian markets. Their remarkable success stems from several compelling advantages: minimal implementation costs for merchants, intuitive and simplified user experience, natural integration with popular social platforms, and reduced need for specialized hardware. These characteristics have positioned QR payments as a dominant solution in regions where mobile adoption outpaces traditional payment infrastructure.
 
-## Alternative payment methods
+## Alternative Payment Methods
 ### 1. Buy Now Pay Later (BNPL)
 
 The financial services landscape has been significantly disrupted by Buy Now Pay Later services. Companies like Klarna, Affirm, and Afterpay have created a new paradigm in retail financing that resonates strongly with modern consumers.
