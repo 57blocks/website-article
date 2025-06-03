@@ -61,7 +61,7 @@ These factors collectively create an urgent need for rigorous, comprehensive tes
 
 Depending on the development stage of the L1 blockchain, various tests will be carried out step by step.
 
-![][Frame 2147224147.png]
+![Image][Frame 2147224147.png]
 
 ## Functional Testing
 
@@ -143,7 +143,7 @@ The five distinct stages:
 5. Integrate CI/CD: Configure GitHub Actions workflows, schedule runs, notify teams of results, and implement optimizations based on feedback.
 
 The two loops represent automated workflows for managing dev networks during release creation and pull request (PR) merges, ensuring efficient testing and validation processes.  
-![][Group 2147224192.png]
+![Image][Group 2147224192.png]
 
 ### How to prepare the testing environment
 
@@ -202,7 +202,7 @@ The test framework is designed to validate and analyze blockchain-related functi
 * Test Case Categories encompass RPC testing, consensus validation (mechanisms, node synchronization, and fault tolerance), business logic (staking, slashing, and rewards), and capability testing (performance, load, and WebSocket functionalities).  
 * L1 Chain Environment represents the testing setup, including various blockchain nodes like validators, boot nodes, RPC nodes, and test nodes.
 
-![][Group 2147224160.png]
+![Image][Group 2147224160.png]
 
 ### How to create test cases
 
