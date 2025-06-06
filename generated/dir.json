@@ -473,6 +473,29 @@
       ],
       "path": "articles/Guide%20to%20Web3%20and%20dApp%20Infrastructure/README.md",
       "slug": "guide-to-web3-and-dapp-infrastructure"
+    },
+    {
+      "published": true,
+      "title": "Mastering Layer 1 Blockchain Testing: A Comprehensive Guide",
+      "author": [
+        "Jia Chen / QA Engineer",
+        "Jacqueline Zhang / QA Engineer",
+        "Tina Tang / QA Engineer",
+        "Jesse Zheng / QA Engineer"
+      ],
+      "createTime": "2024-04-01T00:00:00.000Z",
+      "tags": [
+        "Layer 1 blockchain",
+        "Ethereum Virtual Machine (EVM)",
+        "Cosmos",
+        "Blockchain testing",
+        "GitHub Actions"
+      ],
+      "thumb": "./thumb.png",
+      "thumb_h": "./thumb-h.png",
+      "intro": "As blockchain technology continues to transform industries with its promise of decentralization and transparency, the foundational layer of this technology, known as Layer 1 (L1) blockchains, plays a critical role. L1 blockchains provide the necessary infrastructure to build and operate decentralized applications, hosting the protocol and consensus layer fundamental to the entire network.",
+      "path": "articles/Mastering%20Layer%201%20Blockchain%20Testing%3A%20A%20Comprehensive%20Guide/README.md",
+      "slug": "mastering-layer-1-blockchain-testing-a-comprehensive-guide"
     }
   ]
 }
