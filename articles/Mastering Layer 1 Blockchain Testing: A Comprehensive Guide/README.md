@@ -256,7 +256,7 @@ Blockchain testing isn't just about preventing bugs-it's about protecting user f
 
 ## Looking Ahead: Open Source Testing Framework
 To help teams put these principles into practice, an open source blockchain testing framework, ChainSmith, will soon be released.
-ChainSmith is 57Blocks’ new open-source framework and managed-service offering for chain-layer reliability testing. It lets us-and our clients-describe complex, real-world failure scenarios (multi-node, bridge time-outs, validator slashing, re-org storms) and run them automatically on any L1 or L2 devnet/testnet.
+ChainSmith is 57Blocks’ new open-source framework and managed-service offering for chain-layer reliability testing. It lets us and our clients describe complex, real-world failure scenarios and run them automatically on L1 devnet/testnet.
 
 ## References
 
