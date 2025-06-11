@@ -48,12 +48,12 @@ The complexity and security demands of L1 blockchains necessitate rigorous testi
 
 These cases demonstrate that comprehensive testing at the blockchain protocol level is critically important, far exceeding the significance in traditional software development. Addressing six key factors in a test strategy and plan could identify bugs early and prevent outages and attacks described in the cases above: 
 
-* the immutability of blockchain code makes errors difficult to fix, as demonstrated by the Polygon Heimdall Bridge vulnerability persisting for 5 years;   
-* protocol-level vulnerabilities directly threaten user funds, potentially leading to billions in losses;   
-* systemic risks enable cascading failures, as the Heimdall vulnerability could have collapsed the entire bridge system;   
-* complexity at system boundaries, like the Ethereum Log Confusion error, requires thorough testing to discover;   
-* novel cryptoeconomic models must be tested against game-theoretic attacks, exemplified by the Polygon consensus bypass vulnerability;   
-* and the highly adversarial environment means that even attacks costing $50,000-$100,000 to execute remain worthwhile for attackers eyeing a potential $2 billion payoff. 
+* **Immutability**: The immutability of blockchain code makes errors difficult to fix, as demonstrated by the Polygon Heimdall Bridge vulnerability persisting for 5 years;
+* **Financial Exposure**: Protocol-level vulnerabilities directly threaten user funds, potentially leading to billions in losses as seen in the DAO hack;
+* **Systemic Risks**: Systemic risks enable cascading failures, as the Heimdall vulnerability could have collapsed the entire bridge system;
+* **Boundary Complexity**: Complexity at system boundaries, like the Ethereum Log Confusion error, requires thorough testing to discover;
+* **Cryptoeconomic Attacks**: Novel cryptoeconomic models must be tested against game-theoretic attacks, exemplified by the Polygon consensus bypass vulnerability;
+* **Adversarial Environment**: The highly adversarial environment means that even attacks costing $50,000 - $100,000 to execute remain worthwhile for attackers eyeing a potential $2 billion payoff.
 
 These factors collectively create an urgent need for rigorous, comprehensive testing of blockchain protocols.
 
@@ -121,7 +121,7 @@ This type of testing focuses on key metrics such as throughput, typically measur
 
 ### Load Testing
 
-Load testing is an essential process for understanding how a L1 blockchain handles a large volume of transactions and interactions under normal and peak operating conditions. Simulate continuous real-time batch transaction concurrency, monitor CPU and memory, analyze and evaluate test results to determine the network's capacity and bottlenecks in real scenarios.
+Load testing is an essential process for understanding how a L1 blockchain handles a large volume of transactions and interactions under normal and peak operating conditions. Simulate continuous real-time batch transaction concurrency, monitor CPU and memory, and analyze and evaluate test results to determine the network's capacity and bottlenecks in real scenarios.
 
 ### Smart Contract Testing
 
@@ -151,17 +151,17 @@ The two loops represent automated workflows for managing dev networks during rel
 #### How to prepare the testing environment
 
 * Configure virtual machines or cloud instances (e.g., AWS, Google Cloud) to create a realistic test environment.  
-* Deploy development network simulating different network conditions. It is best to prepare deployment scripts to facilitate network reset using GitHub Actions. The network is a separate network with initial parameters that mimic the mainnet and public testnet’s settings.   
-* Deploy external test nodes and join the network.  
+* Deploy an isolated development network that mimics mainnet and public testnet settings. Use deployment scripts with GitHub Actions to enable quick network resets for testing.
+* Deploy external test nodes and join the development network.
 * Implement firewalls and Grafana to monitor network activity and protect the infrastructure.
 
 #### How to develop a comprehensive testing strategy and plan
 
-* Define Testing Objectives:  
-  * Identify key performance metrics such as transaction throughput, latency, and confirmation times.  
-  * Determine security and stability requirements like resistance to double spending or denial of service.  
-* Select Testing Types  
-* Define Success Criteria
+* Define Testing Objectives: Involves identifying what you want to achieve with the testing process. It focuses on outlining the specific goals and areas of the blockchain system that need evaluation.
+  * Identify key performance metrics such as transaction throughput, latency, and confirmation times with consideration on business requirements, infrastructure capabilities, consensus mechanism limitation.
+  * Determine security and stability requirements like resistance to double spending or denial of service.
+* Select Appropriate Testing Types: Choose a variety of testing methods (functional, performance, security, network, compatibility, and user experience) tailored to assess different components of the blockchain system.
+* Define Success Criteria: Involves determining the standards and benchmarks that must be met for the test to be successful. These criteria provide clear thresholds that can be used to evaluate the test results. They usually include quantifiable goals, such as meeting certain functionality under expected and extreme conditions, specific performance metrics (such as transactions per second), acceptable latency ranges, and security compliance levels.
 
 #### How to design and execute test cases
 
@@ -175,7 +175,7 @@ The two loops represent automated workflows for managing dev networks during rel
 #### How to implement automation tests
 
 * Select an Automation Framework: Use frameworks such as Mocha, Chai, and blockchain-specific toolkits like Hardhat, Foundry.  
-* Design a test framework structure.
+* Design a test framework structure: Create an architectural foundation for the automated test system.
 * Develop Automation Scripts: Write scripts to automatically run repetitive test cases and validation checks based on test case priorities.  
 * Maintain Test Scripts: Regularly update and optimize scripts to align with blockchain codebase updates.
 
@@ -198,12 +198,17 @@ The two loops represent automated workflows for managing dev networks during rel
 
 ### Leverage a Test Framework
 
-The test framework is designed to validate and analyze blockchain-related functionalities, integrating multiple components to enable a comprehensive testing workflow:
+The test framework is designed to validate and analyze blockchain-related functionalities, integrating multiple components to enable a comprehensive testing workflow.
 
-* GitHub Actions serves as the starting point, with workflows defined in YAML to automate the testing process. Test reports are generated and stored as accessible pages.  
-* Test Helper/Utils provides a suite of utilities for core testing areas, including staking, rewards, slashing, transactions, and node operations, built on dependencies such as Foundry, Mocha, Ethers.js, and Chai.  
-* Test Case Categories encompass RPC testing, consensus validation (mechanisms, node synchronization, and fault tolerance), business logic (staking, slashing, and rewards), and capability testing (performance, load, and WebSocket functionalities).  
-* L1 Chain Environment represents the testing setup, including various blockchain nodes like validators, boot nodes, RPC nodes, and test nodes.
+Prerequisites:
+* Set up the infrastructure and start the L1 test blockchain.
+* Knowledge about TypeScript, Foundry, Mocha, Ethers.js, and Chai.
+
+Modules:
+* GitHub Actions serves as the starting point, with workflows defined in YAML to automate the testing process. Test reports are generated and stored as accessible pages.
+* Test Helper/Utils provides a suite of utilities for core testing areas, including staking, rewards, slashing, transactions, and node operations, built on dependencies such as Foundry, Mocha, Ethers.js, and Chai.
+* Test Case Categories encompass RPC testing, consensus validation (mechanisms, node synchronization, and fault tolerance), business logic (staking, slashing, and rewards), and capability testing (performance, load, and WebSocket functionalities). 
+* L1 Chain Environment represents the chain profile, describing various blockchain nodes like validators, boot nodes, RPC nodes, and test nodes.
 :::center
 ![](Group-2147224160.png)
 :::
@@ -213,7 +218,7 @@ The test framework is designed to validate and analyze blockchain-related functi
 * Implementation: Test cases are written in TypeScript due to its strong typing, which reduces runtime errors and improves code maintainability. TypeScript allows for easier refactoring and faster development due to its autocompletion and code navigation features.  
 * Structure: Organize test cases into directories based on specific features or components of the blockchain to ensure logical separation and easier maintenance.  
 * Annotation and Documentation: Annotate test cases clearly to describe the scenario, expected behavior, and any setup or teardown procedures necessary for execution. Incorporate comments or docstrings to clarify intent for other developers.  
-* Set up and clean the data as needed for clear tests: Set reasonable preconditions for the test and clean up the data after the test is completed to ensure that each test is independent and repeatable to avoid affecting each other.
+* Set up and clean the data as needed for clear tests: Set reasonable preconditions for the test and clean up the data after the test is completed to ensure that each test is independent and repeatable to avoid affecting the others.
 
 #### When to use Test Helper/Utils
 
@@ -248,6 +253,10 @@ Your testing environment should mirror production conditions as closely as possi
 ### The Bottom Line
 
 Blockchain testing isn't just about preventing bugs-it's about protecting user funds and maintaining network integrity. The cost of comprehensive testing is always less than the cost of a single major failure. As the industry matures, robust testing practices will separate successful projects from cautionary tales.
+
+## Looking Ahead: Open Source Testing Framework
+To help teams put these principles into practice, an open source blockchain testing framework, ChainSmith, will soon be released.
+ChainSmith is 57Blocks’ new open-source framework and managed-service offering for chain-layer reliability testing. It lets us-and our clients-describe complex, real-world failure scenarios (multi-node, bridge time-outs, validator slashing, re-org storms) and run them automatically on any L1 or L2 devnet/testnet.
 
 ## References
 
