@@ -2,7 +2,7 @@
 published: true
 title: "Code to Cash: The Evolving Landscape of Payments"
 author: ["GuangPeng Liu / Full stack engineer","Hum Tan/ Full stack engineer", "Ida Zhou/ Backend engineer"]
-createTime: 2025-02-19
+createTime: 2025-06-20
 tags: ["Web2", "FinTech"]
 thumb: "thumb.png"
 thumb_h: "thumb_h.png"
