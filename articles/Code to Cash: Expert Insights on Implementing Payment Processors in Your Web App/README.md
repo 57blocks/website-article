@@ -59,7 +59,7 @@ In response to emerging technologies, policymakers are also addressing regulator
 
 The payment landscape is shaped by both competition and collaboration between traditional banks, fintech companies, payment processors, and technology giants. Traditional banks are increasingly partnering with fintechs to integrate innovative solutions into their offerings, with many now providing access to mobile wallets and peer-to-peer payment services.
 
-Simultaneously, tech giants including Apple, Google, and Amazon are leveraging their existing ecosystems to provide integrated payment solutions such as Apple Pay, Google Pay, and Amazon Pay. In Asian markets, super-apps like WeChat and Alipay have created comprehensive platforms that bundle payment
+Simultaneously, tech giants including Apple, Google, and Amazon are leveraging their existing ecosystems to provide integrated payment solutions such as Apple Pay, Google Pay, and Amazon Pay. In Asian markets, super-apps like WeChat and Alipay have created comprehensive platforms that bundle payment services with social media, e-commerce, and other lifestyle functionalities, further blurring the lines between financial services and everyday digital activities.
 
 ### 6. Technology Driving Innovation
 
