@@ -37,6 +37,46 @@
     },
     {
       "published": true,
+      "title": "Code to Cash: The Evolving Landscape of Payments",
+      "author": [
+        "GuangPeng Liu / Fullstack Engineer",
+        "Ida Zhou / Backend Engineer",
+        "Hum Tan / Fullstack Engineer"
+      ],
+      "createTime": "2025-06-23T00:00:00.000Z",
+      "tags": [
+        "Web2",
+        "FinTech"
+      ],
+      "thumb": "thumb.png",
+      "thumb_h": "thumb_h.png",
+      "intro": "This comprehensive guide explores the rapidly evolving payments landscape, offering developers strategic insights on implementing payment processors, navigating modern trends, and seamlessly integrating platforms like Stripe and PayPal into web applications.",
+      "path": "articles/Code%20to%20Cash%3A%20Expert%20Insights%20on%20Implementing%20Payment%20Processors%20in%20Your%20Web%20App/README.md",
+      "slug": "code-to-cash-expert-insights-on-implementing-payment-processors-in-your-web-app"
+    },
+    {
+      "title": "What It Takes to Build a Payments Integration: Key Components and Considerations",
+      "author": [
+        "GuangPeng Liu / Fullstack Engineer",
+        "Ida Zhou / Backend Engineer",
+        "Hum Tan / Fullstack Engineer"
+      ],
+      "createTime": "2025-04-17T00:00:00.000Z",
+      "thumb": "thumb.png",
+      "thumb_h": "thumb_h.png",
+      "tags": [
+        "Payment",
+        "Components"
+      ],
+      "landingPages": [
+        "AI-AI Infra and Framework"
+      ],
+      "intro": "In today's digital economy, payment integration represents far more than just a technical implementation—it's a critical business capability that can define the success or failure of modern digital platforms. Whether you're building an e-commerce platform, a subscription service, or a marketplace, the ability to process payments reliably, securely, and efficiently is fundamental to business operations.",
+      "path": "articles/What%20It%20Takes%20to%20Build%20a%20Payments%20Integration%3A%20Key%20Components%20and%20Considerations/README.md",
+      "slug": "what-it-takes-to-build-a-payments-integration-key-components-and-considerations"
+    },
+    {
+      "published": true,
       "title": "Drive iOS App Downloads with Clip",
       "author": [
         "Eric Qi / iOS Engineer"
@@ -79,24 +119,6 @@
       "intro": "Explore how resource limitations, specifically Compute Unit (CU) restrictions, affect Solana program development.",
       "path": "articles/Deep%20Dive%20into%20Resource%20Limitations%20in%20Solana%20Development%20CU%20Edition/README.md",
       "slug": "deep-dive-into-resource-limitations-in-solana-development-cu-edition"
-    },
-    {
-      "title": "Code to Cash: Expert Insights on Implementing Payment Processors in Your Web App",
-      "author": [
-        "GuangPeng Liu / Full stack engineer",
-        "Hum Tan/ Full stack engineer",
-        "Ida Zhou/ Backend engineer"
-      ],
-      "createTime": "2025-02-19T00:00:00.000Z",
-      "tags": [
-        "Web2",
-        "FinTech"
-      ],
-      "thumb": "thumb.png",
-      "thumb_h": "thumb_h.png",
-      "intro": "Provides a comprehensive guide on developing payment systems, covering integration strategies, modern payment trends, and detailed steps for integrating Stripe and PayPal.",
-      "path": "articles/Code%20to%20Cash%3A%20Expert%20Insights%20on%20Implementing%20Payment%20Processors%20in%20Your%20Web%20App/README.md",
-      "slug": "code-to-cash-expert-insights-on-implementing-payment-processors-in-your-web-app"
     },
     {
       "published": true,
@@ -451,6 +473,29 @@
       ],
       "path": "articles/Guide%20to%20Web3%20and%20dApp%20Infrastructure/README.md",
       "slug": "guide-to-web3-and-dapp-infrastructure"
+    },
+    {
+      "published": false,
+      "title": "Mastering Layer 1 Blockchain Testing: A Comprehensive Guide",
+      "author": [
+        "Jia Chen / QA Engineer",
+        "Jacqueline Zhang / QA Engineer",
+        "Tina Tang / QA Engineer",
+        "Jesse Zheng / QA Engineer"
+      ],
+      "createTime": "2024-04-01T00:00:00.000Z",
+      "tags": [
+        "Layer 1 blockchain",
+        "Ethereum Virtual Machine (EVM)",
+        "Cosmos",
+        "Blockchain testing",
+        "GitHub Actions"
+      ],
+      "thumb": "./thumb.png",
+      "thumb_h": "./thumb-h.png",
+      "intro": "As blockchain technology continues to transform industries with its promise of decentralization and transparency, the foundational layer of this technology, known as Layer 1 (L1) blockchains, plays a critical role. L1 blockchains provide the necessary infrastructure to build and operate decentralized applications, hosting the protocol and consensus layer fundamental to the entire network.",
+      "path": "articles/Mastering%20Layer%201%20Blockchain%20Testing%3A%20A%20Comprehensive%20Guide/README.md",
+      "slug": "mastering-layer-1-blockchain-testing-a-comprehensive-guide"
     }
   ]
 }
