@@ -53,7 +53,7 @@ These cases demonstrate that comprehensive testing at the blockchain protocol le
 * **Systemic Risks**: Systemic risks enable cascading failures, as the Heimdall vulnerability could have collapsed the entire bridge system;
 * **Boundary Complexity**: Complexity at system boundaries, like the Ethereum Log Confusion error, requires thorough testing to discover;
 * **Cryptoeconomic Attacks**: Novel cryptoeconomic models must be tested against game-theoretic attacks, exemplified by the Polygon consensus bypass vulnerability;
-* **Adversarial Environment**: The highly adversarial environment means that even attacks costing $50,000 - $100,000 to execute remain worthwhile for attackers eyeing a potential $2 billion payoff.
+* **Adversarial Environment**: The highly adversarial environment means that even attacks costing ``$50,000``-``$100,000`` to execute remain worthwhile for attackers eyeing a potential $2 billion payoff.
 
 These factors collectively create an urgent need for rigorous, comprehensive testing of blockchain protocols.
 
