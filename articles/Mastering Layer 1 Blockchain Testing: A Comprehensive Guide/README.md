@@ -6,12 +6,12 @@ createTime: 2024-04-01
 tags: ["Layer 1 blockchain", "Ethereum Virtual Machine (EVM)", "Cosmos", "Blockchain testing", "GitHub Actions"]
 thumb: "./thumb.png"
 thumb_h: "./thumb-h.png"
-intro: "As blockchain technology continues to transform industries with its promise of decentralization and transparency, the foundational layer of this technology, known as Layer 1 (L1) blockchains, plays a critical role. L1 blockchains provide the necessary infrastructure to build and operate decentralized applications, hosting the protocol and consensus layer fundamental to the entire network. Here, we describe for developers and QA testers how we approach testing Layer 1 blockchains built with EVM and Cosmos to reduce immutability, financial exposure, systemic risks, boundary complexity, cryptoeconomic attacks, and adversarial environments."
+intro: "As blockchain technology continues to transform industries with its promise of decentralization and transparency, the foundational layer of this technology, known as Layer 1 (L1) blockchains, plays a critical role. L1 blockchains provide the necessary infrastructure to build and operate decentralized applications, hosting the protocol and consensus layer fundamental to the entire network. Here, we describe for developers and QA testers how we approach testing L1 blockchains built with EVM and Cosmos to reduce immutability, financial exposure, systemic risks, boundary complexity, cryptoeconomic attacks, and adversarial environments."
 ---
 
 ## Introduction
 
-Layer 1 blockchains, like any software, always need to be tested before deployment. But testing a Layer 1 blockchain requires a very different mindset to approach QA strategy and test plans since bugs can't simply be patched after deployment and these bugs can cause catastrophic outages and significant investment loss. Here, we describe the best practices we use to approach Layer 1 blockchain testing to reduce immutability, financial exposure, systemic risks, boundary complexity, cryptoeconomic attacks, and adversarial environments.
+Layer 1 (L1) blockchains, like any software, always need to be tested before deployment. But testing an L1 blockchain requires a very different mindset to approach QA strategy and test plans since bugs can't simply be patched after deployment and these bugs can cause catastrophic outages and significant investment loss. Here, we describe the best practices we use to approach L1 blockchain testing to reduce immutability, financial exposure, systemic risks, boundary complexity, cryptoeconomic attacks, and adversarial environments.
 
 ### What the Article Will Cover
 
@@ -19,7 +19,7 @@ This article is a comprehensive guide tailored for developers and QA testers aim
 
 ### Brief Explanation of L1 Blockchain
 
-A Layer 1 (L1) blockchain is the base layer of a blockchain network that provides the fundamental infrastructure for decentralized transactions and applications. It handles transaction validation, consensus, and security directly on its protocol.
+An L1 blockchain is the base layer of a blockchain network that provides the fundamental infrastructure for decentralized transactions and applications. It handles transaction validation, consensus, and security directly on its protocol.
 
 Examples:
 
@@ -28,7 +28,7 @@ Examples:
 * Solana: Offers high throughput and fast transaction times, ideal for scalable decentralized apps.  
 * Stellar: Designed for quick, low-cost cross-border payments and financial transactions.
 
-Layer 1 blockchains serve as the foundational networks upon which other layers and applications rely. These blockchains maintain the protocol rules, consensus algorithms, and network architecture essential for transaction validation and data recording. EVM-based blockchains, such as Ethereum, offer robust environments for decentralized application (dApp) development through smart contracts, enabling automated and trustless transactions. In contrast, Cosmos leverages a modular approach with its SDK, facilitating the creation of sovereign blockchains interoperable within a wider ecosystem via the Inter-Blockchain Communication (IBC) protocol.
+L1 blockchains serve as the foundational networks upon which other layers and applications rely. These blockchains maintain the protocol rules, consensus algorithms, and network architecture essential for transaction validation and data recording. EVM-based blockchains, such as Ethereum, offer robust environments for decentralized application (dApp) development through smart contracts, enabling automated and trustless transactions. In contrast, Cosmos leverages a modular approach with its SDK, facilitating the creation of sovereign blockchains interoperable within a wider ecosystem via the Inter-Blockchain Communication (IBC) protocol.
 
 EVM and Cosmos represent different approaches to blockchain architecture, but have developed significant interconnectivity. While EVM-based chains like Ethereum use a single shared execution environment where all applications compete for resources, Cosmos creates specialized, sovereign blockchains optimized for specific applications. However, Cosmos bridges this architectural gap through EVM-compatible zones like Evmos and Cronos, allowing developers to deploy Ethereum-compatible smart contracts within the Cosmos ecosystem. These zones benefit from Cosmos's scalability and interoperability while maintaining compatibility with EVM tooling and libraries. Through IBC, Ethereum assets and data can flow between Cosmos chains, and solutions like Gravity Bridge facilitate direct communication between Cosmos and Ethereum mainnet. This relationship provides developers flexibility to leverage the security and network effects of Ethereum while accessing Cosmos's sovereignty and interconnection capabilities.
 
@@ -121,7 +121,7 @@ This type of testing focuses on key metrics such as throughput, typically measur
 
 ### Load Testing
 
-Load testing is an essential process for understanding how a L1 blockchain handles a large volume of transactions and interactions under normal and peak operating conditions. Simulate continuous real-time batch transaction concurrency, monitor CPU and memory, and analyze and evaluate test results to determine the network's capacity and bottlenecks in real scenarios.
+Load testing is an essential process for understanding how an L1 blockchain handles a large volume of transactions and interactions under normal and peak operating conditions. Simulate continuous real-time batch transaction concurrency, monitor CPU and memory, and analyze and evaluate test results to determine the network's capacity and bottlenecks in real scenarios.
 
 ### Smart Contract Testing
 
@@ -158,7 +158,7 @@ The two loops represent automated workflows for managing dev networks during rel
 #### How to develop a comprehensive testing strategy and plan
 
 * Define Testing Objectives: Identify what you want to achieve with the testing process and outline the specific goals and areas of the blockchain system that need evaluation.
-  * Identify key performance metrics such as transaction throughput, latency, and confirmation times with consideration on business requirements, infrastructure capabilities, consensus mechanism limitation.
+  * Identify key performance metrics such as transaction throughput, latency, and confirmation times with consideration on business requirements, infrastructure capabilities, and consensus mechanism limitation.
   * Determine security and stability requirements like resistance to double spending or denial of service.
 * Select Appropriate Testing Types: Choose a variety of testing methods (functional, performance, security, network, compatibility, and user experience) tailored to assess different components of the blockchain system.
 * Define Success Criteria: Determine the standards and benchmarks that must be met for the test to be successful. These criteria provide clear thresholds that can be used to evaluate the test results. They usually include quantifiable goals, such as meeting certain levels of functionality under expected and extreme conditions, specific performance metrics (such as transactions per second), acceptable latency ranges, and security compliance levels.
@@ -174,7 +174,7 @@ The two loops represent automated workflows for managing dev networks during rel
 
 #### How to implement automation tests
 
-* Select an Automation Framework: Use frameworks such as Mocha, Chai, and blockchain-specific toolkits like Hardhat, Foundry.  
+* Select an Automation Framework: Use frameworks such as Mocha or Chai, and blockchain-specific toolkits like Hardhat or Foundry.  
 * Design a test framework structure: Create an architectural foundation for the automated test system.
 * Develop Automation Scripts: Write scripts to automatically run repetitive test cases and validation checks based on test case priorities.  
 * Maintain Test Scripts: Regularly update and optimize scripts to align with blockchain codebase updates.
