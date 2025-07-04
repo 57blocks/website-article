@@ -1,8 +1,8 @@
 ---
-published: false
+published: true
 title: "Mastering Layer 1 Blockchain Testing: A Comprehensive Guide"
 author: ["Jia Chen / QA Engineer", "Jacqueline Zhang / QA Engineer", "Tina Tang / QA Engineer", "Jesse Zheng / QA Engineer"]
-createTime: 2024-04-01
+createTime: 2025-07-04
 tags: ["Layer 1 blockchain", "Ethereum Virtual Machine (EVM)", "Cosmos", "Blockchain testing", "GitHub Actions"]
 thumb: "./thumb.png"
 thumb_h: "./thumb-h.png"
