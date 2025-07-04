@@ -131,7 +131,7 @@ For example, imagine a payment system experiencing a database crash during peak 
 
 Additionally, like any well-rehearsed emergency protocols, ensure that everyone involved knows their role and what they need to do so the team can execute smoothly even under pressure. It's not just about having a plan; it's about having a plan you know will work when you need it most. To ensure this, teams should conduct regular test runs, such as simulated scenarios or tabletop exercises, to validate the plan's effectiveness and identify any gaps.  disaster recovery plan might involve running a mock system outage to test how quickly services can be restored. By routinely testing and refining the plan, teams can build confidence that it will perform as expected when it matters most.
 
-The key to making all this work isn't just having fancy tools and procedures you need teams who understand them and keep making them better. 
+The key to making all this work isn't just having fancy tools and procedures you need teams who understand them and keep making them better.
 
 In the world of payments, success relies not just on cutting-edge technology, but also on well-prepared teams. Even the most advanced systems can falter without skilled professionals to design, monitor, and maintain them. For instance, when a critical payment gateway experiences downtime, it’s the team’s expertise and preparedness that ensure quick identification of the issue, effective communication with stakeholders, and rapid implementation of a fix.
 
@@ -149,7 +149,17 @@ Let's dive into what keeps payment system developers both busy and anxious—mak
 
 Even a small issue, like a delay in communicating with the bank or a false fraud alert, can disrupt the entire transaction. In payments, there's no room for "almost right"—every part must work flawlessly to ensure a smooth user experience and maintain trust.
 
+The diagram below illustrates our layered approach to payment system testing. From integration architecture through deployment testing, each layer builds upon the previous one to ensure system reliability. Let's explore how these components work together to create a robust payment infrastructure.
+
 ![integration and testing](./integration-and-testing.png)
+
+Our Integration Architecture consists of three key elements. Component Interfaces define how services communicate, Circuit Breakers prevent cascade failures, and Retry Mechanisms handle temporary disruptions automatically.
+
+Our Testing Strategy follows a comprehensive progression: Unit Testing verifies individual components, Integration Testing ensures components work together, and System Testing validates end-to-end payment flows.
+
+We maintain three distinct Testing Environments: Developers first work in the Development Sandbox, then progress to the Testing Environment, and finally validate in the Staging Environment.
+
+Deployment Testing involves careful Rollout Procedures and Rollback Plans to ensure safe production updates.
 
 ### 4.1 Integration Architecture
 
