@@ -1,25 +1,25 @@
 ---
-published: false
+published: true
 title: "Mastering Layer 1 Blockchain Testing: A Comprehensive Guide"
-author: ["Jia Chen / QA Engineer", "Jacqueline Zhang / QA Engineer", "Tina Tang / QA Engineer", "Jesse Zheng / QA Engineer"]
-createTime: 2024-04-01
+author: ["Jia Chen / QA Engineer", "Jacqueline Zhang / QA Engineer", "Tina Tang / QA Engineer"]
+createTime: 2025-07-07
 tags: ["Layer 1 blockchain", "Ethereum Virtual Machine (EVM)", "Cosmos", "Blockchain testing", "GitHub Actions"]
 thumb: "./thumb.png"
 thumb_h: "./thumb-h.png"
-intro: "As blockchain technology continues to transform industries with its promise of decentralization and transparency, the foundational layer of this technology, known as Layer 1 (L1) blockchains, plays a critical role. L1 blockchains provide the necessary infrastructure to build and operate decentralized applications, hosting the protocol and consensus layer fundamental to the entire network."
+intro: "As blockchain technology continues to transform industries with its promise of decentralization and transparency, the foundational layer of this technology, known as Layer 1 (L1) blockchains, plays a critical role. L1 blockchains provide the necessary infrastructure to build and operate decentralized applications, hosting the protocol and consensus layer fundamental to the entire network. Here, we describe for developers and QA testers how we approach testing L1 blockchains built with EVM and Cosmos to reduce immutability, financial exposure, systemic risks, boundary complexity, cryptoeconomic attacks, and adversarial environments."
 ---
 
 ## Introduction
 
-As blockchain technology continues to transform industries with its promise of decentralization and transparency, the foundational layer of this technology, known as Layer 1 (L1) blockchains, plays a critical role. L1 blockchains provide the necessary infrastructure to build and operate decentralized applications, hosting the protocol and consensus layer fundamental to the entire network. Two prominent frameworks that exemplify this are the Ethereum Virtual Machine (EVM) and Cosmos SDK. Each introduces unique capabilities and benefits, such as EVM's smart contract compatibility and Cosmos's modular architecture for building custom blockchains.
+Layer 1 (L1) blockchains, like any software, always need to be tested before deployment. But testing an L1 blockchain requires a very different mindset to approach QA strategy and test plans since bugs can't simply be patched after deployment and these bugs can cause catastrophic outages and significant investment loss. Here, we describe the best practices we use to approach L1 blockchain testing to reduce immutability, financial exposure, systemic risks, boundary complexity, cryptoeconomic attacks, and adversarial environments.
 
-### Overview of What the Article Will Cover
+### What the Article Will Cover
 
 This article is a comprehensive guide tailored for developers and QA testers aiming to master the intricacies of testing L1 blockchains built with EVM and Cosmos. We will delve into the necessity of testing these foundational systems, exploring various types of testing including functional, performance, and smart contract testing. Additionally, we will provide a step-by-step guide on conducting efficient L1 blockchain testing, from setting up the testing environment to implementing automation and leveraging modern test frameworks. By the end of this guide, you will gain a deeper understanding of strategies and tools essential for ensuring that you have robust, secure, and scalable blockchain solutions.
 
 ### Brief Explanation of L1 Blockchain
 
-A Layer 1 (L1) blockchain is the base layer of a blockchain network that provides the fundamental infrastructure for decentralized transactions and applications. It handles transaction validation, consensus, and security directly on its protocol.
+An L1 blockchain is the base layer of a blockchain network that provides the fundamental infrastructure for decentralized transactions and applications. It handles transaction validation, consensus, and security directly on its protocol.
 
 Examples:
 
@@ -28,13 +28,13 @@ Examples:
 * Solana: Offers high throughput and fast transaction times, ideal for scalable decentralized apps.  
 * Stellar: Designed for quick, low-cost cross-border payments and financial transactions.
 
-Layer 1 blockchains serve as the foundational networks upon which other layers and applications rely. These blockchains maintain the protocol rules, consensus algorithms, and network architecture essential for transaction validation and data recording. EVM-based blockchains, such as Ethereum, offer robust environments for decentralized application (dApp) development through smart contracts, enabling automated and trustless transactions. In contrast, Cosmos leverages a modular approach with its SDK, facilitating the creation of sovereign blockchains interoperable within a wider ecosystem via the Inter-Blockchain Communication (IBC) protocol.
+L1 blockchains serve as the foundational networks upon which other layers and applications rely. These blockchains maintain the protocol rules, consensus algorithms, and network architecture essential for transaction validation and data recording. EVM-based blockchains, such as Ethereum, offer robust environments for decentralized application (dApp) development through smart contracts, enabling automated and trustless transactions. In contrast, Cosmos leverages a modular approach with its SDK, facilitating the creation of sovereign blockchains interoperable within a wider ecosystem via the Inter-Blockchain Communication (IBC) protocol.
 
 EVM and Cosmos represent different approaches to blockchain architecture, but have developed significant interconnectivity. While EVM-based chains like Ethereum use a single shared execution environment where all applications compete for resources, Cosmos creates specialized, sovereign blockchains optimized for specific applications. However, Cosmos bridges this architectural gap through EVM-compatible zones like Evmos and Cronos, allowing developers to deploy Ethereum-compatible smart contracts within the Cosmos ecosystem. These zones benefit from Cosmos's scalability and interoperability while maintaining compatibility with EVM tooling and libraries. Through IBC, Ethereum assets and data can flow between Cosmos chains, and solutions like Gravity Bridge facilitate direct communication between Cosmos and Ethereum mainnet. This relationship provides developers flexibility to leverage the security and network effects of Ethereum while accessing Cosmos's sovereignty and interconnection capabilities.
 
 ### Importance of Thorough Testing in Blockchain Technology
 
-The complexity and security demands of L1 blockchains necessitate rigorous testing to ensure their functionality, security, and resilience. Testing is vital for identifying and mitigating vulnerabilities, ensuring that the consensus mechanisms operate flawlessly, while optimizing performance under various conditions. With financial transactions and critical data processing at stake, any flaw can lead to significant economic losses, data breaches, or network outages. Thus, comprehensive testing not only safeguards the blockchain's integrity but also builds trust among users and developers. Thorough testing before launching a blockchain or its components is vital to prevent catastrophic failures. For instance: 
+The complexity and security demands of L1 blockchains necessitate rigorous testing to ensure their functionality, security, and resilience. Testing is vital for identifying and mitigating vulnerabilities, ensuring that the consensus mechanisms operate flawlessly, while optimizing performance under various conditions. With financial transactions and critical data processing at stake, any flaw can lead to significant economic losses, data breaches, or network outages. Thus, comprehensive testing not only safeguards the blockchain's integrity but also builds trust among users and developers and is vital to prevent catastrophic failures. For instance: 
 
 **Solana Network Outages (2022):** Repeated crashes under high traffic highlighted the consequences of insufficient stress testing. Simulating real-world transaction loads pre-launch could have improved network resilience.  
 
@@ -46,14 +46,14 @@ The complexity and security demands of L1 blockchains necessitate rigorous testi
 
 **Solana's Durable Nonce Bug (2022):** A protocol-level bug in Solana's transaction processing caused inconsistent behavior between validators when handling durable nonce transactions. Some validators accepted resubmitted transactions while others rejected them, creating a network fork and 4.5-hour outage. This was a fundamental consensus-level issue that better transaction edge case testing would have caught.
 
-These cases demonstrate that comprehensive testing at the blockchain protocol level is critically important, far exceeding the significance in traditional software development. This importance is driven by six key factors: 
+These cases demonstrate that comprehensive testing at the blockchain protocol level is critically important, far exceeding the significance in traditional software development. Addressing six key factors in a test strategy and plan could identify bugs early and prevent outages and attacks described in the cases above: 
 
-* the immutability of blockchain code makes errors difficult to fix, as demonstrated by the Polygon Heimdall Bridge vulnerability persisting for 5 years;   
-* protocol-level vulnerabilities directly threaten user funds, potentially leading to billions in losses;   
-* systemic risks enable cascading failures, as the Heimdall vulnerability could have collapsed the entire bridge system;   
-* complexity at system boundaries, like the Ethereum Log Confusion error, requires thorough testing to discover;   
-* novel cryptoeconomic models must be tested against game-theoretic attacks, exemplified by the Polygon consensus bypass vulnerability;   
-* and the highly adversarial environment means that even attacks costing $50,000-$100,000 to execute remain worthwhile for attackers eyeing a potential $2 billion payoff. 
+* **Immutability**: The immutability of blockchain code makes errors difficult to fix, as demonstrated by the Polygon Heimdall Bridge vulnerability persisting for 5 years;
+* **Financial Exposure**: Protocol-level vulnerabilities directly threaten user funds, potentially leading to billions in losses as seen in the DAO hack;
+* **Systemic Risks**: Systemic risks enable cascading failures, as the Heimdall vulnerability could have collapsed the entire bridge system;
+* **Boundary Complexity**: Complexity at system boundaries, like the Ethereum Log Confusion error, requires thorough testing to discover;
+* **Cryptoeconomic Attacks**: Novel cryptoeconomic models must be tested against game-theoretic attacks, exemplified by the Polygon consensus bypass vulnerability;
+* **Adversarial Environment**: The highly adversarial environment means that even attacks costing ＄50,000-＄100,000 to execute remain worthwhile for attackers eyeing a potential $2 billion payoff.
 
 These factors collectively create an urgent need for rigorous, comprehensive testing of blockchain protocols.
 
@@ -69,35 +69,35 @@ This type of testing ensures every feature of the blockchain works as intended, 
 
 * #### Consensus Algorithm Integrity
 
-Verifies the consensus protocols are functioning correctly in maintaining agreement across the network. Test for common scenarios where nodes might deviate due to bugs or malicious attempts.
+Verify that the consensus protocols are functioning correctly in maintaining agreement across the network. Also be sure to test for common scenarios where nodes might deviate due to bugs or malicious attempts.
 
 * #### Node Sync
 
-Ensures nodes in the network can synchronize and share data without errors. This testing evaluates how efficiently and accurately a node can sync with the rest of the network, from the initial block to the current state. It involves validating the complete download and verification of blockchain data, assessing the time taken for a node to sync under various network conditions, and ensuring that the node remains fully operational and accurate throughout the process. Additionally, node sync tests should cover scenarios involving network interruptions or bandwidth limitations, examining how well nodes can recover from or adapt to such disruptions.
+Node sync testing ensures that nodes in the network can synchronize and share data without errors. Further, this testing evaluates how efficiently and accurately a node can sync with the rest of the network, from the initial block to the current state. It involves validating the complete download and verification of blockchain data, assessing the time taken for a node to sync under various network conditions, and ensuring that the node remains fully operational and accurate throughout the process. Additionally, node sync tests should cover scenarios involving network interruptions or bandwidth limitations, examining how well nodes can recover from or adapt to such disruptions.
 
 * #### RPC
 
-Ensure that the RPC module is working as expected for EVM and consensus layer endpoints of all genesis validator nodes, including request and response schema validation, response status code validation.
+Ensure that the RPC module is working as expected for EVM and consensus layer endpoints of all genesis validator nodes, including request and response schema validation as well as response status code validation.
 
 * #### Fault Tolerance and Recovery
 
-Test the blockchain’s ability to recover from node downtime or failure. This involves simulating node crashes and examining recovery procedures, ensuring that the network sustains its integrity and performance after such events.
+Be sure to test the blockchain’s ability to recover from node downtime or failure. You can do this by simulating node crashes and examining recovery procedures, ensuring that the network sustains its integrity and performance after such events.
 
 * #### Staking
 
-Staking is the process by which validators lock up a certain amount of cryptocurrency to secure the network and validate transactions. Testing the staking mechanism involves validating that users can stake and un-stake their assets correctly, verifying that the staking balance updates accurately, and ensuring that the staking process respects consensus rules. 
+Staking is the process by which validators lock up a certain amount of cryptocurrency to secure the network and validate transactions. Test the staking mechanism by validating that users can stake and un-stake their assets correctly, verifying that the staking balance updates accurately, and ensuring that the staking process respects consensus rules.
 
 * #### Slashing
 
-Slashing serves as a deterrent for malicious actions, such as double signing or prolonged downtime by validators. Testing slashing mechanisms involves simulating scenarios where validators engage in unauthorized activities or fail to meet performance criteria. It’s important to ensure that penalties are transparent, proportionate, and deter harmful behavior without affecting network reliability. This involves testing the accuracy of slashing scripts and their ability to execute penalties precisely under different conditions.
+Slashing serves as a deterrent for malicious actions, such as double signing or prolonged downtime by validators. When you test slashing mechanisms, you’ll want to simulate scenarios where validators engage in unauthorized activities or fail to meet performance criteria. It’s important to ensure that penalties are transparent, proportionate, and deter harmful behavior without affecting network reliability. To do this, you’ll need to test the accuracy of slashing scripts and their ability to execute penalties precisely under different conditions.
 
 * #### Rewards distribution
 
-Validators and stakers are incentivized through rewards, which must be distributed fairly and accurately. Testing rewards distribution involves validating the calculations for reward payouts based on network contributions and ensuring that transaction fees and newly minted tokens are allocated correctly. Testers need to simulate various stake distributions and network activity scenarios to ensure reward mechanisms function as expected, even during forks or network upgrades.
+Validators and stakers are incentivized through rewards, which must be distributed fairly and accurately. To test rewards distribution, validate the calculations for reward payouts based on network contributions and ensure that transaction fees and newly minted tokens are allocated correctly. Testers need to simulate various stake distributions and network activity scenarios to ensure reward mechanisms function as expected, even during forks or network upgrades.
 
-* #### Websocket
+* #### WebSocket
 
-WebSocket is commonly used to facilitate real-time communication between clients and blockchain nodes. Usually the websocket method is called periodically to monitor whether the communication is connected.
+WebSocket is commonly used to facilitate real-time communication between clients and blockchain nodes. Usually the WebSocket method is called periodically to monitor whether the communication is connected.
 
 * #### Cosmos API (Optional)
 
@@ -105,7 +105,7 @@ Testing the Cosmos API is particularly relevant for blockchains that are built o
 
 ### Upgrade Testing
 
-Ensures the blockchain can handle new software updates without disruption. The test focuses on validating both soft fork and hard fork upgrades, each presenting unique challenges. A soft fork, which is backward-compatible, requires testing to ensure that nodes running older versions continue to operate correctly with upgraded peers, maintaining consensus without disruption. Conversely, a hard fork necessitates a complete protocol change, where nodes must adopt the new rules to remain part of the network. Testing involves simulating the upgrade process to ensure that nodes transition smoothly from the old protocol to the new one, without data loss or service interruption. 
+Upgrade testing ensures the blockchain can handle new software updates without disruption. The test focuses on validating both soft fork and hard fork upgrades, each presenting unique challenges. A soft fork, which is backward-compatible, requires testing to ensure that nodes running older versions continue to operate correctly with upgraded peers, maintaining consensus without disruption. Conversely, a hard fork necessitates a complete protocol change, where nodes must adopt the new rules to remain part of the network. Testing involves simulating the upgrade process to ensure that nodes transition smoothly from the old protocol to the new one, without data loss or service interruption. 
 
 * #### Ethereum's Upgrade through Rolling Upgrade
 
@@ -121,11 +121,12 @@ This type of testing focuses on key metrics such as throughput, typically measur
 
 ### Load Testing
 
-Load testing is an essential process for understanding how a Layer 1 (L1) blockchain handles a large volume of transactions and interactions under normal and peak operating conditions. Simulate continuous real-time batch transaction concurrency, monitor CPU and memory, analyze and evaluate test results to determine the network's capacity and bottlenecks in real scenarios.
+Load testing is an essential process for understanding how an L1 blockchain handles a large volume of transactions and interactions under normal and peak operating conditions. Simulate continuous real-time batch transaction concurrency, monitor CPU and memory, and analyze and evaluate test results to determine the network's capacity and bottlenecks in real scenarios.
 
-### [Smart Contract Testing](https://57blocks.io/blog/how-to-qa-smart-contracts-on-blockchain)
+### Smart Contract Testing
 
-Since smart contracts automate processes within the blockchain, testing ensures they operate flawlessly and securely.
+Since smart contracts automate processes within the blockchain, testing ensures they operate flawlessly and securely. (Learn more about [smart contract testing](https://57blocks.io/blog/how-to-qa-smart-contracts-on-blockchain).)
+
 
 ## How To Conduct L1 Blockchain Testing
 
@@ -133,8 +134,8 @@ This section serves as your starting point in the blockchain testing journey, of
 
 ### Test Process
 
-This diagram illustrates a streamlined workflow for testing and deploying blockchain networks using GitHub Actions and CI/CD integration. It consists of two key loops and five distinct stages.  
-The five distinct stages:
+The diagram below illustrates a streamlined workflow for testing and deploying blockchain networks using GitHub Actions and CI/CD integration. It consists of two key loops and five distinct stages.
+The five distinct stages are:
 
 1. Prepare Environment: Set up the test environment by deploying a dev network with the required version and external test nodes.  
 2. Design Test Strategy/Plan: Define testing objectives, select test types, set success criteria, and choose appropriate tools.  
@@ -150,17 +151,17 @@ The two loops represent automated workflows for managing dev networks during rel
 #### How to prepare the testing environment
 
 * Configure virtual machines or cloud instances (e.g., AWS, Google Cloud) to create a realistic test environment.  
-* Deploy development network simulating different network conditions. It is best to prepare deployment scripts to facilitate network reset using GitHub Actions. The network is a separate network with initial parameters that mimic the mainnet and public testnet’s settings.   
-* Deploy external test nodes and join the network.  
+* Deploy an isolated development network that mimics mainnet and public testnet settings. Use deployment scripts with GitHub Actions to enable quick network resets for testing.
+* Deploy external test nodes and join the development network.
 * Implement firewalls and Grafana to monitor network activity and protect the infrastructure.
 
 #### How to develop a comprehensive testing strategy and plan
 
-* Define Testing Objectives:  
-  * Identify key performance metrics such as transaction throughput, latency, and confirmation times.  
-  * Determine security and stability requirements like resistance to double spending or denial of service.  
-* Select Testing Types  
-* Define Success Criteria
+* Define Testing Objectives: Identify what you want to achieve with the testing process and outline the specific goals and areas of the blockchain system that need evaluation.
+  * Identify key performance metrics such as transaction throughput, latency, and confirmation times with consideration on business requirements, infrastructure capabilities, and consensus mechanism limitation.
+  * Determine security and stability requirements like resistance to double spending or denial of service.
+* Select Appropriate Testing Types: Choose a variety of testing methods (functional, performance, security, network, compatibility, and user experience) tailored to assess different components of the blockchain system.
+* Define Success Criteria: Determine the standards and benchmarks that must be met for the test to be successful. These criteria provide clear thresholds that can be used to evaluate the test results. They usually include quantifiable goals, such as meeting certain levels of functionality under expected and extreme conditions, specific performance metrics (such as transactions per second), acceptable latency ranges, and security compliance levels.
 
 #### How to design and execute test cases
 
@@ -173,14 +174,14 @@ The two loops represent automated workflows for managing dev networks during rel
 
 #### How to implement automation tests
 
-* Select Automation Framework: Use frameworks such as Mocha, Chai, and blockchain-specific toolkits like Hardhat, Foundry.  
-* Design test framework structure  
+* Select an Automation Framework: Use frameworks such as Mocha or Chai, and blockchain-specific toolkits like Hardhat or Foundry.  
+* Design a test framework structure: Create an architectural foundation for the automated test system.
 * Develop Automation Scripts: Write scripts to automatically run repetitive test cases and validation checks based on test case priorities.  
 * Maintain Test Scripts: Regularly update and optimize scripts to align with blockchain codebase updates.
 
 #### How to run tests with CI/CD (GitHub Actions)
 
-* Setup Continuous Integration (CI) Environment:  
+* Setup a Continuous Integration (CI) Environment:  
   * Define workflows for automating build and test sequences.  
   * Incorporate necessary environment variables and secrets securely through GitHub secrets.  
 * Schedule/Trigger Test Runs:   
@@ -188,7 +189,7 @@ The two loops represent automated workflows for managing dev networks during rel
   * PR merge triggers the establishment of a temporary development network and runs tests. After the test is completed, the temporary development network is destroyed and a test report notification is sent.  
   * Creating a release version triggers an upgrade to the development network and tests it. After the test is complete, a test report notification is sent.  
 * Monitor Build and Test Output:  
-  * Generate test report and upload to GitHub Actions.  
+  * Generate a test report and upload it to GitHub Actions.  
   * Analyze logs and outputs from test runs for anomalies or failures.  
   * Utilize alert systems to notify relevant team members of failed tests or build issues.  
 * Continuous Feedback Loop:  
@@ -197,12 +198,17 @@ The two loops represent automated workflows for managing dev networks during rel
 
 ### Leverage a Test Framework
 
-The test framework is designed to validate and analyze blockchain-related functionalities, integrating multiple components to enable a comprehensive testing workflow:
+The test framework is designed to validate and analyze blockchain-related functionalities, integrating multiple components to enable a comprehensive testing workflow.
 
-* GitHub Actions serves as the starting point, with workflows defined in YAML to automate the testing process. Test reports are generated and stored as accessible pages.  
-* Test Helper/Utils provides a suite of utilities for core testing areas, including staking, rewards, slashing, transactions, and node operations, built on dependencies such as Foundry, Mocha, Ethers.js, and Chai.  
-* Test Case Categories encompass RPC testing, consensus validation (mechanisms, node synchronization, and fault tolerance), business logic (staking, slashing, and rewards), and capability testing (performance, load, and WebSocket functionalities).  
-* L1 Chain Environment represents the testing setup, including various blockchain nodes like validators, boot nodes, RPC nodes, and test nodes.
+Prerequisites:
+* Set up the infrastructure and start the L1 test blockchain.
+* Knowledge about TypeScript, Foundry, Mocha, Ethers.js, and Chai.
+
+Modules:
+* GitHub Actions serves as the starting point, with workflows defined in YAML to automate the testing process. Test reports are generated and stored as accessible pages.
+* Test Helper/Utils provides a suite of utilities for core testing areas, including staking, rewards, slashing, transactions, and node operations, built on dependencies such as Foundry, Mocha, Ethers.js, and Chai.
+* Test Case Categories encompass RPC testing, consensus validation (mechanisms, node synchronization, and fault tolerance), business logic (staking, slashing, and rewards), and capability testing (performance, load, and WebSocket functionalities). 
+* L1 Chain Environment represents the chain profile, describing various blockchain nodes like validators, boot nodes, RPC nodes, and test nodes.
 :::center
 ![](Group-2147224160.png)
 :::
@@ -212,12 +218,12 @@ The test framework is designed to validate and analyze blockchain-related functi
 * Implementation: Test cases are written in TypeScript due to its strong typing, which reduces runtime errors and improves code maintainability. TypeScript allows for easier refactoring and faster development due to its autocompletion and code navigation features.  
 * Structure: Organize test cases into directories based on specific features or components of the blockchain to ensure logical separation and easier maintenance.  
 * Annotation and Documentation: Annotate test cases clearly to describe the scenario, expected behavior, and any setup or teardown procedures necessary for execution. Incorporate comments or docstrings to clarify intent for other developers.  
-* Set up and clean the data as needed for clear tests: Set reasonable preconditions for the test and clean up the data after the test is completed to ensure that each test is independent and repeatable to avoid affecting each other.
+* Set up and clean the data as needed for clear tests: Set reasonable preconditions for the test and clean up the data after the test is completed to ensure that each test is independent and repeatable to avoid affecting the others.
 
 #### When to use Test Helper/Utils
 
-* Auxiliary Functions: Implement reusable utility functions that handle common tasks, such as setup and teardown procedures, generating mock data, or interacting with blockchain nodes.  
-* Tool Classes: Create specialized classes that encapsulate functions relevant to frequently used testing operations \- for instance, classes dealing with blockchain transactions, network simulations, or cryptographic functions.  
+* Auxiliary Functions: Implement reusable utility functions that handle common tasks, such as setup and teardown procedures, generating mock data, or interacting with blockchain nodes. 
+* Tool Classes: Create specialized classes that encapsulate functions relevant to frequently used testing operations such as classes dealing with blockchain transactions, network simulations, or cryptographic functions.  
 * Error Handling and Logging: Integrate comprehensive error handling within helper functions to catch exceptions early and provide meaningful error messages. Implement logging to capture detailed information for debugging purposes.
 
 #### How to address dependencies
@@ -234,19 +240,22 @@ The test framework is designed to validate and analyze blockchain-related functi
 
 ## Conclusion
 
-The blockchain industry has learned expensive lessons from failures like The DAO hack and Solana's outages. These incidents highlight a fundamental truth: traditional software testing approaches are insufficient for blockchain systems where bugs can't simply be patched after deployment.
+The blockchain industry has learned expensive lessons from failures like the DAO hack and Solana's outages. These incidents highlight a fundamental truth: traditional software testing approaches are insufficient for blockchain systems where bugs can't simply be patched after deployment.
 
 ### What You Should Take Away
 
-Testing L1 blockchains requires a fundamentally different mindset. You're not just testing code-you're validating economic models, consensus mechanisms, and systems that handle real financial value. The six-factor risk model we discussed (immutability, financial exposure, systemic risks, boundary complexity, cryptoeconomic attacks, and adversarial environments) makes comprehensive testing non-negotiable.
+Testing L1 blockchains requires a fundamentally different mindset. You're not just testing code–you're validating economic models, consensus mechanisms, and systems that handle real financial value. The six-factor risk model we described earlier (immutability, financial exposure, systemic risks, boundary complexity, cryptoeconomic attacks, and adversarial environments) makes comprehensive testing non-negotiable.
 
-The testing pyramid we've outlined-from functional testing of consensus algorithms to performance testing under load-provides a practical roadmap. Whether you're working with EVM-based chains or Cosmos SDK implementations, the core principles remain: test early, test thoroughly, and automate everything possible.
+The testing pyramid we've outlined–from functional testing of consensus algorithms to performance testing under load–provides a practical roadmap for any L1 blockchain project. Whether you're working with EVM-based chains or Cosmos SDK implementations, the core principles remain: test early, test thoroughly, and automate everything possible.
 
 Your testing environment should mirror production conditions as closely as possible. Use CI/CD pipelines to catch issues before they reach mainnet. Simulate network failures, test upgrade mechanisms, and validate economic incentives under stress.
 
 ### The Bottom Line
 
-Blockchain testing isn't just about preventing bugs-it's about protecting user funds and maintaining network integrity. The cost of comprehensive testing is always less than the cost of a single major failure. As the industry matures, robust testing practices will separate successful projects from cautionary tales.
+Blockchain testing isn't just about preventing bugs–it's about protecting user funds and maintaining network integrity. The cost of comprehensive testing is always less than the cost of a single major failure. As the industry matures, robust testing practices will separate successful projects from cautionary tales.
+
+## Looking Ahead: Open Source Testing Framework
+To help teams put these principles into practice, in coming months, we will be releasing an open source blockchain testing framework, ChainSmith. ChainSmith is 57Blocks’ new open-source framework and managed-service offering for chain-layer reliability testing. It lets us and our clients describe complex, real-world failure scenarios and run them automatically on L1 devnet/testnet.
 
 ## References
 
