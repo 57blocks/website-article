@@ -10,6 +10,9 @@
         "Anjing Wang / AI Lead"
       ],
       "createTime": "2024-05-21T00:00:00.000Z",
+      "categories": [
+        "engineering"
+      ],
       "tags": [
         "Image Search",
         "Image Retrieval",
@@ -45,6 +48,9 @@
         "Jesse Zheng / QA Engineer"
       ],
       "createTime": "2025-07-07T00:00:00.000Z",
+      "categories": [
+        "engineering"
+      ],
       "tags": [
         "Layer 1 blockchain",
         "Ethereum Virtual Machine (EVM)",
@@ -67,6 +73,9 @@
         "Hum Tan / Fullstack Engineer"
       ],
       "createTime": "2025-06-23T00:00:00.000Z",
+      "categories": [
+        "engineering"
+      ],
       "tags": [
         "Web2",
         "FinTech"
@@ -87,6 +96,9 @@
       "createTime": "2025-04-17T00:00:00.000Z",
       "thumb": "thumb.png",
       "thumb_h": "thumb_h.png",
+      "categories": [
+        "engineering"
+      ],
       "tags": [
         "Payment",
         "Components"
@@ -105,6 +117,9 @@
         "Eric Qi / iOS Engineer"
       ],
       "createTime": "2025-03-25T00:00:00.000Z",
+      "categories": [
+        "engineering"
+      ],
       "tags": [
         "App Clip",
         "iOS",
@@ -127,6 +142,9 @@
         "Jimmy Zhao / Fullstack Engineer"
       ],
       "createTime": "2025-02-20T00:00:00.000Z",
+      "categories": [
+        "engineering"
+      ],
       "tags": [
         "Web3",
         "Blockchain",
@@ -150,6 +168,9 @@
         "Zewei Zhang / Front-End Engineer"
       ],
       "createTime": "2025-01-13T00:00:00.000Z",
+      "categories": [
+        "engineering"
+      ],
       "tags": [
         "Web3",
         "Account Abstraction",
@@ -173,6 +194,9 @@
         "Bonnie Chen/ Front-End Engineer"
       ],
       "createTime": "2025-01-10T00:00:00.000Z",
+      "categories": [
+        "engineering"
+      ],
       "tags": [
         "Blockchain",
         "Encryption"
@@ -193,6 +217,9 @@
         "Bonnie Chen/ Front-End Engineer"
       ],
       "createTime": "2024-09-18T00:00:00.000Z",
+      "categories": [
+        "engineering"
+      ],
       "tags": [
         "Frontend",
         "Performance"
@@ -215,6 +242,9 @@
         "Teki Yang / Tech Lead"
       ],
       "createTime": "2024-07-26T00:00:00.000Z",
+      "categories": [
+        "engineering"
+      ],
       "tags": [
         "B2B",
         "Multi-tenancy",
@@ -239,6 +269,9 @@
         "Anjing Wang / AI Lead"
       ],
       "createTime": "2024-05-22T00:00:00.000Z",
+      "categories": [
+        "engineering"
+      ],
       "tags": [
         "Vector Database",
         "Pinecone",
@@ -264,6 +297,9 @@
         "Anjing Wang / AI Lead"
       ],
       "createTime": "2024-05-21T00:00:00.000Z",
+      "categories": [
+        "engineering"
+      ],
       "tags": [
         "Information Extraction",
         "LLM"
@@ -287,6 +323,9 @@
         "Rafael Ruiz / Android Engineer"
       ],
       "createTime": "2024-05-09T00:00:00.000Z",
+      "categories": [
+        "engineering"
+      ],
       "tags": [
         "Mobile",
         "Android"
@@ -310,6 +349,9 @@
         "Yongzhi Yang / Back-End Engineer, Team Lead"
       ],
       "createTime": "2024-05-09T00:00:00.000Z",
+      "categories": [
+        "engineering"
+      ],
       "tags": [
         "CI/CD",
         "Workflow"
@@ -335,6 +377,9 @@
         "Martha Luo / QA Engineer"
       ],
       "createTime": "2024-05-07T00:00:00.000Z",
+      "categories": [
+        "engineering"
+      ],
       "tags": [
         "QA strategy",
         "CI",
@@ -359,6 +404,9 @@
         "Andy Lai / Fullstack Engineer"
       ],
       "createTime": "2024-04-23T00:00:00.000Z",
+      "categories": [
+        "engineering"
+      ],
       "tags": [
         "JavaScript Framework",
         "React",
@@ -367,6 +415,7 @@
       "landingPages": [
         "AI-AI Infra and Framework"
       ],
+      "heroColor": null,
       "thumb": "https://s3.amazonaws.com/assets.57blocks.io/cms_uploads/illustration_cup_an_laptop_e12de970e5.png",
       "thumb_h": "./thumb_h.png",
       "intro": "Feeling overwhelmed by the number of tools available for your oprganization’s front-end build pipeline? Don't worry. We're sharing all we've learned about these tools while working on our projects and summarized it here. This comprehensive guide is designed to provide you with the knowledge and confidence to navigate the complexities of modern front-end development, mitigating difficulties and improving results.",
@@ -384,6 +433,9 @@
         "Juan E Quintero R / Tech Lead"
       ],
       "createTime": "2024-04-22T00:00:00.000Z",
+      "categories": [
+        "engineering"
+      ],
       "tags": [
         "Reactive",
         "Flutter",
@@ -408,11 +460,15 @@
         "Shi Chen / Product Manager"
       ],
       "createTime": "2024-04-21T00:00:00.000Z",
+      "categories": [
+        "engineering"
+      ],
       "tags": [
         "SEO",
         "Growth",
         "Alternative Investment"
       ],
+      "heroColor": null,
       "thumb": "https://s3.amazonaws.com/assets.57blocks.io/cms_uploads/illustration_seo_db9bc06b49.png",
       "thumb_h": "./thumb_h.png",
       "intro": "You may have heard that programmatic SEO could boost site traffic from search engines and increase leads. However, considering the complexities of implementation can be intimidating. In this blog, we describe our design and client collaboration process, along with our findings and we outline the numerous client benefits after launch.",
@@ -430,6 +486,9 @@
         "Roy Xie / Tech Lead"
       ],
       "createTime": "2024-04-20T00:00:00.000Z",
+      "categories": [
+        "engineering"
+      ],
       "tags": [
         "Image Quality",
         "CNN",
@@ -455,6 +514,9 @@
         "Lily Hu / Smart Contract Engineer"
       ],
       "createTime": "2024-04-19T00:00:00.000Z",
+      "categories": [
+        "engineering"
+      ],
       "tags": [
         "Smart Contract",
         "Web3",
@@ -479,6 +541,9 @@
         "Wei Wang / Tech Lead"
       ],
       "createTime": "2024-04-18T00:00:00.000Z",
+      "categories": [
+        "engineering"
+      ],
       "tags": [
         "Smart Contract",
         "Web3",
