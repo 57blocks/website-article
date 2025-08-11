@@ -4,6 +4,7 @@ author: ["GuangPeng Liu / Fullstack Engineer", "Ida Zhou / Backend Engineer", "H
 createTime: 2025-04-17
 thumb: "thumb.png"
 thumb_h: "thumb_h.png"
+categories: ["engineering"]
 tags: ["Payment", "Components"]
 landingPages: ["AI-AI Infra and Framework"]
 intro: "In today's digital economy, payment integration represents far more than just a technical implementation—it's a critical business capability that can define the success or failure of modern digital platforms. Whether you're building an e-commerce platform, a subscription service, or a marketplace, the ability to process payments reliably, securely, and efficiently is fundamental to business operations."

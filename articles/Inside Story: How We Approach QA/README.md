@@ -3,6 +3,7 @@ published: true
 title: "Inside Story: How We Approach QA"
 author: ["Jia Chen / QA Engineer", "Martha Luo / QA Engineer"]
 createTime: 2024-05-07
+categories: ["engineering"]
 tags: ["QA strategy", "CI",  "Automation Framework"]
 landingPages: ["Blockchain-Onchain infra"]
 thumb: "./thumb.png"

@@ -3,6 +3,7 @@ published: true
 title: "Image Quality Assessment Using Machine Learning"
 author: ["Damon Wang / Android Engineer", "Roy Xie / Tech Lead"]
 createTime: 2024-04-20
+categories: ["engineering"]
 tags: ["Image Quality", "CNN", "OpenCV"]
 landingPages: ["AI-AI/ML Model Dev", "Blockchai-AI agent"]
 thumb: "https://s3.amazonaws.com/assets.57blocks.io/cms_uploads/illustration_blue_squares_c1bbaab97b.png"

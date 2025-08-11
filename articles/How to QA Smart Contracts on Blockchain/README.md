@@ -3,6 +3,7 @@ published: true
 title: "How to QA Smart Contracts on Blockchain"
 author: ["Lily Hu / Smart Contract Engineer"]
 createTime: 2024-04-19
+categories: ["engineering"]
 tags: ["Smart Contract", "Web3", "QA"]
 landingPages: ["Blockchain-Onchain infra"]
 thumb: "./thumb.png"
