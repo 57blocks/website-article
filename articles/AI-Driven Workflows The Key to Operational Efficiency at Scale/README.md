@@ -4,7 +4,7 @@ title: "AI-Driven Workflows: The Key to Operational Efficiency at Scale"
 author: ["Traci Flitcraft"]
 createTime: 2025-07-17
 categories: ["business"]
-tags: []
+tags: ["AI"]
 landingPages: []
 heroColor: #4996F1
 thumb: "https://s3.amazonaws.com/assets.57blocks.io/cms_uploads/illustration_cup_an_laptop_e12de970e5.png"
