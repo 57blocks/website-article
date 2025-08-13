@@ -6,8 +6,8 @@ createTime: 2025-07-17
 categories: ["business"]
 tags: ["Cross-chain transactions", "Intent based swaps", "Chain interoperability"]
 landingPages: []
-heroColor: #4996F1
-thumb: "https://s3.amazonaws.com/assets.57blocks.io/cms_uploads/illustration_cup_an_laptop_e12de970e5.png"
+heroColor: 
+thumb: "./thumb.png"
 thumb_h: "./thumb_h.png"
 intro: "How intent-based swaps revolutionize cross-chain transactions making crypto UX simple and secure."
 previousSlugs: ["ai-driven-workflows"]
