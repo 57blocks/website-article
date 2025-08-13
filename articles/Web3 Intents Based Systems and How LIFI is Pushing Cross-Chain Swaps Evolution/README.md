@@ -21,9 +21,9 @@ You know that feeling when something should be simple - like transferring money 
 
 Instead of forcing users to figure out how to move their assets including bridges, gas tokens, and token standards, it’s more effective to let them focus on what they want to achieve - not on how to get there.
 
-Our collaboration with LI.FI is about more than bridging a technical gap. It shows the industry that seamless, secure cross-chain transactions are achievable today. Empowering LI.FI to aggregate liquidity across multiple DEXs and blockchains pushes the boundaries of what end-users and developers can accomplish in the DeFi space:
+Our collaboration with [LI.FI](https://li.fi/) is about more than bridging a technical gap. It shows the industry that seamless, secure cross-chain transactions are achievable today. Empowering [LI.FI](https://li.fi/) to aggregate liquidity across multiple DEXs and blockchains pushes the boundaries of what end-users and developers can accomplish in the DeFi space:
 
-- **Transforming the user experience today.** Every upgrade to LI.FI’s aggregation engine means crypto users can swap assets cross-chain more easily and cost-effectively. There’s no need to understand the complexities beneath the surface; the best price and path are just a click away. This simplicity is powering a new standard for user-centric DeFi.
+- **Transforming the user experience today.** Every upgrade to [LI.FI](https://li.fi/)’s aggregation engine means crypto users can swap assets cross-chain more easily and cost-effectively. There’s no need to understand the complexities beneath the surface; the best price and path are just a click away. This simplicity is powering a new standard for user-centric DeFi.
 - **Leading the conversation on what’s next.** Our work intersects with the evolution of intent-based systems, an innovation that goes far beyond swaps. We see emerging opportunities for intent-driven lending, staking, and borrowing solutions that could make complex operations as easy as submitting a single request. Imagine rebalancing your portfolio, participating in a staking opportunity, or borrowing against assets across multiple chains with one action, all orchestrated behind the scenes for the user.
 - **Seamless blockchain interoperability and mainstream adoption.** As this technology matures, interoperability between blockchains will become seamless to the end user; they’ll simply express what they want, and the most efficient path will be executed instantaneously, regardless of chain or liquidity source. This paves the way for the broader adoption of DeFi, making crypto as seamless and accessible as any mainstream financial app.
 
@@ -43,18 +43,18 @@ It's like trying to exchange currency by visiting two different banks, filling o
 
 ## A Partnership for Secure, User-Centric Web3
 
-That's why we're thrilled to be working closely with LI.FI, a company that's tackling this exact challenge head-on. From our first conversations with their team, it was clear we shared the same fundamental belief that technology should empower users, not overwhelm them.
+That's why we're thrilled to be working closely with [LI.FI](https://li.fi/), a company that's tackling this exact challenge head-on. From our first conversations with their team, it was clear we shared the same fundamental belief that technology should empower users, not overwhelm them.
 
-![LI.FI](./logo-lifi.png){.d-block .mx-auto .mw-100}
+![[LI.FI](https://li.fi/)](./logo-lifi.png){.d-block .mx-auto .mw-100}
 
-LI.FI is launching intent-based cross-chain swaps, and it's about to change how people think about moving money across different blockchains. Think of it like this. Instead of telling the system how to do something step by step, you just tell it what you want to achieve. It's like calling an Uber instead of planning your own route with multiple bus transfers.
+[LI.FI](https://li.fi/) is launching intent-based cross-chain swaps, and it's about to change how people think about moving money across different blockchains. Think of it like this. Instead of telling the system how to do something step by step, you just tell it what you want to achieve. It's like calling an Uber instead of planning your own route with multiple bus transfers.
 
 
 ![Without intents VS With intents](./compare-intents.png){.d-block .mx-auto .mw-100}
 
 ## Revolutionizing Cross-Chain Transactions with Intent-Based Solutions
 
-LI.FI's intents based cross-chain transactions solution works like a marketplace where you express what you want, and specialized service providers (called solvers) compete to give you the best deal.
+[LI.FI](https://li.fi/)'s intents based cross-chain transactions solution works like a marketplace where you express what you want, and specialized service providers (called solvers) compete to give you the best deal.
 
 Here's what that looks like on the user's end:
 
@@ -71,7 +71,7 @@ It's like having a personal assistant who knows all the best routes and handles 
 
 ## Real Security, Real Innovation
 
-LI.FI’s “Open Intent Framework” (ERC‑7683) standardizes the way to express cross-chain intents, enabling any frontend, wallet, or protocol to describe what a user wants without prescribing how it should be fulfilled. For execution, Resource Locks - used in implementations like Uniswap’s Compact - ensure secure escrow during the transaction. This design prevents users from withdrawing funds prematurely and guarantees that solvers can only settle intents with a matching orderHash proven on the destination chain. Together, these frameworks ensure that funds remain safe and solvers are only compensated after successful fulfillment.
+[LI.FI](https://li.fi/)’s “Open Intent Framework” (ERC‑7683) standardizes the way to express cross-chain intents, enabling any frontend, wallet, or protocol to describe what a user wants without prescribing how it should be fulfilled. For execution, [Resource Locks](https://li.fi/knowledge-hub/li-fi-intents-are-taking-over-resource-locks-make-them-scale/) - used in implementations like [Uniswap’s Compact](https://github.com/Uniswap/the-compact) - ensure secure escrow during the transaction. This design prevents users from withdrawing funds prematurely and guarantees that solvers can only settle intents with a matching orderHash proven on the destination chain. Together, these frameworks ensure that funds remain safe and solvers are only compensated after successful fulfillment.
 
 ![Without standard for intent expression VS With standarized intend expression ERC-7683](./compare-intent-expression.png){.d-block .mx-auto .mw-100}
 
@@ -79,20 +79,34 @@ LI.FI’s “Open Intent Framework” (ERC‑7683) standardizes the way to expre
 
 While many solutions focus on just a few popular blockchains, building for the multi-chain is the future. Including Bitcoin support, which is more complex than filling EVM orders, is surprisingly rare in this space. This forward-thinking approach aligns perfectly with building for tomorrow, not just today, and ensures cross-chain transaction platforms can handle whatever the future brings.
 
-## Unlocking Cross-Chain Liquidity: Why LI.FI’s Evolution Matters
+## Unlocking Cross-Chain Liquidity: Why [LI.FI](https://li.fi/)’s Evolution Matters
 
-As LI.FI continues to evolve, its role in the multi-chain DeFi landscape becomes even more significant. We’re helping LI.FI accelerate its mission by advancing its DEX aggregation service, expanding its reach across blockchains, and seamlessly unlocking new liquidity sources. These enhancements have a broad impact throughout the ecosystem.
+As [LI.FI](https://li.fi/) continues to evolve, its role in the multi-chain DeFi landscape becomes even more significant. We’re helping [LI.FI](https://li.fi/) accelerate its mission by advancing its DEX aggregation service, expanding its reach across blockchains, and seamlessly unlocking new liquidity sources. These enhancements have a broad impact throughout the ecosystem.
 
 Several major DeFi projects have embraced intent-based systems, each putting their spin on simplifying how users trade or move assets:
 
-- ![Logo](./logo-cow-swap.png){.d-inline-block .mx-auto .align-middle height=40px}**CoW Swap** (abbr. for Coincidence of Wants) launched in April 2021, enabling intent-based trading on a single chain via CoW-based atomic swaps that match compatible user orders directly. It uses a Dutch Auction mechanism to incentivize solver competition, reducing MEV risk and allowing for positive slippage. CoW Swap’s design has influenced cross-chain development by showing that a healthy solver marketplace doesn’t require a dominant player.
+<div class="row">
+  <div class="col-12 col-md-6">
+    <div style="--bs-border-color: #46CDE9; box-shadow: 6px 4px 0px 0px var(--bs-border-color);" class="h-100 border border-light">
+      <img alt="Logo" src="./logo-cow-swap.png" height="32" style="height: 32px;" />
+      <p class="mb-0"><strong>CoW Swap</strong> (abbr. for Coincidence of Wants) launched in April 2021, enabling intent-based trading on a single chain via CoW-based atomic swaps that match compatible user orders directly. It uses a Dutch Auction mechanism to incentivize solver competition, reducing MEV risk and allowing for positive slippage. CoW Swap’s design has influenced cross-chain development by showing that a healthy solver marketplace doesn’t require a dominant player.</p>
+    </div>
+  </div>
+  <div class="col-12 col-md-6">
+    <div style="--bs-border-color: #46CDE9; box-shadow: 6px 4px 0px 0px var(--bs-border-color);" class="h-100 border border-light">
+      <img alt="Logo" src="./logo-cow-swap.png" height="32" style="height: 32px;" />
+      <p class="mb-0"><strong>CoW Swap</strong> (abbr. for Coincidence of Wants) launched in April 2021, enabling intent-based trading on a single chain via CoW-based atomic swaps that match compatible user orders directly. It uses a Dutch Auction mechanism to incentivize solver competition, reducing MEV risk and allowing for positive slippage. CoW Swap’s design has influenced cross-chain development by showing that a healthy solver marketplace doesn’t require a dominant player.</p>
+    </div>
+  </div>
+</div>
+- ![Logo](./logo-cow-swap.png){.d-inline-block .mx-auto .align-middle height=40px}
 - ![Logo](./logo-across-protocol.png){.d-inline-block .mx-auto .align-middle height=40px}**Across Protocol** began as a bridge and has been natively intents‑based since its launch in late 2021. It retained its own relayer (solver) as the primary fulfiller of orders through much of 2024, even as external solver participation grew. It supports a more diverse solver network today and contributed to the development of standards like ERC‑7683 to enable broader interoperability
 - ![Logo](./logo-1inch-fusion.png){.d-inline-block .mx-auto .align-middle height=40px}**In 2022, 1inch Fusion** and **Fusion+** enabled gasless swaps on a single blockchain, using professional "solvers" to prevent front-running. In 2024, Fusion+ added cross-chain swaps without external bridges, all powered by a secure Dutch auction system. 1inch’s proven technology and large user base helped build trust in intent-based swapping.
 - ![Logo](./logo-uniswapx.png){.d-inline-block .mx-auto .align-middle height=40px}**UniswapX** introduced an intent-based system to Uniswap in 2023, enabling gas-free swaps filled by off-chain solvers through auctions. The protocol also helped shape the ERC-7683 standard for compatibility among intent-based protocols. Initially, solver participation was restricted, with plans to open it up over time.
 
-LI.FI distinguishes itself by offering a flexible, modular system that supports many blockchains from the start and features a permissionless solver network. Its secure smart contracts guarantee safe trades. Unlike 1inch and Uniswap, which use intent models within existing platforms and push new standards, LI.FI aims for an adaptable infrastructure that unifies cross-chain trading under one process and standard, making it easy for developers and wallet builders to adopt and support industry-wide interoperability.
+[LI.FI](https://li.fi/) distinguishes itself by offering a flexible, modular system that supports many blockchains from the start and features a permissionless solver network. Its secure smart contracts guarantee safe trades. Unlike 1inch and Uniswap, which use intent models within existing platforms and push new standards, [LI.FI](https://li.fi/) aims for an adaptable infrastructure that unifies cross-chain trading under one process and standard, making it easy for developers and wallet builders to adopt and support industry-wide interoperability.
 
-LI.FI’s solution is built in accordance with Open Intents Framework, an open open-source framework aiming to bring permissionless intents to everyone, supported by, outside of LI.FI, also teams from Arbitrum, Optimism, Scroll, Polygon, Gnosis, Gelato, Starknet, zkSync and others.
+[LI.FI](https://li.fi/)’s solution is built in accordance with [Open Intents Framework](https://www.openintents.xyz/), an open open-source framework aiming to bring permissionless intents to everyone, supported by, outside of [LI.FI](https://li.fi/), also teams from Arbitrum, Optimism, Scroll, Polygon, Gnosis, Gelato, Starknet, zkSync and others.
 
 ![Open Intents Framework](./logo-open-intents-framework.png){.d-block .mx-auto .mw-100}
 
@@ -106,7 +120,7 @@ With a vastly expanded network of integrated DEXs and liquidity pools, users can
 
 ### For Developers and Projects: Building on a Stronger Foundation
 
-Teams building next-generation DeFi apps benefit from LI.FI’s robust DEX aggregator and cross-chain infrastructure. Instead of spending resources on piecing together multi-chain connectivity and liquidity themselves, they can focus on innovating their core products while relying on LI.FI’s ever-growing reach and execution capabilities. With intent-based architecture, user acquisition becomes easier - users can onboard by simply signing a transaction that expresses their intent to move assets to a specific chain, app, or protocol. This seamless flow lowers onboarding friction and lets projects lock in capital more efficiently.
+Teams building next-generation DeFi apps benefit from [LI.FI](https://li.fi/)’s robust DEX aggregator and cross-chain infrastructure. Instead of spending resources on piecing together multi-chain connectivity and liquidity themselves, they can focus on innovating their core products while relying on [LI.FI](https://li.fi/)’s ever-growing reach and execution capabilities. With intent-based architecture, user acquisition becomes easier - users can onboard by simply signing a transaction that expresses their intent to move assets to a specific chain, app, or protocol. This seamless flow lowers onboarding friction and lets projects lock in capital more efficiently.
 
 ### For the Industry: Pushing Multi-Chain Interoperability Forward
 
@@ -114,7 +128,7 @@ Rapidly connecting with new chains and liquidity sources sets benchmarks for int
 
 ## What 57Blocks Brings to the Table
 
-At 57Blocks, we're not just along for the ride. We're actively contributing to cross-chain wide DeFi adoption and LI.FI's expansion helping shape the future of cross-chain technology. Our partnership involves building and testing the DEX aggregation solution while also unlocking new liquidity across the Web3 ecosystem.
+At 57Blocks, we're not just along for the ride. We're actively contributing to cross-chain wide DeFi adoption and [LI.FI](https://li.fi/)'s expansion helping shape the future of cross-chain technology. Our partnership involves building and testing the DEX aggregation solution while also unlocking new liquidity across the Web3 ecosystem.
 
 This partnership represents something bigger than just a technical collaboration. It's about making complex cross-chain transactions accessible to real people.
 
@@ -124,12 +138,12 @@ The most successful products prioritize outcomes over processes, recognizing tha
 
 Finally, security doesn't have to mean complexity. Robust systems can maintain simplicity in their user experience while delivering enterprise-grade protection and reliability.
 
-The future of technology isn't just about building more features. It's about making powerful capabilities accessible to everyone. That's exactly what we're doing with LI.FI in the cross-chain transactions space, and it's what we can do for your project too.
+The future of technology isn't just about building more features. It's about making powerful capabilities accessible to everyone. That's exactly what we're doing with [LI.FI](https://li.fi/) in the cross-chain transactions space, and it's what we can do for your project too.
 
 The best part? You don't have to choose between innovation and usability. With the right partnership and approach, you can have both.
 
 ## Ready to Build Something Amazing Together?
 
-This perfectly illustrates how we approach challenging projects at 57Blocks. We identify complex problems, partner with innovative companies, and build solutions that benefit real people. More importantly, we prove that technical complexity doesn't have to mean user complexity, especially in the cross-chain transactions space.
+This perfectly illustrates how we approach challenging projects at 57Blocks. We identify complex problems, partner with innovative companies, and build solutions that benefit real people. More importantly, we prove that technical complexity doesn't have to mean user complexity, especially in the [cross-chain transactions](https://57blocks.io/blockchain) space.
 
-Are you working on a project that could benefit from this kind of approach? Whether you're dealing with blockchain complexity, user experience challenges, or technical integration hurdles, we'd love to help turn your vision into reality.
+Are you working on a project that could benefit from this kind of approach? Whether you're dealing with blockchain complexity, user experience challenges, or technical integration hurdles, [ we'd love to help](https://766bor9p6aq.typeform.com/to/zvzi5QYE?typeform-source=57blocks.io) turn your vision into reality.
