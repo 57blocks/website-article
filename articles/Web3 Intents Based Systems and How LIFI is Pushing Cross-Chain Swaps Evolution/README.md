@@ -86,23 +86,31 @@ As [LI.FI](https://li.fi/) continues to evolve, its role in the multi-chain DeFi
 Several major DeFi projects have embraced intent-based systems, each putting their spin on simplifying how users trade or move assets:
 
 <div class="row">
-  <div class="col-12 col-md-6">
-    <div style="--bs-border-color: #46CDE9; box-shadow: 6px 4px 0px 0px var(--bs-border-color);" class="h-100 border border-light">
+  <div class="col-12 col-md-6 mb-3">
+    <div style="box-shadow: 6px 4px 0px 0px rgba(var(--bs-info-rgb), var(--bs-border-opacity)); font-size: 14px;" class="h-100 p-3 rounded-1 border border-info">
       <img alt="Logo" src="./logo-cow-swap.png" height="32" style="height: 32px;" />
       <p class="mb-0"><strong>CoW Swap</strong> (abbr. for Coincidence of Wants) launched in April 2021, enabling intent-based trading on a single chain via CoW-based atomic swaps that match compatible user orders directly. It uses a Dutch Auction mechanism to incentivize solver competition, reducing MEV risk and allowing for positive slippage. CoW Swap’s design has influenced cross-chain development by showing that a healthy solver marketplace doesn’t require a dominant player.</p>
     </div>
   </div>
-  <div class="col-12 col-md-6">
-    <div style="--bs-border-color: #46CDE9; box-shadow: 6px 4px 0px 0px var(--bs-border-color);" class="h-100 border border-light">
-      <img alt="Logo" src="./logo-cow-swap.png" height="32" style="height: 32px;" />
-      <p class="mb-0"><strong>CoW Swap</strong> (abbr. for Coincidence of Wants) launched in April 2021, enabling intent-based trading on a single chain via CoW-based atomic swaps that match compatible user orders directly. It uses a Dutch Auction mechanism to incentivize solver competition, reducing MEV risk and allowing for positive slippage. CoW Swap’s design has influenced cross-chain development by showing that a healthy solver marketplace doesn’t require a dominant player.</p>
+  <div class="col-12 col-md-6 mb-3">
+    <div style="box-shadow: 6px 4px 0px 0px rgba(var(--bs-info-rgb), var(--bs-border-opacity)); font-size: 14px;" class="h-100 p-3 rounded-1 border border-info">
+      <img alt="Logo" src="./logo-across-protocol.png" height="32" style="height: 32px;" />
+      <p class="mb-0"><strong>Across Protocol</strong> began as a bridge and has been natively intents‑based since its launch in late 2021. It retained its own relayer (solver) as the primary fulfiller of orders through much of 2024, even as external solver participation grew. It supports a more diverse solver network today and contributed to the development of standards like ERC‑7683 to enable broader interoperability.</p>
+    </div>
+  </div>
+  <div class="col-12 col-md-6 mb-3">
+    <div style="box-shadow: 6px 4px 0px 0px rgba(var(--bs-info-rgb), var(--bs-border-opacity)); font-size: 14px;" class="h-100 p-3 rounded-1 border border-info">
+      <img alt="Logo" src="./logo-1inch-fusion.png" height="32" style="height: 32px;" />
+      <p class="mb-0"><strong>In 2022, 1inch Fusion</strong> and <strong>Fusion+</strong> enabled gasless swaps on a single blockchain, using professional "solvers" to prevent front-running. In 2024, Fusion+ added cross-chain swaps without external bridges, all powered by a secure Dutch auction system. 1inch’s proven technology and large user base helped build trust in intent-based swapping.</p>
+    </div>
+  </div>
+  <div class="col-12 col-md-6 mb-3">
+    <div style="box-shadow: 6px 4px 0px 0px rgba(var(--bs-info-rgb), var(--bs-border-opacity)); font-size: 14px;" class="h-100 p-3 rounded-1 border border-info">
+      <img alt="Logo" src="./logo-uniswapx.png" height="32" style="height: 32px;" />
+      <p class="mb-0"><strong>UniswapX</strong> introduced an intent-based system to Uniswap in 2023, enabling gas-free swaps filled by off-chain solvers through auctions. The protocol also helped shape the ERC-7683 standard for compatibility among intent-based protocols. Initially, solver participation was restricted, with plans to open it up over time.</p>
     </div>
   </div>
 </div>
-- ![Logo](./logo-cow-swap.png){.d-inline-block .mx-auto .align-middle height=40px}
-- ![Logo](./logo-across-protocol.png){.d-inline-block .mx-auto .align-middle height=40px}**Across Protocol** began as a bridge and has been natively intents‑based since its launch in late 2021. It retained its own relayer (solver) as the primary fulfiller of orders through much of 2024, even as external solver participation grew. It supports a more diverse solver network today and contributed to the development of standards like ERC‑7683 to enable broader interoperability
-- ![Logo](./logo-1inch-fusion.png){.d-inline-block .mx-auto .align-middle height=40px}**In 2022, 1inch Fusion** and **Fusion+** enabled gasless swaps on a single blockchain, using professional "solvers" to prevent front-running. In 2024, Fusion+ added cross-chain swaps without external bridges, all powered by a secure Dutch auction system. 1inch’s proven technology and large user base helped build trust in intent-based swapping.
-- ![Logo](./logo-uniswapx.png){.d-inline-block .mx-auto .align-middle height=40px}**UniswapX** introduced an intent-based system to Uniswap in 2023, enabling gas-free swaps filled by off-chain solvers through auctions. The protocol also helped shape the ERC-7683 standard for compatibility among intent-based protocols. Initially, solver participation was restricted, with plans to open it up over time.
 
 [LI.FI](https://li.fi/) distinguishes itself by offering a flexible, modular system that supports many blockchains from the start and features a permissionless solver network. Its secure smart contracts guarantee safe trades. Unlike 1inch and Uniswap, which use intent models within existing platforms and push new standards, [LI.FI](https://li.fi/) aims for an adaptable infrastructure that unifies cross-chain trading under one process and standard, making it easy for developers and wallet builders to adopt and support industry-wide interoperability.
 
