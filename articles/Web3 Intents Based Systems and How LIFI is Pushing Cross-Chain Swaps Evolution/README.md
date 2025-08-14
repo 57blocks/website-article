@@ -1,5 +1,5 @@
 ---
-published: true
+published: false
 title: "Web3 Intents Based Systems and How LI.FI is Pushing Cross-Chain Swaps Evolution"
 author: ["Kamil Krupa"]
 createTime: 2025-07-17
@@ -89,13 +89,13 @@ Several major DeFi projects have embraced intent-based systems, each putting the
   <div class="col-12 col-md-6 mb-3">
     <div style="box-shadow: 6px 4px 0px 0px rgba(var(--bs-info-rgb), var(--bs-border-opacity)); font-size: 14px;" class="h-100 p-3 rounded-1 border border-info">
       <img alt="Logo" src="./logo-cow-swap.png" height="32" style="height: 32px;" />
-      <p class="mb-0"><strong>CoW Swap</strong> (abbr. for Coincidence of Wants) launched in April 2021, enabling intent-based trading on a single chain via CoW-based atomic swaps that match compatible user orders directly. It uses a Dutch Auction mechanism to incentivize solver competition, reducing MEV risk and allowing for positive slippage. CoW Swap’s design has influenced cross-chain development by showing that a healthy solver marketplace doesn’t require a dominant player.</p>
+      <p class="mb-0"><strong>CoW Swap</strong> (abbr. for Coincidence of Wants) launched in <strong>April 2021</strong>, enabling intent-based trading on a single chain via CoW-based atomic swaps that match compatible user orders directly. It uses a Dutch Auction mechanism to incentivize solver competition, reducing MEV risk and allowing for positive slippage. CoW Swap’s design has influenced cross-chain development by showing that a healthy solver marketplace doesn’t require a dominant player.</p>
     </div>
   </div>
   <div class="col-12 col-md-6 mb-3">
     <div style="box-shadow: 6px 4px 0px 0px rgba(var(--bs-info-rgb), var(--bs-border-opacity)); font-size: 14px;" class="h-100 p-3 rounded-1 border border-info">
       <img alt="Logo" src="./logo-across-protocol.png" height="32" style="height: 32px;" />
-      <p class="mb-0"><strong>Across Protocol</strong> began as a bridge and has been natively intents‑based since its launch in late 2021. It retained its own relayer (solver) as the primary fulfiller of orders through much of 2024, even as external solver participation grew. It supports a more diverse solver network today and contributed to the development of standards like ERC‑7683 to enable broader interoperability.</p>
+      <p class="mb-0"><strong>Across Protocol</strong> began as a bridge and has been natively intents‑based since its launch in <strong>late 2021</strong>. It retained its own relayer (solver) as the primary fulfiller of orders through much of 2024, even as external solver participation grew. It supports a more diverse solver network today and contributed to the development of standards like ERC‑7683 to enable broader interoperability.</p>
     </div>
   </div>
   <div class="col-12 col-md-6 mb-3">
@@ -107,7 +107,7 @@ Several major DeFi projects have embraced intent-based systems, each putting the
   <div class="col-12 col-md-6 mb-3">
     <div style="box-shadow: 6px 4px 0px 0px rgba(var(--bs-info-rgb), var(--bs-border-opacity)); font-size: 14px;" class="h-100 p-3 rounded-1 border border-info">
       <img alt="Logo" src="./logo-uniswapx.png" height="32" style="height: 32px;" />
-      <p class="mb-0"><strong>UniswapX</strong> introduced an intent-based system to Uniswap in 2023, enabling gas-free swaps filled by off-chain solvers through auctions. The protocol also helped shape the ERC-7683 standard for compatibility among intent-based protocols. Initially, solver participation was restricted, with plans to open it up over time.</p>
+      <p class="mb-0"><strong>UniswapX</strong> introduced an intent-based system to Uniswap <strong>in 2023</strong>, enabling gas-free swaps filled by off-chain solvers through auctions. The protocol also helped shape the ERC-7683 standard for compatibility among intent-based protocols. Initially, solver participation was restricted, with plans to open it up over time.</p>
     </div>
   </div>
 </div>
