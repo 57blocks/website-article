@@ -1,5 +1,5 @@
 ---
-published: true
+published: false
 title: "AI-Driven Workflows: The Key to Operational Efficiency at Scale"
 author: ["Traci Flitcraft"]
 createTime: 2025-07-17
@@ -9,7 +9,7 @@ landingPages: []
 heroColor: 
 thumb: "./thumb.png"
 thumb_h: "./thumb_h.png"
-intro: "In the early days of any company, scrappy manual processes are almost a badge of honor. Founders take pride in knowing every detail, every customer quirk, every spreadsheet formula. But as your business grows, what once felt like “high touch” quickly turns into high friction.<br /><br />
+intro: "In the early days of any company, scrappy manual processes are almost a badge of honor. Founders take pride in knowing every detail, every customer quirk, every spreadsheet formula. But as your business grows, what once felt like “high touch” quickly turns into high friction. 
 At 57Blocks, we’ve seen this transformation firsthand, both within our evolution and in the startup and enterprise clients we support. The lesson is simple: companies don’t just scale by adding more people. They scale by refining their processes, embedding AI-driven workflows at the core to unlock true operational efficiency automation."
 previousSlugs: ["ai-driven-workflows"]
 ---
