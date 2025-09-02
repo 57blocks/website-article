@@ -225,8 +225,8 @@ Teams validate recovery plans through [^1]:
 - Improve incident response effectiveness  
 - Provide measurable security benchmarks  
 
-**Outcome Example** 
-When we discovered a 2FA bypass in auth flow, we then implemented push notification fallback (reducing risk by 80%)
+**Outcome Example:**
+When we discovered a two-factor authentication (2FA) bypass in authentication flow, we implemented push notification fallback, reducing risk by 80%.
 
 What is the impact we have observed with our clients? Organizations using this regimen consistently maintained 99.99% payment availability even during peak events, with some reducing incident resolution time by over 50% within the first year.
 
