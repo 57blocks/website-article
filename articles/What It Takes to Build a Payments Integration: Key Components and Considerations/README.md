@@ -2,7 +2,7 @@
 published: true
 title: "What It Takes to Build a Payments Integration: Key Components and Considerations"
 author: ["GuangPeng Liu / Fullstack Engineer", "Ida Zhou / Backend Engineer", "Hum Tan / Fullstack Engineer"]
-createTime: 2025-04-17
+createTime: 2025-09-02
 thumb: "thumb.png"
 thumb_h: "thumb_h.png"
 categories: ["engineering"]
