@@ -38,7 +38,7 @@ Modern payment security is a delicate dance between iron-clad protection and fri
 
 1. **Validates your biometric data.** Your thumbprint or face scan is locally authenticated via the device’s **Secure Enclave** (a hardware-bound key that never exposes raw biometric data).  
 
-2. **Generates a one-time dynamic cryptogram (unique transaction token) through a Tokenization Engine.** These tokens expire in nanoseconds to thwart replay attacks.
+2. **Generates a one-time dynamic cryptogram (unique transaction token) through a Tokenization Engine, replacing your card number.** These tokens expire in nanoseconds to thwart replay attacks.
 
 3. **Completes network vigilance** by cross-referencing the transaction against:  
    - Behavioral baselines (e.g., atypical purchase amount/location)  
@@ -200,33 +200,38 @@ By designing for automated recovery, we reduce manual intervention, minimize rev
 
 #### 3.5.2 Disaster Preparedness: Validating Resilience Through Proactive Testing
 
-Payment systems require proven recovery capabilities–not just theoretical plans. Regular disaster preparedness exercises reduce real incident resolution times by **40-60%**.
+Payment systems require proven recovery capabilities–not just theoretical plans. Regular disaster preparedness exercises reduce real incident resolution times by **40-60%**[^1].
 
-Teams validate recovery plans through [^1]:
+Teams validate recovery plans through :
 
-- **Quarterly fire drills**: 
+- **Quarterly fire drills** 
+  
   - Planned simulated outages with escalating scenarios each quarter (e.g., cloud failures in Q1, combined fraud/outage in Q2)
   - These include strict time-bound recovery targets (<15min for Tier 1 systems)
-
-- **Tabletop exercises**: 
+  
+- **Tabletop exercises** 
+  
   - Structured walkthroughs of new failure scenarios each session
   - The exercises surface hidden dependencies through cross-team collaboration
   - Update playbooks with proactive mitigations for hypothetical failures ("lessons imagined")
-
-- **Red team tests**: 
+  
+- **Red team tests** 
   We conduct controlled attack simulations to proactively strengthen our defenses.
   
   **Methodology**  
+  
   - Replicate current threat actor techniques  
   - Target specific system components (APIs, auth systems, etc.)  
   - Validate monitoring and response capabilities  
 
-**Key Benefits**  
+**Key Benefits:**
+
 - Identify vulnerabilities before attackers do  
 - Improve incident response effectiveness  
 - Provide measurable security benchmarks  
 
 **Outcome Example:**
+
 When we discovered a two-factor authentication (2FA) bypass in authentication flow, we implemented push notification fallback, reducing risk by 80%.
 
 What is the impact we have observed with our clients? Organizations using this regimen consistently maintained 99.99% payment availability even during peak events, with some reducing incident resolution time by over 50% within the first year.
@@ -307,7 +312,7 @@ For example, when implementing a new payment gateway we approach the process by:
 - Verifying API integrations in Integration
 - Conducting load tests with simulated traffic in Performance
 - Getting stakeholder sign-off in UAT
-- Finally, deploying the app or system to Production after thorough validation in Staging
+- Deploying the app or system to Production after thorough validation in Staging
 
 ### 4.4 Test Data Management
 
@@ -327,7 +332,7 @@ We test our deployment processes religiously, including how to roll back changes
 
 The art of integration and testing in payment systems is about being methodical yet creative, thorough yet efficient. During a recent payment gateway migration that would move millions of customers to a new payment platform, we discovered that perfect test coverage isn't just about the number of test cases but about understanding real user behavior. By analyzing transaction patterns, we created test scenarios that mimicked our busiest shopping days, including the complex mix of payment methods, currencies, and retry attempts. This approach caught critical edge cases that traditional test plans might have missed—like how expired cards retried with new payment methods created duplicate authorization holds, or when currency conversion rounding errors during partial refunds caused reconciliation mismatches.
 
-Whether you're a developer, product manager, or business owner, understanding these testing principles helps you make better decisions about payment implementations and provides you the right questions to ask when evaluating payment solutions. After all, the goal isn't just to process payments–it's to build trust with every transaction.
+Whether you're a developer, product manager, or business owner, understanding these testing principles helps you make better decisions about payment implementations and provides the right questions to ask when evaluating payment solutions. After all, the goal isn't just to process payments–it's to build trust with every transaction.
 
 ## 5. Performance Optimization
 
