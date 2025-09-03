@@ -4,6 +4,7 @@ title: "How to Use Gradle to Optimize Android Development"
 author: ["Rafael Ruiz / Android Engineer"]
 createTime: 2024-05-09
 categories: ["engineering"]
+subCategories: ["DevOps & QA"]
 tags: ["Mobile", "Android"]
 landingPages: ["AI-AI Infra and Framework"]
 thumb: "./thumb.png"

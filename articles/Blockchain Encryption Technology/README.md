@@ -4,6 +4,7 @@ title: "Blockchain Encryption Technology: A Critical Defense for Protecting Digi
 author: ["Bonnie Chen/ Front-End Engineer"]
 createTime: 2025-01-10
 categories: ["engineering"]
+subCategories: ["blockchain"]
 tags: ["Blockchain", "Encryption"]
 landingPages: ["Blockchain-Defi Protocols"]
 thumb: "thumb.png"

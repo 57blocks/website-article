@@ -4,6 +4,7 @@ title: "Deep Dive into Resource Limitations in Solana Development — CU Edition
 author: ["Jimmy Zhao / Fullstack Engineer"]
 createTime: 2025-02-20
 categories: ["engineering"]
+subCategories: ["blockchain"]
 tags: ["Web3", "Blockchain", "Solana", "Resource Limitation", "Compute Unit"]
 landingPages: ["Blockchain-Onchain infra"]
 thumb: "thumb.jpg"

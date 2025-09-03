@@ -5,6 +5,7 @@ subTitle: "How to Leverage Image Models, Large Language Models, and Multimodal M
 author: ["Alpha Xiang / Machine Learning Engineer", "Yanqi Liu / Back-End Engineer", "Anjing Wang / AI Lead"]
 createTime: 2024-05-21
 categories: ["engineering"]
+subCategories: ["AI & ML"]
 tags: ["Image Search", "Image Retrieval", "LLM", "Image Encoder", "Image Embedding", "OCR", "Text Embedding", "CLIP", "Multimodal"]
 landingPages: ["AI-AI/ML Model Dev", "Blockchai-AI agent"]
 thumb: "thumb.png"

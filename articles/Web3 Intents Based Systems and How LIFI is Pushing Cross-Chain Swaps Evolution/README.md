@@ -4,6 +4,7 @@ title: "Web3 Intents Based Systems and How LI.FI is Pushing Cross-Chain Swaps Ev
 author: ["Kamil Krupa"]
 createTime: 2025-07-17
 categories: ["business"]
+subCategories: []
 tags: ["Cross-chain transactions", "Intent based swaps", "Chain interoperability"]
 landingPages: []
 heroColor: 
