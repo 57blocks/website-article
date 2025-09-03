@@ -13,6 +13,9 @@
       "categories": [
         "engineering"
       ],
+      "subCategories": [
+        "AI & ML"
+      ],
       "tags": [
         "Image Search",
         "Image Retrieval",
@@ -52,6 +55,9 @@
       "categories": [
         "engineering"
       ],
+      "subCategories": [
+        "Apps & UI"
+      ],
       "tags": [
         "Payment",
         "Components"
@@ -73,6 +79,7 @@
       "categories": [
         "business"
       ],
+      "subCategories": [],
       "tags": [
         "AI"
       ],
@@ -97,6 +104,7 @@
       "categories": [
         "business"
       ],
+      "subCategories": [],
       "tags": [
         "Cross-chain transactions",
         "Intent based swaps",
@@ -126,6 +134,9 @@
       "categories": [
         "engineering"
       ],
+      "subCategories": [
+        "blockchain"
+      ],
       "tags": [
         "Layer 1 blockchain",
         "Ethereum Virtual Machine (EVM)",
@@ -151,6 +162,9 @@
       "categories": [
         "engineering"
       ],
+      "subCategories": [
+        "Apps & UI"
+      ],
       "tags": [
         "Web2",
         "FinTech"
@@ -170,6 +184,9 @@
       "createTime": "2025-03-25T00:00:00.000Z",
       "categories": [
         "engineering"
+      ],
+      "subCategories": [
+        "Apps & UI"
       ],
       "tags": [
         "App Clip",
@@ -195,6 +212,9 @@
       "createTime": "2025-02-20T00:00:00.000Z",
       "categories": [
         "engineering"
+      ],
+      "subCategories": [
+        "blockchain"
       ],
       "tags": [
         "Web3",
@@ -222,6 +242,9 @@
       "categories": [
         "engineering"
       ],
+      "subCategories": [
+        "blockchain"
+      ],
       "tags": [
         "Web3",
         "Account Abstraction",
@@ -248,6 +271,9 @@
       "categories": [
         "engineering"
       ],
+      "subCategories": [
+        "blockchain"
+      ],
       "tags": [
         "Blockchain",
         "Encryption"
@@ -270,6 +296,9 @@
       "createTime": "2024-09-18T00:00:00.000Z",
       "categories": [
         "engineering"
+      ],
+      "subCategories": [
+        "Apps & UI"
       ],
       "tags": [
         "Frontend",
@@ -295,6 +324,9 @@
       "createTime": "2024-07-26T00:00:00.000Z",
       "categories": [
         "engineering"
+      ],
+      "subCategories": [
+        "Apps & UI"
       ],
       "tags": [
         "B2B",
@@ -322,6 +354,9 @@
       "createTime": "2024-05-22T00:00:00.000Z",
       "categories": [
         "engineering"
+      ],
+      "subCategories": [
+        "AI & ML"
       ],
       "tags": [
         "Vector Database",
@@ -351,6 +386,9 @@
       "categories": [
         "engineering"
       ],
+      "subCategories": [
+        "AI & ML"
+      ],
       "tags": [
         "Information Extraction",
         "LLM"
@@ -377,6 +415,9 @@
       "categories": [
         "engineering"
       ],
+      "subCategories": [
+        "DevOps & QA"
+      ],
       "tags": [
         "Mobile",
         "Android"
@@ -402,6 +443,9 @@
       "createTime": "2024-05-09T00:00:00.000Z",
       "categories": [
         "engineering"
+      ],
+      "subCategories": [
+        "management & delivery"
       ],
       "tags": [
         "CI/CD",
@@ -431,6 +475,9 @@
       "categories": [
         "engineering"
       ],
+      "subCategories": [
+        "DevOps & QA"
+      ],
       "tags": [
         "QA strategy",
         "CI",
@@ -457,6 +504,9 @@
       "createTime": "2024-04-23T00:00:00.000Z",
       "categories": [
         "engineering"
+      ],
+      "subCategories": [
+        "DevOps & QA"
       ],
       "tags": [
         "JavaScript Framework",
@@ -487,6 +537,9 @@
       "categories": [
         "engineering"
       ],
+      "subCategories": [
+        "Apps & UI"
+      ],
       "tags": [
         "Reactive",
         "Flutter",
@@ -514,6 +567,9 @@
       "categories": [
         "engineering"
       ],
+      "subCategories": [
+        "Apps & UI"
+      ],
       "tags": [
         "SEO",
         "Growth",
@@ -539,6 +595,9 @@
       "createTime": "2024-04-20T00:00:00.000Z",
       "categories": [
         "engineering"
+      ],
+      "subCategories": [
+        "AI & ML"
       ],
       "tags": [
         "Image Quality",
@@ -568,6 +627,9 @@
       "categories": [
         "engineering"
       ],
+      "subCategories": [
+        "blockchain"
+      ],
       "tags": [
         "Smart Contract",
         "Web3",
@@ -594,6 +656,9 @@
       "createTime": "2024-04-18T00:00:00.000Z",
       "categories": [
         "engineering"
+      ],
+      "subCategories": [
+        "blockchain"
       ],
       "tags": [
         "Smart Contract",
