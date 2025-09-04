@@ -203,7 +203,7 @@ By designing for automated recovery, we reduce manual intervention, minimize rev
 
 Payment systems require proven recovery capabilities–not just theoretical plans. Regular disaster preparedness exercises reduce real incident resolution times by **40-60%**[^1].
 
-Teams validate recovery plans through :
+Teams validate recovery plans through:
 
 - **Quarterly fire drills** 
   
