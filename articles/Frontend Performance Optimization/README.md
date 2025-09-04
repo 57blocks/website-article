@@ -9,29 +9,29 @@ tags: ["Frontend", "Performance"]
 landingPages: ["Blockchain-dApps"]
 thumb: "thumb.png"
 thumb_h: "thumb_h.png"
-intro: "If your site is loading slowly, what can you do to troubleshoot and fix what’s causing those long page load times? Here, we provide a way to approach frontend troubleshooting and strategies to improve page load results. To help visualize how page loading works, we explain the page load journey including associated metrics for each step. Read on to discover how to improve your frontend site experience using seven Web Vitals (some of which are Core Metrics) and ten optimization strategies."
+intro: "If your site is loading slowly, what can you do to troubleshoot and fix what's causing those long page load times? Here, we provide a way to approach frontend troubleshooting and strategies to improve page load results. To help visualize how page loading works, we explain the page load journey including associated metrics for each step. Read on to discover how to improve your frontend site experience using seven Web Vitals (some of which are Core Metrics) and ten optimization strategies."
 ---
 
 In the current digital landscape, a website's performance is a critical factor in attracting and retaining users. With users expecting pages to load within a few seconds, sites and apps that deliver fast-loading, resolution-responsive pages tend to retain visitors for longer and experience improved conversion rates. Frontend performance optimization plays a pivotal role in achieving these outcomes. This article delves into key frontend performance optimization strategies that can enhance website speed, interactivity, and user satisfaction.
 
 ![loading is a journey](loading-is-a-journey.png)
 
-According to Addy Osmani in his article, “[The Cost of Javascript](https://medium.com/@addyosmani/the-cost-of-javascript-in-2018-7d8950fbb5d4),” when a webpage loads in your browser, it isn’t a single-step process but a journey comprising several critical stages. Each stage needs to provide appropriate feedback to users so they understand that more content and functionality is loading onto the screen. By showing page load progress, users feel that the site is loading faster and will be worth the wait, improving their experience. Osmani identified three phases users will see when a page loads:
+According to Addy Osmani in his article, “[The Cost of Javascript](https://medium.com/@addyosmani/the-cost-of-javascript-in-2018-7d8950fbb5d4),” when a webpage loads in your browser, it isn't a single-step process but a journey comprising several critical stages. Each stage needs to provide appropriate feedback to users so they understand that more content and functionality is loading onto the screen. By showing page load progress, users feel that the site is loading faster and will be worth the wait, improving their experience. Osmani identified three phases users will see when a page loads:
 
 - Loading Feedback Phase - confirmation that the page is loading (Is it happening?)
 - Content Rendering Phase - see useful content quickly (Is it useful?), and finally,
 - Interactive Phase - access a fully interactive and functional page (Is it usable?).
 
-Let’s explore the stages of the journey in more depth:
+Let's explore the stages of the journey in more depth:
 
 1. **Loading Feedback Phase (Is it happening?)**:
    This phase provides users immediate feedback and confirmation that their request to load the webpage (after clicking a link or entering a URL) has been received by the system and the system is delivering that request to the browser. Visual indicators like a loading spinner, progress bar, or any form of initial feedback reassure users that system activity is happening. Metrics like First Contentful Paint (FCP) and First Paint (FP) indicate how quickly first content becomes visible to a user.
 2. **Content Rendering Phase (Is it useful?):**
-   During this phase, the webpage renders useful content in the browser relatively quickly even if the page hasn’t fully loaded. Essential parts of the webpage, like main text, images, or primary navigation elements, appear. Users can start understanding page structure and potentially get some value from the displayed content, even if they can’t yet interact with all page elements.
+   During this phase, the webpage renders useful content in the browser relatively quickly even if the page hasn't fully loaded. Essential parts of the webpage, like main text, images, or primary navigation elements, appear. Users can start understanding page structure and potentially get some value from the displayed content, even if they can't yet interact with all page elements.
 3. **Interactive Phase (Is it usable?):**
    This final phase of the page load journey indicates to the user that the page is fully functional. All resources, including JavaScript and CSS, have been loaded, parsed, and executed, and users can interact with it smoothly without timing delays. Users can complete activities like clicking buttons and filling out forms. The Time to Interactive (TTI) metric is typical for this phase.
 
-For this article, I introduce measurement tools to determine how quickly a browser’s page load journey happens, outline key metrics to indicate where trouble may be happening, and provide recommendations to improve frontend performance.
+For this article, I introduce measurement tools to determine how quickly a browser's page load journey happens, outline key metrics to indicate where trouble may be happening, and provide recommendations to improve frontend performance.
 
 ## Measurement Tools
 
@@ -43,7 +43,7 @@ As a developer, you have the power to ensure your site meets key metrics by usin
 
 I prefer to use `PerformanceObserver` because it integrates well with other APIs and tools that developers might use for performance analysis and optimization.
 
-Here, we’ll list and explain the core Web Vitals and important performance metrics supported by `PerformanceObserver`.
+Here, we'll list and explain the core Web Vitals and important performance metrics supported by `PerformanceObserver`.
 
 ## Web Vitals
 
@@ -154,7 +154,7 @@ In the example code, FID equals `8574 (processingEnd) - 8558 (processingStart) =
 
 **When to use in loading journey**: Interactive Phase
 
-INP assesses a page’s overall responsiveness to user interactions by observing the delays in all clicks, touches, and keyboard interactions throughout the page's lifecycle. The final INP value is the longest observed interaction, disregarding outliers. INP replaced FID as a core Web Vitals metric on March 12, 2024.
+INP assesses a page's overall responsiveness to user interactions by observing the delays in all clicks, touches, and keyboard interactions throughout the page's lifecycle. The final INP value is the longest observed interaction, disregarding outliers. INP replaced FID as a core Web Vitals metric on March 12, 2024.
 
 ![INP](inp.png)
 ::: center
@@ -236,7 +236,7 @@ Because long tasks significantly impact user experience, they are highlighted se
 Metric and measurement ranges
 :::
 
-FP is a web performance metric that measures the time it takes for the user to see any visual content (such as background color or text) in the browser for the first time. FP doesn’t particularly focus on the specifics of the page content but instead on the time elapsed from the moment the user initiates the page load (like clicking a link) to the appearance of the first visual element on the screen. FP is important because it reflects the user's initial perception of the page load speed.
+FP is a web performance metric that measures the time it takes for the user to see any visual content (such as background color or text) in the browser for the first time. FP doesn't particularly focus on the specifics of the page content but instead on the time elapsed from the moment the user initiates the page load (like clicking a link) to the appearance of the first visual element on the screen. FP is important because it reflects the user's initial perception of the page load speed.
 
 ```ts
 const observer = new PerformanceObserver((list) => {
@@ -257,7 +257,7 @@ observer.observe({ type: "paint", buffered: true });
 | `duration`  | Represents the time from `startTime` to the next rendering paint, which is 0 in this case. |
 | `startTime` | Returns the timestamp when the painting occurred.                                          |
 
-Now, let’s say your Web Vital numbers could improve and you want to improve them. The following sections provide strategies to do that.
+Now, let's say your Web Vital numbers could improve and you want to improve them. The following sections provide strategies to do that.
 
 ## Optimization Measures
 
@@ -391,7 +391,7 @@ However, it's important to note that the Chrome browser currently does not suppo
 :::
 The above description outlines the evolution of the HTTP protocol, all aimed at reducing loading times and improving request efficiency. Traditional performance optimization techniques emerged, such as resource inlining and image spiriting. These techniques bundle multiple small files into a single large file and transmit them over a single connection, helping reduce the overhead of transmission headers. This can significantly reduce the initial load time, improving LCP and FCP. Efficient bundling can also minimize the overhead of repeated downloads and parsing, benefiting FID and INP. During the era of HTTP/1.0 and HTTP/1.1, such techniques were considered effective performance optimization practices.
 
-With the introduction of HTTP/2.0, the need for traditional performance optimization techniques, such as bundling, has significantly reduced. HTTP/2.0’s ability to allow the simultaneous request of multiple resources on the same connection without establishing a separate TCP connection for each resource has made bundling optimization and other "hack" techniques less necessary because multiplexing on a single connection significantly improves the efficiency of parallel resource transmission. While HTTP/2 reduces the need for bundling, the strategy should be evaluated on a case-by-case basis, considering specific performance characteristics and requirements.
+With the introduction of HTTP/2.0, the need for traditional performance optimization techniques, such as bundling, has significantly reduced. HTTP/2.0's ability to allow the simultaneous request of multiple resources on the same connection without establishing a separate TCP connection for each resource has made bundling optimization and other "hack" techniques less necessary because multiplexing on a single connection significantly improves the efficiency of parallel resource transmission. While HTTP/2 reduces the need for bundling, the strategy should be evaluated on a case-by-case basis, considering specific performance characteristics and requirements.
 
 ### 6. Critical Path Optimization
 

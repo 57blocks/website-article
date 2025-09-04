@@ -19,7 +19,7 @@ AA addresses these limitations by decoupling transactions and accounts from the 
 allowing for more advanced functionalities and enhanced security. 
 
 This article delves into the origins and workflow of AA and highlights the advantages and disadvantages. As we explore how to build and optimize AA wallets using Dynamic and Alchemy, 
-we’ll provide you with practical insights through front-end code examples.
+we'll provide you with practical insights through front-end code examples.
 
 Whether you are a developer looking to implement AA wallets or simply interested in understanding this cutting-edge technology, this article will guide you through the essential concepts and practical steps.
 
@@ -105,7 +105,7 @@ the best solution is to use Layer 2 for transactions, which can significantly re
 ### 2. Need to Mitigate Malicious Paymaster Risks in Account Abstraction
 As previously mentioned, Paymasters need to stake native tokens to the EntryPoint to prevent malicious Paymasters 
 from conducting DoS (Denial of Service) attacks. Since the Paymaster is a contract implemented by a third party, the Bundler can send invalid transactions. 
-Here’s how:
+Here's how:
 
 - **i**. Establish a malicious Paymaster contract that returns true for all check functions.
 - **ii**. All simulations and checks will pass when the User Operation enters the mempool.

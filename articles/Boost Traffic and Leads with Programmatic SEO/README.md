@@ -58,7 +58,7 @@ Throughout the process, we maintain a high standard and always keep the actual u
 
 ### To get it done: the use of Ghost and other considerations
 
-Programmatic SEO is mass-producing content web pages. Therefore, picking a CMS is important. We use Ghost as our site CMS. Part of the reason is it’s our partner's preference. Nevertheless, Ghost has its strengths for programmatic SEO, for example:
+Programmatic SEO is mass-producing content web pages. Therefore, picking a CMS is important. We use Ghost as our site CMS. Part of the reason is it's our partner's preference. Nevertheless, Ghost has its strengths for programmatic SEO, for example:
 
 +   Mobile Optimization: Ghost themes are designed to be responsive and mobile-friendly, which is beneficial for SEO as Google uses mobile-first indexing.
 +   Automatic Meta Tags: Ghost automatically creates SEO-friendly meta titles and descriptions for the posts, which helps search engines understand the content on the pages.

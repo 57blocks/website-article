@@ -10,7 +10,7 @@ tags: ["Reactive", "Flutter", "Crypto"]
 landingPages: ["AI-Agentic Applications"]
 thumb: "https://s3.amazonaws.com/assets.57blocks.io/cms_uploads/illustration_tokenpad_65aea3b800.png"
 thumb_h: "./thumb_h.png"
-intro: "Users expect to see real-time data while using apps and don't want to refresh the screen. This is achieved by using Reactive Programming. In this article, you’ll explore why Reactive Programming exists and how it enables apps to update with new data in real time."
+intro: "Users expect to see real-time data while using apps and don't want to refresh the screen. This is achieved by using Reactive Programming. In this article, you'll explore why Reactive Programming exists and how it enables apps to update with new data in real time."
 previousSlugs: ["reactive-programming-in-tokenpad"]
 ---
 
@@ -95,7 +95,7 @@ There are two main scenarios of what could happen:
         b.
       </div>
       <div style="font-size: 16px">
-        The application <strong>isn’t aware</strong> that data has changed.
+        The application <strong>isn't aware</strong> that data has changed.
       </div>
     </div>
   </div>
@@ -113,7 +113,7 @@ Both situations are sub-optimal for users as they expect to see information upda
   
 **For option b1**, the interval between data retrieval updates might be too long (let's say once an hour) for the user to wait for the latest information or too short (let's say once every five seconds), wasting resources and negatively affecting user experience (by increasing page load times or battery consumption).          
   
-**For option b2**, if we don’t update the information on the screen, the users won’t know that the information displayed is no longer accurate. They would need to refresh the screen whether data was updated or not. In that case, we are making the users do unnecessary work.
+**For option b2**, if we don't update the information on the screen, the users won't know that the information displayed is no longer accurate. They would need to refresh the screen whether data was updated or not. In that case, we are making the users do unnecessary work.
 
 
 ## Observer Pattern
@@ -142,8 +142,8 @@ Using the Observer pattern, we are making our application more reactive, allowin
 
 Even though the Observer Pattern is a substantial improvement, its implementation can still be enhanced, especially when multiple steps and branches are involved in processing the obtained data.
 
-**Let’s consider a real-life example:**  
-Tokenpad has a "Consolidated Tokens" screen, where we show aggregated information about all the tracked tokens in the user’s portfolios. 
+**Let's consider a real-life example:**  
+Tokenpad has a "Consolidated Tokens" screen, where we show aggregated information about all the tracked tokens in the user's portfolios. 
 For that screen, we needed to obtain the portfolios from the database and fulfill the following requirements:
 
 
@@ -327,9 +327,9 @@ To update the value to 35, we must explicitly call the sum = a + b again.
   
 If we want to transform this code into Reactive, we need to reference a couple of concepts:
 
-+   **Stream:** According to [Dart’s official documentation](https://dart.dev/tutorials/language/streams), a stream is a sequence of asynchronous events. It is like an asynchronous iterable, where instead of having to query it to check whether there's a new event, the stream tells you that there is an event when it is ready.
++   **Stream:** According to [Dart's official documentation](https://dart.dev/tutorials/language/streams), a stream is a sequence of asynchronous events. It is like an asynchronous iterable, where instead of having to query it to check whether there's a new event, the stream tells you that there is an event when it is ready.
 +   **There are two kinds of streams:** Single subscription streams and broadcast streams.
-+   **Subscription:** It’s the act of registering to receive the events emitted by a Stream.
++   **Subscription:** It's the act of registering to receive the events emitted by a Stream.
 
 Keeping these two concepts in mind, this is how we update the static code to update the value of the sum reactively:
 
@@ -344,7 +344,7 @@ b.listen((int newBValue) { // 2: The subscription is created
 ```
 This code adds a and b, but this time uses Streams.  
   
-The sum value is recalculated whenever the value of b is updated (The Stream emits). The subscription to a Stream is created by calling the Stream’s listen method, which is equivalent to calling addSubscriber in the Observer Pattern.  
+The sum value is recalculated whenever the value of b is updated (The Stream emits). The subscription to a Stream is created by calling the Stream's listen method, which is equivalent to calling addSubscriber in the Observer Pattern.  
   
 In this example Stream b will emit the following values in order: 15, 25, 35, and 45. We can be sure that the value of sum gets updated to 25, then 35, 45 and finally 55.  
   

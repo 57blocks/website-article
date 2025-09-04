@@ -10,7 +10,7 @@ landingPages: ["AI-AI Infra and Framework"]
 heroColor: #4996F1
 thumb: "https://s3.amazonaws.com/assets.57blocks.io/cms_uploads/illustration_cup_an_laptop_e12de970e5.png"
 thumb_h: "./thumb_h.png"
-intro: "Feeling overwhelmed by the number of tools available for your oprganization’s front-end build pipeline? Don't worry. We're sharing all we've learned about these tools while working on our projects and summarized it here. This comprehensive guide is designed to provide you with the knowledge and confidence to navigate the complexities of modern front-end development, mitigating difficulties and improving results."
+intro: "Feeling overwhelmed by the number of tools available for your oprganization's front-end build pipeline? Don't worry. We're sharing all we've learned about these tools while working on our projects and summarized it here. This comprehensive guide is designed to provide you with the knowledge and confidence to navigate the complexities of modern front-end development, mitigating difficulties and improving results."
 previousSlugs: ["modernizing-front-end-build-pipelines"]
 ---
 
@@ -441,7 +441,7 @@ CSS preprocessors such as [Sass](https://sass-lang.com/), [Less](https://lesscss
 
 ## Using Linters and Formatters
 
-Linters and formatters such as [ESLint](https://eslint.org/), [Prettier](https://prettier.io/), and [Stylelint](https://stylelint.io/) help enforce consistent coding styles and catch potential errors before they become problems. Spend your team’s time reviewing code and approaches, not formatting issues. And spend less time on issues related to tiny bugs that could have been avoided. Integrating these tools into your build pipeline can:
+Linters and formatters such as [ESLint](https://eslint.org/), [Prettier](https://prettier.io/), and [Stylelint](https://stylelint.io/) help enforce consistent coding styles and catch potential errors before they become problems. Spend your team's time reviewing code and approaches, not formatting issues. And spend less time on issues related to tiny bugs that could have been avoided. Integrating these tools into your build pipeline can:
 
 +   **Improve Code Quality:** Automatically catch syntax errors, potential bugs, and performance issues.
 +   **Enforce Coding Standards:** Ensure a consistent coding style across your team, making the codebase easier to read and maintain.
@@ -756,7 +756,7 @@ Popular CI/CD platforms include [GitHub Actions](https://github.com/features/act
   </div></div>
 </section>
 
-To give you an idea of how a CI/CD platform could work for your team, let’s explore how you could use GitHub Actions.             
+To give you an idea of how a CI/CD platform could work for your team, let's explore how you could use GitHub Actions.             
   
 Start by configuring a GitHub Actions workflow to be triggered when an event occurs in your repository, such as an open or updated pull request. Your workflow may contain one or more jobs that can run in sequential order or in parallel.
 

@@ -40,7 +40,7 @@ The complexity and security demands of L1 blockchains necessitate rigorous testi
 
 **Solana Network Outages (2022):** Repeated crashes under high traffic highlighted the consequences of insufficient stress testing. Simulating real-world transaction loads pre-launch could have improved network resilience.  
 
-**The DAO Hack (2016):** A reentrancy vulnerability in Ethereum’s DAO smart contract, undetected due to inadequate adversarial testing, led to a $50M theft and forced a chain split. Rigorous audits could have identified the flaw. 
+**The DAO Hack (2016):** A reentrancy vulnerability in Ethereum's DAO smart contract, undetected due to inadequate adversarial testing, led to a $50M theft and forced a chain split. Rigorous audits could have identified the flaw. 
 
 **BSV 100-Block Reorganization (2021):** Bitcoin SV (BSV) experienced a massive 100-block reorganization attack when an attacker took advantage of its increased block size. This protocol-level vulnerability showed inadequate testing of consensus security with larger blocks, a fundamental parameter of the blockchain.
 
@@ -83,7 +83,7 @@ Ensure that the RPC module is working as expected for EVM and consensus layer en
 
 * #### Fault Tolerance and Recovery
 
-Be sure to test the blockchain’s ability to recover from node downtime or failure. You can do this by simulating node crashes and examining recovery procedures, ensuring that the network sustains its integrity and performance after such events.
+Be sure to test the blockchain's ability to recover from node downtime or failure. You can do this by simulating node crashes and examining recovery procedures, ensuring that the network sustains its integrity and performance after such events.
 
 * #### Staking
 
@@ -91,7 +91,7 @@ Staking is the process by which validators lock up a certain amount of cryptocur
 
 * #### Slashing
 
-Slashing serves as a deterrent for malicious actions, such as double signing or prolonged downtime by validators. When you test slashing mechanisms, you’ll want to simulate scenarios where validators engage in unauthorized activities or fail to meet performance criteria. It’s important to ensure that penalties are transparent, proportionate, and deter harmful behavior without affecting network reliability. To do this, you’ll need to test the accuracy of slashing scripts and their ability to execute penalties precisely under different conditions.
+Slashing serves as a deterrent for malicious actions, such as double signing or prolonged downtime by validators. When you test slashing mechanisms, you'll want to simulate scenarios where validators engage in unauthorized activities or fail to meet performance criteria. It's important to ensure that penalties are transparent, proportionate, and deter harmful behavior without affecting network reliability. To do this, you'll need to test the accuracy of slashing scripts and their ability to execute penalties precisely under different conditions.
 
 * #### Rewards distribution
 
@@ -257,7 +257,7 @@ Your testing environment should mirror production conditions as closely as possi
 Blockchain testing isn't just about preventing bugs–it's about protecting user funds and maintaining network integrity. The cost of comprehensive testing is always less than the cost of a single major failure. As the industry matures, robust testing practices will separate successful projects from cautionary tales.
 
 ## Looking Ahead: Open Source Testing Framework
-To help teams put these principles into practice, in coming months, we will be releasing an open source blockchain testing framework, ChainSmith. ChainSmith is 57Blocks’ new open-source framework and managed-service offering for chain-layer reliability testing. It lets us and our clients describe complex, real-world failure scenarios and run them automatically on L1 devnet/testnet.
+To help teams put these principles into practice, in coming months, we will be releasing an open source blockchain testing framework, ChainSmith. ChainSmith is 57Blocks' new open-source framework and managed-service offering for chain-layer reliability testing. It lets us and our clients describe complex, real-world failure scenarios and run them automatically on L1 devnet/testnet.
 
 ## References
 

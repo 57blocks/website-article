@@ -69,14 +69,14 @@ Before release, Jenkins can integrate development and automated testing to detec
 - **Release the software application**: Once the testing process is complete and all issues or errors have been addressed, the software application can be released to production.
 
 
-After the software application has been released, here’s how Jenkins can monitor the production environment for any issues or errors.
+After the software application has been released, here's how Jenkins can monitor the production environment for any issues or errors.
 
 
 
 - **Set up monitoring tools and automated test jobs**: To monitor the production environment, you will need to run automated test jobs and set up monitoring tools such as log aggregation tools, performance monitoring tools, and error tracking tools. These tools will help identify any issues or errors in the production environment.
 - **Analyze logs**: Jenkins can analyze metrics and logs from the production environment to identify any issues or errors. This can include analyzing performance metrics, error logs, and other relevant data.
 - **Automate remediation**: If issues or errors are detected in the production environment, Jenkins can automatically remediate them or alert the relevant team members to address them.
-- **Continuously improve**: Monitoring the production environment using Jenkins is an ongoing process. By analyzing the data and identifying areas for improvement, the development team can continuously improve the software application and ensure that it meets the end user’s needs.
+- **Continuously improve**: Monitoring the production environment using Jenkins is an ongoing process. By analyzing the data and identifying areas for improvement, the development team can continuously improve the software application and ensure that it meets the end user's needs.
 
 
 
