@@ -37,7 +37,7 @@ Imagine building a house made of glass. It needs to be both beautifully transpar
 
 Modern payment security is a delicate dance between iron-clad protection and frictionless user experience. Consider how Apple Pay works–a simple thumb press ignites a multi-layered symphony of cryptographic protocols and real-time risk analysis, all interconnected in milliseconds. Behind the scenes, the system:  
 
-1. **Validates your biometric data.** Your thumbprint or face scan is locally authenticated via the device’s **Secure Enclave** (a hardware-bound key that never exposes raw biometric data).  
+1. **Validates your biometric data.** Your thumbprint or face scan is locally authenticated via the device's **Secure Enclave** (a hardware-bound key that never exposes raw biometric data).  
 
 2. **Generates a one-time dynamic cryptogram (unique transaction token) through a Tokenization Engine, replacing your card number.** These tokens expire in nanoseconds to thwart replay attacks.
 
@@ -46,9 +46,9 @@ Modern payment security is a delicate dance between iron-clad protection and fri
    - Device reputation (is this iPhone previously associated with fraud?)  
    - Merchant risk tiers (high-risk categories trigger additional scrutiny)  
 
-4. **Completes regulatory orchestration and auto-adjusts transaction workflow for regional compliance** (e.g., EU’s Strong Customer Authentication, global PCI-DSS standards).  
+4. **Completes regulatory orchestration and auto-adjusts transaction workflow for regional compliance** (e.g., EU's Strong Customer Authentication, global PCI-DSS standards).  
 
-5. **Conduct fraud analysis, synchronizing with** bank fraud systems and network AIs (Visa/Mastercard’s neural networks). 
+5. **Conduct fraud analysis, synchronizing with** bank fraud systems and network AIs (Visa/Mastercard's neural networks). 
 
 ![Security Balancing Act](./security-balancing-act.png)  
 
@@ -81,7 +81,7 @@ This complex web of regulations requires payment systems to be both flexible and
 
 Despite all our amazing technology, we can't forget that humans are at the heart of payment security. The most sophisticated security system in the world can be breached by someone writing their password on a sticky note that is found by a bad actor or clicking on a phishing link.
 
-This is why modern payment system security approaches need to address technical solutions as well as human blind spots. Many companies invest heavily in regular staff training, making sure everyone knows the organization’s security protocols like the back of their hand. They develop crystal-clear procedures for handling security incidents to reduce confusion when there's a potential breach and the team needs to react immediately. Security awareness is woven into daily routines through continuous programs and updates that train employees to build their muscle memory for keeping security top-of-mind, which reduces risks.
+This is why modern payment system security approaches need to address technical solutions as well as human blind spots. Many companies invest heavily in regular staff training, making sure everyone knows the organization's security protocols like the back of their hand. They develop crystal-clear procedures for handling security incidents to reduce confusion when there's a potential breach and the team needs to react immediately. Security awareness is woven into daily routines through continuous programs and updates that train employees to build their muscle memory for keeping security top-of-mind, which reduces risks.
 
 Regular audits and penetration testing keep everyone aware and alert regarding irregular behaviors and trends, while strict access control policies ensure that people can only access what they absolutely need. After all, security is a bit like a chain–it's only as strong as its weakest link, and often that link is the person who sits at the desk next to you.
 
@@ -89,9 +89,9 @@ Regular audits and penetration testing keep everyone aware and alert regarding i
 
 The world of payment security never stands still, and that's what makes it so fascinating. Just when we think we've got it figured out, a new form of AI-powered fraud comes along to shake things up.
 
-Banking security started with simple PIN codes associated with a plastic card and ATMs and has evolved to systems that can pre-emptively spot fraud. We're now seeing authentication systems combined with AI that can learn from every transaction to improve fraud identification, like a digital bouncer who gets smarter with every guest encounter. Additionally, we’re seeing blockchain systems that are now making certain types of fraud practically impossible to do. Take double-spending attacks in cross-border payments: the distributed ledger's immutable record structure instantly detects and prevents any attempt to spend the same digital asset twice.
+Banking security started with simple PIN codes associated with a plastic card and ATMs and has evolved to systems that can pre-emptively spot fraud. We're now seeing authentication systems combined with AI that can learn from every transaction to improve fraud identification, like a digital bouncer who gets smarter with every guest encounter. Additionally, we're seeing blockchain systems that are now making certain types of fraud practically impossible to do. Take double-spending attacks in cross-border payments: the distributed ledger's immutable record structure instantly detects and prevents any attempt to spend the same digital asset twice.
 
-What’s very clever in all this is how all high-tech security is becoming invisible to users. Remember when “better” security meant extra hassles to remember PINs and passwords? Today's systems are designed to detect and respond to threats in real-time while minimizing disruptions to the user experience. For example, modern fraud detection systems in online banking monitor transaction patterns in the background, instantly flagging suspicious activities like an unusual international wire transfer without interrupting the user's normal banking activities.
+What's very clever in all this is how all high-tech security is becoming invisible to users. Remember when “better” security meant extra hassles to remember PINs and passwords? Today's systems are designed to detect and respond to threats in real-time while minimizing disruptions to the user experience. For example, modern fraud detection systems in online banking monitor transaction patterns in the background, instantly flagging suspicious activities like an unusual international wire transfer without interrupting the user's normal banking activities.
 
 In the end, trust matters. When you tap your phone to pay for coffee, you're not thinking about the complex security dance happening behind the scenes, and that's exactly how it should be. Because in our digital world, trust isn't just nice to have, it's the foundation upon which everything else is built.
 
@@ -126,7 +126,7 @@ These ensure data consistency while minimizing user impact.
 
 Most importantly, systems need to provide error messages that are clear, actionable, and empathetic, so users feel guided rather than frustrated. For example, instead of a vague message like, "Something went wrong", a better alternative could be something like:
 
-> "**We couldn’t process your payment. Please check:**
+> "**We couldn't process your payment. Please check:**
 >
 > - **Your card number, expiration date, and CVV code**
 > - **Your billing address to be sure that it matches the one on file with your bank**
@@ -170,7 +170,7 @@ Our digital early warning system detects critical payment issues like fraudulent
 
 This precision monitoring helps teams focus on what matters while filtering routine system noise.
 
-For example, when a retail customer purchases over $2,000 of electronics from a foreign IP at 3 AM, the system evaluates this action against multiple contextual layers. First, the system may determine that the transaction amount represents a 20x deviation from the customer’s normal spending pattern. The system may also determine that the timing of the transaction falls outside the customer’s established activity window, and the geolocation mismatch exceeds their usual travel radius. When these risk factors converge (occurring simultaneously in <0.5% of legitimate transactions), the system triggers a high-confidence fraud alert. This nuanced approach prevents false flags during legitimate anomalies like holiday shopping sprees, while reliably intercepting genuine threats that exhibit coordinated red flags.
+For example, when a retail customer purchases over $2,000 of electronics from a foreign IP at 3 AM, the system evaluates this action against multiple contextual layers. First, the system may determine that the transaction amount represents a 20x deviation from the customer's normal spending pattern. The system may also determine that the timing of the transaction falls outside the customer's established activity window, and the geolocation mismatch exceeds their usual travel radius. When these risk factors converge (occurring simultaneously in <0.5% of legitimate transactions), the system triggers a high-confidence fraud alert. This nuanced approach prevents false flags during legitimate anomalies like holiday shopping sprees, while reliably intercepting genuine threats that exhibit coordinated red flags.
 
 To ensure alerts reach the right team members, such as engineers or system administrators, the system should incorporate intelligent routing mechanisms, including role-based access control (RBAC) and automated escalation paths. For example, critical system failures might be routed directly to senior engineers, while less urgent issues could be sent to on-call support staff. This ensures that the right individuals with the necessary expertise are notified promptly, minimizing downtime and facilitating faster resolution. A critical security breach might trigger an immediate notification to the incident response team, while less urgent issues could be routed to the relevant department for review. By tailoring alerts to specific roles and contexts, we can minimize confusion and ensure timely action when it matters most.
 
@@ -184,7 +184,7 @@ When systems fail, you need a comprehensive plan with three core components:
 - Post-mortem improvement cycles
 - Team training drills
 
-Let’s review what each type of plan should include.
+Let's review what each type of plan should include.
 
 #### 3.5.1 Automated Cleanup & Recovery
 Payment systems must self-heal from common failures, such as:
@@ -192,7 +192,7 @@ Payment systems must self-heal from common failures, such as:
 - **Network outages**. After an outage, we ensure that queued transactions process automatically when connectivity resumes.
 - **Peak load failures** are addressed via auto-scaling that handles predictable surges like holiday shopping rushes and payday spikes in mobile money markets, as well as unpredictable viral payment trends.
 
-> For example, let’s say during Black Friday, a database node fails. The system will need to automatically:
+> For example, let's say during Black Friday, a database node fails. The system will need to automatically:
 > 1. Shift traffic to healthy nodes while maintaining transaction integrity through consistent hashing.
 > 2. Queue pending transactions.
 > 3. Alert the on-call team with diagnostic data.
@@ -203,7 +203,7 @@ By designing for automated recovery, we reduce manual intervention, minimize rev
 
 Payment systems require proven recovery capabilities–not just theoretical plans. Regular disaster preparedness exercises reduce real incident resolution times by **40-60%**[^1].
 
-Teams validate recovery plans through :
+Teams validate recovery plans through:
 
 - **Quarterly fire drills** 
   
@@ -283,7 +283,7 @@ To further enhance system resilience, we implement strategies like circuit break
 
 **Graceful Retry Mechanisms Techniques** like exponential backoff gradually increase wait times between retries to avoid overwhelming failing services. For instance, if a third-party service is temporarily unavailable, the system retries after 1 second, then 2 seconds, then 4 seconds, and so on, giving the service time to stabilize.
 
-Additionally, idempotency keys ensure that retrying the same request doesn’t lead to duplicate actions. For example, if a payment retry occurs due to a timeout, the idempotency key prevents duplicate charges, ensuring a seamless user experience.
+Additionally, idempotency keys ensure that retrying the same request doesn't lead to duplicate actions. For example, if a payment retry occurs due to a timeout, the idempotency key prevents duplicate charges, ensuring a seamless user experience.
 
 By combining these strategies, we build systems that remain resilient, responsive, and user-friendly, even under stress or during outages, ensuring that individual components can fail gracefully without compromising the entire architecture.
 
