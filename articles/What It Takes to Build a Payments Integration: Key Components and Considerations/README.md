@@ -371,4 +371,4 @@ These micro-optimizations compound over time. Through gradual refinements to dat
 
 As payment systems continue to evolve, performance optimization strategies must adapt to meet new challenges. The rise of mobile payments, increasing regulatory requirements, and growing transaction volumes all present unique performance considerations. Successful organizations maintain a balanced approach regarding payment implementations, continuously refining their optimization strategies while ensuring that performance improvements never come at the expense of security or reliability.
 
-[^1]: **Google SRE research**: [Source: Google Cloud Architecture Center](https://cloud.google.com/architecture/framework/reliability/testing-and-validation)
+[^1]: **Google SRE research**: [Source: Google Cloud Architecture Center](https://cloud.google.com/architecture/framework/reliability)
