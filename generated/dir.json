@@ -87,7 +87,7 @@
       "heroColor": null,
       "thumb": "./thumb.png",
       "thumb_h": "./thumb_h.png",
-      "intro": "In the early days of any company, scrappy manual processes are almost a badge of honor. Founders take pride in knowing every detail, every customer quirk, every spreadsheet formula. But as your business grows, what once felt like “high touch” quickly turns into high friction.  At 57Blocks, we’ve seen this transformation firsthand, both within our evolution and in the startup and enterprise clients we support. The lesson is simple: companies don’t just scale by adding more people. They scale by refining their processes, embedding AI-driven workflows at the core to unlock true operational efficiency automation.",
+      "intro": "In the early days of any company, scrappy manual processes are almost a badge of honor. Founders take pride in knowing every detail, every customer quirk, every spreadsheet formula. But as your business grows, what once felt like “high touch” quickly turns into high friction.  At 57Blocks, we've seen this transformation firsthand, both within our evolution and in the startup and enterprise clients we support. The lesson is simple: companies don't just scale by adding more people. They scale by refining their processes, embedding AI-driven workflows at the core to unlock true operational efficiency automation.",
       "previousSlugs": [
         "ai-driven-workflows"
       ],
@@ -309,7 +309,7 @@
       ],
       "thumb": "thumb.png",
       "thumb_h": "thumb_h.png",
-      "intro": "If your site is loading slowly, what can you do to troubleshoot and fix what’s causing those long page load times? Here, we provide a way to approach frontend troubleshooting and strategies to improve page load results. To help visualize how page loading works, we explain the page load journey including associated metrics for each step. Read on to discover how to improve your frontend site experience using seven Web Vitals (some of which are Core Metrics) and ten optimization strategies.",
+      "intro": "If your site is loading slowly, what can you do to troubleshoot and fix what's causing those long page load times? Here, we provide a way to approach frontend troubleshooting and strategies to improve page load results. To help visualize how page loading works, we explain the page load journey including associated metrics for each step. Read on to discover how to improve your frontend site experience using seven Web Vitals (some of which are Core Metrics) and ten optimization strategies.",
       "path": "articles/Frontend%20Performance%20Optimization/README.md",
       "slug": "frontend-performance-optimization"
     },
@@ -456,7 +456,7 @@
       ],
       "thumb": "./thumb.png",
       "thumb_h": "./thumb_h.png",
-      "intro": "If you're finding it challenging to release complex features while adhering to the principles of Continuous Integration and Continuous Deployment (CI/CD), we’re excited to share our proven approach. By breaking down large features into manageable components, we can relieve the burden of managing these large features, ensuring smoother data management and migration, and minimizing disruptions to dependent clients. This approach also supports an agile and iterative deployment process, enhancing stability and the user experience.",
+      "intro": "If you're finding it challenging to release complex features while adhering to the principles of Continuous Integration and Continuous Deployment (CI/CD), we're excited to share our proven approach. By breaking down large features into manageable components, we can relieve the burden of managing these large features, ensuring smoother data management and migration, and minimizing disruptions to dependent clients. This approach also supports an agile and iterative deployment process, enhancing stability and the user experience.",
       "previousSlugs": [
         "shipping-as-small-as-possible",
         "make-release-manageable-with-shipping-as-small-as-possible"
@@ -519,7 +519,7 @@
       "heroColor": null,
       "thumb": "https://s3.amazonaws.com/assets.57blocks.io/cms_uploads/illustration_cup_an_laptop_e12de970e5.png",
       "thumb_h": "./thumb_h.png",
-      "intro": "Feeling overwhelmed by the number of tools available for your oprganization’s front-end build pipeline? Don't worry. We're sharing all we've learned about these tools while working on our projects and summarized it here. This comprehensive guide is designed to provide you with the knowledge and confidence to navigate the complexities of modern front-end development, mitigating difficulties and improving results.",
+      "intro": "Feeling overwhelmed by the number of tools available for your oprganization's front-end build pipeline? Don't worry. We're sharing all we've learned about these tools while working on our projects and summarized it here. This comprehensive guide is designed to provide you with the knowledge and confidence to navigate the complexities of modern front-end development, mitigating difficulties and improving results.",
       "previousSlugs": [
         "modernizing-front-end-build-pipelines"
       ],
@@ -550,7 +550,7 @@
       ],
       "thumb": "https://s3.amazonaws.com/assets.57blocks.io/cms_uploads/illustration_tokenpad_65aea3b800.png",
       "thumb_h": "./thumb_h.png",
-      "intro": "Users expect to see real-time data while using apps and don't want to refresh the screen. This is achieved by using Reactive Programming. In this article, you’ll explore why Reactive Programming exists and how it enables apps to update with new data in real time.",
+      "intro": "Users expect to see real-time data while using apps and don't want to refresh the screen. This is achieved by using Reactive Programming. In this article, you'll explore why Reactive Programming exists and how it enables apps to update with new data in real time.",
       "previousSlugs": [
         "reactive-programming-in-tokenpad"
       ],
