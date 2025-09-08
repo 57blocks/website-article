@@ -4,7 +4,7 @@ title: "Guide to Web3 and dApp Infrastructure"
 author: ["Wei Wang / Tech Lead"]
 createTime: 2024-04-18
 categories: ["engineering"]
-subCategories: ["blockchain"]
+subCategories: ["Blockchain & Web3"]
 tags: ["Smart Contract", "Web3", "Architecture", "Dapp"]
 landingPages: ["Blockchain-dApps"]
 thumb: "./thumb.png"

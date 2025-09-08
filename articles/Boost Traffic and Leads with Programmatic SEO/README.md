@@ -4,7 +4,7 @@ title: "Boost Traffic and Leads with Programmatic SEO"
 author: ["Shi Chen / Product Manager"]
 createTime: 2024-04-21
 categories: ["engineering"]
-subCategories: ["Apps & UI"]
+subCategories: ["QA & Testing"]
 tags: ["SEO", "Growth", "Alternative Investment"]
 heroColor: #39A0A0
 thumb: "https://s3.amazonaws.com/assets.57blocks.io/cms_uploads/illustration_seo_db9bc06b49.png"
