@@ -4,7 +4,7 @@ title: "Frontend Performance Optimization"
 author: ["Bonnie Chen/ Front-End Engineer"]
 createTime: 2024-09-18
 categories: ["engineering"]
-subCategories: ["Apps & UI"]
+subCategories: ["Developer Tools & Performance"]
 tags: ["Frontend", "Performance"]
 landingPages: ["Blockchain-dApps"]
 thumb: "thumb.png"

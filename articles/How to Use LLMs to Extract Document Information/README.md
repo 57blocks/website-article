@@ -4,7 +4,7 @@ title: "How to Use LLMs to Extract Document Information"
 author: ["Carvin Li / Machine Learning Engineer", "Anjing Wang / AI Lead"]
 createTime: 2024-05-21
 categories: ["engineering"]
-subCategories: ["AI & ML"]
+subCategories: ["AI & Vector DBs"]
 tags: ["Information Extraction", "LLM"]
 landingPages: ["AI-Data Engineering"]
 thumb: "thumb.png"
