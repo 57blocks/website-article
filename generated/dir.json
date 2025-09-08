@@ -14,7 +14,7 @@
         "engineering"
       ],
       "subCategories": [
-        "AI & ML"
+        "AI & Vector DBs"
       ],
       "tags": [
         "Image Search",
@@ -56,7 +56,7 @@
         "engineering"
       ],
       "subCategories": [
-        "Apps & UI"
+        "FinTech & Payments"
       ],
       "tags": [
         "Payment",
@@ -135,7 +135,7 @@
         "engineering"
       ],
       "subCategories": [
-        "blockchain"
+        "Blockchain & Web3"
       ],
       "tags": [
         "Layer 1 blockchain",
@@ -163,7 +163,7 @@
         "engineering"
       ],
       "subCategories": [
-        "Apps & UI"
+        "FinTech & Payments"
       ],
       "tags": [
         "Web2",
@@ -186,7 +186,7 @@
         "engineering"
       ],
       "subCategories": [
-        "Apps & UI"
+        "App Growth & Delivery"
       ],
       "tags": [
         "App Clip",
@@ -214,7 +214,7 @@
         "engineering"
       ],
       "subCategories": [
-        "blockchain"
+        "Blockchain & Web3"
       ],
       "tags": [
         "Web3",
@@ -243,7 +243,7 @@
         "engineering"
       ],
       "subCategories": [
-        "blockchain"
+        "Blockchain & Web3"
       ],
       "tags": [
         "Web3",
@@ -298,7 +298,7 @@
         "engineering"
       ],
       "subCategories": [
-        "Apps & UI"
+        "Developer Tools & Performance"
       ],
       "tags": [
         "Frontend",
@@ -326,7 +326,7 @@
         "engineering"
       ],
       "subCategories": [
-        "Apps & UI"
+        "Developer Tools & Performance"
       ],
       "tags": [
         "B2B",
@@ -387,7 +387,7 @@
         "engineering"
       ],
       "subCategories": [
-        "AI & ML"
+        "AI & Vector DBs"
       ],
       "tags": [
         "Information Extraction",
@@ -416,7 +416,7 @@
         "engineering"
       ],
       "subCategories": [
-        "DevOps & QA"
+        "Developer Tools & Performance"
       ],
       "tags": [
         "Mobile",
@@ -445,7 +445,7 @@
         "engineering"
       ],
       "subCategories": [
-        "management & delivery"
+        "Developer Tools & Performance"
       ],
       "tags": [
         "CI/CD",
@@ -476,7 +476,7 @@
         "engineering"
       ],
       "subCategories": [
-        "DevOps & QA"
+        "QA & Testing"
       ],
       "tags": [
         "QA strategy",
@@ -506,7 +506,7 @@
         "engineering"
       ],
       "subCategories": [
-        "DevOps & QA"
+        "Blockchain & Web3"
       ],
       "tags": [
         "JavaScript Framework",
@@ -514,7 +514,7 @@
         "Webpack"
       ],
       "landingPages": [
-        "AI-AI Infra and Framework"
+        "QA & Testing"
       ],
       "heroColor": null,
       "thumb": "https://s3.amazonaws.com/assets.57blocks.io/cms_uploads/illustration_cup_an_laptop_e12de970e5.png",
@@ -538,7 +538,7 @@
         "engineering"
       ],
       "subCategories": [
-        "Apps & UI"
+        "Developer Tools & Performance"
       ],
       "tags": [
         "Reactive",
