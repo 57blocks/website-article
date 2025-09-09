@@ -80,7 +80,7 @@ It's like having a personal assistant who knows all the best routes and handles 
 
 While many solutions focus on just a few popular blockchains, building for the multi-chain is the future. Including Bitcoin support, which is more complex than filling EVM orders, is surprisingly rare in this space. This forward-thinking approach aligns perfectly with building for tomorrow, not just today, and ensures cross-chain transaction platforms can handle whatever the future brings.
 
-## Unlocking Cross-Chain Liquidity: Why [LI.FI](https://li.fi/)'s Evolution Matters
+## Unlocking Cross-Chain Liquidity: Why LI.FI's Evolution Matters
 
 As [LI.FI](https://li.fi/) continues to evolve, its role in the multi-chain DeFi landscape becomes even more significant. We're helping LI.FI accelerate its mission by advancing its DEX aggregation service, expanding its reach across blockchains, and seamlessly unlocking new liquidity sources. These enhancements have a broad impact throughout the ecosystem.
 
