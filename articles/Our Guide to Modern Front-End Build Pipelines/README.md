@@ -4,7 +4,7 @@ title: "Our Guide to Modern Front-End Build Pipelines"
 author: ["Andy Lai / Fullstack Engineer"]
 createTime: 2024-04-23
 categories: ["engineering"]
-subCategories: ["Blockchain & Web3"]
+subCategories: ["Developer Tools & Performance"]
 tags: ["JavaScript Framework", "React", "Webpack"]
 landingPages: ["QA & Testing"]
 heroColor: #4996F1

@@ -1,5 +1,5 @@
 ---
-published: false
+published: true
 title: "AI-Driven Workflows: The Key to Operational Efficiency at Scale"
 author: ["Traci Flitcraft"]
 createTime: 2025-07-17

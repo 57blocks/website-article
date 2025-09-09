@@ -1,5 +1,5 @@
 ---
-published: false
+published: true
 title: "Web3 Intents Based Systems and How LI.FI is Pushing Cross-Chain Swaps Evolution"
 author: ["Kamil Krupa"]
 createTime: 2025-07-17
@@ -22,7 +22,7 @@ You know that feeling when something should be simple - like transferring money 
 
 Instead of forcing users to figure out how to move their assets including bridges, gas tokens, and token standards, it's more effective to let them focus on what they want to achieve - not on how to get there.
 
-Our collaboration with [LI.FI](https://li.fi/) is about more than bridging a technical gap. It shows the industry that seamless, secure cross-chain transactions are achievable today. Empowering [LI.FI](https://li.fi/) to aggregate liquidity across multiple DEXs and blockchains pushes the boundaries of what end-users and developers can accomplish in the DeFi space:
+Our collaboration with [LI.FI](https://li.fi/) is about more than bridging a technical gap. It shows the industry that seamless, secure cross-chain transactions are achievable today. Empowering LI.FI to aggregate liquidity across multiple DEXs and blockchains pushes the boundaries of what end-users and developers can accomplish in the DeFi space:
 
 - **Transforming the user experience today.** Every upgrade to [LI.FI](https://li.fi/)'s aggregation engine means crypto users can swap assets cross-chain more easily and cost-effectively. There's no need to understand the complexities beneath the surface; the best price and path are just a click away. This simplicity is powering a new standard for user-centric DeFi.
 - **Leading the conversation on what's next.** Our work intersects with the evolution of intent-based systems, an innovation that goes far beyond swaps. We see emerging opportunities for intent-driven lending, staking, and borrowing solutions that could make complex operations as easy as submitting a single request. Imagine rebalancing your portfolio, participating in a staking opportunity, or borrowing against assets across multiple chains with one action, all orchestrated behind the scenes for the user.
@@ -46,7 +46,7 @@ It's like trying to exchange currency by visiting two different banks, filling o
 
 That's why we're thrilled to be working closely with [LI.FI](https://li.fi/), a company that's tackling this exact challenge head-on. From our first conversations with their team, it was clear we shared the same fundamental belief that technology should empower users, not overwhelm them.
 
-![[LI.FI](https://li.fi/)](./logo-lifi.png){.d-block .mx-auto .mw-100}
+![[LI.FI](https://li.fi/)](./logo-lifi.png){.d-block .mx-auto .mw-100 .my-3}
 
 [LI.FI](https://li.fi/) is launching intent-based cross-chain swaps, and it's about to change how people think about moving money across different blockchains. Think of it like this. Instead of telling the system how to do something step by step, you just tell it what you want to achieve. It's like calling an Uber instead of planning your own route with multiple bus transfers.
 
@@ -72,7 +72,7 @@ It's like having a personal assistant who knows all the best routes and handles 
 
 ## Real Security, Real Innovation
 
-[LI.FI](https://li.fi/)'s “Open Intent Framework” (ERC‑7683) standardizes the way to express cross-chain intents, enabling any frontend, wallet, or protocol to describe what a user wants without prescribing how it should be fulfilled. For execution, [Resource Locks](https://li.fi/knowledge-hub/li-fi-intents-are-taking-over-resource-locks-make-them-scale/) - used in implementations like [Uniswap's Compact](https://github.com/Uniswap/the-compact) - ensure secure escrow during the transaction. This design prevents users from withdrawing funds prematurely and guarantees that solvers can only settle intents with a matching orderHash proven on the destination chain. Together, these frameworks ensure that funds remain safe and solvers are only compensated after successful fulfillment.
+[LI.FI](https://li.fi/)'s <i>“Open Intent Framework”</i> (ERC‑7683) standardizes the way to express cross-chain intents, enabling any frontend, wallet, or protocol to describe what a user wants without prescribing how it should be fulfilled. For execution, [Resource Locks](https://li.fi/knowledge-hub/li-fi-intents-are-taking-over-resource-locks-make-them-scale/) - used in implementations like [Uniswap's Compact](https://github.com/Uniswap/the-compact) - ensure secure escrow during the transaction. This design prevents users from withdrawing funds prematurely and guarantees that solvers can only settle intents with a matching orderHash proven on the destination chain. Together, these frameworks ensure that funds remain safe and solvers are only compensated after successful fulfillment.
 
 ![Without standard for intent expression VS With standarized intend expression ERC-7683](./compare-intent-expression.png){.d-block .mx-auto .mw-100}
 
@@ -82,7 +82,7 @@ While many solutions focus on just a few popular blockchains, building for the m
 
 ## Unlocking Cross-Chain Liquidity: Why [LI.FI](https://li.fi/)'s Evolution Matters
 
-As [LI.FI](https://li.fi/) continues to evolve, its role in the multi-chain DeFi landscape becomes even more significant. We're helping [LI.FI](https://li.fi/) accelerate its mission by advancing its DEX aggregation service, expanding its reach across blockchains, and seamlessly unlocking new liquidity sources. These enhancements have a broad impact throughout the ecosystem.
+As [LI.FI](https://li.fi/) continues to evolve, its role in the multi-chain DeFi landscape becomes even more significant. We're helping LI.FI accelerate its mission by advancing its DEX aggregation service, expanding its reach across blockchains, and seamlessly unlocking new liquidity sources. These enhancements have a broad impact throughout the ecosystem.
 
 Several major DeFi projects have embraced intent-based systems, each putting their spin on simplifying how users trade or move assets:
 
@@ -113,9 +113,9 @@ Several major DeFi projects have embraced intent-based systems, each putting the
   </div>
 </div>
 
-[LI.FI](https://li.fi/) distinguishes itself by offering a flexible, modular system that supports many blockchains from the start and features a permissionless solver network. Its secure smart contracts guarantee safe trades. Unlike 1inch and Uniswap, which use intent models within existing platforms and push new standards, [LI.FI](https://li.fi/) aims for an adaptable infrastructure that unifies cross-chain trading under one process and standard, making it easy for developers and wallet builders to adopt and support industry-wide interoperability.
+[LI.FI](https://li.fi/) distinguishes itself by offering a flexible, modular system that supports many blockchains from the start and features a permissionless solver network. Its secure smart contracts guarantee safe trades. Unlike 1inch and Uniswap, which use intent models within existing platforms and push new standards, LI.FI aims for an adaptable infrastructure that unifies cross-chain trading under one process and standard, making it easy for developers and wallet builders to adopt and support industry-wide interoperability.
 
-[LI.FI](https://li.fi/)'s solution is built in accordance with [Open Intents Framework](https://www.openintents.xyz/), an open open-source framework aiming to bring permissionless intents to everyone, supported by, outside of [LI.FI](https://li.fi/), also teams from Arbitrum, Optimism, Scroll, Polygon, Gnosis, Gelato, Starknet, zkSync and others.
+[LI.FI](https://li.fi/)'s solution is built in accordance with [Open Intents Framework](https://www.openintents.xyz/), an open open-source framework aiming to bring permissionless intents to everyone, supported by, outside of LI.FI, also teams from Arbitrum, Optimism, Scroll, Polygon, Gnosis, Gelato, Starknet, zkSync and others.
 
 ![Open Intents Framework](./logo-open-intents-framework.png){.d-block .mx-auto .mw-100}
 
@@ -129,7 +129,7 @@ With a vastly expanded network of integrated DEXs and liquidity pools, users can
 
 ### For Developers and Projects: Building on a Stronger Foundation
 
-Teams building next-generation DeFi apps benefit from [LI.FI](https://li.fi/)'s robust DEX aggregator and cross-chain infrastructure. Instead of spending resources on piecing together multi-chain connectivity and liquidity themselves, they can focus on innovating their core products while relying on [LI.FI](https://li.fi/)'s ever-growing reach and execution capabilities. With intent-based architecture, user acquisition becomes easier - users can onboard by simply signing a transaction that expresses their intent to move assets to a specific chain, app, or protocol. This seamless flow lowers onboarding friction and lets projects lock in capital more efficiently.
+Teams building next-generation DeFi apps benefit from [LI.FI](https://li.fi/)'s robust DEX aggregator and cross-chain infrastructure. Instead of spending resources on piecing together multi-chain connectivity and liquidity themselves, they can focus on innovating their core products while relying on LI.FI's ever-growing reach and execution capabilities. With intent-based architecture, user acquisition becomes easier - users can onboard by simply signing a transaction that expresses their intent to move assets to a specific chain, app, or protocol. This seamless flow lowers onboarding friction and lets projects lock in capital more efficiently.
 
 ### For the Industry: Pushing Multi-Chain Interoperability Forward
 

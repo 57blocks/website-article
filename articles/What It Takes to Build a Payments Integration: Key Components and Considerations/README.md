@@ -237,7 +237,7 @@ When we discovered a two-factor authentication (2FA) bypass in authentication fl
 
 What is the impact we have observed with our clients? Organizations using this regimen consistently maintained 99.99% payment availability even during peak events, with some reducing incident resolution time by over 50% within the first year.
 
-### 3.5.3 Team Readiness: The Human Factor in System Resilience
+#### 3.5.3 Team Readiness: The Human Factor in System Resilience
 
 Payment systems succeed or fail due to human decisions during critical moments. When databases crash or networks fail, well-prepared teams determine if downtime lasts minutes versus hours. This operational reality demands deliberate readiness practices.
 
