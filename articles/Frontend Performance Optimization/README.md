@@ -7,6 +7,7 @@ categories: ["engineering"]
 subCategories: ["Developer Tools & Performance"]
 tags: ["Frontend", "Performance"]
 landingPages: ["Blockchain-dApps"]
+heroColor: #0894BB
 thumb: "thumb.png"
 thumb_h: "thumb_h.png"
 intro: "If your site is loading slowly, what can you do to troubleshoot and fix what's causing those long page load times? Here, we provide a way to approach frontend troubleshooting and strategies to improve page load results. To help visualize how page loading works, we explain the page load journey including associated metrics for each step. Read on to discover how to improve your frontend site experience using seven Web Vitals (some of which are Core Metrics) and ten optimization strategies."

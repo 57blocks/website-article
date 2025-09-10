@@ -8,6 +8,7 @@ categories: ["engineering"]
 subCategories: ["Developer Tools & Performance"]
 tags: ["Reactive", "Flutter", "Crypto"]
 landingPages: ["AI-Agentic Applications"]
+heroColor: #735BB9
 thumb: "https://s3.amazonaws.com/assets.57blocks.io/cms_uploads/illustration_tokenpad_65aea3b800.png"
 thumb_h: "./thumb_h.png"
 intro: "Users expect to see real-time data while using apps and don't want to refresh the screen. This is achieved by using Reactive Programming. In this article, you'll explore why Reactive Programming exists and how it enables apps to update with new data in real time."

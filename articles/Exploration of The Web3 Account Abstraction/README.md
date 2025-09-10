@@ -7,6 +7,7 @@ categories: ["engineering"]
 subCategories: ["Blockchain & Web3"]
 tags: ["Web3", "Account Abstraction", "Wallet", "Dynamic", "Alchemy"]
 landingPages: ["Blockchain-Defi Protocols"]
+heroColor: #656ACE
 thumb: "thumb.png"
 thumb_h: "thumb_h.png"
 intro: "Discover how Account Abstraction (AA) using Dynamic and Alchemy can be used to build and optimize smart wallets. This article discusses AA's origins, workflow, advantages, and disadvantages. The demo and front-end code examples provide practical, tangible guidance for developers to implement AA in their projects or products immediately."

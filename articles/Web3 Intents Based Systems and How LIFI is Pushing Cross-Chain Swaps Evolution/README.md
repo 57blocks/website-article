@@ -7,7 +7,7 @@ categories: ["business"]
 subCategories: []
 tags: ["Cross-chain transactions", "Intent based swaps", "Chain interoperability"]
 landingPages: []
-heroColor: 
+heroColor: #5E86E2
 thumb: "./thumb.png"
 thumb_h: "./thumb_h.png"
 intro: "How intent-based swaps revolutionize cross-chain transactions making crypto UX simple and secure."
@@ -35,7 +35,7 @@ Let's start with a reality check. Picture this. You're a user who wants to swap 
 1. Find a bridge that supports your asset and destination chain
 2. Pay gas fees on the source blockchain
 3. Wait for the bridge to complete your transaction to receive assets on destination chain
-4. If you don't have it yet, send yourself relevant assets to pay for the gas on the destination chain (ETH, Sol. APT, BNB or other)
+4. If you don't have it yet, send yourself relevant assets to pay for the gas on the destination chain (ETH, Sol, APT, BNB or other)
 5. Manually swap your bridged assets on a DEX on a destination chain 
 6. Pay more gas fees for the swap on the destination blockchain
 7. Hope you, or your bridge, didn't make a mistake along the way
@@ -53,7 +53,7 @@ That's why we're thrilled to be working closely with [LI.FI](https://li.fi/), a 
 
 ![Without intents VS With intents](./compare-intents.png){.d-block .mx-auto .mw-100}
 
-## Revolutionizing Cross-Chain Transactions with Intent-Based Solutions
+## Revolutionizing Cross-Chain Transactions with Intents
 
 [LI.FI](https://li.fi/)'s intents based cross-chain transactions solution works like a marketplace where you express what you want, and specialized service providers (called solvers) compete to give you the best deal.
 
@@ -63,8 +63,6 @@ Here's what that looks like on the user's end:
 2. The intents-based application's logic finds the best way: Multiple solvers compete to offer you the best rate
 3. It happens instantaneously: The winning solver facilitates finalization of transactions through smart contracts, aggregators, oracles, and protocol infrastructure behind the scenes
 4. You get your tokens: Fast, cheap, and without the headache
-
-EXAMPLE / REFERENCE GRAPH FOR DESIGNERS:
 
 ![Reference for designers](./reference-for-designers.png){.d-block .mx-auto .mw-100}
 
@@ -117,7 +115,7 @@ Several major DeFi projects have embraced intent-based systems, each putting the
 
 [LI.FI](https://li.fi/)'s solution is built in accordance with [Open Intents Framework](https://www.openintents.xyz/), an open open-source framework aiming to bring permissionless intents to everyone, supported by, outside of LI.FI, also teams from Arbitrum, Optimism, Scroll, Polygon, Gnosis, Gelato, Starknet, zkSync and others.
 
-![Open Intents Framework](./logo-open-intents-framework.png){.d-block .mx-auto .mw-100}
+[![Open Intents Framework](./logo-open-intents-framework.png){.d-block .mx-auto .mw-100}](https://li.fi/knowledge-hub/with-intents-its-solvers-all-the-way-down/)
 
 A common challenge across intent-based protocols is incentivizing healthy solver competition. Running a solver and being profitable is hard - it requires capital, infrastructure, and smart routing. But when multiple solvers compete, it leads to better-priced quotes, faster execution, and more reliable fulfillment, since solvers race to win orders by being first in. At the same time, protocols must still navigate the complexity of working across diverse blockchain stacks. The move to intent-based designs is rapidly picking up momentum, driven by a need for smoother user experiences and safer transactions, but these dynamics will shape the next phase of adoption.
 
