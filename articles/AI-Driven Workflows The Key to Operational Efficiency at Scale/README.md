@@ -7,7 +7,7 @@ categories: ["business"]
 subCategories: []
 tags: ["AI"]
 landingPages: []
-heroColor: #4B91E3
+heroColor: "#4B91E3"
 thumb: "./thumb.png"
 thumb_h: "./thumb_h.png"
 intro: "In the early days of any company, scrappy manual processes are almost a badge of honor. Founders take pride in knowing every detail, every customer quirk, every spreadsheet formula. But as your business grows, what once felt like “high touch” quickly turns into high friction. 

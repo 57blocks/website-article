@@ -8,7 +8,7 @@ categories: ["engineering"]
 subCategories: ["Developer Tools & Performance"]
 tags: ["B2B", "Multi-tenancy", "Parallel Computing", "Microservices Architecture"]
 landingPages: ["AI-Agentic Applications"]
-heroColor: #45A587
+heroColor: "#45A587"
 thumb: "./thumb.png"
 thumb_h: "./thumb_h.png"
 intro: "How do you approach creating a system that finds the right supplier and provides a price in less than three seconds using hundreds of data points? By approaching this system as an ERP system in the cloud, we were able to make the process fast and low cost. Here we share how we did it. "

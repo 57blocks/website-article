@@ -7,7 +7,7 @@ categories: ["business"]
 subCategories: []
 tags: ["Cross-chain transactions", "Intent based swaps", "Chain interoperability"]
 landingPages: []
-heroColor: #5E86E2
+heroColor: "#5E86E2"
 thumb: "./thumb.png"
 thumb_h: "./thumb_h.png"
 intro: "How intent-based swaps revolutionize cross-chain transactions making crypto UX simple and secure."

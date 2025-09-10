@@ -7,7 +7,7 @@ categories: ["engineering"]
 subCategories: ["Developer Tools & Performance"]
 tags: ["Mobile", "Android"]
 landingPages: ["AI-AI Infra and Framework"]
-heroColor: #3DA497
+heroColor: "#3DA497"
 thumb: "./thumb.png"
 thumb_h: "./thumb_h.png"
 intro: "Dependency conflicts, version compatibility, and maintaining a clean dependency tree can  pose challenges in Android development. However, by harnessing the power of Gradle and Dependency Injection (DI), you can navigate these hurdles with confidence. These tools ensure a smooth process and maintain a modular architecture that follows the principles of Clean Architecture. Read how we have successfully achieved this on our projects, and how you can too."

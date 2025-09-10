@@ -7,7 +7,7 @@ categories: ["engineering"]
 subCategories: ["Developer Tools & Performance"]
 tags: ["JavaScript Framework", "React", "Webpack"]
 landingPages: ["QA & Testing"]
-heroColor: #4996F1
+heroColor: "#4996F1"
 thumb: "https://s3.amazonaws.com/assets.57blocks.io/cms_uploads/illustration_cup_an_laptop_e12de970e5.png"
 thumb_h: "./thumb_h.png"
 intro: "Feeling overwhelmed by the number of tools available for your oprganization's front-end build pipeline? Don't worry. We're sharing all we've learned about these tools while working on our projects and summarized it here. This comprehensive guide is designed to provide you with the knowledge and confidence to navigate the complexities of modern front-end development, mitigating difficulties and improving results."

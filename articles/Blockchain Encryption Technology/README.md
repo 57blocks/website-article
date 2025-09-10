@@ -7,7 +7,7 @@ categories: ["engineering"]
 subCategories: ["Blockchain & Web3"]
 tags: ["Blockchain", "Encryption"]
 landingPages: ["Blockchain-Defi Protocols"]
-heroColor: #429C9A
+heroColor: "#429C9A"
 thumb: "thumb.png"
 thumb_h: "thumb-h.png"
 intro: "The rise of blockchain technology has sparked widespread concern for the security of digital assets. Here, you will find the information you need to navigate this space to understand and assess the core encryption technologies used in blockchain, identify potential security risks, and apply these encryption methods to enhance system security and ensure the safety of data and transactions."

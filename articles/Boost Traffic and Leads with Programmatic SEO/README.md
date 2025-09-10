@@ -6,7 +6,7 @@ createTime: 2024-04-21
 categories: ["engineering"]
 subCategories: ["App Growth & Delivery"]
 tags: ["SEO", "Growth", "Alternative Investment"]
-heroColor: #39A0A0
+heroColor: "#39A0A0"
 thumb: "https://s3.amazonaws.com/assets.57blocks.io/cms_uploads/illustration_seo_db9bc06b49.png"
 thumb_h: "./thumb_h.png"
 intro: "You may have heard that programmatic SEO could boost site traffic from search engines and increase leads. However, considering the complexities of implementation can be intimidating. In this blog, we describe our design and client collaboration process, along with our findings and we outline the numerous client benefits after launch."

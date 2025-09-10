@@ -7,7 +7,7 @@ categories: ["engineering"]
 subCategories: ["AI & Vector DBs"]
 tags: ["Vector Database", "Pinecone", "LanceDB"]
 landingPages: ["AI-Data Engineering"]
-heroColor: #3D9AB6
+heroColor: "#3D9AB6"
 thumb: "./thumb.png"
 thumb_h: "./thumb_h.png"
 intro: "Which vector database to use? It depends. Based on our experiences, there is no one-size-fits-all \"best\" database. Instead, a superior vector database is well-matched with its use case, meeting the unique requirements of that scenario. Our comparative analysis offers a promising path to discovering the ideal database for your specific needs."

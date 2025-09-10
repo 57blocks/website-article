@@ -7,7 +7,7 @@ categories: ["engineering"]
 subCategories: ["QA & Testing"]
 tags: ["Smart Contract", "Web3", "QA"]
 landingPages: ["Blockchain-Onchain infra"]
-heroColor: #795ECA
+heroColor: "#795ECA"
 thumb: "./thumb.png"
 thumb_h: "./thumb_h.png"
 intro: "Deploying a smart contract on the public blockchain is a significant milestone but also fraught with risk. Blockchain technology's immutability means that any flaws in the contract's code can have irreversible consequences. In this guide, we will walk you through a systematic and detailed approach to ensuring that your smart contract functions as intended, remains secure against malicious attacks, and is optimized for performance and cost-effectiveness."

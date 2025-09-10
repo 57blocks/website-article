@@ -8,7 +8,7 @@ categories: ["engineering"]
 subCategories: ["AI & Vector DBs"]
 tags: ["Image Search", "Image Retrieval", "LLM", "Image Encoder", "Image Embedding", "OCR", "Text Embedding", "CLIP", "Multimodal"]
 landingPages: ["AI-AI/ML Model Dev", "Blockchai-AI agent"]
-heroColor: #7B61BB
+heroColor: "#7B61BB"
 thumb: "thumb.png"
 thumb_h: "thumb_h.png"
 intro: "Using just an image on a mobile device, the search application is designed to return matches from the database that are either identical or resemble the original uploaded image. In this blog, we describe the technology behind this powerful functionality."
