@@ -13,7 +13,7 @@ tags:
     "Smart Contract",
     "Integration Testing",
   ]
-landingPages: ["Blockchain-dApps"]
+landingPages: ["Blockchain-Onchain infra"]
 heroColor: "#2CA9CA"
 thumb: "./thumb.png"
 thumb_h: "./thumb_h.png"
