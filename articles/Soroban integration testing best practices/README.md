@@ -90,10 +90,11 @@ project/
 ```
 
 **Toolset recommendations:** Use the official Soroban tools and SDKs:
-**- Soroban CLI:** for network management, snapshots, contract deploy/upgrade.
-**- @stellar/soroban-client:** the JavaScript SDK for invoking contracts in tests. It provides SorobanRpc to send transactions.
-**- Test framework:** Mocha or Jest with an assertion library (Chai or built-in Jest assertions) works well for async contract calls.
-**- Resource profiler:** include @57blocks/stellar-resource-usage if you want resource usage reports.
+
+- **Soroban CLI:** for network management, snapshots, contract deploy/upgrade.
+- **@stellar/soroban-client:** the JavaScript SDK for invoking contracts in tests. It provides SorobanRpc to send transactions.
+- **Test framework:** Mocha or Jest with an assertion library (Chai or built-in Jest assertions) works well for async contract calls.
+- **Resource profiler:** include @57blocks/stellar-resource-usage if you want resource usage reports.
 
 ### Step-by-Step: CLI + JavaScript Integration
 
