@@ -77,7 +77,7 @@ We’ve applied these practices in an actual Soroban project. Here’s how we ap
 
 Our recommended structure setup looks like this:
 
-```
+```text
 project/
 ├── contracts/         # Rust contract source
 ├── pkg/               # Compiled Wasm
@@ -102,7 +102,7 @@ Below is a sample integration test scenario for a Soroban batch liquidation cont
 
 1. Start the local network:
 
-```
+```shell
 # Ensure you’ve compiled your contract to Wasm (Rust)
  $ stellar contract build
  # Start a full Soroban Quickstart localnet via Docker
@@ -113,7 +113,7 @@ This launches a local network (Core, Horizon, Soroban RPC, faucet) on http://loc
 
 2. Create a Test Account and Deploy Your Contract
 
-```
+```shell
 # Generate a new keypair for testing
  $ stellar keys generate --name testpayer --network local
  # Deploy your contract Wasm to the localnet
@@ -130,7 +130,7 @@ Capture the returned CONTRACT_ID (a string starting with C...). Keep it for late
 
 3. E2E user flow: Batch Liquidation Contract
 
-```
+```javascript
 describe('Batch Liquidation Contract - Basic', () => {
   let liquidator, debtorAccounts, collateralAsset, debtAsset;
 
@@ -202,7 +202,7 @@ describe('Batch Liquidation Contract - Basic', () => {
 
 4. Tear down localnet:
 
-```
+```shell
 # Stop the localnet via Docker
  $ stellar container stop local
 ```
@@ -211,7 +211,7 @@ By chaining real transactions, we verified behavior under realistic network cond
 
 5. Automate the scripts with the CI:
 
-```
+```yaml
 jobs:
   test:
     steps:
