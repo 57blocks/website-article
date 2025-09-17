@@ -44,6 +44,36 @@
     },
     {
       "published": true,
+      "title": "Soroban Integration Testing Best Practices (JS)",
+      "author": [
+        "Leo Meng / Account Manager"
+      ],
+      "createTime": "2025-09-16T00:00:00.000Z",
+      "categories": [
+        "Blockchain & Web3, QA & Testing"
+      ],
+      "tags": [
+        "Soroban",
+        "Stellar",
+        "Resource Usage",
+        "Smart Contract",
+        "Integration Testing"
+      ],
+      "landingPages": [
+        "Blockchain-dApps"
+      ],
+      "heroColor": "#2CA9CA",
+      "thumb": "./thumb.png",
+      "thumb_h": "./thumb_h.png",
+      "intro": "This article explores our experiences and practices for writing integration tests for smart contracts on Soroban, with the aim of providing practical assistance to developers currently working on Stellar contract development.",
+      "previousSlugs": [
+        "soroban-integration-testing-best-practices-(js)"
+      ],
+      "path": "articles/Soroban%20integration%20testing%20best%20practices/README.md",
+      "slug": "soroban-integration-testing-best-practices"
+    },
+    {
+      "published": true,
       "title": "What It Takes to Build a Payments Integration: Key Components and Considerations",
       "author": [
         "GuangPeng Liu / Fullstack Engineer",
