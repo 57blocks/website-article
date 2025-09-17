@@ -103,9 +103,9 @@ Below is a sample integration test scenario for a Soroban batch liquidation cont
 
 ```
 # Ensure you’ve compiled your contract to Wasm (Rust)
-$ stellar contract build
-# Start a full Soroban Quickstart localnet via Docker
-$ stellar container start local
+ $ stellar contract build
+ # Start a full Soroban Quickstart localnet via Docker
+ $ stellar container start local
 ```
 
 This launches a local network (Core, Horizon, Soroban RPC, faucet) on http://localhost:8000 with a persistent ledger state unless reset. This emulates a live environment for integration testing.
@@ -114,15 +114,15 @@ This launches a local network (Core, Horizon, Soroban RPC, faucet) on http://loc
 
 ```
 # Generate a new keypair for testing
-$ stellar keys generate --name testpayer --network local
-# Deploy your contract Wasm to the localnet
-$ stellar contract deploy \
-    --wasm target/wasm32-unknown-unknown/release/my_contract.wasm \
-    --source testpayer \
-    --network local
+ $ stellar keys generate --name testpayer --network local
+ # Deploy your contract Wasm to the localnet
+ $ stellar contract deploy \
+     --wasm target/wasm32-unknown-unknown/release/my_contract.wasm \
+     --source testpayer \
+     --network local
 
-$ stellar snapshot create --network testnet --address C... --out token_state.json
-$ stellar snapshot load --file token_state.json
+ $ stellar snapshot create --network testnet --address C... --out token_state.json
+ $ stellar snapshot load --file token_state.json
 ```
 
 Capture the returned CONTRACT_ID (a string starting with C...). Keep it for later JS use.
@@ -203,7 +203,7 @@ describe('Batch Liquidation Contract - Basic', () => {
 
 ```
 # Stop the localnet via Docker
-$ stellar container stop local
+ $ stellar container stop local
 ```
 
 By chaining real transactions, we verified behavior under realistic network conditions, including fee deduction, sequence handling, and inter-contract logic.
