@@ -17,7 +17,6 @@ heroColor: "#2CA9CA"
 thumb: "./thumb.png"
 thumb_h: "./thumb_h.png"
 intro: "This article explores our experiences and practices for writing integration tests for smart contracts on Soroban, with the aim of providing practical assistance to developers currently working on Stellar contract development."
-previousSlugs: ["soroban-integration-testing-best-practices-(js)"]
 ---
 
 ## Introduction
