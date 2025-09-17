@@ -16,7 +16,7 @@ landingPages: ["Blockchain-dApps"]
 heroColor: "#2CA9CA"
 thumb: "./thumb.png"
 thumb_h: "./thumb_h.png"
-intro: "Testing smart contracts isn’t just about checking individual functions. In contract development,  especially in Soroban, where contracts interact with users, tokens, and other contracts: integration testing is essential."
+intro: "This article explores our experiences and practices for writing integration tests for smart contracts on Soroban, with the aim of providing practical assistance to developers currently working on Stellar contract development."
 previousSlugs: ["soroban-integration-testing-best-practices-(js)"]
 ---
 
