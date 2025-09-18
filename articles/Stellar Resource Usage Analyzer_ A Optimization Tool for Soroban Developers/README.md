@@ -1,10 +1,10 @@
 ---
 title: "Stellar Resource Usage Analyzer: A Optimization Tool for Soroban Developers"
-author: ["Sunny Bai / Full Stack Engineer", "Zewei Zhang/ Full Stack Engineer"]
+author: ["Sunny Bai / Full Stack Engineer"]
 createTime: 2024-12-19
 tags: ["Web3", "Stellar", "Soroban", "Developer Tools"]
-thumb: ""
-thumb_h: ""
+thumb: "./thumb.png"
+thumb_h: "./thumb.png"
 intro: "An introduction article explaining the background and usage of @57block/stellar-resource-usage"
 published: true
 ---
