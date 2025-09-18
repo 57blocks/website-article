@@ -3,7 +3,8 @@ published: true
 title: "Soroban Integration Testing Best Practices (JS)"
 author: ["Leo Meng / Account Manager"]
 createTime: 2025-09-16
-categories: ["Blockchain & Web3, QA & Testing"]
+categories: ["engineering"]
+subCategories: ["Blockchain & Web3"]
 tags:
   [
     "Soroban",
