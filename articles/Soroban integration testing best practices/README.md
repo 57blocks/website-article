@@ -4,7 +4,7 @@ title: "Soroban Integration Testing Best Practices (JS)"
 author: ["Leo Meng / Account Manager"]
 createTime: 2025-09-16
 categories: ["engineering"]
-subCategories: ["blockchain"]
+subCategories: ["Blockchain & Web3"]
 tags:
   [
     "Soroban",
@@ -14,7 +14,7 @@ tags:
     "Integration Testing",
   ]
 landingPages: ["Blockchain-Onchain infra"]
-heroColor: "#2CA9CA"
+heroColor: "#886FD0"
 thumb: "./thumb.png"
 thumb_h: "./thumb_h.png"
 intro: "This article explores our experiences and practices for writing integration tests for smart contracts on Soroban, with the aim of providing practical assistance to developers currently working on Stellar contract development."

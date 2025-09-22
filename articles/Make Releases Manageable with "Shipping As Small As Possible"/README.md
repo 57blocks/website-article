@@ -4,9 +4,10 @@ title: "Make Releases Manageable with \"Shipping As Small As Possible\""
 author: ["Yongzhi Yang / Back-End Engineer, Team Lead"]
 createTime: 2024-05-09
 categories: ["engineering"]
-subCategories: ["management & delivery"]
+subCategories: ["Developer Tools & Performance"]
 tags: ["CI/CD", "Workflow"]
 landingPages: ["AI-AI Infra and Framework"]
+heroColor: "#5B6FBE"
 thumb: "./thumb.png"
 thumb_h: "./thumb_h.png"
 intro: "If you're finding it challenging to release complex features while adhering to the principles of Continuous Integration and Continuous Deployment (CI/CD), we're excited to share our proven approach. By breaking down large features into manageable components, we can relieve the burden of managing these large features, ensuring smoother data management and migration, and minimizing disruptions to dependent clients. This approach also supports an agile and iterative deployment process, enhancing stability and the user experience."

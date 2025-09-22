@@ -4,8 +4,9 @@ title: "Drive iOS App Downloads with Clip"
 author: ["Eric Qi / iOS Engineer"]
 createTime: 2025-03-25
 categories: ["engineering"]
-subCategories: ["Apps & UI"]
+subCategories: ["App Growth & Delivery"]
 tags: ["App Clip", "iOS", "App", "App Downloads"]
+heroColor: "#48AC9A"
 thumb: "ArticleImage.png"
 thumb_h: "ArticleImage_h.png"
 landingPages: ["AI-Agentic Applications"]

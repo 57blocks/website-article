@@ -4,8 +4,9 @@ title: "Mastering Layer 1 Blockchain Testing: A Comprehensive Guide"
 author: ["Jia Chen / QA Engineer", "Jacqueline Zhang / QA Engineer", "Tina Tang / QA Engineer", "Jesse Zheng / QA Engineer"]
 createTime: 2025-07-07
 categories: ["engineering"]
-subCategories: ["blockchain"]
+subCategories: ["Blockchain & Web3"]
 tags: ["Layer 1 blockchain", "Ethereum Virtual Machine (EVM)", "Cosmos", "Blockchain testing", "GitHub Actions"]
+heroColor: "#2D9FB8"
 thumb: "./thumb.png"
 thumb_h: "./thumb-h.png"
 intro: "As blockchain technology continues to transform industries with its promise of decentralization and transparency, the foundational layer of this technology, known as Layer 1 (L1) blockchains, plays a critical role. L1 blockchains provide the necessary infrastructure to build and operate decentralized applications, hosting the protocol and consensus layer fundamental to the entire network. Here, we describe for developers and QA testers how we approach testing L1 blockchains built with EVM and Cosmos to reduce immutability, financial exposure, systemic risks, boundary complexity, cryptoeconomic attacks, and adversarial environments."

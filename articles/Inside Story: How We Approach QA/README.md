@@ -4,9 +4,10 @@ title: "Inside Story: How We Approach QA"
 author: ["Jia Chen / QA Engineer", "Martha Luo / QA Engineer"]
 createTime: 2024-05-07
 categories: ["engineering"]
-subCategories: ["DevOps & QA"]
+subCategories: ["QA & Testing"]
 tags: ["QA strategy", "CI",  "Automation Framework"]
 landingPages: ["Blockchain-Onchain infra"]
+heroColor: "#329ECC"
 thumb: "./thumb.png"
 thumb_h: "./thumb_h.png"
 intro: "Our Quality Assurance (QA) team plays a pivotal role in ensuring the quality and excellence of our software. We are dedicated to enhancing software quality, team performance, and overall project delivery. This article shares the QA strategies we employ for our projects. We'll also demonstrate how embracing these methods can mitigate difficulties and improve results and provide you with the assurance that our software is of the highest quality."
