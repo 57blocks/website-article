@@ -9,7 +9,7 @@ subCategories: ["Developer Tools & Performance"]
 tags: ["Reactive", "Flutter", "Crypto", "Streams", "Dart"]
 landingPages: ["AI-Agentic Applications"]
 heroColor: "#735BB9"
-thumb: "https://s3.amazonaws.com/assets.57blocks.io/cms_uploads/[placeholder].png"
+thumb: "https://s3.amazonaws.com/assets.57blocks.io/cms_uploads/illustration_tokenpad_65aea3b800.png"
 thumb_h: "./thumb_h.png"
 intro: "In Part 2, we go beyond the Observer Pattern to make Tokenpad's data truly reactive—building reusable, composable Streams, combining sources with `rxdart`, and tackling real-world pitfalls so the UI stays accurate in real time."
 previousSlugs: []
