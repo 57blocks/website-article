@@ -1,5 +1,5 @@
 ---
-published: true
+published: false
 title: "Web3 Intents Based Systems and How LI.FI is Pushing Cross-Chain Swaps Evolution"
 author: ["Kamil Krupa"]
 createTime: 2025-07-17
