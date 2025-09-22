@@ -167,17 +167,6 @@ class PortfoliosRepository {
               _currentlyFilteredChain) // 1: Filter Portfolios by selected chain
           .toList());
 
-  Stream<List<Portfolio>> get filteredPortfolios =>
-      CombineLatestStream.combine2(
-          _portfoliosStream,
-          _currentlyFilteredChain,
-          (List<Portfolio> portfolios, String currentlyFilteredChain) =>
-              portfolios
-                  .where((element) =>
-                      element.chain ==
-                      currentlyFilteredChain) // 1: Filter Portfolios by selected chain
-                  .toList());
-
   Stream<List<Token>> get filteredTokens => filteredPortfolios
       .map((List<Portfolio> portfolios) => portfolios
           .map((Portfolio portfolio) => portfolio.tokens)
@@ -260,7 +249,7 @@ Imagine that `_currentlyFilteredChain` is a `Stream<String>` instead of a hardco
 Assuming that `_currentlyFilteredChain` emits a new `String` whenever the app user changes the current chain filter, we can use both `_currentlyFilteredChain` and `_portfoliosStream` to filter the latest portfolios according to the currently selected chain.
 
 Using [Marble Diagrams](https://rxmarbles.com/#combineLatest) to explain Reactive Programming operators more visually, let's review how the `CombineLatest` operator works.
-![Marble Diagram](./image7.png)
+![Marble Diagram](./combineLatestMarbleDiagram.png)
 
 A Marble Diagram visually represents all `Stream` instances, events, operators, and their results in a single place.
 
@@ -446,7 +435,7 @@ Stream<List<Token>> filteredTokens(String chain) => filteredPortfolios(chain)
 
 If we call `filteredTokens` whenever the user changes the chain filter on the Consolidated Tokens screen, we are going to create and keep in memory multiple `Stream` instances (one for each selected filter) that will emit different data (each `Stream` will be filtered by a different chain) at different times. There's no guarantee that different `Stream` instances will emit in a specific order. This situation will, eventually, show data filtered by a chain that's not currently selected.
 
-![A screenshot from Tokenpad showing data display and filtering](./image13.png)
+![A screenshot from Tokenpad showing data display and filtering](./consolidatedTokensViewScreenshot.jpg)
 
 Here is a step-by-step description of the problem with the user experience included:
 
