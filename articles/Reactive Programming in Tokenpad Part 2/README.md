@@ -96,13 +96,13 @@ In the example, two operators are chained:
 - First, odd numbers are filtered from the original `Stream`, keeping the even ones (`where`).
 - Then, we square the even numbers (`map`).
 
-The fact that each operator returns a new `Stream` makes Reactive Programming very powerful. You can split your calculations into different `Stream` instances with different operators. Then, with each `Stream` being the source of some data, you can reuse the streams generated from different *upstream* calculations for different *downstream* calculations.
+The fact that each operator returns a new `Stream` makes Reactive Programming very powerful. You can split your calculations into different `Stream` instances with different operators. Then, with each `Stream` being the source of some data, you can reuse the streams generated from different _upstream_ calculations for different _downstream_ calculations.
 
-Let me explain what *downstream* and *upstream* in this context means.
+Let me explain what _downstream_ and _upstream_ in this context means.
 
-If we consider Dart `Stream` instances as a flow of data (similar to a flowing river), *upstream* is a relative term that means all the operations that happened **before** a specific operator, and *downstream* is another relative term that means all the operations that happen **after** a specific operator.
+If we consider Dart `Stream` instances as a flow of data (similar to a flowing river), _upstream_ is a relative term that means all the operations that happened **before** a specific operator, and _downstream_ is another relative term that means all the operations that happen **after** a specific operator.
 
-Before giving you an example, I'll explain the [`distinct`](https://api.flutter.dev/flutter/dart-async/Stream/distinct.html) `Stream` operator. Understanding the three operators involved will help explain both concepts, *upstream and downstream*.
+Before giving you an example, I'll explain the [`distinct`](https://api.flutter.dev/flutter/dart-async/Stream/distinct.html) `Stream` operator. Understanding the three operators involved will help explain both concepts, _upstream and downstream_.
 
 ### Distinct
 
@@ -121,7 +121,7 @@ Before giving you an example, I'll explain the [`distinct`](https://api.flutter.
 
 `Stream`'s `distinct` operator filters out all **successive** elements that are **repeated**. In the example, the `distinct` operator filters the second and third successive 1 and the second successive 4, allowing only the succession 1, 2, 3, and 4\.
 
-Let's see this example to understand *downstream* and *upstream*:
+Let's see this example to understand _downstream_ and _upstream_:
 
 ```dart
   final numbers = Stream.fromIterable([1, 2, 3, 4, 5, 6, 6, 6]);
@@ -145,9 +145,9 @@ We have four different `Stream` instances:
 - The `Stream` created by the `distinct` operator when applied to the `Stream` created by `where`.
 - The `Stream` created by the `map` operator when applied to the `Stream` created by `distinct`.
 
-Relative to the `numbers` `Stream`, there are no *upstream* operators. All the operators are applied *downstream*.
+Relative to the `numbers` `Stream`, there are no _upstream_ operators. All the operators are applied _downstream_.
 
-There are no *downstream* operators relative to the `map`, and all the previous `Stream` instances (created by `where` and `distinct`) are considered *upstream*. In summary, *upstream* and *downstream* are always relative in a `Stream` operator chain.
+There are no _downstream_ operators relative to the `map`, and all the previous `Stream` instances (created by `where` and `distinct`) are considered _upstream_. In summary, _upstream_ and _downstream_ are always relative in a `Stream` operator chain.
 
 Keeping this in mind, let's re-implement the Consolidated Tokens screen using Reactive Programming.
 
@@ -241,10 +241,9 @@ class PortfoliosRepository {
 Even though the code looks verbose, it creates the same result as the Observer Pattern example with multiple advantages:
 
 - The code is split into different interconnected `Stream` instances, such as the original source `_portfoliosStream` and `_filteredPortfolios`.
-- Each  `Stream` can be reused as the source for different calculations, like `_filteredPortfolios` being used to create a new `Stream` (`filteredTokens`), effectively decoupling the calculations and making them reusable for different purposes.
+- Each `Stream` can be reused as the source for different calculations, like `_filteredPortfolios` being used to create a new `Stream` (`filteredTokens`), effectively decoupling the calculations and making them reusable for different purposes.
   - **In the Observer Pattern example**, all the calculations had to be done inside the `processEvent` method.
-  - **In the Reactive Programming alternative**, most `Stream` instances depend on an *upstream* operation, but every intermediate step can be reused in isolation for new calculations. The data will be kept current as soon as new events arrive with new data from the source (or sources because the `Stream` instances will potentially depend on *upstream* sources). Now, everything is reduced to create a new `Stream` that listens (directly or after applying operators) to the original `_portfoliosStream` to do the proper calculations.
-
+  - **In the Reactive Programming alternative**, most `Stream` instances depend on an _upstream_ operation, but every intermediate step can be reused in isolation for new calculations. The data will be kept current as soon as new events arrive with new data from the source (or sources because the `Stream` instances will potentially depend on _upstream_ sources). Now, everything is reduced to create a new `Stream` that listens (directly or after applying operators) to the original `_portfoliosStream` to do the proper calculations.
 
 Since each step is a different code block, the code tends to be more concise and easier to understand, making it easier to maintain.
 
@@ -284,7 +283,7 @@ Analyzing the Marble Diagram, we have:
 - The topmost `Stream` emits the value **1** first.
 - Given that the second `Stream` hasn't emitted yet, `combineLatest`'s lambda expression **is not** executed, and the resulting `Stream` doesn't emit a value (it's empty at that time).
 - As soon as the second `Stream` emits the value, **A**, the `combineLatest` lambda expression is immediately executed, concatenating both values. The resulting `Stream` gets its first emission, **1A,** because **1** and **A** are the **latest** emitted values from each original `Stream`.
-- When the topmost `Stream` emits the value **2,** the `combineLatest`'s lambda expression is executed, with the **latest** emitted values from each `Stream`, now **2**  and **A**.
+- When the topmost `Stream` emits the value **2,** the `combineLatest`'s lambda expression is executed, with the **latest** emitted values from each `Stream`, now **2** and **A**.
 - This process of concatenating the latest emitted values from both `Stream` instances continues until both `Streams` are completed, signaled by the vertical line at the right end of each `Stream`.
 
 With `combineLatest`, we can combine the `Stream` for the list of Portfolios with the new `Stream` for the currently selected chain, like this:
@@ -344,7 +343,7 @@ The error is quite explicit, but it's unclear why it happens.
 
 From [Dart's official documentation](https://dart.dev/tutorials/language/streams), we see that there are two kinds of `Streams`:
 
-###### *Single Subscription Streams*
+###### _Single Subscription Streams_
 
 Single Subscription `Streams` emit events that **can not** be received incompletely, or that need to be fully received and correctly sorted to make sense (for example, reading a file or receiving a web request).
 
@@ -352,7 +351,7 @@ Given that restriction, Single Subscription `Streams` can be listened to **only 
 
 By default, Dart's `Streams` are Single Subscriptions. That's why it throws the error mentioned above when you try to listen to a Dart `Stream` multiple times.
 
-###### *Broadcast Streams*
+###### _Broadcast Streams_
 
 Broadcast `Streams` send complete data for each event, and there's no dependency between events. Events from such streams can be listened to at any moment because each event is meaningful on its own.
 
@@ -387,11 +386,9 @@ class PortfoliosRepository {
 
 ##### Situation
 
-As explained previously, `Stream` operators usually return a *new* `Stream` after it's applied. The key here is the word *new*. Every time we call `map`, `where`, or `CombineLatest`, the original `Stream` remains unmodified, and a new `Stream` instance is returned after applying one of those operators to the original `Stream`.
+As explained previously, `Stream` operators usually return a _new_ `Stream` after it's applied. The key here is the word _new_. Every time we call `map`, `where`, or `CombineLatest`, the original `Stream` remains unmodified, and a new `Stream` instance is returned after applying one of those operators to the original `Stream`.
 
 In a situation like this:
-
-![](./image10)
 
 ```dart
 Stream<List<Token>> get filteredTokens => filteredPortfolios
@@ -414,8 +411,6 @@ The first situation is easy to visualize without further explanation. However, l
 
 So far, we have this implementation for `filteredPortfolios`:
 
-![](./image11)
-
 ```dart
 Stream<List<Portfolio>> get filteredPortfolios =>
       CombineLatestStream.combine2(
@@ -429,11 +424,9 @@ Stream<List<Portfolio>> get filteredPortfolios =>
                   .toList());
 ```
 
-It's not a very realistic implementation because we're listening to *all* Portfolios and filtering with code we wrote. It's a best practice to avoid such filtering in code and delegate it to a data source component (usually a database engine).
+It's not a very realistic implementation because we're listening to _all_ Portfolios and filtering with code we wrote. It's a best practice to avoid such filtering in code and delegate it to a data source component (usually a database engine).
 
 However, notice that in this modified example below, `filteredTokens` is no longer a `getter`.
-
-![](./image12)
 
 ```dart
 Stream<List<Token>> filteredTokens(String chain) => filteredPortfolios(chain)
@@ -453,17 +446,16 @@ Stream<List<Token>> filteredTokens(String chain) => filteredPortfolios(chain)
 
 If we call `filteredTokens` whenever the user changes the chain filter on the Consolidated Tokens screen, we are going to create and keep in memory multiple `Stream` instances (one for each selected filter) that will emit different data (each `Stream` will be filtered by a different chain) at different times. There's no guarantee that different `Stream` instances will emit in a specific order. This situation will, eventually, show data filtered by a chain that's not currently selected.
 
-![](./image13)
-A screenshot from Tokenpad showing data display and filtering
+![A screenshot from Tokenpad showing data display and filtering](./image13.png)
 
 Here is a step-by-step description of the problem with the user experience included:
 
-| Step | User experience | Code |
-| :---- | :---- | :---- |
-| 1 | The user opens the Consolidated Tokens screen.  | A `Stream` is created by default with the "All chains" filter by default. |
-| 2 | The user selects the "Avalanche" chain filter.  | A new `Stream` is created that will filter the tokens using the "Avalanche" chain. *Notice there's no place to dispose of the initial "All chains" `Stream` in the current code. It keeps running and emits events whenever its data changes.* |
-| 3 | The user swipes to refresh the info shown on the screen. | Tokenpad starts retrieving current information from the server and updates data in the local data source. Since we use Reactive Programming, whenever the local data source changes Portfolios, all active `Stream` instances will receive events with the most recent data. Still, there's no guarantee that each active `Stream` will receive the most recent data in a specific order. |
-| 4 | The​​ ​​ current example *shows two* active `Stream` for the Consolidated Tokens screen.  | Eventually, the "All chains" `Stream` will receive data **after** the "Avalanche" filtered `Stream`. This means that the token list will show "All chains" data while the user expects to see the data filtered by "Avalanche," the latest chain the user selected to filter the data. |
+| Step | User experience                                                                          | Code                                                                                                                                                                                                                                                                                                                                                                                      |
+| :--- | :--------------------------------------------------------------------------------------- | :---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| 1    | The user opens the Consolidated Tokens screen.                                           | A `Stream` is created by default with the "All chains" filter by default.                                                                                                                                                                                                                                                                                                                 |
+| 2    | The user selects the "Avalanche" chain filter.                                           | A new `Stream` is created that will filter the tokens using the "Avalanche" chain. _Notice there's no place to dispose of the initial "All chains" `Stream` in the current code. It keeps running and emits events whenever its data changes._                                                                                                                                            |
+| 3    | The user swipes to refresh the info shown on the screen.                                 | Tokenpad starts retrieving current information from the server and updates data in the local data source. Since we use Reactive Programming, whenever the local data source changes Portfolios, all active `Stream` instances will receive events with the most recent data. Still, there's no guarantee that each active `Stream` will receive the most recent data in a specific order. |
+| 4    | The​​ ​​ current example _shows two_ active `Stream` for the Consolidated Tokens screen. | Eventually, the "All chains" `Stream` will receive data **after** the "Avalanche" filtered `Stream`. This means that the token list will show "All chains" data while the user expects to see the data filtered by "Avalanche," the latest chain the user selected to filter the data.                                                                                                    |
 
 Initially, the described situation may appear irrelevant and might even remain unnoticed for a long time. In Tokenpad, it was caught a couple of days after being initially implemented during internal testing. Given that `Stream` instances allow data to be decoupled and original data sources to be reused in multiple places, this issue will eventually arise, and be present in multiple screens simultaneously, exhibiting a random-like pattern.
 
@@ -473,11 +465,11 @@ This `Stream` issue can present a highly hazardous situation for an app used for
 
 Let's split the problem into two situations: multiple `Stream` instances that emit the same data and multiple `Stream` instances that emit different data.
 
-###### *Situation 1: `Streams` that emit the same data*
+###### _Situation 1: `Streams` that emit the same data_
 
 To resolve this situation, we need to introduce a new component.
 
-###### *StreamController*
+###### _StreamController_
 
 So far, we have been able to listen to `Stream` instances, but we have no control over them.
 
@@ -485,12 +477,10 @@ A `StreamController` is a wrapper over a `Stream` that directly controls the `St
 
 A `StreamController` has two different fields:
 
-* `stream`, the same object we have been using in this article
-* `sink`, a new concept that will allow us to manually send events into the `StreamController`'s `stream` field, thus notifying all its subscribers.
+- `stream`, the same object we have been using in this article
+- `sink`, a new concept that will allow us to manually send events into the `StreamController`'s `stream` field, thus notifying all its subscribers.
 
 Let's see a possible implementation for `_currentlyFilteredChain` without the original assumptions, using a `StreamController`.
-
-![](./image14)
 
 ```dart
 class PortfoliosRepository2 {
@@ -520,7 +510,6 @@ Note: If you need a broadcast `Stream` from a `StreamController`, you can use `S
 `StreamController` can be our ally in preventing the creation of multiple `Stream` instances that always emit the same values.
 
 We can have a default template for this implementation like this:
-![](./image15)
 
 ```dart
 class DummyStreamControllerExample {
@@ -553,7 +542,7 @@ For Tokenpad, this is an optimal solution because:
 - Most `Stream` instances are kept open during the whole application lifecycle because we need to share data and keep values current across multiple screens. Having to create a lot of `Stream` instances every time the user navigates the application would mean unneeded recalculations and a bad/slow user experience.
 - Given that we only expose `StreamController.stream` and it's the same instance no matter how often we call the `getter`, we avoid having multiple `Stream` instances emitting the same data. Thus, we avoid wasting resources and ensure listeners receive the same events.
 
-Note: If you're wondering how this solution can prevent unnecessary recalculations, given that when you navigate into a screen and there are no *new* events in long-life `Stream` instances, the screen will remain empty. First, congratulations on noting that! That means that you have a solid understanding of `Streams` so far. To prevent recalculations and empty screens in Tokenpad, we use [`BehaviorSubject`](https://pub.dev/documentation/rxdart/latest/rx/BehaviorSubject-class.html) from the [`rxdart`](https://pub.dev/packages/rxdart) package. It's a custom `StreamController` that caches the last emitted value and emits it (again) on every new subscription.
+Note: If you're wondering how this solution can prevent unnecessary recalculations, given that when you navigate into a screen and there are no _new_ events in long-life `Stream` instances, the screen will remain empty. First, congratulations on noting that! That means that you have a solid understanding of `Streams` so far. To prevent recalculations and empty screens in Tokenpad, we use [`BehaviorSubject`](https://pub.dev/documentation/rxdart/latest/rx/BehaviorSubject-class.html) from the [`rxdart`](https://pub.dev/packages/rxdart) package. It's a custom `StreamController` that caches the last emitted value and emits it (again) on every new subscription.
 
 ##### Situation 2: `Streams` that emit different data
 
@@ -564,9 +553,7 @@ There are two ways to solve this problem:
 
 Option 1 is prone to errors, omissions, and, possibly, an ever-growing complexity around the project because you have to keep track of the subscriptions and be extra careful to cancel the previous ones before creating a new subscription.
 
-In Tokenpad, given that we control the parameterized data sources (such as the filters), we can use [`takeUntil`](https://rxmarbles.com/#takeUntil) and [`skip`](https://rxmarbles.com/#skip) operators to accomplish option 2 and take care of the subscriptions from the *publisher* side.
-
-![](./image16)
+In Tokenpad, given that we control the parameterized data sources (such as the filters), we can use [`takeUntil`](https://rxmarbles.com/#takeUntil) and [`skip`](https://rxmarbles.com/#skip) operators to accomplish option 2 and take care of the subscriptions from the _publisher_ side.
 
 ```dart
 class DummyStreamControllerExample {
