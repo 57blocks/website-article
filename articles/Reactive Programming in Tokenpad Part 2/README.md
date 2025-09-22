@@ -6,12 +6,12 @@ author: ["Juan E Quintero R / Tech Lead"]
 createTime: 2025-09-22
 categories: ["engineering"]
 subCategories: ["Developer Tools & Performance"]
-tags: ["Reactive", "Flutter", "Crypto", "Streams", "Dart", "RxDart"]
+tags: ["Reactive", "Flutter", "Crypto", "Streams", "Dart"]
 landingPages: ["AI-Agentic Applications"]
 heroColor: "#735BB9"
 thumb: "https://s3.amazonaws.com/assets.57blocks.io/cms_uploads/[placeholder].png"
 thumb_h: "./thumb_h.png"
-intro: "In the last article, we created the PortfoliosSubscriber class using the Observer Pattern. This article shares Tokenpad's approach using Reactive Programming to improve the PortfoliosSubscriber class with reusable reactive data sources and advanced Stream operations."
+intro: "In Part 2, we go beyond the Observer Pattern to make Tokenpad's data truly reactive—building reusable, composable Streams, combining sources with `rxdart`, and tackling real-world pitfalls so the UI stays accurate in real time."
 previousSlugs: []
 ---
 
