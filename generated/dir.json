@@ -43,6 +43,39 @@
       "slug": "image-search-with-ai-models"
     },
     {
+      "published": false,
+      "title": "Reactive Programming in Tokenpad (Part 2)",
+      "subTitle": "Advanced Stream Operations and Real-Time Data Management",
+      "author": [
+        "Juan E Quintero R / Tech Lead"
+      ],
+      "createTime": "2025-09-22T00:00:00.000Z",
+      "categories": [
+        "engineering"
+      ],
+      "subCategories": [
+        "Developer Tools & Performance"
+      ],
+      "tags": [
+        "Reactive",
+        "Flutter",
+        "Crypto",
+        "Streams",
+        "Dart",
+        "RxDart"
+      ],
+      "landingPages": [
+        "AI-Agentic Applications"
+      ],
+      "heroColor": "#735BB9",
+      "thumb": "https://s3.amazonaws.com/assets.57blocks.io/cms_uploads/[placeholder].png",
+      "thumb_h": "./thumb_h.png",
+      "intro": "In the last article, we created the PortfoliosSubscriber class using the Observer Pattern. This article shares Tokenpad's approach using Reactive Programming to improve the PortfoliosSubscriber class with reusable reactive data sources and advanced Stream operations.",
+      "previousSlugs": [],
+      "path": "articles/Reactive%20Programming%20in%20Tokenpad%20Part%202/README.md",
+      "slug": "reactive-programming-in-tokenpad-part-2"
+    },
+    {
       "published": true,
       "title": "Soroban Integration Testing Best Practices (JS)",
       "author": [
