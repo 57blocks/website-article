@@ -1,5 +1,5 @@
 ---
-published: false
+published: true
 title: "Reactive Programming in Tokenpad (Part 2)"
 subTitle: "Advanced Stream Operations and Real-Time Data Management"
 author: ["Juan E Quintero R / Tech Lead"]
