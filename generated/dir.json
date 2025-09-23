@@ -67,10 +67,12 @@
         "AI-Agentic Applications"
       ],
       "heroColor": "#735BB9",
-      "thumb": "https://s3.amazonaws.com/assets.57blocks.io/cms_uploads/illustration_tokenpad_65aea3b800.png",
+      "thumb": "./thumb.png",
       "thumb_h": "./thumb_h.png",
       "intro": "In Part 2, we go beyond the Observer Pattern to make Tokenpad's data truly reactive—building reusable, composable Streams, combining sources with `rxdart`, and tackling real-world pitfalls so the UI stays accurate in real time.",
-      "previousSlugs": [],
+      "previousSlugs": [
+        "reactive-programming-in-tokenpad-p2"
+      ],
       "path": "articles/Reactive%20Programming%20in%20Tokenpad%20Part%202/README.md",
       "slug": "reactive-programming-in-tokenpad-part-2"
     },
