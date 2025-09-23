@@ -318,20 +318,20 @@ Although working with Reactive Programming brings multiple benefits, it is not w
 
 Here, I'll detail two common issues that arise when working with Reactive Programming. I'll explain the reason behind the issues and how to solve them. Hopefully, this will save you some troubleshooting time.
 
-#### Issue 1: Bad State Message
+### Issue 1: Bad State Message
 
-##### Situation
+#### Situation
 
 When you try to listen to one `Stream` multiple times (either directly, by calling `listen` in the `Stream`, or indirectly by using the same `Stream` instance as the source for multiple other `Stream` instances), you may see an error like this:
 Bad state: Stream has already been listened to.
 
 The error is quite explicit, but it's unclear why it happens.
 
-##### The reason behind Bad State:
+#### The reason behind Bad State:
 
 From [Dart's official documentation](https://dart.dev/tutorials/language/streams), we see that there are two kinds of `Streams`:
 
-###### _Single Subscription Streams_
+##### _Single Subscription Streams_
 
 Single Subscription `Streams` emit events that **can not** be received incompletely, or that need to be fully received and correctly sorted to make sense (for example, reading a file or receiving a web request).
 
@@ -339,13 +339,13 @@ Given that restriction, Single Subscription `Streams` can be listened to **only 
 
 By default, Dart's `Streams` are Single Subscriptions. That's why it throws the error mentioned above when you try to listen to a Dart `Stream` multiple times.
 
-###### _Broadcast Streams_
+##### _Broadcast Streams_
 
 Broadcast `Streams` send complete data for each event, and there's no dependency between events. Events from such streams can be listened to at any moment because each event is meaningful on its own.
 
 As stated previously, Dart `Streams` are Single Subscription `Streams` by default. However, we can convert a Single Subscription `Stream` into a Broadcast `Stream` by using the `asBroadcastStream()` method in the `Stream` instance.
 
-##### Solution
+#### Solution
 
 For our ongoing example, using `asBroadcastStream()` will suit us very well because our `Streams` emit meaningful events without dependencies from previous or future events. Given that all our `Streams` depend on two `Streams` (`_currentlyFilteredChain` and `_portfolioStream`), we can transform both to fix the error and listen to the `Streams` multiple times. This solution is illustrated below.
 
@@ -366,13 +366,13 @@ class PortfoliosRepository {
 }
 ```
 
-##### Important Note:
+#### Important Note:
 
-##### Always consider whether your `Stream` can be converted into a Broadcast `Stream`. Converting a `Stream` that emits events dependent on other previously emitted events into a Broadcast `Stream` will fix the Bad State error. However, you may create other issues in the process. One common issue is getting incomplete data because you started listening to a `Stream` that has already emitted events.
+Always consider whether your `Stream` can be converted into a Broadcast `Stream`. Converting a `Stream` that emits events dependent on other previously emitted events into a Broadcast `Stream` will fix the Bad State error. However, you may create other issues in the process. One common issue is getting incomplete data because you started listening to a `Stream` that has already emitted events.
 
-#### Issue 2: Multiple simultaneous subscriptions to different `Streams`
+### Issue 2: Multiple simultaneous subscriptions to different `Streams`
 
-##### Situation
+#### Situation
 
 As explained previously, `Stream` operators usually return a _new_ `Stream` after it's applied. The key here is the word _new_. Every time we call `map`, `where`, or `CombineLatest`, the original `Stream` remains unmodified, and a new `Stream` instance is returned after applying one of those operators to the original `Stream`.
 
@@ -430,7 +430,7 @@ Stream<List<Token>> filteredTokens(String chain) => filteredPortfolios(chain)
 
 `filteredTokens` receives a chain as an argument and passes it into an imaginary `filteredPortfolios` method that's in charge of directly querying the data source. `filteredTokens` then returns a `Stream` that emits the Portfolios filtered by the received chain whenever Portfolio data changes. Notice that `filteredTokens` returns a new `Stream` instance every time it's called.
 
-##### The reason behind Multiple simultaneous subscriptions to different `Streams`:
+#### The reason behind Multiple simultaneous subscriptions to different `Streams`:
 
 If we call `filteredTokens` whenever the user changes the chain filter on the Consolidated Tokens screen, we are going to create and keep in memory multiple `Stream` instances (one for each selected filter) that will emit different data (each `Stream` will be filtered by a different chain) at different times. There's no guarantee that different `Stream` instances will emit in a specific order. This situation will, eventually, show data filtered by a chain that's not currently selected.
 
@@ -449,15 +449,15 @@ Initially, the described situation may appear irrelevant and might even remain u
 
 This `Stream` issue can present a highly hazardous situation for an app used for decision-making, especially in the financial space.
 
-##### Solution
+#### Solution
 
 Let's split the problem into two situations: multiple `Stream` instances that emit the same data and multiple `Stream` instances that emit different data.
 
-###### _Situation 1: `Streams` that emit the same data_
+##### _Situation 1: `Streams` that emit the same data_
 
 To resolve this situation, we need to introduce a new component.
 
-###### _StreamController_
+##### _StreamController_
 
 So far, we have been able to listen to `Stream` instances, but we have no control over them.
 
@@ -532,7 +532,7 @@ For Tokenpad, this is an optimal solution because:
 
 Note: If you're wondering how this solution can prevent unnecessary recalculations, given that when you navigate into a screen and there are no _new_ events in long-life `Stream` instances, the screen will remain empty. First, congratulations on noting that! That means that you have a solid understanding of `Streams` so far. To prevent recalculations and empty screens in Tokenpad, we use [`BehaviorSubject`](https://pub.dev/documentation/rxdart/latest/rx/BehaviorSubject-class.html) from the [`rxdart`](https://pub.dev/packages/rxdart) package. It's a custom `StreamController` that caches the last emitted value and emits it (again) on every new subscription.
 
-##### Situation 2: `Streams` that emit different data
+#### Situation 2: `Streams` that emit different data
 
 There are two ways to solve this problem:
 
