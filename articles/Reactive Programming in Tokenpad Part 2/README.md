@@ -434,7 +434,7 @@ Stream<List<Token>> filteredTokens(String chain) => filteredPortfolios(chain)
 
 If we call `filteredTokens` whenever the user changes the chain filter on the Consolidated Tokens screen, we are going to create and keep in memory multiple `Stream` instances (one for each selected filter) that will emit different data (each `Stream` will be filtered by a different chain) at different times. There's no guarantee that different `Stream` instances will emit in a specific order. This situation will, eventually, show data filtered by a chain that's not currently selected.
 
-![A screenshot from Tokenpad showing data display and filtering](./consolidatedTokensViewScreenshot.png){.d-block .mx-auto .my-3 .mw-100}
+![A screenshot from Tokenpad showing data display and filtering](./consolidatedTokensViewScreenshot.png){.d-block .mx-auto .my-3 .mw-100}{width=250px}
 
 Here is a step-by-step description of the problem with the user experience included:
 
