@@ -9,20 +9,18 @@ subCategories: ["Developer Tools & Performance"]
 tags: ["Reactive", "Flutter", "Crypto", "Streams", "Dart"]
 landingPages: ["AI-Agentic Applications"]
 heroColor: "#735BB9"
-thumb: "https://s3.amazonaws.com/assets.57blocks.io/cms_uploads/illustration_tokenpad_65aea3b800.png"
+thumb: "./thumb.png"
 thumb_h: "./thumb_h.png"
 intro: "In Part 2, we go beyond the Observer Pattern to make Tokenpad's data truly reactive—building reusable, composable Streams, combining sources with `rxdart`, and tackling real-world pitfalls so the UI stays accurate in real time."
-previousSlugs: []
+previousSlugs: ["reactive-programming-in-tokenpad-p2"]
 ---
 
 # Reactive Programming in Tokenpad (Part 2)
 
-## Description
+## Introduction
 
 In the [last article](https://57blocks.io/blog/getting-started-with-reactive-programming), we created the `PortfoliosSubscriber` class, which implements Tokenpad's Consolidated Tokens view using the Observer Pattern. This approach lets us update the application's data once new events are received. A caveat to this approach is that the code depends on the event's argument and piles inside the `processEvent` block.
 In this article, we'll share the approach used in Tokenpad, which​​ uses Reactive Programming to improve the `PortfoliosSubscriber` class.
-
-## Introduction
 
 Reactive Programming allows us to reuse the required data-transforming logic at different places inside Tokenpad so that the code is not piled inside a single block. This allows us to create our own modified and reusable reactive data sources.
 
@@ -249,7 +247,8 @@ Imagine that `_currentlyFilteredChain` is a `Stream<String>` instead of a hardco
 Assuming that `_currentlyFilteredChain` emits a new `String` whenever the app user changes the current chain filter, we can use both `_currentlyFilteredChain` and `_portfoliosStream` to filter the latest portfolios according to the currently selected chain.
 
 Using [Marble Diagrams](https://rxmarbles.com/#combineLatest) to explain Reactive Programming operators more visually, let's review how the `CombineLatest` operator works.
-![Marble Diagram](./combineLatestMarbleDiagram.png)
+
+![Marble Diagram](./combineLatestMarbleDiagram.png){.d-block .mx-auto .my-3 .mw-100}
 
 A Marble Diagram visually represents all `Stream` instances, events, operators, and their results in a single place.
 
@@ -435,7 +434,7 @@ Stream<List<Token>> filteredTokens(String chain) => filteredPortfolios(chain)
 
 If we call `filteredTokens` whenever the user changes the chain filter on the Consolidated Tokens screen, we are going to create and keep in memory multiple `Stream` instances (one for each selected filter) that will emit different data (each `Stream` will be filtered by a different chain) at different times. There's no guarantee that different `Stream` instances will emit in a specific order. This situation will, eventually, show data filtered by a chain that's not currently selected.
 
-![A screenshot from Tokenpad showing data display and filtering](./consolidatedTokensViewScreenshot.jpg)
+![A screenshot from Tokenpad showing data display and filtering](./consolidatedTokensViewScreenshot.png){.d-block .mx-auto .my-3 .mw-100}
 
 Here is a step-by-step description of the problem with the user experience included:
 
