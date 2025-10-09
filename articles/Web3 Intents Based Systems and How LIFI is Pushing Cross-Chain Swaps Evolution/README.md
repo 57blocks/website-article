@@ -4,10 +4,10 @@ title: "Web3 Intents Based Systems and How LI.FI is Pushing Cross-Chain Swaps Ev
 author: ["Kamil Krupa"]
 createTime: 2025-10-09
 categories: ["engineering"]
-subCategories: []
+subCategories: ["Blockchain & Web3"]
 tags:
   ["Cross-chain transactions", "Intent based swaps", "Chain interoperability"]
-landingPages: []
+landingPages: ["Blockchain-Onchain infra"]
 heroColor: "#5E86E2"
 thumb: "./thumb.png"
 thumb_h: "./thumb_h.png"
@@ -19,7 +19,7 @@ We've been thinking a lot lately about what it really means to build technology 
 
 Take crypto today - many users want to chase better yields, buy an NFT on a different chain, or participate in a DAO that doesn’t live where their assets are. These are real motivations that require cross-chain interoperability, but the process still feels unnecessarily complex.
 
-You know that feeling when something should be simple - like transferring money or booking a flight - but the steps are so frustrating you question whether it’s worth it? Cross-chain protocols have matured considerably over the past several years and necessary technical infrastructure exists to seamlessly transfer assets between blockchains. Yet user face friction from confusing steps, fragmented wallets,technical jargon, seed-phrase management, unintuitive interfaces, lack of clear human-centered design which constitute a fundamental barrier to widespread crypto adoption.
+You know that feeling when something should be simple - like transferring money or booking a flight - but the steps are so frustrating you question whether it’s worth it? Cross-chain protocols have matured considerably over the past several years and necessary technical infrastructure exists to seamlessly transfer assets between blockchains. Yet user face friction from confusing steps, fragmented wallets, technical jargon, seed-phrase management, unintuitive interfaces, lack of clear human-centered design which constitute a fundamental barrier to widespread crypto adoption.
 
 Instead of forcing users to figure out how to move their assets including bridges, gas tokens, and token standards, it’s more effective to let them focus on what they want to achieve - not on how to get there.
 
@@ -54,12 +54,10 @@ It's like trying to exchange currency by visiting two different banks, filling o
 
 Here's what that looks like on the user's end:
 
-1. You make a request: "I want to swap 100 USDC on Ethereum for MATIC on Polygon"
-2. The intents-based application’s logic finds the best way: Multiple solvers compete to offer you the best rate
+1. You make a request: "I want to swap 100 USDC on Ethereum for MATIC on Polygon".
+2. The intents-based application’s logic finds the best way: Multiple solvers compete to offer you the best rate.
 3. It happens instantaneously: The winning solver fulfills your request behind the scenes through smart contracts, aggregators, oracles, and protocol infrastructure.
-4. You get your tokens: Fast, cheap, and without the headache
-
-EXAMPLE / REFERENCE GRAPH FOR DESIGNERS:
+4. You get your tokens: Fast, cheap, and without the headache.
 
 ![Reference for designers](./reference-for-designers.png){.d-block .mx-auto .mw-100}
 
