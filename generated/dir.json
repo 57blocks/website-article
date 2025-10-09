@@ -44,6 +44,37 @@
     },
     {
       "published": true,
+      "title": "Web3 Intents Based Systems and How LI.FI is Pushing Cross-Chain Swaps Evolution",
+      "author": [
+        "Kamil Krupa"
+      ],
+      "createTime": "2025-10-09T00:00:00.000Z",
+      "categories": [
+        "engineering"
+      ],
+      "subCategories": [
+        "Blockchain & Web3"
+      ],
+      "tags": [
+        "Cross-chain transactions",
+        "Intent based swaps",
+        "Chain interoperability"
+      ],
+      "landingPages": [
+        "Blockchain-Onchain infra"
+      ],
+      "heroColor": "#5E86E2",
+      "thumb": "./thumb.png",
+      "thumb_h": "./thumb_h.png",
+      "intro": "How intent-based swaps revolutionize cross-chain transactions making crypto UX simple and secure.",
+      "previousSlugs": [
+        "ai-driven-workflows"
+      ],
+      "path": "articles/Web3%20Intents%20Based%20Systems%20and%20How%20LIFI%20is%20Pushing%20Cross-Chain%20Swaps%20Evolution/README.md",
+      "slug": "web3-intents-based-systems-and-how-lifi-is-pushing-cross-chain-swaps-evolution"
+    },
+    {
+      "published": true,
       "title": "Reactive Programming in Tokenpad (Part 2)",
       "subTitle": "Advanced Stream Operations and Real-Time Data Management",
       "author": [
@@ -159,33 +190,6 @@
       ],
       "path": "articles/AI-Driven%20Workflows%20The%20Key%20to%20Operational%20Efficiency%20at%20Scale/README.md",
       "slug": "ai-driven-workflows-the-key-to-operational-efficiency-at-scale"
-    },
-    {
-      "published": false,
-      "title": "Web3 Intents Based Systems and How LI.FI is Pushing Cross-Chain Swaps Evolution",
-      "author": [
-        "Kamil Krupa"
-      ],
-      "createTime": "2025-07-17T00:00:00.000Z",
-      "categories": [
-        "business"
-      ],
-      "subCategories": [],
-      "tags": [
-        "Cross-chain transactions",
-        "Intent based swaps",
-        "Chain interoperability"
-      ],
-      "landingPages": [],
-      "heroColor": "#5E86E2",
-      "thumb": "./thumb.png",
-      "thumb_h": "./thumb_h.png",
-      "intro": "How intent-based swaps revolutionize cross-chain transactions making crypto UX simple and secure.",
-      "previousSlugs": [
-        "ai-driven-workflows"
-      ],
-      "path": "articles/Web3%20Intents%20Based%20Systems%20and%20How%20LIFI%20is%20Pushing%20Cross-Chain%20Swaps%20Evolution/README.md",
-      "slug": "web3-intents-based-systems-and-how-lifi-is-pushing-cross-chain-swaps-evolution"
     },
     {
       "published": true,
