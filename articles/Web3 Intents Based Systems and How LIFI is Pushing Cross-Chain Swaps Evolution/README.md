@@ -42,7 +42,7 @@ It's like trying to exchange currency by visiting two different banks, filling o
 
 ## Secure, User-Centric Web3
 
-![[LI.FI](https://li.fi/)](./logo-lifi.svg){.d-block .mx-auto .mw-100 .my-3}{width=250px}
+![[LI.FI](https://li.fi/)](./logo-li-fi.svg){.d-block .mx-auto .mw-100 .my-3}{width=250px}
 
 [LI.FI](https://li.fi/) is tackling this exact challenge head-on launching intent-based cross-chain swaps, and it's about to change how people think about moving money across different blockchains. Think of it like this. Instead of telling the system how to do something step by step, you just tell it what you want to achieve. It's like calling an Uber instead of planning your own route with multiple bus transfers.
 
