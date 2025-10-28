@@ -388,7 +388,7 @@ HTTP/2.0 introduced the Server Push feature, a significant advancement that grea
 
 However, it's important to note that the Chrome browser currently does not support HTTP/2 Server Push. Detailed support information can be found at this [link](https://developer.chrome.com/blog/removing-push). However, developers can still leverage other performance optimization techniques, such as resource concatenation, caching strategies, etc., to enhance frontend loading performance.
 
-![server push](http-server-push.png){.d-block .mx-auto .my-3 .mw-100}{width=300px}
+![server push](./http-server-push.png){.d-block .mx-auto .my-3 .mw-100}{width=300px}
 
 The above description outlines the evolution of the HTTP protocol, all aimed at reducing loading times and improving request efficiency. Traditional performance optimization techniques emerged, such as resource inlining and image spiriting. These techniques bundle multiple small files into a single large file and transmit them over a single connection, helping reduce the overhead of transmission headers. This can significantly reduce the initial load time, improving LCP and FCP. Efficient bundling can also minimize the overhead of repeated downloads and parsing, benefiting FID and INP. During the era of HTTP/1.0 and HTTP/1.1, such techniques were considered effective performance optimization practices.
 
