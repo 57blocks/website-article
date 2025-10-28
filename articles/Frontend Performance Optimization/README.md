@@ -387,9 +387,9 @@ For web developers, adopting HTTP/3 has yet to bring about significant changes, 
 HTTP/2.0 introduced the Server Push feature, a significant advancement that greatly improves frontend performance. This feature allows servers to proactively push resources to the frontend. For instance, when the client requests an HTML file, the server can push CSS and JavaScript resources directly to the client, saving the time it takes for the client to initiate requests. This proactive approach to resource delivery can significantly enhance frontend performance.
 
 However, it's important to note that the Chrome browser currently does not support HTTP/2 Server Push. Detailed support information can be found at this [link](https://developer.chrome.com/blog/removing-push). However, developers can still leverage other performance optimization techniques, such as resource concatenation, caching strategies, etc., to enhance frontend loading performance.
-::: center
-![server push](http-server-push.png =300x)
-:::
+
+![server push](http-server-push.png){.d-block .mx-auto .my-3 .mw-100}{width=300px}
+
 The above description outlines the evolution of the HTTP protocol, all aimed at reducing loading times and improving request efficiency. Traditional performance optimization techniques emerged, such as resource inlining and image spiriting. These techniques bundle multiple small files into a single large file and transmit them over a single connection, helping reduce the overhead of transmission headers. This can significantly reduce the initial load time, improving LCP and FCP. Efficient bundling can also minimize the overhead of repeated downloads and parsing, benefiting FID and INP. During the era of HTTP/1.0 and HTTP/1.1, such techniques were considered effective performance optimization practices.
 
 With the introduction of HTTP/2.0, the need for traditional performance optimization techniques, such as bundling, has significantly reduced. HTTP/2.0's ability to allow the simultaneous request of multiple resources on the same connection without establishing a separate TCP connection for each resource has made bundling optimization and other "hack" techniques less necessary because multiplexing on a single connection significantly improves the efficiency of parallel resource transmission. While HTTP/2 reduces the need for bundling, the strategy should be evaluated on a case-by-case basis, considering specific performance characteristics and requirements.
