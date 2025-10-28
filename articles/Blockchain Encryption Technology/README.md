@@ -72,9 +72,7 @@ To illustrate, imagine a "prover" who wants to demonstrate that they know a pass
 3. The **Prover** responds correctly to these challenges multiple times, proving their claim without ever revealing the password.
 4. Through this iterative process, the "verifier" gains confidence that the "prover" truly knows the password, as the successful responses show, but never learns the password.
 
-:::center
-![ZKP](./zkp.png =500x500)
-:::
+![ZKP](./zkp.png){.d-block .mx-auto .my-3 .mw-100}{width=500px}
 
 ### 2. Homomorphic Encryption
 
@@ -96,9 +94,7 @@ The assumption is that since all participating entities are susceptible to compr
 
 **Application Scenarios**: It is applied in multi-signature wallets, decentralized exchanges (DEX), distributed key management, cloud computing security, secure multi-party computation, or decentralized autonomous organization (DAO) management. It is used in cases where multiple actors may be necessary to complete a transaction. One bad actor or corrupted value won't impact the data integrity of the whole.
 
-:::center
-![Threshold Cryptography](./threshold-cryptography.png =500x500)
-:::
+![Threshold Cryptography](./threshold-cryptography.png){.d-block .mx-auto .my-3 .mw-100}{width=500px}
 
 ## Cryptographic Techniques in Blockchain
 
@@ -141,9 +137,7 @@ The generation of the public key is based on the private key. First, a common ba
 
 Deriving the private key from the public key in elliptic curve cryptography involves the elliptic curve discrete logarithm problem. Mathematically, this is an intractable problem, especially with large prime numbers. The inherent difficulty forms the trapdoor function, which is the foundation for the security in public key encryption and digital signature systems. The security of cryptographic algorithms fundamentally depends on this property.
 
-:::center
-![Elliptic Curve Cryptography](./ecc.png =500x500)
-:::
+![Elliptic Curve Cryptography](./ecc.png){.d-block .mx-auto .my-3 .mw-100}{width=500px}
 
 #### Application of Elliptic Curve Cryptography in Blockchain
 
