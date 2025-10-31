@@ -24,7 +24,7 @@ We built **`@57block/stellar-resource-usage`** to help teams catch these issues 
 To give you a quick idea of what our tool does, think of it like the Hardhat Gas Reporter. That tool is excellent and powerful (and, in fact, was a major inspiration for our project). Here’s what the Hardhat Gas Reporter looks like in action:
 ![Hardhat Gas Reporter](./hardhat-gas-reporter.png)
 
-## The Problem (In Plain English)
+## The Problem
 
 Soroban doesn't bill you with a single "gas" number. Instead, it has multiple resource dimensions—CPU, memory, ledger I/O, transaction size—and any one of them can cause a transaction to fail or drive up costs.
 
