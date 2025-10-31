@@ -4,8 +4,10 @@ title: "Guide to Web3 and dApp Infrastructure"
 author: ["Wei Wang / Tech Lead"]
 createTime: 2024-04-18
 categories: ["engineering"]
+subCategories: ["Blockchain & Web3"]
 tags: ["Smart Contract", "Web3", "Architecture", "Dapp"]
 landingPages: ["Blockchain-dApps"]
+heroColor: "#2CA9CA"
 thumb: "./thumb.png"
 thumb_h: "./thumb_h.png"
 intro: "We created this guide to help people new to Web3 and the dApp infrastructures use this technology in their organizations. The design of Web3 apps is much more decentralized than that of Web2. New services are constantly appearing to make building and running these projects easier and safer. Engineers must know how each part works to create effective Web3 apps. We describe this here."
@@ -138,7 +140,7 @@ This function automates the execution of specific smart contract actions in resp
 Middleware can be configured to send alerts based on predetermined criteria. These alerts can be communicated through various channels, such as email, user notifications, on-call services, or messages, facilitating quick responses to important events or conditions within the blockchain environment. <br><br>These common tools often integrate multiple functions, including above monitoring, automation, and alerting:  
 
     1. **Sentio** is a user-friendly tool for gaining insights, securing assets, and troubleshooting transactions for decentralized applications.
-    2. **Gelato** is known as Web3’s decentralized backend, enabling the creation of augmented smart contracts that are automated and off-chain aware.
+    2. **Gelato** is known as Web3's decentralized backend, enabling the creation of augmented smart contracts that are automated and off-chain aware.
     3. **Defender** focuses on enforcing security best practices in smart contract deployment and maintenance across blockchains.
     4. **Tenderly** provides a platform for Web3 developers to create, test, monitor, and operate smart contracts, combining debugging tools with observability and infrastructure components.
 

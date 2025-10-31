@@ -4,8 +4,10 @@ title: "Exploring Account Abstraction in Ethereum: Building and Optimizing Smart
 author: ["Zewei Zhang / Front-End Engineer"]
 createTime: 2025-01-13
 categories: ["engineering"]
+subCategories: ["Blockchain & Web3"]
 tags: ["Web3", "Account Abstraction", "Wallet", "Dynamic", "Alchemy"]
 landingPages: ["Blockchain-Defi Protocols"]
+heroColor: "#656ACE"
 thumb: "thumb.png"
 thumb_h: "thumb_h.png"
 intro: "Discover how Account Abstraction (AA) using Dynamic and Alchemy can be used to build and optimize smart wallets. This article discusses AA's origins, workflow, advantages, and disadvantages. The demo and front-end code examples provide practical, tangible guidance for developers to implement AA in their projects or products immediately."
@@ -18,7 +20,7 @@ AA addresses these limitations by decoupling transactions and accounts from the 
 allowing for more advanced functionalities and enhanced security. 
 
 This article delves into the origins and workflow of AA and highlights the advantages and disadvantages. As we explore how to build and optimize AA wallets using Dynamic and Alchemy, 
-we’ll provide you with practical insights through front-end code examples.
+we'll provide you with practical insights through front-end code examples.
 
 Whether you are a developer looking to implement AA wallets or simply interested in understanding this cutting-edge technology, this article will guide you through the essential concepts and practical steps.
 
@@ -62,28 +64,28 @@ It allows transactions and accounts to be decoupled from the underlying layer an
 
 This decoupling brings several key advantages, which are detailed below:
 
-### 1. Private Key Management
+### Private Key Management
 In the [EIP-4337](https://eips.ethereum.org/EIPS/eip-4337), one can freely use the desired signature algorithm because 
 the signature is no longer limited to Ethereum's traditional ECDSA. Therefore, an AA Wallet can support native 
 multi-signature wallets (MultiSig Wallets), allowing for more flexible joint account management by multiple parties. It 
 is also possible to reset Contract Account Ownership through social recovery and email verification, such as 
 Gmail, to regain access to contract accounts like [UniPass Wallet](https://docs.wallet.unipass.id/).
 
-### 2. Enhanced Security
+### Enhanced Security
 A smart contract allows the AA wallet to implement multi-signature authorization and other related functions, requiring approval 
 from multiple parties before the transaction is completed. This reduces the 
 risk of unauthorized access to an account compared to relying solely on private keys.
 
-### 3. Pay Tx Fee
+### Pay Tx Fee
 Since introducing the Paymaster role as the fee payer, AA Wallet has not had to pay the fees. DApps can 
 assist users in paying the fees for their operations to improve the user experience. Users can also pay fees using 
 ERC20 tokens, which EOAs could not do in the past.
 
-### 4. Multi-Call
+### Multi-Call
 Previously, an EOA could only perform one transaction at a time. However, with ERC 4337, different transactions can all be 
 placed in the callData field of the User Operation, allowing for the atomic execution of multiple different transactions at once.
 
-### 5. Social Account Recovery
+### Social Account Recovery
 Social account recovery is also an advantage of AA Wallet. You can set up a social account as the guardian of the wallet and 
 retrieve the access rights to the contract account through social account verification. Currently, losing the private 
 key means you can never access Ethereum funds. Account Abstraction separates account access from the private key. With social 
@@ -95,16 +97,16 @@ While AA offers several advantages, it also has some disadvantages that need to 
 
 Disadvantages can include:
 
-### 1. May Result in Higher Gas Fees
+### May Result in Higher Gas Fees
 In the past, a transfer between EOAs only required consumption of 21000 Gwei. However, using ERC-4337 
 creates a contract call, which results in higher costs for the User Operation. 
 ([Details can be found in this article](https://medium.com/@intuofficial/erc-4337-gas-fees-a-comparative-analysis-of-deoas-and-erc-4337-81361a51b66b#:~:text=The%20fee%20is%20determined%20by,wallet%20only%20needs%2021%2C000%20gas.).) Currently, 
 the best solution is to use Layer 2 for transactions, which can significantly reduce the cost of gas fees.
 
-### 2. Need to Mitigate Malicious Paymaster Risks in Account Abstraction
+### Need to Mitigate Malicious Paymaster Risks in Account Abstraction
 As previously mentioned, Paymasters need to stake native tokens to the EntryPoint to prevent malicious Paymasters 
 from conducting DoS (Denial of Service) attacks. Since the Paymaster is a contract implemented by a third party, the Bundler can send invalid transactions. 
-Here’s how:
+Here's how:
 
 - **i**. Establish a malicious Paymaster contract that returns true for all check functions.
 - **ii**. All simulations and checks will pass when the User Operation enters the mempool.

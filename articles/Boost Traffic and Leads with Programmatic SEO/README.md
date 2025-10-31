@@ -4,8 +4,9 @@ title: "Boost Traffic and Leads with Programmatic SEO"
 author: ["Shi Chen / Product Manager"]
 createTime: 2024-04-21
 categories: ["engineering"]
+subCategories: ["App Growth & Delivery"]
 tags: ["SEO", "Growth", "Alternative Investment"]
-heroColor: #39A0A0
+heroColor: "#39A0A0"
 thumb: "https://s3.amazonaws.com/assets.57blocks.io/cms_uploads/illustration_seo_db9bc06b49.png"
 thumb_h: "./thumb_h.png"
 intro: "You may have heard that programmatic SEO could boost site traffic from search engines and increase leads. However, considering the complexities of implementation can be intimidating. In this blog, we describe our design and client collaboration process, along with our findings and we outline the numerous client benefits after launch."
@@ -57,7 +58,7 @@ Throughout the process, we maintain a high standard and always keep the actual u
 
 ### To get it done: the use of Ghost and other considerations
 
-Programmatic SEO is mass-producing content web pages. Therefore, picking a CMS is important. We use Ghost as our site CMS. Part of the reason is it’s our partner's preference. Nevertheless, Ghost has its strengths for programmatic SEO, for example:
+Programmatic SEO is mass-producing content web pages. Therefore, picking a CMS is important. We use Ghost as our site CMS. Part of the reason is it's our partner's preference. Nevertheless, Ghost has its strengths for programmatic SEO, for example:
 
 +   Mobile Optimization: Ghost themes are designed to be responsive and mobile-friendly, which is beneficial for SEO as Google uses mobile-first indexing.
 +   Automatic Meta Tags: Ghost automatically creates SEO-friendly meta titles and descriptions for the posts, which helps search engines understand the content on the pages.

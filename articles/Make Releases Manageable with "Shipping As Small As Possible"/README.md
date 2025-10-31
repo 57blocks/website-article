@@ -4,11 +4,13 @@ title: "Make Releases Manageable with \"Shipping As Small As Possible\""
 author: ["Yongzhi Yang / Back-End Engineer, Team Lead"]
 createTime: 2024-05-09
 categories: ["engineering"]
+subCategories: ["Developer Tools & Performance"]
 tags: ["CI/CD", "Workflow"]
 landingPages: ["AI-AI Infra and Framework"]
+heroColor: "#5B6FBE"
 thumb: "./thumb.png"
 thumb_h: "./thumb_h.png"
-intro: "If you're finding it challenging to release complex features while adhering to the principles of Continuous Integration and Continuous Deployment (CI/CD), we’re excited to share our proven approach. By breaking down large features into manageable components, we can relieve the burden of managing these large features, ensuring smoother data management and migration, and minimizing disruptions to dependent clients. This approach also supports an agile and iterative deployment process, enhancing stability and the user experience."
+intro: "If you're finding it challenging to release complex features while adhering to the principles of Continuous Integration and Continuous Deployment (CI/CD), we're excited to share our proven approach. By breaking down large features into manageable components, we can relieve the burden of managing these large features, ensuring smoother data management and migration, and minimizing disruptions to dependent clients. This approach also supports an agile and iterative deployment process, enhancing stability and the user experience."
 previousSlugs: ["shipping-as-small-as-possible", "make-release-manageable-with-shipping-as-small-as-possible"]
 
 ---
@@ -27,7 +29,7 @@ It is essential to break down features into manageable components to achieve the
 
 ### New Features
 
-Building new features without exposing them to clients or users is relatively easy. However, it’s important to keep them as small as possible. Here's a recommended approach:
+Building new features without exposing them to clients or users is relatively easy. However, it's important to keep them as small as possible. Here's a recommended approach:
 
 - Create the basic or common changes required as a foundation for upcoming logic or features. This may include database modifications and the development of common services/components.
 - Build the feature from the bottom up or in reverse order, starting from the database layer, moving to the service layer, and finally constructing the protocol/interface layer.
@@ -38,7 +40,7 @@ Building new features without exposing them to clients or users is relatively ea
 
 When constructing features that build upon existing ones, consider compatibility for the new and updated features. This ensures a smooth transition and prevents disruptions to existing systems. Here are some approaches to consider: 
 
-1. Don’t initialize new changes if dependencies are not ready, such as setting up a new message queue or SMS service.
+1. Don't initialize new changes if dependencies are not ready, such as setting up a new message queue or SMS service.
 2. Add a feature flag that allows the changes to be disabled based on specific conditions. For example, you may want to hide all change information from users or specific user groups.
 3. Instead of updating existing features directly, consider adding new features alongside the old ones. For example, if you need to modify a field in the response, it is better to mark the old field as deprecated and introduce a new field. This ensures compatibility with different services that rely on the old field.
 4. Create a new API version when the changes significantly alter the original structure or if the response data structure needs a different format.
@@ -94,7 +96,7 @@ For backend services, creating new APIs for new features typically follows this 
 
 ### Update Existing APIs
 
-When modifying APIs used by various components, it’s important to avoid breaking existing systems. Instead, consider these approaches:
+When modifying APIs used by various components, it's important to avoid breaking existing systems. Instead, consider these approaches:
 
 - Determine whether changes can be made to the existing API without causing issues.
 

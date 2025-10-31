@@ -4,8 +4,10 @@ title: "Blockchain Encryption Technology: A Critical Defense for Protecting Digi
 author: ["Bonnie Chen/ Front-End Engineer"]
 createTime: 2025-01-10
 categories: ["engineering"]
+subCategories: ["Blockchain & Web3"]
 tags: ["Blockchain", "Encryption"]
 landingPages: ["Blockchain-Defi Protocols"]
+heroColor: "#429C9A"
 thumb: "thumb.png"
 thumb_h: "thumb-h.png"
 intro: "The rise of blockchain technology has sparked widespread concern for the security of digital assets. Here, you will find the information you need to navigate this space to understand and assess the core encryption technologies used in blockchain, identify potential security risks, and apply these encryption methods to enhance system security and ensure the safety of data and transactions."
@@ -17,7 +19,7 @@ Blockchain is a decentralized distributed ledger technology that is rapidly tran
 
 Security is vital at the core of blockchain, and cryptographic techniques are the foundation for ensuring blockchain security. Here, we will explore the primary cryptographic techniques used in blockchain, including symmetric encryption, asymmetric encryption, and hash functions.
 
-These encryption technologies are the backbone of secure communication, transactions, and identity verification, significantly reducing security vulnerabilities. By the end of this article, you’ll understand how to assess the encryption technologies used in blockchain, identify potential security risks, and apply these encryption methods to strengthen system security and ensure the safety of data and transactions.
+These encryption technologies are the backbone of secure communication, transactions, and identity verification, significantly reducing security vulnerabilities. By the end of this article, you'll understand how to assess the encryption technologies used in blockchain, identify potential security risks, and apply these encryption methods to strengthen system security and ensure the safety of data and transactions.
 
 ## Common Types of Data Encryption
 
@@ -70,9 +72,7 @@ To illustrate, imagine a "prover" who wants to demonstrate that they know a pass
 3. The **Prover** responds correctly to these challenges multiple times, proving their claim without ever revealing the password.
 4. Through this iterative process, the "verifier" gains confidence that the "prover" truly knows the password, as the successful responses show, but never learns the password.
 
-:::center
-![ZKP](./zkp.png =500x500)
-:::
+![ZKP](./zkp.png){.d-block .mx-auto .my-3 .mw-100}{width=500px}
 
 ### 2. Homomorphic Encryption
 
@@ -94,9 +94,7 @@ The assumption is that since all participating entities are susceptible to compr
 
 **Application Scenarios**: It is applied in multi-signature wallets, decentralized exchanges (DEX), distributed key management, cloud computing security, secure multi-party computation, or decentralized autonomous organization (DAO) management. It is used in cases where multiple actors may be necessary to complete a transaction. One bad actor or corrupted value won't impact the data integrity of the whole.
 
-:::center
-![Threshold Cryptography](./threshold-cryptography.png =500x500)
-:::
+![Threshold Cryptography](./threshold-cryptography.png){.d-block .mx-auto .my-3 .mw-100}{width=500px}
 
 ## Cryptographic Techniques in Blockchain
 
@@ -139,9 +137,7 @@ The generation of the public key is based on the private key. First, a common ba
 
 Deriving the private key from the public key in elliptic curve cryptography involves the elliptic curve discrete logarithm problem. Mathematically, this is an intractable problem, especially with large prime numbers. The inherent difficulty forms the trapdoor function, which is the foundation for the security in public key encryption and digital signature systems. The security of cryptographic algorithms fundamentally depends on this property.
 
-:::center
-![Elliptic Curve Cryptography](./ecc.png =500x500)
-:::
+![Elliptic Curve Cryptography](./ecc.png){.d-block .mx-auto .my-3 .mw-100}{width=500px}
 
 #### Application of Elliptic Curve Cryptography in Blockchain
 
@@ -298,8 +294,8 @@ However, future innovations like quantum computing will unearth known and yet un
 
 Quantum computing advancements like Google's Willow chip with 105 qubits mark significant technological progress. But they are far from the scale needed to threaten cryptocurrency encryption and exploit vulnerabilities in cryptographic algorithms like Elliptic Curve Cryptography (ECC) and SHA-256. Breaking Bitcoin's security would require a quantum computer with millions of qubits. While Willow cannot currently compromise blockchain networks, its existence signals rapid evolution in quantum capabilities.
 
-Future quantum computers could use algorithms like Shor’s to efficiently factor large numbers, exposing private keys and compromising network integrity. Similarly, Grover’s algorithm could weaken hash functions like SHA-256, endangering static addresses, dormant accounts, and blockchain security.
+Future quantum computers could use algorithms like Shor's to efficiently factor large numbers, exposing private keys and compromising network integrity. Similarly, Grover's algorithm could weaken hash functions like SHA-256, endangering static addresses, dormant accounts, and blockchain security.
 
 The blockchain community is advancing post-quantum cryptography to address these risks, using techniques like lattice-based and hash-based cryptography and code-based and multivariate polynomial approaches. Quantum random-number generators are also being integrated to create unbreakable keys. Developers are rethinking wallet and protocol designs with quantum-resistant measures, such as Ethereum's ERC-4337 and EIP-7560 proposals for enhanced security. Quantum computing also offers transformative opportunities, such as optimizing consensus mechanisms, accelerating transaction validation, and enabling more complex smart contracts. These advancements can improve scalability, efficiency, and functionality and drive blockchain innovation.
 
-As stated earlier, while Google’s Willow chip does not currently threaten cryptocurrency encryption, its development underscores the urgency for blockchain systems to adopt quantum-resistant cryptography. Proactively integrating these measures ensures blockchain networks remain secure while leveraging quantum computing’s transformative potential to build scalable and efficient systems for the future.
+As stated earlier, while Google's Willow chip does not currently threaten cryptocurrency encryption, its development underscores the urgency for blockchain systems to adopt quantum-resistant cryptography. Proactively integrating these measures ensures blockchain networks remain secure while leveraging quantum computing's transformative potential to build scalable and efficient systems for the future.

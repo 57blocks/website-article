@@ -4,7 +4,9 @@ title: "Code to Cash: The Evolving Landscape of Payments"
 author: ["GuangPeng Liu / Fullstack Engineer", "Ida Zhou / Backend Engineer", "Hum Tan / Fullstack Engineer"]
 createTime: 2025-06-23
 categories: ["engineering"]
+subCategories: ["FinTech & Payments"]
 tags: ["Web2", "FinTech"]
+heroColor: "#5E76D5"
 thumb: "thumb.png"
 thumb_h: "thumb_h.png"
 intro: "This comprehensive guide explores the rapidly evolving payments landscape, offering developers strategic insights on implementing payment processors, navigating modern trends, and seamlessly integrating platforms like Stripe and PayPal into web applications."
@@ -46,7 +48,7 @@ Consumers increasingly expect payment experiences that are fast, secure, and fri
 
 - **Contactless Payments**: The adoption of NFC-enabled cards and devices has grown exponentially, driven by convenience and hygiene concerns during the COVID-19 pandemic.
 - **Mobile Wallets**: Platforms like Apple Pay, Google Pay, and Samsung Pay have transformed smartphones into powerful payment tools, offering biometric authentication and integration with loyalty programs.
-- **One-Click Checkouts**: E-commerce platforms are prioritizing simplified checkout processes to reduce cart abandonment rates, with solutions like Amazon’s one-click purchase and Shopify’s Shop Pay gaining popularity.
+- **One-Click Checkouts**: E-commerce platforms are prioritizing simplified checkout processes to reduce cart abandonment rates, with solutions like Amazon's one-click purchase and Shopify's Shop Pay gaining popularity.
 - **Subscription Economy Growth**: The rise of subscription-based services (e.g., Netflix, Spotify) has driven the need for recurring payment solutions that are automated and reliable.
 
 ### 4. Regulatory Changes and Technological Advancements
@@ -77,7 +79,7 @@ Emerging technologies are acting as catalysts for innovation across the payment 
 
 The payment landscape varies significantly across regions, influenced by local consumer behavior, infrastructure, and regulations:
 
-- **Asia**: Leads in mobile payments and QR code adoption, with China’s Alipay and WeChat Pay dominating the market.
+- **Asia**: Leads in mobile payments and QR code adoption, with China's Alipay and WeChat Pay dominating the market.
 - **Europe**: Focuses on open banking and real-time payments, with strong regulatory frameworks like PSD2 driving innovation.
 - **North America**: Shows strong adoption of contactless payments and digital wallets, with a growing interest in BNPL and cryptocurrency.
 - **Africa**: Mobile money services like M-Pesa are driving financial inclusion, enabling millions of unbanked individuals to access digital payments.
