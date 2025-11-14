@@ -77,8 +77,8 @@ This allowed us to observe the performance issue in its purest form, without int
 
 The main content of the code is:
 
-```
-…
+```dart
+
 const validPointsData = thousandsOfPointsIn3DSpace;
 const material = new THREE.MeshBasicMaterial({color: 0xFFF});
 
@@ -89,7 +89,7 @@ for (let i = 0; i < validPointsData.length - 1; i++) {
     const line = new THREE.Mesh(geometry, material);
     scene.add(line);
 }
-…
+
 ```
 
 Which creates a path trajectory using the points in 3D space.
@@ -105,14 +105,14 @@ Luckily, Three.js provides **[BufferGeometry](https://threejs.org/docs/?q=buffer
 The classic example is drawing a triangle. First, we create an empty `BufferGeometry`:
 
 
-```
+```dart
 const geometry = new THREE.BufferGeometry()
 ```
 
 Then we define the positions of the vertices. A triangle has **3 vertices**, and each vertex is described by **X, Y, Z** coordinates. That means we need to store 9 values in total. For this we use a <code>[Float32Array](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Float32Array)</code>, a **native JavaScript typed array** with a fixed length. It’s commonly used to load buffers to the GPU efficiently.
 
 
-```
+```dart
 const positionsArray = new Float32Array([
     0, 0, 0, // First vertex
     0, 1, 0, // Second vertex
@@ -128,7 +128,7 @@ Three.js makes this possible with **[BufferAttribute](https://threejs.org/docs/?
 In this case, we add an attribute named `position`, because that’s what the built-in Three.js shaders expect for vertex positions.
 
 
-```
+```dart
 const positionsAttribute = new THREE.BufferAttribute(positionsArray, 3)
 geometry.setAttribute('position', positionsAttribute)
 ```
@@ -137,7 +137,7 @@ geometry.setAttribute('position', positionsAttribute)
 So, the final code looks like this:
 
 
-```
+```dart
 const geometry = new THREE.BufferGeometry()
 const positionsArray = new Float32Array([
     0, 0, 0, // First vertex
@@ -164,7 +164,7 @@ What makes this particularly useful is that this library actually requires us to
 Applied to our scenario with thousands of path points, the simplified code looks like this:
 
 
-```
+```dart
 const validPointsData = thousandsOfPointsIn3DSpace;
 const material = customMaterial; // Custom material provided by Lines Library
 const meshLine = new MeshLine(); // Lines library
@@ -220,3 +220,4 @@ In short, **stepping into BufferGeometry gives you the best of both worlds**: mo
 * [https://mattdesl.svbtle.com/drawing-lines-is-hard](https://mattdesl.svbtle.com/drawing-lines-is-hard)
 * [https://threejs.org/examples/?q=lines#webgl_interactive_lines](https://threejs.org/examples/?q=lines#webgl_interactive_lines)
 * [https://codeburst.io/improve-your-threejs-performances-with-buffergeometryutils-8f97c072c14b](https://codeburst.io/improve-your-threejs-performances-with-buffergeometryutils-8f97c072c14b)
+
