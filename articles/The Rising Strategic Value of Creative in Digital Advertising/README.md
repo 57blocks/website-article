@@ -18,6 +18,7 @@ The digital advertising landscape has recently undergone a significant shift in 
 ## Part 1: Know Your History
 
 ![](./chart%201.png)
+
 *(Dates are approximate as technological evolutions are a gradual process)*
 
 The first time that exchanges, data, and bidding were stitched together in a true demand-side platform as we understand them today was around 2007. Before firms like MediaMath, advertisers that wanted to purchase space across the web encountered a scattered, unintuitive, and manual landscape; the revolutionary idea around this time was that software could join all the ad auctions happening across the internet and decide, in real time, which impressions to buy and for how much. Therefore, early DSPs found it especially worthwhile to compete on two major fronts: how much inventory they could access and how advanced their targeting algorithms were. As time went on, the industry consolidated as a few key winners proved they could deliver upon these axes. During the late 2000s and throughout the 2010s, creative was something that advertisers would manage independently and bring to DSPs. A DSP would only think about when and where to show creative and wouldn’t concern themselves with the process of crafting compelling advertisements on behalf of their advertisers.
