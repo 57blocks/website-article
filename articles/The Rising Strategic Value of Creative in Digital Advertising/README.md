@@ -62,12 +62,12 @@ It’s been interesting to watch how digital advertising has evolved in the wake
 If today’s DSPs don’t help advertisers create, test, and launch creative, someone else will!
 
 ## Sources
-[^1]: [AppLovin Corporation (APP) Q3 2025 Earnings Call. “AppLovin Corp (APP) Q3 2025 Earnings Call Highlights: AI …” Yahoo Finance, 5 Nov. 2025.](https://finance.yahoo.com/quote/APP/earnings/APP-Q3-2025-earnings_call-371548.html?guce_referrer=… Yahoo Finance)
-[^2]: [Hunyuan Foundation Model Team. “HunyuanVideo: A Systematic Framework for Large Video Generative Models.” arXiv, 2024, arXiv:2412.03603v1.](https://arxiv.org/html/2412.03603v1)
-[^3]: [Zhou, Penghao, et al. “OpenVid-1M: A Large-scale High-quality Dataset for Text-to-Video Generation.” arXiv, 2024, arXiv:2407.02371v3.](https://arxiv.org/html/2407.02371v3)
-[^4]: [Hugging Face. “State of Open Video Generation Models in Diffusers.” Hugging Face Blog, 27 Jan. 2025.](https://huggingface.co/blog/video_gen)
-[^5]: [Thompson, Ben. “Meta’s AI Abundance.” Stratechery, 29 Oct. 2024.](https://stratechery.com/2024/metas-ai-abundance/)
-[^6]: [Amazon Ads. “Creative Solutions – Optimize your creative with AI-powered solutions.” Amazon Advertising.](https://advertising.amazon.com/generative-ai-ad-solutions?utm_source=chatgpt.com#vid)
-[^7]: [Meta to Let Brands Create, Target AI Ads Fully by End of 2026, Report Says.” Investopedia, 2024.](https://www.investopedia.com/meta-to-let-brands-create-target-ai-fully-by-end-of-2026-report-says-11746215)
-[^8]: [Sun, Chonglin, Nancy Yu, Haiyu Lu, Liang Wang, Yunchen Pu, Gaoxiang Liu, Gian-Paolo (GP) Musumeci, and Neeraj Bhatia. “Meta Andromeda: Supercharging Advantage+ automation with the next-gen personalized ads retrieval engine.” Engineering at Meta (Facebook Engineering), 2 Dec. 2024.](https://engineering.fb.com/2024/12/02/production-engineering/meta-andromeda-advantage-automation-next-gen-personalized-ads-retrieval-engine/?utm_source=chatgpt.com)
-[^9]: [Seufert, Eric. “An Interview with Eric Seufert about the current state of digital advertising.” Stratechery, 2024.](https://stratechery.com/2024/an-interview-with-eric-seufert-about-the-current-state-of-digital-advertising/)
+- [AppLovin Corporation (APP) Q3 2025 Earnings Call. “AppLovin Corp (APP) Q3 2025 Earnings Call Highlights: AI …” Yahoo Finance, 5 Nov. 2025.](https://finance.yahoo.com/quote/APP/earnings/APP-Q3-2025-earnings_call-371548.html?guce_referrer=… Yahoo Finance)
+- [Hunyuan Foundation Model Team. “HunyuanVideo: A Systematic Framework for Large Video Generative Models.” arXiv, 2024, arXiv:2412.03603v1.](https://arxiv.org/html/2412.03603v1)
+- [Zhou, Penghao, et al. “OpenVid-1M: A Large-scale High-quality Dataset for Text-to-Video Generation.” arXiv, 2024, arXiv:2407.02371v3.](https://arxiv.org/html/2407.02371v3)
+- [Hugging Face. “State of Open Video Generation Models in Diffusers.” Hugging Face Blog, 27 Jan. 2025.](https://huggingface.co/blog/video_gen)
+- [Thompson, Ben. “Meta’s AI Abundance.” Stratechery, 29 Oct. 2024.](https://stratechery.com/2024/metas-ai-abundance/)
+- [Amazon Ads. “Creative Solutions – Optimize your creative with AI-powered solutions.” Amazon Advertising.](https://advertising.amazon.com/generative-ai-ad-solutions?utm_source=chatgpt.com#vid)
+- [Meta to Let Brands Create, Target AI Ads Fully by End of 2026, Report Says.” Investopedia, 2024.](https://www.investopedia.com/meta-to-let-brands-create-target-ai-fully-by-end-of-2026-report-says-11746215)
+- [Sun, Chonglin, Nancy Yu, Haiyu Lu, Liang Wang, Yunchen Pu, Gaoxiang Liu, Gian-Paolo (GP) Musumeci, and Neeraj Bhatia. “Meta Andromeda: Supercharging Advantage+ automation with the next-gen personalized ads retrieval engine.” Engineering at Meta (Facebook Engineering), 2 Dec. 2024.](https://engineering.fb.com/2024/12/02/production-engineering/meta-andromeda-advantage-automation-next-gen-personalized-ads-retrieval-engine/?utm_source=chatgpt.com)
+- [Seufert, Eric. “An Interview with Eric Seufert about the current state of digital advertising.” Stratechery, 2024.](https://stratechery.com/2024/an-interview-with-eric-seufert-about-the-current-state-of-digital-advertising/)
