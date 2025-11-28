@@ -62,7 +62,7 @@ It’s been interesting to watch how digital advertising has evolved in the wake
 If today’s DSPs don’t help advertisers create, test, and launch creative, someone else will!
 
 ## Sources
-- [AppLovin Corporation (APP) Q3 2025 Earnings Call. “AppLovin Corp (APP) Q3 2025 Earnings Call Highlights: AI …” Yahoo Finance, 5 Nov. 2025.](https://finance.yahoo.com/quote/APP/earnings/APP-Q3-2025-earnings_call-371548.html?guce_referrer=… Yahoo Finance)
+- [AppLovin Corporation (APP) Q3 2025 Earnings Call. “AppLovin Corp (APP) Q3 2025 Earnings Call Highlights: AI …” Yahoo Finance, 5 Nov. 2025.](https://finance.yahoo.com/quote/APP/earnings/APP-Q3-2025-earnings_call-371548.html?utm_source=chatgpt.com)
 - [Hunyuan Foundation Model Team. “HunyuanVideo: A Systematic Framework for Large Video Generative Models.” arXiv, 2024, arXiv:2412.03603v1.](https://arxiv.org/html/2412.03603v1)
 - [Zhou, Penghao, et al. “OpenVid-1M: A Large-scale High-quality Dataset for Text-to-Video Generation.” arXiv, 2024, arXiv:2407.02371v3.](https://arxiv.org/html/2407.02371v3)
 - [Hugging Face. “State of Open Video Generation Models in Diffusers.” Hugging Face Blog, 27 Jan. 2025.](https://huggingface.co/blog/video_gen)
