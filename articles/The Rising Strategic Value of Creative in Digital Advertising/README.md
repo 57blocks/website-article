@@ -5,7 +5,7 @@ author: ["Christian Karren / Research Analyst"]
 createTime: 2025-11-28
 categories: ["engineering"]
 subCategories: ["AI & Vector DBs"]
-tags: ["Digital Advertising", "Performance Marketing,", "Ad Creative", "Generative AI"]
+tags: ["Digital Advertising", "Performance Marketing", "Ad Creative", "Generative AI"]
 landingPages: ["AI-AI/ML Model Dev"]
 heroColor: "#8761B1"
 thumb: "./thumb.png"
@@ -39,11 +39,11 @@ In the open-source ecosystem, products like CogVideoX, Mochi-1, Hunyuan, Allegro
 
 The broad recognition that video generation capabilities are real and here to stay has inspired a wave of companies aspiring to bring them to digital advertising. The most successful of these firms is Creatify, who secured a 15.5 million Series A round in May of this year. They offer a suite of products not dissimilar from what other generative video startups make, but they specifically target advertisers that want to maximize ROAS with quality creative. Other startups are looking to compete in this space too, including Omneky, Pencil, AdGen AI, QuickAds, Predis.ai, and more. The winners have yet to be determined; only time will tell.
 
-Of course, big tech isn’t oblivious to these shifts either. In 2024 Ben Thompson detailed how Meta has pushed this product category forward, writing:
+Of course, Big Tech isn’t oblivious to these shifts either. In 2024 Ben Thompson detailed how Meta has pushed this product category forward, writing:
 
 >“Advertisers have long understood the importance of giving platforms like Meta multiple pieces of creative for ads; Meta’s platform will test different pieces of creative with different audiences and quickly hone in on what works, putting more money behind the best arrow. Generative AI puts this process on steroids: advertisers can provide Meta with broad parameters and brand guidelines, and let the black box not just test out a few pieces of creative, but an effectively unlimited amount. Critically, this generative AI application has a verification function: did the generated ad generate more revenue or less? That feedback function, meanwhile, is data in its own right, and can be leveraged to better target individuals in the future.”
 
-Thompson’s takes are supported by real-world evidence; Meta’s Advantage+ Creative and Ads Manager products have already incorporated generative AI tools corresponding to background generation, image expansion, full image variations, and now tools that can turn static product photos into multi-scene video ads with music, overlays, and text. Millions of advertisers are finding these tools useful; Meta’s engineering blog commented in December 2024, “ We estimate that businesses using image generation are seeing a +7% increase in conversions”. A year is a lifetime in the world of AI, though, and the Wall Street Journal has reported that Meta aims to allow brands to completely automate the process of creating advertisements by the end of 2026. 
+Thompson’s takes are supported by real-world evidence; Meta’s Advantage+ Creative and Ads Manager products have already incorporated generative AI tools corresponding to background generation, image expansion, full image variations, and now tools that can turn static product photos into multi-scene video ads with music, overlays, and text. Millions of advertisers are finding these tools useful; Meta’s engineering blog commented in December 2024, “We estimate that businesses using image generation are seeing a +7% increase in conversions”. A year is a lifetime in the world of AI, though, and the Wall Street Journal has reported that Meta aims to allow brands to completely automate the process of creating advertisements by the end of 2026. 
 
 Google / YouTube are marching in the same direction. Amazon is too – we’ll come back to that in a second.
 
