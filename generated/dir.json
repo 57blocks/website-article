@@ -72,6 +72,21 @@
       "slug": "the-rising-strategic-value-of-creative-in-digital-advertising"
     },
     {
+      "title": "Improve Performance on Three.js Scenes Using Custom Meshes and BufferGeometry",
+      "author": [
+        "Andrés Díaz"
+      ],
+      "createTime": "2025-10-24T00:00:00.000Z",
+      "tags": [
+        "Three.JS"
+      ],
+      "thumb": "./thumb.png",
+      "thumb_h": "./thumb_h.png",
+      "intro": "We’ll explore a real-world case where it was necessary to dive into some of Three.js’s more advanced concepts to improve performance and create a smooth experience. ",
+      "path": "articles/Improve%20Performance%20on%20Three.js%20Scenes%20Using%20Custom%20Meshes%20and%20BufferGeometry/README.md",
+      "slug": "improve-performance-on-threejs-scenes-using-custom-meshes-and-buffergeometry"
+    },
+    {
       "published": true,
       "title": "Web3 Intents Based Systems and How LI.FI is Pushing Cross-Chain Swaps Evolution",
       "author": [
