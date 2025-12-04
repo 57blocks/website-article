@@ -1,8 +1,8 @@
 ---
-published: false
+published: true
 title: "The Rising Strategic Value of Creative in Digital Advertising"
 author: ["Christian Karren / Research Analyst"]
-createTime: 2025-11-28
+createTime: 2025-12-4
 categories: ["engineering"]
 subCategories: ["AI & Vector DBs"]
 tags: ["Digital Advertising", "Performance Marketing", "Ad Creative", "Generative AI"]
