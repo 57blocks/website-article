@@ -44,6 +44,28 @@
     },
     {
       "published": true,
+      "title": "Improve Performance on Three.js Scenes Using Custom Meshes and BufferGeometry",
+      "author": [
+        "Andrés Díaz"
+      ],
+      "createTime": "2025-12-4",
+      "categories": [
+        "engineering"
+      ],
+      "subCategories": [
+        "Developer Tools & Performance"
+      ],
+      "tags": [
+        "Three.JS"
+      ],
+      "thumb": "./thumb.png",
+      "thumb_h": "./thumb_h.png",
+      "intro": "We’ll explore a real-world case where it was necessary to dive into some of Three.js’s more advanced concepts to improve performance and create a smooth experience. ",
+      "path": "articles/Improve%20Performance%20on%20Three.js%20Scenes%20Using%20Custom%20Meshes%20and%20BufferGeometry/README.md",
+      "slug": "improve-performance-on-threejs-scenes-using-custom-meshes-and-buffergeometry"
+    },
+    {
+      "published": true,
       "title": "The Rising Strategic Value of Creative in Digital Advertising",
       "author": [
         "Christian Karren / Research Analyst"
@@ -70,22 +92,6 @@
       "intro": "Creative has emerged as a key driver influencing success in performance marketing, and digital advertising companies are increasingly asked to facilitate the creation of advertisements. How did we get here, and what comes next?",
       "path": "articles/The%20Rising%20Strategic%20Value%20of%20Creative%20in%20Digital%20Advertising/README.md",
       "slug": "the-rising-strategic-value-of-creative-in-digital-advertising"
-    },
-    {
-      "published": true,
-      "title": "Improve Performance on Three.js Scenes Using Custom Meshes and BufferGeometry",
-      "author": [
-        "Andrés Díaz"
-      ],
-      "createTime": "2025-10-24T00:00:00.000Z",
-      "tags": [
-        "Three.JS"
-      ],
-      "thumb": "./thumb.png",
-      "thumb_h": "./thumb_h.png",
-      "intro": "We’ll explore a real-world case where it was necessary to dive into some of Three.js’s more advanced concepts to improve performance and create a smooth experience. ",
-      "path": "articles/Improve%20Performance%20on%20Three.js%20Scenes%20Using%20Custom%20Meshes%20and%20BufferGeometry/README.md",
-      "slug": "improve-performance-on-threejs-scenes-using-custom-meshes-and-buffergeometry"
     },
     {
       "published": true,
