@@ -1,4 +1,5 @@
 ---
+published: true
 title: "Improve Performance on Three.js Scenes Using Custom Meshes and BufferGeometry"
 author: ["Andrés Díaz"]
 createTime: 2025-10-24
