@@ -72,6 +72,7 @@
       "slug": "the-rising-strategic-value-of-creative-in-digital-advertising"
     },
     {
+      "published": true,
       "title": "Improve Performance on Three.js Scenes Using Custom Meshes and BufferGeometry",
       "author": [
         "Andrés Díaz"
