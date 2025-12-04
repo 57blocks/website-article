@@ -1,7 +1,7 @@
 ---
 published: true
 title: "Improve Performance on Three.js Scenes Using Custom Meshes and BufferGeometry"
-author: ["Andrés Díaz"]
+author: ["Andrés Díaz / Front-End Engineer"]
 createTime: 2025-12-4
 categories: ["engineering"]
 subCategories: ["Developer Tools & Performance"]
