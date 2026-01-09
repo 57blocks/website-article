@@ -306,7 +306,7 @@ Ideally, you also use TypeScript types generated from the IDL, which makes progr
 
 These mechanisms together form Solana's account-centric architecture, where logic and data are predictable, composable, and parallelizable—a fundamental difference from EVM's contract-centric architecture.
 
-More about IDL: [Program IDL File](https://www.anchor-lang.com/docs#idl)
+More about IDL: [Program IDL File](https://www.anchor-lang.com/docs/basics/idl)
 
 ## 6. Summary: Comparing the Two Paradigms
 
