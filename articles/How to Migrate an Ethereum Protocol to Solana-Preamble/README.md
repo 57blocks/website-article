@@ -18,7 +18,7 @@ landingPages: ["Blockchain-Onchain infra"]
 heroColor: "#5E86E2"
 thumb: "thumb.png"
 thumb_h: "thumb-h.png"
-intro: "This preamble reframes “EVM → Solana” migration from a system-design perspective, comparing the two paradigms across the account model, execution model, transaction structure, and fee model. It also introduces the Solana primitives—Program, Account, PDA, SPL/ATA, and IDL—that you’ll use to reason about state, composition, and performance throughout the series."
+intro: "A systematic introduction to the fundamental differences between Ethereum and Solana in account models, execution mechanisms, and fee systems."
 ---
 
 ## Overview
@@ -34,7 +34,7 @@ Through this series, we hope to help developers not only complete the migration,
 - **How to Migrate an Ethereum Protocol to Solana — Preamble**: A systematic introduction to the fundamental differences between Ethereum and Solana in account models, execution mechanisms, and fee systems.
 - **How to Migrate an Ethereum Protocol to Solana — Contracts ( Part 1 )**: A focus on the core mindset shift and best practices for contract development from Ethereum to Solana.
 
-This article approaches the topic from a system design perspective, summarizing the core differences between EVM and Solana across four dimensions: account model, execution model, transaction structure, and fee model. Understanding these differences provides a foundational shift in how developers reason about smart contract platforms at the architectural level.
+This article approaches the topic from a **system design** perspective, summarizing the core differences between EVM and Solana across four dimensions: account model, execution model, transaction structure, and fee model. Understanding these differences provides a foundational shift in how developers reason about smart contract platforms at the architectural level.
 
 ## 1. Account Model: How Logic and Data Are Bound
 
@@ -42,11 +42,11 @@ This article approaches the topic from a system design perspective, summarizing 
 
 In EVM, there are two types of accounts:
 
-**EOA (Externally Owned Account)**:
-Controlled by a private key. It can send transactions and hold ETH, but does not contain any code.
+- **EOA (Externally Owned Account)**:
+  Controlled by a private key. It can send transactions and hold ETH, but does not contain any code.
 
-**Contract Account**:
-Contains executable logic and persistent storage. When a user is interacting with the contract, they simply specify its address.
+- **Contract Account**:
+  Contains executable logic and persistent storage. When a user is interacting with the contract, they simply specify its address.
 
 EVM follows a "logic + state bundled together" model. Each contract not only defines function logic but also carries its own internal storage. Any changes to the contract's state must be performed through its own code. This design makes contract interaction straightforward; however, because logic and state are tightly coupled, it limits modularity and composability.
 
@@ -104,9 +104,7 @@ Developers can bundle multiple Instructions in a single transaction, such as:
 - Initializing stored data
 - Executing business logic operations
 
-Each Instruction explicitly specifies the program it calls and the accounts it depends on.
-
-This structure provides much greater flexibility and enables composability across programs.
+Each Instruction explicitly specifies the program it calls and the accounts it depends on.This structure provides much greater flexibility and enables composability across programs.
 
 However, it also introduces more complexity in that developers must clearly understand account layouts and access patterns when constructing transactions.
 
@@ -143,20 +141,21 @@ Solana's transaction cost structure consists of three main parts:
 
 #### (2) Prioritization Fee (Optional)
 
-This fee applies only when a Compute Unit Price is explicitly set.
+- 1.This fee applies only when a Compute Unit Price is explicitly set.
 
-**Formula**:
+  **Formula**:
 
-```
-Prioritization Fee = Compute Units Consumed × Compute Unit Price
-```
+  ```
+  Prioritization Fee = Compute Units Consumed × Compute Unit Price
+  ```
 
-- **Compute Units (CU)** are Solana's core resource measurement unit, similar to gas in EVM.
+- 2.**Compute Units (CU)** are Solana's core resource measurement unit, similar to gas in EVM.
+
   - Default limit per transaction: 200,000 CU
-- Compute Units themselves do not incur cost — fees arise only when `ComputeUnitPrice` is set.
-- **Purpose**: During network congestion, users can increase priority by paying more CU price.
+  - Compute Units themselves do not incur cost — fees arise only when `ComputeUnitPrice` is set.
+  - **Purpose**: During network congestion, users can increase priority by paying more CU price.
 
-Developers can use the `ComputeBudgetProgram` to:
+- 3.Developers can use the `ComputeBudgetProgram` to:
 
 - `setComputeUnitLimit`: Increase the CU (Compute Unit) limit, suitable for complex contract calls.
 - `setComputeUnitPrice`: Set the prioritization fee, similar to the Gas Price in EVM.
@@ -165,23 +164,23 @@ Developers can use the `ComputeBudgetProgram` to:
 
 On Solana, on-chain accounts occupy storage space and storage resources are limited. To prevent users from creating excessive unused accounts that waste blockchain state, Solana implements a Rent mechanism.
 
-If an account holds a sufficient SOL deposit, it avoids periodic rent deductions; this state is called **Rent-exempt**.
+- 1.If an account holds a sufficient SOL deposit, it avoids periodic rent deductions; this state is called **Rent-exempt**.
 
-The minimum balance for rent exemption is calculated as:
+- 2.The minimum balance for rent exemption is calculated as:
 
-```
-rent_exempt_minimum = lamports_per_byte_year × data_len × exemption_threshold
-```
+  ```
+  rent_exempt_minimum = lamports_per_byte_year × data_len × exemption_threshold
+  ```
 
-where:
+  where:
 
-- `lamports_per_byte_year` = rent per byte per year
-- `exemption_threshold` = number of years exempt from rent (default: 2 years)
+  - `lamports_per_byte_year` = rent per byte per year
+  - `exemption_threshold` = number of years exempt from rent (default: 2 years)
 
-- If an account balance exceeds the rent-exempt threshold, the account will not be reclaimed.
-- If the balance falls below the threshold, rent must be paid, reducing the balance. If the balance is depleted, the account is deleted.
-- The required minimum balance is determined programmatically using `getMinimumBalanceForRentExemption`.
-- When an account is closed, the system automatically refunds the rent deposit (the previously frozen SOL), freeing the occupied storage space.
+- 3.If an account balance exceeds the rent-exempt threshold, the account will not be reclaimed.
+- 4.If the balance falls below the threshold, rent must be paid, reducing the balance. If the balance is depleted, the account is deleted.
+- 5.The required minimum balance is determined programmatically using `getMinimumBalanceForRentExemption`.
+- 6.When an account is closed, the system automatically refunds the rent deposit (the previously frozen SOL), freeing the occupied storage space.
 
 For more details on Rent calculations, see Solana's documentation: [Solana Docs: Rent](https://solana.com/docs/core/fees#rent).
 
@@ -246,21 +245,21 @@ Given the same seeds + bump + Program ID, the resulting PDA is always identical,
 
 Program Derived Addresses (PDAs) are a cornerstone of Solana's account model. Unlike Ethereum's smart contracts, which are inherently associated with an externally owned account, Solana separates program logic from account ownership. PDAs allow programs to securely manage accounts, enforce deterministic access control, and authorize actions without relying on user private keys. Understanding their properties is essential for building secure, composable, and predictable on-chain programs.
 
-**Non-public-key nature**
+- **Non-public-key nature**
 
-Although SDKs like `web3.js` represent PDAs using the `PublicKey` type, a PDA is not a traditional public key and has no corresponding private key.
+  Although SDKs like `web3.js` represent PDAs using the `PublicKey` type, a PDA is not a traditional public key and has no corresponding private key.
 
-- PDAs exist off the Ed25519 curve, so they cannot be directly controlled by any private key.
+  - PDAs exist off the Ed25519 curve, so they cannot be directly controlled by any private key.
 
-**Uniqueness**
+- **Uniqueness**
 
-A PDA is bound to a specific Program, ensuring no address conflicts.
+  - A PDA is bound to a specific Program, ensuring no address conflicts.
 
-- PDAs generated by different Programs do not interfere with each other.
+  - PDAs generated by different Programs do not interfere with each other.
 
-**Can act as a signer**
+- **Can act as a signer**
 
-In certain cases, a Program can use runtime APIs to allow a PDA to act as a "virtual signer" for a transaction. This enables secure authorization of data modifications without exposing any private key.
+  - In certain cases, a Program can use runtime APIs to allow a PDA to act as a "virtual signer" for a transaction. This enables secure authorization of data modifications without exposing any private key.
 
 PDAs are central to Solana's implementation of deterministic storage, keyless signing, and secure data access. They enable developers to organize on-chain data structures in a predictable, composable, and pre-deployment-free manner, distinguishing Solana from EVM.
 
@@ -296,13 +295,13 @@ The Interface Description Language (IDL) serves as the "interface specification"
 - Events
 - The structure and constraints of relevant accounts
 
-Using Anchor, developers can generate an IDL file that reflects the program's structure, simplifying client-side interaction with Solana programs. By combining the IDL with Anchor's TypeScript library (`@coral-xyz/anchor`), constructing instructions and transactions becomes much easier.
+Using Anchor, developers can generate an IDL file that reflects the program's structure, simplifying client-side interaction with Solana programs. By combining the IDL with Anchor's TypeScript library (`[@coral-xyz/anchor](https://github.com/solana-foundation/anchor/tree/0e5285aecdf410fa0779b7cd09a47f235882c156/ts/packages/anchor)`), constructing instructions and transactions becomes much easier.
 
 Ideally, you also use TypeScript types generated from the IDL, which makes program interaction more convenient. After building a program, these types can be found in the `/target/types` folder. The demo we provide below uses this approach.
 
 #### How to obtain an IDL:
 
-- **Solana Explorer**: If you know the programId (e.g., `time2Z2SCnn3qYg3ULKVtdkh8YmZ5jFdKicnA1W2YnJ`), you can directly access the Explorer link to find and copy the corresponding IDL.
+- **Solana Explorer**: If you know the programId (e.g., `time2Z2SCnn3qYg3ULKVtdkh8YmZ5jFdKicnA1W2YnJ`), you can directly access the Explorer [here](https://explorer.solana.com/address/time2Z2SCnn3qYg3ULKVtdkh8YmZ5jFdKicnA1W2YnJ/idl) to find and copy the corresponding IDL.
 - **Anchor Local Build**: If you have the program source code, run `anchor build`. This will generate a JSON-format IDL file in `/target/idl` and corresponding TypeScript types in `/target/types`.
 
 These mechanisms together form Solana's account-centric architecture, where logic and data are predictable, composable, and parallelizable—a fundamental difference from EVM's contract-centric architecture.
