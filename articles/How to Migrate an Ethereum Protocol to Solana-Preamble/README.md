@@ -141,7 +141,7 @@ Solana's transaction cost structure consists of three main parts:
 
 #### (2) Prioritization Fee (Optional)
 
-- 1.This fee applies only when a Compute Unit Price is explicitly set.
+- This fee applies only when a Compute Unit Price is explicitly set.
 
   **Formula**:
 
@@ -149,24 +149,24 @@ Solana's transaction cost structure consists of three main parts:
   Prioritization Fee = Compute Units Consumed × Compute Unit Price
   ```
 
-- 2.**Compute Units (CU)** are Solana's core resource measurement unit, similar to gas in EVM.
+- **Compute Units (CU)** are Solana's core resource measurement unit, similar to gas in EVM.
 
   - Default limit per transaction: 200,000 CU
   - Compute Units themselves do not incur cost — fees arise only when `ComputeUnitPrice` is set.
   - **Purpose**: During network congestion, users can increase priority by paying more CU price.
 
-- 3.Developers can use the `ComputeBudgetProgram` to:
+- Developers can use the `ComputeBudgetProgram` to:
 
-- `setComputeUnitLimit`: Increase the CU (Compute Unit) limit, suitable for complex contract calls.
-- `setComputeUnitPrice`: Set the prioritization fee, similar to the Gas Price in EVM.
+  - `setComputeUnitLimit`: Increase the CU (Compute Unit) limit, suitable for complex contract calls.
+  - `setComputeUnitPrice`: Set the prioritization fee, similar to the Gas Price in EVM.
 
 #### (3) Rent (Storage Cost)
 
 On Solana, on-chain accounts occupy storage space and storage resources are limited. To prevent users from creating excessive unused accounts that waste blockchain state, Solana implements a Rent mechanism.
 
-- 1.If an account holds a sufficient SOL deposit, it avoids periodic rent deductions; this state is called **Rent-exempt**.
+- If an account holds a sufficient SOL deposit, it avoids periodic rent deductions; this state is called **Rent-exempt**.
 
-- 2.The minimum balance for rent exemption is calculated as:
+- The minimum balance for rent exemption is calculated as:
 
   ```
   rent_exempt_minimum = lamports_per_byte_year × data_len × exemption_threshold
@@ -177,12 +177,12 @@ On Solana, on-chain accounts occupy storage space and storage resources are limi
   - `lamports_per_byte_year` = rent per byte per year
   - `exemption_threshold` = number of years exempt from rent (default: 2 years)
 
-- 3.If an account balance exceeds the rent-exempt threshold, the account will not be reclaimed.
-- 4.If the balance falls below the threshold, rent must be paid, reducing the balance. If the balance is depleted, the account is deleted.
-- 5.The required minimum balance is determined programmatically using `getMinimumBalanceForRentExemption`.
-- 6.When an account is closed, the system automatically refunds the rent deposit (the previously frozen SOL), freeing the occupied storage space.
+- If an account balance exceeds the rent-exempt threshold, the account will not be reclaimed.
+- If the balance falls below the threshold, rent must be paid, reducing the balance. If the balance is depleted, the account is deleted.
+- The required minimum balance is determined programmatically using `getMinimumBalanceForRentExemption`.
+- When an account is closed, the system automatically refunds the rent deposit (the previously frozen SOL), freeing the occupied storage space.
 
-For more details on Rent calculations, see Solana's documentation: [Solana Docs: Rent](https://solana.com/docs/core/fees#rent).
+For more details on Rent calculations, see Solana's documentation: [Solana Docs: Rent](https://docs.anza.xyz/implemented-proposals/rent).
 
 ## 5. Core Conceptual Foundations of Solana
 
@@ -295,7 +295,7 @@ The Interface Description Language (IDL) serves as the "interface specification"
 - Events
 - The structure and constraints of relevant accounts
 
-Using Anchor, developers can generate an IDL file that reflects the program's structure, simplifying client-side interaction with Solana programs. By combining the IDL with Anchor's TypeScript library (`[@coral-xyz/anchor](https://github.com/solana-foundation/anchor/tree/0e5285aecdf410fa0779b7cd09a47f235882c156/ts/packages/anchor)`), constructing instructions and transactions becomes much easier.
+Using Anchor, developers can generate an IDL file that reflects the program's structure, simplifying client-side interaction with Solana programs. By combining the IDL with Anchor's TypeScript library [@coral-xyz/anchor](https://github.com/solana-foundation/anchor/tree/0e5285aecdf410fa0779b7cd09a47f235882c156/ts/packages/anchor), constructing instructions and transactions becomes much easier.
 
 Ideally, you also use TypeScript types generated from the IDL, which makes program interaction more convenient. After building a program, these types can be found in the `/target/types` folder. The demo we provide below uses this approach.
 
@@ -306,7 +306,7 @@ Ideally, you also use TypeScript types generated from the IDL, which makes progr
 
 These mechanisms together form Solana's account-centric architecture, where logic and data are predictable, composable, and parallelizable—a fundamental difference from EVM's contract-centric architecture.
 
-More about IDL: [Program IDL File](https://solana.com/docs/programs/anchor/idl)
+More about IDL: [Program IDL File](https://www.anchor-lang.com/docs#idl)
 
 ## 6. Summary: Comparing the Two Paradigms
 
