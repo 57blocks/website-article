@@ -1,16 +1,24 @@
 ---
 published: true
 title: "How to Migrate an Ethereum Protocol to Solana — Preamble"
-author: ["Bonnie Chen/ Full Stack Engineer"]
+author:
+  [
+    "Bonnie Chen/ Full Stack Engineer",
+    "Jimmy Zhao/ Full Stack Engineer",
+    "Bin Li/Tech Lead",
+    "Yang Shan/Tech Lead",
+    "Wei Wang/Tech Lead",
+    "Jia Xin/Backend Engineer",
+  ]
 createTime: 2026-01-09
 categories: ["engineering"]
 subCategories: ["Blockchain & Web3"]
-tags: ["Blockchain", "Solana", "Ethereum"]
-landingPages: ["Blockchain-Defi Protocols"]
+tags: ["Solana", "Ethereum", "Smart Contract", "Solidity", "Anchor"]
+landingPages: ["Blockchain-Onchain infra"]
 heroColor: "#5E86E2"
 thumb: "thumb.png"
 thumb_h: "thumb-h.png"
-intro: "This article provides a comprehensive guide on how to migrate an Ethereum protocol to Solana, covering the key considerations, technical challenges, and best practices for a successful migration. It includes a detailed analysis of the differences between the two networks, as well as a step-by-step migration plan. Whether you are a developer, architect, or project manager, this guide will help you understand the complexities of cross-chain interoperability and prepare for the challenges of building on Solana."
+intro: "This preamble reframes “EVM → Solana” migration from a system-design perspective, comparing the two paradigms across the account model, execution model, transaction structure, and fee model. It also introduces the Solana primitives—Program, Account, PDA, SPL/ATA, and IDL—that you’ll use to reason about state, composition, and performance throughout the series."
 ---
 
 ## Overview
