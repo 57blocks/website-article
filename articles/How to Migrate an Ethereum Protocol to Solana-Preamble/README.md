@@ -6,9 +6,9 @@ author:
     "Bonnie Chen/ Full Stack Engineer",
     "Jimmy Zhao/ Full Stack Engineer",
     "Bin Li/Tech Lead",
-    "Yang Shan/Tech Lead",
+    "Shan Yang/Tech Lead",
     "Wei Wang/Tech Lead",
-    "Jia Xin/Backend Engineer",
+    "Jia Xin Liang/Backend Engineer",
   ]
 createTime: 2026-01-09
 categories: ["engineering"]
