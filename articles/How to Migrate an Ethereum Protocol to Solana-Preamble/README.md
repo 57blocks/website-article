@@ -7,8 +7,8 @@ author:
     "Bin Li/Tech Lead",
     "Jimmy Zhao/ Full Stack Engineer",
     "Shan Yang/Tech Lead",
-    "Wei Wang/Tech Lead",
     "Jia Xin Liang/Backend Engineer",
+    "Wei Wang/Tech Lead",
   ]
 createTime: 2026-01-09
 categories: ["engineering"]
