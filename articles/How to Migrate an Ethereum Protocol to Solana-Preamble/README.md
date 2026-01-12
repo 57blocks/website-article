@@ -4,8 +4,8 @@ title: "How to Migrate an Ethereum Protocol to Solana — Preamble"
 author:
   [
     "Bonnie Chen/ Full Stack Engineer",
-    "Jimmy Zhao/ Full Stack Engineer",
     "Bin Li/Tech Lead",
+    "Jimmy Zhao/ Full Stack Engineer",
     "Shan Yang/Tech Lead",
     "Wei Wang/Tech Lead",
     "Jia Xin Liang/Backend Engineer",
