@@ -23,7 +23,7 @@ intro: "A systematic introduction to the fundamental differences between Ethereu
 
 ## Overview
 
-As the Solana ecosystem matures, more and more product owners are considering migrating their Ethereum (EVM) projects to Solana to gain higher performance, lower transaction costs, and a better user experience. Our company has extensive hands-on experience in this area, having led the migration and refactoring of multiple Ethereum protocols across various categories. We understand the complexity of migration across contract architecture, data models, transaction logic, and front-backend coordination, and we've developed a systematic methodology and set of best practices.
+As the Solana ecosystem matures, more and more product owners are considering migrating their Ethereum (EVM) projects to Solana to gain higher performance, lower transaction costs, and a better user experience. Our company has extensive hands-on experience in this area, having led the migration and refactoring of multiple Ethereum protocols to Solana across various industries. We understand the complexity of migration across contract architecture, data models, transaction logic, and front-backend coordination, and we've developed a systematic methodology and set of best practices to address these areas.
 
 To help developers systematically master the methods and practices for migrating from Ethereum to Solana, we're launching a series of articles focused on three core layers—the smart contract layer, backend services, and frontend interactions. In this series, we'll share lessons we learned from real projects, including key caveats, best practices, and typical issues encountered during migration. Additionally, we'll share case studies that demonstrate an end-to-end migration approach and implementation path along with sample code to help you get started.
 
@@ -56,7 +56,7 @@ Solana completely separates execution logic from data storage:
 
 - **Program Account** stores executable logic. It is immutable and does not hold business state.
 - **Data Account** works as an independent data storage unit, explicitly defined and accessed by the program.
-- **System Account / Sysvar Account** is used by the Solana runtime layer to store SOL balances and maintain chain state.
+- **System Account/Sysvar Account** is used by the Solana runtime layer to store SOL balances and maintain chain state.
 
 In this model, the program only defines how data should be operated on, while the actual data (account) must be passed explicitly during execution.
 
@@ -193,7 +193,7 @@ Most of this article compares EVM-compatible chains, which share similar account
 A Program in Solana plays a role similar to a smart contract in the EVM, but it is significantly more lightweight:
 
 - It contains only execution logic, without its own persistent storage.
-- All state must be explicitly passed in through external Data Accounts during instruction execution.
+- All states must be explicitly passed in through external Data Accounts during instruction execution.
 - The most commonly used development framework is Anchor, which automates serialization, account validation, and other boilerplate tasks.
 
 ### 5.2 Account
@@ -281,7 +281,7 @@ Source code and documentation are available on the [official SPL repository](htt
 
 ### 5.5 ATA (Associated Token Account)
 
-In Solana, a single wallet could have multiple token accounts for the same token, which can lead to difficulties in tracking, leading to fragmented funds, and potential misuse. The Associated Token Account (ATA) solves this by deterministically deriving a unique, predictable default token account from the combination of the owner's address + Mint via the Associated Token Program. Essentially, this is a token account managed by the SPL Token Program with a PDA address, which anyone can compute locally. On the front-end, before transferring or minting, the ATA is derived and created idempotently using `getAssociatedTokenAddressSync`. If the ATA doesn't exist, it is created (with a small SOL rent); if the ATA exists, it is used directly. This eliminates the need to search or select accounts, ensures funds consolidate into a single address, and makes interactions simpler, safer, and compliant with ecosystem standards.
+In Solana, a single wallet could have multiple token accounts for the same token, which can lead to difficulties in tracking, leading to fragmented funds, and potential misuse. The Associated Token Account (ATA) solves this by deterministically deriving a unique, predictable default token account from the combination of the owner's address + Mint via the Associated Token Program. Essentially, this is a token account managed by the SPL Token Program with a PDA address, which anyone can compute locally. On the front-end, before transferring or minting, the ATA is derived and created independently using `getAssociatedTokenAddressSync`. If the ATA doesn't exist, it is created (with a small SOL rent); if the ATA exists, it is used directly. This eliminates the need to search or select accounts, ensures funds consolidate into a single address, and makes interactions simpler, safer, and compliant with ecosystem standards.
 
 In Solana, ATA functions similarly to how ERC-20 or ERC-721 contracts track balances internally in EVM. In the EVM model, each token contract maintains a centralized ledger using a `mapping(address => uint256)` to record all addresses and balances. Solana, however, uses a distributed account-based model: each user has an independent on-chain account that stores the token balance and related information.
 
