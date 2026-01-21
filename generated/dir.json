@@ -130,6 +130,33 @@
     },
     {
       "published": true,
+      "title": "How to Migrate an Ethereum Protocol to Solana — Contracts (Part 1)",
+      "author": [
+        "Jimmy Zhao / Fullstack Engineer",
+        "Bin Li / Tech Lead"
+      ],
+      "createTime": "2025-11-07T00:00:00.000Z",
+      "categories": [
+        "engineering"
+      ],
+      "tags": [
+        "Solana",
+        "Ethereum",
+        "Smart Contract",
+        "Solidity",
+        "Anchor"
+      ],
+      "landingPages": [
+        "Blockchain-Onchain infra"
+      ],
+      "thumb": "./thumb.png",
+      "thumb_h": "./thumb_h.png",
+      "intro": "A deep dive into the core mindset shift and best practices when moving contracts from Ethereum to Solana.",
+      "path": "articles/How%20to%20Migrate%20an%20Ethereum%20Protocol%20to%20Solana%20Contracts%20(Part%201)/README.md",
+      "slug": "how-to-migrate-an-ethereum-protocol-to-solana-contracts-part-1"
+    },
+    {
+      "published": true,
       "title": "Web3 Intents Based Systems and How LI.FI is Pushing Cross-Chain Swaps Evolution",
       "author": [
         "Kamil Krupa / GTM Lead"
