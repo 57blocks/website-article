@@ -44,6 +44,41 @@
     },
     {
       "published": true,
+      "title": "How to Migrate an Ethereum Protocol to Solana — Preamble",
+      "author": [
+        "Bonnie Chen/ Full Stack Engineer",
+        "Bin Li/Tech Lead",
+        "Jimmy Zhao/ Full Stack Engineer",
+        "Shan Yang/Tech Lead",
+        "Jia Xin Liang/Backend Engineer",
+        "Wei Wang/Tech Lead"
+      ],
+      "createTime": "2026-01-09T00:00:00.000Z",
+      "categories": [
+        "engineering"
+      ],
+      "subCategories": [
+        "Blockchain & Web3"
+      ],
+      "tags": [
+        "Solana",
+        "Ethereum",
+        "Smart Contract",
+        "Solidity",
+        "Anchor"
+      ],
+      "landingPages": [
+        "Blockchain-Onchain infra"
+      ],
+      "heroColor": "#5E86E2",
+      "thumb": "thumb.png",
+      "thumb_h": "thumb-h.png",
+      "intro": "A systematic introduction to the fundamental differences between Ethereum and Solana in account models, execution mechanisms, and fee systems.",
+      "path": "articles/How%20to%20Migrate%20an%20Ethereum%20Protocol%20to%20Solana-Preamble/README.md",
+      "slug": "how-to-migrate-an-ethereum-protocol-to-solana-preamble"
+    },
+    {
+      "published": true,
       "title": "Improve Performance on Three.js Scenes Using Custom Meshes and BufferGeometry",
       "author": [
         "Andrés Díaz / Front-End Engineer"
