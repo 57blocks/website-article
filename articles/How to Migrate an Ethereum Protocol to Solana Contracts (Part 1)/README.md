@@ -22,7 +22,7 @@ In this article, we focus specifically on the smart contract layer. Rather than 
 #### Article Navigation
 
 - How to Migrate an Ethereum Protocol to Solana — Preamble: A systematic introduction to the fundamental differences between Ethereum and Solana in account models, execution mechanisms, and fee systems.
-- How to Migrate an Ethereum Protocol to Solana — Contracts ( Part 1 ): A focus on the core mindset shift and best practices for contract development from Ethereum to Solana.
+- How to Migrate an Ethereum Protocol to Solana — Contracts (Part 1): A focus on the core mindset shift and best practices for contract development from Ethereum to Solana.
 
 ---
 
@@ -65,7 +65,7 @@ In this example, the `stakingToken` and `rewardToken` addresses, and all users' 
 
 Solana takes a completely different approach to its account model, by fully separating code and data. On Solana, **Programs** contain only logic, are stateless, and do not store business data, while **Accounts** only store data. When executing a transaction, you must explicitly tell the program which accounts to operate. As a simpler explanation, think of a program as an executable and accounts as the data files it reads and writes, stores and manages separately.
 
-Here’s the corresponding Solana ( Anchor ) implementation:
+Here’s the corresponding Solana (Anchor) implementation:
 
 ```rust
 use anchor_lang::prelude::*;
@@ -111,7 +111,7 @@ pub struct UserStakeInfo {
 }
 ```
 
-Here, the `staking` program is stateless and holds no data. All data—both global `GlobalState` and per-user `UserStakeInfo`—are defined in separate `#[account]` structs. The program receives these accounts through the `Context` object ( typed by the `Stake` struct ), and then operates on them.
+Here, the `staking` program is stateless and holds no data. All data—both global `GlobalState` and per-user `UserStakeInfo`—are defined in separate `#[account]` structs. The program receives these accounts through the `Context` object (typed by the `Stake` struct), and then operates on them.
 
 This design's fundamental purpose is to enable large-scale [parallel processing](https://medium.com/solana-labs/sealevel-parallel-processing-thousands-of-smart-contracts-d814b378192). Because code and data are separated, Solana transactions will declare all accounts they will access ahead of execution and specify whether each account is read-only or writable. This allows the runtime to build a dependency graph and schedule transactions efficiently. If two transactions touch completely unrelated accounts—or both only read the same account—they can safely run in parallel. Only when one transaction needs to write to an account, other transactions that access that account (read or write) will be temporarily blocked and executed sequentially. With this fine-grained scheduling, Solana maximizes multi-core utilization to process many non-interfering transactions concurrently. This is a key element to its high throughput and low latency.
 
@@ -136,7 +136,7 @@ contract Staking {
 
 In this model, a user’s token balance is just an entry in a `mapping` inside the `stakingToken` contract, and `transfer` means mutating two values in that mapping.
 
-On Solana’s SPL Token standard, things are entirely different. There is a shared, official `Token Program` for all tokens. Users’ tokens are not stored in a centralized contract but in user-owned, independent **Token Accounts**. To operate on tokens, our staking program must receive these token accounts as inputs.
+Solana's SPL Token standard works differently. There is a shared, official `Token Program` for all tokens. Users’ tokens are not stored in a centralized contract but in user-owned, independent **Token Accounts**. To operate on tokens, our staking program must receive these token accounts as inputs.
 
 ```rust
 // solana-staking/programs/solana-staking/src/instructions/stake.rs
@@ -169,13 +169,13 @@ pub fn stake(ctx: Context<Stake>, amount: u64) -> Result<()> {
 }
 ```
 
-Here, `Staking` uses a Cross-Program Invocation (CPI) to call the official Token Program's `transfer` instruction to move funds between the user's token account and the program's vault token account—clearly illustrating the separation between data (token accounts) and logic (Token Program).
+Here, Staking uses a Cross-Program Invocation (CPI) to call the official token program's transfer instruction to move funds between the user's token account and the program's vault token account—clearly illustrating the separation between data (token accounts) and logic (Token Program).
 
 This fundamental difference also explains the common confusion new Solana users often see: the wallet prompting a user or programmer to create an account before receiving a new token. Before receiving USDC, your Solana wallet must first create a token account to hold USDC, almost like setting up a dedicated mini-vault. Whereas on Ethereum, your wallet address can "receive" any ERC20 token because "receiving" simply means another entry is recorded inside the token contract's internal ledger; no preparation is needed on your end.
 
 ### Contract Calls
 
-Differences in account models directly lead to huge differences in how you interact with contracts (programs). In Solidity, when calling a function, the EVM prepares contextual information behind the scenes—most notably `msg.sender`. Developers don't need to specify the caller in parameters; the EVM handles it implicitly, making function calls look clean.
+Differences in account models lead to huge differences in how you interact with contracts (programs). In Solidity, when calling a function, the EVM prepares contextual information behind the scenes—most notably `msg.sender`. Developers don't need to specify the caller in parameters; the EVM handles it implicitly, making function calls look clean.
 
 Here is an Ethereum Call Example (Foundry Test) that illustrates how this works.
 
@@ -196,9 +196,9 @@ function testStake() public {
 }
 ```
 
-In the Foundry test above, `vm.startPrank(user1)` sets `msg.sender` for subsequent calls to `user1`. When calling `staking.stake(stakeAmount)`, we only pass the business parameter `amount`.
+In Foundry Test above, `vm.startPrank(user1)` sets `msg.sender` for subsequent calls to `user1`. When calling `staking.stake(stakeAmount)`, we only pass the business parameter `amount`.
 
-On Solana, the program has no implicit context about the caller or surrounding state. It needs every piece of information—including who the caller is and which accounts it must read or write—explicitly provided in the transaction instruction. These accounts are packed into a `Context` object and passed as parameters. This design aligns with parallel processing: the runtime can only determine safe parallel execution if each transaction lists all accounts it will access.
+On Solana, the program has no implicit context about the caller or surrounding state. The program needs every piece of information—including identifying who the caller is and which accounts it must read or write to—explicitly provided in the transaction instruction. These accounts are packed into a `Context` object and passed as parameters. This design aligns with parallel processing: the runtime can only determine safe parallel execution if each transaction lists all accounts it will access.
 
 Below is the Solana Call Example (TypeScript Test) for reference:
 
@@ -229,7 +229,7 @@ async function stakeTokens(
 }
 ```
 
-In this TypeScript test, calling the `stake` instruction requires a large account object: `user` (signer), `state` (global state account), `userStakeInfo` (user staking data account), `userTokenAccount` (the user's token account), `stakingVault` (the program's vault), etc. While this makes the client call more verbose, it brings transparency and safety. Before the transaction is sent, the client code explicitly defines all accounts included in the transaction. There are no hidden contextual dependencies in a Solana transaction.
+In this TypeScript Test, calling the `stake` instruction requires a large account object: `user` (signer), `state` (global state account), `userStakeInfo` (user staking data account), `userTokenAccount` (the user's token account), `stakingVault` (the program's vault), etc. While this makes the client call more verbose, it brings transparency and safety. Before the transaction is sent, the client code explicitly defines all accounts included in the transaction. There are no hidden contextual dependencies in a Solana transaction.
 
 Additionally, on Ethereum, upgrading a contract often requires changing client code to point to a new contract address. On Solana, you simply deploy new program code to the same program ID, achieving seamless upgrades. All business data remains untouched in their accounts because data and logic are decoupled. Since the program address doesn’t change, client code remains compatible.
 
@@ -237,32 +237,32 @@ If you want deeper architectural context for the code patterns in this article, 
 
 ## Tooling Comparison
 
-To put these ideas into practice, you may want to get comfortable with a different, ecosystem-specific toolchain. From language to standard libraries, Solana's ecosystem differs significantly from Ethereum's. The table below summarizes key differences to help you build a new mental map quickly.
+To put these ideas into practice, you may want to get comfortable with a different, ecosystem-specific toolchain. From language to standard libraries, Solana's ecosystem differs significantly from Ethereum's ecosystem. The table below summarizes key differences to help you build a new understanding of the differences quickly.
 
-| **Domain**                | **Ethereum Ecosystem**                | **Solana Ecosystem**                  | **Key Notes**                                                                                                                                                                                                                                                                                                                                                                                         |
-| :------------------------ | :------------------------------------ | :------------------------------------ | :---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **Frameworks**            | Hardhat / Foundry ( Solidity )        | Anchor ( Rust )                       | In the Ethereum ecosystem, Hardhat and Foundry are widely used smart contract development tools. Anchor is the de facto standard for Solana development; it uses powerful macros to greatly simplify the complexity of Solana program development.                                                                                                                                                    |
-| **Interface Standard**    | ABI ( Application Binary Interface )  | IDL ( Interface Definition Language ) | Anchor automatically generates an IDL from your program code, similar to the ABI concept on Ethereum—ABI is Ethereum’s contract interaction standard, and the Solidity compiler automatically generates ABI files describing function/parameter/return binary encodings. Clients can use these IDL or ABI files to interact with your program without caring about the underlying implementation.     |
-| **Standard Library**      | OpenZeppelin                          | SPL ( Solana Program Library )        | OpenZeppelin is an import-and-inherit code library, whereas SPL is a set of reusable standard programs already deployed on-chain. You interact with them via Cross-Program Invocation ( CPI ) instead of copying code into your project.                                                                                                                                                              |
-| **Contract Verification** | Upload and verify source on Etherscan | Submit source for Verified Build      | Solana supports “Verified Builds,” conceptually similar to Ethereum. Developers submit source code, which is compiled in a deterministic environment; the build artifact’s hash is compared against on-chain bytecode. This ensures the source matches the on-chain program—not just validating the IDL interface.                                                                                    |
-| **Network RPC**           | Infura, Alchemy, QuickNode            | Helius, Alchemy, QuickNode            | Both ecosystems have top-tier RPC providers; only a few ( like QuickNode ) are multi-chain. Solana’s high throughput has also led to specialized providers like Helius that offer enhanced Solana-first APIs.                                                                                                                                                                                         |
-| **Explorers**             | Etherscan, Blockscout                 | Solscan, Solana Explorer, X-Ray       | The Ethereum ecosystem has powerful tools like Tenderly for deep transaction simulation and debugging. In the Solana ecosystem, tools like Helius ( product X-Ray ) provide similar functionality. Due to Solana’s parallel transaction model, these tools focus more on visualizing value flows between accounts and CPI call chains to help developers understand complex instruction interactions. |
+| **Domain**                | **Ethereum Ecosystem**                | **Solana Ecosystem**                | **Key Notes**                                                                                                                                                                                                                                                                                                                                                                                       |
+| :------------------------ | :------------------------------------ | :---------------------------------- | :-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Frameworks**            | Hardhat / Foundry (Solidity)          | Anchor (Rust)                       | In the Ethereum ecosystem, Hardhat and Foundry are widely used smart contract development tools. Anchor is the de facto standard for Solana development; it uses powerful macros to greatly simplify the complexity of Solana program development.                                                                                                                                                  |
+| **Interface Standard**    | ABI (Application Binary Interface)    | IDL (Interface Definition Language) | Anchor automatically generates an IDL from your program code, similar to the ABI concept on Ethereum—ABI is Ethereum’s contract interaction standard, and the Solidity compiler automatically generates ABI files describing function/parameter/return binary encodings. Clients can use these IDL or ABI files to interact with your program without needing to understand the underlying implementation.   |
+| **Standard Library**      | OpenZeppelin                          | SPL (Solana Program Library)        | OpenZeppelin is an import-and-inherit code library, whereas SPL is a set of reusable standard programs already deployed on-chain. You interact with them via Cross-Program Invocation (CPI) instead of copying code into your project.                                                                                                                                                              |
+| **Contract Verification** | Upload and verify source on Etherscan | Submit source for Verified Build    | Solana supports “Verified Builds,” conceptually similar to Ethereum. Developers submit source code, which is compiled in a deterministic environment; the build artifact’s hash is compared against on-chain bytecode. This ensures the source matches the on-chain program—not just validating the IDL interface.                                                                                  |
+| **Network RPC**           | Infura, Alchemy, QuickNode            | Helius, Alchemy, QuickNode          | Both ecosystems have top-tier RPC providers; only a few (like QuickNode) are multi-chain. Solana's high throughput has also led to specialized providers like Helius to offer enhanced Solana-first APIs.                                                                                                                                                                                         |
+| **Explorers**             | Etherscan, Blockscout                 | Solscan, Solana Explorer, X-Ray     | The Ethereum ecosystem has powerful tools like Tenderly for deep transaction simulation and debugging. In the Solana ecosystem, tools like Helius (product X-Ray) provide similar functionality. Due to Solana’s parallel transaction model, these tools focus more on visualizing value flows between accounts and CPI call chains to help developers understand complex instruction interactions. |
 
-From this comparison, a clear pattern emerges: Ethereum development feels like inheritance and extension (e.g., inheriting OpenZeppelin contracts), while Solana development is more about composition and interaction (via CPI with on-chain SPL programs).
+From this comparison, a clear pattern emerges: Ethereum development supports ideas like inheritance and extension (e.g., inheriting OpenZeppelin contracts), while Solana development supports composition and interaction (via CPI with on-chain SPL programs).
 
-For newcomers to Solana, use the Anchor framework whenever possible. Unlike Ethereum's Hardhat/Foundry, which focus on the external development flow (tests, deployment, scripting), Anchor does more than help you test or deploy programs. Anchor actually affects how program code is written and runs. Its Macros and constraints dramatically simplify the process of writing Solana programs by handling a lot of tedious and error-prone low-level safety checks and data serialization. If you master Anchor, you'll master efficient, safe business logic on Solana.
+We recommend that newcomers to Solana use the Anchor framework whenever possible. Unlike Ethereum's Hardhat/Foundry, which focuses on the external development flow (tests, deployment, scripting), Anchor does more than help you test or deploy programs. Anchor actually affects how program code is written and runs. Its Macros and constraints dramatically simplify the process of writing Solana programs by handling a lot of tedious and error-prone low-level safety checks and data serialization. If you master Anchor, you'll master efficient, safe business logic on Solana.
 
 ## Solana Development Best Practices
 
-Once you understand Solana's tooling differences, you still need to apply them with Solana's design philosophy in mind. Simply swapping Solidity for Rust isn't enough—true efficiency and safety come from following best practices distilled by the ecosystem as outlined in the following sections.
+Once you understand Solana's tooling differences, you still need to apply them with Solana's design philosophy in mind. Simply swapping Solidity for Rust isn't enough—true efficiency and account security come from following best practices distilled by the ecosystem as outlined in the following sections.
 
 ### Embrace the Anchor Framework
 
 There are two main approaches to Solana program development: Native and Anchor-based.
 
-Native development requires direct interaction with Solana's low-level libraries, meaning you must manually serialize/deserialize account data and write a lot of code to verify account ownership, signer permissions, mutability, and similar functions. While this offers maximum flexibility, it's complex, verbose, and prone to security pitfalls.
+Native development requires direct interaction with Solana's low-level libraries, meaning you must manually serialize and deserialize account data and write a lot of code to verify account ownership, signer permissions, mutability, and similar functions. While this offers maximum flexibility, it's complex, verbose, and prone to security pitfalls.
 
-Hence, Solana's official recommendation, meant specifically for developers migrating from Ethereum, is to choose Anchor. Anchor leverages Rust macros to simplify development, enhance safety, and ultimately automate the complex parts of native development.
+Solana's official recommendation, meant specifically for developers migrating from Ethereum, is to choose Anchor. Anchor leverages Rust macros to simplify development, enhance safety, and ultimately automate the complex parts of native development.
 
 Here's a simple `initialize` instruction for creating a new global state account using Anchor. Once you declare accounts and constraints, the framework handles validation and initialization for you.
 
@@ -342,9 +342,9 @@ pub fn process_instruction(
 }
 ```
 
-Anchor abstracts a lot of native boilerplate code (account checks, CPI calls, data serialization) into concise, safer macros. This allows developers to focus on determining and defining business logic, significantly improving productivity and readability.
+Anchor abstracts a lot of native boilerplate code (account checks, CPI calls, data serialization) into concise, safer macros. This allows developers to focus on determining and defining business logic, significantly improving productivity and readability. In the examples above, Anchor removes the need for manual account parsing, signer and mutability checks, explicit account creation via CPI, and byte-level (de)serialization, allowing the instruction handler to focus almost entirely on business logic.
 
-Of course, convenience isn't free. Anchor's abstraction layer, including its auto-inserted safety checks, tends to consume more Compute Units (CU) than highly optimized native code, and Anchor-generated bytecode is usually larger than equivalent native programs. Although Solana program accounts can be up to 10 MB in size, which appears fairly small, the complexity of the protocols and program will impact performance. A complex program can involve many large accounts, and those large accounts would negatively impact performance. To truly excel on Solana and solve complex issues or do deep optimizations, you should still understand the native APIs behind Anchor's macros and how the abstractions and underlying mechanisms work.
+Of course, convenience isn't free. Anchor's abstraction layer, including its auto-inserted safety checks, tends to consume more Compute Units (CU) than highly optimized native code, and Anchor-generated bytecode is usually larger than equivalent native programs. Although Solana program accounts can be up to 10 MB in size, which appears fairly small, the complexity of the protocols and program will impact performance. To truly excel on Solana and solve complex issues or do deep optimizations, you should still understand the native APIs behind Anchor's macros and how the abstractions and underlying mechanisms work.
 
 For most projects, Anchor's gains in development speed and safety far outweigh its performance overhead. But to master Solana, you'll want deeper knowledge of its lower-level mechanisms.
 
@@ -416,9 +416,9 @@ For more details, see [Mango Markets v4 source](https://github.com/blockworks-fo
 
 Our `solana-staking` example also follows this lifecycle model. The `initialize` instruction creates global state and vault accounts; the `stake` instruction uses `init` to create a user info account on first stake; and in `unstake`, if the user’s balance returns to zero, the program uses `close` to destroy their user info account and refund rent. See the repository here: [solana-staking](https://github.com/57blocks/evm-to-solana/tree/main/contract/solana-staking).
 
-### Program Derived Addresses ( PDA )
+### Program Derived Addresses (PDA)
 
-When managing account lifecycles, Program Derived Addresses (Program Derived Address, PDA) are essential—central to Solana's security model. A PDA is deterministically derived from a program ID and a set of seeds, has no private key, and only the deriving program can "sign" for it. PDAs let programs own/control other accounts, making them ideal as secure data stores, token vaults (Vault), or authority hubs. In an instruction, Anchor recomputes and verifies a PDA's address using the provided seeds and a `bump` (a nonce ensuring the address lies off the elliptic curve), preventing clients from passing forged accounts, which is critical for safety. By setting a PDA as another account's `authority`, you can build complex, program-controlled permission systems, which is a common pattern in Solana program design.
+When managing account lifecycles, Program Derived Addresses (PDA) are central to Solana's security model. A PDA is deterministically derived from a program ID and a set of seeds, has no private key, and only the deriving program can "sign" for it. PDAs let programs own/control other accounts, making them ideal as secure data stores, token vaults (Vault), or authority hubs. In an instruction, Anchor recomputes and verifies a PDA's address using the provided seeds and a `bump` (a nonce ensuring the address lies off the elliptic curve), preventing clients from passing forged accounts, which is critical for security. By setting a PDA as another account's `authority`, you can build complex, program-controlled permission systems, which is a common pattern in Solana program design.
 
 Here's how a PDA is defined and used. In our staking program, the `UserStakeInfo` account is a PDA that stores each user's personal staking information.
 
@@ -489,7 +489,7 @@ So, to improve developer efficiency and maintainability, best practice is to imp
 
 Solana's fee model shares some conceptual similarities with Ethereum but differs in implementation. Ethereum uses Gas, with transactions declaring a Gas Limit and paying based on Gas Used × price. Since EIP-1559, fees comprise Base Fee (auto-adjusts with congestion) and Priority Fee, so total cost is `Gas Used × (Base Fee + Priority Fee)`.
 
-On Solana, execution cost is measured in Compute Units (Compute Unit, CU). Each transaction has a CU budget; exceeding it fails the transaction—somewhat like Ethereum's Gas Limit. But Solana's base transaction fee doesn't depend on CU consumption; it's tied to transaction byte size and signature count. The larger the transaction, the higher the base fee—loosely decoupled from computational complexity. Competition for compute is expressed via Priority Fees: developers can use `ComputeBudgetProgram` to set how many microLamports to pay per million CU, incentivizing validators to prioritize their transactions—akin to Ethereum's Gas Price / Priority Fee.
+On Solana, execution cost is measured in Compute Units (Compute Unit, CU). Each transaction has a CU budget; exceeding it fails the transaction, somewhat similar to Ethereum's Gas Limit. But Solana's base transaction fee doesn't depend on CU consumption; it's tied to transaction byte size and signature count. The larger the transaction, the higher the base fee—loosely decoupled from computational complexity. Competition for compute is expressed via Priority Fees: developers can use `ComputeBudgetProgram` to set how many microLamports to pay per million CU, incentivizing validators to prioritize their transactions, which is similar to Ethereum's Gas Price/Priority Fee.
 
 In other words, Solana transaction costs consist of three parts: a base fee tied to transaction size, storage costs expressed through rent, and compute pricing expressed through priority fees. The base fee is your **entry ticket**, while compute competition appears mostly in priority fees.
 
@@ -520,9 +520,9 @@ transaction.add(
 
 Upgrades are crucial to a project’s evolution, and Ethereum and Solana offer very different yet effective solutions.
 
-In early Ethereum, upgrading smart contracts was complex and risky. Because code and data are tightly coupled at one address, upgrading often meant deploying a new contract and migrating data—complex and error-prone. The community developed mature Proxy patterns: data resides in a stable proxy contract, while upgradeable logic contracts are referenced via pointers. Upgrades switch the logic implementation without changing the proxy address—now the de facto standard.
+In early Ethereum, upgrading smart contracts was complex and risky. Because code and data are tightly coupled at one address, upgrading often meant deploying a new contract and migrating data, which can be complex and error-prone. The community developed mature Proxy patterns where data resides in a stable proxy contract and upgradeable logic contracts are referenced via pointers. Upgrades switch the logic implementation without changing the proxy address—now the de facto standard.
 
-Solana’s design is simpler and more elegant: program code and state storage are naturally separated. You redeploy new BPF bytecode to the same program ID to upgrade the program, while state accounts ( outside the program ) remain intact—no data migration, significantly reducing complexity and risk. However, there’s a new challenge: once an account’s structure and size are set, you can’t expand it in-place. If you later add new fields to a state account that was allocated with a smaller size, you’ll get data misalignment or read errors. The recommended approach is to pre-allocate unused space ( `padding` ) in v1 so you can safely add fields later without changing account size:
+Solana's design is simpler and more elegant: program code and state storage are naturally separated. You can redeploy new BPF bytecode to the same program ID to upgrade the program, while state accounts (outside the program) remain intact. There is no data migration needed, significantly reducing complexity and risk. However, there's a new challenge–once an account's structure and size are set, you can’t expand it in-place. If you later add new fields to a state account that was allocated with a smaller size, you’ll get data misalignment or read errors. The recommended approach is to pre-allocate unused space (`padding`) in v1 so you can safely add fields later without changing account size:
 
 ```rust
 #[account(zero_copy)]
@@ -550,9 +550,9 @@ Furthermore, Solana’s execution environment supports signature propagation acr
 - If the outer transaction includes a user signature, callee programs can recognize it.
 - If the caller is a PDA, `invoke_signed` lets the runtime synthesize and verify a derived signature for authorization.
 
-Because the runtime understands and propagates authorization at the system level, once a program has a valid signature ( or PDA-derived signature ), it can safely transfer on the user’s behalf—no proxy-style instruction required.
+Because the runtime understands and propagates authorization at the system level, once a program has a valid signature (or PDA-derived signature), it can safely transfer on the user’s behalf—no proxy-style instruction required.
 
-Our staking flow uses direct user signatures—no proxy or PDA authority. When the user calls `stake`, they directly authorize the program to operate their token account; the program then uses CPI `token::transfer` to move tokens into the vault—no `approve + transferFrom` needed, e.g.:
+Our staking flow uses direct user signatures without proxy or PDA authority. When the user calls `stake`, they directly authorize the program to operate their token account; the program then uses CPI `token::transfer` to move tokens into the vault—no `approve + transferFrom` needed. The example below illustrates how this works.
 
 ```rust
 pub fn stake_handler(ctx: Context<Stake>, amount: u64) -> Result<()> {
@@ -569,21 +569,21 @@ pub fn stake_handler(ctx: Context<Stake>, amount: u64) -> Result<()> {
 }
 ```
 
-Solana doesn’t need `transferFrom` because its runtime fuses _authorization_ and _execution_: if a valid signature is present in the transaction, the user has authorized the transfer—no extra steps.
+Solana doesn’t need `transferFrom` because its runtime fuses _authorization_ and _execution_: if a valid signature is present in the transaction, the user has authorized the transfer without extra steps.
 
 ### Numerical Computation
 
-Numerical handling on Solana also requires a shift. First, regarding precision: SPL Token decimals are often 6 or 9, not the 18 decimals common in ERC20. Thus, token amounts usually fit in `u64`, simplifying math and saving 8 bytes per account compared to `u128`—reducing rent costs at scale.
+Numeric handling on Solana also requires a shift of thinking. First, regarding precision: SPL Tokens are often 6 or 9 decimal places long, not the 18 decimal places common in ERC20. Thus, token amounts usually fit in `u64`, simplifying math and saving 8 bytes per account compared to `u128`, reducing rent costs at scale.
 
-When mixing multiplication and division, beware of precision loss in intermediate results. In many languages, writing `r = a / b * c` as a single expression may benefit from extended precision registers; on x86, the FPU uses 80-bit extended precision internally, only truncating to 64-bit at the end; compilers may also reorder or combine operations. But if you split into steps—`t = a / b; r = t * c;`—the intermediate result is written to memory ( 64-bit ), then read back, causing extra precision loss.
+When mixing multiplication and division, beware of precision loss in intermediate results. In many languages, writing `r = a / b * c` as a single expression may benefit from extended precision registers; on x86, the FPU uses 80-bit extended precision internally, only truncating to 64-bit at the end. Note that compilers may also reorder or combine operations. But if you split into steps like `t = a / b; r = t * c;`, the intermediate result is written to memory (64-bit), then read back, causing extra precision loss.
 
-For integer token amounts, prefer `u64/u128` to avoid floating-point issues. But for ratios, rates, and prices, floats may be necessary—then be careful with intermediate precision. For example, on x86, a single expression like `r = a / b * c` might compute in 80-bit precision, only truncating at the end; splitting into steps forces 64-bit truncation in between, introducing additional error.
+For integer token amounts, choose `u64/u128` to avoid floating-point issues. However, for ratios, rates, and prices, floats may be necessary, and if that is the case, be careful with intermediate precision. For example, on x86, a single expression like `r = a / b * c` might compute in 80-bit precision, only truncating at the end. Note that splitting the computation into steps as described earlier (first computing t = a / b, then computing r = t \* c) forces 64-bit truncation in between, introducing additional errors.
 
 ## Conclusion
 
 This article provides experienced Ethereum developers with a detailed migration guide to Solana, helping bridge the gap between the two ecosystems. We first emphasized the core mindset shift required, then examined fundamental differences in account models, token standards, and call mechanisms. Next, we compared key tooling across the ecosystems and proposed a set of Solana best practices. By understanding and adopting these concepts and practices, developers can build high-performance decentralized applications on Solana more efficiently and safely.
 
-In the next article, “From Ethereum to Solana — Contracts ( Part 2 ),” we’ll continue exploring some limitations and shortcomings in Solana development. Finally, we’ll walk through a complete staking contract example, step by step, showing how to migrate an entire Ethereum contract to Solana. Stay tuned.
+In the next article, “From Ethereum to Solana — Contracts (Part 2),” we’ll continue exploring some limitations and shortcomings in Solana development. Finally, we’ll walk through a complete staking contract example, step by step, showing how to migrate an entire Ethereum contract to Solana. Stay tuned.
 
 ## References
 
