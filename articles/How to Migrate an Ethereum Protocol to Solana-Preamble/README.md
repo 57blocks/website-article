@@ -153,7 +153,7 @@ Solana's transaction cost structure consists of three main parts:
 
   - Default limit per transaction: 200,000 CU
   - Compute Units themselves do not incur cost — fees arise only when `ComputeUnitPrice` is set.
-  - **Purpose**: During network congestion, users can increase priority by paying more CU price.
+  - **Purpose**: During network congestion, users can increase priority by paying more CUs.
 
 - Developers can use the `ComputeBudgetProgram` to:
 
@@ -186,7 +186,7 @@ For more details on Rent calculations, see Solana's documentation: [Solana Docs:
 
 ## 5. Core Conceptual Foundations of Solana
 
-Most of this article compares EVM-compatible chains, which share similar account models, execution models, transaction structure, and fee models. Solana, however, operates differently enough that understanding its architecture first makes the comparison more meaningful. This section introduces the key concepts that define Solana.
+Most of this article compares EVM-compatible chains, which share similar account models, execution models, transaction structure, and fee models. Solana, however, operates differently. Understanding its architecture makes the comparison more meaningful. This section introduces the key concepts that define Solana.
 
 ### 5.1 Program
 
@@ -241,7 +241,7 @@ The generation of a PDA is deterministic and depends on three factors:
 
 Given the same seeds + bump + Program ID, the resulting PDA is always identical, meaning both on-chain programs and front-end clients can compute it without needing to store it anywhere.
 
-#### Key Properties of PDA (Program Derived Address):
+#### Key Properties of PDA (Program Derived Address)
 
 Program Derived Addresses (PDAs) are a cornerstone of Solana's account model. Unlike Ethereum's smart contracts, which are inherently associated with an externally owned account, Solana separates program logic from account ownership. PDAs allow programs to securely manage accounts, enforce deterministic access control, and authorize actions without relying on user private keys. Understanding their properties is essential for building secure, composable, and predictable on-chain programs.
 
@@ -291,13 +291,13 @@ The Interface Description Language (IDL) serves as the "interface specification"
 
 - Program instructions
 - Parameter types
-- Return values / errors
+- Return values/errors
 - Events
 - The structure and constraints of relevant accounts
 
 Using Anchor, developers can generate an IDL file that reflects the program's structure, simplifying client-side interaction with Solana programs. By combining the IDL with Anchor's TypeScript library [@coral-xyz/anchor](https://github.com/solana-foundation/anchor/tree/0e5285aecdf410fa0779b7cd09a47f235882c156/ts/packages/anchor), constructing instructions and transactions becomes much easier.
 
-Ideally, you also use TypeScript types generated from the IDL, which makes program interaction more convenient. After building a program, these types can be found in the `/target/types` folder. The demo we provide below uses this approach.
+Ideally, you can also use TypeScript types generated from the IDL, which makes program interaction more convenient. After building a program, these types can be found in the `/target/types` folder. The example we provide below uses this approach.
 
 #### How to obtain an IDL:
 
