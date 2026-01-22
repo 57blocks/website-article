@@ -2,7 +2,7 @@
 published: true
 title: "How to Migrate an Ethereum Protocol to Solana — Contracts (Part 1)"
 author: ["Jimmy Zhao / Fullstack Engineer", "Bin Li / Tech Lead"]
-createTime: 2025-11-07
+createTime: 2026-01-10
 categories: ["engineering"]
 tags: ["Solana", "Ethereum", "Smart Contract", "Solidity", "Anchor"]
 landingPages: ["Blockchain-Onchain infra"]
@@ -26,7 +26,7 @@ In this article, we focus specifically on the smart contract layer. Rather than 
 
 ---
 
-Solana rose in popularity and matured quickly because its high performance and low costs attracted a surge of developer and user attention. Meanwhile, Ethereum (Ethereum or EVM) and EVM-compatible chains had massive ecosystems but faced challenges like limited scalability and high transaction fees. As a result, more Web3 developers have been turning to Solana for its improved developer and user experiences, making the migration from Ethereum to Solana a prominent trend. So, how do we effectively port the smart contracts we've mastered on Ethereum to the Solana platform? Many developers initially thought that they would only need to reprogram apps using Rust rather than Solidity, but they soon discovered that the real migration challenge rested in the fundamental differences of Solana's underlying architecture. This article aims to help experienced Ethereum developers complete a critical mental model shift so they can efficiently and securely reimplement existing contract logic the Solana way.
+Solana rose in popularity and matured quickly because its high performance and low costs attracted a surge of developer and user attention. Meanwhile, Ethereum (EVM) and EVM-compatible chains had massive ecosystems but faced challenges like limited scalability and high transaction fees. As a result, more Web3 developers have been turning to Solana for its improved developer and user experiences, making the migration from Ethereum to Solana a prominent trend. So, how do we effectively port the smart contracts we've mastered on Ethereum to the Solana platform? Many developers initially thought that they would only need to reprogram apps using Rust rather than Solidity, but they soon discovered that the real migration challenge rested in the fundamental differences of Solana's underlying architecture. This article aims to help experienced Ethereum developers complete a critical mental model shift so they can efficiently and securely reimplement existing contract logic the Solana way.
 
 ## The Core Mindset Shift
 
@@ -63,7 +63,7 @@ contract Staking {
 
 In this example, the `stakingToken` and `rewardToken` addresses, and all users' Staking data `stakes`, are stored directly in the internal state of the `Staking` contract.
 
-Solana takes a completely different approach to its account model, by fully separating code and data. On Solana, **Programs** contain only logic, are stateless, and do not store business data, while **Accounts** only store data. When executing a transaction, you must explicitly tell the program which accounts to operate. As a simpler explanation, think of a program as an executable and accounts as the data files it reads and writes, stores and manages separately.
+Solana takes a completely different approach to its account model, by fully separating code and data. On Solana, **programs** contain only logic, are stateless, and do not store business data, while **accounts** only store data. When executing a transaction, you must explicitly tell the **program** which **accounts** to operate. As a simpler explanation, think of a **program** as an executable and **accounts** as the data files it reads and writes, stores and manages separately.
 
 Here’s the corresponding Solana (Anchor) implementation:
 
@@ -136,7 +136,7 @@ contract Staking {
 
 In this model, a user’s token balance is just an entry in a `mapping` inside the `stakingToken` contract, and `transfer` means mutating two values in that mapping.
 
-Solana's SPL Token standard works differently. There is a shared, official `Token Program` for all tokens. Users’ tokens are not stored in a centralized contract but in user-owned, independent **Token Accounts**. To operate on tokens, our staking program must receive these token accounts as inputs.
+Solana's SPL Token standard works differently. There is a shared, official `Token Program` for all tokens. Users’ tokens are not stored in a centralized contract but in user-owned, independent token accounts. To operate on tokens, our staking program must receive these token accounts as inputs.
 
 ```rust
 // solana-staking/programs/solana-staking/src/instructions/stake.rs
@@ -250,7 +250,7 @@ To put these ideas into practice, you may want to get comfortable with a differe
 
 From this comparison, a clear pattern emerges: Ethereum development supports ideas like inheritance and extension (e.g., inheriting OpenZeppelin contracts), while Solana development supports composition and interaction (via CPI with on-chain SPL programs).
 
-We recommend that newcomers to Solana use the Anchor framework whenever possible. Unlike Ethereum's Hardhat/Foundry, which focuses on the external development flow (tests, deployment, scripting), Anchor does more than help you test or deploy programs. Anchor actually affects how program code is written and runs. Its Macros and constraints dramatically simplify the process of writing Solana programs by handling a lot of tedious and error-prone low-level safety checks and data serialization. If you master Anchor, you'll master efficient, safe business logic on Solana.
+We recommend that newcomers to Solana use the Anchor framework whenever possible. Unlike Ethereum's Hardhat/Foundry, which focuses on the external development flow (tests, deployment, scripting), Anchor affects how program code is written and runs. Its Macros and constraints dramatically simplify the process of writing Solana programs by handling a lot of tedious and error-prone low-level safety checks and data serialization. If you master Anchor, you'll master efficient, safe business logic on Solana.
 
 ## Solana Development Best Practices
 
@@ -299,7 +299,7 @@ pub struct GlobalState {
 }
 ```
 
-To better understand what Anchor abstracts away, let's examine a functionally equivalent implementation using the Native approach.
+To better understand what Anchor abstracts, let's examine a functionally equivalent implementation using the Native approach.
 
 A functionally equivalent implementation using the Native approach requires you to handle all the details manually:
 
@@ -483,13 +483,13 @@ To complete this transfer, we construct a `Transfer` struct with `from` (user to
 
 Now imagine splitting staking logic across multiple programs—one for user stake data and another to update `total_staked`. A simple `stake` could require multiple CPIs, each with its own verbose account context, greatly increasing complexity, CU usage, and the chance of mistakes.
 
-So, to improve developer efficiency and maintainability, best practice is to implement an app or protocol's core features (e.g., a DeFi protocol's staking, lending, reward calculation) inside a single program. Use CPI only to interact with standardized external programs like the SPL Token Program. This monolithic pattern reduces CPI count, simplifies clients, and keeps logic cohesive—easier to audit and manage.
+So, to improve developer efficiency and maintainability, best practice is to implement an app or protocol's core features (e.g., a DeFi protocol's staking, lending, reward calculation) inside a single program. Use CPI only to interact with standardized external programs like the SPL Token Program. This monolithic pattern reduces CPI count, simplifies clients, and keeps logic cohesive, which is easier to audit and manage.
 
 ### Fee Model
 
 Solana's fee model shares some conceptual similarities with Ethereum but differs in implementation. Ethereum uses Gas, with transactions declaring a Gas Limit and paying based on Gas Used × price. Since EIP-1559, fees comprise Base Fee (auto-adjusts with congestion) and Priority Fee, so total cost is `Gas Used × (Base Fee + Priority Fee)`.
 
-On Solana, execution cost is measured in Compute Units (Compute Unit, CU). Each transaction has a CU budget; exceeding it fails the transaction, somewhat similar to Ethereum's Gas Limit. But Solana's base transaction fee doesn't depend on CU consumption; it's tied to transaction byte size and signature count. The larger the transaction, the higher the base fee—loosely decoupled from computational complexity. Competition for compute is expressed via Priority Fees: developers can use `ComputeBudgetProgram` to set how many microLamports to pay per million CU, incentivizing validators to prioritize their transactions, which is similar to Ethereum's Gas Price/Priority Fee.
+On Solana, execution cost is measured in Compute Units (Compute Unit, CU). Each transaction has a CU budget; exceeding it fails the transaction, somewhat similar to Ethereum's Gas Limit. But Solana's base transaction fee doesn't depend on CU consumption; it's tied to transaction byte size and signature count. The larger the transaction, the higher the base fee, which is loosely decoupled from computational complexity. Competition for compute is expressed via Priority Fees: developers can use `ComputeBudgetProgram` to set how many microLamports to pay per million CU, incentivizing validators to prioritize their transactions, which is similar to Ethereum's Gas Price/Priority Fee.
 
 In other words, Solana transaction costs consist of three parts: a base fee tied to transaction size, storage costs expressed through rent, and compute pricing expressed through priority fees. The base fee is your **entry ticket**, while compute competition appears mostly in priority fees.
 
@@ -537,7 +537,7 @@ pub struct MyState {
 
 This way, when you need new fields, you can repurpose part of `_reserved` without changing the account size, keeping old accounts compatible with the new program.
 
-Also, when deploying a Solana program, you must set an upgrade authority (`upgrade authority`)—often the deployer wallet or a multisig. This authority is the only entity that can update program bytecode. If it's compromised or removed improperly, the program could be maliciously upgraded or become immutable—so handle it with care.
+Also, when deploying a Solana program, you must set an upgrade authority (`upgrade authority`), which is often the deployer wallet or a multisig. This authority is the only entity that can update program bytecode. If it's compromised or removed improperly, the program could be maliciously upgraded or become immutable—so handle it with care.
 
 ### Authorization Models: `transferFrom` vs `transfer`
 
