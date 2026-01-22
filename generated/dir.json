@@ -44,6 +44,33 @@
     },
     {
       "published": true,
+      "title": "How to Migrate an Ethereum Protocol to Solana — Contracts (Part 1)",
+      "author": [
+        "Jimmy Zhao / Fullstack Engineer",
+        "Bin Li / Tech Lead"
+      ],
+      "createTime": "2026-01-10T00:00:00.000Z",
+      "categories": [
+        "engineering"
+      ],
+      "tags": [
+        "Solana",
+        "Ethereum",
+        "Smart Contract",
+        "Solidity",
+        "Anchor"
+      ],
+      "landingPages": [
+        "Blockchain-Onchain infra"
+      ],
+      "thumb": "./thumb.png",
+      "thumb_h": "./thumb_h.png",
+      "intro": "A deep dive into the core mindset shift and best practices when moving contracts from Ethereum to Solana.",
+      "path": "articles/How%20to%20Migrate%20an%20Ethereum%20Protocol%20to%20Solana%20Contracts%20(Part%201)/README.md",
+      "slug": "how-to-migrate-an-ethereum-protocol-to-solana-contracts-part-1"
+    },
+    {
+      "published": true,
       "title": "How to Migrate an Ethereum Protocol to Solana — Preamble",
       "author": [
         "Bonnie Chen/ Full Stack Engineer",
@@ -127,33 +154,6 @@
       "intro": "Creative has emerged as a key driver influencing success in performance marketing, and digital advertising companies are increasingly asked to facilitate the creation of advertisements. How did we get here, and what comes next?",
       "path": "articles/The%20Rising%20Strategic%20Value%20of%20Creative%20in%20Digital%20Advertising/README.md",
       "slug": "the-rising-strategic-value-of-creative-in-digital-advertising"
-    },
-    {
-      "published": true,
-      "title": "How to Migrate an Ethereum Protocol to Solana — Contracts (Part 1)",
-      "author": [
-        "Jimmy Zhao / Fullstack Engineer",
-        "Bin Li / Tech Lead"
-      ],
-      "createTime": "2025-11-07T00:00:00.000Z",
-      "categories": [
-        "engineering"
-      ],
-      "tags": [
-        "Solana",
-        "Ethereum",
-        "Smart Contract",
-        "Solidity",
-        "Anchor"
-      ],
-      "landingPages": [
-        "Blockchain-Onchain infra"
-      ],
-      "thumb": "./thumb.png",
-      "thumb_h": "./thumb_h.png",
-      "intro": "A deep dive into the core mindset shift and best practices when moving contracts from Ethereum to Solana.",
-      "path": "articles/How%20to%20Migrate%20an%20Ethereum%20Protocol%20to%20Solana%20Contracts%20(Part%201)/README.md",
-      "slug": "how-to-migrate-an-ethereum-protocol-to-solana-contracts-part-1"
     },
     {
       "published": true,
