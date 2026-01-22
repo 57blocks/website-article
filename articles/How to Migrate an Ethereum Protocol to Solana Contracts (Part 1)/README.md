@@ -489,7 +489,7 @@ So, to improve developer efficiency and maintainability, best practice is to imp
 
 Solana's fee model shares some conceptual similarities with Ethereum but differs in implementation. Ethereum uses Gas, with transactions declaring a Gas Limit and paying based on Gas Used × price. Since EIP-1559, fees comprise Base Fee (auto-adjusts with congestion) and Priority Fee, so total cost is `Gas Used × (Base Fee + Priority Fee)`.
 
-On Solana, execution cost is measured in Compute Units (Compute Unit, CU). Each transaction has a CU budget; exceeding it fails the transaction, somewhat similar to Ethereum's Gas Limit. But Solana's base transaction fee doesn't depend on CU consumption; it's tied to transaction byte size and signature count. The larger the transaction, the higher the base fee, which is loosely decoupled from computational complexity. Competition for compute is expressed via Priority Fees: developers can use `ComputeBudgetProgram` to set how many microLamports to pay per million CU, incentivizing validators to prioritize their transactions, which is similar to Ethereum's Gas Price/Priority Fee.
+On Solana, execution cost is measured in Compute Units (CU). Each transaction has a CU budget; exceeding it fails the transaction, somewhat similar to Ethereum's Gas Limit. But Solana's base transaction fee doesn't depend on CU consumption; it's tied to transaction byte size and signature count. The larger the transaction, the higher the base fee, which is loosely decoupled from computational complexity. Competition for compute is expressed via Priority Fees: developers can use `ComputeBudgetProgram` to set how many microLamports to pay per million CU, incentivizing validators to prioritize their transactions, which is similar to Ethereum's Gas Price/Priority Fee.
 
 In other words, Solana transaction costs consist of three parts: a base fee tied to transaction size, storage costs expressed through rent, and compute pricing expressed through priority fees. The base fee is your **entry ticket**, while compute competition appears mostly in priority fees.
 
@@ -537,20 +537,20 @@ pub struct MyState {
 
 This way, when you need new fields, you can repurpose part of `_reserved` without changing the account size, keeping old accounts compatible with the new program.
 
-Also, when deploying a Solana program, you must set an upgrade authority (`upgrade authority`), which is often the deployer wallet or a multisig. This authority is the only entity that can update program bytecode. If it's compromised or removed improperly, the program could be maliciously upgraded or become immutable—so handle it with care.
+Also, when deploying a Solana program, you must set an upgrade authority (`upgrade authority`), which is often the deployer wallet or a multisig. This authority is the only entity that can update program bytecode. If it's compromised or removed improperly, the program could be maliciously upgraded or become immutable, so handle it with care.
 
 ### Authorization Models: `transferFrom` vs `transfer`
 
 In Ethereum's ERC20 standard, transferring on behalf of a user usually takes two steps: the user calls `approve` to grant an allowance, and the authorized party (often a contract) then calls `transferFrom`. This exists because the account model distinguishes between the token holder and the executor, and the executor must submit a transaction separately.
 
-In Solana’s SPL Token model, this is greatly simplified. Each token account records its _authority_ explicitly. As long as the transaction includes that authority’s signature, the program can directly call `token::transfer` to move tokens—no separate `transferFrom` needed. In other words, Solana’s runtime natively supports a **who-signs-who-authorizes** model, instead of relying on contracts to check a second-layer approval.
+In Solana’s SPL Token model, this is greatly simplified. Each token account records its _authority_ explicitly. As long as the transaction includes that authority’s signature, the program can directly call `token::transfer` to move tokens—no separate `transferFrom` needed. In other words, Solana’s runtime natively supports a **who-signs-who-authorizes** model instead of relying on contracts to check a second-layer approval.
 
 Furthermore, Solana’s execution environment supports signature propagation across CPI:
 
 - If the outer transaction includes a user signature, callee programs can recognize it.
 - If the caller is a PDA, `invoke_signed` lets the runtime synthesize and verify a derived signature for authorization.
 
-Because the runtime understands and propagates authorization at the system level, once a program has a valid signature (or PDA-derived signature), it can safely transfer on the user’s behalf—no proxy-style instruction required.
+Because the runtime understands and propagates authorization at the system level, once a program has a valid signature (or PDA-derived signature), it can safely transfer on the user’s behalf. No proxy-style instruction required.
 
 Our staking flow uses direct user signatures without proxy or PDA authority. When the user calls `stake`, they directly authorize the program to operate their token account; the program then uses CPI `token::transfer` to move tokens into the vault—no `approve + transferFrom` needed. The example below illustrates how this works.
 
@@ -575,7 +575,7 @@ Solana doesn’t need `transferFrom` because its runtime fuses _authorization_ a
 
 Numeric handling on Solana also requires a shift of thinking. First, regarding precision: SPL Tokens are often 6 or 9 decimal places long, not the 18 decimal places common in ERC20. Thus, token amounts usually fit in `u64`, simplifying math and saving 8 bytes per account compared to `u128`, reducing rent costs at scale.
 
-When mixing multiplication and division, beware of precision loss in intermediate results. In many languages, writing `r = a / b * c` as a single expression may benefit from extended precision registers; on x86, the FPU uses 80-bit extended precision internally, only truncating to 64-bit at the end. Note that compilers may also reorder or combine operations. But if you split into steps like `t = a / b; r = t * c;`, the intermediate result is written to memory (64-bit), then read back, causing extra precision loss.
+When mixing multiplication and division, beware of precision loss in intermediate results. In many languages, writing `r = a / b * c` as a single expression may benefit from extended precision registers; on x86, the FPU uses 80-bit extended precision internally, only truncating to 64-bit at the end. Note that compilers may also reorder or combine operations. But if you split this into steps like `t = a / b; r = t * c;`, the intermediate result is written to memory (64-bit), then read back, causing extra precision loss.
 
 For integer token amounts, choose `u64/u128` to avoid floating-point issues. However, for ratios, rates, and prices, floats may be necessary, and if that is the case, be careful with intermediate precision. For example, on x86, a single expression like `r = a / b * c` might compute in 80-bit precision, only truncating at the end. Note that splitting the computation into steps as described earlier (first computing t = a / b, then computing r = t \* c) forces 64-bit truncation in between, introducing additional errors.
 
