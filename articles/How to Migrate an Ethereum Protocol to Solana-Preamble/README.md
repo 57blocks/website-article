@@ -10,7 +10,7 @@ author:
     "Jia Xin Liang/Backend Engineer",
     "Wei Wang/Tech Lead",
   ]
-createTime: 2026-01-09
+createTime: 2026-01-23
 categories: ["engineering"]
 subCategories: ["Blockchain & Web3"]
 tags: ["Solana", "Ethereum", "Smart Contract", "Solidity", "Anchor"]
@@ -31,8 +31,8 @@ Through this series, we hope to help developers not only complete the migration,
 
 ### Article Navigation
 
-- **How to Migrate an Ethereum Protocol to Solana — Preamble**: A systematic introduction to the fundamental differences between Ethereum and Solana in account models, execution mechanisms, and fee systems.
-- **How to Migrate an Ethereum Protocol to Solana — Contracts ( Part 1 )**: A focus on the core mindset shift and best practices for contract development from Ethereum to Solana.
+- [**How to Migrate an Ethereum Protocol to Solana — Preamble**](https://57blocks.com/blog/how-to-migrate-an-ethereum-protocol-to-solana-preamble?tab=engineering): A systematic introduction to the fundamental differences between Ethereum and Solana in account models, execution mechanisms, and fee systems.
+- [**How to Migrate an Ethereum Protocol to Solana — Contracts ( Part 1 )**](https://57blocks.com/blog/how-to-migrate-an-ethereum-protocol-to-solana-contracts-part-1?tab=engineering): A focus on the core mindset shift and best practices for contract development from Ethereum to Solana.
 
 This article approaches the topic from a **system design** perspective, summarizing the core differences between EVM and Solana across four dimensions: account model, execution model, transaction structure, and fee model. Understanding these differences provides a foundational shift in how developers reason about smart contract platforms at the architectural level.
 
