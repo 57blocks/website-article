@@ -32,7 +32,7 @@ The embedded model inevitably fails when the founders move from building to runn
 
 ### The Pivot Point: Conway’s Law
 
-"Organizations which design systems are constrained to produce designs which are copies of the communication structures of these organizations." — Melvin Conway
+> "Organizations which design systems are constrained to produce designs which are copies of the communication structures of these organizations." — Melvin Conway
 
 As a startup moves through the Seed stage, strong PMF signals begin to emerge. This is the danger zone. In the early days, the prior approach worked because the codebase was monolithic and the founder was the arbiter for everything. But as you scale, the founder becomes the bottleneck.
 
