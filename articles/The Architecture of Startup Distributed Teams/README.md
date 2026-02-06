@@ -16,9 +16,9 @@ previousSlugs: []
 
 Over the past decade, I’ve overseen the launch of over 120 MVPs. I’ve watched companies evolve from napkin sketches to Series C scale, some as independent startups, others as incubated ventures within mature tech organizations. Combined with my experience running global engineering teams as a VP of Engineering for a public company, this vantage point has taught me a singular truth: distributed work succeeds brilliantly, or it fails in ways that slow companies down for years.
 
-There is a mythology around remote engineering that suggests you can simply "hire the best talent anywhere" and magic will happen. Without deliberate design, this leads to six engineers in six time zones, constantly waiting on one another. Therefore, the future of engineering will be decided by how well teams are designed to learn, adapt, and ship.
+There is a mythology around remote engineering that suggests you can simply "hire the best talent anywhere" and magic will happen. Without deliberate design, this leads to six engineers in five time zones, constantly waiting on one another. Therefore, the future of engineering will be decided by how well teams are designed to learn, adapt, and ship.
 
-Mastering team design is one of the highest-impact lessons a founder can learn to navigate the rocky transition from looking for product-market fit to achieving it. Deliberate organizational design is necessary to unlock scalability. Without bringing intentionality to this process, the founding executives and engineers risk becoming a bottleneck that limits future growth.
+Mastering team design is one of the highest-impact lessons a founder can learn to navigate the rocky transition from looking for product-market fit to achieving it. Deliberate organizational design is necessary to unlock scalability. Without bringing intentionality to this process, the founders risk becoming a bottleneck that limits future growth.
 
 ## Phase 1: The Pre-PMF Reality and the Embedded Model
 
