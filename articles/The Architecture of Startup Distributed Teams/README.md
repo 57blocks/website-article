@@ -1,5 +1,5 @@
 ---
-published: false
+published: true
 title: "The Architecture of Startup Distributed Teams"
 author: ["Peter Wang / CEO"]
 createTime: 2026-02-05
