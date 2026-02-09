@@ -15,7 +15,7 @@ categories: ["engineering"]
 subCategories: ["Blockchain & Web3"]
 tags: ["Solana", "Ethereum", "Smart Contract", "Solidity", "Anchor"]
 landingPages: ["Blockchain-Onchain infra"]
-heroColor: "#5E86E2"
+heroColor: "#398DAD"
 thumb: "thumb.png"
 thumb_h: "thumb-h.png"
 intro: "A systematic introduction to the fundamental differences between Ethereum and Solana in account models, execution mechanisms, and fee systems."

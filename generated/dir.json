@@ -43,6 +43,33 @@
       "slug": "image-search-with-ai-models"
     },
     {
+      "published": false,
+      "title": "The Architecture of Startup Distributed Teams",
+      "author": [
+        "Peter Wang / CEO"
+      ],
+      "createTime": "2026-02-05T00:00:00.000Z",
+      "categories": [
+        "engineering"
+      ],
+      "subCategories": [
+        "Management"
+      ],
+      "tags": [
+        "Startup",
+        "Distributed Teams",
+        "Engineering Management"
+      ],
+      "landingPages": [],
+      "heroColor": "#3991C0 ",
+      "thumb": "./thumb.png",
+      "thumb_h": "./thumb_h.png",
+      "intro": "",
+      "previousSlugs": [],
+      "path": "articles/The%20Architecture%20of%20Startup%20Distributed%20Teams/README.md",
+      "slug": "the-architecture-of-startup-distributed-teams"
+    },
+    {
       "published": true,
       "title": "How to Migrate an Ethereum Protocol to Solana — Contracts (Part 1)",
       "author": [
@@ -97,7 +124,7 @@
       "landingPages": [
         "Blockchain-Onchain infra"
       ],
-      "heroColor": "#5E86E2",
+      "heroColor": "#398DAD",
       "thumb": "thumb.png",
       "thumb_h": "thumb-h.png",
       "intro": "A systematic introduction to the fundamental differences between Ethereum and Solana in account models, execution mechanisms, and fee systems.",
