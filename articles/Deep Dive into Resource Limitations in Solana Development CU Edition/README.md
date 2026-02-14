@@ -1,7 +1,7 @@
 ---
 published: true
 title: "Deep Dive into Resource Limitations in Solana Development — CU Edition"
-author: ["Jimmy Zhao / Fullstack Engineer"]
+author: ["Jimmy Zhao / Fullstack Engineer", "Bin Li / Tech Lead"]
 createTime: 2025-02-20
 categories: ["engineering"]
 subCategories: ["Blockchain & Web3"]
