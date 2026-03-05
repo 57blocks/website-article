@@ -74,14 +74,6 @@ export function extractMeta(fileName) {
 
 export function sortMetadata(metaDataList) {
   metaDataList.sort((a, b) => {
-    if (a.top !== b.top) {
-      return a.top ? -1 : 1;
-    }
-
-    if (a.weight !== b.weight) {
-      return b.weight - a.weight;
-    }
-
     try {
       return new Date(b.createTime) - new Date(a.createTime);
     } catch (e) {

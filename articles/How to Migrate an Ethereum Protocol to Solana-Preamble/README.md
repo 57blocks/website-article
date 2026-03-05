@@ -19,6 +19,8 @@ heroColor: "#398DAD"
 thumb: "thumb.png"
 thumb_h: "thumb-h.png"
 intro: "A systematic introduction to the fundamental differences between Ethereum and Solana in account models, execution mechanisms, and fee systems."
+top: true
+weight: 998 
 ---
 
 ## Overview
