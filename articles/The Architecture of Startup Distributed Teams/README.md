@@ -12,6 +12,8 @@ thumb: "./thumb.png"
 thumb_h: "./thumb_h.png"
 intro: ""
 previousSlugs: []
+top: true
+weight: 1000
 ---
 
 Over the past decade, I’ve overseen the launch of over 120 MVPs. I’ve watched companies evolve from napkin sketches to Series C scale, some as independent startups, others as incubated ventures within mature tech organizations. Combined with my experience running global engineering teams as a VP of Engineering for a public company, this vantage point has taught me a singular truth: distributed work succeeds brilliantly, or it fails in ways that slow companies down for years.
