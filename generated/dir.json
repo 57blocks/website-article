@@ -2,48 +2,6 @@
   "articles": [
     {
       "published": true,
-      "title": "Image Search with AI Models",
-      "subTitle": "How to Leverage Image Models, Large Language Models, and Multimodal Models to Provide Users with the Right Results",
-      "author": [
-        "Alpha Xiang / Machine Learning Engineer",
-        "Yanqi Liu / Back-End Engineer",
-        "Anjing Wang / AI Lead"
-      ],
-      "createTime": "2024-05-21T00:00:00.000Z",
-      "categories": [
-        "engineering"
-      ],
-      "subCategories": [
-        "AI & Vector DBs"
-      ],
-      "tags": [
-        "Image Search",
-        "Image Retrieval",
-        "LLM",
-        "Image Encoder",
-        "Image Embedding",
-        "OCR",
-        "Text Embedding",
-        "CLIP",
-        "Multimodal"
-      ],
-      "landingPages": [
-        "AI-AI/ML Model Dev",
-        "Blockchai-AI agent"
-      ],
-      "heroColor": "#7B61BB",
-      "thumb": "thumb.png",
-      "thumb_h": "thumb_h.png",
-      "intro": "Using just an image on a mobile device, the search application is designed to return matches from the database that are either identical or resemble the original uploaded image. In this blog, we describe the technology behind this powerful functionality.",
-      "top": true,
-      "previousSlugs": [
-        "image-search-leveraging-ai-models"
-      ],
-      "path": "articles/Image%20Search%20with%20AI%20Models/README.md",
-      "slug": "image-search-with-ai-models"
-    },
-    {
-      "published": true,
       "title": "The Architecture of Startup Distributed Teams",
       "author": [
         "Peter Wang / CEO"
@@ -66,6 +24,8 @@
       "thumb_h": "./thumb_h.png",
       "intro": "",
       "previousSlugs": [],
+      "top": true,
+      "weight": 1000,
       "path": "articles/The%20Architecture%20of%20Startup%20Distributed%20Teams/README.md",
       "slug": "the-architecture-of-startup-distributed-teams"
     },
@@ -131,6 +91,8 @@
       "thumb": "thumb.png",
       "thumb_h": "thumb-h.png",
       "intro": "A systematic introduction to the fundamental differences between Ethereum and Solana in account models, execution mechanisms, and fee systems.",
+      "top": true,
+      "weight": 998,
       "path": "articles/How%20to%20Migrate%20an%20Ethereum%20Protocol%20to%20Solana-Preamble/README.md",
       "slug": "how-to-migrate-an-ethereum-protocol-to-solana-preamble"
     },
@@ -182,6 +144,8 @@
       "thumb": "./thumb.png",
       "thumb_h": "./thumb_h.png",
       "intro": "Creative has emerged as a key driver influencing success in performance marketing, and digital advertising companies are increasingly asked to facilitate the creation of advertisements. How did we get here, and what comes next?",
+      "top": true,
+      "weight": 999,
       "path": "articles/The%20Rising%20Strategic%20Value%20of%20Creative%20in%20Digital%20Advertising/README.md",
       "slug": "the-rising-strategic-value-of-creative-in-digital-advertising"
     },
@@ -628,6 +592,48 @@
       ],
       "path": "articles/How%20to%20Use%20LLMs%20to%20Extract%20Document%20Information/README.md",
       "slug": "how-to-use-llms-to-extract-document-information"
+    },
+    {
+      "published": true,
+      "title": "Image Search with AI Models",
+      "subTitle": "How to Leverage Image Models, Large Language Models, and Multimodal Models to Provide Users with the Right Results",
+      "author": [
+        "Alpha Xiang / Machine Learning Engineer",
+        "Yanqi Liu / Back-End Engineer",
+        "Anjing Wang / AI Lead"
+      ],
+      "createTime": "2024-05-21T00:00:00.000Z",
+      "categories": [
+        "engineering"
+      ],
+      "subCategories": [
+        "AI & Vector DBs"
+      ],
+      "tags": [
+        "Image Search",
+        "Image Retrieval",
+        "LLM",
+        "Image Encoder",
+        "Image Embedding",
+        "OCR",
+        "Text Embedding",
+        "CLIP",
+        "Multimodal"
+      ],
+      "landingPages": [
+        "AI-AI/ML Model Dev",
+        "Blockchai-AI agent"
+      ],
+      "heroColor": "#7B61BB",
+      "thumb": "thumb.png",
+      "thumb_h": "thumb_h.png",
+      "intro": "Using just an image on a mobile device, the search application is designed to return matches from the database that are either identical or resemble the original uploaded image. In this blog, we describe the technology behind this powerful functionality.",
+      "top": true,
+      "previousSlugs": [
+        "image-search-leveraging-ai-models"
+      ],
+      "path": "articles/Image%20Search%20with%20AI%20Models/README.md",
+      "slug": "image-search-with-ai-models"
     },
     {
       "published": true,

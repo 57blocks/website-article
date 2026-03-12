@@ -258,7 +258,7 @@ Your testing environment should mirror production conditions as closely as possi
 Blockchain testing isn't just about preventing bugs–it's about protecting user funds and maintaining network integrity. The cost of comprehensive testing is always less than the cost of a single major failure. As the industry matures, robust testing practices will separate successful projects from cautionary tales.
 
 ## Looking Ahead: Open Source Testing Framework
-To help teams put these principles into practice, in coming months, we will be releasing an open source blockchain testing framework, ChainSmith. ChainSmith is 57Blocks' new open-source framework and managed-service offering for chain-layer reliability testing. It lets us and our clients describe complex, real-world failure scenarios and run them automatically on L1 devnet/testnet.
+To help teams put these principles into practice, in coming months, we will be releasing an open source blockchain testing framework, [ChainSmith](https://www.chainsmith.xyz/). ChainSmith is 57Blocks' new open-source framework and managed-service offering for chain-layer reliability testing. It lets us and our clients describe complex, real-world failure scenarios and run them automatically on L1 devnet/testnet.
 
 ## References
 

@@ -11,6 +11,8 @@ heroColor: "#8761B1"
 thumb: "./thumb.png"
 thumb_h: "./thumb_h.png"
 intro: "Creative has emerged as a key driver influencing success in performance marketing, and digital advertising companies are increasingly asked to facilitate the creation of advertisements. How did we get here, and what comes next?"
+top: true
+weight: 999
 ---
 
 The digital advertising landscape has recently undergone a significant shift in the wake of short-form video, privacy initiatives, and generative AI. As a result, the industry has moved toward recognizing creative iteration as a primary performance lever. In this article, we’ll recount the history of digital advertising as it pertains to the importance of creative and articulate the current landscape of relevant players. The takeaway is clear: modern advertising platforms are facing mounting pressure to embed creative iteration directly into the performance advertising workflow.
