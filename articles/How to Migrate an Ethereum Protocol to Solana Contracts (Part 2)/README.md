@@ -154,7 +154,7 @@ pub struct Staked {
 pub fn stake_handler(ctx: Context<Stake>, amount: u64) -> Result<()> {
     // ... (staking logic)
     let pool_config = &ctx.accounts.pool_config;
-    let clock = &ctx.accounts.clock;
+    let clock = Clock::get()?;
 
     // Emit the structured event
     emit!(Staked {
@@ -277,7 +277,7 @@ function _claimRewards() private {
 
 You can see the flow is straightforward: the contract acts like an all-in-one central processor. It holds tokens (the vault), maintains the ledger for every user, and directly performs all computation and state updates—this is the typical Ethereum contract design pattern.
 
-The full contract code is available [here](https://github.com/jimmyzhao-57blocks/evm-to-solana/tree/main/contract/evm-staking).
+The full contract code is available [here](https://github.com/57blocks/evm-to-solana/tree/main/contract/evm-staking).
 
 ### Solana Implementation (Anchor)
 
@@ -321,6 +321,7 @@ pub struct PoolState {
     pub acc_reward_per_share: u128,
     pub last_reward_time: i64,
     pub total_staked: u64,
+    pub total_reward_debt: i128,
     pub bump: u8,
 }
 
@@ -334,7 +335,8 @@ pub struct UserStakeInfo {
 ```
 
 - The `staking` program: contains only business logic and stores no data.
-- The `GlobalState` account: a singleton account that stores protocol-wide configuration like `total_staked` and `reward_rate`.
+- The `PoolConfig` account: a PDA-like account that stores pool-wide configuration such as token mints and reward rate.
+- The `PoolState` account: a separate runtime state account that stores mutable staking data such as `total_staked` and reward debt.
 - The `UserStakeInfo` account: typically a PDA created dynamically per user to store their staking state.
 
 **Instructions and context**
@@ -384,24 +386,10 @@ pub struct Stake<'info> {
     // The program's vault to store the staked tokens
     #[account(
         mut,
-        seeds = [STAKING_VAULT_SEED, pool_config.key().as_ref()],
+        seeds = [STAKING_TOKEN_SEED, pool_config.key().as_ref()],
         bump
     )]
-    pub staking_vault: Account<'info, TokenAccount>,
-
-    #[account(
-        mut,
-        seeds = [REWARD_VAULT_SEED, pool_config.key().as_ref()],
-        bump
-    )]
-    pub reward_vault: Account<'info, TokenAccount>,
-
-    #[account(
-        mut,
-        token::mint = pool_config.reward_mint,
-        token::authority = user
-    )]
-    pub user_reward_account: Account<'info, TokenAccount>,
+    pub staking_token: Account<'info, TokenAccount>,
 
     /// CHECK: This account may or may not exist - used for blacklist validation
     #[account(
@@ -413,7 +401,6 @@ pub struct Stake<'info> {
     // Required external programs
     pub token_program: Program<'info, Token>,
     pub system_program: Program<'info, System>,
-    pub clock: Sysvar<'info, Clock>,
 }
 ```
 
@@ -421,7 +408,7 @@ This struct is the account checklist for the `stake` instruction. Before executi
 
 **Core function implementation**
 
-The `stake` instruction no longer “modifies internal state.” Instead, it performs a CPI call to the `Token Program` to transfer tokens, then updates the data stored in the passed-in `state` and `user_stake_info` accounts.
+The `stake` instruction no longer “modifies internal state.” Instead, it performs a CPI call to the `Token Program` to transfer tokens, then updates the data stored in the passed-in `pool_state` and `user_stake_info` accounts.
 
 ```rust
 // solana-staking/programs/solana-staking/src/instructions/stake.rs
@@ -437,14 +424,14 @@ pub fn stake_handler(ctx: Context<Stake>, amount: u64) -> Result<()> {
     let pool_config = &ctx.accounts.pool_config;
     let pool_state = &mut ctx.accounts.pool_state;
     let user_stake = &mut ctx.accounts.user_stake_info;
-    let clock = &ctx.accounts.clock;
+    let clock = Clock::get()?;
 
-    update_pool(pool_config, pool_state, clock)?;
+    update_pool(pool_config, pool_state, &clock)?;
 
     // 1. Command the Token Program to transfer tokens via CPI
     let cpi_accounts = Transfer {
         from: ctx.accounts.user_token_account.to_account_info(),
-        to: ctx.accounts.staking_vault.to_account_info(),
+        to: ctx.accounts.staking_token.to_account_info(),
         authority: ctx.accounts.user.to_account_info(),
     };
     let cpi_program = ctx.accounts.token_program.to_account_info();
@@ -453,12 +440,13 @@ pub fn stake_handler(ctx: Context<Stake>, amount: u64) -> Result<()> {
 
     // 2. Update the data on the user_stake_info account
     user_stake.amount += amount;
-    let debt_delta = reward_debt_delta(amount, pool_state.acc_reward_per_share)?;
+    let debt_delta = calculate_share_value(amount, pool_state.acc_reward_per_share)?;
     user_stake.reward_debt += debt_delta;
     user_stake.bump = ctx.bumps.user_stake_info;
 
     // 3. Update the data on the pool state account
     pool_state.total_staked += amount;
+    pool_state.total_reward_debt += debt_delta;
 
     emit!(Staked {
         pool: pool_config.pool_id,
@@ -473,7 +461,7 @@ pub fn stake_handler(ctx: Context<Stake>, amount: u64) -> Result<()> {
 
 This pattern cleanly illustrates Solana’s core idea: a stateless program (logic) operates on external, explicitly passed-in accounts (data).
 
-The full Solana implementation is available [here](https://github.com/jimmyzhao-57blocks/evm-to-solana/tree/main/contract/solana-staking).
+The full Solana implementation is available [here](https://github.com/57blocks/evm-to-solana/tree/main/contract/solana-staking).
 
 ### Contract Testing
 
@@ -530,9 +518,9 @@ describe("Stake", () => {
     // 2. Action: Build and send the transaction to call the 'stake' instruction
     await stakeTokens(user, userSigner, stakingToken, rewardToken, stakeAmount);
 
-    // 3. Assertion: verify staking vault balance and account state
-    const stakingVaultAccount = getAccount(provider, stakingVaultPda);
-    expect(Number(stakingVaultAccount.amount)).to.equal(Number(stakeAmount));
+    // 3. Assertion: verify staking token account balance and account state
+    const stakingTokenAccount = getAccount(provider, stakingTokenPda);
+    expect(Number(stakingTokenAccount.amount)).to.equal(Number(stakeAmount));
 
     const userStakePda = getUserStakePda(statePda, user.publicKey);
     const userStakeInfo = getUserStakeInfo(provider, userStakePda);
@@ -565,7 +553,7 @@ In our example project, we use Foundry scripts to handle deployment, which provi
 forge script script/Deploy.s.sol --rpc-url <your_rpc_url> --broadcast --verify
 ```
 
-This command runs `Deploy.s.sol`, deploys the `Staking` contract to the specified network, and uses `--verify` to automatically upload source code to Etherscan for verification. The full deployment script is available [here](https://github.com/jimmyzhao-57blocks/evm-to-solana/blob/main/contract/evm-staking/script/Deploy.s.sol).
+This command runs `Deploy.s.sol`, deploys the `Staking` contract to the specified network, and uses `--verify` to automatically upload source code to Etherscan for verification. The full deployment script is available [here](https://github.com/57blocks/evm-to-solana/blob/main/contract/evm-staking/script/Deploy.s.sol).
 
 **Solana / Anchor deployment**
 
@@ -592,7 +580,7 @@ anchor build
 anchor upgrade target/deploy/your_program_name.so --provider.cluster <cluster_name>
 ```
 
-For more detailed steps and caveats, see our project’s [deployment doc](https://github.com/jimmyzhao-57blocks/evm-to-solana/blob/main/contract/solana-staking/DEPLOYMENT.md).
+For more detailed steps and caveats, see our project’s [deployment doc](https://github.com/57blocks/evm-to-solana/blob/main/contract/solana-staking/DEPLOYMENT.md).
 
 Put side by side, Foundry deployment feels like spinning up a brand-new server instance, while Anchor deployment feels like uploading or updating a piece of executable logic.
 

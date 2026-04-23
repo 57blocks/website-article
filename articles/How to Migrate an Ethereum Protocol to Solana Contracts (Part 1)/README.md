@@ -77,11 +77,11 @@ pub mod staking {
     pub fn stake(ctx: Context<Stake>, amount: u64) -> Result<()> {
         // Business logic operates on accounts passed via the context.
         // The context `ctx` contains all necessary accounts,
-        // such as `GlobalState` and `UserStakeInfo`, defined in the `Stake` struct below.
-        let state = &mut ctx.accounts.state;
-        let user_info = &mut ctx.accounts.user_stake_info;
-        state.total_staked += amount;
-        user_info.amount += amount;
+        // such as `PoolConfig`, `PoolState`, and `UserStakeInfo`.
+        let pool_state = &mut ctx.accounts.pool_state;
+        let user_stake_info = &mut ctx.accounts.user_stake_info;
+        pool_state.total_staked += amount;
+        user_stake_info.amount += amount;
         // ...
         Ok(())
     }
@@ -92,27 +92,63 @@ pub mod staking {
 #[derive(Accounts)]
 pub struct Stake<'info> {
     #[account(mut)]
-    pub state: Account<'info, GlobalState>,
-    #[account(mut)]
-    pub user_stake_info: Account<'info, UserStakeInfo>,
-    // ... other necessary accounts
+    pub user: Signer<'info>,
+    #[account(
+        seeds = [POOL_CONFIG_SEED, pool_config.pool_id.as_ref()],
+        bump = pool_config.bump
+    )]
+    pub pool_config: Box<Account<'info, PoolConfig>>,
+    #[account(
+        mut,
+        seeds = [POOL_STATE_SEED, pool_config.key().as_ref()],
+        bump = pool_state.bump,
+        has_one = pool_config
+    )]
+    pub pool_state: Box<Account<'info, PoolState>>,
+    #[account(
+        init_if_needed,
+        payer = user,
+        space = 8 + UserStakeInfo::INIT_SPACE,
+        seeds = [STAKE_SEED, pool_config.key().as_ref(), user.key().as_ref()],
+        bump
+    )]
+    pub user_stake_info: Box<Account<'info, UserStakeInfo>>,
+    pub system_program: Program<'info, System>,
 }
 
 // State is defined in separate account structs.
 #[account]
-pub struct GlobalState {
-    pub total_staked: u64,
-    // ... other global state
+#[derive(InitSpace)]
+pub struct PoolConfig {
+    pub admin: Pubkey,
+    pub pool_id: Pubkey,
+    pub staking_mint: Pubkey,
+    pub reward_mint: Pubkey,
+    pub reward_per_second: u64,
+    pub bump: u8,
 }
 
 #[account]
+#[derive(InitSpace)]
+pub struct PoolState {
+    pub pool_config: Pubkey,
+    pub acc_reward_per_share: u128,
+    pub last_reward_time: i64,
+    pub total_staked: u64,
+    pub total_reward_debt: i128,
+    pub bump: u8,
+}
+
+#[account]
+#[derive(InitSpace)]
 pub struct UserStakeInfo {
     pub amount: u64,
-    // ... other user state
+    pub reward_debt: i128,
+    pub bump: u8,
 }
 ```
 
-Here, the `staking` program is stateless and holds no data. All data—both global `GlobalState` and per-user `UserStakeInfo`—are defined in separate `#[account]` structs. The program receives these accounts through the `Context` object (typed by the `Stake` struct), and then operates on them.
+Here, the `staking` program is stateless and holds no data. All data—both pool-level `PoolConfig` / `PoolState` and per-user `UserStakeInfo`—are defined in separate `#[account]` structs. The program receives these accounts through the `Context` object (typed by the `Stake` struct), and then operates on them.
 
 This design's fundamental purpose is to enable large-scale [parallel processing](https://medium.com/solana-labs/sealevel-parallel-processing-thousands-of-smart-contracts-d814b378192). Because code and data are separated, Solana transactions will declare all accounts they will access ahead of execution and specify whether each account is read-only or writable. This allows the runtime to build a dependency graph and schedule transactions efficiently. If two transactions touch completely unrelated accounts—or both only read the same account—they can safely run in parallel. Only when one transaction needs to write to an account, other transactions that access that account (read or write) will be temporarily blocked and executed sequentially. With this fine-grained scheduling, Solana maximizes multi-core utilization to process many non-interfering transactions concurrently. This is a key element to its high throughput and low latency.
 
@@ -147,7 +183,7 @@ pub struct Stake<'info> {
     #[account(mut)]
     pub user_token_account: Account<'info, TokenAccount>,
     #[account(mut)]
-    pub staking_vault: Account<'info, TokenAccount>,
+    pub staking_token: Account<'info, TokenAccount>,
     pub token_program: Program<'info, Token>,
     // ...
 }
@@ -159,7 +195,7 @@ pub fn stake(ctx: Context<Stake>, amount: u64) -> Result<()> {
             ctx.accounts.token_program.to_account_info(),
             Transfer {
                 from: ctx.accounts.user_token_account.to_account_info(),
-                to: ctx.accounts.staking_vault.to_account_info(),
+                to: ctx.accounts.staking_token.to_account_info(),
                 authority: ctx.accounts.user.to_account_info(),
             }
         ),
@@ -216,13 +252,16 @@ async function stakeTokens(
   const userStakePda = getUserStakePda(statePda, user.publicKey);
 
   // All required accounts must be explicitly passed.
+  const userBlacklistPda = getBlacklistPda(statePda, user.publicKey);
   const stakeInstruction = programClient.getStakeInstruction({
     user: userSigner,
-    state: address(statePda.toBase58()),
+    poolConfig: address(statePda.toBase58()),
+    poolState: address(poolStatePda.toBase58()),
     userStakeInfo: address(userStakePda.toBase58()),
     userTokenAccount: address(stakingToken.toBase58()),
-    stakingVault: address(stakingVaultPda.toBase58()),
-    // ... and other accounts
+    stakingToken: address(stakingTokenPda.toBase58()),
+    tokenProgram: address(TOKEN_PROGRAM_ID.toBase58()),
+    blacklistEntry: address(userBlacklistPda.toBase58()),
     amount: amount,
   });
 
@@ -230,7 +269,7 @@ async function stakeTokens(
 }
 ```
 
-In this TypeScript Test, calling the `stake` instruction requires a large account object: `user` (signer), `state` (global state account), `userStakeInfo` (user staking data account), `userTokenAccount` (the user's token account), `stakingVault` (the program's vault), etc. While this makes the client call more verbose, it brings transparency and safety. Before the transaction is sent, the client code explicitly defines all accounts included in the transaction. There are no hidden contextual dependencies in a Solana transaction.
+In this TypeScript Test, calling the `stake` instruction requires a large account object: `user` (signer), `poolConfig` (pool config account), `poolState` (pool runtime state account), `userStakeInfo` (user staking data account), `userTokenAccount` (the user's token account), `stakingToken` (the program's staking token account), `blacklistEntry` (the user's blacklist PDA), etc. While this makes the client call more verbose, it brings transparency and safety. Before the transaction is sent, the client code explicitly defines all accounts included in the transaction. There are no hidden contextual dependencies in a Solana transaction.
 
 Additionally, on Ethereum, upgrading a contract often requires changing client code to point to a new contract address. On Solana, you simply deploy new program code to the same program ID, achieving seamless upgrades. All business data remains untouched in their accounts because data and logic are decoupled. Since the program address doesn’t change, client code remains compatible.
 
@@ -265,38 +304,102 @@ Native development requires direct interaction with Solana's low-level libraries
 
 Solana's official recommendation, meant specifically for developers migrating from Ethereum, is to choose Anchor. Anchor leverages Rust macros to simplify development, enhance safety, and ultimately automate the complex parts of native development.
 
-Here's a simple `initialize` instruction for creating a new global state account using Anchor. Once you declare accounts and constraints, the framework handles validation and initialization for you.
+Here's a simple `create_pool` instruction for creating pool config, pool state, staking token, and reward vault accounts using Anchor. Once you declare accounts and constraints, the framework handles validation and initialization for you.
 
 ```rust
-// solana-staking/programs/solana-staking/src/instructions/initialize.rs
-#[program]
-pub mod staking {
-    pub fn initialize_handler(ctx: Context<Initialize>, reward_per_second: u64) -> Result<()> {
-        // Business logic is clean and focused.
-        let state = &mut ctx.accounts.state;
-        state.reward_per_second = reward_per_second;
-        state.admin = ctx.accounts.admin.key();
-        // ...
-        Ok(())
-    }
+// solana-staking/programs/solana-staking/src/instructions/create_pool.rs
+pub fn create_pool_handler(
+    ctx: Context<CreatePool>,
+    pool_id: Pubkey,
+    reward_per_second: u64,
+) -> Result<()> {
+    require!(pool_id != Pubkey::default(), StakingError::InvalidPoolId);
+    require!(reward_per_second > 0, StakingError::InvalidRewardPerSecond);
+
+    let pool_config = &mut ctx.accounts.pool_config;
+    let pool_state = &mut ctx.accounts.pool_state;
+    let clock = Clock::get()?;
+
+    pool_config.admin = ctx.accounts.admin.key();
+    pool_config.pool_id = pool_id;
+    pool_config.staking_mint = ctx.accounts.staking_mint.key();
+    pool_config.reward_mint = ctx.accounts.reward_mint.key();
+    pool_config.reward_per_second = reward_per_second;
+    pool_config.bump = ctx.bumps.pool_config;
+
+    pool_state.pool_config = pool_config.key();
+    pool_state.acc_reward_per_share = 0;
+    pool_state.last_reward_time = clock.unix_timestamp;
+    pool_state.total_staked = 0;
+    pool_state.total_reward_debt = 0;
+    pool_state.bump = ctx.bumps.pool_state;
+
+    Ok(())
 }
 
-// Define accounts and constraints declaratively.
 #[derive(Accounts)]
-pub struct Initialize<'info> {
+#[instruction(pool_id: Pubkey)]
+pub struct CreatePool<'info> {
     #[account(mut)]
     pub admin: Signer<'info>,
-    // Anchor handles the creation and rent payment for this account.
-    #[account(init, payer = admin, space = 8 + GlobalState::INIT_SPACE)]
-    pub state: Account<'info, GlobalState>,
+    #[account(
+        init,
+        payer = admin,
+        space = 8 + PoolConfig::INIT_SPACE,
+        seeds = [POOL_CONFIG_SEED, pool_id.as_ref()],
+        bump
+    )]
+    pub pool_config: Box<Account<'info, PoolConfig>>,
+    #[account(
+        init,
+        payer = admin,
+        space = 8 + PoolState::INIT_SPACE,
+        seeds = [POOL_STATE_SEED, pool_config.key().as_ref()],
+        bump
+    )]
+    pub pool_state: Box<Account<'info, PoolState>>,
+    pub staking_mint: Account<'info, Mint>,
+    pub reward_mint: Account<'info, Mint>,
+    #[account(
+        init,
+        payer = admin,
+        token::mint = staking_mint,
+        token::authority = pool_config,
+        seeds = [STAKING_TOKEN_SEED, pool_config.key().as_ref()],
+        bump
+    )]
+    pub staking_token: Account<'info, TokenAccount>,
+    #[account(
+        init,
+        payer = admin,
+        token::mint = reward_mint,
+        token::authority = pool_config,
+        seeds = [REWARD_VAULT_SEED, pool_config.key().as_ref()],
+        bump
+    )]
+    pub reward_vault: Account<'info, TokenAccount>,
     pub system_program: Program<'info, System>,
+    pub token_program: Program<'info, Token>,
 }
 
 #[account]
-pub struct GlobalState {
+pub struct PoolConfig {
     pub admin: Pubkey,
+    pub pool_id: Pubkey,
+    pub staking_mint: Pubkey,
+    pub reward_mint: Pubkey,
     pub reward_per_second: u64,
-    // ...
+    pub bump: u8,
+}
+
+#[account]
+pub struct PoolState {
+    pub pool_config: Pubkey,
+    pub acc_reward_per_share: u128,
+    pub last_reward_time: i64,
+    pub total_staked: u64,
+    pub total_reward_debt: i128,
+    pub bump: u8,
 }
 ```
 
@@ -415,7 +518,7 @@ pub struct AccountClose<'info> {
 
 For more details, see [Mango Markets v4 source](https://github.com/blockworks-foundation/mango-v4/blob/dev/programs/mango-v4/src/accounts_ix/account_close.rs).
 
-Our `solana-staking` example also follows this lifecycle model. The `initialize` instruction creates global state and vault accounts; the `stake` instruction uses `init` to create a user info account on first stake; and in `unstake`, if the user’s balance returns to zero, the program uses `close` to destroy their user info account and refund rent. See the repository here: [solana-staking](https://github.com/57blocks/evm-to-solana/tree/main/contract/solana-staking).
+Our `solana-staking` example also follows this lifecycle model. The `create_pool` instruction creates pool config, pool state, staking token, and reward vault accounts; the `stake` instruction uses `init_if_needed` to create a user stake info account on first stake; and when a user wants to close out, the separate `close_user_stake_account` instruction destroys their user stake info account and refunds rent. See the repository here: [solana-staking](https://github.com/57blocks/evm-to-solana/tree/main/contract/solana-staking).
 
 ### Program Derived Addresses (PDA)
 
@@ -436,7 +539,7 @@ pub struct Stake<'info> {
         init_if_needed,
         payer = user,
         space = 8 + UserStakeInfo::INIT_SPACE,
-        seeds = [STAKE_SEED, state.key().as_ref(), user.key().as_ref()],
+        seeds = [STAKE_SEED, pool_config.key().as_ref(), user.key().as_ref()],
         bump
     )]
     pub user_stake_info: Box<Account<'info, UserStakeInfo>>,
@@ -447,15 +550,13 @@ pub struct Stake<'info> {
 #[account]
 #[derive(InitSpace)]
 pub struct UserStakeInfo {
-    pub owner: Pubkey,
     pub amount: u64,
     pub reward_debt: i128,
-    pub claimed: u64,
     pub bump: u8,
 }
 ```
 
-- `seeds = [STAKE_SEED, state.key().as_ref(), user.key().as_ref()]`: the core PDA definition. It derives `user_stake_info` from a constant `STAKE_SEED`, the global state account `state.key()`, and the user public key `user.key()`. This ensures a unique, predictable `UserStakeInfo` address per user per staking pool.
+- `seeds = [STAKE_SEED, pool_config.key().as_ref(), user.key().as_ref()]`: the core PDA definition. It derives `user_stake_info` from a constant `STAKE_SEED`, the pool config account `pool_config.key()`, and the user public key `user.key()`. This ensures a unique, predictable `UserStakeInfo` address per user per staking pool.
 - `bump`: Anchor finds a `bump` and stores it in the PDA’s data. Future instructions use the stored `bump` to re-derive and verify the address, ensuring `user_stake_info` is legitimate, not forged.
 - `init_if_needed`: a convenience constraint that auto-creates this PDA on a user’s first stake. It’s feature-gated in Anchor because it can introduce reinitialization risks, so avoid it when possible.
 
@@ -472,7 +573,7 @@ There are two reasons to do this. First, the complexity of CPI (Cross-Program In
 // Transfer staking tokens from user to vault
 let cpi_accounts = Transfer {
     from: ctx.accounts.user_token_account.to_account_info(),
-    to: ctx.accounts.staking_vault.to_account_info(),
+    to: ctx.accounts.staking_token.to_account_info(),
     authority: ctx.accounts.user.to_account_info(),
 };
 let cpi_program = ctx.accounts.token_program.to_account_info();
@@ -523,20 +624,22 @@ Upgrades are crucial to a project’s evolution, and Ethereum and Solana offer v
 
 In early Ethereum, upgrading smart contracts was complex and risky. Because code and data are tightly coupled at one address, upgrading often meant deploying a new contract and migrating data, which can be complex and error-prone. The community developed mature Proxy patterns where data resides in a stable proxy contract and upgradeable logic contracts are referenced via pointers. Upgrades switch the logic implementation without changing the proxy address—now the de facto standard.
 
-Solana's design is simpler and more elegant: program code and state storage are naturally separated. You can redeploy new BPF bytecode to the same program ID to upgrade the program, while state accounts (outside the program) remain intact. There is no data migration needed, significantly reducing complexity and risk. However, there's a new challenge–once an account's structure and size are set, you can’t expand it in-place. If you later add new fields to a state account that was allocated with a smaller size, you’ll get data misalignment or read errors. The recommended approach is to pre-allocate unused space (`padding`) in v1 so you can safely add fields later without changing account size:
+Solana's design is simpler and more elegant: program code and state storage are naturally separated. You can redeploy new BPF bytecode to the same program ID to upgrade the program, while state accounts (outside the program) remain intact. There is no data migration needed, significantly reducing complexity and risk. However, there's a new challenge–once an account's structure and size are set, you can’t expand it in-place. If you later add new fields to a state account that was allocated with a smaller size, you’ll get data misalignment or read errors. The example below shows the current `PoolState` layout; if you expect the account to grow later, reserve extra space up front when you define the account size:
 
 ```rust
-#[account(zero_copy)]
-#[repr(C)]
-pub struct MyState {
-    pub data_field_a: u64,
-    pub data_field_b: bool,
-    // Reserve 128 bytes for future upgrade
-    pub _reserved: [u8; 128],
+#[account]
+#[derive(InitSpace)]
+pub struct PoolState {
+    pub pool_config: Pubkey,
+    pub acc_reward_per_share: u128,
+    pub last_reward_time: i64,
+    pub total_staked: u64,
+    pub total_reward_debt: i128,
+    pub bump: u8,
 }
 ```
 
-This way, when you need new fields, you can repurpose part of `_reserved` without changing the account size, keeping old accounts compatible with the new program.
+This way, when you need new fields, you can reuse that preallocated space without changing the account size, keeping old accounts compatible with the new program.
 
 Also, when deploying a Solana program, you must set an upgrade authority (`upgrade authority`), which is often the deployer wallet or a multisig. This authority is the only entity that can update program bytecode. If it's compromised or removed improperly, the program could be maliciously upgraded or become immutable, so handle it with care.
 
@@ -559,7 +662,7 @@ Our staking flow uses direct user signatures without proxy or PDA authority. Whe
 pub fn stake_handler(ctx: Context<Stake>, amount: u64) -> Result<()> {
     let cpi_accounts = Transfer {
         from: ctx.accounts.user_token_account.to_account_info(),
-        to: ctx.accounts.staking_vault.to_account_info(),
+        to: ctx.accounts.staking_token.to_account_info(),
         authority: ctx.accounts.user.to_account_info(),
     };
     let cpi_program = ctx.accounts.token_program.to_account_info();
