@@ -24,8 +24,7 @@ Through this series, we hope to help developers not only complete the migration,
 
 - [How to Migrate an Ethereum Protocol to Solana — Preamble](https://57blocks.com/blog/how-to-migrate-an-ethereum-protocol-to-solana-preamble?tab=engineering): A systematic introduction to the fundamental differences between Ethereum and Solana in account models, execution mechanisms, and fee systems.
 - [How to Migrate an Ethereum Protocol to Solana — Contracts (Part 1)](https://57blocks.com/blog/how-to-migrate-an-ethereum-protocol-to-solana-contracts-part-1?tab=engineering): A focus on the core mindset shift and best practices for contract development from Ethereum to Solana.
-- [How to Migrate an Ethereum Protocol to Solana — Frontend(Part 1)](https://57blocks.com/blog/
-how-to-migrate-an-ethereum-protocol-to-solana—frontend-part-1?tab=engineering): Frontend Architecture Design and Practical Implementation for High-Performance Data Access and Transaction Optimisation.
+- [How to Migrate an Ethereum Protocol to Solana — Frontend (Part 1)](https://57blocks.com/blog/how-to-migrate-an-ethereum-protocol-to-solana-frontend-part-1?tab=engineering): A focus on the frontend mindset shift and best practices for building Solana-native DApp infrastructure from Ethereum.
 
 ---
 
@@ -483,7 +482,822 @@ const signatureBytes = bs58.decode(signature);
 const messageBytes = bs58.decode(serializedMessageBase58);
 ```
 
-The Ed25519 verification logic is the same as the `signMessage` path. After verifying the signature, the backend should also deserialize the transaction message to extract the Memo content and confirm it matches the original Challenge.
+The Ed25519 verification logic is the same as the `signMessage` path. After verifying the signature, the backend should also:
+
+- The Challenge (including its `nonce/expiration time/address`, etc.) is still generated and saved by the backend.
+- The frontend writes the Challenge into the `data` field when constructing the Memo.
+- For stronger security, the backend can further parse the transaction content corresponding to `messageBytes`, find the Memo instruction, and compare its `data` to ensure it matches the Challenge (this step is an enhanced verification, and the specific parsing code is not expanded here).
+
+Overall, the security semantics of this path are the same as the `signMessage` path: the user performed a non-repudiable signature on a Challenge initiated by the backend, and the backend establishes a login session for that address after verifying the signature and the Challenge's validity.
+
+## 3. Data and Indexing Layer
+
+In blockchain applications, retrieving on-chain data and performing efficient queries are key to building a user-friendly interface. Unlike the EVM ecosystem which uses The Graph for data indexing, the Solana ecosystem also has its corresponding solutions.
+
+### 3.1 Data Indexing in EVM: Subgraphs
+
+In the EVM ecosystem, Subgraph is a tool used to build custom GraphQL APIs specifically for indexing blockchain data. Developers can use Subgraphs to:
+
+- Aggregate application-specific blockchain data for fast frontend access.
+- Listen for smart contract events and store the data in a Graph Node.
+- Provide real-time query interfaces to support complex frontend requirements.
+
+#### 3.1.1 How to use Subgraph
+
+The specific steps to build a Subgraph can be found in the official tutorial: [The Graph Quick Start](https://thegraph.com/docs/en/quick-start/).
+
+#### 3.1.2 Querying Data
+
+Once a Subgraph is created, the frontend can query on-chain data via GraphQL, eliminating the need to call RPC nodes directly, which greatly improves query efficiency.
+
+Querying the latest reward claim records:
+
+```typescript
+import { gql, request } from "graphql-request";
+import { useQuery } from "@tanstack/react-query";
+
+const REWARD_HISTORY_QUERY = gql`
+  {
+    rewardClaimeds(first: 10, orderBy: blockNumber, orderDirection: desc) {
+      id
+      user
+      reward
+      blockNumber
+    }
+  }
+`;
+
+const useRewardHistory = () => {
+  const { data, refetch, isLoading, error, isRefetching } = useQuery<{
+    rewardClaimeds: RewardRecord[];
+  }>({
+    queryKey: ["reward-history"],
+    queryFn: async () => {
+      const graphqlUrl = process.env.NEXT_PUBLIC_GRAPH_URL || "";
+      return await request(graphqlUrl, REWARD_HISTORY_QUERY, {}, headers);
+    },
+    refetchInterval: 30000, //Refetch every 30 seconds
+    refetchOnWindowFocus: true, //  Refetch when window gains focus
+    staleTime: 10000, // Data is considered stale after 10 seconds
+  });
+
+  return { data, refetch, isLoading, error, isRefetching };
+};
+```
+
+### 3.2 Solana Ecosystem: RPC and Third-Party Services
+
+Solana's native RPC nodes are adept at rapid state reading, suitable for single-account queries or simple filtering. Developers can use the GraphQL query interface directly via [@solana/rpc-graphql](https://github.com/solana-labs/solana-web3.js/tree/master/packages/rpc-graphql) to achieve multi-account aggregation and complex data access, eliminating the need for extra RPC data traversal.
+
+However, native RPC and `rpc-graphql` still have limitations:
+
+- Complex cross-program queries or event backtracking still require additional handling.
+- Queries for large volumes of historical data may be less efficient than specialized indexing services.
+
+Therefore, third-party indexing services remain valuable, such as **Helius** high-performance API and event subscription, which supports NFT, transaction events, and staking data queries.
+
+While Solana native RPC + `rpc-graphql` can address most query needs, third-party indexing services remain indispensable for complex queries, event subscriptions, and historical data access.
+
+#### 3.2.1 Self-Built Backend Indexer + REST API
+
+Event backtracking can also be implemented based on the Solana RPC without relying on third-party indexing services. The core idea is:
+
+1. Determine the Backtracking Range: Use the slot as the timeline to define the backtracking scope (usually avoiding the latest slot to ensure data stability).
+2. Fetch Transaction Signatures: Call the RPC's getSignaturesForAddress method for the set of addresses to be monitored, fetching transaction signatures in pages within the specified range.
+3. Get Transaction Details: After obtaining the signatures, concurrently call getParsedTransaction to fetch the details of each transaction.
+4. Extract Events: Use a custom event parser to extract business events from transaction instructions, inner instructions, or logs.
+5. Data Integration: Consolidate and sort the scattered events by slot/time, and output a new checkpoint (the synchronized slot) for the next round of incremental synchronization.
+
+This method can cover the needs of "historical playback + resuming from a breakpoint," but specialized indexing services are still more efficient in scenarios like complex cross-program analysis, real-time subscriptions, and retrieving massive amounts of historical data.
+
+In terms of code implementation, a complete implementation was built using NestJS — periodically pulling new transactions from the chain, using Anchor EventParser to parse events, storing them in a database, and then aggregating and returning them to the frontend via a REST API.
+
+#### 3.2.2 Querying Data
+
+In our engineering architecture, because the backend has efficiently completed data indexing and multi-dimensional aggregation, the frontend developer's core task becomes exceptionally simple: directly obtaining the required business data by calling a RESTful API:
+
+```typescript
+const API_BASE = import.meta.env.VITE_API_BASE_URL || "http://localhost:3000";
+
+async function fetchRewards(
+  userAddress: string,
+): Promise<UserRewardResponse> {
+  const res = await fetch(`${API_BASE}/api/rewards/${userAddress}`);
+  if (!res.ok) {
+    throw new Error(`Failed to fetch rewards: ${res.statusText}`);
+  }
+  return res.json();
+}
+
+const rewards = useQuery<UserRewardResponse>({
+  queryKey: ["reward-history", address],
+  queryFn: () => fetchRewards(address),
+  enabled: !!address,
+  refetchInterval: 30000,
+  staleTime: 10000,
+});
+```
+
+## 4. Address Lookup Table (ALT)
+
+When developing DApps on Solana, a common limitation is that **a single transaction can reference a maximum of 32 accounts, and each transaction has a size limit of 1232 bytes**. The 1232-byte transaction size limit is not arbitrary but directly derived from the MTU constraints in real network environments, ensuring that transactions can be reliably broadcast without packet fragmentation (see Solana official [transaction documentation](https://solana.com/docs/core/transactions)).
+
+This can become a bottleneck in complex scenarios, such as:
+
+- DeFi protocol calls involving multiple Token accounts and auxiliary accounts.
+- Batch NFT Mint or Transfer operations.
+
+To solve this problem, Solana provides the **Address Lookup Table (ALT)** — a specialized on-chain structure used to store account addresses.
+
+### 4.1 Core Mechanism
+
+- **Account Storage**: You can write frequently used account addresses into the ALT.
+- **Index Reference**: The transaction no longer carries the full account address but resolves it from the ALT via an index.
+- **Extension Capabilities**:
+  - Each ALT can store up to 256 account addresses.
+  - Each `extend` operation can write up to 20 addresses.
+- **Transaction Compatibility**: ALT relies on the v0 version of the transaction format (`Versioned Transaction`), which can break the 32-account limit and reduce transaction size.
+
+### 4.2 Use Cases
+
+- **Breaking the Account Limit**: Complex cross-protocol interactions and batch NFT operations can be completed in one go.
+- **Reducing Transaction Size**: Compressing account addresses through indexing reduces the number of bytes, leading to lower fees.
+
+### 4.3 Usage Flow and Example (Anchor Frontend Call Code Example)
+
+1. Creating and Extending the Address Lookup Table
+
+```typescript
+/**
+ * Create an Address Lookup Table (ALT) for stake accounts
+ */
+export const createLookupTable = async (
+  connection: Connection,
+  payer: PublicKey,
+  accounts: AltAccountInfo,
+  signTransaction: <T extends Transaction | VersionedTransaction>(
+    tx: T,
+  ) => Promise<T>,
+): Promise<AddressLookupTableAccount | null> => {
+  const recentSlot = await connection.getSlot();
+
+  // Create lookup table instruction
+  const [lookupTableInst, lookupTableAddress] =
+    AddressLookupTableProgram.createLookupTable({
+      authority: payer,
+      payer,
+      recentSlot,
+    });
+
+  // Add accounts to lookup table instruction
+  const addAccountsInst = AddressLookupTableProgram.extendLookupTable({
+    payer: payer,
+    authority: payer,
+    lookupTable: lookupTableAddress,
+    addresses: [
+      accounts.state,
+      accounts.userStakeInfo,
+      accounts.userTokenAccount,
+      accounts.stakingVault,
+      accounts.rewardVault,
+      accounts.userRewardAccount,
+      accounts.tokenProgram,
+      accounts.blacklistEntry,
+      accounts.systemProgram,
+      accounts.clock,
+    ],
+  });
+
+  // Combine both instructions in a single transaction
+  const combinedTx = new Transaction()
+    .add(lookupTableInst)
+    .add(addAccountsInst);
+
+  combinedTx.recentBlockhash = (
+    await connection.getLatestBlockhash()
+  ).blockhash;
+  combinedTx.feePayer = payer;
+
+  const signedTx = await signTransaction(combinedTx);
+  await sendAndConfirmTransaction(connection, signedTx.serialize());
+
+  // Fetch the created lookup table
+  const lookupTableResponse = await connection.getAddressLookupTable(
+    lookupTableAddress,
+  );
+
+  return lookupTableResponse.value;
+};
+```
+
+2. Executing a Stake Transaction using ALT (v0 transaction)
+
+```typescript
+try {
+  const accountInfo = await createStakeAccountInfo(publicKey!, program!);
+
+  const accounts: AltAccountInfo = {
+    state: accountInfo.statePda,
+    userStakeInfo: accountInfo.userStakeInfoPda,
+    userTokenAccount: accountInfo.userTokenAccount,
+    stakingVault: accountInfo.stakingVault,
+    rewardVault: accountInfo.rewardVault,
+    userRewardAccount: accountInfo.userRewardAccount,
+    tokenProgram: TOKEN_PROGRAM_ID,
+    blacklistEntry: accountInfo.blacklistPda,
+    systemProgram: anchor.web3.SystemProgram.programId,
+    clock: anchor.web3.SYSVAR_CLOCK_PUBKEY,
+  };
+
+  const lookupTable = await getOrCreateLookupTable(accounts);
+  if (!lookupTable) {
+    onError({ message: ERROR_MESSAGES.FAILED_TO_LOAD_LOOKUP_TABLE });
+    return;
+  }
+
+  const versionedTx = await createVersionedStakeTransaction(
+    connection,
+    publicKey!,
+    program!,
+    stakeAmount,
+    lookupTable,
+  );
+
+  const signedVersionedTx = await signTransaction!(versionedTx);
+
+  const signature = await sendAndConfirmTransaction(
+    connection,
+    signedVersionedTx.serialize(),
+  );
+
+  setTransactionSignature(signature);
+  onSuccess();
+  setTransactionSignature(undefined);
+} catch (err) {
+  const errorInfo = formatErrorForDisplay(err);
+  onError(errorInfo);
+} finally {
+  setIsStaking(false);
+}
+```
+
+If your transaction only involves a few dozen accounts, a regular transaction is sufficient. However, for **batch operations** or **complex cross-protocol interactions**, ALT can significantly reduce development complexity, improve performance, and lower Gas costs.
+
+[This transaction](https://explorer.solana.com/tx/4xVRZqBTbMiKGFysFheMeFEPvEDq7miJhmJV5sMhUorKJi3VYdisbFy7pRJNLrJMLMNi1VmPC3H8TRDM5ihUYgPR?cluster=testnet) is a transaction without lookup, and [this transaction](https://explorer.solana.com/tx/4fSEPvAHh6JXVqLTJjr7JcNJ3k7kEfnfLRf5z4x3YG2j4cBDHXMFmN96WvVh6sKJW1PcMYbwGJu9t7NVKWM4LoH?cluster=testnet) is a transaction with lookup, showing a significant fee reduction from 0.000025 SOL to 0.000005 SOL, a saving of 80%.
+
+## 5. Solana Fee Optimisation: Compute Units and Priority Fee
+
+In Solana, the transaction fee consists of two parts: **base fee** and **priority fee**. The base fee is fixed and very low, while the priority fee allows users to pay an additional amount to boost the transaction's packing priority during periods of high **account contention**.
+
+### 5.1 Account Contention and Priority Fees
+
+- **The unit of transaction contention is the account**, not the transaction itself.
+- **Account contention** occurs when multiple transactions simultaneously access the same account within the same block (e.g., writing to the state account of a liquidity pool).
+- In this situation, validators prioritize transactions with a higher bid (more priority fee).
+
+If the account you are interacting with has no contention (e.g., personal wallet transfers, or a staking account only used by yourself), **no extra priority fee is needed**, and the transaction will still be landed normally.
+
+### 5.2 Typical Scenarios Requiring Priority Fees
+
+- Hot NFT mints, where thousands of users simultaneously write to the same global state account.
+- AMM liquidity pools or DEX order placements, where everyone accesses the same market state account.
+- High-frequency trading or arbitrage bots, competing concurrently on the same accounts.
+
+### 5.3 Compute Units
+
+The computing resources consumed by each transaction in the network are measured in **Compute Units (CU)**. By default, setting the CU too high leads to unnecessary waste, while setting it too low might cause transaction execution failure. Solana provides two mechanisms to help developers find the "appropriate CU request":
+
+Use `simulateTransaction` to estimate the CU required for transaction execution. You can first simulate the execution using `simulateTransaction` + the transaction containing all instructions, then read the consumed units. Add 10% on top of this value.
+
+```typescript
+export const estimateComputeUnits = async (
+  connection: Connection,
+  transaction: VersionedTransaction,
+): Promise<number> => {
+  try {
+    const simulation = await connection.simulateTransaction(transaction, {
+      sigVerify: false,
+      replaceRecentBlockhash: true,
+    });
+
+    if (simulation.value.err) {
+      console.warn("Simulation failed:", simulation.value.err);
+      return DEFAULT_COMPUTE_UNITS;
+    }
+
+    const estimatedCU = simulation.value.unitsConsumed || 0;
+
+    if (estimatedCU === 0) {
+      return DEFAULT_COMPUTE_UNITS;
+    }
+
+    // Add 10% safety margin
+    return addSafetyMargin(estimatedCU, 0.1);
+  } catch (error) {
+    console.warn("Failed to estimate compute units:", error);
+    return DEFAULT_COMPUTE_UNITS;
+  }
+};
+```
+
+Note that the Compute Unit Limit is an upper bound, and the priority fee is calculated **based on this upper bound**, not the actual consumed CU. If you set a high CU Limit but use very little in practice, you might still pay an "overestimated" priority fee.
+
+### 5.4 Using Priority Fees to Increase Transaction Priority
+
+Solana provides the `getRecentPrioritizationFees` RPC method to query the priority fee situation for recently landed transactions on specified accounts.
+
+- You should pass the accounts involved in your transaction as parameters.
+- The RPC returns the minimum priority fee for recently landed transactions.
+- This value can be used as a baseline, and then appropriately increased based on the importance of your business operation.
+
+```typescript
+/**
+ * Fetch recent priority fees for given accounts
+ */
+export const getRecentPriorityFees = async (
+  connection: Connection,
+  publicKey: PublicKey,
+  accountInfo: StakeAccountInfo,
+): Promise<number> => {
+  try {
+    const response = await connection.getRecentPrioritizationFees({
+      lockedWritableAccounts: [
+        publicKey,
+        accountInfo.statePda,
+        accountInfo.userStakeInfoPda,
+        accountInfo.userTokenAccount,
+        accountInfo.stakingVault,
+        accountInfo.rewardVault,
+        accountInfo.userRewardAccount,
+        accountInfo.blacklistPda,
+      ],
+    });
+
+    if (!response || response.length === 0) {
+      return DEFAULT_PRIORITY_FEE;
+    }
+
+    const allFees = response.map((item) => item.prioritizationFee);
+    const validFees = filterValidFees(allFees);
+
+    if (areAllFeesZero(validFees)) {
+      return DEFAULT_PRIORITY_FEE;
+    }
+
+    return calculateRecommendedFee(validFees);
+  } catch (error) {
+    console.warn("Failed to fetch priority fees:", error);
+    return DEFAULT_PRIORITY_FEE;
+  }
+};
+```
+
+### 5.5 Optimal Compute Budget ([Optimal Compute Budget](https://solana.com/developers/guides/advanced/how-to-use-priority-fees))
+
+The priority fee is calculated using the formula:
+
+**Prioritization Fee = Compute Unit Limit x Compute Unit Price**
+
+When constructing a transaction, priority fee parameters can be explicitly specified via instructions:
+
+```typescript
+const instructions = [
+  createComputeUnitPriceInstruction(priorityFee),
+  createComputeUnitLimitInstruction(estimatedCU),
+  instruction,
+];
+
+const versionedTx = await createVersionedTransaction(
+  connection,
+  publicKey!,
+  instructions,
+);
+
+const signedTx = await signTransaction!(versionedTx);
+
+const signature = await sendAndConfirmTransaction(
+  connection,
+  signedTx.serialize(),
+);
+```
+
+## 6. Transaction Retry
+
+The mechanism for transaction broadcast and confirmation in Solana is significantly different from EVM.
+
+- **EVM Model**: After a transaction is submitted, as long as it enters the mempool, a miner will eventually package and execute it. Transaction nonces are strictly sequential, and there is no "packet loss" issue.
+- **Solana Model**: Uses **high-concurrency + UDP broadcast**. There is no mempool, and a transaction must be packaged within a limited block height (the validity period of the blockhash), otherwise it will expire directly.
+
+This means that in high-load scenarios, transactions may fail to land due to packet loss, queue overflow, or fork rollback, thus requiring developers to implement **retry logic** on the client to ensure reliable transaction delivery.
+
+### 6.1 The Role of Blockhash
+
+Every Solana transaction must carry a `recentBlockhash`, which serves two purposes:
+
+1. **Anti-Replay**: Prevents the same transaction from being broadcast indefinitely.
+2. **Setting Expiration Time**: A blockhash is valid for approximately 151 slots (about 60-75 seconds). After this time, the transaction will be rejected.
+
+Therefore, **the core of the retry logic** is: continuously re-broadcast the transaction before the blockhash expires.
+
+### 6.2 Retry Logic
+
+The common retry logic is as follows:
+
+1. Fetch the `recentBlockhash` and its corresponding `lastValidBlockHeight`.
+2. Calculate a safety buffer, such as `lastValidBlockHeight - 150`, to avoid retrying too close to expiration.
+3. Keep re-sending the transaction while `blockHeight < lastValidBlockHeight`, until the transaction is confirmed or expires.
+4. If the transaction still fails to land, it needs to be re-signed (with a new blockhash) and broadcast again.
+
+```typescript
+/**
+ * Executes the stake transaction with blockhash retry logic.
+ * Returns the transaction signature if successful, or undefined on error.
+ */
+const executeStakeWithRetry = async (): Promise<string | undefined> => {
+  // Get latest blockhash and set lastValidBlockHeight
+  const blockhashResponse = await connection.getLatestBlockhash();
+
+  // Subtract a small safety buffer to ensure we stop retrying
+  // before the transaction actually expires, avoiding failures near expiration
+  const SAFETY_BUFFER = 100; // blocks
+  const lastValidBlockHeight =
+    blockhashResponse.lastValidBlockHeight - SAFETY_BUFFER;
+
+  // Create stake instruction using the common utility
+  const { instruction } = await createStakeInstruction({
+    publicKey: publicKey!,
+    program: program!,
+    stakeAmount,
+  });
+
+  // Create transaction with blockhash and lastValidBlockHeight
+  const transaction = new Transaction({
+    feePayer: publicKey,
+    blockhash: blockhashResponse.blockhash,
+    lastValidBlockHeight: lastValidBlockHeight,
+  }).add(instruction);
+
+  const signedTransaction = await signTransaction!(transaction);
+  const rawTransaction = signedTransaction.serialize();
+
+  // Get current block height
+  let blockHeight = await connection.getBlockHeight();
+  let confirmedSignature: string | undefined;
+
+  // Keep sending transaction until block height exceeds lastValidBlockHeight
+  while (blockHeight < lastValidBlockHeight) {
+    try {
+      const signature = await connection.sendRawTransaction(rawTransaction, {
+        // skipPreflight: true is REQUIRED for retry logic
+        // Reasons:
+        // 1. We intentionally send the same transaction multiple times
+        // 2. Preflight checks would fail on repeat sends with "Transaction already exists"
+        // 3. During network congestion, transactions may be dropped and need resending
+        // 4. We want to maximize chances of the transaction being accepted
+        // 5. Final confirmation is handled separately with proper validation
+        skipPreflight: true,
+      });
+      const confirmation = await connection.confirmTransaction(
+        {
+          signature,
+          blockhash: blockhashResponse.blockhash,
+          lastValidBlockHeight: lastValidBlockHeight,
+        },
+        "confirmed",
+      );
+      if (!confirmation.value.err) {
+        confirmedSignature = signature;
+        onSuccess();
+        break;
+      }
+      await sleep(500);
+      blockHeight = await connection.getBlockHeight();
+    } catch (error) {
+      // Ignore send errors, continue retrying
+      await sleep(500);
+      blockHeight = await connection.getBlockHeight();
+    }
+  }
+
+  // Check if we had a successful confirmation
+  if (!confirmedSignature) {
+    onError({
+      message:
+        "Transaction failed to send during the valid block height window. Please try again with a new transaction.",
+      title: "Transaction Failed",
+    });
+    return;
+  }
+
+  return confirmedSignature;
+};
+```
+
+Solana official documentation also provides relevant implementations for transaction retry; details can be found [here](https://solana.com/docs/advanced/retry).
+
+## 7. Error Handling
+
+Solana-related errors can generally be divided into three categories:
+
+1. **Wallet Adapter Errors**: Connection failure, user rejection of signature, unsupported capability (e.g., `signMessage`).
+2. **RPC / Network Errors**: Node unreachable, blockhash expired, rate limit, etc.
+3. **On-Chain Program Errors**: Including errors thrown by System Programs and custom business contract errors.
+
+A robust DApp needs to achieve "categorization, noise reduction, and user-friendly prompts" at all three levels.
+
+### 7.1 Unified Frontend Error Handling Entry
+
+All errors captured on the frontend or during the transaction process are handed over to a "classifier" for categorization, thereby simplifying the error handling logic in the UI layer.
+
+The UI layer only needs to be concerned with one of the following four error types:
+
+1. **Wallet Adapter Issues (`ErrorLevel.WalletAdapter`)**
+2. **RPC/Network Issues (`ErrorLevel.RpcNetwork`)**
+3. **On-Chain Program Business Logic Issues (`ErrorLevel.OnChainProgram`)**
+4. **Unknown Error (`ErrorLevel.Unknown`)**
+
+The utility function `classifyError(error)` serves as this **unified entry point**, responsible for categorizing any error into one of the four `ErrorLevel` types.
+
+```typescript
+/**
+ * Classifies any error into one of four error levels.
+ * This is the unified entry point for all error handling.
+ */
+export function classifyError(error: unknown): ClassifiedError {
+  if (!error) {
+    return {
+      level: ErrorLevel.Unknown,
+      error: null,
+      originalError: error,
+    };
+  }
+
+  const errorObj = error as { message?: string; msg?: string };
+  const errorMessage = errorObj?.message || errorObj?.msg || String(error);
+
+  // Level 1: Check for wallet adapter errors first
+  const walletError = matchWalletAdapterError(errorMessage);
+  if (walletError) {
+    return {
+      level: ErrorLevel.WalletAdapter,
+      error: walletError,
+      originalError: error,
+    };
+  }
+
+  // Level 2: Check for RPC/network errors
+  const rpcError = matchRpcNetworkError(errorMessage);
+  if (rpcError) {
+    return {
+      level: ErrorLevel.RpcNetwork,
+      error: rpcError,
+      originalError: error,
+    };
+  }
+
+  // Level 3: Check for on-chain program errors
+  const programError = parseProgramErrorInternal(error);
+  if (programError) {
+    return {
+      level: ErrorLevel.OnChainProgram,
+      error: programError,
+      originalError: error,
+    };
+  }
+
+  // Unknown error
+  return {
+    level: ErrorLevel.Unknown,
+    error: null,
+    originalError: error,
+  };
+}
+```
+
+**formatErrorForDisplay(error)**: Builds upon error classification to output a structure readily usable by the UI, containing the following fields:
+
+- **title**
+- **message**
+- **code?** (optional)
+- **level?** (optional)
+
+```typescript
+/**
+ * Formats an error for display in the UI.
+ * This function classifies the error and returns a structure
+ * suitable for ErrorModal.
+ */
+export function formatErrorForDisplay(error: unknown): FormattedError {
+  const classified = classifyError(error);
+  const userMessage = getUserFriendlyError(error);
+  const title = getTitleForLevel(classified.level);
+
+  const result: FormattedError = {
+    title,
+    message: userMessage,
+    level: classified.level,
+  };
+
+  // Add error code if available
+  if (classified.error?.code) {
+    result.code = classified.error.code;
+  }
+
+  return result;
+}
+```
+
+## 8. Jito Bundle
+
+### 8.1 Limitations of Solana Native Scheduling Model
+
+In Solana, most transactions are submitted via RPC nodes. The RPC forwards the transaction to the current and next Leader, where the transaction enters the Leader's execution queue and is packaged into a block. Before being actually executed by the Leader and receiving network votes, the transaction only exists in the memory queues of the client and the forwarding node. This process dictates a key fact: **the minimum unit of scheduling is a single transaction, and its ordering competition occurs in the public forwarding path.**
+
+While this model offers extremely high throughput under high parallel execution, it is not ideal for complex chained operations. If a business process involves multiple dependent transactions (e.g., borrow -> swap -> repay), these transactions are propagated, ordered, and executed independently. The system cannot guarantee their atomic submission as a whole or ensure strict execution in the intended order. Consequently, the native model lacks the ability for "multi-transaction atomic submission" and "deterministic sequential scheduling."
+
+### 8.2 Jito Bundle: An Extended Scheduling Abstraction
+
+The Jito Bundle is an extended abstraction proposed precisely to address this semantic deficiency in the scheduling layer. It encapsulates a group of transactions into an ordered sequence: `Bundle = [Tx1, Tx2, ..., TxN]`.
+
+It defines a unified execution semantic: all transactions are executed in the given order, and the state is committed only if all succeed; otherwise, the entire bundle is rolled back. By elevating the scheduling unit from a single Transaction to a "transaction sequence," the Bundle provides atomicity and sequential guarantee for complex multi-step operations without changing the underlying execution engine.
+
+This mechanism is implemented through a private scheduling channel independent of the public RPC, where Jito Labs' Block Engine receives the transaction sequence submitted by the client and routes it directly to validators running the Jito-Solana client. Unlike the standard path where transactions enter the candidate queue one by one, a Bundle is treated as an indivisible execution unit before entering the block construction process, and its internal order does not participate in public ordering competition.
+
+From a system design perspective, the Jito Bundle is not a new transaction type but a layer of scheduling abstraction added on top of the existing execution model: it extends "Transaction-level scheduling" to "Bundle-level scheduling," thereby providing atomic execution and sequential determinism for multi-transaction dependency flows.
+
+### 8.3 Use Cases
+
+In a practical system, the value of a Bundle is not only reflected in the abstract semantics of "atomicity" but also in the engineering support for complex chained strategies. Typical use cases include:
+
+- **MEV Arbitrage**: Packaging a user's transaction with an arbitrage transaction into an atomic sequence for execution, ensuring that both the buy and sell operations are completed under the same price state, preventing the intermediate state from being interrupted or price slippage from causing the strategy to fail.
+- **Liquidations**: Packaging an oracle price update transaction with a liquidation transaction for submission, ensuring the liquidation logic is executed atomically based on the latest price, avoiding execution failure or contention conflicts caused by separating price updates and liquidation.
+- **Batching Complex Operations**: When a single transaction is limited by transaction size or Compute Budget, multiple steps can be split into multiple transactions and encapsulated within the same Bundle to complete the complex operation with sequential execution and atomic submission.
+
+The common feature of these scenarios is their dependence on "sequential determinism and atomic submission semantics among multiple transactions." Under the standard model of public propagation and independent ordering, these strategies are susceptible to scheduling competition and state changes. By encapsulating the transaction sequence into a Bundle and submitting it through Jito Labs' private scheduling channel, the execution order can be locked, and overall consistency can be guaranteed before entering the block construction phase.
+
+### 8.4 Practical Implementation in This Article
+
+Based on the above capabilities, the following section will focus on the typical scenario of **MEV Protection**, demonstrating how to submit a Staking transaction through the Jito Bundle's private channel to enhance result determinism and strategy stability in a price-sensitive execution environment.
+
+#### 8.4.1 Transaction Submission Methods
+
+The Jito Block Engine provides two transaction submission interfaces:
+
+- **`sendBundle`** is used to submit a Bundle containing multiple related transactions, suitable for complex scenarios requiring atomic execution of multiple operations (e.g., flash loan arbitrage, multi-step DeFi operations).
+- **`sendTransaction`** is a simplified interface for single transactions, which, when paired with the `bundleOnly=true` parameter, also gains MEV protection and rollback protection capabilities.
+
+For the Stake operation in this project, since it only involves a single transaction, we choose `sendTransaction` over `sendBundle` to simplify the implementation while maintaining the same level of protection:
+
+The `bundleOnly=true` parameter ensures that the transaction is treated as a single-transaction Bundle. This means that if execution fails, all state changes are rolled back, avoiding the awkward situation of partial execution.
+
+```typescript
+export const sendJitoTransaction = async (
+  signedTransaction: Transaction,
+): Promise<string> => {
+  try {
+    // Serialize and encode the transaction for the API body
+    const serialized = signedTransaction.serialize();
+    const base58Tx = bs58.encode(serialized);
+
+    const endpointUrl =
+      `${JITO_BLOCK_ENGINE_URL}/api/v1/transactions?bundleOnly=true`;
+
+    const requestBody = {
+      jsonrpc: "2.0",
+      id: 1,
+      method: "sendTransaction",
+      params: [base58Tx],
+    };
+
+    // Send the transaction via a POST request to Jito's API
+    const response = await fetch(endpointUrl, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(requestBody),
+    });
+
+    // Check for HTTP errors
+    if (!response.ok) {
+      throw new Error(
+        `Jito API request failed: ${response.status} ${response.statusText}`,
+      );
+    }
+
+    const result = await response.json();
+
+    // Check for JSON-RPC errors returned in the response body
+    if (result.error) {
+      throw new Error(
+        `Jito sendTransaction error: ${result.error.message || JSON.stringify(result.error)}`,
+      );
+    }
+
+    // Success: Return the transaction signature
+    const signature = result.result;
+    return signature;
+  } catch (error) {
+    // Log and re-throw a standardized error
+    console.error("Failed to send transaction via Jito:", error);
+    throw new Error(
+      `Jito transaction failed: ${error instanceof Error ? error.message : "Unknown error"}`,
+    );
+  }
+};
+```
+
+#### 8.4.2 Fee Strategy
+
+`sendBundle` and `sendTransaction` **have fundamental differences in their fee strategies:**
+
+- **`sendBundle`**: Only requires a Jito Tip. Bundles are sent directly to the Jito Block Engine and prioritized by Jito validators. Priority Fee has no effect on Bundle processing priority — validators decide whether to accept and process a Bundle based on the Tip amount.
+- **`sendTransaction`**: A **70/30 allocation principle** is recommended, allocating 70% of the total fee as the **Priority Fee** and 30% as the **Jito Tip**. The Priority Fee is set via `ComputeBudgetProgram.setComputeUnitPrice()`, increasing the transaction's priority in the validator's queue. The Jito Tip incentivizes Jito validators to prioritize the transaction.
+
+| **Submission Method** | **Priority Fee** | **Jito Tip** | **Core Explanation** |
+| :--- | :--- | :--- | :--- |
+| `sendBundle` | Not Required | Required | Tip determines the Bundle's processing priority |
+| `sendTransaction` | 70% | 30% | Both work together to increase success rate |
+
+**Important Notes on the Tip:**
+
+1. **Do not use Address Lookup Table (ALT) for the Tip account**. The Tip instruction must directly include the full account address; using ALT compression will prevent the Tip from being correctly recognized.
+2. **The Tip is only effective for Jito-Solana Leaders**. If the current slot Leader is not running the Jito-Solana client, the Tip will have no preferential processing effect, essentially wasting funds. Fortunately, Jito validators control about 95% of the network stake, so your transaction will encounter a Jito Leader in most cases.
+
+The fee amount determination relies on the `tip_floor` API:
+
+```
+GET https://bundles.jito.wtf/api/v1/bundles/tip_floor
+```
+
+This interface returns the statistical distribution of Tips for recently successfully landed transactions. For `sendTransaction`, we use the `landed_tips_50th_percentile` (median) as a benchmark and calculate the 70/30 ratio:
+
+```typescript
+export const calculateJitoFees = async () => {
+  const tipFloor = await fetchTipFloor();
+  const baseFee = Math.ceil(
+    tipFloor.landed_tips_50th_percentile * LAMPORTS_PER_SOL,
+  );
+  const totalFee = Math.max(JITO_MIN_TIP_LAMPORTS, baseFee);
+  return {
+    priorityFee: Math.ceil(totalFee * 0.7),
+    jitoTip: Math.max(JITO_MIN_TIP_LAMPORTS, Math.ceil(totalFee * 0.3)),
+  };
+};
+```
+
+#### 8.4.3 Tip Accounts and Load Balancing Strategy
+
+The Jito Tip must be transferred to a specific Tip account. The API interface for fetching these accounts is:
+
+```
+POST https://<region>.block-engine.jito.wtf/api/v1/getTipAccounts
+```
+
+Jito maintains 8 Tip accounts for receiving tips. To achieve load balancing, one account should be randomly selected when constructing the transaction:
+
+```typescript
+export const getRandomTipAccount = async (): Promise<PublicKey> => {
+  const tipAccounts = await fetchTipAccounts();
+  const randomIndex = Math.floor(Math.random() * tipAccounts.length);
+  return new PublicKey(tipAccounts[randomIndex]);
+};
+```
+
+#### 8.4.4 Network Environment and CORS Handling
+
+The Jito Block Engine's test environment only supports Solana Testnet, not Devnet. Ensure that your contract is deployed to Testnet and that your wallet and RPC are connected to Testnet during development and debugging.
+
+Additionally, the `tip_floor` API has CORS restrictions, meaning browsers cannot access it directly. The development environment can use a Vite proxy to resolve this, while the production environment requires configuring an Nginx reverse proxy or forwarding the request through a backend service.
+
+```typescript
+// vite.config.ts
+
+import { defineConfig } from "vite";
+
+export default defineConfig({
+  server: {
+    proxy: {
+      // Proxy requests starting with "/api/v1/bundles/tip_floor"
+      // to the Jito Bundles API
+      "/api/v1/bundles/tip_floor": {
+        target: "https://bundles.jito.wtf",
+        changeOrigin: true, // Needed for cross-origin requests
+      },
+    },
+  },
+});
+```
+
+## 9. Conclusion
+
+For developers with EVM experience, some of Solana's mechanisms, such as ALT, Priority Fees, blockhash expiration, and account contention, might feel "counter-intuitive" initially. However, once these mechanisms are internalized into the frontend engineering design, it becomes possible to build a truly "Solana-native" user experience: even complex interactions can be completed in a single transaction, transaction costs are controllable, and stability and reliability are maintained even under high load.
+
+The core value of migrating to Solana goes far beyond just "cheaper Gas," but rather in redefining the protocol's performance ceiling and product form through its unique design.
+
+In the subsequent articles of this series, we will publish "How to Migrate an Ethereum Protocol to Solana — Frontend (Part 2): Staking Demo Hands-on." This article will use a complete Staking example to connect core frontend interaction scenarios and other core functions, demonstrating the complete end-to-end process of building a Solana frontend from scratch.
+
+If you are starting to build or refactor a Solana frontend, we recommend starting with any of the key points mentioned in this article (such as ALT, Priority Fee, or unified error handling). As you gradually integrate and connect these capabilities, a DApp truly "born for Solana" will emerge. If you want to check the complete code implementation, you can view the full sample project [here](https://github.com/57blocks/evm-to-solana).
 
 ## References
 
