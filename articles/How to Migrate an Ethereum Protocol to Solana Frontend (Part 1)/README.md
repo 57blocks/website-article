@@ -314,9 +314,7 @@ The typical wallet login flow is as follows:
 
    After successful verification, the backend issues a session credential (e.g., JWT or Session) for that wallet address, used for subsequent identity identification.
 
-
 ![](diagram.png)
-
 
 ### 2.2 Signature Method Compatibility Issues
 
@@ -879,7 +877,7 @@ export const getRecentPriorityFees = async (
 };
 ```
 
-### 5.5 ([Optimal Compute Budget](https://solana.com/developers/guides/advanced/how-to-use-priority-fees))
+### 5.5 [Optimal Compute Budget](https://solana.com/developers/guides/advanced/how-to-use-priority-fees)
 
 The priority fee is calculated using the formula:
 
@@ -1101,7 +1099,7 @@ export function classifyError(error: unknown): ClassifiedError {
 }
 ```
 
-**formatErrorForDisplay(error)**: Builds upon error classification to output a structure readily usable by the UI, containing the following fields:
+`formatErrorForDisplay(error)`: Builds upon error classification to output a structure readily usable by the UI, containing the following fields:
 
 - **title**
 - **message**
@@ -1256,7 +1254,7 @@ export const sendJitoTransaction = async (
 
 The fee amount determination relies on the `tip_floor` API:
 
-```
+```typescript
 GET https://bundles.jito.wtf/api/v1/bundles/tip_floor
 ```
 
@@ -1280,7 +1278,7 @@ export const calculateJitoFees = async () => {
 
 The Jito Tip must be transferred to a specific Tip account. The API interface for fetching these accounts is:
 
-```
+```typescript
 POST https://<region>.block-engine.jito.wtf/api/v1/getTipAccounts
 ```
 
@@ -1333,8 +1331,10 @@ If you are starting to build or refactor a Solana frontend, we recommend startin
 
 ## References
 
-- [Moving from Ethereum Development to Solana](https://solana.com/news/evm-to-svm)
-- [EVM vs. SVM: Smart Contracts](https://solana.com/developers/evm-to-svm/smart-contracts)
-- [How to Migrate From Ethereum to Solana: A Guide for Devs](https://www.helius.dev/blog/how-to-migrate-from-ethereum-to-solana)
-- [A Complete Guide to Solana Development for Ethereum Developers](https://solana.com/developers/evm-to-svm/complete-guide)
-- [Solana Wallet Adapter](https://github.com/solana-labs/wallet-adapter)
+- [EVM-To-Solana](https://github.com/57blocks/evm-to-solana)
+- [Solana extensions to the Wallet Standard](https://github.com/anza-xyz/wallet-standard)
+- [Subgraphs](https://thegraph.com/docs/en/subgraphs/quick-start/)
+- [Retrying Transactions](https://solana.com/developers/guides/advanced/retry)
+- [Jito](https://docs.jito.wtf/)
+- [Solana JavaScript SDK](https://github.com/anza-xyz/kit)
+- [Solana Document](https://solana.com/docs)
