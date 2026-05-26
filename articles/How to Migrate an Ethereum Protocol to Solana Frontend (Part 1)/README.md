@@ -83,7 +83,7 @@ This leads to a crucial difference:
 - On desktop, "no adapter" is usually just an experience issue.
 - On mobile, "no adapter" often means the user cannot connect the wallet at all.
 
-The official documentation mainly describes the problem from the perspective of "[how a wallet should implement an adapter](https://www.google.com/url?q=https://github.com/anza-xyz/wallet-standard/blob/master/WALLET.md&sa=D&source=docs&ust=1779786877568518&usg=AOvVaw27IJmWpcHH7fJvaB-G8K5C)", but in reality, the progress of wallet-side adaptation is not entirely controllable. As a DApp developer who has adopted the `@solana/wallet-adapter` system, you naturally face this problem: if a certain wallet does not have an official adapter yet, but you still want to provide a clear, usable connection entry point for mobile users, what should you do?
+The official documentation mainly describes the problem from the perspective of "[how a wallet should implement an adapter](https://github.com/anza-xyz/wallet-standard/blob/master/WALLET.md)", but in reality, the progress of wallet-side adaptation is not entirely controllable. As a DApp developer who has adopted the `@solana/wallet-adapter` system, you naturally face this problem: if a certain wallet does not have an official adapter yet, but you still want to provide a clear, usable connection entry point for mobile users, what should you do?
 
 ### 1.3 Solution: Custom Wallet Adapter as a Mobile Fallback
 
@@ -314,7 +314,9 @@ The typical wallet login flow is as follows:
 
    After successful verification, the backend issues a session credential (e.g., JWT or Session) for that wallet address, used for subsequent identity identification.
 
+
 ![](diagram.png)
+
 
 ### 2.2 Signature Method Compatibility Issues
 
@@ -494,7 +496,7 @@ const messageBytes = bs58.decode(serializedMessageBase58);
 const isValid = ed25519.verify(
   signatureBytes,
   messageBytes,
-  publicKeyObj.toBytes()
+  publicKeyObj.toBytes(),
 );
 
 return isValid;
@@ -508,7 +510,6 @@ const isValidNacl = nacl.sign.detached.verify(
   publicKeyObj.toBytes()
 );
 */
-
 ```
 
 On this basis, it can also cooperate with the Challenge for additional verification:
@@ -608,9 +609,7 @@ In our engineering architecture, because the backend has efficiently completed d
 ```typescript
 const API_BASE = import.meta.env.VITE_API_BASE_URL || "http://localhost:3000";
 
-async function fetchRewards(
-  userAddress: string,
-): Promise<UserRewardResponse> {
+async function fetchRewards(userAddress: string): Promise<UserRewardResponse> {
   const res = await fetch(`${API_BASE}/api/rewards/${userAddress}`);
   if (!res.ok) {
     throw new Error(`Failed to fetch rewards: ${res.statusText}`);
@@ -711,9 +710,8 @@ export const createLookupTable = async (
   await sendAndConfirmTransaction(connection, signedTx.serialize());
 
   // Fetch the created lookup table
-  const lookupTableResponse = await connection.getAddressLookupTable(
-    lookupTableAddress,
-  );
+  const lookupTableResponse =
+    await connection.getAddressLookupTable(lookupTableAddress);
 
   return lookupTableResponse.value;
 };
@@ -1176,6 +1174,7 @@ The Jito Block Engine provides two transaction submission interfaces:
 - **`sendTransaction`** is a simplified interface for single transactions, when paired with the `bundleOnly=true` parameter, also gains MEV protection and rollback protection capabilities.
 
 For the Stake operation in this project, since it only involves a single transaction, we choose `sendTransaction` over `sendBundle` to simplify the implementation while maintaining the same level of protection:
+
 ```typescript
 POST https://<region>.block-engine.jito.wtf/api/v1/transactions?bundleOnly=true
 ```
@@ -1191,8 +1190,7 @@ export const sendJitoTransaction = async (
     const serialized = signedTransaction.serialize();
     const base58Tx = bs58.encode(serialized);
 
-    const endpointUrl =
-      `${JITO_BLOCK_ENGINE_URL}/api/v1/transactions?bundleOnly=true`;
+    const endpointUrl = `${JITO_BLOCK_ENGINE_URL}/api/v1/transactions?bundleOnly=true`;
 
     const requestBody = {
       jsonrpc: "2.0",
@@ -1246,10 +1244,10 @@ export const sendJitoTransaction = async (
 - **`sendBundle`**: Only requires a Jito Tip. Bundles are sent directly to the Jito Block Engine and prioritized by Jito validators. Priority Fee has no effect on Bundle processing priority — validators decide whether to accept and process a Bundle based on the Tip amount.
 - **`sendTransaction`**: A **70/30 allocation principle** is recommended, allocating 70% of the total fee as the **Priority Fee** and 30% as the **Jito Tip**. The Priority Fee is set via `ComputeBudgetProgram.setComputeUnitPrice()`, increasing the transaction's priority in the validator's queue. The Jito Tip incentivizes Jito validators to prioritize the transaction.
 
-| **Submission Method** | **Priority Fee** | **Jito Tip** | **Core Explanation** |
-| :--- | :--- | :--- | :--- |
-| `sendBundle` | Not Required | Required | Tip determines the Bundle's processing priority |
-| `sendTransaction` | 70% | 30% | Both work together to increase success rate |
+| **Submission Method** | **Priority Fee** | **Jito Tip** | **Core Explanation**                            |
+| :-------------------- | :--------------- | :----------- | :---------------------------------------------- |
+| `sendBundle`          | Not Required     | Required     | Tip determines the Bundle's processing priority |
+| `sendTransaction`     | 70%              | 30%          | Both work together to increase success rate     |
 
 **Important Notes on the Tip:**
 
@@ -1295,6 +1293,7 @@ export const getRandomTipAccount = async (): Promise<PublicKey> => {
   return new PublicKey(tipAccounts[randomIndex]);
 };
 ```
+
 Alternative Solution: If the above API is unavailable, the static accounts listed [here](https://docs.jito.wtf/lowlatencytxnsend/#response-example-tips) can be used as a substitute.
 
 #### 8.4.4 Network Environment and CORS Handling
