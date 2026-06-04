@@ -16,15 +16,18 @@ intro: "A deep dive into the core mindset shift and best practices when moving c
 
 As the Solana ecosystem matures, more Ethereum (EVM) protocol teams are exploring migration to Solana to achieve higher throughput, lower transaction costs, and improved user experience. Through leading and executing multiple real-world Ethereum-to-Solana migrations, we've accumulated hands-on experience across smart contract architecture, data models, transaction design, and full-stack coordination.
 
-This article is part of a broader series on migrating Ethereum protocols to Solana, where we break the process down into three core layers: smart contracts, backend services, and frontend interactions. If you're new to the series, we recommend starting with "[How to Migrate an Ethereum Protocol to Solana — Preamble](https://57blocks.com/blog/how-to-migrate-an-ethereum-protocol-to-solana-preamble?tab=engineering)," which introduces the fundamental architectural differences between the two ecosystems.
+This article is part of a broader series on migrating Ethereum protocols to Solana, where we break the process down into three core layers: smart contracts, backend services, and frontend interactions. If you're new to the series, we recommend starting with [How to Migrate an Ethereum Protocol to Solana — Preamble](https://57blocks.com/blog/how-to-migrate-an-ethereum-protocol-to-solana-preamble?tab=engineering), which introduces the fundamental architectural differences between the two ecosystems.
 
 In this article, we focus specifically on the smart contract layer. Rather than treating migration as a simple language switch from Solidity to Rust, we examine the deeper mindset shifts required when moving from Ethereum's contract-centric model to Solana's account-centric design. Using concrete examples and real production patterns, we'll walk through the most important conceptual changes, common pitfalls, and best practices that Ethereum developers need to understand to build secure and efficient Solana programs.
 
 #### Article Navigation
 
-- [How to Migrate an Ethereum Protocol to Solana — Preamble](https://57blocks.com/blog/how-to-migrate-an-ethereum-protocol-to-solana-preamble?tab=engineering): A systematic introduction to the fundamental differences between Ethereum and Solana in account models, execution mechanisms, and fee systems.
-- [How to Migrate an Ethereum Protocol to Solana — Contracts (Part 1)](https://57blocks.com/blog/how-to-migrate-an-ethereum-protocol-to-solana-contracts-part-1?tab=engineering): A focus on the core mindset shift and best practices for contract development from Ethereum to Solana.
-
+- [How to Migrate an Ethereum Protocol to Solana — Preamble](https://57blocks.com/blog/how-to-migrate-an-ethereum-protocol-to-solana-preamble): account models, execution, and fees on both chains.
+- [How to Migrate an Ethereum Protocol to Solana — Contracts (Part 1)](https://57blocks.com/blog/how-to-migrate-an-ethereum-protocol-to-solana-contracts-part-1): account model, CPI, PDAs, and Anchor patterns for EVM developers.
+- [How to Migrate an Ethereum Protocol to Solana — Contracts (Part 2)](https://57blocks.com/blog/how-to-migrate-an-ethereum-protocol-to-solana-contracts-part-2): Solana limits (CU, forks, hooks, events) and a staking migration walkthrough.
+- [How to Migrate an Ethereum Protocol to Solana — Frontend(Part 1)](https://57blocks.com/blog/how-to-migrate-an-ethereum-protocol-to-solana-frontend-part-1): wallets, RPC, and client patterns when moving a DApp frontend to Solana.
+- [How to Migrate an Ethereum Protocol to Solana — Frontend(Part 2)](https://57blocks.com/blog/how-to-migrate-an-ethereum-protocol-to-solana-frontend-part-2): transaction building, account fetching, and event/log handling on the client.
+- [How to Migrate an Ethereum Protocol to Solana — Backend](https://57blocks.com/blog/how-to-migrate-an-ethereum-protocol-to-solana-backend): event sync, log parsing, and state management for a production backend.
 ---
 
 Solana rose in popularity and matured quickly because its high performance and low costs attracted a surge of developer and user attention. Meanwhile, Ethereum (EVM) and EVM-compatible chains had massive ecosystems but faced challenges like limited scalability and high transaction fees. As a result, more Web3 developers have been turning to Solana for its improved developer and user experiences, making the migration from Ethereum to Solana a prominent trend. So, how do we effectively port the smart contracts we've mastered on Ethereum to the Solana platform? Many developers initially thought that they would only need to reprogram apps using Rust rather than Solidity, but they soon discovered that the real migration challenge rested in the fundamental differences of Solana's underlying architecture. This article aims to help experienced Ethereum developers complete a critical mental model shift so they can efficiently and securely reimplement existing contract logic the Solana way.
@@ -279,14 +282,16 @@ If you want deeper architectural context for the code patterns in this article, 
 
 To put these ideas into practice, you may want to get comfortable with a different, ecosystem-specific toolchain. From language to standard libraries, Solana's ecosystem differs significantly from Ethereum's ecosystem. The table below summarizes key differences to help you build a new understanding of the differences quickly.
 
+
 | **Domain**                | **Ethereum Ecosystem**                | **Solana Ecosystem**                | **Key Notes**                                                                                                                                                                                                                                                                                                                                                                                              |
-| :------------------------ | :------------------------------------ | :---------------------------------- | :--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| ------------------------- | ------------------------------------- | ----------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | **Frameworks**            | Hardhat / Foundry (Solidity)          | Anchor (Rust)                       | In the Ethereum ecosystem, Hardhat and Foundry are widely used smart contract development tools. Anchor is the de facto standard for Solana development; it uses powerful macros to greatly simplify the complexity of Solana program development.                                                                                                                                                         |
 | **Interface Standard**    | ABI (Application Binary Interface)    | IDL (Interface Definition Language) | Anchor automatically generates an IDL from your program code, similar to the ABI concept on Ethereum—ABI is Ethereum’s contract interaction standard, and the Solidity compiler automatically generates ABI files describing function/parameter/return binary encodings. Clients can use these IDL or ABI files to interact with your program without needing to understand the underlying implementation. |
 | **Standard Library**      | OpenZeppelin                          | SPL (Solana Program Library)        | OpenZeppelin is an import-and-inherit code library, whereas SPL is a set of reusable standard programs already deployed on-chain. You interact with them via Cross-Program Invocation (CPI) instead of copying code into your project.                                                                                                                                                                     |
 | **Contract Verification** | Upload and verify source on Etherscan | Submit source for Verified Build    | Solana supports “Verified Builds,” conceptually similar to Ethereum. Developers submit source code, which is compiled in a deterministic environment; the build artifact’s hash is compared against on-chain bytecode. This ensures the source matches the on-chain program—not just validating the IDL interface.                                                                                         |
 | **Network RPC**           | Infura, Alchemy, QuickNode            | Helius, Alchemy, QuickNode          | Both ecosystems have top-tier RPC providers; only a few (like QuickNode) are multi-chain. Solana's high throughput has also led to specialized providers like Helius to offer enhanced Solana-first APIs.                                                                                                                                                                                                  |
 | **Explorers**             | Etherscan, Blockscout                 | Solscan, Solana Explorer, X-Ray     | The Ethereum ecosystem has powerful tools like Tenderly for deep transaction simulation and debugging. In the Solana ecosystem, tools like Helius (product X-Ray) provide similar functionality. Due to Solana’s parallel transaction model, these tools focus more on visualizing value flows between accounts and CPI call chains to help developers understand complex instruction interactions.        |
+
 
 From this comparison, a clear pattern emerges: Ethereum development supports ideas like inheritance and extension (e.g., inheriting OpenZeppelin contracts), while Solana development supports composition and interaction (via CPI with on-chain SPL programs).
 
@@ -647,7 +652,7 @@ Also, when deploying a Solana program, you must set an upgrade authority (`upgra
 
 In Ethereum's ERC20 standard, transferring on behalf of a user usually takes two steps: the user calls `approve` to grant an allowance, and the authorized party (often a contract) then calls `transferFrom`. This exists because the account model distinguishes between the token holder and the executor, and the executor must submit a transaction separately.
 
-In Solana’s SPL Token model, this is greatly simplified. Each token account records its _authority_ explicitly. As long as the transaction includes that authority’s signature, the program can directly call `token::transfer` to move tokens—no separate `transferFrom` needed. In other words, Solana’s runtime natively supports a **who-signs-who-authorizes** model instead of relying on contracts to check a second-layer approval.
+In Solana’s SPL Token model, this is greatly simplified. Each token account records its *authority* explicitly. As long as the transaction includes that authority’s signature, the program can directly call `token::transfer` to move tokens—no separate `transferFrom` needed. In other words, Solana’s runtime natively supports a **who-signs-who-authorizes** model instead of relying on contracts to check a second-layer approval.
 
 Furthermore, Solana’s execution environment supports signature propagation across CPI:
 
@@ -673,7 +678,7 @@ pub fn stake_handler(ctx: Context<Stake>, amount: u64) -> Result<()> {
 }
 ```
 
-Solana doesn’t need `transferFrom` because its runtime fuses _authorization_ and _execution_: if a valid signature is present in the transaction, the user has authorized the transfer without extra steps.
+Solana doesn’t need `transferFrom` because its runtime fuses *authorization* and *execution*: if a valid signature is present in the transaction, the user has authorized the transfer without extra steps.
 
 ### Numerical Computation
 
@@ -681,7 +686,7 @@ Numeric handling on Solana also requires a shift of thinking. First, regarding p
 
 When mixing multiplication and division, beware of precision loss in intermediate results. In many languages, writing `r = a / b * c` as a single expression may benefit from extended precision registers; on x86, the FPU uses 80-bit extended precision internally, only truncating to 64-bit at the end. Note that compilers may also reorder or combine operations. But if you split this into steps like `t = a / b; r = t * c;`, the intermediate result is written to memory (64-bit), then read back, causing extra precision loss.
 
-For integer token amounts, choose `u64/u128` to avoid floating-point issues. However, for ratios, rates, and prices, floats may be necessary, and if that is the case, be careful with intermediate precision. For example, on x86, a single expression like `r = a / b * c` might compute in 80-bit precision, only truncating at the end. Note that splitting the computation into steps as described earlier (first computing t = a / b, then computing r = t \* c) forces 64-bit truncation in between, introducing additional errors.
+For integer token amounts, choose `u64/u128` to avoid floating-point issues. However, for ratios, rates, and prices, floats may be necessary, and if that is the case, be careful with intermediate precision. For example, on x86, a single expression like `r = a / b * c` might compute in 80-bit precision, only truncating at the end. Note that splitting the computation into steps as described earlier (first computing t = a / b, then computing r = t  c) forces 64-bit truncation in between, introducing additional errors.
 
 ## Conclusion
 
@@ -698,3 +703,4 @@ In the next article, “From Ethereum to Solana — Contracts (Part 2),” we’
 - [A Complete Guide to Solana Development for Ethereum Developers](https://solana.com/developers/evm-to-svm/complete-guide)
 - [Solana Development for EVM Developers](https://www.quicknode.com/guides/solana-development/getting-started/solana-development-for-evm-developers#key-architectural-differences-between-ethereum-and-solana)
 - [Verifying Programs](https://solana.com/docs/programs/verified-builds)
+

@@ -9,48 +9,47 @@ tags: ["Solana", "Ethereum", "Smart Contract", "Solidity", "Anchor"]
 landingPages: ["Blockchain-Onchain infra"]
 thumb: "./thumb.png"
 thumb_h: "./thumb_h.png"
-intro: "This article zooms in on the constraints and trade-offs you’ll run into when moving contract development from Ethereum to Solana. Using a concrete staking contract as an example, we’ll also walk through how an Ethereum contract can be migrated to Solana."
+intro: "Solana contract constraints that bite during an EVM migration, plus a full staking port from Solidity to Anchor."
 ---
 
 ## Article Overview
 
-As the Solana ecosystem continues to mature, more and more Ethereum (EVM) projects are considering migrating their protocols to Solana for higher performance, lower transaction costs, and a smoother user experience. Our team has extensive hands-on experience in this space—we’ve led multiple migrations and refactors of Ethereum protocols across a range of categories. We understand how complex a migration can be across contract architecture, data modeling, transaction logic, and front–back-end coordination, and we’ve built up a systematic methodology and a set of best practices along the way.
+If you’ve already read [Contracts (Part 1)](https://57blocks.com/blog/how-to-migrate-an-ethereum-protocol-to-solana-contracts-part-1), you can split state across accounts and wire up Anchor instructions. Day-to-day migration still hits walls Solidity habits do not cover: mainnet-fork testing is manual and easy to get wrong; transactions have a hard compute-unit cap; CPI is one-way (no re-entrancy, no synchronous callbacks); token hooks and off-chain events are not `ERC-20` plus `emit`. Plan for these early or you refactor late.
 
-To help developers master the methods and practicalities of migrating from Ethereum to Solana, we’re publishing a series of deep dives across three core layers: smart contracts, backend services, and front-end interactions. We’ll share real-world lessons learned, key gotchas, best practices, and common pitfalls encountered in production—along with real cases and sample code that show the complete migration approach end to end.
+The first half covers those trade-offs. The second half ports staking end to end (`stake`, `unstake`, `claimRewards`) with code in [evm-to-solana](https://github.com/57blocks/evm-to-solana): implementation, tests, and deployment.
 
-Through this series, our goal is not just to “port” protocols, but to help developers fully tap into Solana’s high-performance characteristics and unique mechanisms—rethinking protocol design to build truly Solana-native innovation.
+It’s part of our series on migrating Ethereum protocols to Solana (contracts, backend, frontend). If you’re new to the topic, start with the [Preamble](https://57blocks.com/blog/how-to-migrate-an-ethereum-protocol-to-solana-preamble) for account models, execution, and fees.
 
 #### Article Navigation
 
-- [How to Migrate an Ethereum Protocol to Solana — Preamble](https://57blocks.com/blog/how-to-migrate-an-ethereum-protocol-to-solana-preamble): a systematic overview of the fundamental differences between Ethereum and Solana in account models, execution, and fee systems.
-- [How to Migrate an Ethereum Protocol to Solana — Contracts (Part 1)](https://57blocks.com/blog/how-to-migrate-an-ethereum-protocol-to-solana-contracts-part-1): focuses on the core mindset shifts and best practices for contract development when moving from Ethereum to Solana.
-- [How to Migrate an Ethereum Protocol to Solana — Contracts (Part 2)](https://57blocks.com/blog/how-to-migrate-an-ethereum-protocol-to-solana-contracts-part-2): focuses on limitations and shortcomings in Solana contract development, and demonstrates how to migrate an Ethereum contract to Solana through a concrete staking example.
-
-In the previous article, we focused on the key mindset shifts and best practices for Solana contract development. Once you’ve internalized those concepts, you already have the foundation to build efficient, secure programs. But like any technical platform, Solana also has its own characteristics and limitations. Understanding these constraints helps you make smarter architecture decisions early—so you don’t end up boxed into hard-to-fix problems later.
+- [How to Migrate an Ethereum Protocol to Solana — Preamble](https://57blocks.com/blog/how-to-migrate-an-ethereum-protocol-to-solana-preamble): account models, execution, and fees on both chains.
+- [How to Migrate an Ethereum Protocol to Solana — Contracts (Part 1)](https://57blocks.com/blog/how-to-migrate-an-ethereum-protocol-to-solana-contracts-part-1): account model, CPI, PDAs, and Anchor patterns for EVM developers.
+- [How to Migrate an Ethereum Protocol to Solana — Contracts (Part 2)](https://57blocks.com/blog/how-to-migrate-an-ethereum-protocol-to-solana-contracts-part-2): Solana limits (CU, forks, hooks, events) and a staking migration walkthrough.
+- [How to Migrate an Ethereum Protocol to Solana — Frontend(Part 1)](https://57blocks.com/blog/how-to-migrate-an-ethereum-protocol-to-solana-frontend-part-1): wallets, RPC, and client patterns when moving a DApp frontend to Solana.
+- [How to Migrate an Ethereum Protocol to Solana — Frontend(Part 2)](https://57blocks.com/blog/how-to-migrate-an-ethereum-protocol-to-solana-frontend-part-2): transaction building, account fetching, and event/log handling on the client.
+- [How to Migrate an Ethereum Protocol to Solana — Backend](https://57blocks.com/blog/how-to-migrate-an-ethereum-protocol-to-solana-backend): event sync, log parsing, and state management for a production backend.
 
 ## Solana Limitations and Trade-offs You Should Know
 
-Once you’ve grasped Solana’s core design philosophy and best practices, you already have the foundation to build efficient, secure programs. But like any technical platform, Solana has its own characteristics and limitations. Knowing where those limitations are will help you make better architecture decisions during development—and avoid painful dead ends late in the project.
+Part 1 covers how to structure programs and accounts. Below are the constraints we hit most often when porting real protocols: mainnet testing, compute budgets, CPI semantics, token hooks, and how off-chain services read state changes.
 
 ### Testing: The Challenge of Mainnet Forking
 
-In Ethereum development, one powerful and widely used testing strategy is Mainnet Forking. With tools like Hardhat or Foundry, developers can easily spin up a near-complete, lazily loaded snapshot of mainnet state in a local environment. That makes it straightforward to test interactions between new contracts and existing protocols (like Uniswap), because real accounts and state can be accessed instantly.
+On Ethereum, Mainnet Forking (Hardhat, Foundry) gives you a lazily loaded local mainnet snapshot. You can call Uniswap or other live protocols without listing every account ahead of time.
 
-In the Solana ecosystem, this “seamless” testing workflow used to be more challenging. While Solana’s standard local testing tool `solana-test-validator` supports a `--clone` flag that lets you clone specific mainnet accounts at startup, it’s fundamentally different from Ethereum’s Full State Forking. On Solana, cloning is an explicit operation—you must specify addresses up front—instead of lazily loading state on demand. This directly affects development workflows. If you want to test interactions with a complex mainnet protocol (like Jupiter), you need to manually identify and list every relevant account to clone (liquidity pools, config accounts, authority accounts, and so on). That process can be tedious—and it’s easy to miss something.
+On Solana, `solana-test-validator --clone` only copies addresses you name at startup. There is no lazy full-state fork like Ethereum. To test against Jupiter you track down pools, config accounts, authorities, and anything else the instruction touches. Miss one account and the test fails in a way that is hard to debug.
 
-The good news: the Solana ecosystem is moving fast to close this gap. Tools have emerged specifically to address mainnet forking. A representative example is [surfpool](https://github.com/txtx/surfpool), which aims to provide a local testing environment similar to [Anvil](https://www.alchemy.com/dapps/foundry-anvil) on Ethereum. It can dynamically fetch account state from mainnet on demand, enabling a lightweight, high-performance local fork. That lets developers debug and run integration tests in a realistic mainnet-like environment without sacrificing performance—dramatically improving the developer experience.
+Tools like [surfpool](https://github.com/txtx/surfpool) narrow the gap: a local environment in the same spirit as Foundry’s [Anvil](https://www.alchemy.com/dapps/foundry-anvil), fetching mainnet account data on demand instead of requiring every address in a `--clone` list up front. That makes it easier to integration-test against live protocols (e.g. Jupiter) without maintaining a long clone manifest by hand.
 
 ### Compute Unit (CU) Limits
 
-On Ethereum, transaction complexity is mainly controlled by the gas limit. As long as you’re willing to pay enough gas, you can (in theory) execute very complex operations. Solana is different: each transaction has a strict hard cap on compute resources, known as the **Compute Unit (Compute Unit, CU)** limit. The maximum CU budget per transaction is **1.4 million**. Every instruction consumes CU—from simple arithmetic to complex cross-program invocations (CPI)—and once cumulative usage exceeds the budget, the entire transaction fails. You can’t bypass the limit by paying more fees.
+On Ethereum, gas limits scale with what you pay. Solana caps each transaction at **1.4 million compute units (CUs)** no matter the fee. Every instruction spends CUs, including CPIs. Exceed the budget and the whole transaction fails.
 
-This hard ceiling forces developers to stay constantly aware of compute complexity. Operations that are common on Ethereum—like iterating over a large array or running heavy loops—can easily exceed CU limits on Solana. You’ll often need to redesign by splitting heavy logic into multiple transactions, or by using more efficient algorithms to reduce per-transaction workload. This “compute efficiency first” requirement is the developer-facing reflection of Solana’s high-performance architecture.
-
-For more details on CU constraints, see our related article: [Deep Dive into Resource Limitations in Solana Development — CU Edition](https://57blocks.io/blog/deep-dive-into-resource-limitations-in-solana-development-cu-edition)
+Large loops and big in-memory passes that are routine on Ethereum often blow the CU budget on Solana. Split work across transactions or tighten the algorithm. We go deeper on limits in [Deep Dive into Resource Limitations in Solana Development — CU Edition](https://57blocks.io/blog/deep-dive-into-resource-limitations-in-solana-development-cu-edition).
 
 ### No Callbacks / No Re-entrancy
 
-Ethereum developers are usually very familiar with re-entrancy attacks—one of the most notorious smart contract vulnerabilities in Solidity. The attack works because inter-contract calls on Ethereum are synchronous, and the callee (Contract B) can call back into the caller (Contract A) before the caller finishes updating state. Here’s a typical vulnerable pattern, where state updates happen after an external call:
+Re-entrancy is a familiar Solidity bug: Contract B can call back into Contract A before A finishes writing state. External calls are synchronous. A common mistake is updating balances after the call:
 
 ```solidity
 // Vulnerable Solidity Code
@@ -68,7 +67,7 @@ function withdraw() public {
 }
 ```
 
-Solana eliminates this class of issue at the architectural level because it enforces a strict one-way invocation model. On Solana, Program A can call Program B via CPI, but Program B cannot call back into Program A from within its execution context. The call graph must be one-directional and acyclic. Consider the following Solana example: even if we update state _after_ a CPI call, there’s still no re-entrancy risk:
+Solana CPI is one-way: Program A can invoke Program B, but B cannot call back into A in the same transaction. The call graph is acyclic. Even updating state after a CPI (not recommended style) avoids classic re-entrancy:
 
 ```rust
 // Solana (Anchor) equivalent logic - still safe from re-entrancy
@@ -89,34 +88,31 @@ pub fn withdraw(ctx: Context<Withdraw>, amount: u64) -> Result<()> {
 }
 ```
 
-When our program calls the `Token Program` via CPI, execution pauses until `token::transfer` completes. The `Token Program` is a separate program, and it contains no logic that could call back into our `withdraw` function. In addition, Solana’s program model doesn’t have implicitly triggered `fallback` or `receive` functions that external calls can invoke—so the re-entrancy path is cut off at the design level.
+While `token::transfer` runs, your program waits. The Token Program will not re-enter `withdraw`, and Solana has no `fallback`/`receive` hooks for strangers to call mid-instruction.
 
-That said, this architectural safety comes with design constraints. Some complex patterns commonly seen on Ethereum that rely on synchronous callbacks (for example, certain flash-loan flows or deeply composable DeFi operations) can’t be implemented directly on Solana. Developers often need to shift toward multi-transaction flows or asynchronous state checks to achieve similar outcomes.
+The trade-off: flash loans and other synchronous callback chains do not map cleanly. You usually split steps across transactions or check state in a follow-up instruction.
 
 ### Why Hooks Are Harder
 
-Adding pre- or post-transfer hooks around token transfers is a common requirement—but Ethereum and Solana take very different paths.
+Transfer hooks show up on both chains; the wiring differs.
 
-On Ethereum, each `ERC-20` token is typically a customizable contract. Developers can insert logic directly into `transfer` or `transferFrom`, or override internal hook functions like `_beforeTokenTransfer` to implement allow/deny lists, transaction taxes, free lists, and so on. The result is cohesive, simple, and easy to adjust.
+On Ethereum you usually own the token contract: override `transfer` or `_beforeTokenTransfer` for allow lists, fees, and similar rules.
 
-On Solana, token logic is standardized and provided by the officially deployed on-chain `Token Program`, which you can’t modify. To enable hook-like behavior, `Token-2022` introduced the `Transfer Hook` extension. When you create a token, you can specify a separate Hook program. On every transfer, the `Token Program` will automatically CPI-call the Hook program, passing all relevant accounts (read-only), and the Hook program decides whether the transfer should proceed. If the Hook program returns an error, the entire transfer is rolled back.
+On Solana the SPL Token Program is shared and fixed. Token-2022 adds a `Transfer Hook` extension: you deploy a hook program, bind it at mint creation, and every transfer CPIs into it (read-only accounts). The hook approves or aborts the transfer.
 
-This mechanism is more complex than Ethereum’s approach: the token creator must deploy and configure an additional hook program. But it reflects Solana’s modular philosophy: standard shared logic (`Token Program`) is separated from custom business logic (`Hook Program`). Composition happens through CPI, preserving consistency while enabling extensibility.
+Setup on Solana is heavier than editing an `ERC-20`. Typical flow:
 
-There are practical caveats. To use `Transfer Hook`, you must call `transferChecked`; a normal `transfer` will fail. Also, many wallets and DEXs don’t explicitly support the hook extension yet, which can hurt ecosystem compatibility—so you should evaluate carefully before adopting it.
+1. Deploy a `Transfer Hook` program (allow/deny lists, fees, KYC, etc.).
+2. At mint initialization, enable the Token-2022 extension and set the mint’s hook program id.
+3. On each transfer, Token-2022 CPI-calls that program with the accounts you declared, often via `execute` and an `extra-account-metas` PDA so the hook sees every account it needs. A failing hook rolls back the transfer.
 
-A `Transfer Hook` isn’t just a few lines of code—it’s a separately deployed program (the `Hook Program`). Its flow looks like this:
+Callers must use `transferChecked`; plain `transfer` fails. Many wallets and DEXs still lack hook support, so check compatibility before shipping.
 
-1. You write and deploy a dedicated `Transfer Hook` program whose only responsibility is to validate whether a token transfer is allowed (for example, checking allow/deny lists, KYC status, fees, etc.).
-2. When creating the token (mint initialization), you enable the `Token-2022` `Transfer Hook` extension and bind the mint to your hook program.
-3. From then on, every transfer of this token causes the `SPL Token-2022` program to CPI-call the hook program, passing all relevant accounts (read-only). Your logic runs, and if it fails, the transfer is rolled back.
-4. Implementations typically rely on the SPL-2022 `execute` instruction and the `extra-account-metas` list (using PDAs to store extra account metadata) to ensure the invocation context is complete.
-
-In our example, to keep things simple, we do blacklist checks inside each instruction. But that only affects specific operations—it can’t cover every possible transfer path. If you want a blacklist that intercepts _all_ transfers, you must use the `Transfer Hook` approach. It’s more complex to develop and deploy, but it also captures Solana’s philosophy: decouple core `Token` logic from extensible business logic, keep standard functionality in the official `Token Program`, and place customizable validation in an independent `Hook Program`, composed via CPI.
+In our staking example, blacklist checks live inside `stake`, `unstake`, and `claimRewards`. That blocks protocol paths only, not arbitrary wallet-to-wallet transfers. For a global blacklist, use Transfer Hook.
 
 ### Logs and Events
 
-On Ethereum, events are a core mechanism for smart contracts to communicate with the outside world. With the `emit` keyword, a contract can produce structured, indexable logs. Off-chain services can efficiently subscribe to these events to update UIs, run analytics, or trigger downstream logic.
+On Ethereum, `emit` writes structured logs. Indexers subscribe by topic and indexed fields to drive UIs, analytics, and jobs.
 
 ```solidity
 // evm-staking/src/Staking.sol
@@ -130,9 +126,9 @@ function stake(uint256 amount) external {
 }
 ```
 
-Solana’s native runtime is more primitive here. It provides basic logging via `sol_log` (typically used through Anchor’s `msg!` macro), but that’s essentially just printing a string into transaction logs. It’s great for debugging, but without strong structure or indexing. You can’t efficiently filter by event types or parameters the way you can on Ethereum. Off-chain services often have to scan logs wholesale, which makes reliable parsing harder.
+Solana’s built-in logging (`sol_log`, Anchor `msg!`) is printf-style text in transaction logs. Fine for debugging; poor for indexed queries. Parsers often scrape whole logs instead of filtering by type.
 
-To address this, Anchor provides a lightweight `#[event]` macro that adds basic event parsing on top of native logs.
+Anchor’s `#[event]` wraps a struct and serializes it into logs (often Base64) so clients can parse something closer to an EVM event.
 
 First, define an event struct and tag it with `#[event]`:
 
@@ -147,7 +143,7 @@ pub struct Staked {
 }
 ```
 
-然后，在你的指令逻辑中，使用 `emit!` 宏来发出这个事件：
+Then, use the `emit!` macro to emit this event:
 
 ```rust
 // solana-staking/programs/solana-staking/src/instructions/stake.rs
@@ -168,40 +164,31 @@ pub fn stake_handler(ctx: Context<Stake>, amount: u64) -> Result<()> {
 }
 ```
 
-Anchor’s `#[event]` macro serializes the event data (commonly Base64-encoded) and writes it into the transaction logs via `emit!`. It’s not as strongly structured as EVM-style events, but it’s recognizable by off-chain systems. On the client side, you can parse events with Anchor’s `EventParser`, or use services like Helius Webhooks / enhanced transaction APIs to fetch logs and extract events using your own parsing logic.
+`emit!` writes those bytes into the transaction log. Indexing is still weaker than Ethereum topics, but workable. Use Anchor’s `EventParser` on the client, or Helius-style webhooks and enhanced transaction APIs if you do not want to own the parser.
 
-So for any application that needs reliable off-chain communication, use Anchor’s `#[event]` rather than relying on raw `msg!` logs—this ensures your program broadcasts state changes in a standardized, machine-parseable way.
+For anything production-facing off-chain, use `#[event]` instead of raw `msg!`.
 
 ## Hands-on: From Coding to Deployment
 
 ### Case Overview
 
-Theory matters—but nothing cements understanding like a complete, runnable example. Next we’ll migrate an Ethereum staking contract to Solana step by step. This case is designed to bring together all the key concepts discussed earlier.
+Next: port a staking contract from Ethereum to Solana using the [evm-to-solana](https://github.com/57blocks/evm-to-solana) repo (same example as Part 1), including Foundry and Anchor code, tests, and deployment.
 
 **Business logic**
 
-The staking contract’s business logic is classic:
-
-- Users stake tokens issued by the project (`MyToken`).
-- In return, users earn reward tokens (`RewardToken`) proportionally based on stake amount and duration.
+- Users stake project tokens (`MyToken`) and earn `RewardToken` proportional to stake size and duration.
 
 **Core features**
 
-To support this logic, the contract must provide three core functions:
-
-- `stake`: deposit `MyToken` and start staking.
-- `unstake`: withdraw staked `MyToken`.
-- `claimRewards`: claim earned `RewardToken` rewards.
-
-This practical case ties together all previously scattered concepts into a coherent, end-to-end picture of Solana development.
+- `stake`: deposit `MyToken`
+- `unstake`: withdraw staked `MyToken`
+- `claimRewards`: claim accrued `RewardToken`
 
 ### Ethereum Implementation (Foundry)
 
-Let’s see how this staking logic is implemented on Ethereum. The code follows a common Solidity pattern: all logic and state are packaged into a single contract named `Staking.sol`.
+On Ethereum the staking logic lives in one `Staking.sol` contract: state and functions together.
 
 **Contract structure and state variables**
-
-At the heart of the contract are its state variables, which record all data.
 
 ```solidity
 // evm-staking/src/Staking.sol
@@ -226,13 +213,11 @@ contract Staking is ReentrancyGuard, Ownable {
 }
 ```
 
-- `stakingToken` and `rewardToken`: store the contract addresses of the two tokens to interact with.
-- `rewardRate` and `totalStaked`: store global configuration like reward rate and total staked amount.
-- `stakes`: a key `mapping` that maps each user address to a `StakeInfo` struct, which records per-user staking data (amount, timestamps, etc.). All user state is centralized inside this mapping.
+All staking data (token refs, pool totals, per-user `StakeInfo`) sits in this contract’s storage. The single `mapping` is the main contrast with Solana’s per-user PDAs.
 
 **Core function implementations**
 
-The three core functions `stake`, `unstake`, and `claimRewards` all revolve around directly modifying these state variables.
+`stake`, `unstake`, and `claimRewards` read and write those storage fields directly.
 
 ```solidity
 // evm-staking/src/Staking.sol
@@ -275,13 +260,13 @@ function _claimRewards() private {
 }
 ```
 
-You can see the flow is straightforward: the contract acts like an all-in-one central processor. It holds tokens (the vault), maintains the ledger for every user, and directly performs all computation and state updates—this is the typical Ethereum contract design pattern.
+`stake` pulls tokens into the contract vault; `unstake` and `_claimRewards` update the mapping and push tokens out, with no CPI to an external token program.
 
 The full contract code is available [here](https://github.com/57blocks/evm-to-solana/tree/main/contract/evm-staking).
 
 ### Solana Implementation (Anchor)
 
-Now let’s implement the same staking logic the Solana way. As we’ve emphasized, the core is separating code from data.
+The Solana version keeps the same behavior but splits code and data.
 
 **Program structure and account definitions**
 
@@ -334,14 +319,11 @@ pub struct UserStakeInfo {
 }
 ```
 
-- The `staking` program: contains only business logic and stores no data.
-- The `PoolConfig` account: a PDA-like account that stores pool-wide configuration such as token mints and reward rate.
-- The `PoolState` account: a separate runtime state account that stores mutable staking data such as `total_staked` and reward debt.
-- The `UserStakeInfo` account: typically a PDA created dynamically per user to store their staking state.
+`PoolConfig` and `PoolState` split fixed config from mutable pool totals; each staker gets a `UserStakeInfo` PDA (`init_if_needed` in `stake`) instead of one on-chain `mapping`.
 
 **Instructions and context**
 
-On Solana, each instruction must explicitly declare all accounts it will touch. Take `stake` as an example: its Context clearly lists all participants.
+Each instruction declares every account it touches. The `stake` Context:
 
 ```rust
 // solana-staking/programs/solana-staking/src/instructions/stake.rs
@@ -404,11 +386,11 @@ pub struct Stake<'info> {
 }
 ```
 
-This struct is the account checklist for the `stake` instruction. Before execution, Anchor strictly validates all provided accounts against these definitions and constraints.
+`blacklist_entry` is optional: if that PDA exists with data, `stake` rejects the user. Anchor checks seeds and `has_one` links before your handler runs.
 
 **Core function implementation**
 
-The `stake` instruction no longer “modifies internal state.” Instead, it performs a CPI call to the `Token Program` to transfer tokens, then updates the data stored in the passed-in `pool_state` and `user_stake_info` accounts.
+`stake` CPIs the Token Program to move tokens, then writes `pool_state` and `user_stake_info` supplied in the Context.
 
 ```rust
 // solana-staking/programs/solana-staking/src/instructions/stake.rs
@@ -459,22 +441,22 @@ pub fn stake_handler(ctx: Context<Stake>, amount: u64) -> Result<()> {
 }
 ```
 
-This pattern cleanly illustrates Solana’s core idea: a stateless program (logic) operates on external, explicitly passed-in accounts (data).
+Custody is a CPI to the Token Program; balances and reward debt are written to the `pool_state` and `user_stake_info` accounts passed into the instruction.
 
 The full Solana implementation is available [here](https://github.com/57blocks/evm-to-solana/tree/main/contract/solana-staking).
 
 ### Contract Testing
 
-Validating correctness is a critical part of the development workflow. Here, mainstream testing frameworks on Ethereum and Solana differ both in philosophy and implementation.
+Foundry and Anchor take different approaches to tests.
 
 **Framework comparison**
 
-- Ethereum / Foundry: tests are often written directly in Solidity. The upside is that tests and contracts share the same language, context, and types. Test contracts can call internal/external functions directly and use `forge-std` utilities (like `vm.prank`) to simulate different callers and environments. It’s powerful and intuitive.
-- Solana / Anchor: tests are written in TypeScript or JavaScript. Test scripts interact with a local validator (`solana-test-validator`) via client libraries. In other words, tests simulate a real front-end or back-end calling your program deployed to a local test network. This is closer to real user behavior, but requires more client-side setup.
+- **Ethereum / Foundry:** tests in Solidity against the contract, with `vm.prank` and other cheatcodes.
+- **Solana / Anchor:** tests in TypeScript against a local validator, closer to how a client calls your program, with more setup boilerplate.
 
 **Foundry test example**
 
-Below is a typical test case from `evm-staking` that validates the `stake` function directly in Solidity.
+From `evm-staking`, a direct `stake` test:
 
 ```solidity
 // evm-staking/test/Staking.t.sol
@@ -536,17 +518,17 @@ describe("Stake", () => {
 });
 ```
 
-As you can see, Foundry tests tend to focus on unit-testing internal contract logic, while Anchor tests are closer to end-to-end or integration testing.
+Foundry tests usually exercise contract internals directly; Anchor tests call the program through the client, which is closer to end-to-end integration testing.
 
 ### Contract Deployment
 
-Deploying code to a blockchain is the final step. Ethereum and Solana differ deeply here as well—both at the protocol level and in tooling.
+Deployment differs at the protocol level and in the tooling.
 
 **Ethereum / Foundry deployment**
 
 On Ethereum, deploying a contract is essentially sending a special transaction: the `to` field is empty, and the `data` field contains the compiled bytecode. Once miners include it in a block, the EVM executes the constructor logic, creates a new contract account, and stores the code at that address.
 
-In our example project, we use Foundry scripts to handle deployment, which provides flexibility for more complex deployment logic.
+We deploy with a Foundry script in this repo.
 
 ```bash
 # Run the deployment script using forge
@@ -557,7 +539,7 @@ This command runs `Deploy.s.sol`, deploys the `Staking` contract to the specifie
 
 **Solana / Anchor deployment**
 
-Solana’s deployment mechanism is completely different. Since code and data are separated, deploying a program doesn’t create a single account containing both code and state. Instead, it uploads compiled BPF (Berkeley Packet Filter) bytecode to a dedicated program account. That program account is executable, but it does not store business state. With Anchor, the deployment flow is significantly simplified:
+Deploying a Solana program uploads the compiled binary (BPF, usually a `.so` in `target/deploy/`) to a program account. Business state stays in separate accounts. Anchor wraps the CLI steps:
 
 ```bash
 # First, build the program to get the BPF bytecode
@@ -567,10 +549,7 @@ anchor build
 anchor deploy --provider.cluster <cluster_name>
 ```
 
-- `anchor build`: compiles your Rust code into BPF bytecode and places it under `target/deploy/`.
-- `anchor deploy`: handles the low-level details, including creating a new program account and uploading the bytecode. The `--provider.cluster` parameter lets you pick the target network: `localnet`, `devnet`, or `mainnet-beta`.
-
-When you need to update logic, you just modify code and run `anchor upgrade` to upload new bytecode to the same program ID—keeping all associated state accounts unchanged.
+Set the cluster with `--provider.cluster` (`localnet`, `devnet`, or `mainnet-beta`). To ship new logic without migrating state, rebuild and upgrade the same program id:
 
 ```bash
 # After making changes, build the new version
@@ -582,23 +561,17 @@ anchor upgrade target/deploy/your_program_name.so --provider.cluster <cluster_na
 
 For more detailed steps and caveats, see our project’s [deployment doc](https://github.com/57blocks/evm-to-solana/blob/main/contract/solana-staking/DEPLOYMENT.md).
 
-Put side by side, Foundry deployment feels like spinning up a brand-new server instance, while Anchor deployment feels like uploading or updating a piece of executable logic.
+Each `forge script` deploy on Ethereum usually gets a new contract address and empty storage. `anchor deploy` / `anchor upgrade` keeps the program id; only the executable changes while pool and user accounts stay put.
 
 ## Summary
 
-Across these two contract-focused articles, we’ve systematically mapped out the full mindset shift required when migrating from Ethereum to Solana at the smart contract layer. This is not a simple language swap or tooling migration—it’s a deep refactor centered on the execution model, state organization, and protocol architecture.
+[Part 1](https://57blocks.com/blog/how-to-migrate-an-ethereum-protocol-to-solana-contracts-part-1) covered stateless programs, explicit accounts, CPI, and PDAs. Here we added practical limits: mainnet fork testing, CU caps, one-way CPI, Transfer Hook, and Anchor events for indexing.
 
-In the previous article, we tackled a key question: why does writing Solana contracts “the Ethereum way” often feel increasingly awkward? The answer is that the underlying models are fundamentally different. Solana’s design—stateless programs plus explicit account passing—treats parallel execution as a first principle. That forces a shift from “the contract is the world” to a new paradigm: the program is a dispatcher of logic, while accounts are the true holders of state. The account model, Token Accounts, CPI, PDAs, explicit Context—these aren’t scattered details, but different faces of the same parallel-execution philosophy.
+The staking example uses the same three instructions on both chains with different layout: one Solidity contract vs. split pool/user accounts and Token Program CPIs.
 
-In this article, we went one step further into the realities of migrating a complex protocol: where exactly does Solana force you to change your approach? The hard CU cap, the differences in mainnet fork testing, the no-callback/no-reentrancy execution model, and modular-but-more-complex extensions like Transfer Hook—none of these are accidents. They’re systematic trade-offs Solana makes in pursuit of performance and determinism. Understanding these limits early helps you avoid getting trapped in EVM habits.
+Before you port, decide what is global state vs. per-user PDAs, which steps call SPL programs, and whether any instruction needs splitting for CU. Treat it as a redesign, not a line-by-line port.
 
-Taken together, the conclusion is clear: Ethereum is closer to an application-level programming model. It tends to provide highly abstracted contract structures, where state, permissions, and business logic naturally cohere inside a single contract. Solana is closer to a systems-level programming model. With explicit accounts and resource constraints, it pushes developers to build systems compositionally. On Ethereum, we’re used to packaging state, permissions, and business logic into one contract and relying on the runtime’s implicit context. On Solana, we proactively split state, draw clear account boundaries, use PDAs to build permission systems, and compose with standard programs via CPI. This complexity isn’t pointless overhead—it’s the engineering price paid for high throughput, parallel execution, and strong determinism.
-
-The full staking migration example reinforces a key point: a successful migration is never a line-by-line translation. It’s a redesign grounded in Solana’s native model. Which state belongs in a global account vs. a per-user PDA? Which logic should live in a single program vs. be composed via CPI calls to standard external programs? Which operations must be split into multiple transactions, and which can fit into a single instruction? You can only answer these correctly after you truly understand the design philosophies of both chains.
-
-Ultimately, our hope is that these contract articles help you build not only the ability to write Solana contracts, but also the judgment to evaluate designs. When facing an existing EVM protocol, you should be able to tell which parts can be preserved and which must be rebuilt. When designing new protocols on Solana, you should be able to align with its execution model from day one—instead of constantly patching compromises later.
-
-In the next articles, we’ll expand from the contract layer to front-end interaction and back-end services. Once contracts move from EVM to Solana, the rest of the system architecture must adapt too—the key is ensuring backend, frontend, and contracts evolve together with a consistent design.
+Up next in the series: frontend and backend changes after the contracts move.
 
 ## References
 
