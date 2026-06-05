@@ -14,49 +14,39 @@ intro: "Frontend architecture design and practical implementation for high-perfo
 
 ## Article Overview
 
-As the Solana ecosystem matures, more and more product owners are considering migrating their Ethereum (EVM) projects to Solana to gain higher performance, lower transaction costs, and a better user experience. Our company has extensive hands-on experience in this area, having led the migration and refactoring of multiple Ethereum protocols to Solana across various industries. We understand the complexity of migration across contract architecture, data models, transaction logic, and front-backend coordination, and we've developed a systematic methodology and set of best practices to address these areas.
+Teams are moving EVM projects to Solana for higher throughput, lower fees, and better UX. We've done this in production — migrated multiple Ethereum protocols to Solana across different industries. The hard parts are contract architecture, data models, transaction logic, and frontend-backend coordination. We've learned what breaks and what works.
 
-To help developers systematically master the methods and practices for migrating from Ethereum to Solana, we're launching a series of articles focused on three core layers—the smart contract layer, backend services, and frontend interactions. In this series, we'll share lessons we learned from real projects, including key caveats, best practices, and typical issues encountered during migration. Additionally, we'll share case studies that demonstrate an end-to-end migration approach and implementation path along with sample code to help you get started.
+This series covers the three layers you actually touch during a migration: smart contracts, backend services, and the frontend. Each article comes from real projects — the pitfalls, the workarounds, the patterns that held up. We include full code examples and end-to-end case studies.
 
-Through this series, we hope to help developers not only complete the migration, but also fully tap into Solana's high-performance potential and unique mechanisms to redesign protocols natively for Solana.
+This article covers the frontend stuff you actually touch when moving a DApp from EVM to Solana: wallet connection (including custom mobile adapters for wallets without official support), hardware wallet login via signTransaction + Memo, Address Lookup Tables, priority fees, transaction retry, and Jito Bundles. Not a staking demo — that's Part 2. This is the infrastructure layer. Everything below comes with working code you can use.
 
 #### Article Navigation
 
-- [How to Migrate an Ethereum Protocol to Solana — Preamble](https://57blocks.com/blog/how-to-migrate-an-ethereum-protocol-to-solana-preamble?tab=engineering): A systematic introduction to the fundamental differences between Ethereum and Solana in account models, execution mechanisms, and fee systems.
-- [How to Migrate an Ethereum Protocol to Solana — Contracts (Part 1)](https://57blocks.com/blog/how-to-migrate-an-ethereum-protocol-to-solana-contracts-part-1?tab=engineering): A focus on the core mindset shift and best practices for contract development from Ethereum to Solana.
-- [How to Migrate an Ethereum Protocol to Solana — Frontend (Part 1)](https://57blocks.com/blog/how-to-migrate-an-ethereum-protocol-to-solana-frontend-part-1?tab=engineering): A focus on the frontend mindset shift and best practices for building Solana-native DApp infrastructure from Ethereum.
+- [How to Migrate an Ethereum Protocol to Solana — Preamble]([How to Migrate an Ethereum Protocol to Solana — Preamble - 57Blocks](https://57blocks.com/blog/how-to-migrate-an-ethereum-protocol-to-solana-preamble)): a systematic overview of the fundamental differences between Ethereum and Solana in account models, execution, and fee systems.
+- [How to Migrate an Ethereum Protocol to Solana — Contracts (Part 1)]([How to Migrate an Ethereum Protocol to Solana — Contracts (Part 1) - 57Blocks](https://57blocks.com/blog/how-to-migrate-an-ethereum-protocol-to-solana-contracts-part-1)): focuses on the core mindset shifts and best practices for contract development when moving from Ethereum to Solana.
+- [How to Migrate an Ethereum Protocol to Solana — Contracts (Part 2)](https://57blocks.com/blog/how-to-migrate-an-ethereum-protocol-to-solana-contracts-part-2): focuses on limitations and shortcomings in Solana contract development, and demonstrates how to migrate an Ethereum contract to Solana through a concrete staking example.
+- [How to Migrate an Ethereum Protocol to Solana — Frontend(Part 1)](https://57blocks.com/blog/how-to-migrate-an-ethereum-protocol-to-solana-frontend-part-1): A focus on the frontend mindset shift and best practices for building Solana-native DApp infrastructure from Ethereum.
+- [How to Migrate an Ethereum Protocol to Solana — Frontend(Part 2)](https://57blocks.com/blog/how-to-migrate-an-ethereum-protocol-to-solana-frontend-part-2): A practical demonstration of the fundamental differences between Ethereum and Solana frontend development in wallet integration, state reading, transaction workflows, and event handling.
 
 ---
 
-This article will focus on the frontend mindset shift from EVM to Solana, dissecting the key differences in the account model, transaction construction, and wallet adaptation to help you build a truly "Solana-native" frontend infrastructure. We will start with the most common pitfalls — wallet connection and login, secure signing process, efficient data reading, transaction size and account constraint limits, fee and priority fee mechanisms, multi-level error handling, and Jito bundles — and combine them with practical code examples to provide readily reusable engineering practices, laying the foundation for the subsequent Staking Demo. The goal of this article is to help developers achieve a paradigm shift from EVM to Solana frontend development and build a truly "Solana-native" frontend infrastructure. We will delve into Solana's account model, transaction construction, and how to adapt wallets, among other core differences.
-
-The practical section will focus on a series of common pain points and optimisation directions, including:
-
-- **Wallet Interaction and Security:** Efficient wallet connection and login flows, and secure signing practices.
-- **Data Access Optimisation:** How to achieve efficient data reading.
-- **Transaction Constraints and Fees:** Solving transaction size and account constraint limits, and understanding and applying fee and priority fee mechanisms.
-- **Error Handling:** Establishing a multi-level error handling mechanism.
-- **Jito bundle:** Provide atomic execution and sequential determinism for multi-transaction dependent processes
-
-By combining practical code examples, we provide readily reusable engineering practices, laying a solid foundation for the subsequent Staking Demo.
-
 ## 1. Connecting Wallets
 
-In a Solana frontend application, connecting a wallet itself is not complicated; the real complexity lies in **maintaining a consistent user experience across different operating environments**:
+Connecting a wallet to a Solana frontend is easy. Keeping the experience consistent across platforms is not:
 
-- In Desktop browsers, the wallet is usually injected as an extension object.
-- In Mobile browsers, it relies on **Deeplink / Universal Link** to wake up a separate wallet App.
-- In wallet App (e.g., Phantom Browser), the wallet automatically injects the global object and pre-connects.
+- Desktop: the wallet injects itself as a browser extension.
+- Mobile: you need Deeplink / Universal Link to wake up a separate wallet app.
+- In-app browser (e.g., Phantom Browser): the wallet injects a global object and pre-connects.
 
-The capabilities and interaction methods of the same wallet are not entirely consistent across Desktop/Mobile/Wallet Browsers. If one were to adapt each wallet and platform separately, the engineering complexity would quickly become unmanageable. To solve this problem, the Anza team provides `@solana/wallet-adapter`, which decouples the wallet connection logic from specific wallet implementations using the Adapter pattern, allowing DApps to program against a unified interface.
+A wallet's capabilities and behavior vary across these environments. Adapting to each wallet and platform individually doesn't scale. `@solana/wallet-adapter` (from Anza) solves this with an Adapter pattern — you write against a single interface, and it handles the rest.
 
-This section will briefly review the standard access method recommended in the official documentation ([APP.md](https://github.com/anza-xyz/wallet-adapter/blob/master/APP.md)), and then focus on a critical issue often overlooked in practice, especially in mobile scenarios:
+Below is the standard setup from the official docs ([APP.md](https://github.com/anza-xyz/wallet-adapter/blob/master/APP.md)), then we'll get into something the docs don't cover well: what happens on mobile when a wallet doesn't have an adapter yet.
 
-When integrating a wallet with a Solana DApp, developers face several challenges:
+When integrating a wallet with a Solana DApp, you'll face:
 
-- **Adapter Availability:** Not every wallet offers an official wallet adapter.
-- **Mobile Connectivity Gaps:** While desktop users can often connect through an injected object even without an adapter, mobile users whose wallets lack an official adapter or deeplink support will be unable to successfully redirect to and launch the wallet application.
-- **Proposed Solution:** A key challenge is developing a reliable, scalable fallback for mobile users by implementing a custom wallet adapter paired with Deeplink functionality.
+- **Adapter Availability:** Not every wallet ships an official adapter.
+- **Mobile Connectivity:** Desktop users can often connect through an injected object even without an adapter. On mobile, without an official adapter or deep link support, the wallet app simply can't be reached.
+- **The fix:** Build a custom wallet adapter backed by a deep link as a fallback for mobile.
 
 ### 1.1 Standard Connection Flow: `ConnectionProvider` + `WalletProvider`
 
@@ -70,9 +60,9 @@ In a desktop environment, as long as the wallet injects an object conforming to 
 
 However, this method does not naturally migrate to mobile scenarios.
 
-### 1.2 The Reality: The Adapter Gap in Mobile Scenarios
+### 1.2 The Reality: The Adapter Gap on Mobile
 
-In real projects, you will quickly encounter the following issues:
+In practice, you hit these problems:
 
 1. Some wallets have not yet provided an official wallet adapter.
 2. Some multi-chain wallets support Solana, but their injected objects, connection flow, or signing interface are not fully consistent with the standard adapter's expectations.
@@ -87,9 +77,9 @@ The official documentation mainly describes the problem from the perspective of 
 
 ### 1.3 Solution: Custom Wallet Adapter as a Mobile Fallback
 
-The core abstraction of `@solana/wallet-adapter` is the `WalletAdapter` interface (defined in `@solana/wallet-adapter-base`). This means that as long as this interface is implemented, the application layer does not care whether it is an official adapter or a custom adapter.
+`@solana/wallet-adapter`'s core abstraction is the `WalletAdapter` interface (defined in `@solana/wallet-adapter-base`). The application layer doesn't care whether an adapter is official or custom — it just needs something that implements the interface.
 
-Therefore, we can implement a custom wallet adapter based on Deeplink, which has the following capabilities:
+So we build a custom adapter backed by a deep link, with:
 
 - Basic identification information: `name / url / icon / deepLink`.
 - Connection status: `publicKey / connecting / readyState`.
@@ -278,40 +268,42 @@ In a Solana DApp, simply getting the user's `publicKey` through "connecting the 
 The typical wallet login flow is as follows:
 
 1. **User Connects Wallet**
-
+   
    The user clicks "Connect Wallet" on the frontend, and the DApp establishes a connection with the wallet via the wallet adapter and obtains the user's `publicKey`.
    This step only indicates that the user agrees to expose the address and does not constitute identity verification.
 
 2. **Frontend Requests Challenge from Backend**
-
+   
    The frontend sends the obtained `publicKey` to the backend, requesting the generation of a login Challenge.
 
 3. **Backend Generates Challenge (Challenge Information)**
-
+   
    The Challenge typically includes:
+   
    - Wallet address (`publicKey`)
    - Random number (`nonce`)
    - Expiration time (`timestamp / TTL`)
    - DApp identifier (e.g., domain name, application name, etc.)
 
 4. **Frontend Requests Wallet Signature**
-
+   
    The frontend passes the Challenge to the wallet, requesting the user to sign it.
 
 5. **Frontend Submits Signature Result**
-
+   
    The frontend sends the original Challenge and the signature generated by the user to the backend.
 
 6. **Backend Verifies Signature and State**
-
+   
    The backend performs the following checks:
+   
    - Verifies the signature's validity using `publicKey`.
    - Checks if the wallet address in the Challenge matches the `publicKey` in the request.
    - Checks if the `nonce` has not been used (to prevent replay attacks).
    - Checks if the Challenge is within its validity period.
 
 7. **Login Success**
-
+   
    After successful verification, the backend issues a session credential (e.g., JWT or Session) for that wallet address, used for subsequent identity identification.
 
 ![](diagram.png)
@@ -321,7 +313,7 @@ The typical wallet login flow is as follows:
 - **`signMessage`**: Most software wallets support signing arbitrary messages, making it the simplest and most direct way to implement login.
 - **`signTransaction`**: Some hardware wallets (e.g., Ledger, Trezor, etc.) typically do not support signing arbitrary messages; they only allow signing standard Solana Transactions.
 
-To accommodate these wallets, we construct a "special transaction" that contains only a Memo or other side-effect-free instruction, and ask the user to complete the login signature via `signTransaction`. It is important to emphasize that this transaction is only used for local signing and backend verification, it is _not_ sent on-chain, and is thus an _off-chain_ signing process that does not create an on-chain record or consume any gas/fees.
+To accommodate these wallets, we construct a "special transaction" that contains only a Memo or other side-effect-free instruction, and ask the user to complete the login signature via `signTransaction`. Note: this transaction is only for local signing and backend verification. It is _not_ sent on-chain — it's an _off-chain_ signature that doesn't record anything on-chain or consume gas.
 
 Below we introduce both paths, aiming to reuse a single set of verification logic on the frontend and backend as much as possible.
 
@@ -413,7 +405,7 @@ Before calling the signature verification function, the backend must also:
   - The address declared in the Challenge matches `publicKeyStr`.
 - After successful verification, immediately invalidate the Challenge and issue its own login session.
 
-This entire sequence constitutes "Signature Login" based on `signMessage`, suitable for the vast majority of software wallets.
+That's the `signMessage`-based signature login flow, which works for most software wallets.
 
 ### 2.4 Hardware Wallet: `signTransaction` + Memo Disguised as Sign Message
 
@@ -520,7 +512,7 @@ Overall, the security semantics of this path are the same as the `signMessage` p
 
 ## 3. Data and Indexing Layer
 
-In blockchain applications, retrieving on-chain data and performing efficient queries are key to building a user-friendly interface. Unlike the EVM ecosystem which uses The Graph for data indexing, the Solana ecosystem also has its corresponding solutions.
+Fetching and querying on-chain data efficiently matters for any DApp's frontend. The Solana ecosystem has its own indexing story — different from EVM's but covering the same needs.
 
 ### 3.1 Data Indexing in EVM: Subgraphs
 
@@ -575,7 +567,7 @@ const useRewardHistory = () => {
 
 ### 3.2 Solana Ecosystem: RPC and Third-Party Services
 
-Solana's native RPC nodes are adept at rapid state reading, suitable for single-account queries or simple filtering. Developers can use the GraphQL query interface directly via [@solana/rpc-graphql](https://github.com/anza-xyz/kit/tree/main/packages/rpc-graphql) to achieve multi-account aggregation and complex data access, eliminating the need for extra RPC data traversal.
+Solana RPC nodes are fast at reading state — good for single-account queries and simple filtering. [@solana/rpc-graphql](https://github.com/anza-xyz/kit/tree/main/packages/rpc-graphql) gives you a GraphQL interface on top of RPC, which handles multi-account aggregation and complex data access without extra traversal code.
 
 However, native RPC and `rpc-graphql` still have limitations:
 
@@ -598,11 +590,11 @@ Event backtracking can also be implemented based on the Solana RPC without relyi
 
 This method can cover the needs of "historical playback + resuming from a breakpoint," but specialized indexing services are still more efficient in scenarios like complex cross-program analysis, real-time subscriptions, and retrieving massive amounts of historical data.
 
-In terms of code implementation, a [complete implementation](https://github.com/57blocks/evm-to-solana/tree/main/backend/solana-backend) was built using NestJS — periodically pulling new transactions from the chain, using Anchor **EventParser** to parse events, storing them in a database, and then aggregating and returning them to the frontend via a REST API.
+We built a [working indexer](https://github.com/57blocks/evm-to-solana/tree/main/backend/solana-backend) with NestJS: it periodically pulls new transactions from the chain, uses Anchor's **EventParser** to extract events, stores them in a database, and exposes aggregated data to the frontend through a REST API.
 
 #### 3.2.2 Querying Data
 
-In our engineering architecture, because the backend has efficiently completed data indexing and multi-dimensional aggregation, the frontend developer's core task becomes exceptionally simple: directly obtaining the required business data by calling a RESTful API:
+With the backend handling indexing and aggregation, the frontend's job is straightforward: call a REST API.
 
 ```typescript
 const API_BASE = import.meta.env.VITE_API_BASE_URL || "http://localhost:3000";
@@ -1134,25 +1126,23 @@ export function formatErrorForDisplay(error: unknown): FormattedError {
 
 ## 8. Jito Bundle
 
-### 8.1 Limitations of Solana Native Scheduling Model
+### 8.1 Limitations of Solana's Native Scheduling Model
 
-In Solana, most transactions are submitted via RPC nodes. The RPC forwards the transaction to the current and next Leader, where the transaction enters the Leader's execution queue and is packaged into a block. Before being actually executed by the Leader and receiving network votes, the transaction only exists in the memory queues of the client and the forwarding node. This process dictates a key fact: **the minimum unit of scheduling is a single transaction, and its ordering competition occurs in the public forwarding path.**
+In Solana, most transactions are submitted via RPC nodes. The RPC forwards the transaction to the current and next Leader, where it enters the Leader's execution queue and is packaged into a block. Before the Leader actually executes it and the network votes, the transaction only exists in the memory queues of the client and the forwarding node. The core constraint: **the scheduling unit is a single transaction, and competing transactions are ordered in the public forwarding path.**
 
 While this model offers extremely high throughput under high parallel execution, it is not ideal for complex chained operations. If a business process involves multiple dependent transactions (e.g., borrow -> swap -> repay), these transactions are propagated, ordered, and executed independently. The system cannot guarantee their atomic submission as a whole or ensure strict execution in the intended order. Consequently, the native model lacks the ability for "multi-transaction atomic submission" and "deterministic sequential scheduling."
 
-### 8.2 Jito Bundle: An Extended Scheduling Abstraction
+### 8.2 Jito Bundle: Extended Scheduling
 
-The Jito Bundle is an extended abstraction proposed precisely to address this semantic deficiency in the scheduling layer. It encapsulates a group of transactions into an ordered sequence: `Bundle = [Tx1, Tx2, ..., TxN]`.
+The Jito Bundle wraps a group of transactions into an ordered sequence: `Bundle = [Tx1, Tx2, ..., TxN]`. The execution semantic: all transactions run in order, and state commits only if every transaction succeeds. If any fail, the whole bundle rolls back. By making the scheduling unit a "transaction sequence" instead of a single transaction, Bundles provide atomicity and sequential guarantees for complex multi-step operations — without changing the underlying execution engine.
 
-It defines a unified execution semantic: all transactions are executed in the given order, and the state is committed only if all succeed; otherwise, the entire bundle is rolled back. By elevating the scheduling unit from a single Transaction to a "transaction sequence," the Bundle provides atomicity and sequential guarantee for complex multi-step operations without changing the underlying execution engine.
+Under the hood, Bundles travel through Jito Labs' Block Engine — a private scheduling channel separate from public RPC. The Block Engine receives the transaction sequence and routes it directly to validators running the Jito-Solana client. In the standard path, transactions enter the candidate queue individually and compete for ordering. A Bundle skips this — it's treated as one indivisible unit with its internal order locked.
 
-This mechanism is implemented through a private scheduling channel independent of the public RPC, where Jito Labs' Block Engine receives the transaction sequence submitted by the client and routes it directly to validators running the Jito-Solana client. Unlike the standard path where transactions enter the candidate queue one by one, a Bundle is treated as an indivisible execution unit before entering the block construction process, and its internal order does not participate in public ordering competition.
-
-From a system design perspective, the Jito Bundle is not a new transaction type but a layer of scheduling abstraction added on top of the existing execution model: it extends "Transaction-level scheduling" to "Bundle-level scheduling," thereby providing atomic execution and sequential determinism for multi-transaction dependency flows.
+A Jito Bundle isn't a new transaction type — it's a scheduling layer on top of the existing execution model. It upgrades the scheduling unit from "single transaction" to "transaction sequence," giving you atomic execution and deterministic ordering for multi-transaction workflows.
 
 ### 8.3 Use Cases
 
-In a practical system, the value of a Bundle is not only reflected in the abstract semantics of "atomicity" but also in the engineering support for complex chained strategies. Typical use cases include:
+Bundles are useful in two ways: the atomicity semantics, and the engineering support for complex chained strategies. Typical cases:
 
 - **MEV Arbitrage**: Packaging a user's transaction with an arbitrage transaction into an atomic sequence for execution, ensuring that both the buy and sell operations are completed under the same price state, preventing the intermediate state from being interrupted or price slippage from causing the strategy to fail.
 - **Liquidations**: Packaging an oracle price update transaction with a liquidation transaction for submission, ensuring the liquidation logic is executed atomically based on the latest price, avoiding execution failure or contention conflicts caused by separating price updates and liquidation.
@@ -1177,7 +1167,7 @@ For the Stake operation in this project, since it only involves a single transac
 POST https://<region>.block-engine.jito.wtf/api/v1/transactions?bundleOnly=true
 ```
 
-The `bundleOnly=true` parameter ensures that the transaction is treated as a single-transaction Bundle. This means that if execution fails, all state changes are rolled back, avoiding the awkward situation of partial execution.
+The `bundleOnly=true` parameter treats the transaction as a single-transaction Bundle — if execution fails, all state changes roll back. No partial execution.
 
 ```typescript
 export const sendJitoTransaction = async (
@@ -1243,7 +1233,7 @@ export const sendJitoTransaction = async (
 - **`sendTransaction`**: A **70/30 allocation principle** is recommended, allocating 70% of the total fee as the **Priority Fee** and 30% as the **Jito Tip**. The Priority Fee is set via `ComputeBudgetProgram.setComputeUnitPrice()`, increasing the transaction's priority in the validator's queue. The Jito Tip incentivizes Jito validators to prioritize the transaction.
 
 | **Submission Method** | **Priority Fee** | **Jito Tip** | **Core Explanation**                            |
-| :-------------------- | :--------------- | :----------- | :---------------------------------------------- |
+|:--------------------- |:---------------- |:------------ |:----------------------------------------------- |
 | `sendBundle`          | Not Required     | Required     | Tip determines the Bundle's processing priority |
 | `sendTransaction`     | 70%              | 30%          | Both work together to increase success rate     |
 
@@ -1321,13 +1311,13 @@ export default defineConfig({
 
 ## 9. Conclusion
 
-For developers with EVM experience, some of Solana's mechanisms, such as ALT, Priority Fees, blockhash expiration, and account contention, might feel "counter-intuitive" initially. However, once these mechanisms are internalized into the frontend engineering design, it becomes possible to build a truly "Solana-native" user experience: even complex interactions can be completed in a single transaction, transaction costs are controllable, and stability and reliability are maintained even under high load.
+If you're coming from EVM, Solana mechanisms like ALT, priority fees, blockhash expiration, and account contention will feel unfamiliar. ALT isn't a gas optimization — it's a constraint you work within when your transaction touches many accounts. Priority fees aren't validator tips; they're bids on contentious accounts. Blockhash expiration gives your transaction a shelf life of about 60 seconds — your retry logic needs to account for that.
 
-The core value of migrating to Solana goes far beyond just "cheaper Gas," but rather in redefining the protocol's performance ceiling and product form through its unique design.
+Once these patterns click, you can build interactions that play to Solana's strengths: complex operations in a single transaction, predictable costs, stability under load.
 
-In the subsequent articles of this series, we will publish "How to Migrate an Ethereum Protocol to Solana — Frontend (Part 2): Staking Demo Implementation." This article will use a complete Staking example to connect core frontend interaction scenarios and other core functions, demonstrating the complete end-to-end process of building a Solana frontend from scratch.
+Part 2 walks through a complete Staking demo, connecting all the frontend patterns covered here into a working end-to-end example.
 
-If you are starting to build or refactor a Solana frontend, we recommend starting with any of the key points mentioned in this article (such as ALT, Priority Fee, or unified error handling). As you gradually integrate and connect these capabilities, a DApp truly "born for Solana" will emerge. If you want to check the complete code implementation, you can view the full sample project [here](https://github.com/57blocks/evm-to-solana).
+We recommend tackling one piece at a time — ALT, priority fee estimation, or the error handler — and getting it solid before adding the rest. Full sample code: [evm-to-solana](https://github.com/57blocks/evm-to-solana).
 
 ## References
 
