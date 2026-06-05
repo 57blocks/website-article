@@ -22,10 +22,12 @@ This article is about the frontend. Not the theory — the actual code. Using a 
 
 ## Article Navigation
 
-- [Preamble](https://57blocks.com/blog/how-to-migrate-an-ethereum-protocol-to-solana-preamble?tab=engineering): Account models, execution, fee systems — the differences that matter.
-- [Contracts (Part 1)](https://57blocks.com/blog/how-to-migrate-an-ethereum-protocol-to-solana-contracts-part-1?tab=engineering): The mindset shift and contract development patterns.
-- **Frontend (Part 1):** Architecture design for data access and transaction optimization.
-- **Frontend (Part 2):** Staking Demo Implementation (this article).
+- [How to Migrate an Ethereum Protocol to Solana — Preamble](https://57blocks.com/blog/how-to-migrate-an-ethereum-protocol-to-solana-preamble): account models, execution, and fees on both chains.
+- [How to Migrate an Ethereum Protocol to Solana — Contracts (Part 1)](https://57blocks.com/blog/how-to-migrate-an-ethereum-protocol-to-solana-contracts-part-1): account model, CPI, PDAs, and Anchor patterns for EVM developers.
+- [How to Migrate an Ethereum Protocol to Solana — Contracts (Part 2)](https://57blocks.com/blog/how-to-migrate-an-ethereum-protocol-to-solana-contracts-part-2): Solana limits (CU, forks, hooks, events) and a staking migration walkthrough.
+- [How to Migrate an Ethereum Protocol to Solana — Frontend (Part 1)](https://57blocks.com/blog/how-to-migrate-an-ethereum-protocol-to-solana-frontend-part-1): wallets, transaction building, errors, and Jito bundles.
+- [How to Migrate an Ethereum Protocol to Solana — Frontend(Part 2)](https://57blocks.com/blog/how-to-migrate-an-ethereum-protocol-to-solana-frontend-part-2): transaction building, account fetching, and event/log handling on the client.
+- [How to Migrate an Ethereum Protocol to Solana — Backend](https://57blocks.com/blog/how-to-migrate-an-ethereum-protocol-to-solana-backend): event sync, log parsing, and state management for a production backend.
 
 Using a complete staking demo, we'll connect the core frontend interaction scenarios side by side — EVM on one side, Solana on the other — so you can apply the concepts from earlier articles to real code.
 

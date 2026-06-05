@@ -22,11 +22,12 @@ This article covers the frontend stuff you actually touch when moving a DApp fro
 
 #### Article Navigation
 
-- [How to Migrate an Ethereum Protocol to Solana — Preamble]([How to Migrate an Ethereum Protocol to Solana — Preamble - 57Blocks](https://57blocks.com/blog/how-to-migrate-an-ethereum-protocol-to-solana-preamble)): a systematic overview of the fundamental differences between Ethereum and Solana in account models, execution, and fee systems.
-- [How to Migrate an Ethereum Protocol to Solana — Contracts (Part 1)]([How to Migrate an Ethereum Protocol to Solana — Contracts (Part 1) - 57Blocks](https://57blocks.com/blog/how-to-migrate-an-ethereum-protocol-to-solana-contracts-part-1)): focuses on the core mindset shifts and best practices for contract development when moving from Ethereum to Solana.
-- [How to Migrate an Ethereum Protocol to Solana — Contracts (Part 2)](https://57blocks.com/blog/how-to-migrate-an-ethereum-protocol-to-solana-contracts-part-2): focuses on limitations and shortcomings in Solana contract development, and demonstrates how to migrate an Ethereum contract to Solana through a concrete staking example.
-- [How to Migrate an Ethereum Protocol to Solana — Frontend(Part 1)](https://57blocks.com/blog/how-to-migrate-an-ethereum-protocol-to-solana-frontend-part-1): A focus on the frontend mindset shift and best practices for building Solana-native DApp infrastructure from Ethereum.
-- [How to Migrate an Ethereum Protocol to Solana — Frontend(Part 2)](https://57blocks.com/blog/how-to-migrate-an-ethereum-protocol-to-solana-frontend-part-2): A practical demonstration of the fundamental differences between Ethereum and Solana frontend development in wallet integration, state reading, transaction workflows, and event handling.
+- [How to Migrate an Ethereum Protocol to Solana — Preamble](https://57blocks.com/blog/how-to-migrate-an-ethereum-protocol-to-solana-preamble): account models, execution, and fees on both chains.
+- [How to Migrate an Ethereum Protocol to Solana — Contracts (Part 1)](https://57blocks.com/blog/how-to-migrate-an-ethereum-protocol-to-solana-contracts-part-1): account model, CPI, PDAs, and Anchor patterns for EVM developers.
+- [How to Migrate an Ethereum Protocol to Solana — Contracts (Part 2)](https://57blocks.com/blog/how-to-migrate-an-ethereum-protocol-to-solana-contracts-part-2): Solana limits (CU, forks, hooks, events) and a staking migration walkthrough.
+- [How to Migrate an Ethereum Protocol to Solana — Frontend (Part 1)](https://57blocks.com/blog/how-to-migrate-an-ethereum-protocol-to-solana-frontend-part-1): wallets, transaction building, errors, and Jito bundles.
+- [How to Migrate an Ethereum Protocol to Solana — Frontend(Part 2)](https://57blocks.com/blog/how-to-migrate-an-ethereum-protocol-to-solana-frontend-part-2): transaction building, account fetching, and event/log handling on the client.
+- [How to Migrate an Ethereum Protocol to Solana — Backend](https://57blocks.com/blog/how-to-migrate-an-ethereum-protocol-to-solana-backend): event sync, log parsing, and state management for a production backend.
 
 ---
 
