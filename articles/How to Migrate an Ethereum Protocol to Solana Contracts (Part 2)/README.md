@@ -14,7 +14,7 @@ intro: "Solana contract constraints that bite during an EVM migration, plus a fu
 
 ## Article Overview
 
-If you’ve already read [Contracts (Part 1)](https://57blocks.com/blog/how-to-migrate-an-ethereum-protocol-to-solana-contracts-part-1), you can split state across accounts and wire up Anchor instructions. Day-to-day migrations still run into problems that standard Solidity practices can't fix: mainnet-fork testing is manual and easy to get wrong; transactions have a hard compute-unit cap; CPI is one-way (no re-entrancy, no synchronous callbacks); token hooks and off-chain events are not `ERC-20` plus `emit`. Plan for these early or you refactor late.
+Once you’ve already read [Contracts (Part 1)](https://57blocks.com/blog/how-to-migrate-an-ethereum-protocol-to-solana-contracts-part-1), you can split state across accounts and wire up Anchor instructions. Day-to-day migrations still run into problems that standard Solidity practices can't fix: mainnet fork testing is manual and easy to get wrong; transactions have a hard compute unit cap; CPI is one-way (no re-entrancy, no synchronous callbacks); token hooks and off-chain events are not `ERC-20` plus `emit`. Plan for these early or you refactor late.
 
 The sections below walk through each constraint first, then port staking end to end (`stake`, `unstake`, `claimRewards`) with code in [evm-to-solana](https://github.com/57blocks/evm-to-solana): implementation, tests, and deployment.
 
@@ -35,7 +35,7 @@ Part 1 covers how to structure programs and accounts. Below are the constraints 
 
 ### Testing: The Challenge of Mainnet Forking
 
-On Ethereum, Mainnet Forking (Hardhat, Foundry) gives you a lazily loaded local mainnet snapshot. You can call Uniswap or other live protocols without listing every account ahead of time.
+On Ethereum, mainnet forking (Hardhat, Foundry) provides a lazy-loaded snapshot of the mainnet. You can call Uniswap or other live protocols without listing every account ahead of time.
 
 On Solana, `solana-test-validator --clone` only copies addresses you name at startup. There is no lazy full-state fork like Ethereum. To test against Jupiter you track down pools, config accounts, authorities, and anything else the instruction touches. Miss one account and the test fails in a way that is hard to debug.
 
@@ -43,13 +43,13 @@ Tools like [surfpool](https://github.com/txtx/surfpool) narrow the gap: a local 
 
 ### Compute Unit (CU) Limits
 
-On Ethereum, gas limits scale with what you pay. Solana caps each transaction at **1.4 million compute units (CUs)** no matter the fee. Every instruction spends CUs, including CPIs. Exceed the budget and the whole transaction fails.
+On Ethereum, gas limits scale with what you pay. Solana caps each transaction at 1.4 million compute units (CUs) no matter the fee. Every instruction spends CUs, including CPIs. Exceed the budget and the whole transaction fails.
 
 Large loops and big in-memory passes that are routine on Ethereum often blow the CU budget on Solana. Split work across transactions or tighten the algorithm. We go deeper on limits in [Deep Dive into Resource Limitations in Solana Development — CU Edition](https://57blocks.io/blog/deep-dive-into-resource-limitations-in-solana-development-cu-edition).
 
 ### No Callbacks / No Re-entrancy
 
-Re-entrancy is a familiar Solidity bug: Contract B can call back into Contract A before A finishes writing state. External calls are synchronous. A common mistake is updating balances after the call:
+Re-entrancy is a familiar Solidity bug: contract B can call back into contract A before A finishes writing state. External calls are synchronous. A common mistake is updating balances after the call:
 
 ```solidity
 // Vulnerable Solidity Code
@@ -67,7 +67,7 @@ function withdraw() public {
 }
 ```
 
-Solana CPI is one-way: Program A can invoke Program B, but B cannot call back into A in the same transaction. The call graph is acyclic. Even updating state after a CPI (not recommended style) avoids classic re-entrancy:
+Solana CPI is one-way: program A can invoke program B, but B cannot call back into A in the same transaction. The call graph is acyclic. Even updating state after a CPI (not recommended style) avoids classic re-entrancy:
 
 ```rust
 // Solana (Anchor) equivalent logic - still safe from re-entrancy
@@ -92,7 +92,7 @@ While `token::transfer` runs, your program waits. The Token Program will not re-
 
 The trade-off: flash loans and other synchronous callback chains do not map cleanly. You usually split steps across transactions or check state in a follow-up instruction.
 
-### Why Hooks Are Harder
+### Why Hooks are Harder
 
 Transfer hooks show up on both chains; the wiring differs.
 
@@ -108,7 +108,7 @@ Setup on Solana is heavier than editing an `ERC-20`. Typical flow:
 
 Callers must use `transferChecked`; plain `transfer` will fail. Many wallets and DEXs still lack hook support, so check compatibility before shipping.
 
-In our staking example, blacklist checks live inside `stake`, `unstake`, and `claimRewards`. That blocks protocol paths only, not arbitrary wallet-to-wallet transfers. For a global blacklist, use Transfer Hook.
+In our staking example, blacklist checks live inside `stake`, `unstake`, and `claimRewards`. That blocks protocol paths only, not arbitrary wallet-to-wallet transfers. For a global blacklist, use transfer hook.
 
 ### Logs and Events
 
@@ -390,7 +390,7 @@ pub struct Stake<'info> {
 
 **Core function implementation**
 
-`stake` CPIs the Token Program to move tokens, then writes `pool_state` and `user_stake_info` supplied in the Context.
+`stake` CPIs the Token Program to move tokens, then writes `pool_state` and `user_stake_info` supplied in the context.
 
 ```rust
 // solana-staking/programs/solana-staking/src/instructions/stake.rs
@@ -567,7 +567,7 @@ Each `forge script` deploy on Ethereum usually gets a new contract address and e
 
 ## Summary
 
-[Part 1](https://57blocks.com/blog/how-to-migrate-an-ethereum-protocol-to-solana-contracts-part-1) covered stateless programs, explicit accounts, CPI, and PDAs. Here we added practical limits: mainnet fork testing, CU caps, one-way CPI, Transfer Hook, and Anchor events for indexing.
+[Part 1](https://57blocks.com/blog/how-to-migrate-an-ethereum-protocol-to-solana-contracts-part-1) covered stateless programs, explicit accounts, CPI, and PDAs. Here we added practical limits: mainnet fork testing, CU caps, one-way CPI, transfer hook, and Anchor events for indexing.
 
 The staking example uses the same three instructions on both chains with different layout: one Solidity contract vs. split pool/user accounts and Token Program CPIs.
 
