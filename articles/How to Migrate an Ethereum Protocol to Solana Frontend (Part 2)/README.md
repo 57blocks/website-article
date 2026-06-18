@@ -16,20 +16,21 @@ intro: "A complete staking demo implementation comparing EVM and Solana frontend
 
 Solana is maturing, and more EVM teams are looking at migration. Higher throughput, cheaper transactions, better UX — the pitch is real. We've led a handful of these migrations end to end, and the patterns that matter most aren't obvious from reading the docs. This series distills what we learned across contracts, backends, and frontends.
 
-If you're new to the series, start with the [preamble](https://57blocks.com/blog/how-to-migrate-an-ethereum-protocol-to-solana-preamble?tab=engineering) — it covers the architectural differences between Ethereum and Solana that everything else depends on.
+This article is part of a broader series on migrating Ethereum protocols to Solana. We split the work across contracts, backend, and frontend — each post builds on the same staking example in [evm-to-solana](https://github.com/57blocks/evm-to-solana).
 
-This article is about the frontend. Not the theory — the actual code. Using a complete staking demo, we'll compare EVM and Solana side by side across wallet connection, reading state, writing transactions, and handling events. Each section shows both approaches so you can see where the patterns split and why.
+**You are here:** Frontend (Part 2) — a complete staking demo comparing EVM and Solana patterns side by side.
 
-## Article Navigation
+If you're new to the series, start with the [Preamble](https://57blocks.com/blog/how-to-migrate-an-ethereum-protocol-to-solana-preamble) for account models, execution, and fees, then the [Contracts](https://57blocks.com/blog/how-to-migrate-an-ethereum-protocol-to-solana-contracts-part-1) guides. [Frontend (Part 1)](https://57blocks.com/blog/how-to-migrate-an-ethereum-protocol-to-solana-frontend-part-1) covers wallets, ALTs, priority fees, and Jito — read it first if you haven't. The [Backend](https://57blocks.com/blog/how-to-migrate-an-ethereum-protocol-to-solana-backend) guide covers event sync and automation.
 
-- [How to Migrate an Ethereum Protocol to Solana — Preamble](https://57blocks.com/blog/how-to-migrate-an-ethereum-protocol-to-solana-preamble): account models, execution, and fees on both chains.
-- [How to Migrate an Ethereum Protocol to Solana — Contracts (Part 1)](https://57blocks.com/blog/how-to-migrate-an-ethereum-protocol-to-solana-contracts-part-1): account model, CPI, PDAs, and Anchor patterns for EVM developers.
-- [How to Migrate an Ethereum Protocol to Solana — Contracts (Part 2)](https://57blocks.com/blog/how-to-migrate-an-ethereum-protocol-to-solana-contracts-part-2): Solana limits (CU, forks, hooks, events) and a staking migration walkthrough.
-- [How to Migrate an Ethereum Protocol to Solana — Frontend (Part 1)](https://57blocks.com/blog/how-to-migrate-an-ethereum-protocol-to-solana-frontend-part-1): wallets, transaction building, errors, and Jito bundles.
-- [How to Migrate an Ethereum Protocol to Solana — Frontend(Part 2)](https://57blocks.com/blog/how-to-migrate-an-ethereum-protocol-to-solana-frontend-part-2): transaction building, account fetching, and event/log handling on the client.
-- [How to Migrate an Ethereum Protocol to Solana — Backend](https://57blocks.com/blog/how-to-migrate-an-ethereum-protocol-to-solana-backend): event sync, log parsing, and state management for a production backend.
+| Layer | Article | What it covers |
+| --- | --- | --- |
+| Foundation | [Preamble](https://57blocks.com/blog/how-to-migrate-an-ethereum-protocol-to-solana-preamble) | Account model, execution, fees |
+| Contracts | [Part 1](https://57blocks.com/blog/how-to-migrate-an-ethereum-protocol-to-solana-contracts-part-1) / [Part 2](https://57blocks.com/blog/how-to-migrate-an-ethereum-protocol-to-solana-contracts-part-2) | Account model, CPI, PDAs, limits, staking port |
+| Frontend | [Part 1](https://57blocks.com/blog/how-to-migrate-an-ethereum-protocol-to-solana-frontend-part-1) | Wallets, ALTs, priority fees, retry, Jito |
+| Frontend | **[Part 2 (this article)](https://57blocks.com/blog/how-to-migrate-an-ethereum-protocol-to-solana-frontend-part-2)** | Staking demo: read/write state, events |
+| Backend | [Backend](https://57blocks.com/blog/how-to-migrate-an-ethereum-protocol-to-solana-backend) | Event sync, log parsing, cron automation |
 
-Using a complete staking demo, we'll connect the core frontend interaction scenarios side by side — EVM on one side, Solana on the other — so you can apply the concepts from earlier articles to real code.
+This article is about the frontend — not theory, but actual code. Using a complete staking demo, we'll compare EVM and Solana side by side across wallet connection, reading state, writing transactions, and handling events. Each section shows both approaches so you can see where the patterns split and why.
 
 The demo is a simplified staking protocol: users stake tokens, earn rewards, unstake or claim anytime with no lockup. Through it, we'll work through:
 

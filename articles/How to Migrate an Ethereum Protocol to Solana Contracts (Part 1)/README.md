@@ -16,21 +16,21 @@ intro: "A deep dive into the core mindset shift and best practices when moving c
 
 As the Solana ecosystem matures, more Ethereum (EVM) protocol teams are exploring migration to Solana to achieve higher throughput, lower transaction costs, and improved user experience. Through leading and executing multiple real-world Ethereum-to-Solana migrations, we've accumulated hands-on experience across smart contract architecture, data models, transaction design, and full-stack coordination.
 
-This article is part of a broader series on migrating Ethereum protocols to Solana, where we break the process down into three core layers: smart contracts, backend services, and frontend interactions. If you're new to the series, we recommend starting with [How to Migrate an Ethereum Protocol to Solana — Preamble](https://57blocks.com/blog/how-to-migrate-an-ethereum-protocol-to-solana-preamble?tab=engineering), which introduces the fundamental architectural differences between the two ecosystems.
+This article is part of a broader series on migrating Ethereum protocols to Solana. We split the work across contracts, backend, and frontend — each post builds on the same staking example in [evm-to-solana](https://github.com/57blocks/evm-to-solana).
+
+**You are here:** Contracts (Part 1) — the mindset shift from contract-centric EVM design to Solana's account model.
+
+If you're new to the series, start with the [Preamble](https://57blocks.com/blog/how-to-migrate-an-ethereum-protocol-to-solana-preamble) for account models, execution, and fees. After this post, continue with [Contracts (Part 2)](https://57blocks.com/blog/how-to-migrate-an-ethereum-protocol-to-solana-contracts-part-2) for CU limits, hooks, events, and a full staking port. Frontend and backend guides cover the layers above the program.
+
+| Layer | Article | What it covers |
+| --- | --- | --- |
+| Foundation | [Preamble](https://57blocks.com/blog/how-to-migrate-an-ethereum-protocol-to-solana-preamble) | Account model, execution, fees |
+| Contracts | **[Part 1 (this article)](https://57blocks.com/blog/how-to-migrate-an-ethereum-protocol-to-solana-contracts-part-1)** | Account model, CPI, PDAs, Anchor patterns |
+| Contracts | [Part 2](https://57blocks.com/blog/how-to-migrate-an-ethereum-protocol-to-solana-contracts-part-2) | CU limits, forks, hooks, events, staking walkthrough |
+| Frontend | [Part 1](https://57blocks.com/blog/how-to-migrate-an-ethereum-protocol-to-solana-frontend-part-1) / [Part 2](https://57blocks.com/blog/how-to-migrate-an-ethereum-protocol-to-solana-frontend-part-2) | Wallets, transaction building, account fetching, events |
+| Backend | [Backend](https://57blocks.com/blog/how-to-migrate-an-ethereum-protocol-to-solana-backend) | Event sync, log parsing, cron automation |
 
 In this article, we focus specifically on the smart contract layer. Rather than treating migration as a simple language switch from Solidity to Rust, we examine the deeper mindset shifts required when moving from Ethereum's contract-centric model to Solana's account-centric design. Using concrete examples and real production patterns, we'll walk through the most important conceptual changes, common pitfalls, and best practices that Ethereum developers need to understand to build secure and efficient Solana programs.
-
-#### Article Navigation
-
-- [How to Migrate an Ethereum Protocol to Solana — Preamble](https://57blocks.com/blog/how-to-migrate-an-ethereum-protocol-to-solana-preamble): account models, execution, and fees on both chains.
-- [How to Migrate an Ethereum Protocol to Solana — Contracts (Part 1)](https://57blocks.com/blog/how-to-migrate-an-ethereum-protocol-to-solana-contracts-part-1): account model, CPI, PDAs, and Anchor patterns for EVM developers.
-- [How to Migrate an Ethereum Protocol to Solana — Contracts (Part 2)](https://57blocks.com/blog/how-to-migrate-an-ethereum-protocol-to-solana-contracts-part-2): Solana limits (CU, forks, hooks, events) and a staking migration walkthrough.
-- [How to Migrate an Ethereum Protocol to Solana — Frontend(Part 1)](https://57blocks.com/blog/how-to-migrate-an-ethereum-protocol-to-solana-frontend-part-1): wallets, RPC, and client patterns when moving a DApp frontend to Solana.
-- [How to Migrate an Ethereum Protocol to Solana — Frontend(Part 2)](https://57blocks.com/blog/how-to-migrate-an-ethereum-protocol-to-solana-frontend-part-2): transaction building, account fetching, and event/log handling on the client.
-- [How to Migrate an Ethereum Protocol to Solana — Backend](https://57blocks.com/blog/how-to-migrate-an-ethereum-protocol-to-solana-backend): event sync, log parsing, and state management for a production backend.
----
-
-Solana rose in popularity and matured quickly because its high performance and low costs attracted a surge of developer and user attention. Meanwhile, Ethereum (EVM) and EVM-compatible chains had massive ecosystems but faced challenges like limited scalability and high transaction fees. As a result, more Web3 developers have been turning to Solana for its improved developer and user experiences, making the migration from Ethereum to Solana a prominent trend. So, how do we effectively port the smart contracts we've mastered on Ethereum to the Solana platform? Many developers initially thought that they would only need to reprogram apps using Rust rather than Solidity, but they soon discovered that the real migration challenge rested in the fundamental differences of Solana's underlying architecture. This article aims to help experienced Ethereum developers complete a critical mental model shift so they can efficiently and securely reimplement existing contract logic the Solana way.
 
 ## The Core Mindset Shift
 

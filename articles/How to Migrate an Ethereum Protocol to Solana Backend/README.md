@@ -16,16 +16,20 @@ intro: "How to index Solana transaction logs, run cron jobs against on-chain sta
 
 Contracts encode the rules, but most Web3 products still need a backend: historical stats, reward math, user activity tracking, and ops alerts. On Ethereum that often means `eth_getLogs` against indexed events. On Solana you pull transactions yourself and parse `logMessages`.
 
-This article is the backend piece of our EVM-to-Solana series. Earlier posts covered contracts and the frontend; here we walk through event sync, log parsing, account selection for `getSignaturesForAddress`, cron automation, and deployment. The running example is the Anchor staking pool from the series (`PoolConfig`, `PoolState`, `UserStakeInfo`). Code lives in [solana-backend](https://github.com/57blocks/evm-to-solana/tree/main/backend/solana-backend).
+This article is part of a broader series on migrating Ethereum protocols to Solana. We split the work across contracts, backend, and frontend — each post builds on the same staking example in [evm-to-solana](https://github.com/57blocks/evm-to-solana).
 
-#### Article Navigation
+**You are here:** Backend — event sync, log parsing, cron automation, and deployment.
 
-- [How to Migrate an Ethereum Protocol to Solana — Preamble](https://57blocks.com/blog/how-to-migrate-an-ethereum-protocol-to-solana-preamble): account models, execution, and fees on both chains.
-- [How to Migrate an Ethereum Protocol to Solana — Contracts (Part 1)](https://57blocks.com/blog/how-to-migrate-an-ethereum-protocol-to-solana-contracts-part-1): account model, CPI, PDAs, and Anchor patterns for EVM developers.
-- [How to Migrate an Ethereum Protocol to Solana — Contracts (Part 2)](https://57blocks.com/blog/how-to-migrate-an-ethereum-protocol-to-solana-contracts-part-2): Solana limits (CU, forks, hooks, events) and a staking migration walkthrough.
-- [How to Migrate an Ethereum Protocol to Solana — Frontend (Part 1)](https://57blocks.com/blog/how-to-migrate-an-ethereum-protocol-to-solana-frontend-part-1): wallets, transaction building, errors, and Jito bundles.
-- [How to Migrate an Ethereum Protocol to Solana — Frontend(Part 2)](https://57blocks.com/blog/how-to-migrate-an-ethereum-protocol-to-solana-frontend-part-2): transaction building, account fetching, and event/log handling on the client.
-- [How to Migrate an Ethereum Protocol to Solana — Backend](https://57blocks.com/blog/how-to-migrate-an-ethereum-protocol-to-solana-backend): event sync, log parsing, and state management for a production backend.
+If you're new to the series, start with the [Preamble](https://57blocks.com/blog/how-to-migrate-an-ethereum-protocol-to-solana-preamble) for account models, execution, and fees, then the [Contracts](https://57blocks.com/blog/how-to-migrate-an-ethereum-protocol-to-solana-contracts-part-1) guides. The [Frontend](https://57blocks.com/blog/how-to-migrate-an-ethereum-protocol-to-solana-frontend-part-1) guides cover wallet and client patterns on the other side of the stack.
+
+| Layer | Article | What it covers |
+| --- | --- | --- |
+| Foundation | [Preamble](https://57blocks.com/blog/how-to-migrate-an-ethereum-protocol-to-solana-preamble) | Account model, execution, fees |
+| Contracts | [Part 1](https://57blocks.com/blog/how-to-migrate-an-ethereum-protocol-to-solana-contracts-part-1) / [Part 2](https://57blocks.com/blog/how-to-migrate-an-ethereum-protocol-to-solana-contracts-part-2) | Account model, CPI, PDAs, limits, staking port |
+| Frontend | [Part 1](https://57blocks.com/blog/how-to-migrate-an-ethereum-protocol-to-solana-frontend-part-1) / [Part 2](https://57blocks.com/blog/how-to-migrate-an-ethereum-protocol-to-solana-frontend-part-2) | Wallets, ALTs, staking demo, events |
+| Backend | **[Backend (this article)](https://57blocks.com/blog/how-to-migrate-an-ethereum-protocol-to-solana-backend)** | Event sync, log parsing, cron automation |
+
+Here we walk through event sync, log parsing, account selection for `getSignaturesForAddress`, cron automation, and deployment. The running example is the Anchor staking pool from the series (`PoolConfig`, `PoolState`, `UserStakeInfo`). Code lives in [solana-backend](https://github.com/57blocks/evm-to-solana/tree/main/backend/solana-backend).
 
 ## What a Solana Backend is for
 

@@ -14,20 +14,23 @@ intro: "Solana contract constraints that bite during an EVM migration, plus a fu
 
 ## Article Overview
 
-Once you’ve already read [Contracts (Part 1)](https://57blocks.com/blog/how-to-migrate-an-ethereum-protocol-to-solana-contracts-part-1), you can split state across accounts and wire up Anchor instructions. Day-to-day migrations still run into problems that standard Solidity practices can't fix: mainnet fork testing is manual and easy to get wrong; transactions have a hard compute unit cap; CPI is one-way (no re-entrancy, no synchronous callbacks); token hooks and off-chain events are not `ERC-20` plus `emit`. Plan for these early or you refactor late.
+Once you've already read [Contracts (Part 1)](https://57blocks.com/blog/how-to-migrate-an-ethereum-protocol-to-solana-contracts-part-1), you can split state across accounts and wire up Anchor instructions. Day-to-day migrations still run into problems that standard Solidity practices can't fix: mainnet-fork testing is manual and easy to get wrong; transactions have a hard compute-unit cap; CPI is one-way (no re-entrancy, no synchronous callbacks); token hooks and off-chain events are not `ERC-20` plus `emit`. Plan for these early or you refactor late.
+
+This article is part of a broader series on migrating Ethereum protocols to Solana. We split the work across contracts, backend, and frontend — each post builds on the same staking example in [evm-to-solana](https://github.com/57blocks/evm-to-solana).
+
+**You are here:** Contracts (Part 2) — Solana limits, hooks, events, and a full staking port from Solidity to Anchor.
+
+If you're new to the series, start with the [Preamble](https://57blocks.com/blog/how-to-migrate-an-ethereum-protocol-to-solana-preamble) for account models, execution, and fees, then read [Contracts (Part 1)](https://57blocks.com/blog/how-to-migrate-an-ethereum-protocol-to-solana-contracts-part-1) for the account-model mindset shift. After this post, continue with the [Frontend](https://57blocks.com/blog/how-to-migrate-an-ethereum-protocol-to-solana-frontend-part-1) and [Backend](https://57blocks.com/blog/how-to-migrate-an-ethereum-protocol-to-solana-backend) guides for the layers above the program.
+
+| Layer | Article | What it covers |
+| --- | --- | --- |
+| Foundation | [Preamble](https://57blocks.com/blog/how-to-migrate-an-ethereum-protocol-to-solana-preamble) | Account model, execution, fees |
+| Contracts | [Part 1](https://57blocks.com/blog/how-to-migrate-an-ethereum-protocol-to-solana-contracts-part-1) | Account model, CPI, PDAs, Anchor patterns |
+| Contracts | **[Part 2 (this article)](https://57blocks.com/blog/how-to-migrate-an-ethereum-protocol-to-solana-contracts-part-2)** | CU limits, forks, hooks, events, staking walkthrough |
+| Frontend | [Part 1](https://57blocks.com/blog/how-to-migrate-an-ethereum-protocol-to-solana-frontend-part-1) / [Part 2](https://57blocks.com/blog/how-to-migrate-an-ethereum-protocol-to-solana-frontend-part-2) | Wallets, transaction building, account fetching, events |
+| Backend | [Backend](https://57blocks.com/blog/how-to-migrate-an-ethereum-protocol-to-solana-backend) | Event sync, log parsing, cron automation |
 
 The sections below walk through each constraint first, then port staking end to end (`stake`, `unstake`, `claimRewards`) with code in [evm-to-solana](https://github.com/57blocks/evm-to-solana): implementation, tests, and deployment.
-
-It’s part of our series on migrating Ethereum protocols to Solana (contracts, backend, frontend). If you’re new to the topic, start with the [Preamble](https://57blocks.com/blog/how-to-migrate-an-ethereum-protocol-to-solana-preamble) for account models, execution, and fees.
-
-#### Article Navigation
-
-- [How to Migrate an Ethereum Protocol to Solana — Preamble](https://57blocks.com/blog/how-to-migrate-an-ethereum-protocol-to-solana-preamble): account models, execution, and fees on both chains.
-- [How to Migrate an Ethereum Protocol to Solana — Contracts (Part 1)](https://57blocks.com/blog/how-to-migrate-an-ethereum-protocol-to-solana-contracts-part-1): account model, CPI, PDAs, and Anchor patterns for EVM developers.
-- [How to Migrate an Ethereum Protocol to Solana — Contracts (Part 2)](https://57blocks.com/blog/how-to-migrate-an-ethereum-protocol-to-solana-contracts-part-2): Solana limits (CU, forks, hooks, events) and a staking migration walkthrough.
-- [How to Migrate an Ethereum Protocol to Solana — Frontend(Part 1)](https://57blocks.com/blog/how-to-migrate-an-ethereum-protocol-to-solana-frontend-part-1): wallets, RPC, and client patterns when moving a DApp frontend to Solana.
-- [How to Migrate an Ethereum Protocol to Solana — Frontend(Part 2)](https://57blocks.com/blog/how-to-migrate-an-ethereum-protocol-to-solana-frontend-part-2): transaction building, account fetching, and event/log handling on the client.
-- [How to Migrate an Ethereum Protocol to Solana — Backend](https://57blocks.com/blog/how-to-migrate-an-ethereum-protocol-to-solana-backend): event sync, log parsing, and state management for a production backend.
 
 ## Solana Limitations and Trade-offs You Should Know
 
