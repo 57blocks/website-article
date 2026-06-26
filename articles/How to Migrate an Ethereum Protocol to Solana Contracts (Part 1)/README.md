@@ -16,18 +16,21 @@ intro: "A deep dive into the core mindset shift and best practices when moving c
 
 As the Solana ecosystem matures, more Ethereum (EVM) protocol teams are exploring migration to Solana to achieve higher throughput, lower transaction costs, and improved user experience. Through leading and executing multiple real-world Ethereum-to-Solana migrations, we've accumulated hands-on experience across smart contract architecture, data models, transaction design, and full-stack coordination.
 
-This article is part of a broader series on migrating Ethereum protocols to Solana, where we break the process down into three core layers: smart contracts, backend services, and frontend interactions. If you're new to the series, we recommend starting with "[How to Migrate an Ethereum Protocol to Solana — Preamble](https://57blocks.com/blog/how-to-migrate-an-ethereum-protocol-to-solana-preamble?tab=engineering)," which introduces the fundamental architectural differences between the two ecosystems.
+This article is part of a broader series on migrating Ethereum protocols to Solana. We split the work across contracts, backend, and frontend — each post builds on the same staking example in [evm-to-solana](https://github.com/57blocks/evm-to-solana).
+
+**You are here:** Contracts (Part 1) — the mindset shift from contract-centric EVM design to Solana's account model.
+
+If you're new to the series, start with the [Preamble](https://57blocks.com/blog/how-to-migrate-an-ethereum-protocol-to-solana-preamble) for account models, execution, and fees. After this post, continue with [Contracts (Part 2)](https://57blocks.com/blog/how-to-migrate-an-ethereum-protocol-to-solana-contracts-part-2) for CU limits, hooks, events, and a full staking port. Frontend and backend guides cover the layers above the program.
+
+| Layer | Article | What it covers |
+| --- | --- | --- |
+| Foundation | [Preamble](https://57blocks.com/blog/how-to-migrate-an-ethereum-protocol-to-solana-preamble) | Account model, execution, fees |
+| Contracts | **[Part 1 (this article)](https://57blocks.com/blog/how-to-migrate-an-ethereum-protocol-to-solana-contracts-part-1)** | Account model, CPI, PDAs, Anchor patterns |
+| Contracts | [Part 2](https://57blocks.com/blog/how-to-migrate-an-ethereum-protocol-to-solana-contracts-part-2) | CU limits, forks, hooks, events, staking walkthrough |
+| Frontend | [Part 1](https://57blocks.com/blog/how-to-migrate-an-ethereum-protocol-to-solana-frontend-part-1) / [Part 2](https://57blocks.com/blog/how-to-migrate-an-ethereum-protocol-to-solana-frontend-part-2) | Wallets, transaction building, account fetching, events |
+| Backend | [Backend](https://57blocks.com/blog/how-to-migrate-an-ethereum-protocol-to-solana-backend) | Event sync, log parsing, cron automation |
 
 In this article, we focus specifically on the smart contract layer. Rather than treating migration as a simple language switch from Solidity to Rust, we examine the deeper mindset shifts required when moving from Ethereum's contract-centric model to Solana's account-centric design. Using concrete examples and real production patterns, we'll walk through the most important conceptual changes, common pitfalls, and best practices that Ethereum developers need to understand to build secure and efficient Solana programs.
-
-#### Article Navigation
-
-- [How to Migrate an Ethereum Protocol to Solana — Preamble](https://57blocks.com/blog/how-to-migrate-an-ethereum-protocol-to-solana-preamble?tab=engineering): A systematic introduction to the fundamental differences between Ethereum and Solana in account models, execution mechanisms, and fee systems.
-- [How to Migrate an Ethereum Protocol to Solana — Contracts (Part 1)](https://57blocks.com/blog/how-to-migrate-an-ethereum-protocol-to-solana-contracts-part-1?tab=engineering): A focus on the core mindset shift and best practices for contract development from Ethereum to Solana.
-
----
-
-Solana rose in popularity and matured quickly because its high performance and low costs attracted a surge of developer and user attention. Meanwhile, Ethereum (EVM) and EVM-compatible chains had massive ecosystems but faced challenges like limited scalability and high transaction fees. As a result, more Web3 developers have been turning to Solana for its improved developer and user experiences, making the migration from Ethereum to Solana a prominent trend. So, how do we effectively port the smart contracts we've mastered on Ethereum to the Solana platform? Many developers initially thought that they would only need to reprogram apps using Rust rather than Solidity, but they soon discovered that the real migration challenge rested in the fundamental differences of Solana's underlying architecture. This article aims to help experienced Ethereum developers complete a critical mental model shift so they can efficiently and securely reimplement existing contract logic the Solana way.
 
 ## The Core Mindset Shift
 
@@ -77,11 +80,11 @@ pub mod staking {
     pub fn stake(ctx: Context<Stake>, amount: u64) -> Result<()> {
         // Business logic operates on accounts passed via the context.
         // The context `ctx` contains all necessary accounts,
-        // such as `GlobalState` and `UserStakeInfo`, defined in the `Stake` struct below.
-        let state = &mut ctx.accounts.state;
-        let user_info = &mut ctx.accounts.user_stake_info;
-        state.total_staked += amount;
-        user_info.amount += amount;
+        // such as `PoolConfig`, `PoolState`, and `UserStakeInfo`.
+        let pool_state = &mut ctx.accounts.pool_state;
+        let user_stake_info = &mut ctx.accounts.user_stake_info;
+        pool_state.total_staked += amount;
+        user_stake_info.amount += amount;
         // ...
         Ok(())
     }
@@ -92,27 +95,63 @@ pub mod staking {
 #[derive(Accounts)]
 pub struct Stake<'info> {
     #[account(mut)]
-    pub state: Account<'info, GlobalState>,
-    #[account(mut)]
-    pub user_stake_info: Account<'info, UserStakeInfo>,
-    // ... other necessary accounts
+    pub user: Signer<'info>,
+    #[account(
+        seeds = [POOL_CONFIG_SEED, pool_config.pool_id.as_ref()],
+        bump = pool_config.bump
+    )]
+    pub pool_config: Box<Account<'info, PoolConfig>>,
+    #[account(
+        mut,
+        seeds = [POOL_STATE_SEED, pool_config.key().as_ref()],
+        bump = pool_state.bump,
+        has_one = pool_config
+    )]
+    pub pool_state: Box<Account<'info, PoolState>>,
+    #[account(
+        init_if_needed,
+        payer = user,
+        space = 8 + UserStakeInfo::INIT_SPACE,
+        seeds = [STAKE_SEED, pool_config.key().as_ref(), user.key().as_ref()],
+        bump
+    )]
+    pub user_stake_info: Box<Account<'info, UserStakeInfo>>,
+    pub system_program: Program<'info, System>,
 }
 
 // State is defined in separate account structs.
 #[account]
-pub struct GlobalState {
-    pub total_staked: u64,
-    // ... other global state
+#[derive(InitSpace)]
+pub struct PoolConfig {
+    pub admin: Pubkey,
+    pub pool_id: Pubkey,
+    pub staking_mint: Pubkey,
+    pub reward_mint: Pubkey,
+    pub reward_per_second: u64,
+    pub bump: u8,
 }
 
 #[account]
+#[derive(InitSpace)]
+pub struct PoolState {
+    pub pool_config: Pubkey,
+    pub acc_reward_per_share: u128,
+    pub last_reward_time: i64,
+    pub total_staked: u64,
+    pub total_reward_debt: i128,
+    pub bump: u8,
+}
+
+#[account]
+#[derive(InitSpace)]
 pub struct UserStakeInfo {
     pub amount: u64,
-    // ... other user state
+    pub reward_debt: i128,
+    pub bump: u8,
 }
 ```
 
-Here, the `staking` program is stateless and holds no data. All data—both global `GlobalState` and per-user `UserStakeInfo`—are defined in separate `#[account]` structs. The program receives these accounts through the `Context` object (typed by the `Stake` struct), and then operates on them.
+Here, the `staking` program is stateless and holds no data. All data—both pool-level `PoolConfig` / `PoolState` and per-user `UserStakeInfo`—are defined in separate `#[account]` structs. The program receives these accounts through the `Context` object (typed by the `Stake` struct), and then operates on them.
 
 This design's fundamental purpose is to enable large-scale [parallel processing](https://medium.com/solana-labs/sealevel-parallel-processing-thousands-of-smart-contracts-d814b378192). Because code and data are separated, Solana transactions will declare all accounts they will access ahead of execution and specify whether each account is read-only or writable. This allows the runtime to build a dependency graph and schedule transactions efficiently. If two transactions touch completely unrelated accounts—or both only read the same account—they can safely run in parallel. Only when one transaction needs to write to an account, other transactions that access that account (read or write) will be temporarily blocked and executed sequentially. With this fine-grained scheduling, Solana maximizes multi-core utilization to process many non-interfering transactions concurrently. This is a key element to its high throughput and low latency.
 
@@ -147,7 +186,7 @@ pub struct Stake<'info> {
     #[account(mut)]
     pub user_token_account: Account<'info, TokenAccount>,
     #[account(mut)]
-    pub staking_vault: Account<'info, TokenAccount>,
+    pub staking_token: Account<'info, TokenAccount>,
     pub token_program: Program<'info, Token>,
     // ...
 }
@@ -159,7 +198,7 @@ pub fn stake(ctx: Context<Stake>, amount: u64) -> Result<()> {
             ctx.accounts.token_program.to_account_info(),
             Transfer {
                 from: ctx.accounts.user_token_account.to_account_info(),
-                to: ctx.accounts.staking_vault.to_account_info(),
+                to: ctx.accounts.staking_token.to_account_info(),
                 authority: ctx.accounts.user.to_account_info(),
             }
         ),
@@ -216,13 +255,16 @@ async function stakeTokens(
   const userStakePda = getUserStakePda(statePda, user.publicKey);
 
   // All required accounts must be explicitly passed.
+  const userBlacklistPda = getBlacklistPda(statePda, user.publicKey);
   const stakeInstruction = programClient.getStakeInstruction({
     user: userSigner,
-    state: address(statePda.toBase58()),
+    poolConfig: address(statePda.toBase58()),
+    poolState: address(poolStatePda.toBase58()),
     userStakeInfo: address(userStakePda.toBase58()),
     userTokenAccount: address(stakingToken.toBase58()),
-    stakingVault: address(stakingVaultPda.toBase58()),
-    // ... and other accounts
+    stakingToken: address(stakingTokenPda.toBase58()),
+    tokenProgram: address(TOKEN_PROGRAM_ID.toBase58()),
+    blacklistEntry: address(userBlacklistPda.toBase58()),
     amount: amount,
   });
 
@@ -230,7 +272,7 @@ async function stakeTokens(
 }
 ```
 
-In this TypeScript Test, calling the `stake` instruction requires a large account object: `user` (signer), `state` (global state account), `userStakeInfo` (user staking data account), `userTokenAccount` (the user's token account), `stakingVault` (the program's vault), etc. While this makes the client call more verbose, it brings transparency and safety. Before the transaction is sent, the client code explicitly defines all accounts included in the transaction. There are no hidden contextual dependencies in a Solana transaction.
+In this TypeScript Test, calling the `stake` instruction requires a large account object: `user` (signer), `poolConfig` (pool config account), `poolState` (pool runtime state account), `userStakeInfo` (user staking data account), `userTokenAccount` (the user's token account), `stakingToken` (the program's staking token account), `blacklistEntry` (the user's blacklist PDA), etc. While this makes the client call more verbose, it brings transparency and safety. Before the transaction is sent, the client code explicitly defines all accounts included in the transaction. There are no hidden contextual dependencies in a Solana transaction.
 
 Additionally, on Ethereum, upgrading a contract often requires changing client code to point to a new contract address. On Solana, you simply deploy new program code to the same program ID, achieving seamless upgrades. All business data remains untouched in their accounts because data and logic are decoupled. Since the program address doesn’t change, client code remains compatible.
 
@@ -240,14 +282,16 @@ If you want deeper architectural context for the code patterns in this article, 
 
 To put these ideas into practice, you may want to get comfortable with a different, ecosystem-specific toolchain. From language to standard libraries, Solana's ecosystem differs significantly from Ethereum's ecosystem. The table below summarizes key differences to help you build a new understanding of the differences quickly.
 
+
 | **Domain**                | **Ethereum Ecosystem**                | **Solana Ecosystem**                | **Key Notes**                                                                                                                                                                                                                                                                                                                                                                                              |
-| :------------------------ | :------------------------------------ | :---------------------------------- | :--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| ------------------------- | ------------------------------------- | ----------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | **Frameworks**            | Hardhat / Foundry (Solidity)          | Anchor (Rust)                       | In the Ethereum ecosystem, Hardhat and Foundry are widely used smart contract development tools. Anchor is the de facto standard for Solana development; it uses powerful macros to greatly simplify the complexity of Solana program development.                                                                                                                                                         |
 | **Interface Standard**    | ABI (Application Binary Interface)    | IDL (Interface Definition Language) | Anchor automatically generates an IDL from your program code, similar to the ABI concept on Ethereum—ABI is Ethereum’s contract interaction standard, and the Solidity compiler automatically generates ABI files describing function/parameter/return binary encodings. Clients can use these IDL or ABI files to interact with your program without needing to understand the underlying implementation. |
 | **Standard Library**      | OpenZeppelin                          | SPL (Solana Program Library)        | OpenZeppelin is an import-and-inherit code library, whereas SPL is a set of reusable standard programs already deployed on-chain. You interact with them via Cross-Program Invocation (CPI) instead of copying code into your project.                                                                                                                                                                     |
 | **Contract Verification** | Upload and verify source on Etherscan | Submit source for Verified Build    | Solana supports “Verified Builds,” conceptually similar to Ethereum. Developers submit source code, which is compiled in a deterministic environment; the build artifact’s hash is compared against on-chain bytecode. This ensures the source matches the on-chain program—not just validating the IDL interface.                                                                                         |
 | **Network RPC**           | Infura, Alchemy, QuickNode            | Helius, Alchemy, QuickNode          | Both ecosystems have top-tier RPC providers; only a few (like QuickNode) are multi-chain. Solana's high throughput has also led to specialized providers like Helius to offer enhanced Solana-first APIs.                                                                                                                                                                                                  |
 | **Explorers**             | Etherscan, Blockscout                 | Solscan, Solana Explorer, X-Ray     | The Ethereum ecosystem has powerful tools like Tenderly for deep transaction simulation and debugging. In the Solana ecosystem, tools like Helius (product X-Ray) provide similar functionality. Due to Solana’s parallel transaction model, these tools focus more on visualizing value flows between accounts and CPI call chains to help developers understand complex instruction interactions.        |
+
 
 From this comparison, a clear pattern emerges: Ethereum development supports ideas like inheritance and extension (e.g., inheriting OpenZeppelin contracts), while Solana development supports composition and interaction (via CPI with on-chain SPL programs).
 
@@ -265,38 +309,102 @@ Native development requires direct interaction with Solana's low-level libraries
 
 Solana's official recommendation, meant specifically for developers migrating from Ethereum, is to choose Anchor. Anchor leverages Rust macros to simplify development, enhance safety, and ultimately automate the complex parts of native development.
 
-Here's a simple `initialize` instruction for creating a new global state account using Anchor. Once you declare accounts and constraints, the framework handles validation and initialization for you.
+Here's a simple `create_pool` instruction for creating pool config, pool state, staking token, and reward vault accounts using Anchor. Once you declare accounts and constraints, the framework handles validation and initialization for you.
 
 ```rust
-// solana-staking/programs/solana-staking/src/instructions/initialize.rs
-#[program]
-pub mod staking {
-    pub fn initialize_handler(ctx: Context<Initialize>, reward_per_second: u64) -> Result<()> {
-        // Business logic is clean and focused.
-        let state = &mut ctx.accounts.state;
-        state.reward_per_second = reward_per_second;
-        state.admin = ctx.accounts.admin.key();
-        // ...
-        Ok(())
-    }
+// solana-staking/programs/solana-staking/src/instructions/create_pool.rs
+pub fn create_pool_handler(
+    ctx: Context<CreatePool>,
+    pool_id: Pubkey,
+    reward_per_second: u64,
+) -> Result<()> {
+    require!(pool_id != Pubkey::default(), StakingError::InvalidPoolId);
+    require!(reward_per_second > 0, StakingError::InvalidRewardPerSecond);
+
+    let pool_config = &mut ctx.accounts.pool_config;
+    let pool_state = &mut ctx.accounts.pool_state;
+    let clock = Clock::get()?;
+
+    pool_config.admin = ctx.accounts.admin.key();
+    pool_config.pool_id = pool_id;
+    pool_config.staking_mint = ctx.accounts.staking_mint.key();
+    pool_config.reward_mint = ctx.accounts.reward_mint.key();
+    pool_config.reward_per_second = reward_per_second;
+    pool_config.bump = ctx.bumps.pool_config;
+
+    pool_state.pool_config = pool_config.key();
+    pool_state.acc_reward_per_share = 0;
+    pool_state.last_reward_time = clock.unix_timestamp;
+    pool_state.total_staked = 0;
+    pool_state.total_reward_debt = 0;
+    pool_state.bump = ctx.bumps.pool_state;
+
+    Ok(())
 }
 
-// Define accounts and constraints declaratively.
 #[derive(Accounts)]
-pub struct Initialize<'info> {
+#[instruction(pool_id: Pubkey)]
+pub struct CreatePool<'info> {
     #[account(mut)]
     pub admin: Signer<'info>,
-    // Anchor handles the creation and rent payment for this account.
-    #[account(init, payer = admin, space = 8 + GlobalState::INIT_SPACE)]
-    pub state: Account<'info, GlobalState>,
+    #[account(
+        init,
+        payer = admin,
+        space = 8 + PoolConfig::INIT_SPACE,
+        seeds = [POOL_CONFIG_SEED, pool_id.as_ref()],
+        bump
+    )]
+    pub pool_config: Box<Account<'info, PoolConfig>>,
+    #[account(
+        init,
+        payer = admin,
+        space = 8 + PoolState::INIT_SPACE,
+        seeds = [POOL_STATE_SEED, pool_config.key().as_ref()],
+        bump
+    )]
+    pub pool_state: Box<Account<'info, PoolState>>,
+    pub staking_mint: Account<'info, Mint>,
+    pub reward_mint: Account<'info, Mint>,
+    #[account(
+        init,
+        payer = admin,
+        token::mint = staking_mint,
+        token::authority = pool_config,
+        seeds = [STAKING_TOKEN_SEED, pool_config.key().as_ref()],
+        bump
+    )]
+    pub staking_token: Account<'info, TokenAccount>,
+    #[account(
+        init,
+        payer = admin,
+        token::mint = reward_mint,
+        token::authority = pool_config,
+        seeds = [REWARD_VAULT_SEED, pool_config.key().as_ref()],
+        bump
+    )]
+    pub reward_vault: Account<'info, TokenAccount>,
     pub system_program: Program<'info, System>,
+    pub token_program: Program<'info, Token>,
 }
 
 #[account]
-pub struct GlobalState {
+pub struct PoolConfig {
     pub admin: Pubkey,
+    pub pool_id: Pubkey,
+    pub staking_mint: Pubkey,
+    pub reward_mint: Pubkey,
     pub reward_per_second: u64,
-    // ...
+    pub bump: u8,
+}
+
+#[account]
+pub struct PoolState {
+    pub pool_config: Pubkey,
+    pub acc_reward_per_share: u128,
+    pub last_reward_time: i64,
+    pub total_staked: u64,
+    pub total_reward_debt: i128,
+    pub bump: u8,
 }
 ```
 
@@ -415,7 +523,7 @@ pub struct AccountClose<'info> {
 
 For more details, see [Mango Markets v4 source](https://github.com/blockworks-foundation/mango-v4/blob/dev/programs/mango-v4/src/accounts_ix/account_close.rs).
 
-Our `solana-staking` example also follows this lifecycle model. The `initialize` instruction creates global state and vault accounts; the `stake` instruction uses `init` to create a user info account on first stake; and in `unstake`, if the user’s balance returns to zero, the program uses `close` to destroy their user info account and refund rent. See the repository here: [solana-staking](https://github.com/57blocks/evm-to-solana/tree/main/contract/solana-staking).
+Our `solana-staking` example also follows this lifecycle model. The `create_pool` instruction creates pool config, pool state, staking token, and reward vault accounts; the `stake` instruction uses `init_if_needed` to create a user stake info account on first stake; and when a user wants to close out, the separate `close_user_stake_account` instruction destroys their user stake info account and refunds rent. See the repository here: [solana-staking](https://github.com/57blocks/evm-to-solana/tree/main/contract/solana-staking).
 
 ### Program Derived Addresses (PDA)
 
@@ -436,7 +544,7 @@ pub struct Stake<'info> {
         init_if_needed,
         payer = user,
         space = 8 + UserStakeInfo::INIT_SPACE,
-        seeds = [STAKE_SEED, state.key().as_ref(), user.key().as_ref()],
+        seeds = [STAKE_SEED, pool_config.key().as_ref(), user.key().as_ref()],
         bump
     )]
     pub user_stake_info: Box<Account<'info, UserStakeInfo>>,
@@ -447,15 +555,13 @@ pub struct Stake<'info> {
 #[account]
 #[derive(InitSpace)]
 pub struct UserStakeInfo {
-    pub owner: Pubkey,
     pub amount: u64,
     pub reward_debt: i128,
-    pub claimed: u64,
     pub bump: u8,
 }
 ```
 
-- `seeds = [STAKE_SEED, state.key().as_ref(), user.key().as_ref()]`: the core PDA definition. It derives `user_stake_info` from a constant `STAKE_SEED`, the global state account `state.key()`, and the user public key `user.key()`. This ensures a unique, predictable `UserStakeInfo` address per user per staking pool.
+- `seeds = [STAKE_SEED, pool_config.key().as_ref(), user.key().as_ref()]`: the core PDA definition. It derives `user_stake_info` from a constant `STAKE_SEED`, the pool config account `pool_config.key()`, and the user public key `user.key()`. This ensures a unique, predictable `UserStakeInfo` address per user per staking pool.
 - `bump`: Anchor finds a `bump` and stores it in the PDA’s data. Future instructions use the stored `bump` to re-derive and verify the address, ensuring `user_stake_info` is legitimate, not forged.
 - `init_if_needed`: a convenience constraint that auto-creates this PDA on a user’s first stake. It’s feature-gated in Anchor because it can introduce reinitialization risks, so avoid it when possible.
 
@@ -472,7 +578,7 @@ There are two reasons to do this. First, the complexity of CPI (Cross-Program In
 // Transfer staking tokens from user to vault
 let cpi_accounts = Transfer {
     from: ctx.accounts.user_token_account.to_account_info(),
-    to: ctx.accounts.staking_vault.to_account_info(),
+    to: ctx.accounts.staking_token.to_account_info(),
     authority: ctx.accounts.user.to_account_info(),
 };
 let cpi_program = ctx.accounts.token_program.to_account_info();
@@ -523,20 +629,22 @@ Upgrades are crucial to a project’s evolution, and Ethereum and Solana offer v
 
 In early Ethereum, upgrading smart contracts was complex and risky. Because code and data are tightly coupled at one address, upgrading often meant deploying a new contract and migrating data, which can be complex and error-prone. The community developed mature Proxy patterns where data resides in a stable proxy contract and upgradeable logic contracts are referenced via pointers. Upgrades switch the logic implementation without changing the proxy address—now the de facto standard.
 
-Solana's design is simpler and more elegant: program code and state storage are naturally separated. You can redeploy new BPF bytecode to the same program ID to upgrade the program, while state accounts (outside the program) remain intact. There is no data migration needed, significantly reducing complexity and risk. However, there's a new challenge–once an account's structure and size are set, you can’t expand it in-place. If you later add new fields to a state account that was allocated with a smaller size, you’ll get data misalignment or read errors. The recommended approach is to pre-allocate unused space (`padding`) in v1 so you can safely add fields later without changing account size:
+Solana's design is simpler and more elegant: program code and state storage are naturally separated. You can redeploy new BPF bytecode to the same program ID to upgrade the program, while state accounts (outside the program) remain intact. There is no data migration needed, significantly reducing complexity and risk. However, there's a new challenge–once an account's structure and size are set, you can’t expand it in-place. If you later add new fields to a state account that was allocated with a smaller size, you’ll get data misalignment or read errors. The example below shows the current `PoolState` layout; if you expect the account to grow later, reserve extra space up front when you define the account size:
 
 ```rust
-#[account(zero_copy)]
-#[repr(C)]
-pub struct MyState {
-    pub data_field_a: u64,
-    pub data_field_b: bool,
-    // Reserve 128 bytes for future upgrade
-    pub _reserved: [u8; 128],
+#[account]
+#[derive(InitSpace)]
+pub struct PoolState {
+    pub pool_config: Pubkey,
+    pub acc_reward_per_share: u128,
+    pub last_reward_time: i64,
+    pub total_staked: u64,
+    pub total_reward_debt: i128,
+    pub bump: u8,
 }
 ```
 
-This way, when you need new fields, you can repurpose part of `_reserved` without changing the account size, keeping old accounts compatible with the new program.
+This way, when you need new fields, you can reuse that preallocated space without changing the account size, keeping old accounts compatible with the new program.
 
 Also, when deploying a Solana program, you must set an upgrade authority (`upgrade authority`), which is often the deployer wallet or a multisig. This authority is the only entity that can update program bytecode. If it's compromised or removed improperly, the program could be maliciously upgraded or become immutable, so handle it with care.
 
@@ -544,7 +652,7 @@ Also, when deploying a Solana program, you must set an upgrade authority (`upgra
 
 In Ethereum's ERC20 standard, transferring on behalf of a user usually takes two steps: the user calls `approve` to grant an allowance, and the authorized party (often a contract) then calls `transferFrom`. This exists because the account model distinguishes between the token holder and the executor, and the executor must submit a transaction separately.
 
-In Solana’s SPL Token model, this is greatly simplified. Each token account records its _authority_ explicitly. As long as the transaction includes that authority’s signature, the program can directly call `token::transfer` to move tokens—no separate `transferFrom` needed. In other words, Solana’s runtime natively supports a **who-signs-who-authorizes** model instead of relying on contracts to check a second-layer approval.
+In Solana’s SPL Token model, this is greatly simplified. Each token account records its *authority* explicitly. As long as the transaction includes that authority’s signature, the program can directly call `token::transfer` to move tokens—no separate `transferFrom` needed. In other words, Solana’s runtime natively supports a **who-signs-who-authorizes** model instead of relying on contracts to check a second-layer approval.
 
 Furthermore, Solana’s execution environment supports signature propagation across CPI:
 
@@ -559,7 +667,7 @@ Our staking flow uses direct user signatures without proxy or PDA authority. Whe
 pub fn stake_handler(ctx: Context<Stake>, amount: u64) -> Result<()> {
     let cpi_accounts = Transfer {
         from: ctx.accounts.user_token_account.to_account_info(),
-        to: ctx.accounts.staking_vault.to_account_info(),
+        to: ctx.accounts.staking_token.to_account_info(),
         authority: ctx.accounts.user.to_account_info(),
     };
     let cpi_program = ctx.accounts.token_program.to_account_info();
@@ -570,7 +678,7 @@ pub fn stake_handler(ctx: Context<Stake>, amount: u64) -> Result<()> {
 }
 ```
 
-Solana doesn’t need `transferFrom` because its runtime fuses _authorization_ and _execution_: if a valid signature is present in the transaction, the user has authorized the transfer without extra steps.
+Solana doesn’t need `transferFrom` because its runtime fuses *authorization* and *execution*: if a valid signature is present in the transaction, the user has authorized the transfer without extra steps.
 
 ### Numerical Computation
 
@@ -578,7 +686,7 @@ Numeric handling on Solana also requires a shift of thinking. First, regarding p
 
 When mixing multiplication and division, beware of precision loss in intermediate results. In many languages, writing `r = a / b * c` as a single expression may benefit from extended precision registers; on x86, the FPU uses 80-bit extended precision internally, only truncating to 64-bit at the end. Note that compilers may also reorder or combine operations. But if you split this into steps like `t = a / b; r = t * c;`, the intermediate result is written to memory (64-bit), then read back, causing extra precision loss.
 
-For integer token amounts, choose `u64/u128` to avoid floating-point issues. However, for ratios, rates, and prices, floats may be necessary, and if that is the case, be careful with intermediate precision. For example, on x86, a single expression like `r = a / b * c` might compute in 80-bit precision, only truncating at the end. Note that splitting the computation into steps as described earlier (first computing t = a / b, then computing r = t \* c) forces 64-bit truncation in between, introducing additional errors.
+For integer token amounts, choose `u64/u128` to avoid floating-point issues. However, for ratios, rates, and prices, floats may be necessary, and if that is the case, be careful with intermediate precision. For example, on x86, a single expression like `r = a / b * c` might compute in 80-bit precision, only truncating at the end. Note that splitting the computation into steps as described earlier (first computing t = a / b, then computing r = t  c) forces 64-bit truncation in between, introducing additional errors.
 
 ## Conclusion
 
@@ -595,3 +703,4 @@ In the next article, “From Ethereum to Solana — Contracts (Part 2),” we’
 - [A Complete Guide to Solana Development for Ethereum Developers](https://solana.com/developers/evm-to-svm/complete-guide)
 - [Solana Development for EVM Developers](https://www.quicknode.com/guides/solana-development/getting-started/solana-development-for-evm-developers#key-architectural-differences-between-ethereum-and-solana)
 - [Verifying Programs](https://solana.com/docs/programs/verified-builds)
+
