@@ -2,7 +2,7 @@
 published: true
 title: "How to Migrate an Ethereum Protocol to Solana — Contracts (Part 2)"
 author: ["Jimmy Zhao / Fullstack Engineer", "Bin Li / Tech Lead"]
-createTime: 2026-03-05
+createTime: 2026-06-22
 categories: ["engineering"]
 subCategories: ["Blockchain & Web3"]
 tags: ["Solana", "Ethereum", "Smart Contract", "Solidity", "Anchor"]

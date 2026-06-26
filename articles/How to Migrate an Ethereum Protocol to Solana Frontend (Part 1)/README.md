@@ -2,11 +2,11 @@
 published: true
 title: "How to Migrate an Ethereum Protocol to Solana — Frontend(Part 1)"
 author: ["Bonnie Chen/ Full Stack Engineer", "Shan Yang/Tech Lead"]
-createTime: 2026-05-26
+createTime: 2026-06-23
 categories: ["engineering"]
 subCategories: ["Blockchain & Web3"]
 tags: ["Solana", "Ethereum", "Frontend", "Wallet", "Transaction"]
-landingPages: ["Blockchain-Onchain infra"]
+landingPages: ["Blockchain-dApps"]
 thumb: "./thumb.png"
 thumb_h: "./thumb_h.png"
 intro: "Frontend architecture design and practical implementation for high-performance data access and transaction optimisation when migrating from Ethereum to Solana."

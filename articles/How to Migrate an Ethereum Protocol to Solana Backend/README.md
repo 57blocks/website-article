@@ -2,11 +2,11 @@
 published: true
 title: "How to Migrate an Ethereum Protocol to Solana — Backend"  
 author: ["Jimmy Zhao / Fullstack Engineer", "Bin Li / Tech Lead"]  
-createTime: 2026-06-06  
+createTime: 2026-06-26  
 categories: ["engineering"]  
 subCategories: ["Blockchain & Web3"]  
 tags: ["Solana", "Ethereum", "Backend", "Indexer", "NestJS", "Anchor"]  
-landingPages: ["Blockchain-Onchain infra"]  
+landingPages: ["Blockchain-dApps"]  
 thumb: "./thumb.png"  
 thumb_h: "./thumb_h.png"  
 intro: "How to index Solana transaction logs, run cron jobs against on-chain state, and ship a NestJS backend for an EVM-to-Solana migration."

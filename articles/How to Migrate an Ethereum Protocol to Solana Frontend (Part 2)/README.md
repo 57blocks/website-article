@@ -2,11 +2,11 @@
 published: true
 title: "How to Migrate an Ethereum Protocol to Solana — Frontend (Part 2)"
 author: ["Bonnie Chen/ Full Stack Engineer", "Shan Yang/Tech Lead"]
-createTime: 2026-06-05
+createTime: 2026-06-25
 categories: ["engineering"]
 subCategories: ["Blockchain & Web3"]
 tags: ["Solana", "Ethereum", "Frontend", "Staking", "Wallet", "Anchor"]
-landingPages: ["Blockchain-Onchain infra"]
+landingPages: ["Blockchain-dApps"]
 thumb: "./thumb.png"
 thumb_h: "./thumb_h.png"
 intro: "A complete staking demo implementation comparing EVM and Solana frontend patterns side by side — wallet connection, reading state, writing transactions, and event handling."
