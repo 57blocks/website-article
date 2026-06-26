@@ -2,6 +2,128 @@
   "articles": [
     {
       "published": true,
+      "title": "How to Migrate an Ethereum Protocol to Solana — Backend",
+      "author": [
+        "Jimmy Zhao / Fullstack Engineer",
+        "Bin Li / Tech Lead"
+      ],
+      "createTime": "2026-06-26T00:00:00.000Z",
+      "categories": [
+        "engineering"
+      ],
+      "subCategories": [
+        "Blockchain & Web3"
+      ],
+      "tags": [
+        "Solana",
+        "Ethereum",
+        "Backend",
+        "Indexer",
+        "NestJS",
+        "Anchor"
+      ],
+      "landingPages": [
+        "Blockchain-dApps"
+      ],
+      "thumb": "./thumb.png",
+      "thumb_h": "./thumb_h.png",
+      "intro": "How to index Solana transaction logs, run cron jobs against on-chain state, and ship a NestJS backend for an EVM-to-Solana migration.",
+      "path": "articles/How%20to%20Migrate%20an%20Ethereum%20Protocol%20to%20Solana%20Backend/README.md",
+      "slug": "how-to-migrate-an-ethereum-protocol-to-solana-backend"
+    },
+    {
+      "published": true,
+      "title": "How to Migrate an Ethereum Protocol to Solana — Frontend (Part 2)",
+      "author": [
+        "Bonnie Chen/ Full Stack Engineer",
+        "Shan Yang/Tech Lead"
+      ],
+      "createTime": "2026-06-25T00:00:00.000Z",
+      "categories": [
+        "engineering"
+      ],
+      "subCategories": [
+        "Blockchain & Web3"
+      ],
+      "tags": [
+        "Solana",
+        "Ethereum",
+        "Frontend",
+        "Staking",
+        "Wallet",
+        "Anchor"
+      ],
+      "landingPages": [
+        "Blockchain-dApps"
+      ],
+      "thumb": "./thumb.png",
+      "thumb_h": "./thumb_h.png",
+      "intro": "A complete staking demo implementation comparing EVM and Solana frontend patterns side by side — wallet connection, reading state, writing transactions, and event handling.",
+      "path": "articles/How%20to%20Migrate%20an%20Ethereum%20Protocol%20to%20Solana%20Frontend%20(Part%202)/README.md",
+      "slug": "how-to-migrate-an-ethereum-protocol-to-solana-frontend-part-2"
+    },
+    {
+      "published": true,
+      "title": "How to Migrate an Ethereum Protocol to Solana — Frontend(Part 1)",
+      "author": [
+        "Bonnie Chen/ Full Stack Engineer",
+        "Shan Yang/Tech Lead"
+      ],
+      "createTime": "2026-06-23T00:00:00.000Z",
+      "categories": [
+        "engineering"
+      ],
+      "subCategories": [
+        "Blockchain & Web3"
+      ],
+      "tags": [
+        "Solana",
+        "Ethereum",
+        "Frontend",
+        "Wallet",
+        "Transaction"
+      ],
+      "landingPages": [
+        "Blockchain-dApps"
+      ],
+      "thumb": "./thumb.png",
+      "thumb_h": "./thumb_h.png",
+      "intro": "Frontend architecture design and practical implementation for high-performance data access and transaction optimisation when migrating from Ethereum to Solana.",
+      "path": "articles/How%20to%20Migrate%20an%20Ethereum%20Protocol%20to%20Solana%20Frontend%20(Part%201)/README.md",
+      "slug": "how-to-migrate-an-ethereum-protocol-to-solana-frontend-part-1"
+    },
+    {
+      "published": true,
+      "title": "How to Migrate an Ethereum Protocol to Solana — Contracts (Part 2)",
+      "author": [
+        "Jimmy Zhao / Fullstack Engineer",
+        "Bin Li / Tech Lead"
+      ],
+      "createTime": "2026-06-22T00:00:00.000Z",
+      "categories": [
+        "engineering"
+      ],
+      "subCategories": [
+        "Blockchain & Web3"
+      ],
+      "tags": [
+        "Solana",
+        "Ethereum",
+        "Smart Contract",
+        "Solidity",
+        "Anchor"
+      ],
+      "landingPages": [
+        "Blockchain-Onchain infra"
+      ],
+      "thumb": "./thumb.png",
+      "thumb_h": "./thumb_h.png",
+      "intro": "Solana contract constraints that bite during an EVM migration, plus a full staking port from Solidity to Anchor.",
+      "path": "articles/How%20to%20Migrate%20an%20Ethereum%20Protocol%20to%20Solana%20Contracts%20(Part%202)/README.md",
+      "slug": "how-to-migrate-an-ethereum-protocol-to-solana-contracts-part-2"
+    },
+    {
+      "published": true,
       "title": "The Architecture of Startup Distributed Teams",
       "author": [
         "Peter Wang / CEO"
