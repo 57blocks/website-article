@@ -14,13 +14,13 @@ createTime: 2026-01-23
 categories: ["engineering"]
 subCategories: ["Blockchain & Web3"]
 tags: ["Solana", "Ethereum", "Smart Contract", "Solidity", "Anchor"]
-landingPages: ["Blockchain-Onchain infra"]
+landingPages: ["Financial services", "Blockchain"]
 heroColor: "#398DAD"
 thumb: "thumb.png"
 thumb_h: "thumb-h.png"
 intro: "A systematic introduction to the fundamental differences between Ethereum and Solana in account models, execution mechanisms, and fee systems."
 top: true
-weight: 998 
+weight: 998
 ---
 
 ## Article Overview
@@ -33,13 +33,13 @@ This article opens a series on migrating Ethereum protocols to Solana. We split 
 
 Start here if you're new to Solana migration. When you're ready to build, continue with [Contracts (Part 1)](https://57blocks.com/blog/how-to-migrate-an-ethereum-protocol-to-solana-contracts-part-1) for the mindset shift to Solana's account model, then [Contracts (Part 2)](https://57blocks.com/blog/how-to-migrate-an-ethereum-protocol-to-solana-contracts-part-2) for limits, hooks, and a full staking port. Frontend and backend guides cover the layers above the program.
 
-| Layer | Article | What it covers |
-| --- | --- | --- |
-| Foundation | **[Preamble (this article)](https://57blocks.com/blog/how-to-migrate-an-ethereum-protocol-to-solana-preamble)** | Account model, execution, fees |
-| Contracts | [Part 1](https://57blocks.com/blog/how-to-migrate-an-ethereum-protocol-to-solana-contracts-part-1) | Account model, CPI, PDAs, Anchor patterns |
-| Contracts | [Part 2](https://57blocks.com/blog/how-to-migrate-an-ethereum-protocol-to-solana-contracts-part-2) | CU limits, forks, hooks, events, staking walkthrough |
-| Frontend | [Part 1](https://57blocks.com/blog/how-to-migrate-an-ethereum-protocol-to-solana-frontend-part-1) / [Part 2](https://57blocks.com/blog/how-to-migrate-an-ethereum-protocol-to-solana-frontend-part-2) | Wallets, transaction building, account fetching, events |
-| Backend | [Backend](https://57blocks.com/blog/how-to-migrate-an-ethereum-protocol-to-solana-backend) | Event sync, log parsing, cron automation |
+| Layer      | Article                                                                                                                                                                                               | What it covers                                          |
+| ---------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------- |
+| Foundation | **[Preamble (this article)](https://57blocks.com/blog/how-to-migrate-an-ethereum-protocol-to-solana-preamble)**                                                                                       | Account model, execution, fees                          |
+| Contracts  | [Part 1](https://57blocks.com/blog/how-to-migrate-an-ethereum-protocol-to-solana-contracts-part-1)                                                                                                    | Account model, CPI, PDAs, Anchor patterns               |
+| Contracts  | [Part 2](https://57blocks.com/blog/how-to-migrate-an-ethereum-protocol-to-solana-contracts-part-2)                                                                                                    | CU limits, forks, hooks, events, staking walkthrough    |
+| Frontend   | [Part 1](https://57blocks.com/blog/how-to-migrate-an-ethereum-protocol-to-solana-frontend-part-1) / [Part 2](https://57blocks.com/blog/how-to-migrate-an-ethereum-protocol-to-solana-frontend-part-2) | Wallets, transaction building, account fetching, events |
+| Backend    | [Backend](https://57blocks.com/blog/how-to-migrate-an-ethereum-protocol-to-solana-backend)                                                                                                            | Event sync, log parsing, cron automation                |
 
 This article approaches the topic from a **system design** perspective, summarizing the core differences between EVM and Solana across four dimensions: account model, execution model, transaction structure, and fee model. Understanding these differences provides a foundational shift in how developers reason about smart contract platforms at the architectural level.
 
@@ -157,13 +157,11 @@ Solana's transaction cost structure consists of three main parts:
   ```
 
 - **Compute Units (CU)** are Solana's core resource measurement unit, similar to gas in EVM.
-
   - Default limit per transaction: 200,000 CU
   - Compute Units themselves do not incur cost — fees arise only when `ComputeUnitPrice` is set.
   - **Purpose**: During network congestion, users can increase priority by paying more CUs.
 
 - Developers can use the `ComputeBudgetProgram` to:
-
   - `setComputeUnitLimit`: Increase the CU (Compute Unit) limit, suitable for complex contract calls.
   - `setComputeUnitPrice`: Set the prioritization fee, similar to the Gas Price in EVM.
 
@@ -180,7 +178,6 @@ On Solana, on-chain accounts occupy storage space and storage resources are limi
   ```
 
   where:
-
   - `lamports_per_byte_year` = rent per byte per year
   - `exemption_threshold` = number of years exempt from rent (default: 2 years)
 
@@ -232,12 +229,10 @@ A PDA Account serves a role similar to a storage slot in EVM, used to persist co
 The generation of a PDA is deterministic and depends on three factors:
 
 1. **Seeds (optional)**
-
    - Developer-defined inputs (e.g., strings, numbers, wallet addresses, or other account addresses).
    - Different seed combinations produce different PDAs.
 
 2. **Bump Seed**
-
    - A one-byte value appended to the seeds.
    - Ensures the generated address lies off the Ed25519 curve (i.e., cannot correspond to a private key).
    - The runtime searches bump from 255 downward until a valid PDA is found.
@@ -255,17 +250,14 @@ Program Derived Addresses (PDAs) are a cornerstone of Solana's account model. Un
 - **Non-public-key nature**
 
   Although SDKs like `web3.js` represent PDAs using the `PublicKey` type, a PDA is not a traditional public key and has no corresponding private key.
-
   - PDAs exist off the Ed25519 curve, so they cannot be directly controlled by any private key.
 
 - **Uniqueness**
-
   - A PDA is bound to a specific Program, ensuring no address conflicts.
 
   - PDAs generated by different Programs do not interfere with each other.
 
 - **Can act as a signer**
-
   - In certain cases, a Program can use runtime APIs to allow a PDA to act as a "virtual signer" for a transaction. This enables secure authorization of data modifications without exposing any private key.
 
 PDAs are central to Solana's implementation of deterministic storage, keyless signing, and secure data access. They enable developers to organize on-chain data structures in a predictable, composable, and pre-deployment-free manner, distinguishing Solana from EVM.

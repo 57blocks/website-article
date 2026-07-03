@@ -5,8 +5,14 @@ author: ["Christian Karren / Research Analyst"]
 createTime: 2025-12-4
 categories: ["engineering"]
 subCategories: ["AI & Vector DBs"]
-tags: ["Digital Advertising", "Performance Marketing", "Ad Creative", "Generative AI"]
-landingPages: ["AI-AI/ML Model Dev"]
+tags:
+  [
+    "Digital Advertising",
+    "Performance Marketing",
+    "Ad Creative",
+    "Generative AI",
+  ]
+landingPages: ["Consumer"]
 heroColor: "#8761B1"
 thumb: "./thumb.png"
 thumb_h: "./thumb_h.png"

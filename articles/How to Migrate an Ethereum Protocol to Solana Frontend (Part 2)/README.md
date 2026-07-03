@@ -6,7 +6,7 @@ createTime: 2026-06-25
 categories: ["engineering"]
 subCategories: ["Blockchain & Web3"]
 tags: ["Solana", "Ethereum", "Frontend", "Staking", "Wallet", "Anchor"]
-landingPages: ["Blockchain-dApps"]
+landingPages: ["Blockchain"]
 thumb: "./thumb.png"
 thumb_h: "./thumb_h.png"
 intro: "A complete staking demo implementation comparing EVM and Solana frontend patterns side by side — wallet connection, reading state, writing transactions, and event handling."
@@ -22,13 +22,13 @@ This article is part of a broader series on migrating Ethereum protocols to Sola
 
 If you're new to the series, start with the [Preamble](https://57blocks.com/blog/how-to-migrate-an-ethereum-protocol-to-solana-preamble) for account models, execution, and fees, then the [Contracts](https://57blocks.com/blog/how-to-migrate-an-ethereum-protocol-to-solana-contracts-part-1) guides. [Frontend (Part 1)](https://57blocks.com/blog/how-to-migrate-an-ethereum-protocol-to-solana-frontend-part-1) covers wallets, ALTs, priority fees, and Jito — read it first if you haven't. The [Backend](https://57blocks.com/blog/how-to-migrate-an-ethereum-protocol-to-solana-backend) guide covers event sync and automation.
 
-| Layer | Article | What it covers |
-| --- | --- | --- |
-| Foundation | [Preamble](https://57blocks.com/blog/how-to-migrate-an-ethereum-protocol-to-solana-preamble) | Account model, execution, fees |
-| Contracts | [Part 1](https://57blocks.com/blog/how-to-migrate-an-ethereum-protocol-to-solana-contracts-part-1) / [Part 2](https://57blocks.com/blog/how-to-migrate-an-ethereum-protocol-to-solana-contracts-part-2) | Account model, CPI, PDAs, limits, staking port |
-| Frontend | [Part 1](https://57blocks.com/blog/how-to-migrate-an-ethereum-protocol-to-solana-frontend-part-1) | Wallets, ALTs, priority fees, retry, Jito |
-| Frontend | **[Part 2 (this article)](https://57blocks.com/blog/how-to-migrate-an-ethereum-protocol-to-solana-frontend-part-2)** | Staking demo: read/write state, events |
-| Backend | [Backend](https://57blocks.com/blog/how-to-migrate-an-ethereum-protocol-to-solana-backend) | Event sync, log parsing, cron automation |
+| Layer      | Article                                                                                                                                                                                                 | What it covers                                 |
+| ---------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------- |
+| Foundation | [Preamble](https://57blocks.com/blog/how-to-migrate-an-ethereum-protocol-to-solana-preamble)                                                                                                            | Account model, execution, fees                 |
+| Contracts  | [Part 1](https://57blocks.com/blog/how-to-migrate-an-ethereum-protocol-to-solana-contracts-part-1) / [Part 2](https://57blocks.com/blog/how-to-migrate-an-ethereum-protocol-to-solana-contracts-part-2) | Account model, CPI, PDAs, limits, staking port |
+| Frontend   | [Part 1](https://57blocks.com/blog/how-to-migrate-an-ethereum-protocol-to-solana-frontend-part-1)                                                                                                       | Wallets, ALTs, priority fees, retry, Jito      |
+| Frontend   | **[Part 2 (this article)](https://57blocks.com/blog/how-to-migrate-an-ethereum-protocol-to-solana-frontend-part-2)**                                                                                    | Staking demo: read/write state, events         |
+| Backend    | [Backend](https://57blocks.com/blog/how-to-migrate-an-ethereum-protocol-to-solana-backend)                                                                                                              | Event sync, log parsing, cron automation       |
 
 This article is about the frontend — not theory, but actual code. Using a complete staking demo, we'll compare EVM and Solana side by side across wallet connection, reading state, writing transactions, and handling events. Each section shows both approaches so you can see where the patterns split and why.
 
@@ -57,7 +57,7 @@ What the frontend handles:
 - `unstake`: Initiate a withdrawal transaction.
 - `getStakeInfo`: Query and display the user's current position.
 
-This demo is about *how* the frontend talks to EVM and Solana protocols. Reward formula design is out of scope — that's a backend concern.
+This demo is about _how_ the frontend talks to EVM and Solana protocols. Reward formula design is out of scope — that's a backend concern.
 
 ## 2. Connecting the Wallet
 
@@ -98,7 +98,7 @@ On the page:
 ```html
 <ConnectButton
   label="Connect Wallet"
-  showBalance={false}
+  showBalance="{false}"
   accountStatus="address"
 />
 ```
@@ -204,7 +204,8 @@ return { program, setProgram };
 Reading user staking info:
 
 ```ts
-const userStakeInfo = await program.account.userStakeInfo.fetch(userStakeInfoPda);
+const userStakeInfo =
+  await program.account.userStakeInfo.fetch(userStakeInfoPda);
 ```
 
 EVM: ABI + contract address → call function, get return value. Solana: IDL + PDA → read account struct directly. Anchor wraps Solana's account model into something that feels closer to ABI-based development, which helps if you're coming from EVM.
@@ -273,7 +274,7 @@ Solana doesn't do the approve dance. Here's why:
 2. [ATA (Associated Token Account)](https://57blocks.com/blog/how-to-migrate-an-ethereum-protocol-to-solana-preamble?tab=engineering#ata-associated-token-account) is unique and derivable — `getAssociatedTokenAddressSync(mint, owner)` gives you the same address every time.
 3. Tokens in a token account come from a Mint (which defines total supply and decimals). When you stake, the staking program doesn't ask the Mint for permission. It transfers tokens from your ATA to the `stakingVault`, signed by you.
 
-The user's signature *is* the authorization. One transaction instead of two.
+The user's signature _is_ the authorization. One transaction instead of two.
 
 #### 4.2.1 Staking Program `stake` IDL (Excerpt)
 
@@ -377,19 +378,19 @@ import { PublicKey } from "@solana/web3.js";
 // Global state PDA
 const [statePda] = PublicKey.findProgramAddressSync(
   [Buffer.from("state"), stakingMint.toBuffer()],
-  program.programId
+  program.programId,
 );
 
 // User staking info PDA
 const [userStakeInfoPda] = PublicKey.findProgramAddressSync(
   [Buffer.from("stake"), statePda.toBuffer(), user.publicKey.toBuffer()],
-  program.programId
+  program.programId,
 );
 
 // Blacklist PDA
 const [blacklistEntryPda] = PublicKey.findProgramAddressSync(
   [Buffer.from("blacklist"), statePda.toBuffer(), user.publicKey.toBuffer()],
-  program.programId
+  program.programId,
 );
 ```
 
@@ -398,12 +399,12 @@ Non-user-specific PDAs (`staking_vault`, `reward_vault`) are tied to `statePda` 
 ```ts
 const [stakingVault] = PublicKey.findProgramAddressSync(
   [Buffer.from("staking_vault"), statePda.toBuffer()],
-  program.programId
+  program.programId,
 );
 
 const [rewardVault] = PublicKey.findProgramAddressSync(
   [Buffer.from("reward_vault"), statePda.toBuffer()],
-  program.programId
+  program.programId,
 );
 ```
 
@@ -414,8 +415,14 @@ Get the ATA with `getAssociatedTokenAddressSync`:
 ```ts
 import { getAssociatedTokenAddressSync } from "@solana/spl-token";
 
-const userTokenAccount = getAssociatedTokenAddressSync(stakingMint, user.publicKey);
-const userRewardAccount = getAssociatedTokenAddressSync(rewardMint, user.publicKey);
+const userTokenAccount = getAssociatedTokenAddressSync(
+  stakingMint,
+  user.publicKey,
+);
+const userRewardAccount = getAssociatedTokenAddressSync(
+  rewardMint,
+  user.publicKey,
+);
 ```
 
 `stakingMint` is the mint address for `MyToken`; `rewardMint` is for `RewardToken`. Once the ATA exists, the user's tokens live there and Anchor can reference it directly in transactions. On Solana, each SPL token gets its own account for the balance — it's not bundled into the user's main wallet account the way ERC20 balances are stored in a mapping on the token contract.

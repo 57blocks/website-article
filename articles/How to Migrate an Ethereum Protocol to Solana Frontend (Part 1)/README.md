@@ -6,7 +6,7 @@ createTime: 2026-06-23
 categories: ["engineering"]
 subCategories: ["Blockchain & Web3"]
 tags: ["Solana", "Ethereum", "Frontend", "Wallet", "Transaction"]
-landingPages: ["Blockchain-dApps"]
+landingPages: ["Blockchain"]
 thumb: "./thumb.png"
 thumb_h: "./thumb_h.png"
 intro: "Frontend architecture design and practical implementation for high-performance data access and transaction optimisation when migrating from Ethereum to Solana."
@@ -22,13 +22,13 @@ This article is part of a broader series on migrating Ethereum protocols to Sola
 
 If you're new to the series, start with the [Preamble](https://57blocks.com/blog/how-to-migrate-an-ethereum-protocol-to-solana-preamble) for account models, execution, and fees, then the [Contracts](https://57blocks.com/blog/how-to-migrate-an-ethereum-protocol-to-solana-contracts-part-1) guides. After this post, continue with [Frontend (Part 2)](https://57blocks.com/blog/how-to-migrate-an-ethereum-protocol-to-solana-frontend-part-2) for a complete staking demo, or the [Backend](https://57blocks.com/blog/how-to-migrate-an-ethereum-protocol-to-solana-backend) guide for event sync and automation.
 
-| Layer | Article | What it covers |
-| --- | --- | --- |
-| Foundation | [Preamble](https://57blocks.com/blog/how-to-migrate-an-ethereum-protocol-to-solana-preamble) | Account model, execution, fees |
-| Contracts | [Part 1](https://57blocks.com/blog/how-to-migrate-an-ethereum-protocol-to-solana-contracts-part-1) / [Part 2](https://57blocks.com/blog/how-to-migrate-an-ethereum-protocol-to-solana-contracts-part-2) | Account model, CPI, PDAs, limits, staking port |
-| Frontend | **[Part 1 (this article)](https://57blocks.com/blog/how-to-migrate-an-ethereum-protocol-to-solana-frontend-part-1)** | Wallets, ALTs, priority fees, retry, Jito |
-| Frontend | [Part 2](https://57blocks.com/blog/how-to-migrate-an-ethereum-protocol-to-solana-frontend-part-2) | Staking demo: read/write state, events |
-| Backend | [Backend](https://57blocks.com/blog/how-to-migrate-an-ethereum-protocol-to-solana-backend) | Event sync, log parsing, cron automation |
+| Layer      | Article                                                                                                                                                                                                 | What it covers                                 |
+| ---------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------- |
+| Foundation | [Preamble](https://57blocks.com/blog/how-to-migrate-an-ethereum-protocol-to-solana-preamble)                                                                                                            | Account model, execution, fees                 |
+| Contracts  | [Part 1](https://57blocks.com/blog/how-to-migrate-an-ethereum-protocol-to-solana-contracts-part-1) / [Part 2](https://57blocks.com/blog/how-to-migrate-an-ethereum-protocol-to-solana-contracts-part-2) | Account model, CPI, PDAs, limits, staking port |
+| Frontend   | **[Part 1 (this article)](https://57blocks.com/blog/how-to-migrate-an-ethereum-protocol-to-solana-frontend-part-1)**                                                                                    | Wallets, ALTs, priority fees, retry, Jito      |
+| Frontend   | [Part 2](https://57blocks.com/blog/how-to-migrate-an-ethereum-protocol-to-solana-frontend-part-2)                                                                                                       | Staking demo: read/write state, events         |
+| Backend    | [Backend](https://57blocks.com/blog/how-to-migrate-an-ethereum-protocol-to-solana-backend)                                                                                                              | Event sync, log parsing, cron automation       |
 
 This article covers the frontend pieces you actually touch when moving a DApp from EVM to Solana: wallet connection (including custom mobile adapters for wallets without official support), hardware wallet login via `signTransaction` + Memo, Address Lookup Tables, priority fees, transaction retry, and Jito Bundles. Not a staking demo — that's Part 2. Everything below comes with working code you can use.
 
@@ -270,42 +270,40 @@ In a Solana DApp, simply getting the user's `publicKey` through "connecting the 
 The typical wallet login flow is as follows:
 
 1. **User Connects Wallet**
-   
+
    The user clicks "Connect Wallet" on the frontend, and the DApp establishes a connection with the wallet via the wallet adapter and obtains the user's `publicKey`.
    This step only indicates that the user agrees to expose the address and does not constitute identity verification.
 
 2. **Frontend Requests Challenge from Backend**
-   
+
    The frontend sends the obtained `publicKey` to the backend, requesting the generation of a login Challenge.
 
 3. **Backend Generates Challenge (Challenge Information)**
-   
+
    The Challenge typically includes:
-   
    - Wallet address (`publicKey`)
    - Random number (`nonce`)
    - Expiration time (`timestamp / TTL`)
    - DApp identifier (e.g., domain name, application name, etc.)
 
 4. **Frontend Requests Wallet Signature**
-   
+
    The frontend passes the Challenge to the wallet, requesting the user to sign it.
 
 5. **Frontend Submits Signature Result**
-   
+
    The frontend sends the original Challenge and the signature generated by the user to the backend.
 
 6. **Backend Verifies Signature and State**
-   
+
    The backend performs the following checks:
-   
    - Verifies the signature's validity using `publicKey`.
    - Checks if the wallet address in the Challenge matches the `publicKey` in the request.
    - Checks if the `nonce` has not been used (to prevent replay attacks).
    - Checks if the Challenge is within its validity period.
 
 7. **Login Success**
-   
+
    After successful verification, the backend issues a session credential (e.g., JWT or Session) for that wallet address, used for subsequent identity identification.
 
 ![](diagram.png)
@@ -1235,7 +1233,7 @@ export const sendJitoTransaction = async (
 - **`sendTransaction`**: A **70/30 allocation principle** is recommended, allocating 70% of the total fee as the **Priority Fee** and 30% as the **Jito Tip**. The Priority Fee is set via `ComputeBudgetProgram.setComputeUnitPrice()`, increasing the transaction's priority in the validator's queue. The Jito Tip incentivizes Jito validators to prioritize the transaction.
 
 | **Submission Method** | **Priority Fee** | **Jito Tip** | **Core Explanation**                            |
-|:--------------------- |:---------------- |:------------ |:----------------------------------------------- |
+| :-------------------- | :--------------- | :----------- | :---------------------------------------------- |
 | `sendBundle`          | Not Required     | Required     | Tip determines the Bundle's processing priority |
 | `sendTransaction`     | 70%              | 30%          | Both work together to increase success rate     |
 

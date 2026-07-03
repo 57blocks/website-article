@@ -1,17 +1,22 @@
 ---
 published: true
 title: "What Makes a Good Vector Database? Comparing Pinecone and LanceDB"
-author: ["Alex Hu / Machine Learning Engineer", "Steven Zhang / Back-End Engineer", "Anjing Wang / AI Lead"]
+author:
+  [
+    "Alex Hu / Machine Learning Engineer",
+    "Steven Zhang / Back-End Engineer",
+    "Anjing Wang / AI Lead",
+  ]
 createTime: 2024-05-22
 categories: ["engineering"]
 subCategories: ["AI & Vector DBs"]
 tags: ["Vector Database", "Pinecone", "LanceDB"]
-landingPages: ["AI-Data Engineering"]
+landingPages: ["Legal", "Construction & property", "AI", "Compass", "Excavator"]
 heroColor: "#3D9AB6"
 thumb: "./thumb.png"
 thumb_h: "./thumb_h.png"
-intro: "Which vector database to use? It depends. Based on our experiences, there is no one-size-fits-all \"best\" database. Instead, a superior vector database is well-matched with its use case, meeting the unique requirements of that scenario. Our comparative analysis offers a promising path to discovering the ideal database for your specific needs."
-previousSlugs: ['what-makes-a-good-vector-database']
+intro: 'Which vector database to use? It depends. Based on our experiences, there is no one-size-fits-all "best" database. Instead, a superior vector database is well-matched with its use case, meeting the unique requirements of that scenario. Our comparative analysis offers a promising path to discovering the ideal database for your specific needs.'
+previousSlugs: ["what-makes-a-good-vector-database"]
 ---
 
 ## 1. The Hallmarks of a Superior Vector Database
@@ -28,7 +33,7 @@ performance, impacting user experience and real-time decision-making.
 Superior vector databases must offer flexibility in using a range of
 similarity algorithms, including but not limited to Euclidean distance
 and cosine similarity, which is crucial for conducting approximate nearest neighbor
- (ANN) searches with precision across extensive datasets. It's
+(ANN) searches with precision across extensive datasets. It's
 not solely about rapid execution; it involves consistently delivering
 quick and precise vector similarity searches scalable with data growth.
 
@@ -68,7 +73,7 @@ storage with resilience against system failures, maintaining consistent
 performance and response times even under high demand a requirement
 for enterprise-grade applications.
 
-A vector database's integration capabilities must be broad 
+A vector database's integration capabilities must be broad
 in today's diverse technological ecosystem Compatibility becomes
 critical — it should align with various data formats and integrate
 smoothly with the prevailing data science and machine learning
@@ -76,10 +81,10 @@ ecosystems.
 
 **Security**
 
-A vector database should include encryption, access control, 
+A vector database should include encryption, access control,
 and audit logging features. These features are
 paramount for safeguarding data integrity and confidentiality,
-and they are increasingly important in an era of more pronounced 
+and they are increasingly important in an era of more pronounced
 data privacy concerns.
 
 **Automation**
@@ -100,7 +105,7 @@ of usage.
 
 Lastly, the importance of a supportive community and reliable customer
 service is indisputable. The community drives
-innovation and troubleshooting for open-source platforms, while proprietary 
+innovation and troubleshooting for open-source platforms, while proprietary
 databases must offer excellent and dependable support.
 
 To sum up, a vector database that harmonizes these attributes not
@@ -146,7 +151,7 @@ The workflow in Pinecone starts with creating an index. This index must
 be established before uploading any vector data into the system, which
 after loading becomes searchable. The index is the primary organizational
 structure within Pinecone for storing vectors, running queries, and
-executing other vector data-related tasks. Each Pinecone index 
+executing other vector data-related tasks. Each Pinecone index
 operates on at least one "pod," its fundamental operational
 unit.
 
@@ -184,11 +189,12 @@ particular embedding model.
 **Example**
 
 The following example defines a Pydantic model named Pets for use with
-LanceDB. This model includes a vector column for image embeddings 
+LanceDB. This model includes a vector column for image embeddings
 generated using the specified embedding function from the clip module.
 This Pets model allows querying by leveraging both text and images, as
 demonstrated by its ability to search through the database using a text
 query as well as an image input.
+
 ```python
 from PIL import Image
 from lancedb.pydantic import LanceModel, Vector
@@ -212,8 +218,8 @@ table.search(query_image)
 
 ### 3.3 Search
 
-Pinecone empowers users to perform scalable ANN searches quickly 
-and accurately. It excels with 
+Pinecone empowers users to perform scalable ANN searches quickly
+and accurately. It excels with
 sparse and dense vector support, allowing mixed searches in a
 singular index. This hybrid approach combines semantic depth with
 keyword precision for improved relevance and accuracy in results.
@@ -228,22 +234,23 @@ to create diverse search experiences, from simple text searches to
 complex queries.
 
 Pinecone sparse-dense vectors have the following limitations:
+
 - Pinecone supports sparse vector values of sizes up to 1000 non-zero
- values.
+  values.
 - Pinecone only supports upserting sparse-dense vectors to p1 and s1 indexes.
 - The index must use the dot product metric to query an index using sparse values. Attempting to query any other index with sparse values returns an error.
 - Indexes created before February 22, 2023 do not support sparse values.
 
 ![Pineone Record](./image3.png)
 
-LanceDB supports both vector search and full-text search via [Tantivy](https://github.com/quickwit-oss/tantivy), 
+LanceDB supports both vector search and full-text search via [Tantivy](https://github.com/quickwit-oss/tantivy),
 with full-text search currently available only in Python. When using the search method, if the query_type is set to 'auto,' the system will automatically infer the type of query to
 perform. This means that if the query is a list or a NumPy array, it
 will be treated as a vector search. If the query is an image, the system
 may perform a vector search or return an error if no
 corresponding embedding function is available. If the query is a string,
 the query type can be either 'vector' or 'fts' (full-text search),
-depending on whether the table possesses an embedding function. 
+depending on whether the table possesses an embedding function.
 Without an index, LanceDB would need to exhaustively scan the
 entire vector column (via Flat Search) and compute the distance for
 every vector to identify the closest matches, which effectively
@@ -280,6 +287,7 @@ environments, which allow scalability and partitioning capabilities.
 The following example creates a vector index named "example-index"
 with a 1024-dimensional vector space, a copy, and the specified metadata
 configuration.
+
 ```python
 metadata_config = {
     'indexed': ['color']
@@ -314,7 +322,7 @@ Search refinement can be fine-tuned using two parameters:
 '[nprobes](https://lancedb.github.io/lancedb/ann_indexes/#querying-an-ann-index)',
 which adjusts the number of partitions to search in, and
 'refine_factor', influencing the refinement passes. These tools help
- fine-tune the search for a balance between speed and accuracy.
+fine-tune the search for a balance between speed and accuracy.
 
 ```python
 import lance
@@ -329,10 +337,10 @@ dataset.create_index(
     accelerator="cuda"
 )
 
-tbl.search(np.random.random((1536))) 
-    .limit(2) 
-    .nprobes(20) 
-    .refine_factor(10) 
+tbl.search(np.random.random((1536)))
+    .limit(2)
+    .nprobes(20)
+    .refine_factor(10)
     .to_pandas()
 ```
 
@@ -342,7 +350,7 @@ In Pinecone, a collection captures a static snapshot of an index at a
 specific moment, preserving the complete set of vectors and metadata in
 a non-queryable form. It can serve as version control for data, enabling
 comparisons and historical rollbacks. Collections allow for
- new indices, allowing the option to modify parameters such as pod
+new indices, allowing the option to modify parameters such as pod
 count, pod type, or similarity metric relative to the original index.
 
 Indexes in the gcp-starter environment do not support collections.
@@ -372,6 +380,7 @@ The following example shows the current version and restoring to version 1.
 ```python
 table.list_versions()
 ```
+
 ```python
 [{'version': 1,
   'timestamp': datetime.datetime(2023, 10, 20, 14, 33, 39, 40549),
@@ -386,6 +395,7 @@ table.list_versions()
 table.restore(1)
 table.list_versions()
 ```
+
 ```python
 [{'version': 1,
   'timestamp': datetime.datetime(2023, 10, 20, 14, 33, 39, 40549),
@@ -400,7 +410,7 @@ table.list_versions()
 ```
 
 When we restore an old version, we're not deleting the version history;
-we're just creating a new version with the schema and data 
+we're just creating a new version with the schema and data
 equivalent to the restored old version. This way, we can keep track
 of all the changes and always roll back to a previous state.
 
@@ -414,33 +424,34 @@ specific use cases of a given project.
 Here are some potential application scenarios for Pinecone and LanceDB:
 
 > **1. Multimodal Data Analysis**
+>
 > - **Pinecone**: Primarily optimized for efficient vector search, not explicitly optimized for handling and analyzing diverse multimodal data.
 > - **LanceDB**: Designed for integrating and analyzing diverse data types (such as images, text, and audio) and is suitable for multimedia search engines, cross-modal retrieval, and smart recommendation systems.
 
 > **2. Customizable Search and Analysis**
+>
 > - **Pinecone**: Offers limited customization compared to LanceDB. It mainly focuses on efficient default settings, which may be less flexible for scenarios requiring deeply customized search logic or workflows.
 > - **LanceDB**: Supports deep customization of search algorithms and processing workflows, making it ideal for research institutions and corporate R&D departments that require specialized preprocessing, indexing, or querying of vector data.
 
-
 > **3. Hybrid or Private Cloud Deployment**
+>
 > - **Pinecone**: Primarily built as a cloud service, its support for private or hybrid cloud deployments is less flexible than LanceDB, focusing on leveraging cloud platform convenience and scalability.
 > - **LanceDB**: Supports flexible storage with MinIO and S3 integration, suitable for secure and compliant data management in hybrid or private cloud environments.
 
-
 > **4. Real-Time Recommendation Systems**
+>
 > - **Pinecone**: It is specially optimized for high-throughput real-time data processing, making it highly suitable for recommendation engines that require immediate and accurate similarity matching.
 > - **LanceDB**: While capable of handling diverse data, it does not specifically emphasize optimization for high-concurrency data processing required by real-time recommendation systems.
 
-
 > **5. High-Precision Similarity Search**
+>
 > - **Pinecone**: It is specifically optimized for high-precision, high-dimensional vector search. It excels in efficient scaling and resource management to minimize false positives, making it suitable for scenarios with very high accuracy requirements.
 > - **LanceDB**: Although capable of handling high-dimensional vector search, its optimization and resource management strategies for high-precision search are less prominent than those of Pinecone.
 
-
 > **6. Low Latency, High Throughput Situations**
+>
 > - **Pinecone**: Optimized for low latency and high throughput scenarios, such as financial risk management, cybersecurity, smart homes, and security, Pinecone offers a high-performance vector search solution that is quick to deploy and especially suitable for applications with strict response time and processing capacity requirements.
 > - **LanceDB**: Not explicitly optimized for the extremely low latency and high throughput demands.
-
 
 LanceDB's extensive feature set is designed to adeptly manage a wide range of
 data types and complex queries. Nevertheless, in scenarios where
@@ -454,7 +465,7 @@ external storage systems like MinIO and S3. In contrast whereas Pinecone advance
 with a seamless, resource-efficient scaling framework, empowered by its
 built-in resource and Pod management system.
 
-Pinecone has earned preferences for its rapid query responses and 
+Pinecone has earned preferences for its rapid query responses and
 ability to process substantial volumes of real-time data within a
 user-friendly "plug-and-play" model. Conversely, LanceDB is
 particularly strong in handling multimodal data vectors and offers a
@@ -477,5 +488,5 @@ requirements will decipher whether LanceDB's adaptability or
 Pinecone's streamlined efficiency and scalability will better serve
 your pursuit. As LanceDB and Pinecone evolve in the vector database
 sphere, they will continue to deepen their specialized capabilities to
-address a broad spectrum of user needs, collectively propelling 
+address a broad spectrum of user needs, collectively propelling
 the standards of excellence for vector database solutions.

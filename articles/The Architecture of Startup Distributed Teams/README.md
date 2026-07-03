@@ -6,7 +6,7 @@ createTime: 2026-02-05
 categories: ["engineering"]
 subCategories: ["Management"]
 tags: ["Startup", "Distributed Teams", "Engineering Management"]
-landingPages: []
+landingPages: ["Blockchain"]
 heroColor: "#3991C0 "
 thumb: "./thumb.png"
 thumb_h: "./thumb_h.png"

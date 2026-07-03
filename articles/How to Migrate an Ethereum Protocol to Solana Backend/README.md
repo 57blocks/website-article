@@ -1,14 +1,14 @@
 ---
 published: true
-title: "How to Migrate an Ethereum Protocol to Solana — Backend"  
-author: ["Jimmy Zhao / Fullstack Engineer", "Bin Li / Tech Lead"]  
-createTime: 2026-06-26  
-categories: ["engineering"]  
-subCategories: ["Blockchain & Web3"]  
-tags: ["Solana", "Ethereum", "Backend", "Indexer", "NestJS", "Anchor"]  
-landingPages: ["Blockchain-dApps"]  
-thumb: "./thumb.png"  
-thumb_h: "./thumb_h.png"  
+title: "How to Migrate an Ethereum Protocol to Solana — Backend"
+author: ["Jimmy Zhao / Fullstack Engineer", "Bin Li / Tech Lead"]
+createTime: 2026-06-26
+categories: ["engineering"]
+subCategories: ["Blockchain & Web3"]
+tags: ["Solana", "Ethereum", "Backend", "Indexer", "NestJS", "Anchor"]
+landingPages: ["Blockchain"]
+thumb: "./thumb.png"
+thumb_h: "./thumb_h.png"
 intro: "How to index Solana transaction logs, run cron jobs against on-chain state, and ship a NestJS backend for an EVM-to-Solana migration."
 ---
 
@@ -22,12 +22,12 @@ This article is part of a broader series on migrating Ethereum protocols to Sola
 
 If you're new to the series, start with the [Preamble](https://57blocks.com/blog/how-to-migrate-an-ethereum-protocol-to-solana-preamble) for account models, execution, and fees, then the [Contracts](https://57blocks.com/blog/how-to-migrate-an-ethereum-protocol-to-solana-contracts-part-1) guides. The [Frontend](https://57blocks.com/blog/how-to-migrate-an-ethereum-protocol-to-solana-frontend-part-1) guides cover wallet and client patterns on the other side of the stack.
 
-| Layer | Article | What it covers |
-| --- | --- | --- |
-| Foundation | [Preamble](https://57blocks.com/blog/how-to-migrate-an-ethereum-protocol-to-solana-preamble) | Account model, execution, fees |
-| Contracts | [Part 1](https://57blocks.com/blog/how-to-migrate-an-ethereum-protocol-to-solana-contracts-part-1) / [Part 2](https://57blocks.com/blog/how-to-migrate-an-ethereum-protocol-to-solana-contracts-part-2) | Account model, CPI, PDAs, limits, staking port |
-| Frontend | [Part 1](https://57blocks.com/blog/how-to-migrate-an-ethereum-protocol-to-solana-frontend-part-1) / [Part 2](https://57blocks.com/blog/how-to-migrate-an-ethereum-protocol-to-solana-frontend-part-2) | Wallets, ALTs, staking demo, events |
-| Backend | **[Backend (this article)](https://57blocks.com/blog/how-to-migrate-an-ethereum-protocol-to-solana-backend)** | Event sync, log parsing, cron automation |
+| Layer      | Article                                                                                                                                                                                                 | What it covers                                 |
+| ---------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------- |
+| Foundation | [Preamble](https://57blocks.com/blog/how-to-migrate-an-ethereum-protocol-to-solana-preamble)                                                                                                            | Account model, execution, fees                 |
+| Contracts  | [Part 1](https://57blocks.com/blog/how-to-migrate-an-ethereum-protocol-to-solana-contracts-part-1) / [Part 2](https://57blocks.com/blog/how-to-migrate-an-ethereum-protocol-to-solana-contracts-part-2) | Account model, CPI, PDAs, limits, staking port |
+| Frontend   | [Part 1](https://57blocks.com/blog/how-to-migrate-an-ethereum-protocol-to-solana-frontend-part-1) / [Part 2](https://57blocks.com/blog/how-to-migrate-an-ethereum-protocol-to-solana-frontend-part-2)   | Wallets, ALTs, staking demo, events            |
+| Backend    | **[Backend (this article)](https://57blocks.com/blog/how-to-migrate-an-ethereum-protocol-to-solana-backend)**                                                                                           | Event sync, log parsing, cron automation       |
 
 Here we walk through event sync, log parsing, account selection for `getSignaturesForAddress`, cron automation, and deployment. The running example is the Anchor staking pool from the series (`PoolConfig`, `PoolState`, `UserStakeInfo`). Code lives in [solana-backend](https://github.com/57blocks/evm-to-solana/tree/main/backend/solana-backend).
 
@@ -588,4 +588,3 @@ On EVM, the node often prepares the data layer for you. On Solana, the backend i
 - [Token-2022](https://www.solana-program.com/docs/token-2022)
 - [Geyser gRPC (Yellowstone)](https://github.com/rpcpool/yellowstone-grpc)
 - [MasterChef](https://github.com/sushiswap/masterchef)
-

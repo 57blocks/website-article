@@ -6,7 +6,7 @@ createTime: 2025-01-10
 categories: ["engineering"]
 subCategories: ["Blockchain & Web3"]
 tags: ["Blockchain", "Encryption"]
-landingPages: ["Blockchain-Defi Protocols"]
+landingPages: ["Blockchain"]
 heroColor: "#429C9A"
 thumb: "thumb.png"
 thumb_h: "thumb-h.png"
@@ -144,13 +144,11 @@ Deriving the private key from the public key in elliptic curve cryptography invo
 There are four main applications of elliptic curve cryptography in blockchain, each with a different business goal and purpose.
 
 1. **Key Pair Generation. Elliptic curve algorithms are crucial for generating public-private key pairs for blockchain users.** The public key is used to generate wallet addresses. In contrast, the private key is used to sign transactions, control funds, and validate identity. This mechanism ensures that only the wallet owner can authorize transactions, which prevents unauthorized access and fraud. It reduces transaction costs, enhances transparency and auditability, and ultimately provides businesses with a secure, efficient, and transparent financial operation environment.
-
    - Public Key Generation: Generating a public key from a private key is a mathematical operation involving point multiplication on an elliptic curve.
 
    - Private Key Protection: The private key must be securely stored. Possession of the private key equates to control over all assets in the associated account.
 
    The methods by which Bitcoin, Ethereum, and Solana generate wallet addresses from public keys include:
-
    - Bitcoin: Uses the secp256k1 elliptic curve algorithm. Address generation includes steps like SHA-256 and RIPEMD-160 hashing, followed by Base58 encoding. Addresses begin with 1, 3, or bc1.
 
    - Ethereum: Uses the secp256k1 elliptic curve algorithm. Address generation involves Keccak-256 hashing. Addresses start with 0x.
@@ -158,12 +156,10 @@ There are four main applications of elliptic curve cryptography in blockchain, e
    - Solana: Uses the Ed25519 elliptic curve algorithm. The addresses are 44-byte Base58 encoded strings that directly correspond to the public key's Base58 encoding without additional hashing steps.
 
 2. **Digital Signatures. Elliptic curve digital signature algorithms are used to sign transactions.** The signing process ensures the transaction's integrity and authenticity by making it tamper-proof. This not only enhances the security and reliability of transactions but also increases the level of trust between customers and partners.
-
    - Signing Transactions: Users sign transaction data with their private key to create a digital signature.
    - Verifying Signatures: Other nodes use the public key to verify the signature's validity, ensuring that the transaction has not been tampered with and was initiated by the holder of the corresponding private key.
 
    There are three primary purposes for digital signatures:
-
    - **Authorization Proof:** Signatures prove that the controller of the private key, i.e., the owner of the funds, has authorized the transfer of these funds.
 
    - **Non-Repudiation:** The authorization is undeniable.
@@ -173,7 +169,6 @@ There are four main applications of elliptic curve cryptography in blockchain, e
    Ethereum and Solana transactions include calls to smart contracts requiring digital signatures to verify the caller's legitimacy.
 
 3. **Identity Verification. Elliptic curve algorithms are used for identity verification, ensuring that only authorized users can access specific blockchain resources or perform certain operations.**
-
    - User Identity: Verifying user identity through digital signatures and public key verification. This process ensures that communications and transactions can be securely linked to the rightful owner.
 
    - Smart Contracts: Using digital signatures to verify the identity of the contract caller in smart contracts.
@@ -198,17 +193,14 @@ The main features of hash functions include:
 In blockchain technology, hash functions also play crucial roles, and different blockchains often adopt different hash algorithms to meet specific security and performance requirements. Below are some mainstream blockchains and their employed hash algorithms:
 
 - Bitcoin
-
   - Main Hash Algorithm: SHA-256 (Secure Hash Algorithm 256-bit)
   - Uses: Mining process (Proof of Work), transaction hashes, block hashes, Merkle trees
 
 - Ethereum
-
   - Main Hash Algorithm: Keccak-256 (often incorrectly referred to as SHA-3)
   - Uses: Transaction hashes, address generation, smart contract data verification, Merkle trees
 
 - Solana
-
   - Main Hash Algorithms: SHA-256 and SHA-3
   - Uses:
     - SHA-256: Mainly used for Proof of History (PoH), data verification, generating unique identifiers

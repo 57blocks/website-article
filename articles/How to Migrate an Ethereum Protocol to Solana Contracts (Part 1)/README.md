@@ -6,7 +6,7 @@ createTime: 2026-01-26
 categories: ["engineering"]
 subCategories: ["Blockchain & Web3"]
 tags: ["Solana", "Ethereum", "Smart Contract", "Solidity", "Anchor"]
-landingPages: ["Blockchain-Onchain infra"]
+landingPages: ["Financial services", "Blockchain"]
 thumb: "./thumb.png"
 thumb_h: "./thumb_h.png"
 intro: "A deep dive into the core mindset shift and best practices when moving contracts from Ethereum to Solana."
@@ -22,13 +22,13 @@ This article is part of a broader series on migrating Ethereum protocols to Sola
 
 If you're new to the series, start with the [Preamble](https://57blocks.com/blog/how-to-migrate-an-ethereum-protocol-to-solana-preamble) for account models, execution, and fees. After this post, continue with [Contracts (Part 2)](https://57blocks.com/blog/how-to-migrate-an-ethereum-protocol-to-solana-contracts-part-2) for CU limits, hooks, events, and a full staking port. Frontend and backend guides cover the layers above the program.
 
-| Layer | Article | What it covers |
-| --- | --- | --- |
-| Foundation | [Preamble](https://57blocks.com/blog/how-to-migrate-an-ethereum-protocol-to-solana-preamble) | Account model, execution, fees |
-| Contracts | **[Part 1 (this article)](https://57blocks.com/blog/how-to-migrate-an-ethereum-protocol-to-solana-contracts-part-1)** | Account model, CPI, PDAs, Anchor patterns |
-| Contracts | [Part 2](https://57blocks.com/blog/how-to-migrate-an-ethereum-protocol-to-solana-contracts-part-2) | CU limits, forks, hooks, events, staking walkthrough |
-| Frontend | [Part 1](https://57blocks.com/blog/how-to-migrate-an-ethereum-protocol-to-solana-frontend-part-1) / [Part 2](https://57blocks.com/blog/how-to-migrate-an-ethereum-protocol-to-solana-frontend-part-2) | Wallets, transaction building, account fetching, events |
-| Backend | [Backend](https://57blocks.com/blog/how-to-migrate-an-ethereum-protocol-to-solana-backend) | Event sync, log parsing, cron automation |
+| Layer      | Article                                                                                                                                                                                               | What it covers                                          |
+| ---------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------- |
+| Foundation | [Preamble](https://57blocks.com/blog/how-to-migrate-an-ethereum-protocol-to-solana-preamble)                                                                                                          | Account model, execution, fees                          |
+| Contracts  | **[Part 1 (this article)](https://57blocks.com/blog/how-to-migrate-an-ethereum-protocol-to-solana-contracts-part-1)**                                                                                 | Account model, CPI, PDAs, Anchor patterns               |
+| Contracts  | [Part 2](https://57blocks.com/blog/how-to-migrate-an-ethereum-protocol-to-solana-contracts-part-2)                                                                                                    | CU limits, forks, hooks, events, staking walkthrough    |
+| Frontend   | [Part 1](https://57blocks.com/blog/how-to-migrate-an-ethereum-protocol-to-solana-frontend-part-1) / [Part 2](https://57blocks.com/blog/how-to-migrate-an-ethereum-protocol-to-solana-frontend-part-2) | Wallets, transaction building, account fetching, events |
+| Backend    | [Backend](https://57blocks.com/blog/how-to-migrate-an-ethereum-protocol-to-solana-backend)                                                                                                            | Event sync, log parsing, cron automation                |
 
 In this article, we focus specifically on the smart contract layer. Rather than treating migration as a simple language switch from Solidity to Rust, we examine the deeper mindset shifts required when moving from Ethereum's contract-centric model to Solana's account-centric design. Using concrete examples and real production patterns, we'll walk through the most important conceptual changes, common pitfalls, and best practices that Ethereum developers need to understand to build secure and efficient Solana programs.
 
@@ -250,7 +250,7 @@ async function stakeTokens(
   userSigner: any,
   stakingToken: PublicKey,
   rewardToken: PublicKey,
-  amount: bigint
+  amount: bigint,
 ) {
   const userStakePda = getUserStakePda(statePda, user.publicKey);
 
@@ -282,7 +282,6 @@ If you want deeper architectural context for the code patterns in this article, 
 
 To put these ideas into practice, you may want to get comfortable with a different, ecosystem-specific toolchain. From language to standard libraries, Solana's ecosystem differs significantly from Ethereum's ecosystem. The table below summarizes key differences to help you build a new understanding of the differences quickly.
 
-
 | **Domain**                | **Ethereum Ecosystem**                | **Solana Ecosystem**                | **Key Notes**                                                                                                                                                                                                                                                                                                                                                                                              |
 | ------------------------- | ------------------------------------- | ----------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | **Frameworks**            | Hardhat / Foundry (Solidity)          | Anchor (Rust)                       | In the Ethereum ecosystem, Hardhat and Foundry are widely used smart contract development tools. Anchor is the de facto standard for Solana development; it uses powerful macros to greatly simplify the complexity of Solana program development.                                                                                                                                                         |
@@ -291,7 +290,6 @@ To put these ideas into practice, you may want to get comfortable with a differe
 | **Contract Verification** | Upload and verify source on Etherscan | Submit source for Verified Build    | Solana supports “Verified Builds,” conceptually similar to Ethereum. Developers submit source code, which is compiled in a deterministic environment; the build artifact’s hash is compared against on-chain bytecode. This ensures the source matches the on-chain program—not just validating the IDL interface.                                                                                         |
 | **Network RPC**           | Infura, Alchemy, QuickNode            | Helius, Alchemy, QuickNode          | Both ecosystems have top-tier RPC providers; only a few (like QuickNode) are multi-chain. Solana's high throughput has also led to specialized providers like Helius to offer enhanced Solana-first APIs.                                                                                                                                                                                                  |
 | **Explorers**             | Etherscan, Blockscout                 | Solscan, Solana Explorer, X-Ray     | The Ethereum ecosystem has powerful tools like Tenderly for deep transaction simulation and debugging. In the Solana ecosystem, tools like Helius (product X-Ray) provide similar functionality. Due to Solana’s parallel transaction model, these tools focus more on visualizing value flows between accounts and CPI call chains to help developers understand complex instruction interactions.        |
-
 
 From this comparison, a clear pattern emerges: Ethereum development supports ideas like inheritance and extension (e.g., inheriting OpenZeppelin contracts), while Solana development supports composition and interaction (via CPI with on-chain SPL programs).
 
@@ -609,14 +607,14 @@ const transaction = new Transaction();
 transaction.add(
   ComputeBudgetProgram.setComputeUnitLimit({
     units: 400_000,
-  })
+  }),
 );
 
 // Set a priority fee
 transaction.add(
   ComputeBudgetProgram.setComputeUnitPrice({
     microLamports: 100_000,
-  })
+  }),
 );
 
 // ... add your main instruction here
@@ -652,7 +650,7 @@ Also, when deploying a Solana program, you must set an upgrade authority (`upgra
 
 In Ethereum's ERC20 standard, transferring on behalf of a user usually takes two steps: the user calls `approve` to grant an allowance, and the authorized party (often a contract) then calls `transferFrom`. This exists because the account model distinguishes between the token holder and the executor, and the executor must submit a transaction separately.
 
-In Solana’s SPL Token model, this is greatly simplified. Each token account records its *authority* explicitly. As long as the transaction includes that authority’s signature, the program can directly call `token::transfer` to move tokens—no separate `transferFrom` needed. In other words, Solana’s runtime natively supports a **who-signs-who-authorizes** model instead of relying on contracts to check a second-layer approval.
+In Solana’s SPL Token model, this is greatly simplified. Each token account records its _authority_ explicitly. As long as the transaction includes that authority’s signature, the program can directly call `token::transfer` to move tokens—no separate `transferFrom` needed. In other words, Solana’s runtime natively supports a **who-signs-who-authorizes** model instead of relying on contracts to check a second-layer approval.
 
 Furthermore, Solana’s execution environment supports signature propagation across CPI:
 
@@ -678,7 +676,7 @@ pub fn stake_handler(ctx: Context<Stake>, amount: u64) -> Result<()> {
 }
 ```
 
-Solana doesn’t need `transferFrom` because its runtime fuses *authorization* and *execution*: if a valid signature is present in the transaction, the user has authorized the transfer without extra steps.
+Solana doesn’t need `transferFrom` because its runtime fuses _authorization_ and _execution_: if a valid signature is present in the transaction, the user has authorized the transfer without extra steps.
 
 ### Numerical Computation
 
@@ -686,7 +684,7 @@ Numeric handling on Solana also requires a shift of thinking. First, regarding p
 
 When mixing multiplication and division, beware of precision loss in intermediate results. In many languages, writing `r = a / b * c` as a single expression may benefit from extended precision registers; on x86, the FPU uses 80-bit extended precision internally, only truncating to 64-bit at the end. Note that compilers may also reorder or combine operations. But if you split this into steps like `t = a / b; r = t * c;`, the intermediate result is written to memory (64-bit), then read back, causing extra precision loss.
 
-For integer token amounts, choose `u64/u128` to avoid floating-point issues. However, for ratios, rates, and prices, floats may be necessary, and if that is the case, be careful with intermediate precision. For example, on x86, a single expression like `r = a / b * c` might compute in 80-bit precision, only truncating at the end. Note that splitting the computation into steps as described earlier (first computing t = a / b, then computing r = t  c) forces 64-bit truncation in between, introducing additional errors.
+For integer token amounts, choose `u64/u128` to avoid floating-point issues. However, for ratios, rates, and prices, floats may be necessary, and if that is the case, be careful with intermediate precision. For example, on x86, a single expression like `r = a / b * c` might compute in 80-bit precision, only truncating at the end. Note that splitting the computation into steps as described earlier (first computing t = a / b, then computing r = t c) forces 64-bit truncation in between, introducing additional errors.
 
 ## Conclusion
 
@@ -703,4 +701,3 @@ In the next article, “From Ethereum to Solana — Contracts (Part 2),” we’
 - [A Complete Guide to Solana Development for Ethereum Developers](https://solana.com/developers/evm-to-svm/complete-guide)
 - [Solana Development for EVM Developers](https://www.quicknode.com/guides/solana-development/getting-started/solana-development-for-evm-developers#key-architectural-differences-between-ethereum-and-solana)
 - [Verifying Programs](https://solana.com/docs/programs/verified-builds)
-

@@ -6,7 +6,7 @@ createTime: 2024-09-18
 categories: ["engineering"]
 subCategories: ["Developer Tools & Performance"]
 tags: ["Frontend", "Performance"]
-landingPages: ["Blockchain-dApps"]
+landingPages: []
 heroColor: "#0894BB"
 thumb: "thumb.png"
 thumb_h: "thumb_h.png"
@@ -320,7 +320,6 @@ And, as we know, faster page load times contribute to better SEO rankings.
   ```
 
   Typically with this code snippet, we also include the following information:
-
   - A. If the resource belongs to user-specific content, it can be specified as private; otherwise, it is public.
   - B. One way to determine if a resource is personal data is to check if the `Authorization` field is in the request header. If it is, that indicates that this displays personal data, and there is usually no need to explicitly specify it as private.
 
@@ -411,7 +410,6 @@ Four approaches to optimizing the frontend based on page load order exist.
 - **Browser Resource Hint**
 
   These commands help developers optimize page loading times by informing the browser how to load and prioritize resources. These approaches can significantly improve key performance metrics like LCP, FCP, FID, and INP by proactively fetching and loading critical resources. The specific operations are as follows:
-
   - **prefetch**: Used for the browser to fetch and cache resources that might be used in future subpage loads, thereby reducing loading times. This mechanism has a lower priority and is suitable for resource fetching during main thread idle periods.
   - **dns-prefetch**: Optimizes the time to resolve a domain to an IP address (DNS Lookup), especially useful when loading resources from third-party domains.
   - **preconnect**: Encompasses steps like DNS query, TLS negotiation, and TCP handshake, thoroughly preparing the connection to a remote server.
@@ -437,7 +435,6 @@ Four approaches to optimizing the frontend based on page load order exist.
 - **Fetch Priority API**
 
   As a developer, you can indicate the priority of a resource using the `fetchpriority` attribute of the Fetch Priority API. This attribute can be employed within `<link>`, `<img>`, and `<script>` elements.
-
   - **high**: Fetches the image with higher priority compared to other images.
   - **low**: Fetches the image with lower priority compared to other images.
   - **auto**: Default mode, indicating no preference for fetch priority. The browser decides the most advantageous approach for the user.
@@ -448,7 +445,6 @@ The \<img\> embeds an image into a webpage in HTML. This tag is self-closing, me
 Here are some key attributes and usages of the \<img\> tag to improve performance:
 
 - **Loading**: The `loading` attribute informs the browser how to load images.
-
   - **eager**: Loads the image immediately, regardless of its visibility.
   - **lazy**: Delays the image loading until it appears in the viewport, saving bandwidth. It is recommended that width and height attributes be included in the images.
 
@@ -467,7 +463,6 @@ Here are some key attributes and usages of the \<img\> tag to improve performanc
   ```
 
 - **Size**:
-
   - Images should not be resized using code, or the source file should not be larger or smaller than what is rendered on the user's screen.
   - Use responsive images by specifying multiple versions; the browser will choose the most suitable version.
 
@@ -483,7 +478,6 @@ Here are some key attributes and usages of the \<img\> tag to improve performanc
   `sizes` specifies the expected display size of the image.
 
 - **Width And Height**:
-
   - Both the `width` and `height` attributes should be specified appropriately to ensure that the browser allocates the correct space in the layout. This helps avoid layout shifts, improving Cumulative Layout Shift (CLS) user experience.
   - If the specific `width` and `height` cannot be determined, consider setting an aspect ratio as a solution.
 
@@ -498,7 +492,6 @@ Here are some key attributes and usages of the \<img\> tag to improve performanc
 - **Image Format**
 
   For image resources, choosing the appropriate image format based on specific business requirements to optimize performance. Here are simplified and optimized recommendations:
-
   - Raster Images: Represented as pixel grids, including GIF, PNG, JPEG, and WebP.
   - Vector Images: Primarily used for logos and icons, defined by curves, lines, and shapes, resolution-independent, providing clear results.
 
@@ -512,11 +505,9 @@ Here are some key attributes and usages of the \<img\> tag to improve performanc
 - **Decoding**
 
   This image property tells the browser how to decode the image the system provides. It specifies whether the system should wait for the image to be fully decoded before rendering other content updates or simultaneously rendering, allowing other content to render during the decoding process.
-
   - **sync**: Synchronously decodes the image to render it along with other.
   - **async**: Asynchronously decodes the image, allowing rendering of other content before its completion.
   - **auto**: No preference for decoding mode; the browser decides the most favorable way for the user. This is the default value, but different browsers have different default values:
-
     - Chromium defaults to `sync`.
     - Firefox defaults to `async`.
     - Safari defaults to `sync`.
@@ -577,7 +568,7 @@ Video files are typically smaller than GIF images at the same visual quality. Th
     if ("IntersectionObserver" in window) {
       var lazyVideoObserver = new IntersectionObserver(function (
         entries,
-        observer
+        observer,
       ) {
         entries.forEach(function (video) {
           if (video.isIntersecting) {
@@ -644,7 +635,6 @@ Avoid long tasks and optimize code. Long tasks take more than 50 milliseconds to
 - **Service Worker**: A `Service Worker` is a script that runs in the background and intercepts or handles network requests. By making reasonable use of Service Workers, reducing dependence on the main thread and improving application performance, resources can be cached.
 
 - **Long Task**: To ensure that long-running tasks do not block the main thread, we can break these long tasks into small, asynchronously executed sub-tasks. Such strategies include:
-
   1. **Using `requestIdleCallback` as an optimization** schedules the execution of low-priority or background tasks when the main thread is idle, improving page responsiveness. This method helps ensure that task execution does not interfere with user interaction and page rendering, but occurs when the main thread is idle.
 
   2. **Manually deferring code execution can cause tasks to be placed at the end of the queue without being able to specify priority directly.** The code might look like:

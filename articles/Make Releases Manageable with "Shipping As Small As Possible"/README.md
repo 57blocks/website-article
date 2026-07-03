@@ -1,18 +1,21 @@
 ---
 published: true
-title: "Make Releases Manageable with \"Shipping As Small As Possible\""
+title: 'Make Releases Manageable with "Shipping As Small As Possible"'
 author: ["Yongzhi Yang / Back-End Engineer, Team Lead"]
 createTime: 2024-05-09
 categories: ["engineering"]
 subCategories: ["Developer Tools & Performance"]
 tags: ["CI/CD", "Workflow"]
-landingPages: ["AI-AI Infra and Framework"]
+landingPages: ["Blueprint"]
 heroColor: "#5B6FBE"
 thumb: "./thumb.png"
 thumb_h: "./thumb_h.png"
 intro: "If you're finding it challenging to release complex features while adhering to the principles of Continuous Integration and Continuous Deployment (CI/CD), we're excited to share our proven approach. By breaking down large features into manageable components, we can relieve the burden of managing these large features, ensuring smoother data management and migration, and minimizing disruptions to dependent clients. This approach also supports an agile and iterative deployment process, enhancing stability and the user experience."
-previousSlugs: ["shipping-as-small-as-possible", "make-release-manageable-with-shipping-as-small-as-possible"]
-
+previousSlugs:
+  [
+    "shipping-as-small-as-possible",
+    "make-release-manageable-with-shipping-as-small-as-possible",
+  ]
 ---
 
 ## Abstract
@@ -21,11 +24,9 @@ Do you face challenges when deploying large features? Do you need to temporarily
 
 In most cases, you can avoid this by adopting the practice of shipping as small as possible, which aligns with the principles of Continuous Integration and Continuous Deployment (CI/CD).
 
-
 ## Getting Started
 
 It is essential to break down features into manageable components to achieve the goal of shipping small, solid, and deliverable changes. The following principles can guide us in this process.
-
 
 ### New Features
 
@@ -34,7 +35,6 @@ Building new features without exposing them to clients or users is relatively ea
 - Create the basic or common changes required as a foundation for upcoming logic or features. This may include database modifications and the development of common services/components.
 - Build the feature from the bottom up or in reverse order, starting from the database layer, moving to the service layer, and finally constructing the protocol/interface layer.
 - Construct new exposed UI/APIs.
-
 
 ### Existing Features
 
@@ -48,7 +48,6 @@ When constructing features that build upon existing ones, consider compatibility
 ### Other Considerations
 
 To ensure smooth shipping, you should take additional actions in these areas:
-
 
 - Split the feature into deliverable pieces during the technical design phase.
 - Use pull requests to facilitate team review and minimize the risk of system disruptions.
@@ -68,7 +67,6 @@ Adopting the practice of shipping as small as possible offers several advantages
 - Verify changes by clients before their release.
 - Ability to release new features to clients at any time.
 
-
 ## Cons
 
 There are some considerations and challenges associated with shipping small changes.
@@ -76,7 +74,6 @@ There are some considerations and challenges associated with shipping small chan
 - There is a risk of breaking existing features if changes are incompatible with existing clients.
 - There is a need to block public client access to changes during specific stages.
 - Setting up feature flags to enable changes when needed and removing them once the new version is stable.
-
 
 ## Examples
 
@@ -93,18 +90,15 @@ For backend services, creating new APIs for new features typically follows this 
 
 ![](build_new_api.png)
 
-
 ### Update Existing APIs
 
 When modifying APIs used by various components, it's important to avoid breaking existing systems. Instead, consider these approaches:
 
 - Determine whether changes can be made to the existing API without causing issues.
-
-    - If yes, add new fields to update the response. For example, if the existing API only returns a user's name but requirements dictate displaying the user's information, add an object field to contain all user information.
-    - If not, create a new version of the API to replace the existing one.
+  - If yes, add new fields to update the response. For example, if the existing API only returns a user's name but requirements dictate displaying the user's information, add an object field to contain all user information.
+  - If not, create a new version of the API to replace the existing one.
 
 ![](./update_api.png)
-
 
 ### Build a New UI
 
@@ -114,11 +108,9 @@ The same principles applied to building new APIs can be followed when building n
 2. Develop the appropriate entry point for users to access the new UI.
 3. Determine the process for shipping the new UI once it is completed.
 
-
 ### Update Existing UIs
 
 Updates to existing user interfaces often require new APIs. In such cases, both versions of the UI can coexist to allow for a gradual transition. Use a feature flag to determine which version is displayed to each user. Once one version is confirmed to be successful, update the feature flag to make the preferred version available to all users.
-
 
 ## Summary
 

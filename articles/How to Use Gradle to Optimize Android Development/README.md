@@ -6,14 +6,13 @@ createTime: 2024-05-09
 categories: ["engineering"]
 subCategories: ["Developer Tools & Performance"]
 tags: ["Mobile", "Android"]
-landingPages: ["AI-AI Infra and Framework"]
+landingPages: []
 heroColor: "#3DA497"
 thumb: "./thumb.png"
 thumb_h: "./thumb_h.png"
 intro: "Dependency conflicts, version compatibility, and maintaining a clean dependency tree can  pose challenges in Android development. However, by harnessing the power of Gradle and Dependency Injection (DI), you can navigate these hurdles with confidence. These tools ensure a smooth process and maintain a modular architecture that follows the principles of Clean Architecture. Read how we have successfully achieved this on our projects, and how you can too."
 previousSlugs: ["overcoming-challenges-in-android-gradle-dependency-management"]
 ---
-
 
 ## Introduction
 
@@ -85,7 +84,6 @@ These configurations often do not allow automatic dependency updates through the
 
 Let's examine what we can do to solve these issues.
 
-
 ## Using Gradle Version Catalogs
 
 Version Catalogs offer flexibility that surpasses many alternatives. They simplify dependency management by allowing bundles and reducing Gradle file clutter. These catalog files are shareable, promoting project consistency and allowing third-party plugins to automate version updates. This article provides an illustrative example of their usage while acknowledging that [their suitability for specific projects is a subject of discussion](https://github.com/jjohannes/idiomatic-gradle/issues/4).
@@ -99,7 +97,6 @@ The current version of Android Studio (Android Studio Hedgehog | 2023.1.1 Patch 
 ![](build_language.png)
 
 Finally, we can use tools, such as [VersionCatalogUpdatePlugin](https://github.com/littlerobots/version-catalog-update-plugin) or [RenovateBot](https://github.com/renovatebot/renovate), to automate the updating of dependencies in our Version Catalogs.
-
 
 ## Base Project Architecture
 
@@ -172,7 +169,6 @@ ksp = { id = "com.google.devtools.ksp", version.ref = "ksp" }
 room = { id = "androidx.room", version.ref = "room" }
 ```
 
-
 ## Using Composite Builds
 
 Configuring a project through the buildSrc folder [invalidates the caching and incremental builds](https://proandroiddev.com/stop-using-gradle-buildsrc-use-composite-builds-instead-3c38ac7a2ab3) used by Gradle. In contrast, Composite Builds enable us to [decompose a large multi-project build into smaller, more isolated chunks](https://docs.gradle.org/current/userguide/composite_builds.html) without causing this invalidation.
@@ -183,7 +179,7 @@ We create the following package structure to store the build logic:
 
 We configure the **versionCatalogs** in this file to recognize the original libs.versions.toml:
 
-```kts 
+```kts
 // File: build-logic/settings.gradle.kts graphic
 
 dependencyResolutionManagement {
@@ -204,7 +200,7 @@ include(":convention")
 
 We define the use of **kotlin-dsl** and specify a Java version for the plugins which we will define in the future:
 
-```kts 
+```kts
 // File: build-logic/convention/build.gradle.kts graphic
 
 plugins {
@@ -235,7 +231,7 @@ dependencies {
 
 We add to the global settings.gradle.kts of the project to include our build-logic folder:
 
-```kts 
+```kts
 // File: settings.gradle.kts graphic
 
 pluginManagement {
@@ -249,7 +245,6 @@ pluginManagement {
 
 Now that we have placed the build logic correctly, we will create our Gradle plugins.
 
-
 ## Gradle Convention Plugins
 
 [At its core, Gradle is not equipped to compile Java code by itself. Instead, compiling Java is handled by specific plugins](https://docs.gradle.org/current/userguide/plugins.html). Applying a plugin to a module allows it to extend another's capabilities (like compiling Kotlin or importing [Room](https://mvnrepository.com/artifact/androidx.room/room-gradle-plugin/2.6.0) components). One that we use all the time is the [Android Library Gradle Plugin](https://mvnrepository.com/artifact/com.android.library/com.android.library.gradle.plugin?repo=google), which allows us to build Android applications.
@@ -260,7 +255,7 @@ In this section, we will look at some Plugin examples that we can add to our pro
 
 We start by creating this extension to access the Version Catalogs from our plugins:
 
-```Graphic 
+```Graphic
 // File: build-logic/convention/src/main/java/com/example/depsmanagement/convention/ProjectExtensions.kt
 
 val Project.libs
@@ -269,8 +264,7 @@ val Project.libs
 
 Now that the extension is in place, let's add some plugins to our build-logic/convention folder. The first will be the AndroidHiltConventionPlugin from [nowinandroid](https://github.com/android/nowinandroid). It allows us to apply the dagger.hilt.android.plugin and org.jetbrains.kotlin.kapt plugins, along with the hilt.android and hilt.compiler dependencies:
 
-
-```Graphic 
+```Graphic
 // File: build-logic/convention/src/main/java/AndroidHiltConventionPlugin.kt
 
 import com.example.depsmanagement.convention.libs
@@ -297,7 +291,7 @@ class AndroidHiltConventionPlugin : Plugin<Project> {
 
 Let's also add the AndroidRoomConventionPlugin:
 
-```Graphic 
+```Graphic
 // File: build-logic/convention/src/main/java/AndroidRoomConventionPlugin.kt
 
 ​​import androidx.room.gradle.RoomExtension
@@ -332,7 +326,7 @@ class AndroidRoomConventionPlugin : Plugin<Project> {
 
 So that the rest of the project can recognize them, we register our plugins in our **build-logic** kts file:
 
-```Graphic 
+```Graphic
 // File: build-logic/convention/build.gradle.kts
 
 gradlePlugin {
@@ -351,8 +345,7 @@ gradlePlugin {
 
 And then, we add the IDs to the Version Catalogs with an unspecified version:
 
-
-```Graphic 
+```Graphic
 # File: libs.versions.toml
 
 [plugins]
@@ -371,8 +364,7 @@ plugins {
 
 To standardize the version of Kotlin we want to use across all project libraries, we can use the AndroidLibraryConventionPlugin (from [nowinandroid](https://github.com/android/nowinandroid) as well):
 
-
-```Graphic 
+```Graphic
 // File: build-logic/convention/src/main/java/AndroidLibraryConventionPlugin.kt
 
 import com.android.build.api.variant.LibraryAndroidComponentsExtension
@@ -412,7 +404,7 @@ class AndroidLibraryConventionPlugin : Plugin<Project> {
 
 The plugin uses this extension function to standardize the versions:
 
-```Graphic 
+```Graphic
 // File: build-logic/convention/src/main/java/com/example/depsmanagement/convention/KotlinAndroid.kt
 
 package com.example.depsmanagement.convention
@@ -496,12 +488,11 @@ private fun Project.configureKotlin() {
 
 This has successfully standardized the Kotlin versions of all Android libraries in our project and reduced a significant amount of boilerplate code when using Room or Hilt.
 
-
 ## Using the Plugins with Our Architecture
 
 We anticipate that each view module in our project will share common dependencies such as UI, Material, Navigation, and Lifecycle. To streamline our project, we'll create a plugin for each module type. For instance, we have the ArchViewConventionPlugin, which we define for every feature view in our application.
 
-```Graphic 
+```Graphic
 // File: build-logic/convention/src/main/java/ArchViewConventionPlugin.kt
 
 import com.android.build.gradle.LibraryExtension
@@ -555,7 +546,7 @@ class ArchViewConventionPlugin : Plugin<Project> {
 
 Because we can now use this plugin, we will transition from using a file like this:
 
-```Graphic 
+```Graphic
 // File: build-logic/convention/src/main/java/// File (old): feature/first/view/build.gradle.kts
 
 plugins {
@@ -627,7 +618,7 @@ dependencies {
 
 To one like this:
 
-```Graphic 
+```Graphic
 // File (new): feature/first/view/build.gradle.kts
 
 plugins {
@@ -645,7 +636,7 @@ dependencies {
 
 We can also define a plugin for the infrastructure and domain modules:
 
-```Graphic 
+```Graphic
 // File: build-logic/convention/src/main/java/ArchInfrastructureConventionPlugin.kt
 
 import org.gradle.api.Plugin
@@ -671,13 +662,11 @@ class ArchInfrastructureConventionPlugin : Plugin<Project> {
 
 It's a good idea to leave some Gradle values out of a convention plugin. For example, **versionCode** and **versionName** in the app module are often extensively used in CI platforms like Bitrise to be modified based on a build ID. Additionally, values like **android.namespace** are unique to each module. It's best to use convention plugins only to encapsulate reusable logic.
 
-
 ## Closing thoughts
 
 As you can see, we have significantly reduced the lines of code in each of the new modules in our project. We can also reuse and standardize the dependencies for each module based on its type, avoiding bugs resulting from different Java/Kotlin versions and configurations. When used with Version Catalogs, we provide good support for library updates.
 
 To access the code samples presented in this article, please refer to the [sample project](https://github.com/ramruizni/DepsManagement). If you're interested in delving deeper, we highly recommend exploring the [nowinandroid](https://github.com/android/nowinandroid) repository, which offers a wealth of additional examples showcasing the capabilities of Convention Plugins, including the definition of [Flavors](https://developer.android.com/build/build-variants?hl=zh-cn), integration of testing libraries, establishment of [Baseline Profiles](https://developer.android.com/topic/performance/baselineprofiles/overview?hl=zh-cn), configuration of [Gradle Managed Devices](https://developer.android.com/studio/test/gradle-managed-devices), Firebase modules, and more.
-
 
 ## External resources
 

@@ -6,8 +6,9 @@ author: ["Yanqi Liu / Back-End Engineer", "Teki Yang / Tech Lead"]
 createTime: 2024-07-26
 categories: ["engineering"]
 subCategories: ["Developer Tools & Performance"]
-tags: ["B2B", "Multi-tenancy", "Parallel Computing", "Microservices Architecture"]
-landingPages: ["AI-Agentic Applications"]
+tags:
+  ["B2B", "Multi-tenancy", "Parallel Computing", "Microservices Architecture"]
+landingPages: []
 heroColor: "#45A587"
 thumb: "./thumb.png"
 thumb_h: "./thumb_h.png"
@@ -18,10 +19,10 @@ Susan was a marketer organizing a large event. She started this project every ye
 
 In the past, Susan tried a few different approaches to get print quotes:
 
-+   **Working with online printers** saved money, but often meant a lower\-quality product.
-+   **Working with a trusted print buyer**—one point of contact who worked with dozens of trusted printers–simplified the project but added overhead costs.
-+   **Working with printers in different specialty areas** required Susan to manage many emails, phone calls, and spreadsheets to track the jobs. Just overwhelming.
-+   **Sending a request for quote (RFQ)** to printers allowed her to choose the one with the best price. Even with select printers in mind, such an effort took weeks to write the RFQ, accept responses, and select a printer.
+- **Working with online printers** saved money, but often meant a lower\-quality product.
+- **Working with a trusted print buyer**—one point of contact who worked with dozens of trusted printers–simplified the project but added overhead costs.
+- **Working with printers in different specialty areas** required Susan to manage many emails, phone calls, and spreadsheets to track the jobs. Just overwhelming.
+- **Sending a request for quote (RFQ)** to printers allowed her to choose the one with the best price. Even with select printers in mind, such an effort took weeks to write the RFQ, accept responses, and select a printer.
 
 These approaches are manual, tedious, and time-consuming, requiring someone to work with known and trusted printers. Printing is complex. Depending on what's needed, complex presses, color processing, or special paper finishing may be involved. And finding the right trusted printer to produce that type of job can take time and money.
 
@@ -37,12 +38,12 @@ The first step in creating that simple step-by-step buyer experience is to devel
 
 When we started building the application, we noticed that it included several systems:
 
-+   The pricing engine (identify a supplier to produce the job and determine price and delivery date).
-+   A storefront to guide a buyer when ordering a print job, adding it to a cart, and making a purchase.
-+   A workspace to track job production status for the buyer, supplier, and customer support.
-+   Buyer and supplier payments (including order payment, change orders, and invoice management).
-+   Job and order history (including reorder functionality).
-+   RFQ management.
+- The pricing engine (identify a supplier to produce the job and determine price and delivery date).
+- A storefront to guide a buyer when ordering a print job, adding it to a cart, and making a purchase.
+- A workspace to track job production status for the buyer, supplier, and customer support.
+- Buyer and supplier payments (including order payment, change orders, and invoice management).
+- Job and order history (including reorder functionality).
+- RFQ management.
 
 Because the application includes a wide range of functionality that would require pages to describe, we will keep this article focused on explaining the technical architecture and decisions made when building the pricing engine, the core of the application.
 
@@ -50,35 +51,35 @@ Because the application includes a wide range of functionality that would requir
 
 Once a buyer selects a print product, the pricing engine automatically defines the basics of the job:
 
-+   Determines the paper to use
-+   Selects the suitable presses for the paper
-+   Indicates any services required for paper cutting or finishing
+- Determines the paper to use
+- Selects the suitable presses for the paper
+- Indicates any services required for paper cutting or finishing
 
 The pricing engine then determines the best supplier to produce the job. The best supplier has the paper specified in stock and a press that can work with it. The best supplier also charges the lowest price.
 
 Then, the pricing engine calculates the following costs to create a buyer price:
 
-+   Press
-+   Paper
-+   Services
-+   Bundling or fastening services
-+   Parcel (size and number)
-+   Shipping
-+   Markup
-+   Tax
-+   Total job price
+- Press
+- Paper
+- Services
+- Bundling or fastening services
+- Parcel (size and number)
+- Shipping
+- Markup
+- Tax
+- Total job price
 
 Additionally, once a shipping option has been selected, the pricing engine determines the production turnaround time and delivery date.
 
 To better understand the scale of the data used to identify a supplier and then generate a price and delivery date, let's review the elements of the pricing engine in more detail:
 
-+   Core databases for papers and presses
-+   A SKU system (press, paper, services)
-+   Shipping management
-+   Markup management
-+   Delivery date calculations
-+   Industry average
-+   Supplier networks
+- Core databases for papers and presses
+- A SKU system (press, paper, services)
+- Shipping management
+- Markup management
+- Delivery date calculations
+- Industry average
+- Supplier networks
 
 ### Core Databases for Papers and Press
 
@@ -90,10 +91,10 @@ Consistent data is a requirement for any ERP system, and this print pricing syst
 
 These attributes included:
 
-+   Size (flat size, finished size)
-+   Number of sheets (pages, folding)
-+   Paper selection (with sub-categories like color and weight)
-+   Services for the print item (like foil or a finish) or to package the final product for shipping (e.g., bundling)
+- Size (flat size, finished size)
+- Number of sheets (pages, folding)
+- Paper selection (with sub-categories like color and weight)
+- Services for the print item (like foil or a finish) or to package the final product for shipping (e.g., bundling)
 
 These standards are consistent with what Adobe and HP have defined for their products and map cleanly to them.
 
@@ -129,12 +130,12 @@ This table summarizes how we approached solving this problem:
 
 <div class="min-width-table">
 
-| What we knew about the system                                                                                                                                                                                        | Solutions to optimize resources and deliver a price in under three seconds             |
-|:---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|:-----------------------------------------------------------------------------------|
-| The suppliers shared data structures but not data values.                                                                                                                                                            | Leverage tenant expansion to manage the data scope of a node.                       |
-| The algorithms and calculations were the same for all suppliers across the system. <p>A lot of data and algorithms were used to make calculations at any single moment.</p>Supplier data was rarely updated. | Cache data to memory rather than calling the database to get a current price.      |
-| We needed to be mindful of cloud budget usage (it was a startup with a limited budget).<p>We needed to support limitless scaling (unlimited suppliers and buyers and unlimited transactions at any moment).</p>       | Run the calculations concurrently using parallelism and multithreading.            |
-| We needed a contingency plan if a supplier couldn't be identified.                                                                                                                                                   | Standardize and generalize systems to find a supplier for any print specification. |
+| What we knew about the system                                                                                                                                                                                   | Solutions to optimize resources and deliver a price in under three seconds         |
+| :-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | :--------------------------------------------------------------------------------- |
+| The suppliers shared data structures but not data values.                                                                                                                                                       | Leverage tenant expansion to manage the data scope of a node.                      |
+| The algorithms and calculations were the same for all suppliers across the system. <p>A lot of data and algorithms were used to make calculations at any single moment.</p>Supplier data was rarely updated.    | Cache data to memory rather than calling the database to get a current price.      |
+| We needed to be mindful of cloud budget usage (it was a startup with a limited budget).<p>We needed to support limitless scaling (unlimited suppliers and buyers and unlimited transactions at any moment).</p> | Run the calculations concurrently using parallelism and multithreading.            |
+| We needed a contingency plan if a supplier couldn't be identified.                                                                                                                                              | Standardize and generalize systems to find a supplier for any print specification. |
 
 {.fixed-table}
 
@@ -152,15 +153,15 @@ Each supplier maintains its data stored on the platform. With tenant-level data 
 
 We knew these two facts about the system to be true:
 
-+   Although all supplier data values are unique, their database fields are identical.
-+   Calling the database whenever the buyer wanted an updated price or changed the print job specifications would be resource-intensive. We needed a cheaper way to store SKU and other pricing data from the networked suppliers in the system.
+- Although all supplier data values are unique, their database fields are identical.
+- Calling the database whenever the buyer wanted an updated price or changed the print job specifications would be resource-intensive. We needed a cheaper way to store SKU and other pricing data from the networked suppliers in the system.
 
 The best solution was to cache data to memory rather than use database calls for each pricing update. Since tenant-level data isolation greatly reduced the amount of data required by a node, the memory capacity in the cache could easily accommodate the data needs of a supplier network.
 
 How we designed it to work:
 
-+   The data needed by the pricing engine was loaded into the memory and mapped to the data structure needed by the pricing engine to make its calculations.
-+   The data was read-only, which ensured security and allowed it to be used repeatedly.
+- The data needed by the pricing engine was loaded into the memory and mapped to the data structure needed by the pricing engine to make its calculations.
+- The data was read-only, which ensured security and allowed it to be used repeatedly.
 
 By storing the data in cache memory and making it reusable, the system avoided continually allocating new memory space for supplier data accessed from the database. This improved efficiency and performance, giving buyers a price and delivery date from thousands of supplier data points in less than three seconds.
 
@@ -173,7 +174,6 @@ If a supplier did update its data, we added "double insurance" to ensure that th
 Since we used the same algorithms across the system to generate a price, we realized we could clone the algorithms, print specifications, and quote strategy elements and simultaneously compute prices for all suppliers in a network using cache data with multithreading. To reduce latency, we automated CPU resource allocation to increase or decrease depending on the number of suppliers or transactions occurring concurrently. Further, supplier data could be used repeatedly without reallocating memory.
 
 ![](./chart%204.png)
-
 
 ### The System Could Always Identify a Supplier
 

@@ -6,6 +6,7 @@ createTime: 2025-12-4
 categories: ["engineering"]
 subCategories: ["Developer Tools & Performance"]
 tags: ["Three.JS"]
+landingPages: ["Robotics"]
 thumb: "./thumb.png"
 thumb_h: "./thumb_h.png"
 intro: "We’ll explore a real-world case where it was necessary to dive into some of Three.js’s more advanced concepts to improve performance and create a smooth experience.
@@ -30,13 +31,13 @@ That said, there are times when we need to rely on more advanced techniques and 
 
 Before diving into performance optimizations, it’s important to revisit a few **basic concepts in Three.js and WebGL**. These terms will appear throughout this article, and having a clear understanding of them will make it easier to follow along with the examples and reasoning.
 
-* **Mesh**: A geometric representation that defines the shape and appearance of a 3D object. In Three.js, a `Mesh` is created by combining a **Geometry** and a **Material**.
-* **Geometry**: Defines the points (vertices) and faces (triangles or polygons) that make up a 3D model.
-* **Material**: Defines the visual appearance of a 3D object’s surface. Materials control how light interacts with the surface, affecting color, brightness, transparency, textures, and other visual effects.
-* **Shader**: A program written in **GLSL** that runs on the GPU. Shaders are used to position each vertex of a geometry and to determine the color of each visible pixel.
-* **Vertex Shader**: Its purpose is to compute the final position of the geometry’s vertices on the screen.
-* **Fragment Shader**: Its purpose is to assign a color to each fragment (potential pixel) of the visible geometry.
-* **World Transformations**: Transformations applied to a 3D object to position, rotate, and scale it within the global space or "world" of the scene. These transformations define how an object is positioned and oriented relative to the scene's global coordinate system.
+- **Mesh**: A geometric representation that defines the shape and appearance of a 3D object. In Three.js, a `Mesh` is created by combining a **Geometry** and a **Material**.
+- **Geometry**: Defines the points (vertices) and faces (triangles or polygons) that make up a 3D model.
+- **Material**: Defines the visual appearance of a 3D object’s surface. Materials control how light interacts with the surface, affecting color, brightness, transparency, textures, and other visual effects.
+- **Shader**: A program written in **GLSL** that runs on the GPU. Shaders are used to position each vertex of a geometry and to determine the color of each visible pixel.
+- **Vertex Shader**: Its purpose is to compute the final position of the geometry’s vertices on the screen.
+- **Fragment Shader**: Its purpose is to assign a color to each fragment (potential pixel) of the visible geometry.
+- **World Transformations**: Transformations applied to a 3D object to position, rotate, and scale it within the global space or "world" of the scene. These transformations define how an object is positioned and oriented relative to the scene's global coordinate system.
 
 ## Optimizing rendering speed
 
@@ -50,7 +51,7 @@ In this case,** Forge Viewer runs on Three.js version r71**, while at the time o
 
 For the case study in this article, the requirement was to render paths made up of multiple points (around **11,000 or more**). The first approach was to use the Three.js API with the built-in <code>[CylinderGeometry](https://threejs.org/docs/?q=cylinder#api/en/geometries/CylinderGeometry)</code>. However, the performance when interacting with the scene turned out to be very poor, the model felt **laggy and not smooth**, with frame rates dropping to around **25–30 FPS**. For reference, a stable **60FPS (Frames Per Second) is generally considered the standard for a smooth real-time experience**, since faster speeds aren’t perceived as being any smoother by the human eye.
 
-As you can see in the following example, moving the model caused noticeable stuttering, making the interaction uncomfortable and far from real-time. 
+As you can see in the following example, moving the model caused noticeable stuttering, making the interaction uncomfortable and far from real-time.
 
 ![A gif showing bad performance](./bad_performance.gif)
 
@@ -107,13 +108,11 @@ Luckily, Three.js provides **[BufferGeometry](https://threejs.org/docs/?q=buffer
 
 The classic example is drawing a triangle. First, we create an empty `BufferGeometry`:
 
-
 ```dart
 const geometry = new THREE.BufferGeometry()
 ```
 
 Then we define the positions of the vertices. A triangle has **3 vertices**, and each vertex is described by **X, Y, Z** coordinates. That means we need to store 9 values in total. For this we use a <code>[Float32Array](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Float32Array)</code>, a **native JavaScript typed array** with a fixed length. It’s commonly used to load buffers to the GPU efficiently.
-
 
 ```dart
 const positionsArray = new Float32Array([
@@ -123,22 +122,18 @@ const positionsArray = new Float32Array([
 ])
 ```
 
-
 Remember, the **Vertex Shader** is responsible for positioning each vertex of a geometry. Since shaders run on the **GPU**, we need to pass the data from the CPU to the GPU.
 
 Three.js makes this possible with **[BufferAttribute](https://threejs.org/docs/?q=buffera#api/en/core/BufferAttribute)**, which stores data for an **attribute **that can then be consumed by shaders. **Attributes **are variables used to pass data to vertices in the Vertex Shader. This data can vary from vertex to vertex.
 
 In this case, we add an attribute named `position`, because that’s what the built-in Three.js shaders expect for vertex positions.
 
-
 ```dart
 const positionsAttribute = new THREE.BufferAttribute(positionsArray, 3)
 geometry.setAttribute('position', positionsAttribute)
 ```
 
-
 So, the final code looks like this:
-
 
 ```dart
 const geometry = new THREE.BufferGeometry()
@@ -155,7 +150,6 @@ const mesh = new THREE.Mesh(geometry, material)
 scene.add(mesh)
 ```
 
-
 This small example draws a **triangle at the low-level**, directly controlling how vertex data is stored and passed to the GPU.
 
 ![A rendered triangle](./triangle.png)
@@ -165,7 +159,6 @@ Now that we understand how `BufferGeometry` works, we can take advantage of exte
 What makes this particularly useful is that this library actually requires us to define a `BufferGeometry` first, so it fits perfectly with the technique we just explored.
 
 Applied to our scenario with thousands of path points, the simplified code looks like this:
-
 
 ```dart
 const validPointsData = thousandsOfPointsIn3DSpace;
@@ -202,25 +195,21 @@ Many geometries are simple enough to be represented directly with **BufferGeomet
 
 **BufferGeometry is particularly valuable when**:
 
+- You need to render **a large number of repeated objects** (paths, particles, repeated segments).
 
+- You want to minimize the number of **draw calls** for better GPU efficiency.
 
-* You need to render **a large number of repeated objects** (paths, particles, repeated segments).
+- You need **custom or uncommon geometries** not included in Three.js built-in primitives.
 
-* You want to minimize the number of **draw calls** for better GPU efficiency.
-
-* You need **custom or uncommon geometries** not included in Three.js built-in primitives.
-
-* You want to optimize how data is passed between CPU and GPU by leveraging **typed arrays** and compact attributes.
-
+- You want to optimize how data is passed between CPU and GPU by leveraging **typed arrays** and compact attributes.
 
 In short, **stepping into BufferGeometry gives you the best of both worlds**: more control, better performance, and the flexibility to customize your scenes while staying inside the Three.js ecosystem.
 
 # Useful Resources
 
-* [https://videos.autodesk.com/zencoder/content/dam/autodesk/videos/bim-for-architects-page/Autodesk_What%20is%20BIM_20211207.mp4](https://videos.autodesk.com/zencoder/content/dam/autodesk/videos/bim-for-architects-page/Autodesk_What%20is%20BIM_20211207.mp4)
-* [https://aps.autodesk.com/developer/learn/viewer-app/overview](https://aps.autodesk.com/developer/learn/viewer-app/overview)
-* [https://sbcode.net/threejs/geometry-to-buffergeometry/](https://sbcode.net/threejs/geometry-to-buffergeometry/)
-* [https://mattdesl.svbtle.com/drawing-lines-is-hard](https://mattdesl.svbtle.com/drawing-lines-is-hard)
-* [https://threejs.org/examples/?q=lines#webgl_interactive_lines](https://threejs.org/examples/?q=lines#webgl_interactive_lines)
-* [https://codeburst.io/improve-your-threejs-performances-with-buffergeometryutils-8f97c072c14b](https://codeburst.io/improve-your-threejs-performances-with-buffergeometryutils-8f97c072c14b)
-
+- [https://videos.autodesk.com/zencoder/content/dam/autodesk/videos/bim-for-architects-page/Autodesk_What%20is%20BIM_20211207.mp4](https://videos.autodesk.com/zencoder/content/dam/autodesk/videos/bim-for-architects-page/Autodesk_What%20is%20BIM_20211207.mp4)
+- [https://aps.autodesk.com/developer/learn/viewer-app/overview](https://aps.autodesk.com/developer/learn/viewer-app/overview)
+- [https://sbcode.net/threejs/geometry-to-buffergeometry/](https://sbcode.net/threejs/geometry-to-buffergeometry/)
+- [https://mattdesl.svbtle.com/drawing-lines-is-hard](https://mattdesl.svbtle.com/drawing-lines-is-hard)
+- [https://threejs.org/examples/?q=lines#webgl_interactive_lines](https://threejs.org/examples/?q=lines#webgl_interactive_lines)
+- [https://codeburst.io/improve-your-threejs-performances-with-buffergeometryutils-8f97c072c14b](https://codeburst.io/improve-your-threejs-performances-with-buffergeometryutils-8f97c072c14b)

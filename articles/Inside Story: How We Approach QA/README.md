@@ -5,8 +5,8 @@ author: ["Jia Chen / QA Engineer", "Martha Luo / QA Engineer"]
 createTime: 2024-05-07
 categories: ["engineering"]
 subCategories: ["QA & Testing"]
-tags: ["QA strategy", "CI",  "Automation Framework"]
-landingPages: ["Blockchain-Onchain infra"]
+tags: ["QA strategy", "CI", "Automation Framework"]
+landingPages: ["Health", "Construction & property", "Blueprint", "Compass"]
 heroColor: "#329ECC"
 thumb: "./thumb.png"
 thumb_h: "./thumb_h.png"
@@ -35,11 +35,9 @@ This article delves into the testing best practices 57blocks QA teams leverage t
 - **Analyze test results**: The results of both manual testing and automated regression testing should be analyzed to identify any issues or defects.
 - **Fix issues and defects**: Any issues or defects identified during testing should be fixed, and the testing process should be repeated until all issues are resolved.
 
-
 This process should be repeated for each release, focusing on testing new features and ensuring that the software's existing functionality is not impacted.
 
 ![test process](test_process.png)
-
 
 ## Why you should prepare multiple environments
 
@@ -51,7 +49,6 @@ Multiple test environments ensure that the software application is thoroughly te
 - **QA environment**: The QA environment tests the software application in a more realistic environment. This environment is typically used for regression, user acceptance, and performance testing and environment should closely resemble the production environment to ensure accurate testing.
 - **Pre-production environment**: Perform final UAT, load testing, and accessibility testing in pre-production. It tests the software application in a production-like environment. It is typically used for testing the deployment process, integration with other systems, and final testing before the release.
 - **Production environment**: Monitor, optimize and minimally test in production. This is the live environment where the software application is deployed and used by end-users. It should be stable, secure, and reliable and be closely monitored to ensure availability and performance.
-
 
 ## Using Jenkins for continuous testing, quality monitoring, and deployment
 
@@ -69,22 +66,16 @@ Before release, Jenkins can integrate development and automated testing to detec
 - **Review and analyze the test report**: The test report should be reviewed and analyzed to ensure the software application is ready for release. Any issues or errors identified during testing should be addressed before releasing the software application.
 - **Release the software application**: Once the testing process is complete and all issues or errors have been addressed, the software application can be released to production.
 
-
 After the software application has been released, here's how Jenkins can monitor the production environment for any issues or errors.
-
-
 
 - **Set up monitoring tools and automated test jobs**: To monitor the production environment, you will need to run automated test jobs and set up monitoring tools such as log aggregation tools, performance monitoring tools, and error tracking tools. These tools will help identify any issues or errors in the production environment.
 - **Analyze logs**: Jenkins can analyze metrics and logs from the production environment to identify any issues or errors. This can include analyzing performance metrics, error logs, and other relevant data.
 - **Automate remediation**: If issues or errors are detected in the production environment, Jenkins can automatically remediate them or alert the relevant team members to address them.
 - **Continuously improve**: Monitoring the production environment using Jenkins is an ongoing process. By analyzing the data and identifying areas for improvement, the development team can continuously improve the software application and ensure that it meets the end user's needs.
 
-
-
 ## Choose a suitable script/language/framework for the project and team
 
 Different kinds of tests require different frameworks. Most test frameworks can support multiple languages. 57Blocks has projects using both Python and Javascript. The choice between Python and JavaScript will depend on the project requirements and the team's skills. JavaScript may be better if the project is web-based and requires front-end testing. However, if you are looking for a language that is easy to learn and has a rich set of test libraries, then Python may be the better choice.
-
 
 ### The benefits of the Python test framework:
 
@@ -93,15 +84,13 @@ Different kinds of tests require different frameworks. Most test frameworks can 
 - **Rich test libraries**: Python has a rich set of test libraries, such as PyTest and unittest, offering a range of automation testing features.
 - **Multi-purpose language**: Python is a multi-purpose language that can be used for various tasks beyond automation testing.
 
-
 ### Benefits of the JavaScript test framework
 
-
 JavaScript is a popular choice for web applications, which means it is well-suited for automation testing web-based applications.
+
 - **Front-end testing**: JavaScript is commonly used for front-end testing, which means it can be integrated with popular front-end frameworks such as React and Angular.
 - **Large community**: JavaScript has a large and active community, which means a wealth of resources and support is available.
 - **Cross-functional testing**: JavaScript can be used for both front end and backend testing. When both front end and backend tests are written in JavaScript, they can be managed using the same tools. Developers and testers can run them as part of a Continuous Integration/Continuous Deployment (CI/CD) pipeline. This ensuring that tests for both the client and server sides are automatically running on every commit.
-
 
 ## Set up an automation framework
 
@@ -115,29 +104,10 @@ Setting up an automation framework for a project can help you streamline your te
 - **Add screenshots and videos**: This helps debug failed tests and understand what went wrong at runtime.
 - **Run tests in a CI/CD pipeline**: Run automated UI tests in a continuous integration server like Jenkins, Travis CI, etc. This ensures the tests are run for every code change and maintains the quality of the build.
 - **Maintain the test suites**: Keep the test code clean and up to date with the changes in the application.
-    - Refactor tests when the UI changes
-    - Delete redundant tests
-    - Add new tests as needed to support new functionality. 
+  - Refactor tests when the UI changes
+  - Delete redundant tests
+  - Add new tests as needed to support new functionality. 
 
 - **Report intelligently**: In many cases, the best solution is to combine framework-provided reports for immediate feedback with extensive Jenkins reports for continuous tracking and visualization.
-    - Use the test framework's reporting features to view reports, statistics and graphics based on test runs. This gives you visibility into the quality and coverage of automated tests. The framework-provided reports typically include test results of pass/fail status for each test, often with error messages and stack traces for failures. It also provides timing information regarding how long each test took to run, which can help identify slow tests or potential performance issues. These reports are valuable for immediate feedback on the latest changes. We run tests locally or on a development server to see whether the recent code changes have caused any regressions.
-    - Jenkins-generated reports allow the team to monitor the average test run duration, providing a clear visual if there has been a gradual increase in testing times due to recent commits.
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+  - Use the test framework's reporting features to view reports, statistics and graphics based on test runs. This gives you visibility into the quality and coverage of automated tests. The framework-provided reports typically include test results of pass/fail status for each test, often with error messages and stack traces for failures. It also provides timing information regarding how long each test took to run, which can help identify slow tests or potential performance issues. These reports are valuable for immediate feedback on the latest changes. We run tests locally or on a development server to see whether the recent code changes have caused any regressions.
+  - Jenkins-generated reports allow the team to monitor the average test run duration, providing a clear visual if there has been a gradual increase in testing times due to recent commits.

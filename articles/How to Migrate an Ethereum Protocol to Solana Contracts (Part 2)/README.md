@@ -6,7 +6,7 @@ createTime: 2026-06-22
 categories: ["engineering"]
 subCategories: ["Blockchain & Web3"]
 tags: ["Solana", "Ethereum", "Smart Contract", "Solidity", "Anchor"]
-landingPages: ["Blockchain-Onchain infra"]
+landingPages: ["Blockchain"]
 thumb: "./thumb.png"
 thumb_h: "./thumb_h.png"
 intro: "Solana contract constraints that bite during an EVM migration, plus a full staking port from Solidity to Anchor."
@@ -22,13 +22,13 @@ This article is part of a broader series on migrating Ethereum protocols to Sola
 
 If you're new to the series, start with the [Preamble](https://57blocks.com/blog/how-to-migrate-an-ethereum-protocol-to-solana-preamble) for account models, execution, and fees, then read [Contracts (Part 1)](https://57blocks.com/blog/how-to-migrate-an-ethereum-protocol-to-solana-contracts-part-1) for the account-model mindset shift. After this post, continue with the [Frontend](https://57blocks.com/blog/how-to-migrate-an-ethereum-protocol-to-solana-frontend-part-1) and [Backend](https://57blocks.com/blog/how-to-migrate-an-ethereum-protocol-to-solana-backend) guides for the layers above the program.
 
-| Layer | Article | What it covers |
-| --- | --- | --- |
-| Foundation | [Preamble](https://57blocks.com/blog/how-to-migrate-an-ethereum-protocol-to-solana-preamble) | Account model, execution, fees |
-| Contracts | [Part 1](https://57blocks.com/blog/how-to-migrate-an-ethereum-protocol-to-solana-contracts-part-1) | Account model, CPI, PDAs, Anchor patterns |
-| Contracts | **[Part 2 (this article)](https://57blocks.com/blog/how-to-migrate-an-ethereum-protocol-to-solana-contracts-part-2)** | CU limits, forks, hooks, events, staking walkthrough |
-| Frontend | [Part 1](https://57blocks.com/blog/how-to-migrate-an-ethereum-protocol-to-solana-frontend-part-1) / [Part 2](https://57blocks.com/blog/how-to-migrate-an-ethereum-protocol-to-solana-frontend-part-2) | Wallets, transaction building, account fetching, events |
-| Backend | [Backend](https://57blocks.com/blog/how-to-migrate-an-ethereum-protocol-to-solana-backend) | Event sync, log parsing, cron automation |
+| Layer      | Article                                                                                                                                                                                               | What it covers                                          |
+| ---------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------- |
+| Foundation | [Preamble](https://57blocks.com/blog/how-to-migrate-an-ethereum-protocol-to-solana-preamble)                                                                                                          | Account model, execution, fees                          |
+| Contracts  | [Part 1](https://57blocks.com/blog/how-to-migrate-an-ethereum-protocol-to-solana-contracts-part-1)                                                                                                    | Account model, CPI, PDAs, Anchor patterns               |
+| Contracts  | **[Part 2 (this article)](https://57blocks.com/blog/how-to-migrate-an-ethereum-protocol-to-solana-contracts-part-2)**                                                                                 | CU limits, forks, hooks, events, staking walkthrough    |
+| Frontend   | [Part 1](https://57blocks.com/blog/how-to-migrate-an-ethereum-protocol-to-solana-frontend-part-1) / [Part 2](https://57blocks.com/blog/how-to-migrate-an-ethereum-protocol-to-solana-frontend-part-2) | Wallets, transaction building, account fetching, events |
+| Backend    | [Backend](https://57blocks.com/blog/how-to-migrate-an-ethereum-protocol-to-solana-backend)                                                                                                            | Event sync, log parsing, cron automation                |
 
 The sections below walk through each constraint first, then port staking end to end (`stake`, `unstake`, `claimRewards`) with code in [evm-to-solana](https://github.com/57blocks/evm-to-solana): implementation, tests, and deployment.
 
@@ -216,7 +216,7 @@ contract Staking is ReentrancyGuard, Ownable {
 }
 ```
 
-All staking data (token refs, pool totals, per-user `StakeInfo`) sits in this contract’s storage. 
+All staking data (token refs, pool totals, per-user `StakeInfo`) sits in this contract’s storage.
 
 **Core function implementations**
 
@@ -496,7 +496,7 @@ describe("Stake", () => {
       admin,
       user,
       stakingMint,
-      rewardMint
+      rewardMint,
     );
     const stakeAmount = toToken(100);
 
@@ -515,7 +515,7 @@ describe("Stake", () => {
 
     const globalState = getGlobalState(provider, statePda);
     expect(globalState!.totalStaked.toString()).to.equal(
-      stakeAmount.toString()
+      stakeAmount.toString(),
     );
   });
 });
@@ -552,7 +552,7 @@ anchor build
 anchor deploy --provider.cluster <cluster_name>
 ```
 
-Set the cluster with `--provider.cluster` (`localnet`, `devnet`, or `mainnet-beta`). 
+Set the cluster with `--provider.cluster` (`localnet`, `devnet`, or `mainnet-beta`).
 
 To ship new logic without migrating state, rebuild and upgrade the same program id:
 

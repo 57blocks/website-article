@@ -7,7 +7,7 @@ categories: ["engineering"]
 subCategories: ["Blockchain & Web3"]
 tags:
   ["Cross-chain transactions", "Intent based swaps", "Chain interoperability"]
-landingPages: ["Blockchain-Onchain infra"]
+landingPages: ["Financial services"]
 heroColor: "#5E86E2"
 thumb: "./thumb.png"
 thumb_h: "./thumb_h.png"

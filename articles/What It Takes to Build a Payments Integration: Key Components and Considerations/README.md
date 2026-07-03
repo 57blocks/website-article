@@ -1,7 +1,12 @@
 ---
 published: true
 title: "What It Takes to Build a Payments Integration: Key Components and Considerations"
-author: ["GuangPeng Liu / Fullstack Engineer", "Ida Zhou / Backend Engineer", "Hum Tan / Fullstack Engineer"]
+author:
+  [
+    "GuangPeng Liu / Fullstack Engineer",
+    "Ida Zhou / Backend Engineer",
+    "Hum Tan / Fullstack Engineer",
+  ]
 createTime: 2025-09-05
 heroColor: "#6480D7"
 thumb: "thumb.png"
@@ -9,7 +14,7 @@ thumb_h: "thumb_h.png"
 categories: ["engineering"]
 subCategories: ["FinTech & Payments"]
 tags: ["Payment", "Components"]
-landingPages: ["AI-AI Infra and Framework"]
+landingPages: ["Financial services"]
 intro: "In today's digital economy, payment integration represents far more than just a technical implementation—it's a critical business capability that can determine the success or failure of modern digital platforms. Whether you're building an e-commerce platform, a subscription service, or a marketplace, the ability to process payments reliably, securely, and efficiently is fundamental to business operations."
 ---
 
@@ -34,27 +39,27 @@ Imagine building a house made of glass. It needs to be both beautifully transpar
 
 ### 2.1 Making security a seamless secret to users
 
-# Modern Payment Security: The Invisible Symphony  
+# Modern Payment Security: The Invisible Symphony
 
-Modern payment security is a delicate dance between iron-clad protection and frictionless user experience. Consider how Apple Pay works–a simple thumb press ignites a multi-layered symphony of cryptographic protocols and real-time risk analysis, all interconnected in milliseconds. Behind the scenes, the system:  
+Modern payment security is a delicate dance between iron-clad protection and frictionless user experience. Consider how Apple Pay works–a simple thumb press ignites a multi-layered symphony of cryptographic protocols and real-time risk analysis, all interconnected in milliseconds. Behind the scenes, the system:
 
-1. **Validates your biometric data.** Your thumbprint or face scan is locally authenticated via the device's **Secure Enclave** (a hardware-bound key that never exposes raw biometric data).  
+1. **Validates your biometric data.** Your thumbprint or face scan is locally authenticated via the device's **Secure Enclave** (a hardware-bound key that never exposes raw biometric data).
 
 2. **Generates a one-time dynamic cryptogram (unique transaction token) through a Tokenization Engine, replacing your card number.** These tokens expire in nanoseconds to thwart replay attacks.
 
-3. **Completes network vigilance** by cross-referencing the transaction against:  
-   - Behavioral baselines (e.g., atypical purchase amount/location)  
-   - Device reputation (is this iPhone previously associated with fraud?)  
-   - Merchant risk tiers (high-risk categories trigger additional scrutiny)  
+3. **Completes network vigilance** by cross-referencing the transaction against:
+   - Behavioral baselines (e.g., atypical purchase amount/location)
+   - Device reputation (is this iPhone previously associated with fraud?)
+   - Merchant risk tiers (high-risk categories trigger additional scrutiny)
 
-4. **Completes regulatory orchestration and auto-adjusts transaction workflow for regional compliance** (e.g., EU's Strong Customer Authentication, global PCI-DSS standards).  
+4. **Completes regulatory orchestration and auto-adjusts transaction workflow for regional compliance** (e.g., EU's Strong Customer Authentication, global PCI-DSS standards).
 
-5. **Conduct fraud analysis, synchronizing with** bank fraud systems and network AIs (Visa/Mastercard's neural networks). 
+5. **Conduct fraud analysis, synchronizing with** bank fraud systems and network AIs (Visa/Mastercard's neural networks).
 
-![Security Balancing Act](./security-balancing-act.png)  
+![Security Balancing Act](./security-balancing-act.png)
 
 **The Result?**  
-By the time you hear *"Payment approved,"* your transaction has navigated cryptographic handshakes, passed machine-learning scrutiny, and advanced beyond enforced zero-trust principles—all invisibly.  
+By the time you hear _"Payment approved,"_ your transaction has navigated cryptographic handshakes, passed machine-learning scrutiny, and advanced beyond enforced zero-trust principles—all invisibly.
 
 ### 2.2 Modern security: a backup plan for the backup plan
 
@@ -105,6 +110,7 @@ Modern monitoring approaches go beyond basic metrics to include sophisticated an
 ### 3.1 Error Handling for Programmers
 
 Error handling is a safety net that you hope no one will need, but is required to work perfectly at three levels:
+
 1. **Prevention**  
    `input validation | idempotent operations | rate limiting`
 2. **Containment**  
@@ -115,13 +121,13 @@ Error handling is a safety net that you hope no one will need, but is required t
 When things go wrong in payment processing (and they will, given the complexity of third-party APIs, network latency, and bank protocols), you need error handling plans that are both smart and practical. Such plans could include smart retry logic that slows the pace of retrying failed transactions to avoid overloading the system and ensure that each payment is processed exactly once (nobody wants to pay for their coffee twice!), or a requirement to design a system that can continue functioning even when individual components fail. When payment systems fail, you need smart error handling approaches like:
 
 - **Smart retries** with exponential backoff  
-  *(e.g. wait 1s, then 2s, then 4s before retrying)*
+  _(e.g. wait 1s, then 2s, then 4s before retrying)_
 
 - **Idempotency keys**  
-  *(e.g. unique client-generated UUID for each transaction)*
+  _(e.g. unique client-generated UUID for each transaction)_
 
 - **Graceful fallbacks**  
-  *(e.g. process payments offline when bank APIs fail, then sync later)*
+  _(e.g. process payments offline when bank APIs fail, then sync later)_
 
 These ensure data consistency while minimizing user impact.
 
@@ -178,9 +184,11 @@ To ensure alerts reach the right team members, such as engineers or system admin
 ### 3.5 Recovery Procedures
 
 When systems fail, you need a comprehensive plan with three core components:
+
 1. Automated recovery mechanisms
 2. Documented escalation procedures
 3. Tested protocols including:
+
 - Quarterly outage simulations
 - Post-mortem improvement cycles
 - Team training drills
@@ -188,12 +196,15 @@ When systems fail, you need a comprehensive plan with three core components:
 Let's review what each type of plan should include.
 
 #### 3.5.1 Automated Cleanup & Recovery
+
 Payment systems must self-heal from common failures, such as:
+
 - **Database crashes**. To avoid duplicate charges that could happen during this event, we employ automatic transaction reconciliation.
 - **Network outages**. After an outage, we ensure that queued transactions process automatically when connectivity resumes.
 - **Peak load failures** are addressed via auto-scaling that handles predictable surges like holiday shopping rushes and payday spikes in mobile money markets, as well as unpredictable viral payment trends.
 
 > For example, let's say during Black Friday, a database node fails. The system will need to automatically:
+>
 > 1. Shift traffic to healthy nodes while maintaining transaction integrity through consistent hashing.
 > 2. Queue pending transactions.
 > 3. Alert the on-call team with diagnostic data.
@@ -206,31 +217,28 @@ Payment systems require proven recovery capabilities–not just theoretical plan
 
 Teams validate recovery plans through:
 
-- **Quarterly fire drills** 
-  
+- **Quarterly fire drills**
   - Planned simulated outages with escalating scenarios each quarter (e.g., cloud failures in Q1, combined fraud/outage in Q2)
   - These include strict time-bound recovery targets (<15min for Tier 1 systems)
-  
-- **Tabletop exercises** 
-  
+
+- **Tabletop exercises**
   - Structured walkthroughs of new failure scenarios each session
   - The exercises surface hidden dependencies through cross-team collaboration
   - Update playbooks with proactive mitigations for hypothetical failures ("lessons imagined")
-  
-- **Red team tests** 
+
+- **Red team tests**
   We conduct controlled attack simulations to proactively strengthen our defenses.
-  
-  **Methodology**  
-  
-  - Replicate current threat actor techniques  
-  - Target specific system components (APIs, auth systems, etc.)  
-  - Validate monitoring and response capabilities  
+
+  **Methodology**
+  - Replicate current threat actor techniques
+  - Target specific system components (APIs, auth systems, etc.)
+  - Validate monitoring and response capabilities
 
 **Key Benefits:**
 
-- Identify vulnerabilities before attackers do  
-- Improve incident response effectiveness  
-- Provide measurable security benchmarks  
+- Identify vulnerabilities before attackers do
+- Improve incident response effectiveness
+- Provide measurable security benchmarks
 
 **Outcome Example:**
 
@@ -300,16 +308,17 @@ You wouldn't test a new rocket engine in your backyard, right? Similarly, we nee
 
 Our testing pipeline includes multiple environments, each serving a distinct purpose:
 
-| Environment       | Purpose                                                                 |
-|-------------------|-------------------------------------------------------------------------|
-| Development (Dev) | Sandbox for developers to experiment with new features and fixes        |
-| Integration       | Validation of component interactions and interfaces                     |
-| Staging           | Production-like environment for full system testing                     |
-| Performance       | Dedicated infrastructure for load testing and optimization              |
-| UAT               | Business stakeholders verify feature requirements and usability         |
-| Production        | Live environment serving real customer transactions                     |
+| Environment       | Purpose                                                          |
+| ----------------- | ---------------------------------------------------------------- |
+| Development (Dev) | Sandbox for developers to experiment with new features and fixes |
+| Integration       | Validation of component interactions and interfaces              |
+| Staging           | Production-like environment for full system testing              |
+| Performance       | Dedicated infrastructure for load testing and optimization       |
+| UAT               | Business stakeholders verify feature requirements and usability  |
+| Production        | Live environment serving real customer transactions              |
 
 For example, when implementing a new payment gateway we approach the process by:
+
 - Testing a prototype in Dev
 - Verifying API integrations in Integration
 - Conducting load tests with simulated traffic in Performance
@@ -326,7 +335,7 @@ We create synthetic transactions that cover every possible scenario we can think
 
 In payment systems, we're not just handling transactions–we're protecting people's financial trust. That's why "good enough" testing isn't good enough. We suggest that you create your test plans based on your users' actual behaviors, not just technical requirements. Map their payment journeys from routine transactions to edge cases and build test strategies around these real-world scenarios. We need to aim for perfect execution every time.
 
-The final frontier: making sure new versions of our system can go live without breaking anything. We've developed sophisticated procedures for rolling out updates that are a bit like changing an airplane's engine mid-flight–they happen smoothly, without anyone noticing. 
+The final frontier: making sure new versions of our system can go live without breaking anything. We've developed sophisticated procedures for rolling out updates that are a bit like changing an airplane's engine mid-flight–they happen smoothly, without anyone noticing.
 
 One example is our recent payment processor upgrade. We deployed the new version to a small percentage of users while closely monitoring transaction success rates. When detecting a slight increase in timeout errors for a specific bank integration, the system automatically paused the rollout, preventing any customer impact. After adjusting the connection pool settings, we completed the update seamlessly.
 

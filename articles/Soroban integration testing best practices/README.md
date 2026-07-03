@@ -13,7 +13,7 @@ tags:
     "Smart Contract",
     "Integration Testing",
   ]
-landingPages: ["Blockchain-Onchain infra"]
+landingPages: ["Financial services", "Blockchain"]
 heroColor: "#886FD0"
 thumb: "./thumb.png"
 thumb_h: "./thumb_h.png"
@@ -131,24 +131,24 @@ Capture the returned CONTRACT_ID (a string starting with C...). Keep it for late
 3. E2E user flow: Batch Liquidation Contract
 
 ```javascript
-describe('Batch Liquidation Contract - Basic', () => {
+describe("Batch Liquidation Contract - Basic", () => {
   let liquidator, debtorAccounts, collateralAsset, debtAsset;
 
   before(async () => {
     // Initialize network and deploy contract
     await initializeTestEnv();
     [liquidator, ...debtorAccounts] = await createTestAccounts(10);
-    [collateralAsset, debtAsset] = await createAssets(['COLL', 'DEBT']);
+    [collateralAsset, debtAsset] = await createAssets(["COLL", "DEBT"]);
 
     // Setup undercollateralized positions
     await setupDebtPositions(debtorAccounts, collateralAsset, debtAsset);
   });
 
-  it('should successfully liquidate undercollateralized positions', async () => {
+  it("should successfully liquidate undercollateralized positions", async () => {
     const liquidateTx = buildBatchLiquidationTx({
       liquidator: liquidator.publicKey,
-      debtors: debtorAccounts.map(a => a.publicKey),
-      contractId: CONTRACT_ID
+      debtors: debtorAccounts.map((a) => a.publicKey),
+      contractId: CONTRACT_ID,
     });
 
     // Submit and validate transaction
@@ -167,35 +167,39 @@ describe('Batch Liquidation Contract - Basic', () => {
     expect(liquidatorBalances[collateralAsset]).to.be.above(0);
   });
 
-  it('should handle partial liquidation when exceeding operation limit', async () => {
+  it("should handle partial liquidation when exceeding operation limit", async () => {
     const largeDebtorGroup = await createTestAccounts(150);
     await setupDebtPositions(largeDebtorGroup, collateralAsset, debtAsset);
 
     const partialTx = buildBatchLiquidationTx({
       liquidator: liquidator.publicKey,
-      debtors: largeDebtorGroup.map(a => a.publicKey),
+      debtors: largeDebtorGroup.map((a) => a.publicKey),
       contractId: CONTRACT_ID,
-      maxOperations: 100  // Contract-enforced limit
+      maxOperations: 100, // Contract-enforced limit
     });
 
     const result = await submitTx(partialTx, liquidator);
     expect(result.successful).to.be.true;
 
     // Verify only 100 positions processed
-    const processedEvents = result.events.filter(e => e.type === 'LIQUIDATION_SUCCESS');
+    const processedEvents = result.events.filter(
+      (e) => e.type === "LIQUIDATION_SUCCESS",
+    );
     expect(processedEvents.length).to.equal(100);
   });
 
-  it('should fail with insufficient transaction resources', async () => {
+  it("should fail with insufficient transaction resources", async () => {
     const tx = buildBatchLiquidationTx({
       // Intentionally underfunded
       fee: 100,
       liquidator: liquidator.publicKey,
-      debtors: debtorAccounts.map(a => a.publicKey),
-      contractId: CONTRACT_ID
+      debtors: debtorAccounts.map((a) => a.publicKey),
+      contractId: CONTRACT_ID,
     });
 
-    await expect(submitTx(tx, liquidator)).to.eventually.be.rejectedWith('tx_insufficient_fee');
+    await expect(submitTx(tx, liquidator)).to.eventually.be.rejectedWith(
+      "tx_insufficient_fee",
+    );
   });
 });
 ```

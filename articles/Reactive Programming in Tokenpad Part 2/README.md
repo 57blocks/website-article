@@ -7,7 +7,7 @@ createTime: 2025-09-22
 categories: ["engineering"]
 subCategories: ["Developer Tools & Performance"]
 tags: ["Reactive", "Flutter", "Crypto", "Streams", "Dart"]
-landingPages: ["AI-Agentic Applications"]
+landingPages: []
 heroColor: "#735BB9"
 thumb: "./thumb.png"
 thumb_h: "./thumb_h.png"
