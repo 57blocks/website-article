@@ -23,7 +23,7 @@
         "Anchor"
       ],
       "landingPages": [
-        "Blockchain-dApps"
+        "Blockchain"
       ],
       "thumb": "./thumb.png",
       "thumb_h": "./thumb_h.png",
@@ -54,7 +54,7 @@
         "Anchor"
       ],
       "landingPages": [
-        "Blockchain-dApps"
+        "Blockchain"
       ],
       "thumb": "./thumb.png",
       "thumb_h": "./thumb_h.png",
@@ -84,7 +84,7 @@
         "Transaction"
       ],
       "landingPages": [
-        "Blockchain-dApps"
+        "Blockchain"
       ],
       "thumb": "./thumb.png",
       "thumb_h": "./thumb_h.png",
@@ -114,7 +114,7 @@
         "Anchor"
       ],
       "landingPages": [
-        "Blockchain-Onchain infra"
+        "Blockchain"
       ],
       "thumb": "./thumb.png",
       "thumb_h": "./thumb_h.png",
@@ -140,7 +140,9 @@
         "Distributed Teams",
         "Engineering Management"
       ],
-      "landingPages": [],
+      "landingPages": [
+        "Blockchain"
+      ],
       "heroColor": "#3991C0 ",
       "thumb": "./thumb.png",
       "thumb_h": "./thumb_h.png",
@@ -173,7 +175,8 @@
         "Anchor"
       ],
       "landingPages": [
-        "Blockchain-Onchain infra"
+        "Financial services",
+        "Blockchain"
       ],
       "thumb": "./thumb.png",
       "thumb_h": "./thumb_h.png",
@@ -207,7 +210,8 @@
         "Anchor"
       ],
       "landingPages": [
-        "Blockchain-Onchain infra"
+        "Financial services",
+        "Blockchain"
       ],
       "heroColor": "#398DAD",
       "thumb": "thumb.png",
@@ -233,6 +237,9 @@
       ],
       "tags": [
         "Three.JS"
+      ],
+      "landingPages": [
+        "Robotics"
       ],
       "thumb": "./thumb.png",
       "thumb_h": "./thumb_h.png",
@@ -260,7 +267,7 @@
         "Generative AI"
       ],
       "landingPages": [
-        "AI-AI/ML Model Dev"
+        "Consumer"
       ],
       "heroColor": "#8761B1",
       "thumb": "./thumb.png",
@@ -290,7 +297,7 @@
         "Chain interoperability"
       ],
       "landingPages": [
-        "Blockchain-Onchain infra"
+        "Financial services"
       ],
       "heroColor": "#5E86E2",
       "thumb": "./thumb.png",
@@ -323,9 +330,7 @@
         "Streams",
         "Dart"
       ],
-      "landingPages": [
-        "AI-Agentic Applications"
-      ],
+      "landingPages": [],
       "heroColor": "#735BB9",
       "thumb": "./thumb.png",
       "thumb_h": "./thumb_h.png",
@@ -357,7 +362,8 @@
         "Integration Testing"
       ],
       "landingPages": [
-        "Blockchain-Onchain infra"
+        "Financial services",
+        "Blockchain"
       ],
       "heroColor": "#886FD0",
       "thumb": "./thumb.png",
@@ -389,7 +395,7 @@
         "Components"
       ],
       "landingPages": [
-        "AI-AI Infra and Framework"
+        "Financial services"
       ],
       "intro": "In today's digital economy, payment integration represents far more than just a technical implementation—it's a critical business capability that can determine the success or failure of modern digital platforms. Whether you're building an e-commerce platform, a subscription service, or a marketplace, the ability to process payments reliably, securely, and efficiently is fundamental to business operations.",
       "path": "articles/What%20It%20Takes%20to%20Build%20a%20Payments%20Integration%3A%20Key%20Components%20and%20Considerations/README.md",
@@ -443,6 +449,7 @@
         "Blockchain testing",
         "GitHub Actions"
       ],
+      "landingPages": [],
       "heroColor": "#2D9FB8",
       "thumb": "./thumb.png",
       "thumb_h": "./thumb-h.png",
@@ -468,6 +475,9 @@
       "tags": [
         "Web2",
         "FinTech"
+      ],
+      "landingPages": [
+        "Financial services"
       ],
       "heroColor": "#5E76D5",
       "thumb": "thumb.png",
@@ -499,7 +509,7 @@
       "thumb": "ArticleImage.png",
       "thumb_h": "ArticleImage_h.png",
       "landingPages": [
-        "AI-Agentic Applications"
+        "Consumer"
       ],
       "intro": "Excited to use App Clips to help promote your app? In this article, a case study illustrates how App Clips can be used as a promotional tool to drive app downloads and engagement.",
       "path": "articles/Drive%20iOS%20App%20Downloads%20with%20Clip/README.md",
@@ -527,7 +537,7 @@
         "Compute Unit"
       ],
       "landingPages": [
-        "Blockchain-Onchain infra"
+        "Blockchain"
       ],
       "heroColor": "#7F6DCD",
       "thumb": "thumb.jpg",
@@ -557,7 +567,7 @@
         "Alchemy"
       ],
       "landingPages": [
-        "Blockchain-Defi Protocols"
+        "Blockchain"
       ],
       "heroColor": "#656ACE",
       "thumb": "thumb.png",
@@ -584,7 +594,7 @@
         "Encryption"
       ],
       "landingPages": [
-        "Blockchain-Defi Protocols"
+        "Blockchain"
       ],
       "heroColor": "#429C9A",
       "thumb": "thumb.png",
@@ -610,9 +620,7 @@
         "Frontend",
         "Performance"
       ],
-      "landingPages": [
-        "Blockchain-dApps"
-      ],
+      "landingPages": [],
       "heroColor": "#0894BB",
       "thumb": "thumb.png",
       "thumb_h": "thumb_h.png",
@@ -641,9 +649,7 @@
         "Parallel Computing",
         "Microservices Architecture"
       ],
-      "landingPages": [
-        "AI-Agentic Applications"
-      ],
+      "landingPages": [],
       "heroColor": "#45A587",
       "thumb": "./thumb.png",
       "thumb_h": "./thumb_h.png",
@@ -672,7 +678,11 @@
         "LanceDB"
       ],
       "landingPages": [
-        "AI-Data Engineering"
+        "Legal",
+        "Construction & property",
+        "AI",
+        "Compass",
+        "Excavator"
       ],
       "heroColor": "#3D9AB6",
       "thumb": "./thumb.png",
@@ -703,7 +713,13 @@
         "LLM"
       ],
       "landingPages": [
-        "AI-Data Engineering"
+        "Legal",
+        "Health",
+        "Construction & property",
+        "AI",
+        "AI for your business",
+        "Compass",
+        "Excavator"
       ],
       "heroColor": "#4A9C98",
       "thumb": "thumb.png",
@@ -743,8 +759,9 @@
         "Multimodal"
       ],
       "landingPages": [
-        "AI-AI/ML Model Dev",
-        "Blockchai-AI agent"
+        "Legal",
+        "AI",
+        "Robotics"
       ],
       "heroColor": "#7B61BB",
       "thumb": "thumb.png",
@@ -774,9 +791,7 @@
         "Mobile",
         "Android"
       ],
-      "landingPages": [
-        "AI-AI Infra and Framework"
-      ],
+      "landingPages": [],
       "heroColor": "#3DA497",
       "thumb": "./thumb.png",
       "thumb_h": "./thumb_h.png",
@@ -805,7 +820,7 @@
         "Workflow"
       ],
       "landingPages": [
-        "AI-AI Infra and Framework"
+        "Blueprint"
       ],
       "heroColor": "#5B6FBE",
       "thumb": "./thumb.png",
@@ -838,7 +853,10 @@
         "Automation Framework"
       ],
       "landingPages": [
-        "Blockchain-Onchain infra"
+        "Health",
+        "Construction & property",
+        "Blueprint",
+        "Compass"
       ],
       "heroColor": "#329ECC",
       "thumb": "./thumb.png",
@@ -869,7 +887,7 @@
         "Webpack"
       ],
       "landingPages": [
-        "QA & Testing"
+        "Blueprint"
       ],
       "heroColor": "#4996F1",
       "thumb": "https://s3.amazonaws.com/assets.57blocks.io/cms_uploads/illustration_cup_an_laptop_e12de970e5.png",
@@ -900,9 +918,7 @@
         "Flutter",
         "Crypto"
       ],
-      "landingPages": [
-        "AI-Agentic Applications"
-      ],
+      "landingPages": [],
       "heroColor": "#735BB9",
       "thumb": "https://s3.amazonaws.com/assets.57blocks.io/cms_uploads/illustration_tokenpad_65aea3b800.png",
       "thumb_h": "./thumb_h.png",
@@ -931,6 +947,7 @@
         "Growth",
         "Alternative Investment"
       ],
+      "landingPages": [],
       "heroColor": "#39A0A0",
       "thumb": "https://s3.amazonaws.com/assets.57blocks.io/cms_uploads/illustration_seo_db9bc06b49.png",
       "thumb_h": "./thumb_h.png",
@@ -961,8 +978,10 @@
         "OpenCV"
       ],
       "landingPages": [
-        "AI-AI/ML Model Dev",
-        "Blockchai-AI agent"
+        "Consumer",
+        "Health",
+        "AI",
+        "Robotics"
       ],
       "heroColor": "#4996F1",
       "thumb": "https://s3.amazonaws.com/assets.57blocks.io/cms_uploads/illustration_blue_squares_c1bbaab97b.png",
@@ -993,7 +1012,8 @@
         "QA"
       ],
       "landingPages": [
-        "Blockchain-Onchain infra"
+        "Financial services",
+        "Blockchain"
       ],
       "heroColor": "#795ECA",
       "thumb": "./thumb.png",
@@ -1025,7 +1045,7 @@
         "Dapp"
       ],
       "landingPages": [
-        "Blockchain-dApps"
+        "Blockchain"
       ],
       "heroColor": "#2CA9CA",
       "thumb": "./thumb.png",
