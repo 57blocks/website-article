@@ -6,7 +6,7 @@ createTime: 2026-06-22
 categories: ["engineering"]
 subCategories: ["Blockchain & Web3"]
 tags: ["Solana", "Ethereum", "Smart Contract", "Solidity", "Anchor"]
-landingPages: ["Blockchain"]
+landingPages: []
 thumb: "./thumb.png"
 thumb_h: "./thumb_h.png"
 intro: "Solana contract constraints that bite during an EVM migration, plus a full staking port from Solidity to Anchor."

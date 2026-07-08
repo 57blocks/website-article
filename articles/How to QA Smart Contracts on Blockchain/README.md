@@ -6,7 +6,7 @@ createTime: 2024-04-19
 categories: ["engineering"]
 subCategories: ["QA & Testing"]
 tags: ["Smart Contract", "Web3", "QA"]
-landingPages: ["Financial services", "Blockchain"]
+landingPages: []
 heroColor: "#795ECA"
 thumb: "./thumb.png"
 thumb_h: "./thumb_h.png"

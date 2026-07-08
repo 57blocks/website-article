@@ -6,7 +6,7 @@ createTime: 2026-01-26
 categories: ["engineering"]
 subCategories: ["Blockchain & Web3"]
 tags: ["Solana", "Ethereum", "Smart Contract", "Solidity", "Anchor"]
-landingPages: ["Financial services", "Blockchain"]
+landingPages: []
 thumb: "./thumb.png"
 thumb_h: "./thumb_h.png"
 intro: "A deep dive into the core mindset shift and best practices when moving contracts from Ethereum to Solana."

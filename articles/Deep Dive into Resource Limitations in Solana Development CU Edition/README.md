@@ -6,7 +6,7 @@ createTime: 2025-02-20
 categories: ["engineering"]
 subCategories: ["Blockchain & Web3"]
 tags: ["Web3", "Blockchain", "Solana", "Resource Limitation", "Compute Unit"]
-landingPages: ["Blockchain"]
+landingPages: []
 heroColor: "#7F6DCD"
 thumb: "thumb.jpg"
 thumb_h: "thumb_h.jpg"

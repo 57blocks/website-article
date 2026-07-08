@@ -13,7 +13,7 @@ tags:
     "Smart Contract",
     "Integration Testing",
   ]
-landingPages: ["Financial services", "Blockchain"]
+landingPages: []
 heroColor: "#886FD0"
 thumb: "./thumb.png"
 thumb_h: "./thumb_h.png"

@@ -11,7 +11,7 @@ createTime: 2024-05-22
 categories: ["engineering"]
 subCategories: ["AI & Vector DBs"]
 tags: ["Vector Database", "Pinecone", "LanceDB"]
-landingPages: ["Legal", "Construction & property", "AI", "Compass", "Excavator"]
+landingPages: []
 heroColor: "#3D9AB6"
 thumb: "./thumb.png"
 thumb_h: "./thumb_h.png"

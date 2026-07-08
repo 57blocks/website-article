@@ -6,7 +6,7 @@ createTime: 2026-06-26
 categories: ["engineering"]
 subCategories: ["Blockchain & Web3"]
 tags: ["Solana", "Ethereum", "Backend", "Indexer", "NestJS", "Anchor"]
-landingPages: ["Blockchain"]
+landingPages: []
 thumb: "./thumb.png"
 thumb_h: "./thumb_h.png"
 intro: "How to index Solana transaction logs, run cron jobs against on-chain state, and ship a NestJS backend for an EVM-to-Solana migration."

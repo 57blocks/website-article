@@ -9,7 +9,7 @@ tags: ["App Clip", "iOS", "App", "App Downloads"]
 heroColor: "#48AC9A"
 thumb: "ArticleImage.png"
 thumb_h: "ArticleImage_h.png"
-landingPages: ["Consumer"]
+landingPages: ["Consumer", "Construction & property"]
 intro: "Excited to use App Clips to help promote your app? In this article, a case study illustrates how App Clips can be used as a promotional tool to drive app downloads and engagement."
 ---
 

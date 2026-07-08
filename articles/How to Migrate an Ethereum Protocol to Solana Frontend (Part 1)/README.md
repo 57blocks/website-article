@@ -6,7 +6,7 @@ createTime: 2026-06-23
 categories: ["engineering"]
 subCategories: ["Blockchain & Web3"]
 tags: ["Solana", "Ethereum", "Frontend", "Wallet", "Transaction"]
-landingPages: ["Blockchain"]
+landingPages: []
 thumb: "./thumb.png"
 thumb_h: "./thumb_h.png"
 intro: "Frontend architecture design and practical implementation for high-performance data access and transaction optimisation when migrating from Ethereum to Solana."

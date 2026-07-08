@@ -14,7 +14,7 @@ createTime: 2026-01-23
 categories: ["engineering"]
 subCategories: ["Blockchain & Web3"]
 tags: ["Solana", "Ethereum", "Smart Contract", "Solidity", "Anchor"]
-landingPages: ["Financial services", "Blockchain"]
+landingPages: ["Blockchain"]
 heroColor: "#398DAD"
 thumb: "thumb.png"
 thumb_h: "thumb-h.png"

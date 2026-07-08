@@ -6,16 +6,7 @@ createTime: 2024-05-21
 categories: ["engineering"]
 subCategories: ["AI & Vector DBs"]
 tags: ["Information Extraction", "LLM"]
-landingPages:
-  [
-    "Legal",
-    "Health",
-    "Construction & property",
-    "AI",
-    "AI for your business",
-    "Compass",
-    "Excavator",
-  ]
+landingPages: ["AI", "Legal", "Health", "Construction & property"]
 heroColor: "#4A9C98"
 thumb: "thumb.png"
 thumb_h: "thumb_h.png"

@@ -6,7 +6,7 @@ createTime: 2024-05-07
 categories: ["engineering"]
 subCategories: ["QA & Testing"]
 tags: ["QA strategy", "CI", "Automation Framework"]
-landingPages: ["Health", "Construction & property", "Blueprint", "Compass"]
+landingPages: ["Legal", "Health", "Construction & property"]
 heroColor: "#329ECC"
 thumb: "./thumb.png"
 thumb_h: "./thumb_h.png"

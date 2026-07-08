@@ -6,7 +6,7 @@ createTime: 2025-01-10
 categories: ["engineering"]
 subCategories: ["Blockchain & Web3"]
 tags: ["Blockchain", "Encryption"]
-landingPages: ["Blockchain"]
+landingPages: []
 heroColor: "#429C9A"
 thumb: "thumb.png"
 thumb_h: "thumb-h.png"
