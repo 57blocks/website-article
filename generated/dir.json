@@ -22,9 +22,7 @@
         "NestJS",
         "Anchor"
       ],
-      "landingPages": [
-        "Blockchain"
-      ],
+      "landingPages": [],
       "thumb": "./thumb.png",
       "thumb_h": "./thumb_h.png",
       "intro": "How to index Solana transaction logs, run cron jobs against on-chain state, and ship a NestJS backend for an EVM-to-Solana migration.",
@@ -53,9 +51,7 @@
         "Wallet",
         "Anchor"
       ],
-      "landingPages": [
-        "Blockchain"
-      ],
+      "landingPages": [],
       "thumb": "./thumb.png",
       "thumb_h": "./thumb_h.png",
       "intro": "A complete staking demo implementation comparing EVM and Solana frontend patterns side by side — wallet connection, reading state, writing transactions, and event handling.",
@@ -83,9 +79,7 @@
         "Wallet",
         "Transaction"
       ],
-      "landingPages": [
-        "Blockchain"
-      ],
+      "landingPages": [],
       "thumb": "./thumb.png",
       "thumb_h": "./thumb_h.png",
       "intro": "Frontend architecture design and practical implementation for high-performance data access and transaction optimisation when migrating from Ethereum to Solana.",
@@ -113,9 +107,7 @@
         "Solidity",
         "Anchor"
       ],
-      "landingPages": [
-        "Blockchain"
-      ],
+      "landingPages": [],
       "thumb": "./thumb.png",
       "thumb_h": "./thumb_h.png",
       "intro": "Solana contract constraints that bite during an EVM migration, plus a full staking port from Solidity to Anchor.",
@@ -140,9 +132,7 @@
         "Distributed Teams",
         "Engineering Management"
       ],
-      "landingPages": [
-        "Blockchain"
-      ],
+      "landingPages": [],
       "heroColor": "#3991C0 ",
       "thumb": "./thumb.png",
       "thumb_h": "./thumb_h.png",
@@ -174,10 +164,7 @@
         "Solidity",
         "Anchor"
       ],
-      "landingPages": [
-        "Financial services",
-        "Blockchain"
-      ],
+      "landingPages": [],
       "thumb": "./thumb.png",
       "thumb_h": "./thumb_h.png",
       "intro": "A deep dive into the core mindset shift and best practices when moving contracts from Ethereum to Solana.",
@@ -210,7 +197,6 @@
         "Anchor"
       ],
       "landingPages": [
-        "Financial services",
         "Blockchain"
       ],
       "heroColor": "#398DAD",
@@ -361,10 +347,7 @@
         "Smart Contract",
         "Integration Testing"
       ],
-      "landingPages": [
-        "Financial services",
-        "Blockchain"
-      ],
+      "landingPages": [],
       "heroColor": "#886FD0",
       "thumb": "./thumb.png",
       "thumb_h": "./thumb_h.png",
@@ -509,7 +492,8 @@
       "thumb": "ArticleImage.png",
       "thumb_h": "ArticleImage_h.png",
       "landingPages": [
-        "Consumer"
+        "Consumer",
+        "Construction & property"
       ],
       "intro": "Excited to use App Clips to help promote your app? In this article, a case study illustrates how App Clips can be used as a promotional tool to drive app downloads and engagement.",
       "path": "articles/Drive%20iOS%20App%20Downloads%20with%20Clip/README.md",
@@ -536,9 +520,7 @@
         "Resource Limitation",
         "Compute Unit"
       ],
-      "landingPages": [
-        "Blockchain"
-      ],
+      "landingPages": [],
       "heroColor": "#7F6DCD",
       "thumb": "thumb.jpg",
       "thumb_h": "thumb_h.jpg",
@@ -593,9 +575,7 @@
         "Blockchain",
         "Encryption"
       ],
-      "landingPages": [
-        "Blockchain"
-      ],
+      "landingPages": [],
       "heroColor": "#429C9A",
       "thumb": "thumb.png",
       "thumb_h": "thumb-h.png",
@@ -677,13 +657,7 @@
         "Pinecone",
         "LanceDB"
       ],
-      "landingPages": [
-        "Legal",
-        "Construction & property",
-        "AI",
-        "Compass",
-        "Excavator"
-      ],
+      "landingPages": [],
       "heroColor": "#3D9AB6",
       "thumb": "./thumb.png",
       "thumb_h": "./thumb_h.png",
@@ -713,13 +687,10 @@
         "LLM"
       ],
       "landingPages": [
+        "AI",
         "Legal",
         "Health",
-        "Construction & property",
-        "AI",
-        "AI for your business",
-        "Compass",
-        "Excavator"
+        "Construction & property"
       ],
       "heroColor": "#4A9C98",
       "thumb": "thumb.png",
@@ -853,10 +824,9 @@
         "Automation Framework"
       ],
       "landingPages": [
+        "Legal",
         "Health",
-        "Construction & property",
-        "Blueprint",
-        "Compass"
+        "Construction & property"
       ],
       "heroColor": "#329ECC",
       "thumb": "./thumb.png",
@@ -1011,10 +981,7 @@
         "Web3",
         "QA"
       ],
-      "landingPages": [
-        "Financial services",
-        "Blockchain"
-      ],
+      "landingPages": [],
       "heroColor": "#795ECA",
       "thumb": "./thumb.png",
       "thumb_h": "./thumb_h.png",
