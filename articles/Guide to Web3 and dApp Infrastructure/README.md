@@ -11,25 +11,24 @@ heroColor: "#2CA9CA"
 thumb: "./thumb.png"
 thumb_h: "./thumb_h.png"
 intro: "We created this guide to help people new to Web3 and the dApp infrastructures use this technology in their organizations. The design of Web3 apps is much more decentralized than that of Web2. New services are constantly appearing to make building and running these projects easier and safer. Engineers must know how each part works to create effective Web3 apps. We describe this here."
-previousSlugs:
-  ["the-building-blocks-of-web3-a-deep-dive-into-dapp-infrastructure"]
+previousSlugs: ["the-building-blocks-of-web3-a-deep-dive-into-dapp-infrastructure"]
 ---
 
 ## Overview of the Web3 dApp Landscape
 
-The Web3 decentralized application (dApp) landscape is extensive and complex, featuring a variety of applications that use blockchain technology. These decentralized, interoperable applications often incentivize participation through cryptographic tokens. The key categories within this landscape include:
+The Web3 decentralized application (dApp) landscape is extensive and complex, featuring a variety of applications that use blockchain technology. These decentralized, interoperable applications often incentivize participation through cryptographic tokens. The key categories within this landscape include:  
 
 1. **Doors**  
-   Tools and platforms that enable users to access and interact with Web3. These interfaces and applications bridge the gap between traditional web users and the decentralized protocols of Web3.
+Tools and platforms that enable users to access and interact with Web3. These interfaces and applications bridge the gap between traditional web users and the decentralized protocols of Web3.           
 
 2. **Applications**  
-   These act as a bridge between end-users and the underlying blockchain protocols and primitives, providing a user interface and experience.
+These act as a bridge between end-users and the underlying blockchain protocols and primitives, providing a user interface and experience.       
 
 3. **Primitives**  
-   Fundamental components within the decentralized ecosystem. They are interoperable building blocks that developers use to create complex dApps.  
-
-4. **Protocols**  
-   Frameworks and systems providing infrastructure for decentralized networks. They define data storage, transmission, and processing across a blockchain network.
+Fundamental components within the decentralized ecosystem. They are interoperable building blocks that developers use to create complex dApps.        
+   
+4. **Protocols**   
+Frameworks and systems providing infrastructure for decentralized networks. They define data storage, transmission, and processing across a blockchain network.
 
 ---
 
