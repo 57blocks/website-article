@@ -130,7 +130,7 @@ In EVM, transaction fees are composed of the following components:
 
 **Fee Calculation Formula**:
 
-```
+```text
 Transaction Fee = Gas Used × (Base Fee + Priority Fee)
 ```
 
@@ -152,7 +152,7 @@ Solana's transaction cost structure consists of three main parts:
 
   **Formula**:
 
-  ```
+  ```text
   Prioritization Fee = Compute Units Consumed × Compute Unit Price
   ```
 
@@ -173,7 +173,7 @@ On Solana, on-chain accounts occupy storage space and storage resources are limi
 
 - The minimum balance for rent exemption is calculated as:
 
-  ```
+  ```text
   rent_exempt_minimum = lamports_per_byte_year × data_len × exemption_threshold
   ```
 

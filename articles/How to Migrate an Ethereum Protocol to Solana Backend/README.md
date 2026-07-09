@@ -93,7 +93,7 @@ When designing Anchor events, include fields the backend needs even if on-chain 
 
 Minimal `Staked` event:
 
-```
+```rust
 #[event]
 pub struct Staked {
     pub user: Pubkey,
@@ -104,21 +104,21 @@ pub struct Staked {
 
 After parsing, the backend still needs total stake and reward debt, which means another RPC read of `UserStakeInfo`:
 
-```
+```typescript
 const [userStakePda] = PublicKey.findProgramAddressSync(
   [Buffer.from("stake"), statePda.toBuffer(), user.toBuffer()],
-  programId
+  programId,
 );
 const accountInfo = await connection.getAccountInfo(userStakePda);
 const totalStaked = coder.accounts.decode(
   "UserStakeInfo",
-  accountInfo.data
+  accountInfo.data,
 ).amount;
 ```
 
 Extra fields on the event avoid that round trip:
 
-```
+```rust
 #[event]
 pub struct Staked {
     pub user: Pubkey,
@@ -139,7 +139,7 @@ Four steps: resolve start signature, list signatures, fetch and parse txs, persi
 
 As above, cursors must be signatures. Example helper:
 
-```
+```typescript
 private async getStartTransactionSignature(
   connection: Connection,
   lastSyncedSlot: number
@@ -184,7 +184,7 @@ If the target slot is empty, scan adjacent slots until you find one with transac
 
 After you have start and end signatures, call `getSignaturesForAddress` to pull the transaction signatures for the account. Results arrive newest-first; reverse to chronological order before processing.
 
-```
+```typescript
 let beforeSignature = endBlockInfo.endSignature;
 let sigsCount = this.config.signaturesPerBatch;
 
@@ -195,7 +195,7 @@ while (sigsCount >= this.config.signaturesPerBatch) {
       limit: this.config.signaturesPerBatch,
       until: startBlock.startSignature,
       before: beforeSignature,
-    }
+    },
   );
 
   sigsCount = sigs.length;
@@ -215,7 +215,7 @@ while (sigsCount >= this.config.signaturesPerBatch) {
 
 Batch `getParsedTransaction` with `Promise.all` inside each batch; sleep between batches.
 
-```
+```typescript
 for (let i = 0; i < sigList.length; i += batchSize) {
   const promises = [];
   for (const sig of sigList.slice(i, i + batchSize)) {
@@ -223,8 +223,8 @@ for (let i = 0; i < sigList.length; i += batchSize) {
       this.solanaEventsService.parseTransactionEvents(
         this.chainId,
         sig,
-        eventsParser
-      )
+        eventsParser,
+      ),
     );
   }
   const eventsList = await Promise.all(promises);
@@ -237,7 +237,7 @@ for (let i = 0; i < sigList.length; i += batchSize) {
 
 Per-transaction parser: fetch, check `meta.err`, then run the event parser.
 
-```
+```typescript
 async parseTransactionEvents(
   chainId: number,
   sig: string,
@@ -266,7 +266,7 @@ async parseTransactionEvents(
 
 Update the sync cursor after each batch, not after the full run finishes.
 
-```
+```typescript
 async onBatchFetched(batchResult) {
   const userActivities = [];
   for (const event of batchResult.events) {
@@ -301,7 +301,7 @@ In [solana-backend](https://github.com/57blocks/evm-to-solana/tree/main/backend/
 
 Derive the reward vault PDA and read SPL token balance:
 
-```
+```typescript
 async getRewardVaultBalance(poolConfig: string): Promise<RewardVaultBalance> {
   const programId = new PublicKey(StakingIDL.address);
   const poolConfigPda = new PublicKey(poolConfig);
@@ -327,7 +327,7 @@ This is a very common pattern: derive PDA, read account, return typed result.
 
 Compare balance to threshold; create or resolve alerts.
 
-```
+```typescript
 private async checkPoolBalance(poolConfig: string): Promise<void> {
   const threshold = this.config.getOrThrow<number>("REWARD_BALANCE_THRESHOLD");
   const balance = await this.rewardVaultReader.getRewardVaultBalance(poolConfig);
@@ -375,7 +375,7 @@ In the previous chapters, we covered event synchronization, limitations and work
 
 [solana-backend](https://github.com/57blocks/evm-to-solana/tree/main/backend/solana-backend) is TypeScript on NestJS.
 
-```
+```text
 solana-backend/
 ├── src/
 │   ├── autotask/          # cron: balance checks + alerts
@@ -400,7 +400,7 @@ solana-backend/
 
 The staking program uses a [MasterChef](https://github.com/sushiswap/masterchef)-style accumulator: update `acc_reward_per_share` before each action, then derive pending rewards from user stake and `reward_debt`. The backend copies the same math in BigInt so API queries do not hit RPC every time.
 
-```
+```typescript
 // src/domain-services/RewardCalculationService.ts
 projectedAccRewardPerShare(
   state: PoolState,
@@ -434,7 +434,7 @@ BigInt end to end avoids JavaScript float bugs. API handlers call `pendingReward
 
 The backend uses the `SyncStatus` table to track each pool's sync progress. The `db:init` script reads the `POOL_CONFIGS` env variable and populates the database with each pool's starting slot.
 
-```
+```typescript
 // scripts/db/init-db.ts
 const entries = process.env.POOL_CONFIGS.split(",");
 for (const entry of entries) {
@@ -456,13 +456,13 @@ Each batch updates `lastSyncBlock`. Restarts continue from the last checkpoint w
 
 `EventIndexingService` tests cover cron registration and overlap protection:
 
-```
+```typescript
 // src/indexer/event-indexing.service.spec.ts
 it("registers the event-indexing cron job on module init", () => {
   service.onModuleInit();
   expect(schedulerRegistry.addCronJob).toHaveBeenCalledWith(
     "event-indexing",
-    expect.any(Object)
+    expect.any(Object),
   );
 });
 
@@ -472,7 +472,7 @@ it("blocks overlapping sync cycles", async () => {
   mockRunOnce.mockReturnValue(
     new Promise<void>((resolve) => {
       resolveRun = resolve;
-    })
+    }),
   );
   const firstRun = service.tick();
   const secondRun = service.tick();
@@ -487,7 +487,7 @@ A sync pass can outlast the cron interval. An `isRunning` flag drops overlapping
 
 `PoolBalanceMonitorService` tests the alert lifecycle:
 
-```
+```typescript
 // src/autotask/pool-balance-monitor.service.spec.ts
 it("goes through the full alert lifecycle: create → resolve → create again", async () => {
   // Balance below threshold → create alert
@@ -525,7 +525,7 @@ Mocked `rewardVaultReader` and `alertRepository` stand in for RPC and the DB.
 
 Multi-stage Docker keeps the runtime image small:
 
-```
+```dockerfile
 FROM node:20-alpine AS builder
 WORKDIR /app
 RUN apk add --no-cache python3 make g++ && corepack enable
@@ -550,7 +550,7 @@ CMD ["node", "dist/src/main.js"]
 
 `docker-compose.yml` mounts `./prisma` so SQLite survives container restarts:
 
-```
+```yaml
 services:
   solana-backend:
     build: .
@@ -564,7 +564,7 @@ services:
 
 Typical deploy:
 
-```
+```bash
 docker compose build solana-backend
 docker compose run --rm solana-backend ./node_modules/.bin/prisma db push
 docker compose run --rm solana-backend node dist/scripts/db/init-db.js

@@ -6,25 +6,25 @@
 
 1. [Introduction](#introduction)
 2. [Standards and Structure](#standards-and-structure)
-    - [Metadata](#metadata)
-    - [Folder and File Naming](#folder-and-file-naming)
+   - [Metadata](#metadata)
+   - [Folder and File Naming](#folder-and-file-naming)
 3. [Writing and Styling](#writing-and-styling)
-    - [Markdown Syntax](#markdown-syntax)
-    - [Extended Markdown Syntax](#extended-markdown-syntax)
+   - [Markdown Syntax](#markdown-syntax)
+   - [Extended Markdown Syntax](#extended-markdown-syntax)
 4. [Submitting Your Article](#submitting-your-article)
-    - [Local Submission](#local-submission)
-    - [Online Editing](#direct-online-editing)
+   - [Local Submission](#local-submission)
+   - [Online Editing](#direct-online-editing)
 5. [Previewing Your Article](#previewing-your-article)
-    - [Preview by URL](#preview-by-url)
-    - [Realtime Preview](#realtime-preview)
+   - [Preview by URL](#preview-by-url)
+   - [Realtime Preview](#realtime-preview)
 6. [Review and Approval Process](#review-and-approval-process)
-    - [Pull Request Creation](#pull-request-creation)
-    - [Content Review](#content-review)
-    - [Image Optimization](#image-optimization)
+   - [Pull Request Creation](#pull-request-creation)
+   - [Content Review](#content-review)
+   - [Image Optimization](#image-optimization)
 7. [Merging and Deployment](#merging-and-deployment)
-    - [Final Testing](#final-testing)
-    - [Publish to QA environment](#publish-to-qa-environment)
-    - [Deployment to Main Branch](#deployment-to-main-branch)
+   - [Final Testing](#final-testing)
+   - [Publish to QA environment](#publish-to-qa-environment)
+   - [Deployment to Main Branch](#deployment-to-main-branch)
 
 ---
 
@@ -40,12 +40,13 @@ Welcome to the article publishing repository for our company's website. This gui
 
 Each article must begin with metadata in YAML format. This metadata provides essential information that helps in organizing and displaying the article correctly on the company's website.
 
-*Metadata Template*
+_Metadata Template_
 
 ```yaml
 ---
 title: "The title of the article"
-author: ["YourName / Full stack engineer", "SecondAuthorName / PositionOfTheAuthor"]
+author:
+  ["YourName / Full stack engineer", "SecondAuthorName / PositionOfTheAuthor"]
 createTime: 2024-04-01
 tags: ["Web3", "AnyOtherTag"]
 thumb: "https://example.com/theThumbOfTheArticle.png"
@@ -53,13 +54,14 @@ thumb_h: "https://example.com/theHorizontalThumbOfTheArticle.png"
 intro: "Some introduction to the article"
 ---
 ```
+
 </details>
 
 > [!warning]
-> Due to historical reasons, the terms "thumb" and "thumb_h" here refer to images for `portrait` and `landscape` orientations, respectively, and *not* to different levels of image quality.
-> 
+> Due to historical reasons, the terms "thumb" and "thumb_h" here refer to images for `portrait` and `landscape` orientations, respectively, and _not_ to different levels of image quality.
+>
 > `thumb`: (Portrait orientation)
-> 
+>
 > `thumb_h`: (Landscape orientation)
 
 > [!note]
@@ -88,11 +90,12 @@ To enhance the presentation of your articles, we support several Markdown plugin
   <details>
   <summary>Usage Example</summary>
 
-  ```
-  *[HTML]: Hyper Text Markup Language
-  *[W3C]:  World Wide Web Consortium
+  ```markdown
+  _[HTML]: Hyper Text Markup Language
+  _[W3C]: World Wide Web Consortium
   The HTML specification is maintained by the W3C.
   ```
+
   </details>
 
 - **plugin-alert** [referrence](https://mdit-plugins.github.io/alert.html)
@@ -103,6 +106,7 @@ To enhance the presentation of your articles, we support several Markdown plugin
   > [!warning]
   > This is warning text
   ```
+
   </details>
 
   Supported alert types: `note`, `tip`, `important`, `caution`, `warning`.
@@ -128,6 +132,7 @@ To enhance the presentation of your articles, we support several Markdown plugin
   Contents to align justify
   :::
   ```
+
   </details>
 
 - **img-size** [referrence](https://mdit-plugins.github.io/img-size.html)
@@ -139,6 +144,7 @@ To enhance the presentation of your articles, we support several Markdown plugin
   ![Alt](/example.jpg "Image title" =200x)
   ![Alt](/example.bmp =x300)
   ```
+
   </details>
 
 - **footnote** [referrence](https://mdit-plugins.github.io/footnote.html)
@@ -149,8 +155,10 @@ To enhance the presentation of your articles, we support several Markdown plugin
   Footnote 1 link[^first].
 
   [^first]: Footnote can reference [^second].
+
   [^second]: Other footnote.
   ```
+
   </details>
 
 If you require additional markdown syntax support, please contact the WCP project team.
@@ -197,11 +205,10 @@ If you require additional markdown syntax support, please contact the WCP projec
 1. Obtain the raw URL of your article from GitHub, considering there is a 5-minute cache delay.
 
    Accepted formats:
-
-    - `https://github.com/57blocks/website-article/tree/dev/articles/YourArticle`
-    - `https://github.com/57blocks/website-article/blob/dev/articles/YourArticle/README.md`
-    - `https://github.com/57blocks/website-article/raw/dev/articles/YourArticle/README.md`
-    - `https://raw.githubusercontent.com/57blocks/website-article/dev/articles/YourArticle/README.md`
+   - `https://github.com/57blocks/website-article/tree/dev/articles/YourArticle`
+   - `https://github.com/57blocks/website-article/blob/dev/articles/YourArticle/README.md`
+   - `https://github.com/57blocks/website-article/raw/dev/articles/YourArticle/README.md`
+   - `https://raw.githubusercontent.com/57blocks/website-article/dev/articles/YourArticle/README.md`
 
 2. Use the [Preview Tool](https://dev-ui.57blocks.io/blog/preview) and paste your raw URL to preview how it will appear on the company's website.
 
@@ -234,6 +241,7 @@ Upon generating the PR, you will receive a preview URL. Use this link to get des
 ## Merging and Deployment
 
 ### Final Testing
+
 When the author feels they have completed all the preparation work for the article and are ready to publish it, the author should contact the WCP team or the testing team. The testing team will perform the final testing and verification of the article.
 
 If the tester or designer has any feedback, **please add the corresponding feedback or comments in the PR**. The author will only be able to merge the code once they have addressed all the feedback and made the necessary adjustments to the article.
@@ -243,6 +251,7 @@ Once the testing team has validated the article on the dev environment and all f
 If you need any technical support during the process, please contact the wcp project team.
 
 ### Publish to QA environment
+
 All you need to do is add a line to the metadata
 `published: true`
 
@@ -251,10 +260,10 @@ All you need to do is add a line to the metadata
 published: true
 title: "The title of the article"
 ...
+
 ...
 ---
 ```
-
 
 ### Deployment to Main Branch
 
