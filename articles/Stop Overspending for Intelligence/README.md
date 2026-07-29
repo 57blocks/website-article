@@ -63,7 +63,8 @@ But don’t want FP4 quantization because it performs worse? then pick Novita.
 The point is that there is an entire matrix of figures to consider, so you’re seeing deals being won not just on price, but across uptime, latency, throughput, error and retry rates, otherwise known as goodput. **This is what makes provider selection inseparable from model selection.**
 
 ![many-provider-metrics-to-consider.png](https://d2bbd18t6iidcl.cloudfront.net/website/uploads/many_provider_metrics_to_consider_b2eb6acb72.png){.d-block .mx-auto}
-<small class="text-center text-secondary">Many provider metrics to consider</small>
+<small>*Many provider metrics to consider*</small>
+{.text-center .text-secondary}
 
 ## Own your harness, own your outcomes
 
