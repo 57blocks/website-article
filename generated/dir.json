@@ -1,6 +1,50 @@
 {
   "articles": [
     {
+      "published": false,
+      "title": "Stablecoins Won. Most Stablecoin Startups Won’t.",
+      "author": [
+        "Kevin Wang"
+      ],
+      "createTime": "2026-07-29T00:00:00.000Z",
+      "categories": [],
+      "subCategories": [
+        "Investment"
+      ],
+      "tags": [],
+      "landingPages": [],
+      "heroColor": "#2CA9CA",
+      "thumb": "https://d2bbd18t6iidcl.cloudfront.net/website/uploads/illustration_virtual_currencies_51a08df4e6.png",
+      "thumb_h": "",
+      "intro": "We are no longer in the first inning of stablecoins. When large institutions are attempting to build their own stablecoins, tokenized deposits, really tokenized everything, you know we’re already in the middle innings. No longer are we in the wilderness, wandering in the gray areas of regulation attempting to survive long enough to see the promised land. The promised land is here, $300+ billion in stablecoins, used from Santiago to Lagos to Manila. Financial services on blockchain will be the biggest TAM in the world. Yet, founders are still building like it’s 2020. “We’re building a cross-border payments company for LatAm”. “We’re building a neobank for SE Asia”. Most of these companies will die, because they’re focused on the wrong question. The question you need to answer is “why will you win at scale?”.",
+      "previousSlugs": [],
+      "path": "articles/Stablecoins%20Won.%20Most%20Stablecoin%20Startups%20Won%E2%80%99t./README.md",
+      "slug": "stablecoins-won-most-stablecoin-startups-wont"
+    },
+    {
+      "published": false,
+      "title": "Stop Overspending for Intelligence",
+      "author": [
+        "Kevin Wang"
+      ],
+      "createTime": "2026-07-29T00:00:00.000Z",
+      "categories": [],
+      "subCategories": [
+        "Investment"
+      ],
+      "tags": [],
+      "landingPages": [
+        "Blockchain"
+      ],
+      "heroColor": "#2CA9CA",
+      "thumb": "https://d2bbd18t6iidcl.cloudfront.net/website/uploads/illustration_robot_hand_pinch_coin_b8b821b88b.png",
+      "thumb_h": "",
+      "intro": "The fog of war refers to the uncertainty and lack of situational awareness experienced by commanders and soldiers in military operations, caused by incomplete intelligence, communication failures, and the unpredictable nature of combat.",
+      "previousSlugs": [],
+      "path": "articles/Stop%20Overspending%20for%20Intelligence/README.md",
+      "slug": "stop-overspending-for-intelligence"
+    },
+    {
       "published": true,
       "title": "How to Migrate an Ethereum Protocol to Solana — Backend",
       "author": [
