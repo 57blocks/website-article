@@ -31,8 +31,8 @@ This means that any task you reliably used Opus 4.6 or GPT-5.4 to accomplish, yo
 The future of token spend is a multi-model approach, with an internal router deciding the model-and-provider combination that should serve each call. The efficient frontier for most companies is a 90% open-weight / 10% frontier-model split. Of course there will be exceptions - drug discovery, rocket science, and work of similar ilk. But for most operating businesses, 90/10 will do. You should expect your bill to run 10/90 in the other direction: open-weight models cost almost nothing to serve, while frontier models consume 90% of your budget.
 The catch is that you can’t just run a generic model bakeoff. You need to constantly evaluate two things: 
 
-- 1.	Which models can hit the accuracy outcomes required
-- 2.	Can you get enough of it – a deceptively tricky question that isn’t just about GPU allocation
+1. Which models can hit the accuracy outcomes required
+2. Can you get enough of it – a deceptively tricky question that isn’t just about GPU allocation
 
 ## A token is not a unit of intelligence
 
