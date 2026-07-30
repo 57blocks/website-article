@@ -1,6 +1,6 @@
 ---
 published: false
-title: "Stablecoins Won. Most Stablecoin Startups Won’t."
+title: "Stablecoins Won, Most Stablecoin Startups Won’t"
 author: ["Kevin Wang"]
 createTime: 2026-07-29
 categories: []
